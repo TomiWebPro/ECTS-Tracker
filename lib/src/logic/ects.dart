@@ -76,6 +76,32 @@ double? expectedHoursToDate(
   return required * (elapsed / span);
 }
 
+/// Time actually elapsed from the course [startDate] to [now], in days
+/// (fractional, so a same-day start is a small positive number, not 0).
+///
+/// Returns 0 when there is no start date or the start date is not yet reached.
+double elapsedDays(DateTime? startDate, DateTime now) {
+  if (startDate == null) return 0;
+  final minutes = now.difference(startDate).inMinutes;
+  return minutes > 0 ? minutes / (60 * 24) : 0;
+}
+
+/// The pace (hours/day) the student has actually *finished* so far, measured
+/// from the start date: `completedHours / elapsedDays`. Null when there is no
+/// start date or the start date has not been reached yet (pace undefined, never
+/// a divide by 0). A start that coincides with [now] yields 0 h/day.
+double? finishedDailyPace(
+  double completed,
+  DateTime? startDate,
+  DateTime now,
+) {
+  if (startDate == null) return null;
+  final minutes = now.difference(startDate).inMinutes;
+  if (minutes < 0) return null;
+  if (minutes == 0) return 0;
+  return completed / (minutes / (60 * 24));
+}
+
 /// Where a course stands against its deadline, computed from logged hours and
 /// elapsed time (AGENTS.md §4). Never stored.
 enum CourseStatus {
@@ -130,9 +156,13 @@ class CourseProgress {
 ///    course is still completed, not overdue).
 /// 2. deadline strictly before [now] → [CourseStatus.overdue].
 /// 3. no deadline / no start date (no linear expectation exists) → [CourseStatus.onTrack].
-/// 4. logged hours above expectation to date → [CourseStatus.ahead], otherwise
-///    [CourseStatus.onTrack] — a course is never "behind" while it is ahead of
-///    or level with the linear expectation.
+/// 4. logged hours above expectation to date → [CourseStatus.ahead].
+/// 5. otherwise the course finishes on time at the pace it has *actually*
+///    achieved so far ([finishedDailyPace]) → [CourseStatus.onTrack].
+/// 6. when the achieved pace is below the [requiredDailyHours] needed to hit
+///    the deadline → [CourseStatus.behind]. This is the only way a course can
+///    be behind: the finished-hours baseline is measured against the pace
+///    actually required from here on, not the linear expectation.
 CourseProgress courseProgress({
   required double ectsCredits,
   required double hoursPerEcts,
@@ -204,8 +234,23 @@ CourseStatus _status({
   if (isPastDeadline(deadline, now)) return CourseStatus.overdue;
 
   final expected = expectedHoursToDate(required, startDate, deadline, now);
-  if (expected == null || completed <= expected) return CourseStatus.onTrack;
-  return CourseStatus.ahead;
+  if (expected == null) return CourseStatus.onTrack;
+  if (completed > expected) return CourseStatus.ahead;
+
+  // Level with or below the linear expectation: the course is on track only if
+  // the pace it has actually achieved so far would still finish in time.
+  final achieved = finishedDailyPace(completed, startDate, now);
+  final needed = requiredDailyHours(remaining, deadline, now);
+  // No finished-pace baseline (no elapsed time yet) or a deadline day that has
+  // arrived (no pace can be computed) → cannot prove a shortfall → on track.
+  if (achieved == null || needed == null) return CourseStatus.onTrack;
+  return achieved + _paceEpsilon >= needed
+      ? CourseStatus.onTrack
+      : CourseStatus.behind;
 }
+
+/// Tolerance so floating-point noise on an exact-pace course is not labelled
+/// `behind` (pace is in hours/day).
+const double _paceEpsilon = 1e-9;
 
 DateTime _dateOnly(DateTime d) => DateTime(d.year, d.month, d.day);

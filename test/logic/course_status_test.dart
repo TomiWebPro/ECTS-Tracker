@@ -76,24 +76,29 @@ void main() {
     });
 
     test('on track when level with the linear expectation', () {
-      // 10-day span, 3 days elapsed → expected 45 h; exactly 45 h logged.
+      // 10-day span, 3.5 days elapsed → expected 52.5 h; exactly 52.5 h logged,
+      // so the achieved pace (15 h/day) still finishes in time.
       final p = progress(
-        sessions: [s(45 * 60)],
+        sessions: [s((15 * 3.5 * 60).round())],
         startDate: DateTime(2026, 11, 1),
         deadline: DateTime(2026, 11, 11),
       );
       expect(p.status, CourseStatus.onTrack);
     });
 
-    test('on track when behind the linear expectation but time remains', () {
-      // Behind the *linear* expectation, but no "behind" state is reachable
-      // from logged-hours-vs-time alone, so the course stays on track.
+    test('behind when the finished pace will not finish in time', () {
+      // 10-day span, 3 days elapsed → expected 45 h; only 5 h logged, so the
+      // achieved pace (5/3 ≈ 1.67 h/day) is far under the 145/7 ≈ 20.7 h/day
+      // still needed. Below the linear expectation with a real shortfall.
       final p = progress(
         sessions: [s(5 * 60)],
         startDate: DateTime(2026, 11, 1),
         deadline: DateTime(2026, 11, 11),
       );
-      expect(p.status, CourseStatus.onTrack);
+      expect(p.status, CourseStatus.behind);
+      final achieved = finishedDailyPace(p.completedHours, DateTime(2026, 11, 1), now);
+      expect(achieved, isNotNull);
+      expect(achieved! < p.requiredDailyHours!, isTrue);
     });
 
     test('on track with a deadline but no start date (no expectation)', () {
@@ -111,7 +116,8 @@ void main() {
       expect(p.requiredWeeklyHours, isNull);
     });
 
-    test('no sessions logged: 0 completed, full remaining, on track', () {
+    test('no sessions logged: 0 completed, full remaining, behind (0 h/day)', () {
+      // 3.5 days in with nothing logged: achieved pace 0 h/day cannot finish.
       final p = progress(
         startDate: DateTime(2026, 11, 1),
         deadline: DateTime(2026, 11, 11),
@@ -119,14 +125,17 @@ void main() {
       expect(p.completedHours, 0);
       expect(p.remainingHours, 150);
       expect(p.progressFraction, 0);
-      expect(p.status, CourseStatus.onTrack);
+      expect(p.status, CourseStatus.behind);
     });
 
     test('deadline today: not overdue, null pace (no division by zero)', () {
       final p = progress(
         sessions: [s(60 * 60)],
+        startDate: DateTime(2026, 11, 1),
         deadline: DateTime(2026, 11, 4, 23, 59),
       );
+      // 90 h still needed, but 0 days left → no required pace exists, so the
+      // shortfall cannot be proven and the course is not marked behind.
       expect(p.status, CourseStatus.onTrack);
       expect(p.remainingDays, 0);
       expect(p.requiredDailyHours, isNull);
@@ -163,6 +172,97 @@ void main() {
         deadline: DateTime(2026, 12, 1),
       );
       expect(p.status, CourseStatus.onTrack);
+    });
+  });
+
+  group('courseProgress — behind reachable (ECTS-017)', () {
+    test('all five AGENTS.md §4 states fire from courseProgress', () {
+      final states = <CourseStatus>{
+        // completed: remaining hits zero.
+        progress(sessions: [s(150 * 60)]).status,
+        // overdue: deadline day already past, hours outstanding.
+        progress(deadline: DateTime(2026, 10, 1)).status,
+        // ahead: above the linear expectation.
+        progress(
+          sessions: [s(60 * 60)],
+          startDate: DateTime(2026, 11, 1),
+          deadline: DateTime(2026, 11, 11),
+        ).status,
+        // onTrack: exactly level with the expectation (and on pace).
+        progress(
+          sessions: [s((15 * 3.5 * 60).round())],
+          startDate: DateTime(2026, 11, 1),
+          deadline: DateTime(2026, 11, 11),
+        ).status,
+        // behind: finished pace below the required daily pace.
+        progress(
+          sessions: [s(60)],
+          startDate: DateTime(2026, 11, 1),
+          deadline: DateTime(2026, 11, 11),
+        ).status,
+      };
+      expect(states, hasLength(CourseStatus.values.length));
+      expect(states, containsAll(CourseStatus.values));
+    });
+
+    test('behind when nothing is logged and the course is already running', () {
+      // 5 ECTS = 150 h, start 3 days ago, 7 days left, 0 h finished → 0 h/day
+      // achieved vs 150/7 ≈ 21.4 h/day needed.
+      final p = progress(
+        startDate: DateTime(2026, 11, 1),
+        deadline: DateTime(2026, 11, 11),
+      );
+      expect(p.status, CourseStatus.behind);
+      expect(p.completedHours, 0);
+      expect(p.requiredDailyHours, closeTo(150 / 7, 1e-9));
+    });
+
+    test('on track when the achieved pace exactly matches the required pace', () {
+      // 150 h over a 10-day span ⇒ 15 h/day required throughout. Started 3 days
+      // ago (3 days and 12 h elapsed = 3.5 d) ⇒ 52.5 h finished = exact pace.
+      final p = progress(
+        sessions: [s((15 * 3.5 * 60).round())],
+        startDate: DateTime(2026, 11, 1),
+        deadline: DateTime(2026, 11, 11),
+      );
+      expect(p.status, CourseStatus.onTrack);
+    });
+
+    test('ahead still wins over the pace check', () {
+      final p = progress(
+        sessions: [s(100 * 60)],
+        startDate: DateTime(2026, 11, 1),
+        deadline: DateTime(2026, 11, 11),
+      );
+      expect(p.status, CourseStatus.ahead);
+    });
+
+    test('deadline today: no required pace ⇒ not behind (no divide by zero)', () {
+      final p = progress(
+        sessions: [s(10 * 60)],
+        startDate: DateTime(2026, 11, 1),
+        deadline: now,
+      );
+      expect(p.requiredDailyHours, isNull);
+      expect(p.status, CourseStatus.onTrack);
+    });
+
+    test('no start date: no finished-pace baseline ⇒ never behind', () {
+      final p = progress(deadline: DateTime(2026, 12, 1));
+      expect(finishedDailyPace(p.completedHours, null, now), isNull);
+      expect(p.status, CourseStatus.onTrack);
+    });
+
+    test('finishedDailyPace is 0 at a same-instant start and null before it', () {
+      expect(finishedDailyPace(10, now, now), 0);
+      expect(finishedDailyPace(10, DateTime(2026, 11, 10), now), isNull);
+    });
+
+    test('finishedDailyPace divides finished hours by elapsed days', () {
+      expect(
+        finishedDailyPace(48, DateTime(2026, 10, 30), now),
+        closeTo(48 / 5.5, 1e-9),
+      );
     });
   });
 

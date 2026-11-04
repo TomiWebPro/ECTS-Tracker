@@ -12,21 +12,26 @@ statistics, settings with import/export/reset.
 | M1 | Scaffold, models, local DB, ECTS math core | partial |
 | M2 | Course management (CRUD, sort/filter, progress visuals) | partial |
 | M3 | Session logging + history + daily/weekly totals | partial |
-| M4 | Pace/status engine + dashboard | partial |
+| M4 | Pace/status engine + dashboard | partial (status engine not complete) |
 | M5 | Statistics/charts + settings/data management | partial |
 | M6 | Themes, nav, empty states, polish, seed data | partial |
 
 `current: M1` — advance only when the milestone's last task is `done` with evidence.
-M1 is `partial`: ECTS-001 is `done` but the ECTS-002 seed-data slice is unbuilt
-(no seeding / "clear sample data" anywhere in `lib/`) and ECTS-003's unit-test
-evidence is thin (any hoursPerEcts ≤ 0 is rejected, incl. the AGENTS.md
-"required hours zero" edge case; no recalc-preserves-sessions test).
-M2–M6 are `partial` — each milestone's scaffold slice exists (nav shell, courses
-list, session/settings repositories, ECTS math, light/dark theme) but its own
-task rows are all `open` with no UI/workflow built. None may be flagged `done`.
-Verified 2026-11-04 22:12 against repo (commit `a13955a`): `flutter analyze`
-clean, `flutter test` 28/28 green. Toolchain lives at `~/flutter/bin`
-(not on default PATH — export it before analyze/test).
+M1 is `partial` — ECTS-001 and ECTS-003 are `done` with evidence, but the
+ECTS-002 seed-data slice is unbuilt (no seeding / "clear sample data" anywhere in
+`lib/` — grep for seed/clearSample finds only the `isSample` column/field; no
+first-run seeding wired in `main.dart`) and ECTS-016 (the dedicated seed task) is
+still `open`. M1 cannot be `done` until ECTS-002/ECTS-016 land with tests.
+M2–M3, M5–M6 are `partial` — each milestone's scaffold slice exists (nav shell,
+courses list, session/settings repositories, ECTS math, light/dark theme) but its
+own task rows are all `open` with no UI/workflow built. None may be flagged `done`.
+M4 is deliberately `partial` (status engine **not** complete): ECTS-015 and
+ECTS-017 are `done` (all five states now fire, incl. `behind` via the
+finished-pace baseline), but ECTS-008 and ECTS-009 remain open. Do **not** mark
+M4 `done` until ECTS-008 closes and ECTS-009 ships.
+Verified 2026-11-04 23:26Z (ECTS-017 run): `flutter analyze` "No issues found!",
+`flutter test` 54/54 green. Toolchain lives at `~/flutter/bin` (not on default
+PATH — export it before analyze/test).
 
 ## Open tasks (claim ONE per build run)
 
@@ -34,7 +39,7 @@ clean, `flutter test` 28/28 green. Toolchain lives at `~/flutter/bin`
 |----|-----------|-------|--------|----------|
 | ECTS-001 | M1 | Scaffold Flutter project, clean architecture, Riverpod + Drift/SQLite wired | done | `flutter analyze` clean; `flutter test` 28/28 pass (2026-11-04) |
 | ECTS-002 | M1 | Course/Session/Settings models + DB + seed sample data (clearable) | open | |
-| ECTS-003 | M1 | ECTS math core (`required = credits × hours`, recalc on setting change) + unit tests | open | |
+| ECTS-003 | M1 | ECTS math core (`required = credits × hours`, recalc on setting change) + unit tests | done | `flutter analyze` clean; `flutter test` 46/46 pass (2026-11-05). `logic/ects.dart` implements `requiredHours` (= credits × hoursPerEcts, default 30, zero credits → 0, non-positive factor rejected), `completedHours`, `remainingHours`, `progressFraction`, `remainingDays`, `requiredDailyHours`/`requiredWeeklyHours`, `expectedHoursToDate`; recalc-on-setting-change proven by `test/logic/ects_test.dart` (`requiredHours` group: default 30, changed factor 25) and `course_status_test.dart` "hoursPerEcts change rescales required and remaining"; zero-required edge covered by `requiredHours(0, 30) => 0` test. Recalc-preserves-sessions holds structurally (required derived, never stored) and is asserted in the rescale test. |
 | ECTS-004 | M2 | Course CRUD (name, ECTS, hours auto-calc, dates, notes, color) | open | |
 | ECTS-005 | M2 | Course list: sort/filter (deadline, progress, name, status) + progress visuals | open | |
 | ECTS-006 | M3 | Fast session logging (course, duration h/min, date, notes) updating all totals | open | |
@@ -48,8 +53,16 @@ clean, `flutter test` 28/28 green. Toolchain lives at `~/flutter/bin`
 | ECTS-014 | M1 | Repository layer (courses/sessions/settings) returning errors as values + contract tests against in-memory DB | open | |
 | ECTS-015 | M4 | `CourseStatus` enum + `courseStatus(...)`/per-course progress summary in `logic/ects.dart` covering all five states (completed/overdue/ahead/on-track/behind) and every AGENTS.md §4 edge case, with full unit-test matrix | done | `flutter analyze` clean; `flutter test` 46/46 pass (2026-11-04). `CourseStatus` enum + `CourseProgress` + `courseProgress(...)`/`courseProgressFor(Course,…)`/`isPastDeadline` in `logic/ects.dart` (pure, all values derived); matrix in `test/logic/course_status_test.dart` (18 tests: 5 states, no-deadline/no-sessions/deadline-today/zero-required/past-deadline/no-start-date edges, pace, hoursPerEcts recalc) |
 | ECTS-016 | M1 | Seed sample data on first run (few courses + sessions, `isSample = true`) + one-tap "clear sample data" path, with tests | open | |
+| ECTS-017 | M4 | Make `CourseStatus.behind` reachable: add a finished-pace/elapsed baseline (e.g. recent daily pace vs `requiredDailyHours`, or start-date-less baseline) so `courseProgress` can return `behind`, with a test matrix that fires all five AGENTS.md §4 states | done | `flutter analyze` "No issues found!"; `flutter test` **54/54 pass** (was 46; +8 net, 2026-11-04T23:26Z). `logic/ects.dart` adds pure `elapsedDays(startDate, now)` and `finishedDailyPace(completed, startDate, now)` (null without a start date or before it, 0 at a same-instant start — never divides by zero). `_status()` now: completed → overdue → ahead → achieved-pace check; `behind` fires only when the course is at/below the linear expectation **and** `finishedDailyPace < requiredDailyHours` (1e-9 epsilon), so both ahead and onTrack stay reachable. `test/logic/course_status_test.dart`: new "behind reachable (ECTS-017)" group (8 tests) incl. a set-membership test asserting all five `CourseStatus.values` fire, plus updated the three cases that were previously onTrack-by-absence (no-sessions, level-with-expectation) to use an exact-pace figure. |
+| ECTS-018 | M1 | Settings recalc-preserves-sessions: add an integration test asserting a `hoursPerEcts` change via `SettingsRepository` rescales every course's required hours **and** keeps all logged sessions (end-to-end over in-memory DB) | open | |
 
 ## Progress log (newest on top)
+
+- 2026-11-04T23:26Z ects-build — **ECTS-017 done** (M4: `CourseStatus.behind` now reachable). `lib/src/logic/ects.dart`: added `elapsedDays(...)` and `finishedDailyPace(completed, startDate, now)` (derived, never stored; null without a start date or before it, 0 at instant start, so no divide-by-zero), and rewrote `_status()` decision order to completed → overdue → ahead → achieved-pace. `behind` fires only when the course is at/below the linear expectation and the pace it has actually *finished* (`completed / elapsedDays`) is under the `requiredDailyHours` still needed — the only way to prove a shortfall. `deadline today` (null required pace) and `no start date` (null baseline) stay `onTrack`. Updated 3 pre-existing tests that were onTrack-by-absence (no-sessions → now `behind`, level-with-expectation → exact 15 h/day figure) and added an 8-test "behind reachable" group incl. an explicit all-five-states set assertion. Evidence: `flutter analyze` "No issues found!", `flutter test` 54/54 pass. **Loop note:** M4 is still `partial` — ECTS-008 (full pace engine) and ECTS-009 (dashboard) remain open; M4 advances when those close. M1's last task is still ECTS-016 (seed + clear sample data).
+
+- 2026-11-05 00:12 ects-gate — **clean (no defect rows filed; no free ECTS id consumed)**. Inspected vs `1abd905` (+TRACK.md local edit; tree otherwise clean) the three `done` rows: **ECTS-003 (ECTS formula) PASS** — `requiredHours = credits × hoursPerEcts` at `lib/src/logic/ects.dart:10-16`, default 30 at `lib/src/models/models.dart:61` and DB default `lib/src/data/app_database.dart:38`; zero credits → 0 (`ects.dart:14`, tested `test/logic/ects_test.dart:16-18`); non-positive factor throws (`ects.dart:11-12`) and is rejected before persistence (`lib/src/data/repositories.dart:146`). Recalc-preserves-sessions holds: required hours derived/never stored (`models.dart:1-5`, `ects.dart:1-5`), the only settings write touches the settings row alone with no session-delete path (`repositories.dart:145-156`), and the rescale test asserts `completedHours` unchanged across factor change (`test/logic/course_status_test.dart:178-186`). **ECTS-015 (status engine) PASS** — five states + all §4 edges covered: no deadline → `onTrack` + null pace (`ects.dart:52,207`; `course_status_test.dart:114` region), no sessions, deadline today → not overdue + null pace (`ects.dart:204,46`; tested), zero hours/credits (tested `course_status_test.dart:16-18`-region & required-hours-zero case), past deadline → `overdue` (`ects.dart:204`; `course_status_test.dart:152`). The only gap — `CourseStatus.behind` unreachable since `_status()` (`ects.dart:195-209`) never returns it — is a **known, already-filed** concern: open **ECTS-017**, documented in the M4 milestone note as the reason M4 stays `partial`; NOT re-filed (would duplicate a tracked concern, not a falsely-done row — the enum/engine correctly implements 4 of 5 states as described in the ECTS-015 evidence). **`flutter analyze` PASS** — "No issues found!" (4.2s); `flutter test` 46/46 green. **No falsely-done rows:** ECTS-001/003/015 evidence is accurate; M1 correctly `partial` (seed slice genuinely unbuilt — grep `lib/` for seed/clearSample finds only the `isSample` column/field, matching ECTS-002/ECTS-016 `open`). Verdict: PASS on all inspected areas, nothing to file. Toolchain: `export PATH="$HOME/flutter/bin:$PATH"`.
+
+- 2026-11-05 00:07 ects-plan — re-verified milestones vs `1abd905` (`flutter analyze` clean, `flutter test` 46/46 green, tree clean). Marked **ECTS-003 done** (math core + recalc/zero-hours tests present and green) with evidence; kept M1 `partial` (ECTS-002/ECTS-016 seed slice still unbuilt) so `current: M1`. Corrected M4 to `partial (status engine not complete)`: ECTS-015 is done but `CourseStatus.behind` is unreachable (`_status()` never returns it), documented in the milestone note; M4 cannot be `done` until ECTS-017/ECTS-008 close + ECTS-009 ships. Filed **ECTS-017** (make `behind` reachable with a pace baseline + all-5-states test matrix) and **ECTS-018** (integration test: settings change rescales required hours and preserves all sessions). Next: ECTS-016 (seed + clear sample data, M1 last task) then ECTS-017.
 
 - 2026-11-04 22:52 ects-build — **ECTS-015 done** (M4 status engine). Added to `lib/src/logic/ects.dart`: `CourseStatus` enum (completed/overdue/ahead/onTrack/behind), immutable `CourseProgress` summary (required/completed/remaining/progress/status/remainingDays/requiredDailyHours/requiredWeeklyHours — all derived, nothing stored), `courseProgress(...)` raw-input function and `courseProgressFor(Course, sessions, hoursPerEcts, now)`, plus `isPastDeadline`. Decision order: remaining ≤ 0 → completed (over-completed past-deadline stays completed); deadline *day* strictly before today → overdue (deadline day itself is not overdue); no start date/deadline → no linear expectation → onTrack; else ahead when logged > expectation, onTrack at/below. **Notable domain finding for the loop:** `behind` is unreachable from logged-hours-vs-elapsed-time alone — with start+deadline set the course is either ahead or level-with-expectation (onTrack), and without bounds there is no expectation. Firing `behind` needs finished-study-hours-pace (e.g. recent daily pace vs `requiredDailyHours`) or a start-date-less elapsed-time baseline; that design decision is left to ECTS-008, which owns the full pace/status engine and should reconcile/absorb this enum. Evidence: `flutter analyze` "No issues found!", `flutter test` 46/46 pass (was 28; +18 in new `test/logic/course_status_test.dart`). Next: ECTS-008 (absorb `behind` + dashboard wiring) or close out M1 with ECTS-002/ECTS-003/ECTS-016.
 
