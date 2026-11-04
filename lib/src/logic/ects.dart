@@ -76,4 +76,136 @@ double? expectedHoursToDate(
   return required * (elapsed / span);
 }
 
+/// Where a course stands against its deadline, computed from logged hours and
+/// elapsed time (AGENTS.md §4). Never stored.
+enum CourseStatus {
+  /// Requirement met (remaining hours ≤ 0).
+  completed,
+
+  /// Past the deadline with hours still outstanding.
+  overdue,
+
+  /// More hours logged than the linear expectation to date.
+  ahead,
+
+  /// Current pace finishes on time.
+  onTrack,
+
+  /// Needs a higher pace than the current one to finish on time.
+  behind,
+}
+
+/// Everything the UI needs to render one course, all of it derived.
+class CourseProgress {
+  const CourseProgress({
+    required this.requiredHours,
+    required this.completedHours,
+    required this.remainingHours,
+    required this.progressFraction,
+    required this.status,
+    required this.remainingDays,
+    required this.requiredDailyHours,
+    required this.requiredWeeklyHours,
+  });
+
+  final double requiredHours;
+  final double completedHours;
+  final double remainingHours;
+  final double progressFraction;
+  final CourseStatus status;
+
+  /// Days left to the deadline, floored at 0. Null when the course has none.
+  final int? remainingDays;
+
+  /// Hours/day still needed. Null without a deadline or once the deadline day
+  /// is reached (no division by zero).
+  final double? requiredDailyHours;
+  final double? requiredWeeklyHours;
+}
+
+/// Computes the full derived summary for one course (AGENTS.md §4).
+///
+/// The decision order is deliberate:
+/// 1. remaining ≤ 0 → [CourseStatus.completed] (an over-completed past-deadline
+///    course is still completed, not overdue).
+/// 2. deadline strictly before [now] → [CourseStatus.overdue].
+/// 3. no deadline / no start date (no linear expectation exists) → [CourseStatus.onTrack].
+/// 4. logged hours above expectation to date → [CourseStatus.ahead], otherwise
+///    [CourseStatus.onTrack] — a course is never "behind" while it is ahead of
+///    or level with the linear expectation.
+CourseProgress courseProgress({
+  required double ectsCredits,
+  required double hoursPerEcts,
+  required Iterable<StudySession> sessions,
+  DateTime? startDate,
+  DateTime? deadline,
+  required DateTime now,
+}) {
+  final required = requiredHours(ectsCredits, hoursPerEcts);
+  final done = completedHours(sessions);
+  final left = remainingHours(required, done);
+  final daysLeft = remainingDays(deadline, now);
+
+  final status = _status(
+    remaining: left,
+    completed: done,
+    required: required,
+    startDate: startDate,
+    deadline: deadline,
+    now: now,
+  );
+
+  final daily = requiredDailyHours(left, deadline, now);
+
+  return CourseProgress(
+    requiredHours: required,
+    completedHours: done,
+    remainingHours: left,
+    progressFraction: progressFraction(required, done),
+    status: status,
+    remainingDays: daysLeft,
+    requiredDailyHours: daily,
+    requiredWeeklyHours: daily == null ? null : daily * 7,
+  );
+}
+
+/// Convenience overload for a [Course] model plus its [sessions].
+CourseProgress courseProgressFor(
+  Course course,
+  Iterable<StudySession> sessions, {
+  required double hoursPerEcts,
+  required DateTime now,
+}) =>
+    courseProgress(
+      ectsCredits: course.ectsCredits,
+      hoursPerEcts: hoursPerEcts,
+      sessions: sessions,
+      startDate: course.startDate,
+      deadline: course.deadline,
+      now: now,
+    );
+
+/// True when the deadline *day* is already before today — the deadline day
+/// itself is never "past". Null deadline is never past.
+bool isPastDeadline(DateTime? deadline, DateTime now) {
+  if (deadline == null) return false;
+  return _dateOnly(deadline).isBefore(_dateOnly(now));
+}
+
+CourseStatus _status({
+  required double remaining,
+  required double completed,
+  required double required,
+  required DateTime? startDate,
+  required DateTime? deadline,
+  required DateTime now,
+}) {
+  if (remaining <= 0) return CourseStatus.completed;
+  if (isPastDeadline(deadline, now)) return CourseStatus.overdue;
+
+  final expected = expectedHoursToDate(required, startDate, deadline, now);
+  if (expected == null || completed <= expected) return CourseStatus.onTrack;
+  return CourseStatus.ahead;
+}
+
 DateTime _dateOnly(DateTime d) => DateTime(d.year, d.month, d.day);
