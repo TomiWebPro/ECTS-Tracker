@@ -1,0 +1,156 @@
+import 'package:drift/drift.dart';
+
+import '../models/models.dart';
+import 'app_database.dart';
+
+/// Result wrapper: repositories return errors as values, never throw across
+/// layers (AGENTS.md §3).
+sealed class Result<T> {
+  const Result();
+}
+
+class Ok<T> extends Result<T> {
+  const Ok(this.value);
+  final T value;
+}
+
+class Err<T> extends Result<T> {
+  const Err(this.message);
+  final String message;
+}
+
+/// Maps a DB row to the plain model.
+Course courseFromRow(CourseRow row) => Course(
+      id: row.id,
+      name: row.name,
+      ectsCredits: row.ectsCredits,
+      startDate: row.startDate,
+      deadline: row.deadline,
+      notes: row.notes,
+      colorValue: row.colorValue,
+      isSample: row.isSample,
+    );
+
+/// Maps a session row to the plain model.
+StudySession sessionFromRow(SessionRow row) => StudySession(
+      id: row.id,
+      courseId: row.courseId,
+      minutes: row.minutes,
+      date: row.date,
+      notes: row.notes,
+      isSample: row.isSample,
+    );
+
+class CourseRepository {
+  CourseRepository(this._db);
+  final AppDatabase _db;
+
+  Stream<List<Course>> watchAll() =>
+      _db.select(_db.courses).watch().map((rows) => rows.map(courseFromRow).toList());
+
+  Future<Result<int>> addCourse({
+    required String name,
+    required double ectsCredits,
+    DateTime? startDate,
+    DateTime? deadline,
+    String? notes,
+    int? colorValue,
+    bool isSample = false,
+  }) async {
+    try {
+      final id = await _db.into(_db.courses).insert(
+            CoursesCompanion.insert(
+              name: name,
+              ectsCredits: ectsCredits,
+              startDate: Value(startDate),
+              deadline: Value(deadline),
+              notes: Value(notes),
+              colorValue: Value(colorValue),
+              isSample: Value(isSample),
+            ),
+          );
+      return Ok(id);
+    } catch (e) {
+      return Err('Failed to add course: $e');
+    }
+  }
+
+  Future<Result<void>> deleteCourse(int id) async {
+    try {
+      await (_db.delete(_db.courses)..where((t) => t.id.equals(id))).go();
+      return const Ok(null);
+    } catch (e) {
+      return Err('Failed to delete course: $e');
+    }
+  }
+}
+
+class SessionRepository {
+  SessionRepository(this._db);
+  final AppDatabase _db;
+
+  Stream<List<StudySession>> watchAll() => _db
+      .select(_db.studySessions)
+      .watch()
+      .map((rows) => rows.map(sessionFromRow).toList());
+
+  Future<Result<int>> addSession({
+    required int courseId,
+    required int minutes,
+    required DateTime date,
+    String? notes,
+    bool isSample = false,
+  }) async {
+    if (minutes <= 0) return const Err('Duration must be greater than zero.');
+    try {
+      final id = await _db.into(_db.studySessions).insert(
+            StudySessionsCompanion.insert(
+              courseId: courseId,
+              minutes: minutes,
+              date: date,
+              notes: Value(notes),
+              isSample: Value(isSample),
+            ),
+          );
+      return Ok(id);
+    } catch (e) {
+      return Err('Failed to add session: $e');
+    }
+  }
+
+  Future<Result<void>> deleteSession(int id) async {
+    try {
+      await (_db.delete(_db.studySessions)..where((t) => t.id.equals(id))).go();
+      return const Ok(null);
+    } catch (e) {
+      return Err('Failed to delete session: $e');
+    }
+  }
+}
+
+class SettingsRepository {
+  SettingsRepository(this._db);
+  final AppDatabase _db;
+
+  Stream<AppSettings> watch() => _db
+      .select(_db.settings)
+      .watchSingleOrNull()
+      .map((row) => row == null
+          ? const AppSettings()
+          : AppSettings(
+              hoursPerEcts: row.hoursPerEcts,
+              dailyTargetMinutes: row.dailyTargetMinutes,
+            ));
+
+  Future<Result<void>> setHoursPerEcts(double value) async {
+    if (value <= 0) return const Err('Hours per ECTS must be greater than zero.');
+    try {
+      await _db.into(_db.settings).insertOnConflictUpdate(
+            SettingsCompanion.insert(hoursPerEcts: Value(value)),
+          );
+      return const Ok(null);
+    } catch (e) {
+      return Err('Failed to save settings: $e');
+    }
+  }
+}
