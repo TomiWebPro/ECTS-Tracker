@@ -86,6 +86,43 @@ class CourseRepository {
       .watch()
       .map((rows) => rows.map(courseFromRow).toList());
 
+  /// Sample course count, reactive (ECTS-029).
+  Stream<int> watchSampleCount() =>
+      watchSample().map((rows) => rows.length);
+
+  /// One-shot sample course count (ECTS-029). Returns 0 on DB fault.
+  Future<int> countSample() async {
+    try {
+      final rows = await (_db.select(_db.courses)
+            ..where((t) => t.isSample.equals(true)))
+          .get();
+      return rows.length;
+    } catch (_) {
+      return 0;
+    }
+  }
+
+  /// True when any sample-marked course or session exists (ECTS-029). Checks
+  /// both tables so the "clear sample data" action can decide whether to offer
+  /// itself; reflects [deleteSampleData]'s outcome (a kept sample course that
+  /// still owns user sessions remains sample-marked). Returns false on DB fault.
+  Future<bool> hasSampleData() async {
+    try {
+      final c = await (_db.select(_db.courses)
+            ..where((t) => t.isSample.equals(true))
+            ..limit(1))
+          .getSingleOrNull();
+      if (c != null) return true;
+      final s = await (_db.select(_db.studySessions)
+            ..where((t) => t.isSample.equals(true))
+            ..limit(1))
+          .getSingleOrNull();
+      return s != null;
+    } catch (_) {
+      return false;
+    }
+  }
+
   Future<Result<int>> addCourse({
     required String name,
     required double ectsCredits,
@@ -229,6 +266,22 @@ class SessionRepository {
         ..where((t) => t.isSample.equals(true)))
       .watch()
       .map((rows) => rows.map(sessionFromRow).toList());
+
+  /// Sample session count, reactive (ECTS-029).
+  Stream<int> watchSampleCount() =>
+      watchSample().map((rows) => rows.length);
+
+  /// One-shot sample session count (ECTS-029). Returns 0 on DB fault.
+  Future<int> countSample() async {
+    try {
+      final rows = await (_db.select(_db.studySessions)
+            ..where((t) => t.isSample.equals(true)))
+          .get();
+      return rows.length;
+    } catch (_) {
+      return 0;
+    }
+  }
 
   Future<Result<int>> addSession({
     required int courseId,

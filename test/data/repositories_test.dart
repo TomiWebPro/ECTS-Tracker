@@ -731,6 +731,86 @@ void main() {
     });
   });
 
+  group('sample-aware read/count and hasSampleData (ECTS-029)', () {
+    test('zero sample rows: counts 0 and hasSampleData false', () async {
+      await courses.addCourse(name: 'User', ectsCredits: 5);
+      final cid =
+          (await courses.addCourse(name: 'User2', ectsCredits: 3) as Ok<int>).value;
+      await sessions.addSession(
+          courseId: cid, minutes: 30, date: DateTime(2026, 1, 1));
+
+      expect(await courses.countSample(), 0);
+      expect(await sessions.countSample(), 0);
+      expect(await courses.watchSampleCount().first, 0);
+      expect(await sessions.watchSampleCount().first, 0);
+      expect(await courses.hasSampleData(), isFalse);
+    });
+
+    test('sample rows coexisting with user rows: only sample counted/watched',
+        () async {
+      final userCourse =
+          (await courses.addCourse(name: 'User', ectsCredits: 5) as Ok<int>).value;
+      await courses.addCourse(name: 'Sample A', ectsCredits: 4, isSample: true);
+      final sampleCourse =
+          (await courses.addCourse(name: 'Sample B', ectsCredits: 6, isSample: true)
+                  as Ok<int>)
+              .value;
+      await sessions.addSession(
+          courseId: userCourse, minutes: 10, date: DateTime(2026, 1, 1));
+      await sessions.addSession(
+          courseId: sampleCourse,
+          minutes: 20,
+          date: DateTime(2026, 1, 1),
+          isSample: true);
+
+      expect(await courses.countSample(), 2);
+      expect(await sessions.countSample(), 1);
+      expect(await courses.watchSampleCount().first, 2);
+      expect(await sessions.watchSampleCount().first, 1);
+      expect((await courses.watchSample().first).map((c) => c.name),
+          ['Sample A', 'Sample B']);
+      expect(await courses.hasSampleData(), isTrue);
+    });
+
+    test('empty signal after deleteSampleData clears all sample rows', () async {
+      final sampleCourse =
+          (await courses.addCourse(name: 'Sample', ectsCredits: 5, isSample: true)
+                  as Ok<int>)
+              .value;
+      await sessions.addSession(
+          courseId: sampleCourse,
+          minutes: 30,
+          date: DateTime(2026, 1, 1),
+          isSample: true);
+
+      expect(await courses.hasSampleData(), isTrue);
+
+      final res = await courses.deleteSampleData();
+      expect(res, isA<Ok<void>>());
+
+      expect(await courses.countSample(), 0);
+      expect(await sessions.countSample(), 0);
+      expect(await courses.hasSampleData(), isFalse);
+    });
+
+    test('hasSampleData true when a sample course is kept (owns user sessions)',
+        () async {
+      final sampleCourse =
+          (await courses.addCourse(name: 'Sample', ectsCredits: 5, isSample: true)
+                  as Ok<int>)
+              .value;
+      await sessions.addSession(
+          courseId: sampleCourse,
+          minutes: 40,
+          date: DateTime(2026, 1, 2)); // user session keeps course alive
+
+      await courses.deleteSampleData();
+      // Sample marker remains on the kept course.
+      expect(await courses.hasSampleData(), isTrue);
+      expect(await courses.countSample(), 1);
+    });
+  });
+
   group('DB-fault Result<T> contract (ECTS-046)', () {
     late AppDatabase faultDb;
     late CourseRepository faultCourses;
