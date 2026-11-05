@@ -80,6 +80,12 @@ class CourseRepository {
   Stream<List<Course>> watchAll() =>
       _db.select(_db.courses).watch().map((rows) => rows.map(courseFromRow).toList());
 
+  /// Watches only seeded sample courses (AGENTS.md §4 / ECTS-027,029).
+  Stream<List<Course>> watchSample() => (_db.select(_db.courses)
+        ..where((t) => t.isSample.equals(true)))
+      .watch()
+      .map((rows) => rows.map(courseFromRow).toList());
+
   Future<Result<int>> addCourse({
     required String name,
     required double ectsCredits,
@@ -162,6 +168,32 @@ class CourseRepository {
       return Err('Failed to delete course: $e');
     }
   }
+
+  /// Removes all seeded sample data in a single transaction (AGENTS.md §4,
+  /// ECTS-016/027): deletes sample sessions, then deletes sample courses that no
+  /// longer have any sessions. User-logged rows (isSample false) are never
+  /// touched; a sample course that still owns user sessions is kept so no user
+  /// row is orphaned or cascade-deleted.
+  Future<Result<void>> deleteSampleData() async {
+    try {
+      await _db.transaction(() async {
+        await (_db.delete(_db.studySessions)
+              ..where((t) => t.isSample.equals(true)))
+            .go();
+        // Delete sample courses with no remaining sessions (user sessions, if
+        // any, keep their course alive).
+        final occupied = _db.selectOnly(_db.studySessions)
+          ..addColumns([_db.studySessions.courseId]);
+        await (_db.delete(_db.courses)
+              ..where((t) =>
+                  t.isSample.equals(true) & t.id.isNotInQuery(occupied)))
+            .go();
+      });
+      return const Ok(null);
+    } catch (e) {
+      return Err('Failed to clear sample data: $e');
+    }
+  }
 }
 
 class SessionRepository {
@@ -189,6 +221,12 @@ class SessionRepository {
 
   Stream<List<StudySession>> watchAll() => _db
       .select(_db.studySessions)
+      .watch()
+      .map((rows) => rows.map(sessionFromRow).toList());
+
+  /// Watches only seeded sample sessions (AGENTS.md §4 / ECTS-027,029).
+  Stream<List<StudySession>> watchSample() => (_db.select(_db.studySessions)
+        ..where((t) => t.isSample.equals(true)))
       .watch()
       .map((rows) => rows.map(sessionFromRow).toList());
 

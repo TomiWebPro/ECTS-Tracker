@@ -518,4 +518,129 @@ void main() {
       expect(fromGet.dailyTargetMinutes, fromWatch.dailyTargetMinutes);
     });
   });
+
+  group('sample-data scoped queries and delete (ECTS-027)', () {
+    test('deleteSampleData removes sample courses and sessions, keeps user rows',
+        () async {
+      final sampleCourse =
+          (await courses.addCourse(name: 'Sample C', ectsCredits: 5, isSample: true)
+                  as Ok<int>)
+              .value;
+      final userCourse =
+          (await courses.addCourse(name: 'User C', ectsCredits: 6) as Ok<int>)
+              .value;
+      await sessions.addSession(
+        courseId: sampleCourse,
+        minutes: 30,
+        date: DateTime(2026, 1, 1),
+        isSample: true,
+      );
+      await sessions.addSession(
+        courseId: userCourse,
+        minutes: 45,
+        date: DateTime(2026, 1, 2),
+      );
+
+      final res = await courses.deleteSampleData();
+      expect(res, isA<Ok<void>>());
+
+      final allCourses = await courses.watchAll().first;
+      expect(allCourses.map((c) => c.name), ['User C']);
+      expect(allCourses.single.isSample, isFalse);
+      final allSessions = await sessions.watchAll().first;
+      expect(allSessions.single.minutes, 45);
+      expect(allSessions.single.courseId, userCourse);
+      expect(allSessions.single.isSample, isFalse);
+    });
+
+    test('keeps a sample course that still owns user sessions (no FK orphan)',
+        () async {
+      final sampleCourse =
+          (await courses.addCourse(name: 'Sample', ectsCredits: 5, isSample: true)
+                  as Ok<int>)
+              .value;
+      await sessions.addSession(
+        courseId: sampleCourse,
+        minutes: 20,
+        date: DateTime(2026, 1, 1),
+        isSample: true,
+      );
+      await sessions.addSession(
+        courseId: sampleCourse,
+        minutes: 40,
+        date: DateTime(2026, 1, 2),
+      ); // user session on sample course
+
+      final res = await courses.deleteSampleData();
+      expect(res, isA<Ok<void>>());
+
+      final allCourses = await courses.watchAll().first;
+      expect(allCourses, hasLength(1));
+      expect(allCourses.single.id, sampleCourse);
+      expect(allCourses.single.isSample, isTrue);
+      final allSessions = await sessions.watchAll().first;
+      expect(allSessions, hasLength(1));
+      expect(allSessions.single.minutes, 40);
+      expect(allSessions.single.isSample, isFalse);
+      expect(allSessions.single.courseId, sampleCourse);
+    });
+
+    test('removes sample sessions on a user course, keeps the user course',
+        () async {
+      final userCourse =
+          (await courses.addCourse(name: 'Mine', ectsCredits: 3) as Ok<int>).value;
+      await sessions.addSession(
+        courseId: userCourse,
+        minutes: 15,
+        date: DateTime(2026, 1, 1),
+        isSample: true,
+      );
+      await sessions.addSession(
+        courseId: userCourse,
+        minutes: 25,
+        date: DateTime(2026, 1, 2),
+      );
+
+      final res = await courses.deleteSampleData();
+      expect(res, isA<Ok<void>>());
+
+      expect((await courses.watchAll().first).single.name, 'Mine');
+      final remaining = await sessions.watchAll().first;
+      expect(remaining.single.minutes, 25);
+      expect(remaining.single.isSample, isFalse);
+    });
+
+    test('watchSample exposes only sample rows', () async {
+      await courses.addCourse(name: 'Sample A', ectsCredits: 5, isSample: true);
+      await courses.addCourse(name: 'User A', ectsCredits: 5);
+      final sampleCourse =
+          (await courses.addCourse(name: 'Sample B', ectsCredits: 4, isSample: true)
+                  as Ok<int>)
+              .value;
+      final userCourse =
+          (await courses.addCourse(name: 'User B', ectsCredits: 4) as Ok<int>)
+              .value;
+      await sessions.addSession(
+        courseId: sampleCourse,
+        minutes: 10,
+        date: DateTime(2026, 1, 1),
+        isSample: true,
+      );
+      await sessions.addSession(
+        courseId: userCourse,
+        minutes: 10,
+        date: DateTime(2026, 1, 1),
+      );
+
+      expect((await courses.watchSample().first).map((c) => c.name),
+          ['Sample A', 'Sample B']);
+      expect((await sessions.watchSample().first).length, 1);
+      expect((await sessions.watchSample().first).single.isSample, isTrue);
+    });
+
+    test('deleteSampleData on an empty database is Ok', () async {
+      final res = await courses.deleteSampleData();
+      expect(res, isA<Ok<void>>());
+    });
+  });
 }
