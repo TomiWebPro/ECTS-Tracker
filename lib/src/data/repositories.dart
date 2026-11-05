@@ -98,6 +98,41 @@ class CourseRepository {
     }
   }
 
+  /// Updates an existing course's editable fields. Returns [Err] when the input
+  /// is invalid (same boundary rules as [addCourse]) or when no course with [id]
+  /// exists, so callers can distinguish "not found" from a DB fault.
+  Future<Result<void>> updateCourse({
+    required int id,
+    required String name,
+    required double ectsCredits,
+    DateTime? startDate,
+    DateTime? deadline,
+    String? notes,
+    int? colorValue,
+  }) async {
+    final invalid = validateCourseInput(name: name, ectsCredits: ectsCredits);
+    if (invalid != null) return Err(invalid);
+    if (id <= 0) return const Err('Course not found.');
+    try {
+      final affected = await (_db.update(_db.courses)
+            ..where((t) => t.id.equals(id)))
+          .write(
+        CoursesCompanion(
+          name: Value(name.trim()),
+          ectsCredits: Value(ectsCredits),
+          startDate: Value(startDate),
+          deadline: Value(deadline),
+          notes: Value(notes),
+          colorValue: Value(colorValue),
+        ),
+      );
+      if (affected == 0) return const Err('Course not found.');
+      return const Ok(null);
+    } catch (e) {
+      return Err('Failed to update course: $e');
+    }
+  }
+
   Future<Result<void>> deleteCourse(int id) async {
     try {
       await (_db.delete(_db.courses)..where((t) => t.id.equals(id))).go();
@@ -159,6 +194,38 @@ class SessionRepository {
       return Ok(id);
     } catch (e) {
       return Err('Failed to add session: $e');
+    }
+  }
+
+  /// Updates an existing session. Validates duration and the target course
+  /// reference (same boundary rules as [addSession]) and returns [Err] when no
+  /// session with [id] exists.
+  Future<Result<void>> updateSession({
+    required int id,
+    required int courseId,
+    required int minutes,
+    required DateTime date,
+    String? notes,
+  }) async {
+    if (minutes <= 0) return const Err('Duration must be greater than zero.');
+    final missingCourse = await validateCourseReference(courseId);
+    if (missingCourse != null) return Err(missingCourse);
+    if (id <= 0) return const Err('Session not found.');
+    try {
+      final affected = await (_db.update(_db.studySessions)
+            ..where((t) => t.id.equals(id)))
+          .write(
+        StudySessionsCompanion(
+          courseId: Value(courseId),
+          minutes: Value(minutes),
+          date: Value(date),
+          notes: Value(notes),
+        ),
+      );
+      if (affected == 0) return const Err('Session not found.');
+      return const Ok(null);
+    } catch (e) {
+      return Err('Failed to update session: $e');
     }
   }
 

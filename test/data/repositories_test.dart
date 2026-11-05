@@ -242,4 +242,175 @@ void main() {
       expect(await sessions.validateCourseReference(0), 'Course not found.');
     });
   });
+
+  group('updateCourse (ECTS-014)', () {
+    test('updates editable fields and trims the name', () async {
+      final id = (await courses.addCourse(
+        name: 'Old',
+        ectsCredits: 5,
+        notes: 'before',
+      ) as Ok<int>)
+          .value;
+      final deadline = DateTime(2026, 12, 1);
+
+      final res = await courses.updateCourse(
+        id: id,
+        name: '  New Name  ',
+        ectsCredits: 6,
+        startDate: DateTime(2026, 9, 1),
+        deadline: deadline,
+        notes: 'after',
+        colorValue: 0xFF112233,
+      );
+      expect(res, isA<Ok<void>>());
+
+      final row = (await courses.watchAll().first).single;
+      expect(row.id, id);
+      expect(row.name, 'New Name');
+      expect(row.ectsCredits, 6);
+      expect(row.startDate, DateTime(2026, 9, 1));
+      expect(row.deadline, deadline);
+      expect(row.notes, 'after');
+      expect(row.colorValue, 0xFF112233);
+    });
+
+    test('clears optional fields when passed null', () async {
+      final id = (await courses.addCourse(
+        name: 'Course',
+        ectsCredits: 5,
+        startDate: DateTime(2026, 1, 1),
+        deadline: DateTime(2026, 6, 1),
+        notes: 'note',
+      ) as Ok<int>)
+          .value;
+
+      final res = await courses.updateCourse(
+        id: id,
+        name: 'Course',
+        ectsCredits: 5,
+      );
+      expect(res, isA<Ok<void>>());
+
+      final row = (await courses.watchAll().first).single;
+      expect(row.startDate, isNull);
+      expect(row.deadline, isNull);
+      expect(row.notes, isNull);
+      expect(row.colorValue, isNull);
+    });
+
+    test('returns Err for a missing course and writes nothing', () async {
+      await courses.addCourse(name: 'Kept', ectsCredits: 3);
+      final res = await courses.updateCourse(
+        id: 9999,
+        name: 'Ghost',
+        ectsCredits: 4,
+      );
+      expect(res, isA<Err<void>>());
+      expect((res as Err<void>).message, 'Course not found.');
+      expect((await courses.watchAll().first).single.name, 'Kept');
+    });
+
+    test('rejects invalid input with a domain Err and leaves the row unchanged',
+        () async {
+      final id =
+          (await courses.addCourse(name: 'Kept', ectsCredits: 3) as Ok<int>)
+              .value;
+      final res = await courses.updateCourse(
+        id: id,
+        name: 'Bad',
+        ectsCredits: 0,
+      );
+      expect(res, isA<Err<void>>());
+      expect((res as Err<void>).message, 'ECTS credits must be greater than zero.');
+      final row = (await courses.watchAll().first).single;
+      expect(row.name, 'Kept');
+      expect(row.ectsCredits, 3);
+    });
+  });
+
+  group('updateSession (ECTS-014)', () {
+    test('updates editable fields and can move a session to another course',
+        () async {
+      final a = (await courses.addCourse(name: 'A', ectsCredits: 5) as Ok<int>).value;
+      final b = (await courses.addCourse(name: 'B', ectsCredits: 5) as Ok<int>).value;
+      final sid = (await sessions.addSession(
+        courseId: a,
+        minutes: 30,
+        date: DateTime(2026, 11, 1),
+        notes: 'old',
+      ) as Ok<int>)
+          .value;
+
+      final res = await sessions.updateSession(
+        id: sid,
+        courseId: b,
+        minutes: 90,
+        date: DateTime(2026, 11, 2),
+        notes: 'new',
+      );
+      expect(res, isA<Ok<void>>());
+
+      final row = (await sessions.watchAll().first).single;
+      expect(row.id, sid);
+      expect(row.courseId, b);
+      expect(row.minutes, 90);
+      expect(row.date, DateTime(2026, 11, 2));
+      expect(row.notes, 'new');
+    });
+
+    test('returns Err for a missing session', () async {
+      final id =
+          (await courses.addCourse(name: 'C', ectsCredits: 5) as Ok<int>).value;
+      final res = await sessions.updateSession(
+        id: 9999,
+        courseId: id,
+        minutes: 60,
+        date: DateTime(2026, 11, 1),
+      );
+      expect(res, isA<Err<void>>());
+      expect((res as Err<void>).message, 'Session not found.');
+    });
+
+    test('rejects a non-positive duration and leaves the row unchanged', () async {
+      final courseId =
+          (await courses.addCourse(name: 'D', ectsCredits: 5) as Ok<int>).value;
+      final sid = (await sessions.addSession(
+        courseId: courseId,
+        minutes: 45,
+        date: DateTime(2026, 11, 1),
+      ) as Ok<int>)
+          .value;
+
+      final res = await sessions.updateSession(
+        id: sid,
+        courseId: courseId,
+        minutes: 0,
+        date: DateTime(2026, 11, 1),
+      );
+      expect(res, isA<Err<void>>());
+      expect((res as Err<void>).message, 'Duration must be greater than zero.');
+      expect((await sessions.watchAll().first).single.minutes, 45);
+    });
+
+    test('rejects a missing target course and leaves the row unchanged', () async {
+      final courseId =
+          (await courses.addCourse(name: 'E', ectsCredits: 5) as Ok<int>).value;
+      final sid = (await sessions.addSession(
+        courseId: courseId,
+        minutes: 45,
+        date: DateTime(2026, 11, 1),
+      ) as Ok<int>)
+          .value;
+
+      final res = await sessions.updateSession(
+        id: sid,
+        courseId: 9999,
+        minutes: 60,
+        date: DateTime(2026, 11, 1),
+      );
+      expect(res, isA<Err<void>>());
+      expect((res as Err<void>).message, 'Course not found.');
+      expect((await sessions.watchAll().first).single.courseId, courseId);
+    });
+  });
 }
