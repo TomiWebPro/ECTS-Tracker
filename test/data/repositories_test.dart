@@ -51,4 +51,67 @@ void main() {
     final settings = SettingsRepository(db);
     expect((await settings.watch().first).hoursPerEcts, 30);
   });
+
+  group('addCourse boundary validation (ECTS-025)', () {
+    test('rejects zero credits with a domain Err and writes no row', () async {
+      final res = await courses.addCourse(name: 'Zero', ectsCredits: 0);
+      expect(res, isA<Err<int>>());
+      expect((res as Err<int>).message, 'ECTS credits must be greater than zero.');
+      expect(await courses.watchAll().first, isEmpty);
+    });
+
+    test('rejects negative credits with a domain Err and writes no row', () async {
+      final res = await courses.addCourse(name: 'Negative', ectsCredits: -3);
+      expect(res, isA<Err<int>>());
+      expect((res as Err<int>).message, 'ECTS credits must be greater than zero.');
+      expect(await courses.watchAll().first, isEmpty);
+    });
+
+    test('rejects an empty name with a domain Err, not a DB error', () async {
+      final res = await courses.addCourse(name: '', ectsCredits: 5);
+      expect(res, isA<Err<int>>());
+      expect(
+        (res as Err<int>).message,
+        'Name must be 1 to 200 characters.',
+      );
+      expect(await courses.watchAll().first, isEmpty);
+    });
+
+    test('rejects a whitespace-only name', () async {
+      final res = await courses.addCourse(name: '   ', ectsCredits: 5);
+      expect(res, isA<Err<int>>());
+      expect(await courses.watchAll().first, isEmpty);
+    });
+
+    test('rejects a 201-char name with a domain Err, not "Failed to add course"', () async {
+      final res = await courses.addCourse(name: 'x' * 201, ectsCredits: 5);
+      expect(res, isA<Err<int>>());
+      final message = (res as Err<int>).message;
+      expect(message, 'Name must be 1 to 200 characters.');
+      expect(message, isNot(contains('Failed to add course')));
+      expect(await courses.watchAll().first, isEmpty);
+    });
+
+    test('accepts a 200-char name and stores it trimmed', () async {
+      final res = await courses.addCourse(name: 'y' * 200, ectsCredits: 5);
+      expect(res, isA<Ok<int>>());
+      final list = await courses.watchAll().first;
+      expect(list.single.name.length, 200);
+    });
+
+    test('trims surrounding whitespace from a stored name', () async {
+      final res = await courses.addCourse(name: '  Linear Algebra  ', ectsCredits: 6);
+      expect(res, isA<Ok<int>>());
+      final list = await courses.watchAll().first;
+      expect(list.single.name, 'Linear Algebra');
+    });
+
+    test('validateCourseInput mirrors the rejection rules', () {
+      expect(validateCourseInput(name: 'OK', ectsCredits: 1), isNull);
+      expect(validateCourseInput(name: '  OK  ', ectsCredits: 0.5), isNull);
+      expect(validateCourseInput(name: 'OK', ectsCredits: 0), isNotNull);
+      expect(validateCourseInput(name: '', ectsCredits: 5), isNotNull);
+      expect(courseNameMaxLength, 200);
+    });
+  });
 }

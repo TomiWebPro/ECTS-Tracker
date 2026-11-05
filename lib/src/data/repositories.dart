@@ -41,6 +41,27 @@ StudySession sessionFromRow(SessionRow row) => StudySession(
       isSample: row.isSample,
     );
 
+/// Matches the `Courses.name` column constraint (`text().withLength(1, 200)`),
+/// checked at the boundary so an over-long name is a domain error rather than
+/// a raw DB fault.
+const int courseNameMaxLength = 200;
+
+/// Domain validation shared by every course write path (AGENTS.md §3: the
+/// boundary returns typed errors as values; the DB's own constraints are a
+/// backstop, never the user-facing message).
+///
+/// Returns null when [name]/[ectsCredits] are acceptable.
+String? validateCourseInput({required String name, required double ectsCredits}) {
+  final trimmed = name.trim();
+  if (trimmed.isEmpty || trimmed.length > courseNameMaxLength) {
+    return 'Name must be 1 to $courseNameMaxLength characters.';
+  }
+  if (ectsCredits <= 0) {
+    return 'ECTS credits must be greater than zero.';
+  }
+  return null;
+}
+
 class CourseRepository {
   CourseRepository(this._db);
   final AppDatabase _db;
@@ -57,10 +78,12 @@ class CourseRepository {
     int? colorValue,
     bool isSample = false,
   }) async {
+    final invalid = validateCourseInput(name: name, ectsCredits: ectsCredits);
+    if (invalid != null) return Err(invalid);
     try {
       final id = await _db.into(_db.courses).insert(
             CoursesCompanion.insert(
-              name: name,
+              name: name.trim(),
               ectsCredits: ectsCredits,
               startDate: Value(startDate),
               deadline: Value(deadline),
