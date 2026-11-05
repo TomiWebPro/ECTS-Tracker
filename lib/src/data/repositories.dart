@@ -314,14 +314,19 @@ class SettingsRepository {
 
   /// One-shot read of the current settings, defaulting to [AppSettings] when
   /// no row exists (same mapping as [watch]). Lets bootstrap/first-frame code
-  /// resolve settings without a stream subscription (ECTS-045).
+  /// resolve settings without a stream subscription (ECTS-045). On a DB fault
+  /// returns defaults rather than throwing (AGENTS.md §3).
   Future<AppSettings> get() async {
-    final row = await _db.select(_db.settings).getSingleOrNull();
-    if (row == null) return const AppSettings();
-    return AppSettings(
-      hoursPerEcts: row.hoursPerEcts,
-      dailyTargetMinutes: row.dailyTargetMinutes,
-    );
+    try {
+      final row = await _db.select(_db.settings).getSingleOrNull();
+      if (row == null) return const AppSettings();
+      return AppSettings(
+        hoursPerEcts: row.hoursPerEcts,
+        dailyTargetMinutes: row.dailyTargetMinutes,
+      );
+    } catch (_) {
+      return const AppSettings();
+    }
   }
 
   Future<Result<void>> setHoursPerEcts(double value) async {

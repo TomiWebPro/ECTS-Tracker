@@ -730,4 +730,77 @@ void main() {
       expect(() => faultSettings.watch(), returnsNormally);
     });
   });
+
+  group('DB-fault Result<T> contract (ECTS-046)', () {
+    late AppDatabase faultDb;
+    late CourseRepository faultCourses;
+    late SessionRepository faultSessions;
+    late SettingsRepository faultSettings;
+
+    setUp(() {
+      // Same fault simulation as ECTS-039: executor fails on first open.
+      // Methods added after ECTS-039 must also never throw across layers.
+      faultDb = AppDatabase(LazyDatabase(() async {
+        throw StateError('database unavailable');
+      }));
+      faultCourses = CourseRepository(faultDb);
+      faultSessions = SessionRepository(faultDb);
+      faultSettings = SettingsRepository(faultDb);
+    });
+
+    tearDown(() async {
+      try {
+        await faultDb.close();
+      } catch (_) {}
+    });
+
+    void expectErr<T>(Result<T> res, String prefixFragment) {
+      expect(res, isA<Err<T>>());
+      final message = (res as Err<T>).message;
+      expect(message, isNotEmpty);
+      expect(message, contains(prefixFragment));
+      expect(message, isNot(contains('Instance of')));
+    }
+
+    test('updateCourse returns Err, never throws', () async {
+      final res = await faultCourses.updateCourse(
+        id: 1,
+        name: 'X',
+        ectsCredits: 5,
+      );
+      expectErr<void>(res, 'Failed to update course');
+    });
+
+    test('updateSession returns Err on DB fault (course lookup), never throws',
+        () async {
+      // updateSession validates the target course reference first; on an
+      // unavailable DB that lookup fails and is surfaced as a typed Err.
+      final res = await faultSessions.updateSession(
+        id: 1,
+        courseId: 1,
+        minutes: 30,
+        date: DateTime(2026, 1, 1),
+      );
+      expect(res, isA<Err<void>>());
+      final message = (res as Err<void>).message;
+      expect(message, isNotEmpty);
+      expect(message, contains('Failed to look up course'));
+    });
+
+    test('setDailyTargetMinutes returns Err, never throws', () async {
+      final res = await faultSettings.setDailyTargetMinutes(60);
+      expectErr<void>(res, 'Failed to save settings');
+    });
+
+    test(
+        'get() returns defaults and never throws on DB fault (non-Result API)',
+        () async {
+      // SettingsRepository.get() is a Future<AppSettings> (ECTS-045), so it
+      // cannot return Err<T>; the AGENTS.md §3 contract is satisfied by
+      // catching DB faults and returning safe defaults without throwing.
+      final s = await faultSettings.get();
+      expect(s.hoursPerEcts, 30);
+      expect(s.dailyTargetMinutes, 0);
+    });
+  });
 }
