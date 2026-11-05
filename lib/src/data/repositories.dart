@@ -50,14 +50,25 @@ const int courseNameMaxLength = 200;
 /// boundary returns typed errors as values; the DB's own constraints are a
 /// backstop, never the user-facing message).
 ///
-/// Returns null when [name]/[ectsCredits] are acceptable.
-String? validateCourseInput({required String name, required double ectsCredits}) {
+/// Returns null when [name]/[ectsCredits]/[startDate]/[deadline] are
+/// acceptable.
+String? validateCourseInput({
+  required String name,
+  required double ectsCredits,
+  DateTime? startDate,
+  DateTime? deadline,
+}) {
   final trimmed = name.trim();
   if (trimmed.isEmpty || trimmed.length > courseNameMaxLength) {
     return 'Name must be 1 to $courseNameMaxLength characters.';
   }
   if (ectsCredits <= 0) {
     return 'ECTS credits must be greater than zero.';
+  }
+  if (startDate != null && deadline != null) {
+    if (!deadline.isAfter(startDate)) {
+      return 'Deadline must be after start date.';
+    }
   }
   return null;
 }
@@ -78,7 +89,12 @@ class CourseRepository {
     int? colorValue,
     bool isSample = false,
   }) async {
-    final invalid = validateCourseInput(name: name, ectsCredits: ectsCredits);
+    final invalid = validateCourseInput(
+      name: name,
+      ectsCredits: ectsCredits,
+      startDate: startDate,
+      deadline: deadline,
+    );
     if (invalid != null) return Err(invalid);
     try {
       final id = await _db.into(_db.courses).insert(
@@ -110,7 +126,12 @@ class CourseRepository {
     String? notes,
     int? colorValue,
   }) async {
-    final invalid = validateCourseInput(name: name, ectsCredits: ectsCredits);
+    final invalid = validateCourseInput(
+      name: name,
+      ectsCredits: ectsCredits,
+      startDate: startDate,
+      deadline: deadline,
+    );
     if (invalid != null) return Err(invalid);
     if (id <= 0) return const Err('Course not found.');
     try {

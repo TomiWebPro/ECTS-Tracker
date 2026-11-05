@@ -186,6 +186,61 @@ void main() {
     });
   });
 
+  group('addCourse date order validation (ECTS-038)', () {
+    test('rejects deadline before start date with a domain Err and writes no row',
+        () async {
+      final res = await courses.addCourse(
+        name: 'Bad',
+        ectsCredits: 5,
+        startDate: DateTime(2026, 12, 1),
+        deadline: DateTime(2026, 11, 20),
+      );
+      expect(res, isA<Err<int>>());
+      expect((res as Err<int>).message, 'Deadline must be after start date.');
+      expect(await courses.watchAll().first, isEmpty);
+    });
+
+    test('rejects deadline equal to start date (same instant)', () async {
+      final start = DateTime(2026, 12, 1);
+      final res = await courses.addCourse(
+        name: 'Same',
+        ectsCredits: 5,
+        startDate: start,
+        deadline: start,
+      );
+      expect(res, isA<Err<int>>());
+      expect((res as Err<int>).message, 'Deadline must be after start date.');
+      expect(await courses.watchAll().first, isEmpty);
+    });
+
+    test('accepts deadline after start date', () async {
+      final res = await courses.addCourse(
+        name: 'Ok',
+        ectsCredits: 5,
+        startDate: DateTime(2026, 9, 1),
+        deadline: DateTime(2026, 12, 1),
+      );
+      expect(res, isA<Ok<int>>());
+      expect((await courses.watchAll().first).single.name, 'Ok');
+    });
+
+    test('accepts course with only start date or only deadline', () async {
+      final res1 = await courses.addCourse(
+        name: 'StartOnly',
+        ectsCredits: 5,
+        startDate: DateTime(2026, 9, 1),
+      );
+      expect(res1, isA<Ok<int>>());
+      final res2 = await courses.addCourse(
+        name: 'DeadlineOnly',
+        ectsCredits: 5,
+        deadline: DateTime(2026, 12, 1),
+      );
+      expect(res2, isA<Ok<int>>());
+      expect((await courses.watchAll().first).length, 2);
+    });
+  });
+
   group('addSession course-reference validation (ECTS-026)', () {
     test('rejects a missing course with a domain Err, not a DB error', () async {
       final res =
@@ -325,6 +380,25 @@ void main() {
       final row = (await courses.watchAll().first).single;
       expect(row.name, 'Kept');
       expect(row.ectsCredits, 3);
+    });
+
+    test('rejects deadline before start date on update and leaves row unchanged',
+        () async {
+      final id =
+          (await courses.addCourse(name: 'Kept', ectsCredits: 3) as Ok<int>)
+              .value;
+      final res = await courses.updateCourse(
+        id: id,
+        name: 'Kept',
+        ectsCredits: 3,
+        startDate: DateTime(2026, 12, 1),
+        deadline: DateTime(2026, 11, 20),
+      );
+      expect(res, isA<Err<void>>());
+      expect((res as Err<void>).message, 'Deadline must be after start date.');
+      final row = (await courses.watchAll().first).single;
+      expect(row.startDate, isNull);
+      expect(row.deadline, isNull);
     });
   });
 
