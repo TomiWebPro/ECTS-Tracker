@@ -92,19 +92,43 @@ double elapsedDays(DateTime? startDate, DateTime now) {
 }
 
 /// The pace (hours/day) the student has actually *finished* so far, measured
-/// from the start date: `completedHours / elapsedDays`. Null when there is no
-/// start date or the start date has not been reached yet (pace undefined, never
-/// a divide by 0). A start that coincides with [now] yields 0 h/day.
+/// from the start date: `completedHours / elapsedDays`. Null when the start
+/// date has not been reached yet (pace undefined, never a divide by 0). A start
+/// that coincides with [now] yields 0 h/day.
+///
+/// Without a start date the baseline falls back to the earliest logged
+/// [sessions] date when present (zero-duration sessions are ignored); with no
+/// baseline at all the pace is null.
 double? finishedDailyPace(
   double completed,
   DateTime? startDate,
-  DateTime now,
-) {
-  if (startDate == null) return null;
-  final minutes = now.difference(startDate).inMinutes;
+  DateTime now, {
+  Iterable<StudySession> sessions = const [],
+}) {
+  final baseline = _paceBaseline(startDate, sessions);
+  if (baseline == null) return null;
+  final minutes = now.difference(baseline).inMinutes;
   if (minutes < 0) return null;
   if (minutes == 0) return 0;
   return completed / (minutes / (60 * 24));
+}
+
+/// Which instant the achieved pace of a course is measured from.
+///
+/// The start date when the course has one; otherwise the **first logged
+/// session** — a course with no start date still has evidence of when study
+/// actually began (AGENTS.md §4: the normal case is a user who sets only a
+/// deadline). Using the logged history keeps a single early session from
+/// masquerading as a full elapsed period. Null when there is neither (nothing
+/// can be said about pace).
+DateTime? _paceBaseline(DateTime? startDate, Iterable<StudySession> sessions) {
+  if (startDate != null) return startDate;
+  DateTime? first;
+  for (final s in sessions) {
+    if (s.minutes <= 0) continue;
+    if (first == null || s.date.isBefore(first)) first = s.date;
+  }
+  return first;
 }
 
 /// Where a course stands against its deadline, computed from logged hours and
@@ -165,14 +189,20 @@ class CourseProgress {
 ///    [CourseStatus.behind]: no finite pace can hit a deadline that is already
 ///    today, so the shortfall is unbounded, never healthy `onTrack`
 ///    (`requiredDailyHours` stays null there — reporting only, no divide by 0).
-/// 4. no deadline / no start date (no linear expectation exists) → [CourseStatus.onTrack].
-/// 5. logged hours above expectation to date → [CourseStatus.ahead].
+/// 4. no deadline → [CourseStatus.onTrack] (no schedule to be behind).
+/// 5. logged hours above the linear expectation to date → [CourseStatus.ahead].
 /// 6. otherwise the course finishes on time at the pace it has *actually*
 ///    achieved so far ([finishedDailyPace]) → [CourseStatus.onTrack].
 /// 7. when the achieved pace is below the [requiredDailyHours] needed to hit
 ///    the deadline → [CourseStatus.behind]. This is the only way a course can
 ///    be behind: the finished-hours baseline is measured against the pace
 ///    actually required from here on, not the linear expectation.
+///
+/// A course without a start date has no linear expectation (step 5 is skipped),
+/// but it is **not** therefore always [CourseStatus.onTrack]: its achieved pace
+/// is measured from its first logged session, so a deadline-only course — the
+/// normal case, a user who sets just a deadline — that logs too little, or
+/// nothing at all, is correctly reported [CourseStatus.behind].
 CourseProgress courseProgress({
   required double ectsCredits,
   required double hoursPerEcts,
@@ -182,7 +212,8 @@ CourseProgress courseProgress({
   required DateTime now,
 }) {
   final required = requiredHours(ectsCredits, hoursPerEcts);
-  final done = completedHours(sessions);
+  final logged = sessions.toList(growable: false);
+  final done = completedHours(logged);
   final left = remainingHours(required, done);
   final daysLeft = remainingDays(deadline, now);
 
@@ -190,6 +221,7 @@ CourseProgress courseProgress({
     remaining: left,
     completed: done,
     required: required,
+    sessions: logged,
     startDate: startDate,
     deadline: deadline,
     now: now,
@@ -236,6 +268,7 @@ CourseStatus _status({
   required double remaining,
   required double completed,
   required double required,
+  required Iterable<StudySession> sessions,
   required DateTime? startDate,
   required DateTime? deadline,
   required DateTime now,
@@ -249,16 +282,19 @@ CourseStatus _status({
   final daysLeft = remainingDays(deadline, now);
   if (daysLeft != null && daysLeft == 0) return CourseStatus.behind;
 
-  final expected = expectedHoursToDate(required, startDate, deadline, now);
-  if (expected == null) return CourseStatus.onTrack;
-  if (completed > expected) return CourseStatus.ahead;
+  // No deadline → nothing to fall behind; there is no required pace to compare.
+  if (deadline == null) return CourseStatus.onTrack;
 
-  // Level with or below the linear expectation: the course is on track only if
-  // the pace it has actually achieved so far would still finish in time.
-  final achieved = finishedDailyPace(completed, startDate, now);
+  final expected = expectedHoursToDate(required, startDate, deadline, now);
+  if (expected != null && completed > expected) return CourseStatus.ahead;
+
+  // Level with (or without) the linear expectation: the course is on track only
+  // if the pace it has actually achieved so far would still finish in time. The
+  // baseline is the start date, or the first logged session when there is none.
+  final achieved = finishedDailyPace(completed, startDate, now, sessions: sessions);
   final needed = requiredDailyHours(remaining, deadline, now);
-  // No finished-pace baseline (no elapsed time yet) or a deadline day that has
-  // arrived (no pace can be computed) → cannot prove a shortfall → on track.
+  // No finished-pace baseline (no start date and nothing logged yet) or a
+  // deadline day that has arrived → cannot prove a shortfall → on track.
   if (achieved == null || needed == null) return CourseStatus.onTrack;
   return achieved + _paceEpsilon >= needed
       ? CourseStatus.onTrack

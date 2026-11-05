@@ -101,7 +101,11 @@ void main() {
       expect(achieved! < p.requiredDailyHours!, isTrue);
     });
 
-    test('on track with a deadline but no start date (no expectation)', () {
+    test('on track with a deadline but no start date and nothing logged', () {
+      // No start date ⇒ no linear expectation and no pace baseline at all
+      // (nothing logged), so no shortfall can be proven: on track. The
+      // deadline-only course that *has* logged time is covered by the
+      // ECTS-021 group below.
       final p = progress(deadline: DateTime(2026, 12, 1));
       expect(p.status, CourseStatus.onTrack);
     });
@@ -247,7 +251,7 @@ void main() {
       expect(p.status, CourseStatus.behind);
     });
 
-    test('no start date: no finished-pace baseline ⇒ never behind', () {
+    test('no start date and nothing logged: no pace baseline ⇒ on track', () {
       final p = progress(deadline: DateTime(2026, 12, 1));
       expect(finishedDailyPace(p.completedHours, null, now), isNull);
       expect(p.status, CourseStatus.onTrack);
@@ -321,6 +325,117 @@ void main() {
       final p = progress(deadline: DateTime(2026, 11, 4));
       expect(p.remainingDays, 0);
       expect(p.status, CourseStatus.behind);
+    });
+  });
+
+  group('courseProgress — behind without a start date (ECTS-021)', () {
+    test('the row probe: deadline-only course with 1 h of 150 h is behind', () {
+      // 5 ECTS = 150 h, 1 h logged 1 day ago (first-session baseline), deadline
+      // 2026-12-01 (27 days left) → 149/27 ≈ 5.52 h/day needed vs 1 h/day
+      // achieved. Before this fix the no-start-date path always returned onTrack.
+      final p = progress(
+        sessions: [s(60, date: DateTime(2026, 11, 3, 12))],
+        deadline: DateTime(2026, 12, 1),
+      );
+      expect(p.status, CourseStatus.behind);
+      expect(p.remainingDays, 27);
+      expect(p.requiredDailyHours, closeTo(149 / 27, 1e-9));
+      final achieved =
+          finishedDailyPace(p.completedHours, null, now, sessions: [
+        StudySession(id: 0, courseId: 1, minutes: 60, date: DateTime(2026, 11, 3, 12)),
+      ]);
+      expect(achieved, closeTo(1, 1e-9));
+      expect(achieved! < p.requiredDailyHours!, isTrue);
+    });
+
+    test('deadline-only course on pace is on track', () {
+      // First session 1 day ago, 15 h logged → 15 h/day achieved vs the
+      // 135 h / 10 days = 13.5 h/day still needed: on pace, not behind.
+      final p = progress(
+        sessions: [s(15 * 60, date: DateTime(2026, 11, 3, 12))],
+        deadline: DateTime(2026, 11, 14),
+      );
+      expect(p.status, CourseStatus.onTrack);
+      expect(p.requiredDailyHours, closeTo(13.5, 1e-9));
+    });
+
+    test('deadline-only course logging more than the required pace is on track', () {
+      final p = progress(
+        sessions: [s(40 * 60, date: DateTime(2026, 11, 3, 12))],
+        deadline: DateTime(2026, 12, 1),
+      );
+      expect(p.status, CourseStatus.onTrack);
+    });
+
+    test('baseline is the earliest session, not the latest', () {
+      // Sessions on 11-01 (1 h) and 11-03 (1 h): pace measured from 11-01
+      // (3 d) = 2/3 h/day, not from 11-03 (1 d) = 2 h/day.
+      final sessions = [
+        s(60, date: DateTime(2026, 11, 3, 12)),
+        s(60, date: DateTime(2026, 11, 1, 12)),
+      ];
+      final p = progress(sessions: sessions, deadline: DateTime(2026, 12, 1));
+      expect(p.status, CourseStatus.behind);
+      expect(
+        finishedDailyPace(p.completedHours, null, now, sessions: sessions),
+        closeTo(2 / 3, 1e-9),
+      );
+    });
+
+    test('a start date still wins over the logged-session baseline', () {
+      // Start 2026-11-01 with 1 h logged 1 day ago: pace from the start date is
+      // 1/3.5 h/day, so both baselines put the course behind — but the start
+      // date is what is used (elapsed 3.5 d, not 1 d).
+      final sessions = [s(60, date: DateTime(2026, 11, 3, 12))];
+      expect(
+        finishedDailyPace(1, DateTime(2026, 11, 1), now, sessions: sessions),
+        closeTo(1 / 3.5, 1e-9),
+      );
+    });
+
+    test('no deadline: never behind, even with a logged shortfall', () {
+      final p = progress(sessions: [s(60, date: DateTime(2026, 11, 3, 12))]);
+      expect(p.status, CourseStatus.onTrack);
+      expect(p.requiredDailyHours, isNull);
+    });
+
+    test('zero credits with a deadline and logged time stays completed', () {
+      final p = progress(
+        credits: 0,
+        sessions: [s(60, date: DateTime(2026, 11, 3, 12))],
+        deadline: DateTime(2026, 12, 1),
+      );
+      expect(p.status, CourseStatus.completed);
+    });
+
+    test('ahead is unreachable without a start date (no expectation)', () {
+      // 100 h logged 1 day ago: well above the linear expectation a start date
+      // would have produced, but with no start date `ahead` cannot fire — the
+      // sufficient achieved pace (100 h/day ≫ 50/27 h/day) means on track.
+      final p = progress(
+        sessions: [s(100 * 60, date: DateTime(2026, 11, 3, 12))],
+        deadline: DateTime(2026, 12, 1),
+      );
+      expect(p.status, CourseStatus.onTrack);
+    });
+
+    test('zero-duration sessions are ignored by the pace baseline', () {
+      final sessions = [
+        s(0, date: DateTime(2026, 10, 1)), // ignored: no study happened
+        s(60, date: DateTime(2026, 11, 3, 12)),
+      ];
+      expect(
+        finishedDailyPace(1, null, now, sessions: sessions),
+        closeTo(1, 1e-9),
+      );
+    });
+
+    test('a session dated in the future gives no pace baseline ⇒ on track', () {
+      final p = progress(
+        sessions: [s(60, date: DateTime(2026, 11, 10))],
+        deadline: DateTime(2026, 12, 1),
+      );
+      expect(p.status, CourseStatus.onTrack);
     });
   });
 
