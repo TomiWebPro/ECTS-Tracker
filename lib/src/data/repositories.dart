@@ -112,6 +112,25 @@ class SessionRepository {
   SessionRepository(this._db);
   final AppDatabase _db;
 
+  /// Verifies the target course of a session exists (and that [courseId] is a
+  /// plausible id). Checked at the boundary so a bad id is a typed domain error
+  /// the caller can distinguish from a DB fault, instead of the generic
+  /// `Failed to add session: $e` raised by a foreign-key violation.
+  ///
+  /// Returns null when the course exists.
+  Future<String?> validateCourseReference(int courseId) async {
+    if (courseId <= 0) return 'Course not found.';
+    try {
+      final row = await (_db.select(_db.courses)
+            ..where((t) => t.id.equals(courseId))
+            ..limit(1))
+          .getSingleOrNull();
+      return row == null ? 'Course not found.' : null;
+    } catch (e) {
+      return 'Failed to look up course: $e';
+    }
+  }
+
   Stream<List<StudySession>> watchAll() => _db
       .select(_db.studySessions)
       .watch()
@@ -125,6 +144,8 @@ class SessionRepository {
     bool isSample = false,
   }) async {
     if (minutes <= 0) return const Err('Duration must be greater than zero.');
+    final missingCourse = await validateCourseReference(courseId);
+    if (missingCourse != null) return Err(missingCourse);
     try {
       final id = await _db.into(_db.studySessions).insert(
             StudySessionsCompanion.insert(

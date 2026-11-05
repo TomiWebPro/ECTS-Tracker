@@ -114,4 +114,61 @@ void main() {
       expect(courseNameMaxLength, 200);
     });
   });
+
+  group('addSession course-reference validation (ECTS-026)', () {
+    test('rejects a missing course with a domain Err, not a DB error', () async {
+      final res =
+          await sessions.addSession(courseId: 999, minutes: 60, date: DateTime(2026, 11, 4));
+      expect(res, isA<Err<int>>());
+      final message = (res as Err<int>).message;
+      expect(message, 'Course not found.');
+      expect(message, isNot(contains('Failed to add session')));
+      expect(await sessions.watchAll().first, isEmpty);
+    });
+
+    test('rejects a non-positive courseId', () async {
+      for (final badId in [0, -1]) {
+        final res = await sessions
+            .addSession(courseId: badId, minutes: 60, date: DateTime(2026, 11, 4));
+        expect(res, isA<Err<int>>());
+        expect((res as Err<int>).message, 'Course not found.');
+      }
+      expect(await sessions.watchAll().first, isEmpty);
+    });
+
+    test('rejects a deleted course: no orphan session is written', () async {
+      final id = (await courses.addCourse(name: 'Ephemeral', ectsCredits: 4) as Ok<int>).value;
+      expect(await courses.deleteCourse(id), isA<Ok<void>>());
+
+      final res =
+          await sessions.addSession(courseId: id, minutes: 30, date: DateTime(2026, 11, 4));
+      expect(res, isA<Err<int>>());
+      expect((res as Err<int>).message, 'Course not found.');
+      expect(await sessions.watchAll().first, isEmpty);
+    });
+
+    test('still rejects a non-positive duration before the course lookup', () async {
+      final id = (await courses.addCourse(name: 'Valid', ectsCredits: 5) as Ok<int>).value;
+      final res = await sessions.addSession(courseId: id, minutes: 0, date: DateTime(2026, 11, 4));
+      expect(res, isA<Err<int>>());
+      expect((res as Err<int>).message, 'Duration must be greater than zero.');
+    });
+
+    test('accepts a session for an existing course', () async {
+      final id = (await courses.addCourse(name: 'Real', ectsCredits: 5) as Ok<int>).value;
+      final res =
+          await sessions.addSession(courseId: id, minutes: 45, date: DateTime(2026, 11, 4));
+      expect(res, isA<Ok<int>>());
+      final list = await sessions.watchAll().first;
+      expect(list.single.courseId, id);
+      expect(list.single.minutes, 45);
+    });
+
+    test('validateCourseReference distinguishes existing from missing courses', () async {
+      final id = (await courses.addCourse(name: 'Probe', ectsCredits: 3) as Ok<int>).value;
+      expect(await sessions.validateCourseReference(id), isNull);
+      expect(await sessions.validateCourseReference(id + 1), 'Course not found.');
+      expect(await sessions.validateCourseReference(0), 'Course not found.');
+    });
+  });
 }
