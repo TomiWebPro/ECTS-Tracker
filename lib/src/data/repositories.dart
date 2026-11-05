@@ -274,6 +274,18 @@ class SettingsRepository {
               dailyTargetMinutes: row.dailyTargetMinutes,
             ));
 
+  /// One-shot read of the current settings, defaulting to [AppSettings] when
+  /// no row exists (same mapping as [watch]). Lets bootstrap/first-frame code
+  /// resolve settings without a stream subscription (ECTS-045).
+  Future<AppSettings> get() async {
+    final row = await _db.select(_db.settings).getSingleOrNull();
+    if (row == null) return const AppSettings();
+    return AppSettings(
+      hoursPerEcts: row.hoursPerEcts,
+      dailyTargetMinutes: row.dailyTargetMinutes,
+    );
+  }
+
   Future<Result<void>> setHoursPerEcts(double value) async {
     if (value <= 0) return const Err('Hours per ECTS must be greater than zero.');
     try {

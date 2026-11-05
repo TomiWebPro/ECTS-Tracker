@@ -487,4 +487,35 @@ void main() {
       expect((await sessions.watchAll().first).single.courseId, courseId);
     });
   });
+
+  group('SettingsRepository.get() (ECTS-045)', () {
+    late SettingsRepository settings;
+
+    setUp(() {
+      settings = SettingsRepository(db);
+    });
+
+    test('returns default settings when no row exists', () async {
+      final s = await settings.get();
+      expect(s.hoursPerEcts, 30);
+      expect(s.dailyTargetMinutes, 0);
+    });
+
+    test('returns persisted settings after writes', () async {
+      await settings.setHoursPerEcts(25);
+      await settings.setDailyTargetMinutes(90);
+
+      final s = await settings.get();
+      expect(s.hoursPerEcts, 25);
+      expect(s.dailyTargetMinutes, 90);
+    });
+
+    test('matches watch() for the same state', () async {
+      await settings.setDailyTargetMinutes(45);
+      final fromGet = await settings.get();
+      final fromWatch = await settings.watch().first;
+      expect(fromGet.hoursPerEcts, fromWatch.hoursPerEcts);
+      expect(fromGet.dailyTargetMinutes, fromWatch.dailyTargetMinutes);
+    });
+  });
 }
