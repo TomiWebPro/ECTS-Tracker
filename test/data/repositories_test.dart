@@ -1,3 +1,4 @@
+import 'package:drift/drift.dart' show LazyDatabase;
 import 'package:drift/native.dart';
 import 'package:ects_tracker/src/data/app_database.dart';
 import 'package:ects_tracker/src/data/repositories.dart';
@@ -641,6 +642,92 @@ void main() {
     test('deleteSampleData on an empty database is Ok', () async {
       final res = await courses.deleteSampleData();
       expect(res, isA<Ok<void>>());
+    });
+  });
+
+
+  group('DB-fault Result<T> contract (ECTS-039)', () {
+    late AppDatabase faultDb;
+    late CourseRepository faultCourses;
+    late SessionRepository faultSessions;
+    late SettingsRepository faultSettings;
+
+    setUp(() {
+      // The executor fails on first open, simulating an unavailable/corrupt DB.
+      // Repositories must catch and return Err (AGENTS.md §3), never throw.
+      faultDb = AppDatabase(LazyDatabase(() async {
+        throw StateError('database unavailable');
+      }));
+      faultCourses = CourseRepository(faultDb);
+      faultSessions = SessionRepository(faultDb);
+      faultSettings = SettingsRepository(faultDb);
+    });
+
+    tearDown(() async {
+      // Ignore close errors from a DB that never opened.
+      try {
+        await faultDb.close();
+      } catch (_) {}
+    });
+
+    void expectErr<T>(Result<T> res, String prefixFragment) {
+      expect(res, isA<Err<T>>());
+      final message = (res as Err<T>).message;
+      expect(message, isNotEmpty);
+      expect(message, contains(prefixFragment));
+      // Human-readable, not a raw throw site marker.
+      expect(message, isNot(contains('Instance of')));
+    }
+
+    test('addCourse returns Err, never throws', () async {
+      final res = await faultCourses.addCourse(name: 'X', ectsCredits: 5);
+      expectErr<int>(res, 'Failed to add course');
+    });
+
+    test('deleteCourse returns Err, never throws', () async {
+      final res = await faultCourses.deleteCourse(1);
+      expectErr<void>(res, 'Failed to delete course');
+    });
+
+    test('deleteSampleData returns Err, never throws', () async {
+      final res = await faultCourses.deleteSampleData();
+      expectErr<void>(res, 'Failed to clear sample data');
+    });
+
+    test('addSession returns Err on DB fault (course lookup), never throws',
+        () async {
+      // addSession validates the course reference first; on an unavailable DB
+      // that lookup fails and is surfaced as a typed Err, not an exception.
+      final res = await faultSessions.addSession(
+        courseId: 1,
+        minutes: 30,
+        date: DateTime(2026, 1, 1),
+      );
+      expect(res, isA<Err<int>>());
+      final message = (res as Err<int>).message;
+      expect(message, isNotEmpty);
+      expect(message, contains('Failed to look up course'));
+    });
+
+    test('deleteSession returns Err, never throws', () async {
+      final res = await faultSessions.deleteSession(1);
+      expectErr<void>(res, 'Failed to delete session');
+    });
+
+    test('setHoursPerEcts returns Err, never throws', () async {
+      final res = await faultSettings.setHoursPerEcts(25);
+      expectErr<void>(res, 'Failed to save settings');
+    });
+
+    test('watchAll/watchSample/watch do not throw synchronously', () {
+      // Streams cannot return Result<T>; the contract here is that creating
+      // the stream does not throw across the layer at the call site. Any
+      // underlying DB error is delivered through the stream.
+      expect(() => faultCourses.watchAll(), returnsNormally);
+      expect(() => faultCourses.watchSample(), returnsNormally);
+      expect(() => faultSessions.watchAll(), returnsNormally);
+      expect(() => faultSessions.watchSample(), returnsNormally);
+      expect(() => faultSettings.watch(), returnsNormally);
     });
   });
 }
