@@ -190,7 +190,31 @@ class SettingsRepository {
     if (value <= 0) return const Err('Hours per ECTS must be greater than zero.');
     try {
       await _db.into(_db.settings).insertOnConflictUpdate(
-            SettingsCompanion.insert(hoursPerEcts: Value(value)),
+            SettingsCompanion.insert(
+              id: const Value(1),
+              hoursPerEcts: Value(value),
+            ),
+          );
+      return const Ok(null);
+    } catch (e) {
+      return Err('Failed to save settings: $e');
+    }
+  }
+
+  /// Persists the daily study target (minutes/day). `0` is "no target", a
+  /// positive value is the target; a negative one is rejected at the boundary so
+  /// it never reaches the row (ECTS-019). Writes only the settings singleton, so
+  /// no course or session data is touched.
+  Future<Result<void>> setDailyTargetMinutes(int value) async {
+    if (value < 0) {
+      return const Err('Daily target must not be negative.');
+    }
+    try {
+      await _db.into(_db.settings).insertOnConflictUpdate(
+            SettingsCompanion.insert(
+              id: const Value(1),
+              dailyTargetMinutes: Value(value),
+            ),
           );
       return const Ok(null);
     } catch (e) {

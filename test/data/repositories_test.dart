@@ -49,7 +49,78 @@ void main() {
 
   test('settings default hoursPerEcts to 30', () async {
     final settings = SettingsRepository(db);
-    expect((await settings.watch().first).hoursPerEcts, 30);
+    final s = await settings.watch().first;
+    expect(s.hoursPerEcts, 30);
+    expect(s.dailyTargetMinutes, 0);
+  });
+
+  group('setDailyTargetMinutes (ECTS-019)', () {
+    late SettingsRepository settings;
+
+    setUp(() {
+      settings = SettingsRepository(db);
+    });
+
+    test('persists a positive daily target', () async {
+      final res = await settings.setDailyTargetMinutes(120);
+      expect(res, isA<Ok<void>>());
+      expect((await settings.watch().first).dailyTargetMinutes, 120);
+    });
+
+    test('accepts 0 as "no target" and persists it', () async {
+      await settings.setDailyTargetMinutes(90);
+      final res = await settings.setDailyTargetMinutes(0);
+      expect(res, isA<Ok<void>>());
+      expect((await settings.watch().first).dailyTargetMinutes, 0);
+    });
+
+    test('rejects a negative target with a domain Err and leaves the row unchanged',
+        () async {
+      final res = await settings.setDailyTargetMinutes(-1);
+      expect(res, isA<Err<void>>());
+      expect(
+        (res as Err<void>).message,
+        'Daily target must not be negative.',
+      );
+      expect((await settings.watch().first).dailyTargetMinutes, 0);
+    });
+
+    test('rejects a large negative target and does not persist it', () async {
+      await settings.setDailyTargetMinutes(60);
+      final res = await settings.setDailyTargetMinutes(-999);
+      expect(res, isA<Err<void>>());
+      expect((await settings.watch().first).dailyTargetMinutes, 60);
+    });
+
+    test('writes only settings, leaving courses and sessions intact', () async {
+      final courseId =
+          (await courses.addCourse(name: 'Untouched', ectsCredits: 5) as Ok<int>)
+              .value;
+      await sessions.addSession(
+        courseId: courseId,
+        minutes: 45,
+        date: DateTime(2026, 11, 4),
+      );
+
+      final res = await settings.setDailyTargetMinutes(75);
+      expect(res, isA<Ok<void>>());
+
+      expect((await courses.watchAll().first).single.name, 'Untouched');
+      expect((await sessions.watchAll().first).single.minutes, 45);
+    });
+
+    test('upserts the singleton row (no duplicate settings rows)', () async {
+      await settings.setHoursPerEcts(25);
+      await settings.setDailyTargetMinutes(90);
+      await settings.setHoursPerEcts(30);
+      await settings.setDailyTargetMinutes(0);
+
+      final s = await settings.watch().first;
+      expect(s.hoursPerEcts, 30);
+      expect(s.dailyTargetMinutes, 0);
+      // Only the singleton row must exist.
+      expect((await db.select(db.settings).get()).length, 1);
+    });
   });
 
   group('addCourse boundary validation (ECTS-025)', () {
