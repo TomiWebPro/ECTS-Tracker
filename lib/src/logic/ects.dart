@@ -46,7 +46,12 @@ int? remainingDays(DateTime? deadline, DateTime now) {
   return diff > 0 ? diff : 0;
 }
 
-/// Required daily pace (hours/day) to hit the deadline. Null / 0 handled.
+/// Required daily pace (hours/day) to hit the deadline.
+///
+/// Null when there is no deadline, or when the deadline day has arrived
+/// ([remainingDays] == 0): no finite pace can still hit it, so there is no
+/// number to report (avoids a divide by zero). The status engine still reports
+/// such a course as [CourseStatus.behind] while hours remain.
 double? requiredDailyHours(double remaining, DateTime? deadline, DateTime now) {
   final days = remainingDays(deadline, now);
   if (days == null || days == 0) return null;
@@ -144,7 +149,8 @@ class CourseProgress {
   final int? remainingDays;
 
   /// Hours/day still needed. Null without a deadline or once the deadline day
-  /// is reached (no division by zero).
+  /// has arrived (no finite pace exists and no division by zero) — such a
+  /// course is [CourseStatus.behind] while hours remain outstanding.
   final double? requiredDailyHours;
   final double? requiredWeeklyHours;
 }
@@ -155,11 +161,15 @@ class CourseProgress {
 /// 1. remaining ≤ 0 → [CourseStatus.completed] (an over-completed past-deadline
 ///    course is still completed, not overdue).
 /// 2. deadline strictly before [now] → [CourseStatus.overdue].
-/// 3. no deadline / no start date (no linear expectation exists) → [CourseStatus.onTrack].
-/// 4. logged hours above expectation to date → [CourseStatus.ahead].
-/// 5. otherwise the course finishes on time at the pace it has *actually*
+/// 3. deadline day has arrived (0 days left) with hours still outstanding →
+///    [CourseStatus.behind]: no finite pace can hit a deadline that is already
+///    today, so the shortfall is unbounded, never healthy `onTrack`
+///    (`requiredDailyHours` stays null there — reporting only, no divide by 0).
+/// 4. no deadline / no start date (no linear expectation exists) → [CourseStatus.onTrack].
+/// 5. logged hours above expectation to date → [CourseStatus.ahead].
+/// 6. otherwise the course finishes on time at the pace it has *actually*
 ///    achieved so far ([finishedDailyPace]) → [CourseStatus.onTrack].
-/// 6. when the achieved pace is below the [requiredDailyHours] needed to hit
+/// 7. when the achieved pace is below the [requiredDailyHours] needed to hit
 ///    the deadline → [CourseStatus.behind]. This is the only way a course can
 ///    be behind: the finished-hours baseline is measured against the pace
 ///    actually required from here on, not the linear expectation.
@@ -232,6 +242,12 @@ CourseStatus _status({
 }) {
   if (remaining <= 0) return CourseStatus.completed;
   if (isPastDeadline(deadline, now)) return CourseStatus.overdue;
+
+  // Deadline day itself: hours still outstanding means no pace, however large,
+  // forms a valid schedule from here on — a deadline-day shortfall is `behind`,
+  // never `onTrack`. Past deadlines are already handled above.
+  final daysLeft = remainingDays(deadline, now);
+  if (daysLeft != null && daysLeft == 0) return CourseStatus.behind;
 
   final expected = expectedHoursToDate(required, startDate, deadline, now);
   if (expected == null) return CourseStatus.onTrack;

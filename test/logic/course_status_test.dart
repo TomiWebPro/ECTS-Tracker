@@ -128,15 +128,15 @@ void main() {
       expect(p.status, CourseStatus.behind);
     });
 
-    test('deadline today: not overdue, null pace (no division by zero)', () {
+    test('deadline today: not overdue, null pace, behind (no division by zero)', () {
       final p = progress(
         sessions: [s(60 * 60)],
         startDate: DateTime(2026, 11, 1),
         deadline: DateTime(2026, 11, 4, 23, 59),
       );
-      // 90 h still needed, but 0 days left → no required pace exists, so the
-      // shortfall cannot be proven and the course is not marked behind.
-      expect(p.status, CourseStatus.onTrack);
+      // 90 h still needed with 0 days left: not overdue (the deadline day itself
+      // is not past) but the shortfall is unbounded, so not on track either.
+      expect(p.status, CourseStatus.behind);
       expect(p.remainingDays, 0);
       expect(p.requiredDailyHours, isNull);
       expect(p.requiredWeeklyHours, isNull);
@@ -237,14 +237,14 @@ void main() {
       expect(p.status, CourseStatus.ahead);
     });
 
-    test('deadline today: no required pace ⇒ not behind (no divide by zero)', () {
+    test('deadline today with hours outstanding: behind, not on track', () {
       final p = progress(
         sessions: [s(10 * 60)],
         startDate: DateTime(2026, 11, 1),
         deadline: now,
       );
       expect(p.requiredDailyHours, isNull);
-      expect(p.status, CourseStatus.onTrack);
+      expect(p.status, CourseStatus.behind);
     });
 
     test('no start date: no finished-pace baseline ⇒ never behind', () {
@@ -263,6 +263,64 @@ void main() {
         finishedDailyPace(48, DateTime(2026, 10, 30), now),
         closeTo(48 / 5.5, 1e-9),
       );
+    });
+  });
+
+  group('courseProgress — deadline-day shortfall is behind (ECTS-022)', () {
+    test('deadline today with 1 h of 150 h logged is behind, pace null', () {
+      // The probe from the task row: start 2026-10-01, deadline today 23:00,
+      // 1 h logged of 150 h required.
+      final p = progress(
+        sessions: [s(60)],
+        startDate: DateTime(2026, 10, 1),
+        deadline: DateTime(2026, 11, 4, 23),
+      );
+      expect(p.status, CourseStatus.behind);
+      expect(p.remainingDays, 0);
+      expect(p.remainingHours, 149);
+      expect(p.requiredDailyHours, isNull);
+    });
+
+    test('deadline today with nothing logged is behind', () {
+      final p = progress(deadline: DateTime(2026, 11, 4, 23, 59));
+      expect(p.status, CourseStatus.behind);
+      expect(p.remainingHours, 150);
+      expect(p.requiredDailyHours, isNull);
+    });
+
+    test('deadline today but requirement already met stays completed', () {
+      // completed outranks the deadline-day branch.
+      final p = progress(
+        sessions: [s(150 * 60)],
+        startDate: DateTime(2026, 10, 1),
+        deadline: now,
+      );
+      expect(p.status, CourseStatus.completed);
+    });
+
+    test('deadline yesterday with hours outstanding stays overdue, not behind', () {
+      final p = progress(
+        sessions: [s(60)],
+        startDate: DateTime(2026, 10, 1),
+        deadline: DateTime(2026, 11, 3, 23),
+      );
+      expect(p.status, CourseStatus.overdue);
+      expect(p.remainingDays, 0);
+    });
+
+    test('a future deadline is untouched by the deadline-day branch', () {
+      // Deadline tomorrow, exactly on pace: still on track, pace reported.
+      final p = progress(deadline: DateTime(2026, 11, 5));
+      expect(p.status, CourseStatus.onTrack);
+      expect(p.remainingDays, 1);
+      expect(p.requiredDailyHours, closeTo(150, 1e-9));
+    });
+
+    test('deadline-day notice never fires when the deadline hour is later today', () {
+      // now is 12:00; a deadline at 23:00 today is still the same calendar day.
+      final p = progress(deadline: DateTime(2026, 11, 4));
+      expect(p.remainingDays, 0);
+      expect(p.status, CourseStatus.behind);
     });
   });
 
