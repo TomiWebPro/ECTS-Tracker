@@ -10,6 +10,7 @@ import '../state/providers.dart';
 import 'course_form.dart';
 import 'session_form.dart';
 import 'settings_page.dart';
+import 'statistics_page.dart';
 
 /// Root scaffold: bottom nav across the five app areas (AGENTS.md §3).
 class HomeShell extends StatefulWidget {
@@ -41,7 +42,7 @@ class _HomeShellState extends State<HomeShell> {
         0 => _OverviewPage(now: widget.now),
         1 => _CoursesPage(now: widget.now),
         2 => _StudyLogPage(now: widget.now),
-        3 => const _PlaceholderPage('Statistics'),
+        3 => StatisticsPage(now: widget.now),
         4 => const SettingsPage(),
         _ => const SizedBox.shrink(),
       },
@@ -72,16 +73,6 @@ class _HomeShellState extends State<HomeShell> {
         ],
       ),
     );
-  }
-}
-
-class _PlaceholderPage extends StatelessWidget {
-  const _PlaceholderPage(this.label);
-  final String label;
-
-  @override
-  Widget build(BuildContext context) {
-    return Center(child: Text('$label — coming in a later milestone'));
   }
 }
 
