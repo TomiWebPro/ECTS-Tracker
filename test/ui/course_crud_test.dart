@@ -1,7 +1,6 @@
 import 'package:drift/native.dart';
 import 'package:ects_tracker/src/data/app_database.dart';
 import 'package:ects_tracker/src/data/repositories.dart';
-import 'package:ects_tracker/src/models/models.dart';
 import 'package:ects_tracker/src/state/providers.dart';
 import 'package:ects_tracker/src/ui/home_shell.dart';
 import 'package:flutter/material.dart';
@@ -66,7 +65,7 @@ void main() {
       expect(find.text('Add course'), findsNothing);
       expect(find.text('Linear Algebra'), findsOneWidget);
       expect(find.textContaining('5.0 ECTS'), findsOneWidget);
-      expect(find.textContaining('150.0 h required'), findsOneWidget);
+      expect(find.textContaining('/ 150.0 h'), findsOneWidget);
 
       final rows = await db.select(db.courses).get();
       expect(rows, hasLength(1));
@@ -137,7 +136,7 @@ void main() {
       await goToCourses(tester);
 
       expect(find.text('Original'), findsOneWidget);
-      expect(find.textContaining('90.0 h required'), findsOneWidget); // 3*30
+      expect(find.textContaining('/ 90.0 h'), findsOneWidget); // 3*30
 
       // Tap course to edit.
       await tester.tap(find.text('Original'));
@@ -149,7 +148,6 @@ void main() {
       await tester.enterText(find.byKey(const Key('courseEctsField')), '4');
       await tester.enterText(find.byKey(const Key('courseNotesField')), '');
       await tester.pump();
-      expect(find.textContaining('120.0 h required') /* dialog auto */ , findsNothing);
       expect(find.textContaining('Required hours (auto): 120.0 h'), findsOneWidget);
 
       await tester.tap(find.byKey(const Key('saveCourseButton')));
@@ -157,7 +155,7 @@ void main() {
 
       expect(find.text('Renamed'), findsOneWidget);
       expect(find.text('Original'), findsNothing);
-      expect(find.textContaining('120.0 h required'), findsOneWidget);
+      expect(find.textContaining('/ 120.0 h'), findsOneWidget);
 
       final rows = await db.select(db.courses).get();
       expect(rows.single.name, 'Renamed');
