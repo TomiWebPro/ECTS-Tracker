@@ -122,6 +122,21 @@ double? finishedDailyPace(
   return completed / (minutes / (60 * 24));
 }
 
+/// "Current pace" used by the status engine (AGENTS.md §4, ECTS-008): hours/day
+/// achieved so far from the study baseline (start date, or earliest logged
+/// session when there is no start date). ECTS-031 policy: this is the
+/// cumulative achieved pace over the elapsed baseline period — a burst of
+/// logging in a single sitting is reflected as the rate over that elapsed time.
+/// Returns null when no pace baseline exists (start date not reached and nothing
+/// logged) so the status engine cannot prove a shortfall (ECTS-037).
+double? currentDailyPace(
+  double completed,
+  DateTime? startDate,
+  DateTime now, {
+  Iterable<StudySession> sessions = const [],
+}) =>
+    finishedDailyPace(completed, startDate, now, sessions: sessions);
+
 /// Which instant the achieved pace of a course is measured from.
 ///
 /// The start date when the course has one; otherwise the **first logged
@@ -294,16 +309,29 @@ CourseStatus _status({
   // No deadline → nothing to fall behind; there is no required pace to compare.
   if (deadline == null) return CourseStatus.onTrack;
 
-  final expected = expectedHoursToDate(required, startDate, deadline, now);
-  if (expected != null && completed > expected) return CourseStatus.ahead;
+  // `ahead` is "more than the linear expectation to date" (AGENTS.md §4). It is
+  // only meaningful once the course schedule is active: before `startDate`
+  // arrives the expectation is 0 and any pre-start logging must not be reported
+  // as `ahead` (ECTS-041). Pre-start courses fall through to the pace engine.
+  final scheduleActive =
+      startDate == null || !_dateOnly(startDate).isAfter(_dateOnly(now));
+  if (scheduleActive) {
+    final expected = expectedHoursToDate(required, startDate, deadline, now);
+    if (expected != null && completed > expected) return CourseStatus.ahead;
+  }
 
-  // Level with (or without) the linear expectation: the course is on track only
-  // if the pace it has actually achieved so far would still finish in time. The
-  // baseline is the start date, or the first logged session when there is none.
-  final achieved = finishedDailyPace(completed, startDate, now, sessions: sessions);
+  // Level with (or without) the linear expectation, or pre-start: the course is
+  // on track only if the "current pace" it has actually achieved so far would
+  // still finish in time (AGENTS.md §4). The baseline is the start date, or the
+  // first logged session when there is none (ECTS-021).
+  final achieved = currentDailyPace(completed, startDate, now, sessions: sessions);
   final needed = requiredDailyHours(remaining, deadline, now);
-  // No finished-pace baseline (no start date and nothing logged yet) or a
-  // deadline day that has arrived → cannot prove a shortfall → on track.
+  // ECTS-037 policy (AGENTS.md §4 "no sessions logged"): with a start date the
+  // achieved pace is 0 h/day, so a running schedule is `behind` — a provable
+  // shortfall. With no start date, no sessions, and no provable pace baseline at
+  // all, a shortfall cannot be established; such a course is reported `onTrack`
+  // (nothing to measure "needs higher pace" against). Deadline day with hours
+  // outstanding is already handled above (`behind`, pace null).
   if (achieved == null || needed == null) return CourseStatus.onTrack;
   return achieved + _paceEpsilon >= needed
       ? CourseStatus.onTrack

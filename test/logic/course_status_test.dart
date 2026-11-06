@@ -475,6 +475,94 @@ void main() {
     });
   });
 
+  group('courseProgress — pre-start schedule is not ahead (ECTS-041, ECTS-008)', () {
+    test('future start date with 1 h logged is not ahead (no pre-start ahead)', () {
+      // ECTS-041 probe: 5 ECTS/150h, start 2026-12-01 (future), deadline 2027-01-15,
+      // 1 h logged today. Linear expectation before start is 0, but §4 "ahead" is
+      // only meaningful once the schedule is active.
+      final p = progress(
+        sessions: [s(60)],
+        startDate: DateTime(2026, 12, 1),
+        deadline: DateTime(2027, 1, 15),
+      );
+      expect(p.status, isNot(CourseStatus.ahead));
+      expect(p.status, CourseStatus.onTrack);
+      expect(expectedHoursToDate(150, DateTime(2026, 12, 1), DateTime(2027, 1, 15), now), 0);
+    });
+
+    test('future start date with substantial logging still not ahead', () {
+      final p = progress(
+        sessions: [s(50 * 60)],
+        startDate: DateTime(2026, 12, 1),
+        deadline: DateTime(2027, 1, 15),
+      );
+      expect(p.status, isNot(CourseStatus.ahead));
+    });
+
+    test('future start date with no sessions remains on track', () {
+      final p = progress(
+        startDate: DateTime(2026, 12, 1),
+        deadline: DateTime(2027, 1, 15),
+      );
+      expect(p.status, CourseStatus.onTrack);
+    });
+  });
+
+  group('courseProgress — ECTS-031 cumulative achieved pace policy (ECTS-008)', () {
+    test('single sitting: small log is behind, large same-sitting log can be on track', () {
+      // ECTS-031/053 probe (policy documented): cumulative achieved pace from
+      // earliest-session baseline. 5 ECTS=150h, deadline 2026-12-01, single
+      // session 2026-11-03T12:00, now 2026-11-04T12:00 (~1 day elapsed).
+      final sessionAt = DateTime(2026, 11, 3, 12);
+      final deadline = DateTime(2026, 12, 1);
+      final behind = progress(
+        sessions: [s(60, date: sessionAt)],
+        deadline: deadline,
+      );
+      expect(behind.status, CourseStatus.behind);
+
+      final onTrack = progress(
+        sessions: [s(15 * 60, date: sessionAt)],
+        deadline: deadline,
+      );
+      // Cumulative pace (15h / ~1 day) exceeds required forward pace (~5 h/day).
+      expect(onTrack.status, CourseStatus.onTrack);
+    });
+
+    test('currentDailyPace matches finishedDailyPace (ECTS-008 policy)', () {
+      final sessions = [s(10 * 60, date: DateTime(2026, 11, 1))];
+      expect(
+        currentDailyPace(10, DateTime(2026, 11, 1), now, sessions: sessions),
+        finishedDailyPace(10, DateTime(2026, 11, 1), now, sessions: sessions),
+      );
+    });
+  });
+
+  group('courseProgress — no-sessions edge cases policy (ECTS-037, ECTS-008)', () {
+    test('start-dated course with running schedule and no sessions is behind', () {
+      // Provable shortfall: achieved pace is 0 h/day against a required pace.
+      final p = progress(
+        startDate: DateTime(2026, 11, 1),
+        deadline: DateTime(2026, 11, 11),
+      );
+      expect(p.status, CourseStatus.behind);
+      expect(p.completedHours, 0);
+    });
+
+    test('no start date, no sessions, no pace baseline: on track (cannot prove shortfall)', () {
+      // ECTS-037 policy: no provable baseline => cannot establish "needs higher
+      // pace" (AGENTS.md §4 behind definition). Deadline-only, nothing logged.
+      final p = progress(deadline: DateTime(2026, 12, 1));
+      expect(p.status, CourseStatus.onTrack);
+      expect(finishedDailyPace(0, null, now, sessions: const []), isNull);
+    });
+
+    test('no start date, no sessions, past deadline is overdue', () {
+      final p = progress(deadline: DateTime(2026, 10, 1));
+      expect(p.status, CourseStatus.overdue);
+    });
+  });
+
   group('courseProgressFor (Course model)', () {
     test('feeds course fields through to the summary', () {
       final course = Course(
