@@ -3,19 +3,25 @@ import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../data/repositories.dart';
+import '../models/models.dart';
 import '../state/providers.dart';
 
-/// Shows the log-study-session form. Returns true if a session was saved.
-Future<bool> showSessionFormDialog(BuildContext context) async {
+/// Shows the log/edit-study-session form. Returns true if a session was saved.
+Future<bool> showSessionFormDialog(
+  BuildContext context, {
+  StudySession? existing,
+}) async {
   final result = await showDialog<bool>(
     context: context,
-    builder: (context) => const SessionFormDialog(),
+    builder: (context) => SessionFormDialog(existing: existing),
   );
   return result ?? false;
 }
 
 class SessionFormDialog extends ConsumerStatefulWidget {
-  const SessionFormDialog({super.key});
+  const SessionFormDialog({super.key, this.existing});
+
+  final StudySession? existing;
 
   @override
   ConsumerState<SessionFormDialog> createState() => _SessionFormDialogState();
@@ -23,19 +29,35 @@ class SessionFormDialog extends ConsumerStatefulWidget {
 
 class _SessionFormDialogState extends ConsumerState<SessionFormDialog> {
   final _formKey = GlobalKey<FormState>();
-  final _hoursController = TextEditingController(text: '0');
-  final _minutesController = TextEditingController(text: '30');
-  final _notesController = TextEditingController();
+  late final TextEditingController _hoursController;
+  late final TextEditingController _minutesController;
+  late final TextEditingController _notesController;
   int? _courseId;
   late DateTime _date;
   String? _error;
   bool _saving = false;
 
+  bool get _isEdit => widget.existing != null;
+
   @override
   void initState() {
     super.initState();
-    final now = DateTime.now();
-    _date = DateTime(now.year, now.month, now.day);
+    final e = widget.existing;
+    if (e != null) {
+      _courseId = e.courseId;
+      _date = DateTime(e.date.year, e.date.month, e.date.day);
+      final h = e.minutes ~/ 60;
+      final m = e.minutes % 60;
+      _hoursController = TextEditingController(text: '$h');
+      _minutesController = TextEditingController(text: '$m');
+      _notesController = TextEditingController(text: e.notes ?? '');
+    } else {
+      final now = DateTime.now();
+      _date = DateTime(now.year, now.month, now.day);
+      _hoursController = TextEditingController(text: '0');
+      _minutesController = TextEditingController(text: '30');
+      _notesController = TextEditingController();
+    }
   }
 
   @override
@@ -85,18 +107,34 @@ class _SessionFormDialogState extends ConsumerState<SessionFormDialog> {
     }
     setState(() => _saving = true);
     final notes = _notesController.text.trim();
-    final result = await ref.read(sessionRepositoryProvider).addSession(
-          courseId: courseId,
-          minutes: minutes,
-          date: _date,
-          notes: notes.isEmpty ? null : notes,
-        );
+    final repo = ref.read(sessionRepositoryProvider);
+    final Result<void> result;
+    if (_isEdit) {
+      result = await repo.updateSession(
+        id: widget.existing!.id,
+        courseId: courseId,
+        minutes: minutes,
+        date: _date,
+        notes: notes.isEmpty ? null : notes,
+      );
+    } else {
+      final add = await repo.addSession(
+        courseId: courseId,
+        minutes: minutes,
+        date: _date,
+        notes: notes.isEmpty ? null : notes,
+      );
+      result = switch (add) {
+        Ok<int>() => const Ok(null),
+        Err<int>(:final message) => Err(message),
+      };
+    }
     if (!mounted) return;
     setState(() => _saving = false);
     switch (result) {
-      case Ok<int>():
+      case Ok<void>():
         Navigator.of(context).pop(true);
-      case Err<int>(:final message):
+      case Err<void>(:final message):
         setState(() => _error = message);
     }
   }
@@ -109,12 +147,12 @@ class _SessionFormDialogState extends ConsumerState<SessionFormDialog> {
     if (_courseId == null && courses.length == 1) {
       _courseId = courses.first.id;
     }
-    if (_courseId != null && courses.every((c) => c.id != _courseId)) {
+    if (_courseId != null && courses.every((c) => c.id != _courseId) && !_isEdit) {
       _courseId = null;
     }
 
     return AlertDialog(
-      title: const Text('Log study session'),
+      title: Text(_isEdit ? 'Edit study session' : 'Log study session'),
       content: SingleChildScrollView(
         child: Form(
           key: _formKey,
@@ -228,7 +266,7 @@ class _SessionFormDialogState extends ConsumerState<SessionFormDialog> {
         FilledButton(
           key: const Key('saveSessionButton'),
           onPressed: _saving ? null : _save,
-          child: Text(_saving ? 'Saving…' : 'Log session'),
+          child: Text(_saving ? 'Saving…' : (_isEdit ? 'Save' : 'Log session')),
         ),
       ],
     );

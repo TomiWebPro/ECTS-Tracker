@@ -67,7 +67,14 @@ void main() {
       // Dialog closed and session appears in Study Log.
       expect(find.text('Log study session'), findsNothing);
       expect(find.text('Algorithms'), findsWidgets);
-      expect(find.textContaining('1.5 h'), findsOneWidget);
+      // ECTS-007 adds daily/weekly totals; match the session row, not totals.
+      expect(
+        find.descendant(
+          of: find.byKey(const Key('studyLogList')),
+          matching: find.textContaining('1.5 h'),
+        ),
+        findsOneWidget,
+      );
 
       final rows = await db.select(db.studySessions).get();
       expect(rows, hasLength(1));

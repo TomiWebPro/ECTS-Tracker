@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../data/repositories.dart';
 import '../logic/course_list.dart';
 import '../logic/ects.dart';
+import '../logic/session_totals.dart';
 import '../models/models.dart';
 import '../state/providers.dart';
 import 'course_form.dart';
@@ -39,7 +40,7 @@ class _HomeShellState extends State<HomeShell> {
       body: switch (_index) {
         0 => const _OverviewPage(),
         1 => _CoursesPage(now: widget.now),
-        2 => const _StudyLogPage(),
+        2 => _StudyLogPage(now: widget.now),
         3 => const _PlaceholderPage('Statistics'),
         4 => const SettingsPage(),
         _ => const SizedBox.shrink(),
@@ -365,70 +366,192 @@ class _CoursesPageState extends ConsumerState<_CoursesPage> {
 }
 
 class _StudyLogPage extends ConsumerWidget {
-  const _StudyLogPage();
+  const _StudyLogPage({this.now});
+
+  final DateTime? now;
+
+  Future<void> _confirmDeleteSession(
+    BuildContext context,
+    WidgetRef ref,
+    StudySession session,
+  ) async {
+    final confirmed = await showDialog<bool>(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: const Text('Delete session?'),
+        content: const Text(
+          'Delete this study session? This cannot be undone.',
+        ),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.of(context).pop(false),
+            child: const Text('Cancel'),
+          ),
+          FilledButton(
+            key: const Key('confirmDeleteSession'),
+            onPressed: () => Navigator.of(context).pop(true),
+            child: const Text('Delete'),
+          ),
+        ],
+      ),
+    );
+    if (confirmed != true || !context.mounted) return;
+    final result =
+        await ref.read(sessionRepositoryProvider).deleteSession(session.id);
+    if (!context.mounted) return;
+    if (result is Err<void>) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text(result.message)),
+      );
+    }
+  }
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final sessions = ref.watch(sessionsProvider);
-    final courses = ref.watch(coursesProvider);
-    return sessions.when(
+    final sessionsAsync = ref.watch(sessionsProvider);
+    final coursesAsync = ref.watch(coursesProvider);
+    final effectiveNow = now ?? DateTime.now();
+
+    return sessionsAsync.when(
       loading: () => const Center(child: CircularProgressIndicator()),
       error: (e, _) => Center(child: Text('Error: $e')),
       data: (sessionList) {
         if (sessionList.isEmpty) {
-          return const Center(child: Text('No study sessions yet'));
+          return const Center(
+            child: Text('No study sessions yet', key: Key('studyLogEmpty')),
+          );
         }
         final courseMap = {
-          for (final c in courses.valueOrNull ?? []) c.id: c,
+          for (final c in coursesAsync.valueOrNull ?? const []) c.id: c,
         };
-        return ListView.builder(
-          itemCount: sessionList.length,
-          itemBuilder: (context, i) {
-            final session = sessionList[i];
-            final course = courseMap[session.courseId];
-            final hours = session.minutes / 60.0;
-            return ListTile(
-              title: Row(
-                children: [
-                  Expanded(
-                    child: Text(
-                      course?.name ?? 'Course ${session.courseId}',
-                    ),
-                  ),
-                  if (session.isSample)
-                    const Padding(
-                      padding: EdgeInsets.only(left: 8),
-                      child: Chip(
-                        key: Key('sampleSessionMarker'),
-                        label: Text('Sample'),
-                        visualDensity: VisualDensity.compact,
+        final totals = sessionTotals(sessionList, now: effectiveNow);
+        final sorted = sessionsByDateDesc(sessionList);
+
+        return Column(
+          children: [
+            Padding(
+              padding: const EdgeInsets.fromLTRB(16, 12, 16, 8),
+              child: Card(
+                key: const Key('studyTotalsCard'),
+                child: Padding(
+                  padding: const EdgeInsets.all(12),
+                  child: Row(
+                    children: [
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              'Today',
+                              style: Theme.of(context).textTheme.labelLarge,
+                            ),
+                            Text(
+                              '${totals.dailyHours.toStringAsFixed(1)} h',
+                              key: const Key('dailyTotal'),
+                              style: Theme.of(context).textTheme.titleMedium,
+                            ),
+                          ],
+                        ),
                       ),
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              'This week',
+                              style: Theme.of(context).textTheme.labelLarge,
+                            ),
+                            Text(
+                              '${totals.weeklyHours.toStringAsFixed(1)} h',
+                              key: const Key('weeklyTotal'),
+                              style: Theme.of(context).textTheme.titleMedium,
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+            Expanded(
+              child: ListView.builder(
+                key: const Key('studyLogList'),
+                itemCount: sorted.length,
+                itemBuilder: (context, i) {
+                  final session = sorted[i];
+                  final course = courseMap[session.courseId];
+                  final hours = session.minutes / 60.0;
+                  final dateLabel = '${session.date.year}-'
+                      '${session.date.month.toString().padLeft(2, '0')}-'
+                      '${session.date.day.toString().padLeft(2, '0')}';
+                  final subtitleParts = <String>[
+                    '${hours.toStringAsFixed(1)} h • $dateLabel',
+                  ];
+                  if (session.notes != null && session.notes!.trim().isNotEmpty) {
+                    subtitleParts.add(session.notes!.trim());
+                  }
+                  return ListTile(
+                    key: Key('sessionTile_${session.id}'),
+                    title: Row(
+                      children: [
+                        Expanded(
+                          child: Text(
+                            course?.name ?? 'Course ${session.courseId}',
+                          ),
+                        ),
+                        if (session.isSample)
+                          const Padding(
+                            padding: EdgeInsets.only(left: 8),
+                            child: Chip(
+                              key: Key('sampleSessionMarker'),
+                              label: Text('Sample'),
+                              visualDensity: VisualDensity.compact,
+                            ),
+                          ),
+                      ],
                     ),
-                ],
+                    subtitle: Text(subtitleParts.join('\n')),
+                    isThreeLine: subtitleParts.length > 1,
+                    onTap: session.isSample
+                        ? null
+                        : () => showSessionFormDialog(context, existing: session),
+                    trailing: session.isSample
+                        ? IconButton(
+                            key: const Key('removeSampleSession'),
+                            icon: const Icon(Icons.delete_outline),
+                            tooltip: 'Remove sample session',
+                            onPressed: () async {
+                              final result = await ref
+                                  .read(sessionRepositoryProvider)
+                                  .deleteSession(session.id);
+                              if (!context.mounted) return;
+                              if (result is Err) {
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                  SnackBar(content: Text(result.message)),
+                                );
+                              }
+                            },
+                          )
+                        : PopupMenuButton<String>(
+                            key: Key('sessionMenu_${session.id}'),
+                            onSelected: (value) {
+                              if (value == 'edit') {
+                                showSessionFormDialog(context, existing: session);
+                              } else if (value == 'delete') {
+                                _confirmDeleteSession(context, ref, session);
+                              }
+                            },
+                            itemBuilder: (context) => const [
+                              PopupMenuItem(value: 'edit', child: Text('Edit')),
+                              PopupMenuItem(value: 'delete', child: Text('Delete')),
+                            ],
+                          ),
+                  );
+                },
               ),
-              subtitle: Text(
-                '${hours.toStringAsFixed(1)} h • ${session.date.toString().split(' ')[0]}',
-              ),
-              trailing: session.isSample
-                  ? IconButton(
-                      key: const Key('removeSampleSession'),
-                      icon: const Icon(Icons.delete_outline),
-                      tooltip: 'Remove sample session',
-                      onPressed: () async {
-                        final result = await ref
-                            .read(sessionRepositoryProvider)
-                            .deleteSession(session.id);
-                        if (!context.mounted) return;
-                        if (result is Err) {
-                          ScaffoldMessenger.of(context).showSnackBar(
-                            SnackBar(content: Text(result.message)),
-                          );
-                        }
-                      },
-                    )
-                  : null,
-            );
-          },
+            ),
+          ],
         );
       },
     );
