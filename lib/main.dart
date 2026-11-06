@@ -31,7 +31,14 @@ class EctsTrackerApp extends StatelessWidget {
           home: StartupErrorScreen(message: message),
         ),
       StartupReady(:final db) => ProviderScope(
-          overrides: [databaseProvider.overrideWithValue(db)],
+          overrides: [
+            databaseProvider.overrideWith((ref) {
+              ref.onDispose(() {
+                db.close().catchError((_) {});
+              });
+              return db;
+            }),
+          ],
           child: MaterialApp(
             title: 'ECTS Tracker',
             theme: ThemeData(colorSchemeSeed: Colors.indigo, useMaterial3: true),

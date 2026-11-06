@@ -48,10 +48,10 @@ void main() {
       // Seed data resolved: dashboard shows the bootstrapped courses.
       expect(find.text('3 course(s)'), findsOneWidget);
 
-      // Unmount to dispose stream providers, then close the DB cleanly.
+      // Unmount disposes the ProviderScope; ECTS-048 closes the pre-opened DB.
       await tester.pumpWidget(const SizedBox.shrink());
       await tester.pumpAndSettle();
-      await db.close();
+      await expectLater(db.customSelect('SELECT 1').get(), throwsA(anything));
     });
 
     testWidgets('surfaces a failed open as an explicit error screen',
