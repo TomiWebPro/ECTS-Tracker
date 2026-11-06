@@ -3,7 +3,9 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../data/repositories.dart';
 import '../logic/ects.dart';
+import '../models/models.dart';
 import '../state/providers.dart';
+import 'course_form.dart';
 import 'settings_page.dart';
 
 /// Root scaffold: bottom nav across the five app areas (AGENTS.md §3).
@@ -37,6 +39,14 @@ class _HomeShellState extends State<HomeShell> {
         4 => const SettingsPage(),
         _ => const SizedBox.shrink(),
       },
+      floatingActionButton: _index == 1
+          ? FloatingActionButton(
+              key: const Key('addCourseFab'),
+              onPressed: () => showCourseFormDialog(context),
+              tooltip: 'Add course',
+              child: const Icon(Icons.add),
+            )
+          : null,
       bottomNavigationBar: NavigationBar(
         selectedIndex: _index,
         onDestinationSelected: (i) => setState(() => _index = i),
@@ -118,9 +128,42 @@ class _OverviewPage extends ConsumerWidget {
 class _CoursesPage extends ConsumerWidget {
   const _CoursesPage();
 
+  Future<void> _confirmDelete(BuildContext context, WidgetRef ref, Course course) async {
+    final confirmed = await showDialog<bool>(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: const Text('Delete course?'),
+        content: Text(
+          'Delete "${course.name}" and all its study sessions? This cannot be undone.',
+        ),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.of(context).pop(false),
+            child: const Text('Cancel'),
+          ),
+          FilledButton(
+            key: const Key('confirmDeleteCourse'),
+            onPressed: () => Navigator.of(context).pop(true),
+            child: const Text('Delete'),
+          ),
+        ],
+      ),
+    );
+    if (confirmed != true || !context.mounted) return;
+    final result = await ref.read(courseRepositoryProvider).deleteCourse(course.id);
+    if (!context.mounted) return;
+    if (result is Err<void>) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text(result.message)),
+      );
+    }
+  }
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final courses = ref.watch(coursesProvider);
+    final settingsAsync = ref.watch(settingsProvider);
+    final hoursPerEcts = settingsAsync.valueOrNull?.hoursPerEcts ?? AppSettings.defaultHoursPerEcts;
     return courses.when(
       loading: () => const Center(child: CircularProgressIndicator()),
       error: (e, _) => Center(child: Text('Error: $e')),
@@ -130,7 +173,15 @@ class _CoursesPage extends ConsumerWidget {
               itemCount: list.length,
               itemBuilder: (context, i) {
                 final course = list[i];
+                final req = requiredHours(course.ectsCredits, hoursPerEcts);
                 return ListTile(
+                  key: Key('courseTile_${course.id}'),
+                  leading: course.colorValue == null
+                      ? null
+                      : CircleAvatar(
+                          backgroundColor: Color(course.colorValue!),
+                          radius: 10,
+                        ),
                   title: Row(
                     children: [
                       Expanded(child: Text(course.name)),
@@ -145,7 +196,12 @@ class _CoursesPage extends ConsumerWidget {
                         ),
                     ],
                   ),
-                  subtitle: Text('${course.ectsCredits} ECTS'),
+                  subtitle: Text(
+                    '${course.ectsCredits} ECTS • ${req.toStringAsFixed(1)} h required',
+                  ),
+                  onTap: course.isSample
+                      ? null
+                      : () => showCourseFormDialog(context, existing: course),
                   trailing: course.isSample
                       ? IconButton(
                           key: const Key('removeSampleCourse'),
@@ -163,7 +219,20 @@ class _CoursesPage extends ConsumerWidget {
                             }
                           },
                         )
-                      : null,
+                      : PopupMenuButton<String>(
+                          key: Key('courseMenu_${course.id}'),
+                          onSelected: (value) {
+                            if (value == 'edit') {
+                              showCourseFormDialog(context, existing: course);
+                            } else if (value == 'delete') {
+                              _confirmDelete(context, ref, course);
+                            }
+                          },
+                          itemBuilder: (context) => const [
+                            PopupMenuItem(value: 'edit', child: Text('Edit')),
+                            PopupMenuItem(value: 'delete', child: Text('Delete')),
+                          ],
+                        ),
                 );
               },
             ),
