@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../logic/ects.dart';
-import '../models/models.dart';
 import '../state/providers.dart';
 import 'settings_page.dart';
 
@@ -67,10 +66,29 @@ class _OverviewPage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final courses = ref.watch(coursesProvider).valueOrNull ?? const <Course>[];
-    final sessions =
-        ref.watch(sessionsProvider).valueOrNull ?? const <StudySession>[];
-    final settings = ref.watch(settingsProvider).valueOrNull ?? const AppSettings();
+    final coursesAsync = ref.watch(coursesProvider);
+    final sessionsAsync = ref.watch(sessionsProvider);
+    final settingsAsync = ref.watch(settingsProvider);
+
+    // ECTS-028: never render a fake-empty dashboard on load/error. A DB/open or
+    // stream failure must surface as an explicit error (never "0 course(s)/0 h"),
+    // and loading must show progress until real data resolves.
+    final error = coursesAsync.error ?? sessionsAsync.error ?? settingsAsync.error;
+    if (error != null) {
+      return Center(
+        child: Text(
+          'Error: $error',
+          key: const Key('overviewError'),
+        ),
+      );
+    }
+    if (coursesAsync.isLoading || sessionsAsync.isLoading || settingsAsync.isLoading) {
+      return const Center(child: CircularProgressIndicator());
+    }
+
+    final courses = coursesAsync.requireValue;
+    final sessions = sessionsAsync.requireValue;
+    final settings = settingsAsync.requireValue;
 
     var totalRequired = 0.0;
     for (final c in courses) {
