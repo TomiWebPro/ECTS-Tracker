@@ -38,7 +38,7 @@ class _HomeShellState extends State<HomeShell> {
     return Scaffold(
       appBar: AppBar(title: Text(_titles[_index])),
       body: switch (_index) {
-        0 => const _OverviewPage(),
+        0 => _OverviewPage(now: widget.now),
         1 => _CoursesPage(now: widget.now),
         2 => _StudyLogPage(now: widget.now),
         3 => const _PlaceholderPage('Statistics'),
@@ -86,7 +86,10 @@ class _PlaceholderPage extends StatelessWidget {
 }
 
 class _OverviewPage extends ConsumerWidget {
-  const _OverviewPage();
+  const _OverviewPage({this.now});
+
+  /// Reference time for derived progress/status/deadlines (injectable for tests).
+  final DateTime? now;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -113,6 +116,7 @@ class _OverviewPage extends ConsumerWidget {
     final courses = coursesAsync.requireValue;
     final sessions = sessionsAsync.requireValue;
     final settings = settingsAsync.requireValue;
+    final effectiveNow = now ?? DateTime.now();
 
     var totalRequired = 0.0;
     for (final c in courses) {
@@ -120,20 +124,154 @@ class _OverviewPage extends ConsumerWidget {
     }
     final totalDone = completedHours(sessions);
 
+    final withProgress = coursesWithProgress(
+      courses,
+      sessions,
+      hoursPerEcts: settings.hoursPerEcts,
+      now: effectiveNow,
+    );
+    final needsAttention = withProgress
+        .where((e) =>
+            e.progress.status == CourseStatus.behind ||
+            e.progress.status == CourseStatus.overdue)
+        .toList()
+      ..sort((a, b) {
+        final sa = a.progress.status == CourseStatus.overdue ? 0 : 1;
+        final sb = b.progress.status == CourseStatus.overdue ? 0 : 1;
+        if (sa != sb) return sa.compareTo(sb);
+        final da = a.course.deadline;
+        final db = b.course.deadline;
+        if (da == null && db == null) {
+          return a.course.name.toLowerCase().compareTo(b.course.name.toLowerCase());
+        }
+        if (da == null) return 1;
+        if (db == null) return -1;
+        return da.compareTo(db);
+      });
+
     return ListView(
+      key: const Key('dashboardList'),
       padding: const EdgeInsets.all(16),
       children: [
         Text('Overall progress', style: Theme.of(context).textTheme.titleMedium),
         const SizedBox(height: 8),
         LinearProgressIndicator(
+          key: const Key('dashboardOverallProgress'),
           value: progressFraction(totalRequired, totalDone),
         ),
         const SizedBox(height: 8),
-        Text('${totalDone.toStringAsFixed(1)} h of '
-            '${totalRequired.toStringAsFixed(0)} h'),
+        Text(
+          '${totalDone.toStringAsFixed(1)} h of '
+          '${totalRequired.toStringAsFixed(0)} h',
+          key: const Key('dashboardTotals'),
+        ),
+        const SizedBox(height: 4),
+        Text(
+          '${courses.length} course(s)',
+          key: const Key('dashboardCourseCount'),
+          style: Theme.of(context).textTheme.bodyLarge,
+        ),
+        if (needsAttention.isNotEmpty) ...[
+          const Divider(height: 32),
+          Text(
+            'Needs attention',
+            key: const Key('needsAttentionTitle'),
+            style: Theme.of(context).textTheme.titleMedium,
+          ),
+          const SizedBox(height: 8),
+          for (final item in needsAttention)
+            _DashboardCourseCard(
+              key: Key('needsAttentionCard_${item.course.id}'),
+              item: item,
+            ),
+        ],
         const Divider(height: 32),
-        Text('${courses.length} course(s)', style: Theme.of(context).textTheme.bodyLarge),
+        Text('Courses', style: Theme.of(context).textTheme.titleMedium),
+        const SizedBox(height: 8),
+        if (withProgress.isEmpty)
+          const Text('No courses yet', key: Key('dashboardNoCourses'))
+        else
+          for (final item in withProgress)
+            _DashboardCourseCard(
+              key: Key('dashboardCourseCard_${item.course.id}'),
+              item: item,
+            ),
       ],
+    );
+  }
+}
+
+class _DashboardCourseCard extends StatelessWidget {
+  const _DashboardCourseCard({super.key, required this.item});
+
+  final CourseWithProgress item;
+
+  String _deadlineLabel(CourseProgress progress, DateTime? deadline) {
+    if (deadline == null) return 'No deadline';
+    final d = '${deadline.year}-'
+        '${deadline.month.toString().padLeft(2, '0')}-'
+        '${deadline.day.toString().padLeft(2, '0')}';
+    if (progress.status == CourseStatus.overdue) return 'Deadline $d (overdue)';
+    if (progress.status == CourseStatus.completed) return 'Deadline $d';
+    final days = progress.remainingDays;
+    if (days == null) return 'Deadline $d';
+    if (days == 0) return 'Deadline $d (today)';
+    return 'Deadline $d ($days day${days == 1 ? '' : 's'} left)';
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final course = item.course;
+    final p = item.progress;
+    return Card(
+      margin: const EdgeInsets.only(bottom: 8),
+      child: Padding(
+        padding: const EdgeInsets.all(12),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Row(
+              children: [
+                if (course.colorValue != null)
+                  Padding(
+                    padding: const EdgeInsets.only(right: 8),
+                    child: CircleAvatar(
+                      backgroundColor: Color(course.colorValue!),
+                      radius: 6,
+                    ),
+                  ),
+                Expanded(
+                  child: Text(
+                    course.name,
+                    style: Theme.of(context).textTheme.titleSmall,
+                  ),
+                ),
+                Text(
+                  courseStatusLabel(p.status),
+                  key: Key('dashboardStatus_${course.id}'),
+                  style: Theme.of(context).textTheme.bodySmall,
+                ),
+              ],
+            ),
+            const SizedBox(height: 6),
+            LinearProgressIndicator(
+              key: Key('dashboardProgress_${course.id}'),
+              value: p.progressFraction,
+            ),
+            const SizedBox(height: 6),
+            Text(
+              '${p.completedHours.toStringAsFixed(1)} / ${p.requiredHours.toStringAsFixed(1)} h',
+              key: Key('dashboardHours_${course.id}'),
+            ),
+            const SizedBox(height: 2),
+            Text(
+              _deadlineLabel(p, course.deadline),
+              key: Key('dashboardDeadline_${course.id}'),
+              style: Theme.of(context).textTheme.bodySmall,
+            ),
+          ],
+        ),
+      ),
     );
   }
 }
