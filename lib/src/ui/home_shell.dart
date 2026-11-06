@@ -7,6 +7,7 @@ import '../logic/ects.dart';
 import '../models/models.dart';
 import '../state/providers.dart';
 import 'course_form.dart';
+import 'session_form.dart';
 import 'settings_page.dart';
 
 /// Root scaffold: bottom nav across the five app areas (AGENTS.md §3).
@@ -43,14 +44,21 @@ class _HomeShellState extends State<HomeShell> {
         4 => const SettingsPage(),
         _ => const SizedBox.shrink(),
       },
-      floatingActionButton: _index == 1
-          ? FloatingActionButton(
-              key: const Key('addCourseFab'),
-              onPressed: () => showCourseFormDialog(context),
-              tooltip: 'Add course',
-              child: const Icon(Icons.add),
-            )
-          : null,
+      floatingActionButton: switch (_index) {
+        1 => FloatingActionButton(
+            key: const Key('addCourseFab'),
+            onPressed: () => showCourseFormDialog(context),
+            tooltip: 'Add course',
+            child: const Icon(Icons.add),
+          ),
+        2 => FloatingActionButton(
+            key: const Key('logSessionFab'),
+            onPressed: () => showSessionFormDialog(context),
+            tooltip: 'Log session',
+            child: const Icon(Icons.add),
+          ),
+        _ => null,
+      },
       bottomNavigationBar: NavigationBar(
         selectedIndex: _index,
         onDestinationSelected: (i) => setState(() => _index = i),
