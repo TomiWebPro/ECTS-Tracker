@@ -2,6 +2,7 @@ import 'package:drift/drift.dart' show LazyDatabase;
 import 'package:drift/native.dart';
 import 'package:ects_tracker/src/data/app_database.dart';
 import 'package:ects_tracker/src/data/repositories.dart';
+import 'package:ects_tracker/src/logic/ects.dart' as ects;
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
@@ -881,6 +882,108 @@ void main() {
       final s = await faultSettings.get();
       expect(s.hoursPerEcts, 30);
       expect(s.dailyTargetMinutes, 0);
+    });
+  });
+
+  group('Settings recalc preserves sessions (ECTS-018)', () {
+    late SettingsRepository settings;
+
+    setUp(() {
+      settings = SettingsRepository(db);
+    });
+
+    test(
+        'hoursPerEcts change rescales every course required hours and keeps all '
+        'logged sessions (end-to-end over in-memory DB)', () async {
+      // Seed two courses with different ECTS loads and log sessions on both.
+      final algorithmsId =
+          (await courses.addCourse(name: 'Algorithms', ectsCredits: 6) as Ok<int>)
+              .value;
+      final databasesId =
+          (await courses.addCourse(name: 'Databases', ectsCredits: 5) as Ok<int>)
+              .value;
+      await courses.addCourse(name: 'Seminar', ectsCredits: 3);
+
+      final s1 = await sessions.addSession(
+        courseId: algorithmsId,
+        minutes: 90,
+        date: DateTime(2026, 10, 1),
+        notes: 'lecture 1',
+      );
+      final s2 = await sessions.addSession(
+        courseId: algorithmsId,
+        minutes: 60,
+        date: DateTime(2026, 10, 2),
+      );
+      final s3 = await sessions.addSession(
+        courseId: databasesId,
+        minutes: 45,
+        date: DateTime(2026, 10, 3),
+        notes: 'lab',
+      );
+      expect(s1, isA<Ok<int>>());
+      expect(s2, isA<Ok<int>>());
+      expect(s3, isA<Ok<int>>());
+
+      final coursesBefore = await courses.watchAll().first;
+      final sessionsBefore = await sessions.watchAll().first;
+      expect(coursesBefore, hasLength(3));
+      expect(sessionsBefore, hasLength(3));
+
+      const defaultFactor = 30.0;
+      expect((await settings.get()).hoursPerEcts, defaultFactor);
+
+      double totalRequired(double factor) => coursesBefore.fold<double>(
+            0,
+            (sum, c) => sum + ects.requiredHours(c.ectsCredits, factor),
+          );
+
+      // At the default factor: 6*30 + 5*30 + 3*30 = 420.
+      expect(totalRequired(defaultFactor), 420);
+      expect(ects.requiredHours(6, defaultFactor), 180);
+      expect(ects.requiredHours(5, defaultFactor), 150);
+      expect(ects.requiredHours(3, defaultFactor), 90);
+
+      // Change the ECTS conversion factor via the settings repository. This must
+      // never delete or mutate logged sessions (AGENTS.md §4).
+      final change = await settings.setHoursPerEcts(25);
+      expect(change, isA<Ok<void>>());
+      expect((await settings.get()).hoursPerEcts, 25);
+
+      // Every course's requirement is recomputed (derived, never stored) with
+      // the new factor: 6*25 + 5*25 + 3*25 = 350.
+      final coursesAfter = await courses.watchAll().first;
+      expect(coursesAfter, hasLength(3));
+      double totalRequiredAfter(double factor) => coursesAfter.fold<double>(
+            0,
+            (sum, c) => sum + ects.requiredHours(c.ectsCredits, factor),
+          );
+      expect(totalRequiredAfter(25), 350);
+      final byName = {for (final c in coursesAfter) c.name: c};
+      expect(ects.requiredHours(byName['Algorithms']!.ectsCredits, 25), 150);
+      expect(ects.requiredHours(byName['Databases']!.ectsCredits, 25), 125);
+      expect(ects.requiredHours(byName['Seminar']!.ectsCredits, 25), 75);
+      // Old-factor totals no longer describe the current requirement.
+      expect(totalRequiredAfter(defaultFactor), 420);
+
+      // All logged sessions are preserved, byte-for-byte in meaning: same count,
+      // same ids/course links/durations/dates/notes.
+      final sessionsAfter = await sessions.watchAll().first;
+      expect(sessionsAfter, hasLength(3));
+      final byId = {for (final s in sessionsAfter) s.id: s};
+      expect(byId[(s1 as Ok<int>).value]!.minutes, 90);
+      expect(byId[(s1).value]!.courseId, algorithmsId);
+      expect(byId[(s1).value]!.notes, 'lecture 1');
+      expect(byId[(s1).value]!.date, DateTime(2026, 10, 1));
+      expect(byId[(s2 as Ok<int>).value]!.minutes, 60);
+      expect(byId[(s2).value]!.courseId, algorithmsId);
+      expect(byId[(s3 as Ok<int>).value]!.minutes, 45);
+      expect(byId[(s3).value]!.courseId, databasesId);
+      expect(byId[(s3).value]!.notes, 'lab');
+
+      // Completed hours remain the sum of preserved sessions (195 min = 3.25 h),
+      // independent of the factor change.
+      expect(ects.completedHours(sessionsAfter), closeTo(3.25, 1e-9));
     });
   });
 }
