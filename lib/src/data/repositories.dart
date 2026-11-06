@@ -231,6 +231,30 @@ class CourseRepository {
       return Err('Failed to clear sample data: $e');
     }
   }
+
+  /// Deletes a single sample-marked course safely (ECTS-030): removes sample
+  /// sessions on that course, and deletes the course only if no user sessions
+  /// remain. Leaves user data intact.
+  Future<Result<void>> deleteSampleCourse(int courseId) async {
+    try {
+      await _db.transaction(() async {
+        await (_db.delete(_db.studySessions)
+              ..where((t) => t.courseId.equals(courseId) & t.isSample.equals(true)))
+            .go();
+        final remainingRows = await (_db.select(_db.studySessions)
+              ..where((t) => t.courseId.equals(courseId))
+              ..limit(1))
+            .get();
+        if (remainingRows.isEmpty) {
+          await (_db.delete(_db.courses)..where((t) => t.id.equals(courseId)))
+              .go();
+        }
+      });
+      return const Ok(null);
+    } catch (e) {
+      return Err('Failed to delete course: $e');
+    }
+  }
 }
 
 class SessionRepository {

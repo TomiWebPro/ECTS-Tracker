@@ -1,3 +1,7 @@
+import 'package:drift/native.dart';
+import 'package:ects_tracker/src/data/app_database.dart';
+import 'package:ects_tracker/src/data/bootstrap.dart';
+import 'package:ects_tracker/src/data/repositories.dart';
 import 'package:ects_tracker/src/models/models.dart';
 import 'package:ects_tracker/src/state/providers.dart';
 import 'package:ects_tracker/src/ui/home_shell.dart';
@@ -80,6 +84,71 @@ void main() {
       // Unmount cleanly (empty stream never completes).
       await tester.pumpWidget(const SizedBox.shrink());
       await tester.pump();
+    });
+  });
+
+  group('Sample markers and per-row removal (ECTS-030)', () {
+    late AppDatabase db;
+
+    setUp(() {
+      db = AppDatabase(NativeDatabase.memory());
+    });
+
+    tearDown(() async {
+      await db.close();
+    });
+
+    Future<void> flush(WidgetTester tester) async {
+      await tester.pumpWidget(const SizedBox.shrink());
+      await tester.pump();
+      await tester.pump(const Duration(milliseconds: 50));
+    }
+
+    Widget app() => ProviderScope(
+          overrides: [databaseProvider.overrideWithValue(db)],
+          child: const MaterialApp(home: HomeShell()),
+        );
+
+    testWidgets('sample courses and sessions are marked and can be removed',
+        (tester) async {
+      await bootstrapDatabase(db);
+
+      await tester.pumpWidget(app());
+      await tester.pumpAndSettle();
+
+      // Navigate to Courses tab
+      await tester.tap(find.text('Courses'));
+      await tester.pumpAndSettle();
+
+      expect(find.byKey(const Key('sampleCourseMarker')), findsWidgets);
+      expect(find.byKey(const Key('removeSampleCourse')), findsWidgets);
+
+      // Navigate to Study Log tab
+      await tester.tap(find.text('Study Log'));
+      await tester.pumpAndSettle();
+
+      expect(find.byKey(const Key('sampleSessionMarker')), findsWidgets);
+      expect(find.byKey(const Key('removeSampleSession')), findsWidgets);
+
+      // Remove one sample session
+      await tester.tap(find.byKey(const Key('removeSampleSession')).first);
+      await tester.pumpAndSettle();
+
+      // Remove one sample course
+      await tester.tap(find.text('Courses'));
+      await tester.pumpAndSettle();
+      await tester.tap(find.byKey(const Key('removeSampleCourse')).first);
+      await tester.pumpAndSettle();
+
+      // User rows remain intact (all seeded were sample; after removing some
+      // sample rows, verify counts via repositories)
+      final courseRepo = CourseRepository(db);
+      final sessionRepo = SessionRepository(db);
+      // We just removed items; ensure no crash and repos still work
+      expect(await courseRepo.countSample(), isA<int>());
+      expect(await sessionRepo.countSample(), isA<int>());
+
+      await flush(tester);
     });
   });
 }

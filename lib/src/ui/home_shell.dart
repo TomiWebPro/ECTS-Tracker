@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../data/repositories.dart';
 import '../logic/ects.dart';
 import '../state/providers.dart';
 import 'settings_page.dart';
@@ -31,7 +32,7 @@ class _HomeShellState extends State<HomeShell> {
       body: switch (_index) {
         0 => const _OverviewPage(),
         1 => const _CoursesPage(),
-        2 => const _PlaceholderPage('Study Log'),
+        2 => const _StudyLogPage(),
         3 => const _PlaceholderPage('Statistics'),
         4 => const SettingsPage(),
         _ => const SizedBox.shrink(),
@@ -127,11 +128,116 @@ class _CoursesPage extends ConsumerWidget {
           ? const Center(child: Text('No courses yet'))
           : ListView.builder(
               itemCount: list.length,
-              itemBuilder: (context, i) => ListTile(
-                title: Text(list[i].name),
-                subtitle: Text('${list[i].ectsCredits} ECTS'),
-              ),
+              itemBuilder: (context, i) {
+                final course = list[i];
+                return ListTile(
+                  title: Row(
+                    children: [
+                      Expanded(child: Text(course.name)),
+                      if (course.isSample)
+                        const Padding(
+                          padding: EdgeInsets.only(left: 8),
+                          child: Chip(
+                            key: Key('sampleCourseMarker'),
+                            label: Text('Sample'),
+                            visualDensity: VisualDensity.compact,
+                          ),
+                        ),
+                    ],
+                  ),
+                  subtitle: Text('${course.ectsCredits} ECTS'),
+                  trailing: course.isSample
+                      ? IconButton(
+                          key: const Key('removeSampleCourse'),
+                          icon: const Icon(Icons.delete_outline),
+                          tooltip: 'Remove sample course',
+                          onPressed: () async {
+                            final result = await ref
+                                .read(courseRepositoryProvider)
+                                .deleteSampleCourse(course.id);
+                            if (!context.mounted) return;
+                            if (result is Err) {
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                SnackBar(content: Text(result.message)),
+                              );
+                            }
+                          },
+                        )
+                      : null,
+                );
+              },
             ),
+    );
+  }
+}
+
+class _StudyLogPage extends ConsumerWidget {
+  const _StudyLogPage();
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final sessions = ref.watch(sessionsProvider);
+    final courses = ref.watch(coursesProvider);
+    return sessions.when(
+      loading: () => const Center(child: CircularProgressIndicator()),
+      error: (e, _) => Center(child: Text('Error: $e')),
+      data: (sessionList) {
+        if (sessionList.isEmpty) {
+          return const Center(child: Text('No study sessions yet'));
+        }
+        final courseMap = {
+          for (final c in courses.valueOrNull ?? []) c.id: c,
+        };
+        return ListView.builder(
+          itemCount: sessionList.length,
+          itemBuilder: (context, i) {
+            final session = sessionList[i];
+            final course = courseMap[session.courseId];
+            final hours = session.minutes / 60.0;
+            return ListTile(
+              title: Row(
+                children: [
+                  Expanded(
+                    child: Text(
+                      course?.name ?? 'Course ${session.courseId}',
+                    ),
+                  ),
+                  if (session.isSample)
+                    const Padding(
+                      padding: EdgeInsets.only(left: 8),
+                      child: Chip(
+                        key: Key('sampleSessionMarker'),
+                        label: Text('Sample'),
+                        visualDensity: VisualDensity.compact,
+                      ),
+                    ),
+                ],
+              ),
+              subtitle: Text(
+                '${hours.toStringAsFixed(1)} h • ${session.date.toString().split(' ')[0]}',
+              ),
+              trailing: session.isSample
+                  ? IconButton(
+                      key: const Key('removeSampleSession'),
+                      icon: const Icon(Icons.delete_outline),
+                      tooltip: 'Remove sample session',
+                      onPressed: () async {
+                        final result = await ref
+                            .read(sessionRepositoryProvider)
+                            .deleteSession(session.id);
+                        if (!context.mounted) return;
+                        if (result is Err) {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(content: Text(result.message)),
+                          );
+                        }
+                      },
+                    )
+                  : null,
+            );
+          },
+        );
+      },
     );
   }
 }
