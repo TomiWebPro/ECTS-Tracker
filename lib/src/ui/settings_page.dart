@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../data/repositories.dart';
 import '../state/providers.dart';
 
 /// Minimal Settings surface (ECTS-016): exposes the one-tap "clear sample data"
@@ -59,8 +60,20 @@ class SettingsPage extends ConsumerWidget {
         ],
       ),
     );
-    if (confirmed == true) {
-      await ref.read(courseRepositoryProvider).deleteSampleData();
+    if (confirmed != true || !context.mounted) return;
+    final result = await ref.read(courseRepositoryProvider).deleteSampleData();
+    if (!context.mounted) return;
+    switch (result) {
+      case Ok<void>():
+        // Data clears via hasSampleDataProvider stream; no extra success chrome.
+        break;
+      case Err<void>(:final message):
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            key: const Key('clearSampleDataError'),
+            content: Text(message),
+          ),
+        );
     }
   }
 }

@@ -90,5 +90,50 @@ void main() {
       expect(await CourseRepository(db).countSample(), greaterThan(0));
       await flush(tester);
     });
+
+    testWidgets('surfaces Err from deleteSampleData and keeps UI consistent',
+        (tester) async {
+      await bootstrapDatabase(db);
+
+      await tester.pumpWidget(
+        ProviderScope(
+          overrides: [
+            databaseProvider.overrideWithValue(db),
+            courseRepositoryProvider
+                .overrideWithValue(_FailingClearCourseRepository(db)),
+          ],
+          child: const MaterialApp(home: Scaffold(body: SettingsPage())),
+        ),
+      );
+      await tester.pumpAndSettle();
+
+      expect(find.byKey(const Key('clearSampleDataTile')), findsOneWidget);
+
+      await tester.tap(find.byKey(const Key('clearSampleDataTile')));
+      await tester.pumpAndSettle();
+      await tester.tap(find.byKey(const Key('confirmClearSampleData')));
+      await tester.pumpAndSettle();
+
+      // Error surfaced via SnackBar; sample rows and UI remain unchanged.
+      expect(find.byKey(const Key('clearSampleDataError')), findsOneWidget);
+      expect(
+        find.text('Failed to clear sample data: simulated failure'),
+        findsOneWidget,
+      );
+      expect(find.byKey(const Key('clearSampleDataTile')), findsOneWidget);
+      expect(find.byKey(const Key('noSampleDataTile')), findsNothing);
+      expect(await CourseRepository(db).countSample(), greaterThan(0));
+      final allCourses = await db.select(db.courses).get();
+      expect(allCourses, isNotEmpty);
+      await flush(tester);
+    });
   });
+}
+
+class _FailingClearCourseRepository extends CourseRepository {
+  _FailingClearCourseRepository(super.db);
+
+  @override
+  Future<Result<void>> deleteSampleData() async =>
+      const Err('Failed to clear sample data: simulated failure');
 }
