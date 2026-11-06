@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../logic/ects.dart';
 import '../models/models.dart';
 import '../state/providers.dart';
+import 'settings_page.dart';
 
 /// Root scaffold: bottom nav across the five app areas (AGENTS.md §3).
 class HomeShell extends StatefulWidget {
@@ -33,7 +34,7 @@ class _HomeShellState extends State<HomeShell> {
         1 => const _CoursesPage(),
         2 => const _PlaceholderPage('Study Log'),
         3 => const _PlaceholderPage('Statistics'),
-        4 => const _PlaceholderPage('Settings'),
+        4 => const SettingsPage(),
         _ => const SizedBox.shrink(),
       },
       bottomNavigationBar: NavigationBar(

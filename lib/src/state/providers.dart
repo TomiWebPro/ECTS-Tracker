@@ -1,4 +1,4 @@
-import 'dart:async';
+
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -50,34 +50,19 @@ final sampleSessionsProvider = StreamProvider<List<StudySession>>(
 /// True when any sample-marked course or session exists (ECTS-029). Reacts to
 /// both sample streams so it becomes false after [CourseRepository.deleteSampleData]
 /// clears all sample rows.
-final hasSampleDataProvider = StreamProvider<bool>((ref) {
-  final controller = StreamController<bool>();
-  List<Course>? sampleCourses;
-  List<StudySession>? sampleSessions;
-  void emit() {
-    if (sampleCourses != null && sampleSessions != null) {
-      controller.add(sampleCourses!.isNotEmpty || sampleSessions!.isNotEmpty);
-    }
+final hasSampleDataProvider = Provider<AsyncValue<bool>>((ref) {
+  final courses = ref.watch(sampleCoursesProvider);
+  final sessions = ref.watch(sampleSessionsProvider);
+  if (courses.hasError) {
+    return AsyncValue.error(courses.error!, courses.stackTrace ?? StackTrace.empty);
   }
-
-  final cSub = ref
-      .watch(courseRepositoryProvider)
-      .watchSample()
-      .listen((v) {
-    sampleCourses = v;
-    emit();
-  }, onError: controller.addError);
-  final sSub = ref
-      .watch(sessionRepositoryProvider)
-      .watchSample()
-      .listen((v) {
-    sampleSessions = v;
-    emit();
-  }, onError: controller.addError);
-  ref.onDispose(() {
-    cSub.cancel();
-    sSub.cancel();
-    controller.close();
-  });
-  return controller.stream;
+  if (sessions.hasError) {
+    return AsyncValue.error(sessions.error!, sessions.stackTrace ?? StackTrace.empty);
+  }
+  if (!courses.hasValue || !sessions.hasValue) {
+    return const AsyncValue<bool>.loading();
+  }
+  return AsyncValue.data(
+    courses.value!.isNotEmpty || sessions.value!.isNotEmpty,
+  );
 });

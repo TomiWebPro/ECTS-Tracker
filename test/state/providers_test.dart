@@ -22,11 +22,21 @@ void main() {
       await db.close();
     });
 
-    Future<bool> readHasSample() async {
-      // StreamProvider: wait until it has data.
-      final sub = container.listen(hasSampleDataProvider.future, (previous, next) {});
+    Future<bool> readHasSample({bool? expect}) async {
+      // Keep dependencies alive while polling so stream providers stay active.
+      final sub = container.listen(hasSampleDataProvider, (prev, next) {});
       try {
-        return await container.read(hasSampleDataProvider.future);
+        for (var i = 0; i < 100; i++) {
+          final v = container.read(hasSampleDataProvider);
+          if (v.hasValue && (expect == null || v.value == expect)) {
+            return v.value!;
+          }
+          if (v.hasError) throw v.error!;
+          await Future<void>.delayed(const Duration(milliseconds: 20));
+        }
+        final v = container.read(hasSampleDataProvider);
+        if (v.hasValue) return v.value!;
+        throw StateError('hasSampleDataProvider did not resolve: $v');
       } finally {
         sub.close();
       }
@@ -35,7 +45,7 @@ void main() {
     test('false when no sample rows exist', () async {
       final courses = container.read(courseRepositoryProvider);
       await courses.addCourse(name: 'User', ectsCredits: 5);
-      expect(await readHasSample(), isFalse);
+      expect(await readHasSample(expect: false), isFalse);
     });
 
     test('true when sample rows exist, false after deleteSampleData', () async {
@@ -54,23 +64,21 @@ void main() {
         isSample: true,
       );
 
-      expect(await readHasSample(), isTrue);
+      expect(await readHasSample(expect: true), isTrue);
 
       await courses.deleteSampleData();
-      // Allow stream propagation.
+      // Allow stream propagation through the underlying sample streams.
       await Future<void>.delayed(const Duration(milliseconds: 50));
-      container.invalidate(hasSampleDataProvider);
-      expect(await readHasSample(), isFalse);
+      expect(await readHasSample(expect: false), isFalse);
     });
 
     test('only sample rows count (user rows do not trigger true alone)',
         () async {
       final courses = container.read(courseRepositoryProvider);
       await courses.addCourse(name: 'User', ectsCredits: 5);
-      expect(await readHasSample(), isFalse);
+      expect(await readHasSample(expect: false), isFalse);
       await courses.addCourse(name: 'Sample', ectsCredits: 3, isSample: true);
-      container.invalidate(hasSampleDataProvider);
-      expect(await readHasSample(), isTrue);
+      expect(await readHasSample(expect: true), isTrue);
     });
   });
 }
