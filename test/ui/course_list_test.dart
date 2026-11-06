@@ -34,7 +34,7 @@ void main() {
         );
 
     Future<void> goToCourses(WidgetTester tester) async {
-      await tester.tap(find.text('Courses'));
+      await tester.tap(find.byIcon(Icons.book));
       await tester.pumpAndSettle();
     }
 

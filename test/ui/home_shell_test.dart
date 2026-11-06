@@ -117,7 +117,7 @@ void main() {
       await tester.pumpAndSettle();
 
       // Navigate to Courses tab
-      await tester.tap(find.text('Courses'));
+      await tester.tap(find.byIcon(Icons.book));
       await tester.pumpAndSettle();
 
       expect(find.byKey(const Key('sampleCourseMarker')), findsWidgets);
@@ -135,7 +135,7 @@ void main() {
       await tester.pumpAndSettle();
 
       // Remove one sample course
-      await tester.tap(find.text('Courses'));
+      await tester.tap(find.byIcon(Icons.book));
       await tester.pumpAndSettle();
       await tester.tap(find.byKey(const Key('removeSampleCourse')).first);
       await tester.pumpAndSettle();
