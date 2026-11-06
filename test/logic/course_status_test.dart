@@ -210,15 +210,18 @@ void main() {
     });
 
     test('behind when nothing is logged and the course is already running', () {
-      // 5 ECTS = 150 h, start 3 days ago, 7 days left, 0 h finished → 0 h/day
-      // achieved vs 150/7 ≈ 21.4 h/day needed.
+      // 5 ECTS = 150 h, start 3 days ago, deadline 2026-11-11 00:00 and now is
+      // 2026-11-04 12:00 → 6.5 actual days left. 0 h finished → 0 h/day achieved
+      // vs 150/6.5 ≈ 23.08 h/day needed (ECTS-032: pace uses actual time left).
       final p = progress(
         startDate: DateTime(2026, 11, 1),
         deadline: DateTime(2026, 11, 11),
       );
       expect(p.status, CourseStatus.behind);
       expect(p.completedHours, 0);
-      expect(p.requiredDailyHours, closeTo(150 / 7, 1e-9));
+      final actualDays =
+          DateTime(2026, 11, 11).difference(now).inMinutes / (60 * 24);
+      expect(p.requiredDailyHours, closeTo(150 / actualDays, 1e-9));
     });
 
     test('on track when the achieved pace exactly matches the required pace', () {
@@ -313,11 +316,14 @@ void main() {
     });
 
     test('a future deadline is untouched by the deadline-day branch', () {
-      // Deadline tomorrow, exactly on pace: still on track, pace reported.
+      // Deadline 2026-11-05 00:00 (midnight), now 2026-11-04 12:00 => 12h left.
+      // No sessions/baseline => onTrack; pace is time-aware (ECTS-032).
       final p = progress(deadline: DateTime(2026, 11, 5));
       expect(p.status, CourseStatus.onTrack);
-      expect(p.remainingDays, 1);
-      expect(p.requiredDailyHours, closeTo(150, 1e-9));
+      expect(p.remainingDays, 1); // calendar days (UI/status semantic)
+      final actualDays =
+          DateTime(2026, 11, 5).difference(now).inMinutes / (60 * 24);
+      expect(p.requiredDailyHours, closeTo(150 / actualDays, 1e-9));
     });
 
     test('deadline-day notice never fires when the deadline hour is later today', () {
@@ -331,15 +337,18 @@ void main() {
   group('courseProgress — behind without a start date (ECTS-021)', () {
     test('the row probe: deadline-only course with 1 h of 150 h is behind', () {
       // 5 ECTS = 150 h, 1 h logged 1 day ago (first-session baseline), deadline
-      // 2026-12-01 (27 days left) → 149/27 ≈ 5.52 h/day needed vs 1 h/day
-      // achieved. Before this fix the no-start-date path always returned onTrack.
+      // 2026-12-01 00:00, now 2026-11-04 12:00 => 26.5 actual days left.
+      // 149h / 26.5d ≈ 5.62 h/day needed vs 1 h/day achieved => behind.
+      // Pace is time-aware (ECTS-032); calendar remainingDays stays 27.
       final p = progress(
         sessions: [s(60, date: DateTime(2026, 11, 3, 12))],
         deadline: DateTime(2026, 12, 1),
       );
       expect(p.status, CourseStatus.behind);
       expect(p.remainingDays, 27);
-      expect(p.requiredDailyHours, closeTo(149 / 27, 1e-9));
+      final actualDays =
+          DateTime(2026, 12, 1).difference(now).inMinutes / (60 * 24);
+      expect(p.requiredDailyHours, closeTo(149 / actualDays, 1e-9));
       final achieved =
           finishedDailyPace(p.completedHours, null, now, sessions: [
         StudySession(id: 0, courseId: 1, minutes: 60, date: DateTime(2026, 11, 3, 12)),
@@ -349,14 +358,18 @@ void main() {
     });
 
     test('deadline-only course on pace is on track', () {
-      // First session 1 day ago, 15 h logged → 15 h/day achieved vs the
-      // 135 h / 10 days = 13.5 h/day still needed: on pace, not behind.
+      // First session 1 day ago, 15 h logged → 15 h/day achieved. Deadline
+      // 2026-11-14 00:00, now 2026-11-04 12:00 => 9.5 actual days left.
+      // 135 h / 9.5 d ≈ 14.21 h/day needed; achieved (15) >= needed => onTrack.
+      // (ECTS-032: pace uses actual time left.)
       final p = progress(
         sessions: [s(15 * 60, date: DateTime(2026, 11, 3, 12))],
         deadline: DateTime(2026, 11, 14),
       );
       expect(p.status, CourseStatus.onTrack);
-      expect(p.requiredDailyHours, closeTo(13.5, 1e-9));
+      final actualDays =
+          DateTime(2026, 11, 14).difference(now).inMinutes / (60 * 24);
+      expect(p.requiredDailyHours, closeTo(135 / actualDays, 1e-9));
     });
 
     test('deadline-only course logging more than the required pace is on track', () {
@@ -440,12 +453,15 @@ void main() {
   });
 
   group('courseProgress — derived pace', () {
-    test('daily/weekly pace from remaining hours and days', () {
-      // 150 h required, 0 done, deadline in 7 days → 150/7 per day.
+    test('daily/weekly pace from remaining hours and actual time left', () {
+      // 150 h required, 0 done, deadline 2026-11-11 00:00, now 2026-11-04 12:00
+      // => 6.5 actual days. Pace is time-aware (ECTS-032); calendar days = 7.
       final p = progress(deadline: DateTime(2026, 11, 11));
       expect(p.remainingDays, 7);
-      expect(p.requiredDailyHours, closeTo(150 / 7, 1e-9));
-      expect(p.requiredWeeklyHours, closeTo(150, 1e-9));
+      final actualDays =
+          DateTime(2026, 11, 11).difference(now).inMinutes / (60 * 24);
+      expect(p.requiredDailyHours, closeTo(150 / actualDays, 1e-9));
+      expect(p.requiredWeeklyHours, closeTo((150 / actualDays) * 7, 1e-9));
     });
 
     test('hoursPerEcts change rescales required and remaining', () {

@@ -109,6 +109,26 @@ void main() {
     test('deadline today yields null (division guarded)', () {
       expect(requiredDailyHours(70, DateTime(2026, 11, 4), now), isNull);
     });
+
+    test('ECTS-032: uses actual time left, not whole calendar days', () {
+      // Row probe: now 10:00, deadline 00:30 tomorrow = 14.5h away.
+      // 149h remaining / (14.5/24 days) ≈ 246.62 h/day (honest), not 149.
+      final nowAt10 = DateTime(2026, 11, 4, 10);
+      final deadline0030 = DateTime(2026, 11, 5, 0, 30);
+      final pace = requiredDailyHours(149, deadline0030, nowAt10);
+      expect(pace, isNotNull);
+      expect(pace!, closeTo(149 / (14.5 / 24), 1e-9));
+    });
+
+    test('ECTS-032: deadline later same next day yields different honest pace', () {
+      // 38h away (23:59 tomorrow from 10:00 today) must not equal 14.5h case.
+      final nowAt10 = DateTime(2026, 11, 4, 10);
+      final deadline2359 = DateTime(2026, 11, 5, 23, 59);
+      final pace = requiredDailyHours(149, deadline2359, nowAt10)!;
+      final hoursLeft = deadline2359.difference(nowAt10).inMinutes / 60.0;
+      expect(pace, closeTo(149 / (hoursLeft / 24), 1e-9));
+      expect(pace, lessThan(149)); // 38h is > 1 day, so pace < 149 h/day
+    });
   });
 
   group('expectedHoursToDate', () {

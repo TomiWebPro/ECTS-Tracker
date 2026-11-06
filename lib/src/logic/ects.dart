@@ -48,14 +48,23 @@ int? remainingDays(DateTime? deadline, DateTime now) {
 
 /// Required daily pace (hours/day) to hit the deadline.
 ///
-/// Null when there is no deadline, or when the deadline day has arrived
-/// ([remainingDays] == 0): no finite pace can still hit it, so there is no
-/// number to report (avoids a divide by zero). The status engine still reports
-/// such a course as [CourseStatus.behind] while hours remain.
+/// Uses the **actual time remaining** to the deadline (not whole calendar days)
+/// so a deadline 14 hours away yields an honest pace rather than treating it as
+/// a full day.
+///
+/// Null when there is no deadline, when the deadline has already passed, or
+/// when the deadline day has arrived ([remainingDays] == 0 on the same calendar
+/// day): no finite pace can still hit it, so there is no number to report
+/// (avoids a divide by zero). The status engine still reports such a course as
+/// [CourseStatus.behind] while hours remain.
 double? requiredDailyHours(double remaining, DateTime? deadline, DateTime now) {
-  final days = remainingDays(deadline, now);
-  if (days == null || days == 0) return null;
-  return remaining / days;
+  if (deadline == null) return null;
+  // Preserve the ECTS-022/AGENTS.md §4 deadline-day semantic: same calendar day
+  // with hours outstanding => no finite pace (status reports behind).
+  if (remainingDays(deadline, now) == 0) return null;
+  final minutesLeft = deadline.difference(now).inMinutes;
+  if (minutesLeft <= 0) return null;
+  return remaining / (minutesLeft / (60 * 24));
 }
 
 /// Required weekly pace (hours/week).
