@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'src/data/connection.dart';
+import 'src/models/models.dart';
 import 'src/startup.dart';
 import 'src/state/providers.dart';
 import 'src/ui/home_shell.dart';
@@ -39,18 +40,34 @@ class EctsTrackerApp extends StatelessWidget {
               return db;
             }),
           ],
-          child: MaterialApp(
-            title: 'ECTS Tracker',
-            theme: ThemeData(colorSchemeSeed: Colors.indigo, useMaterial3: true),
-            darkTheme: ThemeData(
-              colorSchemeSeed: Colors.indigo,
-              brightness: Brightness.dark,
-              useMaterial3: true,
-            ),
-            home: const HomeShell(),
-          ),
+          child: const _ThemedApp(),
         ),
     };
+  }
+}
+
+class _ThemedApp extends ConsumerWidget {
+  const _ThemedApp();
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final settings = ref.watch(settingsProvider);
+    final themeMode = settings.valueOrNull?.themeMode;
+    return MaterialApp(
+      title: 'ECTS Tracker',
+      themeMode: switch (themeMode) {
+        AppThemeMode.light => ThemeMode.light,
+        AppThemeMode.dark => ThemeMode.dark,
+        _ => ThemeMode.system,
+      },
+      theme: ThemeData(colorSchemeSeed: Colors.indigo, useMaterial3: true),
+      darkTheme: ThemeData(
+        colorSchemeSeed: Colors.indigo,
+        brightness: Brightness.dark,
+        useMaterial3: true,
+      ),
+      home: const HomeShell(),
+    );
   }
 }
 

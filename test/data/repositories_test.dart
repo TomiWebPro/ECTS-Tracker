@@ -3,6 +3,7 @@ import 'package:drift/native.dart';
 import 'package:ects_tracker/src/data/app_database.dart';
 import 'package:ects_tracker/src/data/repositories.dart';
 import 'package:ects_tracker/src/logic/ects.dart' as ects;
+import 'package:ects_tracker/src/models/models.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
@@ -984,6 +985,124 @@ void main() {
       // Completed hours remain the sum of preserved sessions (195 min = 3.25 h),
       // independent of the factor change.
       expect(ects.completedHours(sessionsAfter), closeTo(3.25, 1e-9));
+    });
+  });
+
+  group('ECTS-011 settings + backup', () {
+    late SettingsRepository settings;
+    late BackupRepository backup;
+
+    setUp(() {
+      settings = SettingsRepository(db);
+      backup = BackupRepository(db);
+    });
+
+    test('persists and reads firstWeekday and themeMode', () async {
+      expect((await settings.get()).firstWeekday, DateTime.monday);
+      expect((await settings.get()).themeMode, AppThemeMode.system);
+
+      final w = await settings.setFirstWeekday(DateTime.sunday);
+      expect(w, isA<Ok<void>>());
+      final t = await settings.setThemeMode(AppThemeMode.dark);
+      expect(t, isA<Ok<void>>());
+
+      final current = await settings.get();
+      expect(current.firstWeekday, DateTime.sunday);
+      expect(current.themeMode, AppThemeMode.dark);
+
+      final watched = await settings.watch().first;
+      expect(watched.firstWeekday, DateTime.sunday);
+      expect(watched.themeMode, AppThemeMode.dark);
+    });
+
+    test('rejects invalid firstWeekday', () async {
+      expect(await settings.setFirstWeekday(0), isA<Err<void>>());
+      expect(await settings.setFirstWeekday(8), isA<Err<void>>());
+      expect((await settings.get()).firstWeekday, DateTime.monday);
+    });
+
+    test('resetToDefaults restores defaults and keeps data rows untouched', () async {
+      await settings.setHoursPerEcts(25);
+      await settings.setDailyTargetMinutes(120);
+      await settings.setFirstWeekday(DateTime.sunday);
+      await settings.setThemeMode(AppThemeMode.light);
+      await courses.addCourse(name: 'Keep me', ectsCredits: 5);
+
+      final res = await settings.resetToDefaults();
+      expect(res, isA<Ok<void>>());
+      final current = await settings.get();
+      expect(current.hoursPerEcts, AppSettings.defaultHoursPerEcts);
+      expect(current.dailyTargetMinutes, 0);
+      expect(current.firstWeekday, DateTime.monday);
+      expect(current.themeMode, AppThemeMode.system);
+      expect(await courses.watchAll().first, hasLength(1));
+    });
+
+    test('exportJson/importJson round-trip restores data', () async {
+      await settings.setHoursPerEcts(28);
+      await settings.setDailyTargetMinutes(45);
+      await settings.setFirstWeekday(DateTime.sunday);
+      await settings.setThemeMode(AppThemeMode.dark);
+      final c1 = await courses.addCourse(
+        name: 'Algorithms',
+        ectsCredits: 6,
+        notes: 'n1',
+      );
+      final c2 = await courses.addCourse(name: 'Math', ectsCredits: 5);
+      final c1Id = (c1 as Ok<int>).value;
+      await sessions.addSession(
+        courseId: c1Id,
+        minutes: 90,
+        date: DateTime(2026, 5, 1),
+        notes: 's1',
+      );
+      await sessions.addSession(
+        courseId: (c2 as Ok<int>).value,
+        minutes: 30,
+        date: DateTime(2026, 5, 2),
+      );
+
+      final exported = await backup.exportJson();
+      expect(exported, isA<Ok<String>>());
+      final json = (exported as Ok<String>).value;
+      expect(json, contains('Algorithms'));
+      expect(json, contains('"hoursPerEcts"'));
+
+      final wiped = await backup.resetAllData();
+      expect(wiped, isA<Ok<void>>());
+      expect(await courses.watchAll().first, isEmpty);
+
+      final imported = await backup.importJson(json);
+      expect(imported, isA<Ok<void>>());
+      final restoredSettings = await settings.get();
+      expect(restoredSettings.hoursPerEcts, 28);
+      expect(restoredSettings.dailyTargetMinutes, 45);
+      expect(restoredSettings.firstWeekday, DateTime.sunday);
+      expect(restoredSettings.themeMode, AppThemeMode.dark);
+      final restoredCourses = await courses.watchAll().first;
+      expect(restoredCourses.map((c) => c.name), containsAll(['Algorithms', 'Math']));
+      final restoredSessions = await sessions.watchAll().first;
+      expect(restoredSessions, hasLength(2));
+      expect(restoredSessions.any((s) => s.minutes == 90 && s.notes == 's1'), isTrue);
+    });
+
+    test('importJson rejects invalid payloads without mutating data', () async {
+      await courses.addCourse(name: 'Keep', ectsCredits: 3);
+      expect(await backup.importJson('not json'), isA<Err<void>>());
+      expect(await backup.importJson('{}'), isA<Err<void>>());
+      expect(await courses.watchAll().first, hasLength(1));
+    });
+
+    test('resetAllData clears courses, sessions, and settings', () async {
+      await settings.setHoursPerEcts(25);
+      final c = await courses.addCourse(name: 'X', ectsCredits: 1);
+      await sessions.addSession(
+          courseId: (c as Ok<int>).value, minutes: 10, date: DateTime(2026, 1, 1));
+      final res = await backup.resetAllData();
+      expect(res, isA<Ok<void>>());
+      expect(await courses.watchAll().first, isEmpty);
+      expect(await sessions.watchAll().first, isEmpty);
+      expect((await settings.get()).hoursPerEcts, AppSettings.defaultHoursPerEcts);
     });
   });
 }

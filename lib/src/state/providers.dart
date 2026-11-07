@@ -26,6 +26,10 @@ final settingsRepositoryProvider = Provider<SettingsRepository>(
   (ref) => SettingsRepository(ref.watch(databaseProvider)),
 );
 
+final backupRepositoryProvider = Provider<BackupRepository>(
+  (ref) => BackupRepository(ref.watch(databaseProvider)),
+);
+
 final coursesProvider = StreamProvider<List<Course>>(
   (ref) => ref.watch(courseRepositoryProvider).watchAll(),
 );

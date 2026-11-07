@@ -957,8 +957,38 @@ class $SettingsTable extends Settings
     requiredDuringInsert: false,
     defaultValue: const Constant(0),
   );
+  static const VerificationMeta _firstWeekdayMeta = const VerificationMeta(
+    'firstWeekday',
+  );
   @override
-  List<GeneratedColumn> get $columns => [id, hoursPerEcts, dailyTargetMinutes];
+  late final GeneratedColumn<int> firstWeekday = GeneratedColumn<int>(
+    'first_weekday',
+    aliasedName,
+    false,
+    type: DriftSqlType.int,
+    requiredDuringInsert: false,
+    defaultValue: const Constant(1),
+  );
+  static const VerificationMeta _themeModeMeta = const VerificationMeta(
+    'themeMode',
+  );
+  @override
+  late final GeneratedColumn<int> themeMode = GeneratedColumn<int>(
+    'theme_mode',
+    aliasedName,
+    false,
+    type: DriftSqlType.int,
+    requiredDuringInsert: false,
+    defaultValue: const Constant(0),
+  );
+  @override
+  List<GeneratedColumn> get $columns => [
+    id,
+    hoursPerEcts,
+    dailyTargetMinutes,
+    firstWeekday,
+    themeMode,
+  ];
   @override
   String get aliasedName => _alias ?? actualTableName;
   @override
@@ -992,6 +1022,21 @@ class $SettingsTable extends Settings
         ),
       );
     }
+    if (data.containsKey('first_weekday')) {
+      context.handle(
+        _firstWeekdayMeta,
+        firstWeekday.isAcceptableOrUnknown(
+          data['first_weekday']!,
+          _firstWeekdayMeta,
+        ),
+      );
+    }
+    if (data.containsKey('theme_mode')) {
+      context.handle(
+        _themeModeMeta,
+        themeMode.isAcceptableOrUnknown(data['theme_mode']!, _themeModeMeta),
+      );
+    }
     return context;
   }
 
@@ -1013,6 +1058,14 @@ class $SettingsTable extends Settings
         DriftSqlType.int,
         data['${effectivePrefix}daily_target_minutes'],
       )!,
+      firstWeekday: attachedDatabase.typeMapping.read(
+        DriftSqlType.int,
+        data['${effectivePrefix}first_weekday'],
+      )!,
+      themeMode: attachedDatabase.typeMapping.read(
+        DriftSqlType.int,
+        data['${effectivePrefix}theme_mode'],
+      )!,
     );
   }
 
@@ -1026,10 +1079,18 @@ class SettingsRow extends DataClass implements Insertable<SettingsRow> {
   final int id;
   final double hoursPerEcts;
   final int dailyTargetMinutes;
+
+  /// ISO weekday 1..7 (Monday=1). Default Monday.
+  final int firstWeekday;
+
+  /// 0=system, 1=light, 2=dark.
+  final int themeMode;
   const SettingsRow({
     required this.id,
     required this.hoursPerEcts,
     required this.dailyTargetMinutes,
+    required this.firstWeekday,
+    required this.themeMode,
   });
   @override
   Map<String, Expression> toColumns(bool nullToAbsent) {
@@ -1037,6 +1098,8 @@ class SettingsRow extends DataClass implements Insertable<SettingsRow> {
     map['id'] = Variable<int>(id);
     map['hours_per_ects'] = Variable<double>(hoursPerEcts);
     map['daily_target_minutes'] = Variable<int>(dailyTargetMinutes);
+    map['first_weekday'] = Variable<int>(firstWeekday);
+    map['theme_mode'] = Variable<int>(themeMode);
     return map;
   }
 
@@ -1045,6 +1108,8 @@ class SettingsRow extends DataClass implements Insertable<SettingsRow> {
       id: Value(id),
       hoursPerEcts: Value(hoursPerEcts),
       dailyTargetMinutes: Value(dailyTargetMinutes),
+      firstWeekday: Value(firstWeekday),
+      themeMode: Value(themeMode),
     );
   }
 
@@ -1057,6 +1122,8 @@ class SettingsRow extends DataClass implements Insertable<SettingsRow> {
       id: serializer.fromJson<int>(json['id']),
       hoursPerEcts: serializer.fromJson<double>(json['hoursPerEcts']),
       dailyTargetMinutes: serializer.fromJson<int>(json['dailyTargetMinutes']),
+      firstWeekday: serializer.fromJson<int>(json['firstWeekday']),
+      themeMode: serializer.fromJson<int>(json['themeMode']),
     );
   }
   @override
@@ -1066,6 +1133,8 @@ class SettingsRow extends DataClass implements Insertable<SettingsRow> {
       'id': serializer.toJson<int>(id),
       'hoursPerEcts': serializer.toJson<double>(hoursPerEcts),
       'dailyTargetMinutes': serializer.toJson<int>(dailyTargetMinutes),
+      'firstWeekday': serializer.toJson<int>(firstWeekday),
+      'themeMode': serializer.toJson<int>(themeMode),
     };
   }
 
@@ -1073,10 +1142,14 @@ class SettingsRow extends DataClass implements Insertable<SettingsRow> {
     int? id,
     double? hoursPerEcts,
     int? dailyTargetMinutes,
+    int? firstWeekday,
+    int? themeMode,
   }) => SettingsRow(
     id: id ?? this.id,
     hoursPerEcts: hoursPerEcts ?? this.hoursPerEcts,
     dailyTargetMinutes: dailyTargetMinutes ?? this.dailyTargetMinutes,
+    firstWeekday: firstWeekday ?? this.firstWeekday,
+    themeMode: themeMode ?? this.themeMode,
   );
   SettingsRow copyWithCompanion(SettingsCompanion data) {
     return SettingsRow(
@@ -1087,6 +1160,10 @@ class SettingsRow extends DataClass implements Insertable<SettingsRow> {
       dailyTargetMinutes: data.dailyTargetMinutes.present
           ? data.dailyTargetMinutes.value
           : this.dailyTargetMinutes,
+      firstWeekday: data.firstWeekday.present
+          ? data.firstWeekday.value
+          : this.firstWeekday,
+      themeMode: data.themeMode.present ? data.themeMode.value : this.themeMode,
     );
   }
 
@@ -1095,46 +1172,66 @@ class SettingsRow extends DataClass implements Insertable<SettingsRow> {
     return (StringBuffer('SettingsRow(')
           ..write('id: $id, ')
           ..write('hoursPerEcts: $hoursPerEcts, ')
-          ..write('dailyTargetMinutes: $dailyTargetMinutes')
+          ..write('dailyTargetMinutes: $dailyTargetMinutes, ')
+          ..write('firstWeekday: $firstWeekday, ')
+          ..write('themeMode: $themeMode')
           ..write(')'))
         .toString();
   }
 
   @override
-  int get hashCode => Object.hash(id, hoursPerEcts, dailyTargetMinutes);
+  int get hashCode => Object.hash(
+    id,
+    hoursPerEcts,
+    dailyTargetMinutes,
+    firstWeekday,
+    themeMode,
+  );
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
       (other is SettingsRow &&
           other.id == this.id &&
           other.hoursPerEcts == this.hoursPerEcts &&
-          other.dailyTargetMinutes == this.dailyTargetMinutes);
+          other.dailyTargetMinutes == this.dailyTargetMinutes &&
+          other.firstWeekday == this.firstWeekday &&
+          other.themeMode == this.themeMode);
 }
 
 class SettingsCompanion extends UpdateCompanion<SettingsRow> {
   final Value<int> id;
   final Value<double> hoursPerEcts;
   final Value<int> dailyTargetMinutes;
+  final Value<int> firstWeekday;
+  final Value<int> themeMode;
   const SettingsCompanion({
     this.id = const Value.absent(),
     this.hoursPerEcts = const Value.absent(),
     this.dailyTargetMinutes = const Value.absent(),
+    this.firstWeekday = const Value.absent(),
+    this.themeMode = const Value.absent(),
   });
   SettingsCompanion.insert({
     this.id = const Value.absent(),
     this.hoursPerEcts = const Value.absent(),
     this.dailyTargetMinutes = const Value.absent(),
+    this.firstWeekday = const Value.absent(),
+    this.themeMode = const Value.absent(),
   });
   static Insertable<SettingsRow> custom({
     Expression<int>? id,
     Expression<double>? hoursPerEcts,
     Expression<int>? dailyTargetMinutes,
+    Expression<int>? firstWeekday,
+    Expression<int>? themeMode,
   }) {
     return RawValuesInsertable({
       if (id != null) 'id': id,
       if (hoursPerEcts != null) 'hours_per_ects': hoursPerEcts,
       if (dailyTargetMinutes != null)
         'daily_target_minutes': dailyTargetMinutes,
+      if (firstWeekday != null) 'first_weekday': firstWeekday,
+      if (themeMode != null) 'theme_mode': themeMode,
     });
   }
 
@@ -1142,11 +1239,15 @@ class SettingsCompanion extends UpdateCompanion<SettingsRow> {
     Value<int>? id,
     Value<double>? hoursPerEcts,
     Value<int>? dailyTargetMinutes,
+    Value<int>? firstWeekday,
+    Value<int>? themeMode,
   }) {
     return SettingsCompanion(
       id: id ?? this.id,
       hoursPerEcts: hoursPerEcts ?? this.hoursPerEcts,
       dailyTargetMinutes: dailyTargetMinutes ?? this.dailyTargetMinutes,
+      firstWeekday: firstWeekday ?? this.firstWeekday,
+      themeMode: themeMode ?? this.themeMode,
     );
   }
 
@@ -1162,6 +1263,12 @@ class SettingsCompanion extends UpdateCompanion<SettingsRow> {
     if (dailyTargetMinutes.present) {
       map['daily_target_minutes'] = Variable<int>(dailyTargetMinutes.value);
     }
+    if (firstWeekday.present) {
+      map['first_weekday'] = Variable<int>(firstWeekday.value);
+    }
+    if (themeMode.present) {
+      map['theme_mode'] = Variable<int>(themeMode.value);
+    }
     return map;
   }
 
@@ -1170,7 +1277,9 @@ class SettingsCompanion extends UpdateCompanion<SettingsRow> {
     return (StringBuffer('SettingsCompanion(')
           ..write('id: $id, ')
           ..write('hoursPerEcts: $hoursPerEcts, ')
-          ..write('dailyTargetMinutes: $dailyTargetMinutes')
+          ..write('dailyTargetMinutes: $dailyTargetMinutes, ')
+          ..write('firstWeekday: $firstWeekday, ')
+          ..write('themeMode: $themeMode')
           ..write(')'))
         .toString();
   }
@@ -1895,11 +2004,15 @@ typedef $$SettingsTableCreateCompanionBuilder = SettingsCompanion Function({
   Value<int> id,
   Value<double> hoursPerEcts,
   Value<int> dailyTargetMinutes,
+  Value<int> firstWeekday,
+  Value<int> themeMode,
 });
 typedef $$SettingsTableUpdateCompanionBuilder = SettingsCompanion Function({
   Value<int> id,
   Value<double> hoursPerEcts,
   Value<int> dailyTargetMinutes,
+  Value<int> firstWeekday,
+  Value<int> themeMode,
 });
 
 class $$SettingsTableFilterComposer
@@ -1923,6 +2036,16 @@ class $$SettingsTableFilterComposer
 
   ColumnFilters<int> get dailyTargetMinutes => $composableBuilder(
     column: $table.dailyTargetMinutes,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<int> get firstWeekday => $composableBuilder(
+    column: $table.firstWeekday,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<int> get themeMode => $composableBuilder(
+    column: $table.themeMode,
     builder: (column) => ColumnFilters(column),
   );
 }
@@ -1950,6 +2073,16 @@ class $$SettingsTableOrderingComposer
     column: $table.dailyTargetMinutes,
     builder: (column) => ColumnOrderings(column),
   );
+
+  ColumnOrderings<int> get firstWeekday => $composableBuilder(
+    column: $table.firstWeekday,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<int> get themeMode => $composableBuilder(
+    column: $table.themeMode,
+    builder: (column) => ColumnOrderings(column),
+  );
 }
 
 class $$SettingsTableAnnotationComposer
@@ -1973,6 +2106,14 @@ class $$SettingsTableAnnotationComposer
     column: $table.dailyTargetMinutes,
     builder: (column) => column,
   );
+
+  GeneratedColumn<int> get firstWeekday => $composableBuilder(
+    column: $table.firstWeekday,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<int> get themeMode =>
+      $composableBuilder(column: $table.themeMode, builder: (column) => column);
 }
 
 class $$SettingsTableTableManager
@@ -2009,20 +2150,28 @@ class $$SettingsTableTableManager
                 Value<int> id = const Value.absent(),
                 Value<double> hoursPerEcts = const Value.absent(),
                 Value<int> dailyTargetMinutes = const Value.absent(),
+                Value<int> firstWeekday = const Value.absent(),
+                Value<int> themeMode = const Value.absent(),
               }) => SettingsCompanion(
                 id: id,
                 hoursPerEcts: hoursPerEcts,
                 dailyTargetMinutes: dailyTargetMinutes,
+                firstWeekday: firstWeekday,
+                themeMode: themeMode,
               ),
           createCompanionCallback:
               ({
                 Value<int> id = const Value.absent(),
                 Value<double> hoursPerEcts = const Value.absent(),
                 Value<int> dailyTargetMinutes = const Value.absent(),
+                Value<int> firstWeekday = const Value.absent(),
+                Value<int> themeMode = const Value.absent(),
               }) => SettingsCompanion.insert(
                 id: id,
                 hoursPerEcts: hoursPerEcts,
                 dailyTargetMinutes: dailyTargetMinutes,
+                firstWeekday: firstWeekday,
+                themeMode: themeMode,
               ),
           withReferenceMapper: (p0) => p0
               .map(

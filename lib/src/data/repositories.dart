@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:drift/drift.dart';
 
 import '../models/models.dart';
@@ -382,12 +384,14 @@ class SettingsRepository {
   Stream<AppSettings> watch() => _db
       .select(_db.settings)
       .watchSingleOrNull()
-      .map((row) => row == null
-          ? const AppSettings()
-          : AppSettings(
-              hoursPerEcts: row.hoursPerEcts,
-              dailyTargetMinutes: row.dailyTargetMinutes,
-            ));
+      .map((row) => row == null ? const AppSettings() : _fromRow(row));
+
+  AppSettings _fromRow(SettingsRow row) => AppSettings(
+        hoursPerEcts: row.hoursPerEcts,
+        dailyTargetMinutes: row.dailyTargetMinutes,
+        firstWeekday: row.firstWeekday.clamp(1, 7),
+        themeMode: themeModeFromInt(row.themeMode),
+      );
 
   /// One-shot read of the current settings, defaulting to [AppSettings] when
   /// no row exists (same mapping as [watch]). Lets bootstrap/first-frame code
@@ -397,10 +401,7 @@ class SettingsRepository {
     try {
       final row = await _db.select(_db.settings).getSingleOrNull();
       if (row == null) return const AppSettings();
-      return AppSettings(
-        hoursPerEcts: row.hoursPerEcts,
-        dailyTargetMinutes: row.dailyTargetMinutes,
-      );
+      return _fromRow(row);
     } catch (_) {
       return const AppSettings();
     }
@@ -441,4 +442,237 @@ class SettingsRepository {
       return Err('Failed to save settings: $e');
     }
   }
+
+  /// Persists the first weekday for weekly totals (1=Monday .. 7=Sunday).
+  Future<Result<void>> setFirstWeekday(int value) async {
+    if (value < 1 || value > 7) {
+      return const Err('First weekday must be between 1 (Monday) and 7 (Sunday).');
+    }
+    try {
+      await _db.into(_db.settings).insertOnConflictUpdate(
+            SettingsCompanion.insert(
+              id: const Value(1),
+              firstWeekday: Value(value),
+            ),
+          );
+      return const Ok(null);
+    } catch (e) {
+      return Err('Failed to save settings: $e');
+    }
+  }
+
+  /// Persists display theme preference (0=system, 1=light, 2=dark).
+  Future<Result<void>> setThemeMode(AppThemeMode mode) async {
+    try {
+      await _db.into(_db.settings).insertOnConflictUpdate(
+            SettingsCompanion.insert(
+              id: const Value(1),
+              themeMode: Value(themeModeToInt(mode)),
+            ),
+          );
+      return const Ok(null);
+    } catch (e) {
+      return Err('Failed to save settings: $e');
+    }
+  }
+
+  /// Resets settings to defaults (keeps courses/sessions).
+  Future<Result<void>> resetToDefaults() async {
+    try {
+      await _db.into(_db.settings).insertOnConflictUpdate(
+            SettingsCompanion.insert(
+              id: const Value(1),
+              hoursPerEcts: const Value(AppSettings.defaultHoursPerEcts),
+              dailyTargetMinutes: const Value(0),
+              firstWeekday: const Value(DateTime.monday),
+              themeMode: Value(themeModeToInt(AppThemeMode.system)),
+            ),
+          );
+      return const Ok(null);
+    } catch (e) {
+      return Err('Failed to reset settings: $e');
+    }
+  }
 }
+
+class BackupRepository {
+  BackupRepository(this._db);
+  final AppDatabase _db;
+
+  /// Exports all data (settings, courses, sessions) as a JSON string.
+  /// Derived values are not exported (AGENTS.md: computed, never stored).
+  Future<Result<String>> exportJson() async {
+    try {
+      final settingsRow = await _db.select(_db.settings).getSingleOrNull();
+      final courseRows = await _db.select(_db.courses).get();
+      final sessionRows = await _db.select(_db.studySessions).get();
+      final settings = settingsRow == null
+          ? const AppSettings()
+          : AppSettings(
+              hoursPerEcts: settingsRow.hoursPerEcts,
+              dailyTargetMinutes: settingsRow.dailyTargetMinutes,
+              firstWeekday: settingsRow.firstWeekday.clamp(1, 7),
+              themeMode: themeModeFromInt(settingsRow.themeMode),
+            );
+      final map = <String, Object?>{
+        'version': 1,
+        'exportedAt': DateTime.now().toUtc().toIso8601String(),
+        'settings': {
+          'hoursPerEcts': settings.hoursPerEcts,
+          'dailyTargetMinutes': settings.dailyTargetMinutes,
+          'firstWeekday': settings.firstWeekday,
+          'themeMode': themeModeToInt(settings.themeMode),
+        },
+        'courses': courseRows
+            .map((c) => {
+                  'id': c.id,
+                  'name': c.name,
+                  'ectsCredits': c.ectsCredits,
+                  'startDate': c.startDate?.toIso8601String(),
+                  'deadline': c.deadline?.toIso8601String(),
+                  'notes': c.notes,
+                  'colorValue': c.colorValue,
+                  'isSample': c.isSample,
+                })
+            .toList(),
+        'sessions': sessionRows
+            .map((s) => {
+                  'id': s.id,
+                  'courseId': s.courseId,
+                  'minutes': s.minutes,
+                  'date': s.date.toIso8601String(),
+                  'notes': s.notes,
+                  'isSample': s.isSample,
+                })
+            .toList(),
+      };
+      return Ok(_jsonEncode(map));
+    } catch (e) {
+      return Err('Failed to export data: $e');
+    }
+  }
+
+  /// Imports data from JSON exported by [exportJson]. Replaces all existing
+  /// courses, sessions, and settings in a transaction. Returns [Err] on invalid
+  /// input or DB failure (no partial writes).
+  Future<Result<void>> importJson(String json) async {
+    try {
+      final decoded = _jsonDecode(json);
+      if (decoded is! Map) {
+        return const Err('Invalid import file: expected a JSON object.');
+      }
+      final settingsRaw = decoded['settings'];
+      final coursesRaw = decoded['courses'];
+      final sessionsRaw = decoded['sessions'];
+      if (coursesRaw is! List || sessionsRaw is! List) {
+        return const Err('Invalid import file: missing courses or sessions.');
+      }
+      final settings = settingsRaw is Map ? settingsRaw : const <Object?, Object?>{};
+      final hoursPerEcts = (settings['hoursPerEcts'] as num?)?.toDouble() ?? 30.0;
+      final dailyTarget = (settings['dailyTargetMinutes'] as num?)?.toInt() ?? 0;
+      final firstWeekday = ((settings['firstWeekday'] as num?)?.toInt() ?? 1).clamp(1, 7);
+      final themeMode = (settings['themeMode'] as num?)?.toInt() ?? 0;
+      if (hoursPerEcts <= 0) {
+        return const Err('Invalid import: hoursPerEcts must be greater than zero.');
+      }
+      if (dailyTarget < 0) {
+        return const Err('Invalid import: dailyTargetMinutes must not be negative.');
+      }
+
+      final courseMaps = <Map<String, Object?>>[];
+      for (final c in coursesRaw) {
+        if (c is! Map) return const Err('Invalid import: malformed course entry.');
+        final name = (c['name'] as String?)?.trim() ?? '';
+        final ects = (c['ectsCredits'] as num?)?.toDouble();
+        if (name.isEmpty || ects == null || ects <= 0) {
+          return const Err('Invalid import: course has invalid name or ECTS.');
+        }
+        courseMaps.add(Map<String, Object?>.from(c));
+      }
+      final sessionMaps = <Map<String, Object?>>[];
+      for (final s in sessionsRaw) {
+        if (s is! Map) return const Err('Invalid import: malformed session entry.');
+        final courseId = (s['courseId'] as num?)?.toInt();
+        final minutes = (s['minutes'] as num?)?.toInt();
+        if (courseId == null || minutes == null || minutes <= 0) {
+          return const Err('Invalid import: session has invalid data.');
+        }
+        sessionMaps.add(Map<String, Object?>.from(s));
+      }
+
+      await _db.transaction(() async {
+        await _db.delete(_db.studySessions).go();
+        await _db.delete(_db.courses).go();
+        await _db.delete(_db.settings).go();
+        await _db.into(_db.settings).insert(
+              SettingsCompanion.insert(
+                id: const Value(1),
+                hoursPerEcts: Value(hoursPerEcts),
+                dailyTargetMinutes: Value(dailyTarget),
+                firstWeekday: Value(firstWeekday),
+                themeMode: Value(themeMode.clamp(0, 2)),
+              ),
+            );
+        for (final c in courseMaps) {
+          final cid = (c['id'] as num?)?.toInt();
+          await _db.into(_db.courses).insert(
+                CoursesCompanion.insert(
+                  id: cid == null ? const Value.absent() : Value(cid),
+                  name: (c['name'] as String).trim(),
+                  ectsCredits: (c['ectsCredits'] as num).toDouble(),
+                  startDate: Value(_parseDate(c['startDate'])),
+                  deadline: Value(_parseDate(c['deadline'])),
+                  notes: Value(c['notes'] as String?),
+                  colorValue: Value((c['colorValue'] as num?)?.toInt()),
+                  isSample: Value(c['isSample'] == true),
+                ),
+              );
+        }
+        for (final s in sessionMaps) {
+          final date = _parseDate(s['date']);
+          if (date == null) {
+            throw const FormatException('Invalid session date');
+          }
+          final sid = (s['id'] as num?)?.toInt();
+          await _db.into(_db.studySessions).insert(
+                StudySessionsCompanion.insert(
+                  id: sid == null ? const Value.absent() : Value(sid),
+                  courseId: (s['courseId'] as num).toInt(),
+                  minutes: (s['minutes'] as num).toInt(),
+                  date: date,
+                  notes: Value(s['notes'] as String?),
+                  isSample: Value(s['isSample'] == true),
+                ),
+              );
+        }
+      });
+      return const Ok(null);
+    } catch (e) {
+      return Err('Failed to import data: $e');
+    }
+  }
+
+  /// Deletes all courses, sessions, and settings (full reset). Re-seeding is not
+  /// performed automatically; the app will show a clean empty state.
+  Future<Result<void>> resetAllData() async {
+    try {
+      await _db.transaction(() async {
+        await _db.delete(_db.studySessions).go();
+        await _db.delete(_db.courses).go();
+        await _db.delete(_db.settings).go();
+      });
+      return const Ok(null);
+    } catch (e) {
+      return Err('Failed to reset data: $e');
+    }
+  }
+
+  DateTime? _parseDate(Object? value) {
+    if (value is! String || value.isEmpty) return null;
+    return DateTime.tryParse(value);
+  }
+}
+
+String _jsonEncode(Object? value) => const JsonEncoder.withIndent('  ').convert(value);
+
+Object? _jsonDecode(String source) => jsonDecode(source);

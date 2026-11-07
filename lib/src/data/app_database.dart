@@ -37,6 +37,10 @@ class Settings extends Table {
   IntColumn get id => integer().withDefault(const Constant(1))();
   RealColumn get hoursPerEcts => real().withDefault(const Constant(30))();
   IntColumn get dailyTargetMinutes => integer().withDefault(const Constant(0))();
+  /// ISO weekday 1..7 (Monday=1). Default Monday.
+  IntColumn get firstWeekday => integer().withDefault(const Constant(1))();
+  /// 0=system, 1=light, 2=dark.
+  IntColumn get themeMode => integer().withDefault(const Constant(0))();
 
   @override
   Set<Column> get primaryKey => {id};
@@ -47,7 +51,7 @@ class AppDatabase extends _$AppDatabase {
   AppDatabase(super.e);
 
   @override
-  int get schemaVersion => 1;
+  int get schemaVersion => 2;
 
   /// SQLite does not enforce foreign keys (and thus ON DELETE CASCADE) unless
   /// explicitly asked, on every connection.
@@ -55,6 +59,12 @@ class AppDatabase extends _$AppDatabase {
   MigrationStrategy get migration => MigrationStrategy(
         onCreate: (m) async {
           await m.createAll();
+        },
+        onUpgrade: (m, from, to) async {
+          if (from < 2) {
+            await m.addColumn(settings, settings.firstWeekday);
+            await m.addColumn(settings, settings.themeMode);
+          }
         },
         beforeOpen: (details) async {
           await customStatement('PRAGMA foreign_keys = ON');

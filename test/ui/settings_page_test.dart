@@ -128,6 +128,46 @@ void main() {
       await flush(tester);
     });
   });
+
+  group('SettingsPage ECTS-011', () {
+    late AppDatabase db;
+
+    setUp(() {
+      db = AppDatabase(NativeDatabase.memory());
+    });
+
+    tearDown(() async {
+      await db.close();
+    });
+
+    Future<void> flush(WidgetTester tester) async {
+      await tester.pumpWidget(const SizedBox.shrink());
+      await tester.pump();
+      await tester.pump(const Duration(milliseconds: 50));
+    }
+
+    Widget app() => ProviderScope(
+          overrides: [databaseProvider.overrideWithValue(db)],
+          child: const MaterialApp(home: Scaffold(body: SettingsPage())),
+        );
+
+    testWidgets('edits hours-per-ECTS and persists it', (tester) async {
+      await tester.pumpWidget(app());
+      await tester.pumpAndSettle();
+
+      expect(find.byKey(const Key('hoursPerEctsTile')), findsOneWidget);
+      await tester.tap(find.byKey(const Key('hoursPerEctsTile')));
+      await tester.pumpAndSettle();
+
+      await tester.enterText(find.byKey(const Key('hoursPerEctsField')), '25');
+      await tester.tap(find.byKey(const Key('saveHoursPerEcts')));
+      await tester.pumpAndSettle();
+
+      final settings = await SettingsRepository(db).get();
+      expect(settings.hoursPerEcts, 25);
+      await flush(tester);
+    });
+  });
 }
 
 class _FailingClearCourseRepository extends CourseRepository {

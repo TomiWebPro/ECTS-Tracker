@@ -539,7 +539,9 @@ class _StudyLogPage extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final sessionsAsync = ref.watch(sessionsProvider);
     final coursesAsync = ref.watch(coursesProvider);
+    final settings = ref.watch(settingsProvider).valueOrNull;
     final effectiveNow = now ?? DateTime.now();
+    final firstWeekday = settings?.firstWeekday ?? DateTime.monday;
 
     return sessionsAsync.when(
       loading: () => const Center(child: CircularProgressIndicator()),
@@ -553,7 +555,11 @@ class _StudyLogPage extends ConsumerWidget {
         final courseMap = {
           for (final c in coursesAsync.valueOrNull ?? const []) c.id: c,
         };
-        final totals = sessionTotals(sessionList, now: effectiveNow);
+        final totals = sessionTotals(
+          sessionList,
+          now: effectiveNow,
+          firstWeekday: firstWeekday,
+        );
         final sorted = sessionsByDateDesc(sessionList);
 
         return Column(
