@@ -531,7 +531,8 @@ class _CoursesPageState extends ConsumerState<_CoursesPage> {
                         Padding(
                           padding: const EdgeInsets.only(top: 2),
                           child: Text(
-                            '${p.requiredDailyHours!.toStringAsFixed(1)} h/day needed',
+                            '${p.requiredDailyHours!.toStringAsFixed(1)} h/day'
+                            '${p.requiredWeeklyHours == null ? '' : ' • ${p.requiredWeeklyHours!.toStringAsFixed(1)} h/week'} needed',
                             style: Theme.of(context).textTheme.bodySmall,
                           ),
                         ),
