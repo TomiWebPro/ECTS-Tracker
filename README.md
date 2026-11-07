@@ -1,19 +1,32 @@
 # ECTS Tracker
 
-A local-first Flutter app for tracking university study progress in ECTS credits:
-log study sessions, see per-course pace and on-track/behind status, and manage
-your workload across deadlines. No backend, no account — all data stays on device
-(Drift/SQLite) and survives restarts.
+I'm a student at TUM, and I built this tracker for one simple reason: I wanted
+to stay on top of my studies. Deadlines pile up, lectures blur together, and
+"how much work is this course, really?" is a question I kept getting wrong. So
+I coded this app — a local-first Flutter tracker that turns my courses into
+concrete numbers and tells me every day whether I'm on track or falling behind.
+No backend, no account, everything stays on my device (Drift/SQLite) and
+survives restarts.
 
-## Core formula
+## The formula
 
-`requiredHours = ectsCredits × hoursPerEcts` (default `hoursPerEcts = 30`,
-configurable in Settings; changing it recalculates every course requirement
-without touching logged sessions).
+`requiredHours = ectsCredits × hoursPerEcts`
 
-Per-course status is computed from logged hours vs elapsed time: `completed`,
-`overdue`, `ahead`, `on track`, `behind` — plus the required daily pace
-(`remainingHours / remaining time`) so you always know what "caught up" means.
+One ECTS credit point represents 25–30 hours of total student workload. That
+range comes straight from the Bologna framework behind the European credit
+system, and if you search around online, it's the version nearly everyone
+lands on: 1 ECTS ≈ 25–30 hours, including lectures, exercises, and self-study.
+I agree with it — it's the honest, widely approved way to convert abstract
+credit points into real hours you can plan against.
+
+This app defaults to **30 hours per ECTS** (the upper, safer end of the range)
+and you can change it in Settings — every course requirement recalculates
+instantly, without ever touching your logged sessions.
+
+From there, each course gets a computed status — `completed`, `overdue`,
+`ahead`, `on track`, or `behind` — plus the required daily and weekly pace
+(`remaining hours ÷ remaining time`), so you always know exactly what
+"caught up" means.
 
 ## Screens (bottom nav)
 
@@ -44,3 +57,8 @@ flutter run
 ```
 
 If `flutter` is not on PATH, use `~/flutter/bin/flutter`.
+
+## License
+
+MIT — see [LICENSE](LICENSE). Do whatever you want with the code; if it helps
+you stay on top of your studies too, even better.
