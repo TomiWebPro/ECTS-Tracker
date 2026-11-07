@@ -544,6 +544,55 @@ void main() {
     });
   });
 
+  group('deleteCourse transaction boundary/guard (ECTS-043)', () {
+    test('removes course and all its sessions atomically', () async {
+      final id =
+          (await courses.addCourse(name: 'Guarded', ectsCredits: 6) as Ok<int>)
+              .value;
+      await sessions.addSession(
+          courseId: id, minutes: 30, date: DateTime(2026, 11, 1));
+      await sessions.addSession(
+          courseId: id, minutes: 45, date: DateTime(2026, 11, 2));
+      await sessions.addSession(
+          courseId: id, minutes: 60, date: DateTime(2026, 11, 3));
+
+      final res = await courses.deleteCourse(id);
+      expect(res, isA<Ok<void>>());
+      expect(await courses.watchAll().first, isEmpty);
+      expect(await sessions.watchAll().first, isEmpty);
+    });
+
+    test('deletes only target course sessions; other courses untouched', () async {
+      final a =
+          (await courses.addCourse(name: 'A', ectsCredits: 3) as Ok<int>).value;
+      final b =
+          (await courses.addCourse(name: 'B', ectsCredits: 3) as Ok<int>).value;
+      await sessions.addSession(
+          courseId: a, minutes: 20, date: DateTime(2026, 11, 1));
+      await sessions.addSession(
+          courseId: b, minutes: 40, date: DateTime(2026, 11, 1));
+      await sessions.addSession(
+          courseId: b, minutes: 50, date: DateTime(2026, 11, 2));
+
+      final res = await courses.deleteCourse(a);
+      expect(res, isA<Ok<void>>());
+      final remainingCourses = await courses.watchAll().first;
+      expect(remainingCourses.map((c) => c.id), [b]);
+      final remainingSessions = await sessions.watchAll().first;
+      expect(remainingSessions.length, 2);
+      expect(remainingSessions.every((s) => s.courseId == b), isTrue);
+    });
+
+    test('succeeds for a course with no sessions (boundary is safe)', () async {
+      final id =
+          (await courses.addCourse(name: 'Empty', ectsCredits: 3) as Ok<int>)
+              .value;
+      final res = await courses.deleteCourse(id);
+      expect(res, isA<Ok<void>>());
+      expect(await courses.watchAll().first, isEmpty);
+    });
+  });
+
   group('SettingsRepository.get() (ECTS-045)', () {
     late SettingsRepository settings;
 

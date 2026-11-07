@@ -199,11 +199,21 @@ class CourseRepository {
     }
   }
 
+  /// Deletes a course and its sessions in an explicit transaction boundary
+  /// (ECTS-043 guard): session rows are removed before the course row so cascade
+  /// is controlled/atomic, preventing partial state. Preserves the not-found
+  /// contract (ECTS-042).
   Future<Result<void>> deleteCourse(int id) async {
     if (id <= 0) return const Err('Course not found.');
     try {
-      final affected =
-          await (_db.delete(_db.courses)..where((t) => t.id.equals(id))).go();
+      final affected = await _db.transaction(() async {
+        await (_db.delete(_db.studySessions)
+              ..where((t) => t.courseId.equals(id)))
+            .go();
+        return await (_db.delete(_db.courses)
+              ..where((t) => t.id.equals(id)))
+            .go();
+      });
       if (affected == 0) return const Err('Course not found.');
       return const Ok(null);
     } catch (e) {
