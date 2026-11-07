@@ -200,8 +200,11 @@ class CourseRepository {
   }
 
   Future<Result<void>> deleteCourse(int id) async {
+    if (id <= 0) return const Err('Course not found.');
     try {
-      await (_db.delete(_db.courses)..where((t) => t.id.equals(id))).go();
+      final affected =
+          await (_db.delete(_db.courses)..where((t) => t.id.equals(id))).go();
+      if (affected == 0) return const Err('Course not found.');
       return const Ok(null);
     } catch (e) {
       return Err('Failed to delete course: $e');
@@ -368,8 +371,12 @@ class SessionRepository {
   }
 
   Future<Result<void>> deleteSession(int id) async {
+    if (id <= 0) return const Err('Session not found.');
     try {
-      await (_db.delete(_db.studySessions)..where((t) => t.id.equals(id))).go();
+      final affected = await (_db.delete(_db.studySessions)
+            ..where((t) => t.id.equals(id)))
+          .go();
+      if (affected == 0) return const Err('Session not found.');
       return const Ok(null);
     } catch (e) {
       return Err('Failed to delete session: $e');

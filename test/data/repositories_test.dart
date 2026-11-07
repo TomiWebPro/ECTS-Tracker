@@ -491,6 +491,59 @@ void main() {
     });
   });
 
+  group('deleteCourse/deleteSession not-found contract (ECTS-042)', () {
+    test('deleteCourse returns Ok for an existing id', () async {
+      final id = (await courses.addCourse(name: 'Temp', ectsCredits: 3) as Ok<int>).value;
+      final res = await courses.deleteCourse(id);
+      expect(res, isA<Ok<void>>());
+      expect(await courses.watchAll().first, isEmpty);
+    });
+
+    test('deleteCourse returns typed Err when no row matches', () async {
+      final res = await courses.deleteCourse(9999);
+      expect(res, isA<Err<void>>());
+      expect((res as Err<void>).message, 'Course not found.');
+    });
+
+    test('deleteCourse returns Err for non-positive id', () async {
+      expect((await courses.deleteCourse(0) as Err<void>).message, 'Course not found.');
+      expect((await courses.deleteCourse(-1) as Err<void>).message, 'Course not found.');
+    });
+
+    test('deleteCourse returns Err when deleting an already-deleted course', () async {
+      final id = (await courses.addCourse(name: 'Gone', ectsCredits: 3) as Ok<int>).value;
+      expect(await courses.deleteCourse(id), isA<Ok<void>>());
+      final res = await courses.deleteCourse(id);
+      expect(res, isA<Err<void>>());
+      expect((res as Err<void>).message, 'Course not found.');
+    });
+
+    test('deleteSession returns Ok for an existing id', () async {
+      final courseId =
+          (await courses.addCourse(name: 'C', ectsCredits: 5) as Ok<int>).value;
+      final sid = (await sessions.addSession(
+        courseId: courseId,
+        minutes: 30,
+        date: DateTime(2026, 11, 1),
+      ) as Ok<int>)
+          .value;
+      final res = await sessions.deleteSession(sid);
+      expect(res, isA<Ok<void>>());
+      expect(await sessions.watchAll().first, isEmpty);
+    });
+
+    test('deleteSession returns typed Err when no row matches', () async {
+      final res = await sessions.deleteSession(9999);
+      expect(res, isA<Err<void>>());
+      expect((res as Err<void>).message, 'Session not found.');
+    });
+
+    test('deleteSession returns Err for non-positive id', () async {
+      expect((await sessions.deleteSession(0) as Err<void>).message, 'Session not found.');
+      expect((await sessions.deleteSession(-1) as Err<void>).message, 'Session not found.');
+    });
+  });
+
   group('SettingsRepository.get() (ECTS-045)', () {
     late SettingsRepository settings;
 
