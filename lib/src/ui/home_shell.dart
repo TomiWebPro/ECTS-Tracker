@@ -38,26 +38,34 @@ class _HomeShellState extends State<HomeShell> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: Text(_titles[_index])),
-      body: switch (_index) {
-        0 => _OverviewPage(now: widget.now),
-        1 => _CoursesPage(now: widget.now),
-        2 => _StudyLogPage(now: widget.now),
-        3 => StatisticsPage(now: widget.now),
-        4 => const SettingsPage(),
-        _ => const SizedBox.shrink(),
-      },
+      body: AnimatedSwitcher(
+        duration: const Duration(milliseconds: 180),
+        child: KeyedSubtree(
+          key: ValueKey(_index),
+          child: switch (_index) {
+            0 => _OverviewPage(now: widget.now),
+            1 => _CoursesPage(now: widget.now),
+            2 => _StudyLogPage(now: widget.now),
+            3 => StatisticsPage(now: widget.now),
+            4 => const SettingsPage(),
+            _ => const SizedBox.shrink(),
+          },
+        ),
+      ),
       floatingActionButton: switch (_index) {
-        1 => FloatingActionButton(
+        1 => FloatingActionButton.extended(
             key: const Key('addCourseFab'),
             onPressed: () => showCourseFormDialog(context),
             tooltip: 'Add course',
-            child: const Icon(Icons.add),
+            icon: const Icon(Icons.add),
+            label: const Text('New course'),
           ),
-        2 => FloatingActionButton(
+        2 => FloatingActionButton.extended(
             key: const Key('logSessionFab'),
             onPressed: () => showSessionFormDialog(context),
             tooltip: 'Log session',
-            child: const Icon(Icons.add),
+            icon: const Icon(Icons.timer),
+            label: const Text('Log session'),
           ),
         _ => null,
       },
@@ -162,6 +170,16 @@ class _OverviewPage extends ConsumerWidget {
           key: const Key('dashboardCourseCount'),
           style: Theme.of(context).textTheme.bodyLarge,
         ),
+        const SizedBox(height: 12),
+        Align(
+          alignment: Alignment.centerLeft,
+          child: FilledButton.icon(
+            key: const Key('dashboardLogSessionAction'),
+            onPressed: () => showSessionFormDialog(context),
+            icon: const Icon(Icons.timer),
+            label: const Text('Log study session'),
+          ),
+        ),
         if (needsAttention.isNotEmpty) ...[
           const Divider(height: 32),
           Text(
@@ -180,7 +198,29 @@ class _OverviewPage extends ConsumerWidget {
         Text('Courses', style: Theme.of(context).textTheme.titleMedium),
         const SizedBox(height: 8),
         if (withProgress.isEmpty)
-          const Text('No courses yet', key: Key('dashboardNoCourses'))
+          Padding(
+            padding: const EdgeInsets.symmetric(vertical: 24),
+            child: Column(
+              children: [
+                Icon(Icons.school_outlined,
+                    size: 48, color: Theme.of(context).colorScheme.outline),
+                const SizedBox(height: 8),
+                Text(
+                  'No courses yet',
+                  key: const Key('dashboardNoCourses'),
+                  style: Theme.of(context).textTheme.titleSmall,
+                ),
+                const SizedBox(height: 4),
+                Text(
+                  'Add a course to start tracking your ECTS progress.',
+                  style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                        color: Theme.of(context).colorScheme.onSurfaceVariant,
+                      ),
+                  textAlign: TextAlign.center,
+                ),
+              ],
+            ),
+          )
         else
           for (final item in withProgress)
             _DashboardCourseCard(
@@ -338,7 +378,31 @@ class _CoursesPageState extends ConsumerState<_CoursesPage> {
     }
 
     final courses = coursesAsync.requireValue;
-    if (courses.isEmpty) return const Center(child: Text('No courses yet'));
+    if (courses.isEmpty) {
+      return Center(
+        child: Padding(
+          padding: const EdgeInsets.all(24),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Icon(Icons.menu_book_outlined,
+                  size: 48, color: Theme.of(context).colorScheme.outline),
+              const SizedBox(height: 8),
+              Text('No courses yet',
+                  style: Theme.of(context).textTheme.titleSmall),
+              const SizedBox(height: 4),
+              Text(
+                'Tap “Add course” to create your first course.',
+                style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                      color: Theme.of(context).colorScheme.onSurfaceVariant,
+                    ),
+                textAlign: TextAlign.center,
+              ),
+            ],
+          ),
+        ),
+      );
+    }
 
     final now = widget.now ?? DateTime.now();
     final hoursPerEcts = settingsAsync.requireValue.hoursPerEcts;
@@ -398,11 +462,23 @@ class _CoursesPageState extends ConsumerState<_CoursesPage> {
           ),
         ),
         if (visible.isEmpty)
-          const Expanded(
+          Expanded(
             child: Center(
-              child: Text(
-                'No courses match this filter',
-                key: Key('coursesFilterEmpty'),
+              child: Padding(
+                padding: const EdgeInsets.all(24),
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Icon(Icons.filter_alt_off_outlined,
+                        size: 40, color: Theme.of(context).colorScheme.outline),
+                    const SizedBox(height: 8),
+                    Text(
+                      'No courses match this filter',
+                      key: const Key('coursesFilterEmpty'),
+                      style: Theme.of(context).textTheme.titleSmall,
+                    ),
+                  ],
+                ),
               ),
             ),
           )
@@ -548,8 +624,31 @@ class _StudyLogPage extends ConsumerWidget {
       error: (e, _) => Center(child: Text('Error: $e')),
       data: (sessionList) {
         if (sessionList.isEmpty) {
-          return const Center(
-            child: Text('No study sessions yet', key: Key('studyLogEmpty')),
+          return Center(
+            child: Padding(
+              padding: const EdgeInsets.all(24),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Icon(Icons.timer_outlined,
+                      size: 48, color: Theme.of(context).colorScheme.outline),
+                  const SizedBox(height: 8),
+                  Text(
+                    'No study sessions yet',
+                    key: const Key('studyLogEmpty'),
+                    style: Theme.of(context).textTheme.titleSmall,
+                  ),
+                  const SizedBox(height: 4),
+                  Text(
+                    'Log a session to track your study time.',
+                    style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                          color: Theme.of(context).colorScheme.onSurfaceVariant,
+                        ),
+                    textAlign: TextAlign.center,
+                  ),
+                ],
+              ),
+            ),
           );
         }
         final courseMap = {

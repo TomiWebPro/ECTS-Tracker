@@ -49,6 +49,8 @@ void main() {
       expect(find.byKey(const Key('dashboardOverallProgress')), findsOneWidget);
       expect(find.byKey(const Key('dashboardCourseCount')), findsOneWidget);
       expect(find.text('1 course(s)'), findsOneWidget);
+      // ECTS-012: prominent log session action on dashboard.
+      expect(find.byKey(const Key('dashboardLogSessionAction')), findsOneWidget);
 
       expect(find.byKey(const Key('dashboardCourseCard_1')), findsOneWidget);
       expect(find.byKey(const Key('dashboardStatus_1')), findsOneWidget);
@@ -132,6 +134,7 @@ void main() {
       expect(find.text('0.0 h of 0 h'), findsOneWidget);
       expect(find.byKey(const Key('dashboardNoCourses')), findsOneWidget);
       expect(find.byKey(const Key('needsAttentionTitle')), findsNothing);
+      expect(find.byKey(const Key('dashboardLogSessionAction')), findsOneWidget);
     });
   });
 }
