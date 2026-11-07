@@ -5,6 +5,7 @@ import 'src/data/connection.dart';
 import 'src/models/models.dart';
 import 'src/startup.dart';
 import 'src/state/providers.dart';
+import 'src/ui/app_sizes.dart';
 import 'src/ui/home_shell.dart';
 
 Future<void> main() async {
@@ -18,17 +19,136 @@ class EctsTrackerApp extends StatelessWidget {
 
   final StartupState startup;
 
+  static ThemeData buildLightTheme({Color seed = const Color(0xFF0F766E)}) {
+    final base = ThemeData(
+      colorSchemeSeed: seed,
+      useMaterial3: true,
+    );
+    return _polish(base);
+  }
+
+  static ThemeData buildDarkTheme({Color seed = const Color(0xFF0F766E)}) {
+    final base = ThemeData(
+      colorSchemeSeed: seed,
+      brightness: Brightness.dark,
+      useMaterial3: true,
+    );
+    return _polish(base);
+  }
+
+  /// Shared polish on top of the seeded Material 3 theme: rounded cards,
+  /// tonal chips/nav, bolder titles. Sizes from [AppSizes] — edit there.
+  static ThemeData _polish(ThemeData base) {
+    return base.copyWith(
+      appBarTheme: base.appBarTheme.copyWith(
+        centerTitle: false,
+        elevation: 0,
+        scrolledUnderElevation: 1,
+        toolbarHeight: AppSizes.appBarHeight,
+        titleTextStyle: base.textTheme.titleLarge?.copyWith(
+          fontWeight: FontWeight.w800,
+          letterSpacing: -0.2,
+        ),
+      ),
+      cardTheme: base.cardTheme.copyWith(
+        elevation: AppSizes.cardElevation,
+        margin: EdgeInsets.zero,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(AppSizes.cardRadius),
+        ),
+      ),
+      chipTheme: base.chipTheme.copyWith(
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(AppSizes.chipRadius),
+        ),
+        labelStyle: base.textTheme.labelMedium?.copyWith(
+          fontWeight: FontWeight.w700,
+        ),
+      ),
+      dialogTheme: base.dialogTheme.copyWith(
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(AppSizes.dialogRadius),
+        ),
+      ),
+      dividerTheme: base.dividerTheme.copyWith(
+        thickness: 1,
+        space: AppSizes.dividerSpace,
+      ),
+      floatingActionButtonTheme: base.floatingActionButtonTheme.copyWith(
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(AppSizes.fabRadius),
+        ),
+        extendedTextStyle: base.textTheme.titleSmall?.copyWith(
+          fontWeight: FontWeight.w700,
+        ),
+        extendedIconLabelSpacing: AppSizes.fabIconGap,
+        extendedPadding: const EdgeInsets.symmetric(
+          horizontal: AppSizes.fabHPad,
+          vertical: AppSizes.fabVPad,
+        ),
+      ),
+      listTileTheme: base.listTileTheme.copyWith(
+        contentPadding: const EdgeInsets.symmetric(
+          horizontal: AppSizes.listTileHPad,
+          vertical: AppSizes.listTileVPad,
+        ),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(AppSizes.listTileRadius),
+        ),
+      ),
+      navigationBarTheme: base.navigationBarTheme.copyWith(
+        height: AppSizes.navHeight,
+        labelTextStyle: WidgetStatePropertyAll(
+          base.textTheme.labelMedium?.copyWith(fontWeight: FontWeight.w700),
+        ),
+      ),
+      snackBarTheme: base.snackBarTheme.copyWith(
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(14),
+        ),
+        behavior: SnackBarBehavior.floating,
+      ),
+      textTheme: base.textTheme.copyWith(
+        displaySmall: base.textTheme.displaySmall?.copyWith(
+          fontWeight: FontWeight.w800,
+          letterSpacing: -0.5,
+        ),
+        headlineMedium: base.textTheme.headlineMedium?.copyWith(
+          fontWeight: FontWeight.w800,
+          letterSpacing: -0.4,
+        ),
+        headlineSmall: base.textTheme.headlineSmall?.copyWith(
+          fontWeight: FontWeight.w800,
+          letterSpacing: -0.3,
+        ),
+        titleLarge: base.textTheme.titleLarge?.copyWith(
+          fontWeight: FontWeight.w800,
+          letterSpacing: -0.2,
+        ),
+        titleMedium: base.textTheme.titleMedium?.copyWith(
+          fontWeight: FontWeight.w700,
+        ),
+        titleSmall: base.textTheme.titleSmall?.copyWith(
+          fontWeight: FontWeight.w700,
+        ),
+        bodyLarge: base.textTheme.bodyLarge?.copyWith(
+          fontWeight: FontWeight.w500,
+        ),
+        bodySmall: base.textTheme.bodySmall?.copyWith(
+          fontSize: 13,
+        ),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return switch (startup) {
       StartupFailed(:final message) => MaterialApp(
           title: 'ECTS Tracker',
-          theme: ThemeData(colorSchemeSeed: Colors.indigo, useMaterial3: true),
-          darkTheme: ThemeData(
-            colorSchemeSeed: Colors.indigo,
-            brightness: Brightness.dark,
-            useMaterial3: true,
-          ),
+          debugShowCheckedModeBanner: false,
+          theme: buildLightTheme(),
+          darkTheme: buildDarkTheme(),
           home: StartupErrorScreen(message: message),
         ),
       StartupReady(:final db) => ProviderScope(
@@ -52,20 +172,25 @@ class _ThemedApp extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final settings = ref.watch(settingsProvider);
-    final themeMode = settings.valueOrNull?.themeMode;
+    final s = settings.valueOrNull ?? const AppSettings();
+    final seed = Color(s.accent.seedValue);
     return MaterialApp(
       title: 'ECTS Tracker',
-      themeMode: switch (themeMode) {
+      debugShowCheckedModeBanner: false,
+      themeMode: switch (s.themeMode) {
         AppThemeMode.light => ThemeMode.light,
         AppThemeMode.dark => ThemeMode.dark,
         _ => ThemeMode.system,
       },
-      theme: ThemeData(colorSchemeSeed: Colors.indigo, useMaterial3: true),
-      darkTheme: ThemeData(
-        colorSchemeSeed: Colors.indigo,
-        brightness: Brightness.dark,
-        useMaterial3: true,
-      ),
+      theme: EctsTrackerApp.buildLightTheme(seed: seed),
+      darkTheme: EctsTrackerApp.buildDarkTheme(seed: seed),
+      builder: (context, child) {
+        final scaler = TextScaler.linear(s.displaySize.scale);
+        return MediaQuery(
+          data: MediaQuery.of(context).copyWith(textScaler: scaler),
+          child: child!,
+        );
+      },
       home: const HomeShell(),
     );
   }

@@ -1,4 +1,6 @@
 import '../models/models.dart';
+import 'course_list.dart';
+import 'ects.dart';
 
 /// Aggregated statistics for study sessions.
 class StudyStatistics {
@@ -72,4 +74,86 @@ StudyStatistics computeStatistics(
     consistencyScore: consistencyScore,
     perCourseMinutes: perCourseMinutes,
   );
+}
+
+/// Average h/day over the trailing [days] (default 14) — past performance.
+double averageDailyHours(
+  List<StudySession> sessions, {
+  required DateTime now,
+  int days = 14,
+}) {
+  if (days <= 0) return 0;
+  final today = _dateOnly(now);
+  final start = today.subtract(Duration(days: days - 1));
+  var minutes = 0;
+  for (final s in sessions) {
+    final day = _dateOnly(s.date);
+    if (!day.isBefore(start) && !day.isAfter(today)) minutes += s.minutes;
+  }
+  return minutes / 60.0 / days;
+}
+
+/// One weekly bucket of forecast load.
+class WeeklyLoad {
+  const WeeklyLoad({required this.weekStart, required this.hours});
+
+  final DateTime weekStart;
+  final double hours;
+}
+
+/// Forecast: for each of the next [weeks] weeks (Mon-anchored), sum over
+/// courses of `remaining / remainingDays * activeDaysInThatWeek`.
+///
+/// Courses without deadlines spread nothing (no schedule). Scheduled future
+/// courses (`!startEarly`) contribute only from their start date. Past
+/// deadlines contribute only to the first week (overdue catch-up).
+List<WeeklyLoad> forecastWeeklyLoad(
+  List<CourseWithProgress> items, {
+  required DateTime now,
+  int weeks = 8,
+  int firstWeekday = DateTime.monday,
+}) {
+  final today = _dateOnly(now);
+  // Anchor to week start containing today.
+  final delta = (today.weekday - firstWeekday + 7) % 7;
+  final anchor = today.subtract(Duration(days: delta));
+  final loads = <WeeklyLoad>[];
+  for (var w = 0; w < weeks; w++) {
+    final weekStart = anchor.add(Duration(days: w * 7));
+    final weekEnd = weekStart.add(const Duration(days: 7));
+    var hours = 0.0;
+    for (final item in items) {
+      final course = item.course;
+      final p = item.progress;
+      if (p.remainingHours <= 0) continue;
+      final deadline = course.deadline;
+      if (deadline == null) continue;
+      final start = course.startDate ?? today;
+      // Skip weeks entirely before the (effective) start.
+      final effectiveStart =
+          isScheduledCourse(course, now) ? _dateOnly(start) : today;
+      final effectiveEnd = _dateOnly(deadline);
+      // Overlap of [weekStart, weekEnd) with [effectiveStart, effectiveEnd].
+      final overlapStart = effectiveStart.isAfter(weekStart)
+          ? effectiveStart
+          : weekStart;
+      // Deadline day itself is inclusive: study can happen that day.
+      final overlapEnd = effectiveEnd.add(const Duration(days: 1)).isBefore(
+            weekEnd,
+          )
+          ? effectiveEnd.add(const Duration(days: 1))
+          : weekEnd;
+      final overlapDays = overlapEnd.difference(overlapStart).inDays;
+      if (overlapDays <= 0) continue;
+      final totalDays = effectiveEnd.difference(effectiveStart).inDays + 1;
+      if (totalDays <= 0) {
+        // Overdue: all remaining crams into this week.
+        if (w == 0) hours += p.remainingHours;
+        continue;
+      }
+      hours += p.remainingHours * overlapDays / totalDays;
+    }
+    loads.add(WeeklyLoad(weekStart: weekStart, hours: hours));
+  }
+  return loads;
 }

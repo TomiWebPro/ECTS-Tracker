@@ -65,10 +65,13 @@ void main() {
       expect(p.status, CourseStatus.completed);
     });
 
-    test('ahead when logged hours exceed the linear expectation', () {
-      // 10-day span, 3 days elapsed → expected 45 h; 60 h logged.
+    test('ahead when surplus is 5+ days of workload over linear expectation', () {
+      // 5-day band: need = remaining/timeLeft, buffer = 5*need.
+      // 130 h logged: expected 52.5 h, surplus +77.5 h;
+      // remaining 20 h / 6.5 d ≈ 3.08 h/d → buffer ≈ 15.4 h → ahead.
+      // (60 h would be only +7.5 h surplus vs ~69 h buffer → onTrack.)
       final p = progress(
-        sessions: [s(60 * 60)],
+        sessions: [s(130 * 60)],
         startDate: DateTime(2026, 11, 1),
         deadline: DateTime(2026, 11, 11),
       );
@@ -86,17 +89,18 @@ void main() {
       expect(p.status, CourseStatus.onTrack);
     });
 
-    test('behind when the finished pace will not finish in time', () {
-      // 10-day span, 3 days elapsed → expected 45 h; only 5 h logged, so the
-      // achieved pace (5/3 ≈ 1.67 h/day) is far under the 145/7 ≈ 20.7 h/day
-      // still needed. Below the linear expectation with a real shortfall.
+    test('behind when deficit is 5+ days of workload under expectation', () {
+      // 5-day band: start 10-01 → elapsed 34.5 d, expected ≈126.2 h;
+      // 5 h logged → surplus ≈ -121 h; remaining 145 h / 6.5 d ≈ 22.3 h/d
+      // → buffer ≈ 111.5 h → behind. (Same 5 h with start 11-01 would be
+      // only -47.5 h vs ~111 h buffer → onTrack.)
       final p = progress(
         sessions: [s(5 * 60)],
-        startDate: DateTime(2026, 11, 1),
+        startDate: DateTime(2026, 10, 1),
         deadline: DateTime(2026, 11, 11),
       );
       expect(p.status, CourseStatus.behind);
-      final achieved = finishedDailyPace(p.completedHours, DateTime(2026, 11, 1), now);
+      final achieved = finishedDailyPace(p.completedHours, DateTime(2026, 10, 1), now);
       expect(achieved, isNotNull);
       expect(achieved! < p.requiredDailyHours!, isTrue);
     });
@@ -120,8 +124,9 @@ void main() {
       expect(p.requiredWeeklyHours, isNull);
     });
 
-    test('no sessions logged: 0 completed, full remaining, behind (0 h/day)', () {
-      // 3.5 days in with nothing logged: achieved pace 0 h/day cannot finish.
+    test('no sessions logged early: within 5-day tolerance → onTrack', () {
+      // 3.5 days in with nothing logged: deficit 52.5 h vs buffer ~115 h
+      // (150 h / 6.5 d ≈ 23 h/d) → onTrack, not behind. Behind needs 5 days.
       final p = progress(
         startDate: DateTime(2026, 11, 1),
         deadline: DateTime(2026, 11, 11),
@@ -129,7 +134,7 @@ void main() {
       expect(p.completedHours, 0);
       expect(p.remainingHours, 150);
       expect(p.progressFraction, 0);
-      expect(p.status, CourseStatus.behind);
+      expect(p.status, CourseStatus.onTrack);
     });
 
     test('deadline today: not overdue, null pace, behind (no division by zero)', () {
@@ -186,9 +191,9 @@ void main() {
         progress(sessions: [s(150 * 60)]).status,
         // overdue: deadline day already past, hours outstanding.
         progress(deadline: DateTime(2026, 10, 1)).status,
-        // ahead: above the linear expectation.
+        // ahead: surplus ≥ 5 days workload (130 h → +77.5 h vs ~15 h buffer).
         progress(
-          sessions: [s(60 * 60)],
+          sessions: [s(130 * 60)],
           startDate: DateTime(2026, 11, 1),
           deadline: DateTime(2026, 11, 11),
         ).status,
@@ -198,10 +203,10 @@ void main() {
           startDate: DateTime(2026, 11, 1),
           deadline: DateTime(2026, 11, 11),
         ).status,
-        // behind: finished pace below the required daily pace.
+        // behind: deficit ≥ 5 days workload (start 10-01, 1 h → -125 h).
         progress(
           sessions: [s(60)],
-          startDate: DateTime(2026, 11, 1),
+          startDate: DateTime(2026, 10, 1),
           deadline: DateTime(2026, 11, 11),
         ).status,
       };
@@ -209,12 +214,12 @@ void main() {
       expect(states, containsAll(CourseStatus.values));
     });
 
-    test('behind when nothing is logged and the course is already running', () {
-      // 5 ECTS = 150 h, start 3 days ago, deadline 2026-11-11 00:00 and now is
-      // 2026-11-04 12:00 → 6.5 actual days left. 0 h finished → 0 h/day achieved
-      // vs 150/6.5 ≈ 23.08 h/day needed (ECTS-032: pace uses actual time left).
+    test('behind when nothing is logged and deficit is 5+ days', () {
+      // 5 ECTS = 150 h, start 10-01 (elapsed 34.5 d, expected ≈126 h),
+      // deadline 2026-11-11 00:00 and now is 2026-11-04 12:00 → 6.5 days left.
+      // 0 h → surplus ≈ -126 h vs buffer 5*150/6.5 ≈ 115 h → behind.
       final p = progress(
-        startDate: DateTime(2026, 11, 1),
+        startDate: DateTime(2026, 10, 1),
         deadline: DateTime(2026, 11, 11),
       );
       expect(p.status, CourseStatus.behind);
@@ -539,10 +544,11 @@ void main() {
   });
 
   group('courseProgress — no-sessions edge cases policy (ECTS-037, ECTS-008)', () {
-    test('start-dated course with running schedule and no sessions is behind', () {
-      // Provable shortfall: achieved pace is 0 h/day against a required pace.
+    test('start-dated course neglected 5+ days with no sessions is behind', () {
+      // Provable shortfall with 5-day buffer: start 10-01, expected ≈126 h,
+      // 0 h → deficit ≈126 h vs buffer ≈115 h → behind.
       final p = progress(
-        startDate: DateTime(2026, 11, 1),
+        startDate: DateTime(2026, 10, 1),
         deadline: DateTime(2026, 11, 11),
       );
       expect(p.status, CourseStatus.behind);
@@ -564,6 +570,25 @@ void main() {
   });
 
   group('courseProgressFor (Course model)', () {
+    test('user probe: 12 ECTS 360 h with 1.5 h logged is onTrack, not ahead', () {
+      // 12 ECTS × 30 = 360 h, 1.5 h logged, need ≈ 2.9 h/day.
+      // Old linear rule called this Ahead (1.5 > tiny expectation);
+      // 5-day band keeps it OnTrack: surplus ≈ -8.6 h vs buffer ≈ 14.6 h.
+      final p = courseProgress(
+        ectsCredits: 12,
+        hoursPerEcts: 30,
+        sessions: [s(90)], // 1.5 h
+        startDate: DateTime(2026, 11, 1),
+        deadline: DateTime(2027, 3, 6),
+        now: now,
+      );
+      expect(p.requiredHours, 360);
+      expect(p.completedHours, closeTo(1.5, 1e-9));
+      expect(p.requiredDailyHours, closeTo(2.9, 0.15));
+      expect(p.status, CourseStatus.onTrack);
+      expect(p.status, isNot(CourseStatus.ahead));
+    });
+
     test('feeds course fields through to the summary', () {
       final course = Course(
         id: 1,
@@ -574,13 +599,13 @@ void main() {
       );
       final p = courseProgressFor(
         course,
-        [s(60 * 60)],
+        [s(130 * 60)],
         hoursPerEcts: 30,
         now: now,
       );
       expect(p.status, CourseStatus.ahead);
       expect(p.requiredHours, 150);
-      expect(p.remainingHours, 90);
+      expect(p.remainingHours, 20);
       expect(p.remainingDays, 7);
     });
   });

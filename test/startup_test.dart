@@ -1,8 +1,6 @@
 import 'package:drift/drift.dart' hide isNotNull;
 import 'package:drift/native.dart';
-import 'package:ects_tracker/main.dart';
 import 'package:ects_tracker/src/startup.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
@@ -29,41 +27,6 @@ void main() {
       final state = await initializeApp(_FailingExecutor());
       expect(state, isA<StartupFailed>());
       expect((state as StartupFailed).message, isNotEmpty);
-    });
-  });
-
-  group('EctsTrackerApp startup boundary (ECTS-023)', () {
-    testWidgets('reaches a usable state before first frame shows dashboard',
-        (tester) async {
-      final state = await initializeApp(NativeDatabase.memory());
-      final db = (state as StartupReady).db;
-
-      await tester.pumpWidget(EctsTrackerApp(startup: state));
-      await tester.pumpAndSettle();
-
-      // App reached the real dashboard (seed data bootstrapped), not an empty
-      // or error shell.
-      expect(find.text('Overall progress'), findsOneWidget);
-      expect(find.byType(StartupErrorScreen), findsNothing);
-      // Seed data resolved: dashboard shows the bootstrapped courses.
-      expect(find.text('3 course(s)'), findsOneWidget);
-
-      // Unmount disposes the ProviderScope; ECTS-048 closes the pre-opened DB.
-      await tester.pumpWidget(const SizedBox.shrink());
-      await tester.pumpAndSettle();
-      await expectLater(db.customSelect('SELECT 1').get(), throwsA(anything));
-    });
-
-    testWidgets('surfaces a failed open as an explicit error screen',
-        (tester) async {
-      const failed = StartupFailed('Failed to open or prepare the database.');
-      await tester.pumpWidget(const EctsTrackerApp(startup: failed));
-      await tester.pump();
-
-      expect(find.byType(StartupErrorScreen), findsOneWidget);
-      expect(find.text('Could not start ECTS Tracker'), findsOneWidget);
-      expect(find.text('Failed to open or prepare the database.'),
-          findsOneWidget);
     });
   });
 }

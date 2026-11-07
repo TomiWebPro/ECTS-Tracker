@@ -1,135 +1,507 @@
+import 'dart:async';
+import 'dart:convert';
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../data/repositories.dart';
+import '../dev/stress_seed.dart';
 import '../models/models.dart';
 import '../state/providers.dart';
+import 'app_sizes.dart';
 
 /// Settings (ECTS-011): hours-per-ECTS, targets, first weekday, display prefs,
 /// import/export/reset, plus "clear sample data" (ECTS-016).
-class SettingsPage extends ConsumerWidget {
+class SettingsPage extends ConsumerStatefulWidget {
   const SettingsPage({super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  ConsumerState<SettingsPage> createState() => _SettingsPageState();
+}
+
+class _SettingsPageState extends ConsumerState<SettingsPage> {
+  /// Hidden dev-mode unlock: taps on the Data section icon in quick
+  /// succession (≤2 s apart). Resets on slow taps. No animation by design.
+  int _devTaps = 0;
+  DateTime? _devLastTap;
+  bool _pumping = false;
+
+  void _registerDevTap() {
+    final now = DateTime.now();
+    if (_devLastTap != null &&
+        now.difference(_devLastTap!) > const Duration(seconds: 2)) {
+      _devTaps = 0;
+    }
+    _devLastTap = now;
+    _devTaps++;
+    if (_devTaps >= 10) {
+      _devTaps = 0;
+      _askActivateDevMode();
+    }
+  }
+
+  Future<void> _askActivateDevMode() async {
+    if (ref.read(devModeProvider)) return;
+    final confirmed = await showDialog<bool>(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: const Text('Activate dev mode?'),
+        content: const Text(
+          'This unlocks hidden stress-test tools (pump generated data). '
+          'Only for development.',
+        ),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.of(context).pop(false),
+            child: const Text('Cancel'),
+          ),
+          FilledButton(
+            key: const Key('confirmActivateDevMode'),
+            onPressed: () => Navigator.of(context).pop(true),
+            child: const Text('Activate'),
+          ),
+        ],
+      ),
+    );
+    if (confirmed == true && mounted) {
+      ref.read(devModeProvider.notifier).state = true;
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('Dev mode activated.')),
+      );
+    }
+  }
+
+  Future<void> _pumpTestData() async {
+    if (_pumping) return;
+    // Confirm twice: intent, then consequence.
+    final step1 = await showDialog<bool>(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: const Text('Pump test data?'),
+        content: const Text(
+          'This inserts a realistic generated semester (~10 courses, '
+          '~800 sessions over the last 12 weeks). '
+          'Your existing data is kept. Continue?',
+        ),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.of(context).pop(false),
+            child: const Text('Cancel'),
+          ),
+          FilledButton(
+            key: const Key('confirmPumpStep1'),
+            onPressed: () => Navigator.of(context).pop(true),
+            child: const Text('Continue'),
+          ),
+        ],
+      ),
+    );
+    if (step1 != true || !mounted) return;
+    final step2 = await showDialog<bool>(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: const Text('Confirm stress pump'),
+        content: const Text(
+          'Second confirmation: this will inflate courses, lists, charts, '
+          'and pace calculations, and may take a few seconds. Pump now?',
+        ),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.of(context).pop(false),
+            child: const Text('Cancel'),
+          ),
+          FilledButton(
+            key: const Key('confirmPumpStep2'),
+            onPressed: () => Navigator.of(context).pop(true),
+            child: const Text('Pump data'),
+          ),
+        ],
+      ),
+    );
+    if (step2 != true || !mounted) return;
+    setState(() => _pumping = true);
+    try {
+      final payload = buildStressPayload(random: Random());
+      final result =
+          await ref.read(devPumpRepositoryProvider).pump(payload);
+      if (!mounted) return;
+      switch (result) {
+        case Ok<(int, int)>(:final value):
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+                content: Text(
+                    'Pumped ${value.$1} courses, ${value.$2} sessions.')),
+          );
+        case Err<(int, int)>(:final message):
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(content: Text(message)),
+          );
+      }
+    } finally {
+      if (mounted) setState(() => _pumping = false);
+    }
+  }
+
+  Future<void> _clearPumpedData() async {
+    final confirmed = await showDialog<bool>(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: const Text('Clear pumped data?'),
+        content: const Text(
+          'Deletes the generated STRESS courses and their sessions. '
+          'Your own data is kept.',
+        ),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.of(context).pop(false),
+            child: const Text('Cancel'),
+          ),
+          FilledButton(
+            key: const Key('confirmClearPumpedData'),
+            onPressed: () => Navigator.of(context).pop(true),
+            child: const Text('Clear'),
+          ),
+        ],
+      ),
+    );
+    if (confirmed != true || !mounted) return;
+    final result = await ref.read(devPumpRepositoryProvider).clearPumped();
+    if (!mounted) return;
+    switch (result) {
+      case Ok<int>(:final value):
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text('Cleared $value pumped course(s).')),
+        );
+      case Err<int>(:final message):
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text(message)),
+        );
+    }
+  }
+
+  Future<void> _confirmRemoveAllDev() async {
+    final confirmed = await showDialog<bool>(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: const Text('Remove all data?'),
+        content: const Text(
+          'Dev shortcut: this permanently deletes ALL courses, sessions, '
+          'and settings. This cannot be undone.',
+        ),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.of(context).pop(false),
+            child: const Text('Cancel'),
+          ),
+          FilledButton(
+            key: const Key('confirmRemoveAllDataDev'),
+            style: FilledButton.styleFrom(
+              backgroundColor: Theme.of(context).colorScheme.error,
+            ),
+            onPressed: () => Navigator.of(context).pop(true),
+            child: const Text('Delete everything'),
+          ),
+        ],
+      ),
+    );
+    if (confirmed != true || !mounted) return;
+    final result = await ref.read(backupRepositoryProvider).resetAllData();
+    if (!mounted) return;
+    _showResult(context, result, success: 'All data deleted.');
+  }
+
+  @override
+  Widget build(BuildContext context) {
     final hasSample = ref.watch(hasSampleDataProvider);
     final settingsAsync = ref.watch(settingsProvider);
     final settings = settingsAsync.valueOrNull ?? const AppSettings();
+    final devMode = ref.watch(devModeProvider);
 
-    return ListView(
-      children: [
-        _sectionHeader(context, 'Study settings'),
-        ListTile(
-          key: const Key('hoursPerEctsTile'),
-          leading: const Icon(Icons.timelapse_outlined),
-          title: const Text('Hours per ECTS'),
-          subtitle: Text(
-            '${settings.hoursPerEcts.toStringAsFixed(settings.hoursPerEcts % 1 == 0 ? 0 : 1)} h  ·  '
-            'Required hours = ECTS × this factor (existing logs kept).',
+    return Align(
+      alignment: Alignment.topCenter,
+      child: ConstrainedBox(
+        constraints: const BoxConstraints(
+            maxWidth: AppSizes.maxContentWidth),
+        child: ListView(
+          padding: const EdgeInsets.fromLTRB(
+            AppSizes.pageHPad,
+            AppSizes.pageTopPad,
+            AppSizes.pageHPad,
+            AppSizes.pageBottomPadNoFab,
           ),
-          onTap: () => _editHoursPerEcts(context, ref, settings),
-        ),
-        ListTile(
-          key: const Key('dailyTargetTile'),
-          leading: const Icon(Icons.flag_outlined),
-          title: const Text('Daily study target'),
-          subtitle: Text(settings.dailyTargetMinutes > 0
-              ? '${settings.dailyTargetMinutes} min/day'
-              : 'No target set'),
-          onTap: () => _editDailyTarget(context, ref, settings),
-        ),
-        ListTile(
-          key: const Key('firstWeekdayTile'),
-          leading: const Icon(Icons.view_week_outlined),
-          title: const Text('First day of week'),
-          subtitle: Text(_weekdayName(settings.firstWeekday)),
-          onTap: () => _editFirstWeekday(context, ref, settings),
-        ),
-        _sectionHeader(context, 'Display'),
-        ListTile(
-          key: const Key('themeModeTile'),
-          leading: const Icon(Icons.brightness_6_outlined),
-          title: const Text('Theme'),
-          subtitle: Text(_themeModeName(settings.themeMode)),
-          onTap: () => _editThemeMode(context, ref, settings),
-        ),
-        _sectionHeader(context, 'Data'),
-        hasSample.when(
-          loading: () => const ListTile(
-            leading: SizedBox(
-              width: 24,
-              height: 24,
-              child: CircularProgressIndicator(strokeWidth: 2),
-            ),
-            title: Text('Checking sample data…'),
-          ),
-          error: (e, _) => ListTile(
-            leading: const Icon(Icons.error_outline),
-            title: const Text('Sample data'),
-            subtitle: Text('Error: $e'),
-          ),
-          data: (present) => present
-              ? ListTile(
-                  key: const Key('clearSampleDataTile'),
-                  leading: const Icon(Icons.delete_sweep_outlined),
-                  title: const Text('Clear sample data'),
-                  subtitle: const Text(
-                    'Remove the seeded example courses and sessions. Your own data is kept.',
+          children: [
+            _sectionHeader(context, 'Study settings', Icons.school_outlined),
+            _SettingsCard(
+              children: [
+                _SettingsTile(
+                  tileKey: const Key('hoursPerEctsTile'),
+                  icon: Icons.timelapse_outlined,
+                  title: 'Hours per ECTS',
+                  subtitle: Text(
+                    '${settings.hoursPerEcts.toStringAsFixed(settings.hoursPerEcts % 1 == 0 ? 0 : 1)} h',
                   ),
-                  onTap: () => _confirmClearSample(context, ref),
-                )
-              : const ListTile(
-                  key: Key('noSampleDataTile'),
-                  leading: Icon(Icons.check_circle_outline),
-                  title: Text('No sample data'),
-                  subtitle:
-                      Text('Seeded example data has already been cleared.'),
+                  onTap: () => _editHoursPerEcts(context, ref, settings),
                 ),
+                _SettingsTile(
+                  tileKey: const Key('dailyTargetTile'),
+                  icon: Icons.flag_outlined,
+                  title: 'Daily study target',
+                  subtitle: Text(settings.dailyTargetMinutes > 0
+                      ? '${settings.dailyTargetMinutes} min/day'
+                      : 'No target set'),
+                  onTap: () => _editDailyTarget(context, ref, settings),
+                  showDivider: false,
+                ),
+                _SettingsTile(
+                  tileKey: const Key('firstWeekdayTile'),
+                  icon: Icons.view_week_outlined,
+                  title: 'First day of week',
+                  subtitle: Text(_weekdayName(settings.firstWeekday)),
+                  onTap: () => _editFirstWeekday(context, ref, settings),
+                  showDivider: false,
+                  topDivider: true,
+                ),
+                _SettingsTile(
+                  tileKey: const Key('paceToleranceTile'),
+                  icon: Icons.speed_outlined,
+                  title: 'Ahead / behind tolerance',
+                  subtitle: Text(
+                    '${_formatTolerance(settings.paceToleranceDays)} of work',
+                  ),
+                  onTap: () => _editPaceTolerance(context, ref, settings),
+                  topDivider: true,
+                ),
+                _SettingsTile(
+                  tileKey: const Key('overloadThresholdTile'),
+                  icon: Icons.local_fire_department_outlined,
+                  title: 'Weekly overload threshold',
+                  subtitle: Text(
+                    '${_formatOverload(settings.weeklyOverloadHours)}/week flags red',
+                  ),
+                  onTap: () => _editOverloadThreshold(context, ref, settings),
+                  showDivider: false,
+                  topDivider: true,
+                ),
+              ],
+            ),
+            _sectionHeader(context, 'Display', Icons.palette_outlined),
+            _SettingsCard(
+              children: [
+                _SettingsTile(
+                  tileKey: const Key('themeModeTile'),
+                  icon: Icons.brightness_6_outlined,
+                  title: 'Appearance (dark / light)',
+                  subtitle: Text(_themeModeName(settings.themeMode)),
+                  onTap: () => _editThemeMode(context, ref, settings),
+                  topDivider: false,
+                ),
+                _SettingsTile(
+                  tileKey: const Key('displaySizeTile'),
+                  icon: Icons.format_size_outlined,
+                  title: 'Text & element size',
+                  subtitle: Text(settings.displaySize.label),
+                  onTap: () => _editDisplaySize(context, ref, settings),
+                  topDivider: true,
+                ),
+                _SettingsTile(
+                  tileKey: const Key('accentTile'),
+                  icon: Icons.color_lens_outlined,
+                  title: 'Theme colour',
+                  subtitle: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Container(
+                        width: 14,
+                        height: 14,
+                        margin: const EdgeInsets.only(right: 8),
+                        decoration: BoxDecoration(
+                          color: Color(settings.accent.seedValue),
+                          shape: BoxShape.circle,
+                        ),
+                      ),
+                      Flexible(child: Text(settings.accent.label)),
+                    ],
+                  ),
+                  onTap: () => _editAccent(context, ref, settings),
+                  showDivider: false,
+                  topDivider: true,
+                ),
+              ],
+            ),
+            _UnlockableSectionHeader(
+              title: 'Data',
+              icon: Icons.storage_outlined,
+              onIconTap: _registerDevTap,
+            ),
+            _SettingsCard(
+              children: [
+                hasSample.when(
+                  loading: () => const ListTile(
+                    leading: SizedBox(
+                      width: 24,
+                      height: 24,
+                      child: CircularProgressIndicator(strokeWidth: 2),
+                    ),
+                    title: Text('Checking sample data…'),
+                  ),
+                  error: (e, _) => ListTile(
+                    leading: const Icon(Icons.error_outline),
+                    title: const Text('Sample data'),
+                    subtitle: Text('Error: $e'),
+                  ),
+                  data: (present) => present
+                      ? _SettingsTile(
+                          tileKey: const Key('clearSampleDataTile'),
+                          icon: Icons.delete_sweep_outlined,
+                          title: 'Clear sample data',
+                          subtitle: const Text(
+                            'Remove the seeded example courses and sessions. Your own data is kept.',
+                          ),
+                          onTap: () => _confirmClearSample(context, ref),
+                        )
+                      : _SettingsTile(
+                          tileKey: const Key('noSampleDataTile'),
+                          icon: Icons.check_circle_outline,
+                          title: 'No sample data',
+                          subtitle: const Text(
+                              'Seeded example data has already been cleared.'),
+                          onIconTap: _registerDevTap,
+                        ),
+                ),
+                _SettingsTile(
+                  tileKey: const Key('exportDataTile'),
+                  icon: Icons.file_upload_outlined,
+                  title: 'Export data',
+                  subtitle: const Text(
+                      'Copy all courses, sessions, and settings as JSON.'),
+                  onTap: () => _exportData(context, ref),
+                ),
+                _SettingsTile(
+                  tileKey: const Key('importDataTile'),
+                  icon: Icons.file_download_outlined,
+                  title: 'Import data',
+                  subtitle: const Text(
+                      'Replace all data from a previously exported JSON backup.'),
+                  onTap: () => _importData(context, ref),
+                ),
+                _SettingsTile(
+                  tileKey: const Key('resetSettingsTile'),
+                  icon: Icons.settings_backup_restore_outlined,
+                  title: 'Reset settings',
+                  subtitle: const Text(
+                      'Restore defaults: 30 h/ECTS, no target, Monday, system theme, 5-day tolerance, 35 h/week overload, comfortable size, teal colour.'),
+                  onTap: () => _confirmResetSettings(context, ref),
+                  showDivider: false,
+                ),
+              ],
+            ),
+            if (devMode) ...[
+              const SizedBox(height: 12),
+              _sectionHeader(context, 'Dev mode', Icons.bug_report_outlined),
+              _SettingsCard(
+                children: [
+                  _SettingsTile(
+                    tileKey: const Key('pumpTestDataTile'),
+                    icon: Icons.science_outlined,
+                    title: 'Pump test data',
+                    subtitle: Text(_pumping
+                        ? 'Pumping test data…'
+                        : 'Insert a generated semester (~10 courses, ~800 sessions, 12 weeks). Existing data kept.'),
+                    onTap: _pumping ? null : _pumpTestData,
+                  ),
+                  _SettingsTile(
+                    tileKey: const Key('clearPumpedDataTile'),
+                    icon: Icons.cleaning_services_outlined,
+                    title: 'Clear pumped data',
+                    subtitle: const Text(
+                        'Delete generated STRESS courses and sessions.'),
+                    onTap: _clearPumpedData,
+                  ),
+                  _SettingsTile(
+                    tileKey: const Key('removeAllDataDevTile'),
+                    icon: Icons.delete_forever_outlined,
+                    title: 'Remove all data',
+                    subtitle: const Text(
+                        'Dev shortcut: delete ALL courses, sessions, and settings.'),
+                    onTap: _confirmRemoveAllDev,
+                    showDivider: false,
+                  ),
+                  _SettingsTile(
+                    tileKey: const Key('exitDevModeTile'),
+                    icon: Icons.logout_outlined,
+                    title: 'Exit dev mode',
+                    subtitle:
+                        const Text('Hide dev tools on this device.'),
+                    onTap: () =>
+                        ref.read(devModeProvider.notifier).state = false,
+                    showDivider: false,
+                  ),
+                ],
+              ),
+            ],
+            const SizedBox(height: 12),
+            _SettingsCard(
+              danger: true,
+              children: [
+                _SettingsTile(
+                  tileKey: const Key('resetAllDataTile'),
+                  icon: Icons.delete_forever_outlined,
+                  title: 'Reset all data',
+                  subtitle: const Text(
+                      'Delete all courses, sessions, and settings.'),
+                  onTap: () => _confirmResetAll(context, ref),
+                  showDivider: false,
+                  danger: true,
+                ),
+              ],
+            ),
+            const SizedBox(height: 8),
+          ],
         ),
-        ListTile(
-          key: const Key('exportDataTile'),
-          leading: const Icon(Icons.file_upload_outlined),
-          title: const Text('Export data'),
-          subtitle: const Text('Copy all courses, sessions, and settings as JSON.'),
-          onTap: () => _exportData(context, ref),
-        ),
-        ListTile(
-          key: const Key('importDataTile'),
-          leading: const Icon(Icons.file_download_outlined),
-          title: const Text('Import data'),
-          subtitle:
-              const Text('Replace all data from a previously exported JSON backup.'),
-          onTap: () => _importData(context, ref),
-        ),
-        ListTile(
-          key: const Key('resetSettingsTile'),
-          leading: const Icon(Icons.settings_backup_restore_outlined),
-          title: const Text('Reset settings'),
-          subtitle: const Text('Restore default hours-per-ECTS, targets, and display.'),
-          onTap: () => _confirmResetSettings(context, ref),
-        ),
-        ListTile(
-          key: const Key('resetAllDataTile'),
-          leading: Icon(Icons.delete_forever_outlined,
-              color: Theme.of(context).colorScheme.error),
-          title: Text('Reset all data',
-              style: TextStyle(color: Theme.of(context).colorScheme.error)),
-          subtitle: const Text('Delete all courses, sessions, and settings.'),
-          onTap: () => _confirmResetAll(context, ref),
-        ),
-        const SizedBox(height: 24),
-      ],
+      ),
     );
   }
 
-  Widget _sectionHeader(BuildContext context, String title) => Padding(
-        padding: const EdgeInsets.fromLTRB(16, 16, 16, 4),
-        child: Text(
-          title,
-          style: Theme.of(context).textTheme.titleSmall?.copyWith(
-                color: Theme.of(context).colorScheme.primary,
+  Widget _sectionHeader(BuildContext context, String title,
+          [IconData? icon]) =>
+      Padding(
+        padding: const EdgeInsets.fromLTRB(4, 20, 4, 8),
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            if (icon != null)
+              Container(
+                width: AppSizes.headerIconBox,
+                height: AppSizes.headerIconBox,
+                margin: const EdgeInsets.only(right: AppSizes.headerGap),
+                decoration: BoxDecoration(
+                  color: Theme.of(context).colorScheme.primaryContainer,
+                  borderRadius:
+                      BorderRadius.circular(AppSizes.headerIconRadius),
+                ),
+                child: Icon(icon,
+                    size: AppSizes.headerIcon,
+                    color: Theme.of(context).colorScheme.onPrimaryContainer),
               ),
+            Expanded(
+              child: Align(
+                alignment: Alignment.centerLeft,
+                child: Text(
+                  title,
+                  textHeightBehavior: const TextHeightBehavior(
+                    leadingDistribution: TextLeadingDistribution.even,
+                  ),
+                  style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                        fontWeight: FontWeight.w800,
+                        letterSpacing: -0.2,
+                        height: 1.05,
+                      ),
+                ),
+              ),
+            ),
+          ],
         ),
       );
 
@@ -148,6 +520,122 @@ class SettingsPage extends ConsumerWidget {
         AppThemeMode.light => 'Light',
         AppThemeMode.dark => 'Dark',
       };
+
+  String _formatTolerance(double v) =>
+      v % 1 == 0 ? '${v.toStringAsFixed(0)} days' : '${v.toStringAsFixed(1)} days';
+
+  String _formatOverload(double v) =>
+      v % 1 == 0 ? '${v.toStringAsFixed(0)} h' : '${v.toStringAsFixed(1)} h';
+
+  Future<void> _editOverloadThreshold(
+      BuildContext context, WidgetRef ref, AppSettings settings) async {
+    final controller =
+        TextEditingController(text: settings.weeklyOverloadHours.toString());
+    String? errorText;
+    final value = await showDialog<double>(
+      context: context,
+      builder: (context) => StatefulBuilder(
+        builder: (context, setState) => AlertDialog(
+          title: const Text('Weekly overload threshold'),
+          content: TextField(
+            key: const Key('overloadThresholdField'),
+            controller: controller,
+            keyboardType:
+                const TextInputType.numberWithOptions(decimal: true),
+            decoration: InputDecoration(
+              labelText: 'Hours per week (5–100)',
+              helperText:
+                  'Coming-load weeks above this are flagged red. Full-time study is ~35–40 h/week.',
+              errorText: errorText,
+            ),
+            autofocus: true,
+          ),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.of(context).pop(),
+              child: const Text('Cancel'),
+            ),
+            FilledButton(
+              key: const Key('saveOverloadThreshold'),
+              onPressed: () {
+                final parsed = double.tryParse(
+                    controller.text.trim().replaceAll(',', '.'));
+                if (parsed == null || parsed < 5 || parsed > 100) {
+                  setState(
+                      () => errorText = 'Enter a number 5–100 h/week.');
+                  return;
+                }
+                Navigator.of(context).pop(parsed);
+              },
+              child: const Text('Save'),
+            ),
+          ],
+        ),
+      ),
+    );
+    WidgetsBinding.instance.addPostFrameCallback((_) => controller.dispose());
+    if (value == null || !context.mounted) return;
+    final result = await ref
+        .read(settingsRepositoryProvider)
+        .setWeeklyOverloadHours(value);
+    if (!context.mounted) return;
+    _showResult(context, result, success: 'Overload threshold updated.');
+  }
+
+  Future<void> _editPaceTolerance(
+      BuildContext context, WidgetRef ref, AppSettings settings) async {
+    final controller =
+        TextEditingController(text: settings.paceToleranceDays.toString());
+    String? errorText;
+    final value = await showDialog<double>(
+      context: context,
+      builder: (context) => StatefulBuilder(
+        builder: (context, setState) => AlertDialog(
+          title: const Text('Ahead / behind tolerance'),
+          content: TextField(
+            key: const Key('paceToleranceField'),
+            controller: controller,
+            keyboardType:
+                const TextInputType.numberWithOptions(decimal: true),
+            decoration: InputDecoration(
+              labelText: 'Days of work (0–30)',
+              helperText:
+                  'Ahead needs +N days surplus, behind −N days. 5 = stable, 0 = sensitive.',
+              errorText: errorText,
+            ),
+            autofocus: true,
+          ),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.of(context).pop(),
+              child: const Text('Cancel'),
+            ),
+            FilledButton(
+              key: const Key('savePaceTolerance'),
+              onPressed: () {
+                final parsed = double.tryParse(
+                    controller.text.trim().replaceAll(',', '.'));
+                if (parsed == null || parsed < 0 || parsed > 30) {
+                  setState(
+                      () => errorText = 'Enter a number 0–30 days.');
+                  return;
+                }
+                Navigator.of(context).pop(parsed);
+              },
+              child: const Text('Save'),
+            ),
+          ],
+        ),
+      ),
+    );
+    WidgetsBinding.instance.addPostFrameCallback((_) => controller.dispose());
+    if (value == null || !context.mounted) return;
+    final result = await ref
+        .read(settingsRepositoryProvider)
+        .setPaceToleranceDays(value);
+    if (!context.mounted) return;
+    _showResult(context, result, success: 'Tolerance updated.');
+  }
 
   Future<void> _editHoursPerEcts(
       BuildContext context, WidgetRef ref, AppSettings settings) async {
@@ -308,6 +796,78 @@ class SettingsPage extends ConsumerWidget {
     _showResult(context, result, success: 'Theme updated.');
   }
 
+  Future<void> _editDisplaySize(
+      BuildContext context, WidgetRef ref, AppSettings settings) async {
+    final selected = await showDialog<AppDisplaySize>(
+      context: context,
+      builder: (context) => SimpleDialog(
+        title: const Text('Text & element size'),
+        children: [
+          for (final size in AppDisplaySize.values)
+            SimpleDialogOption(
+              key: Key('displaySize_${size.name}'),
+              onPressed: () => Navigator.of(context).pop(size),
+              child: Row(
+                children: [
+                  Expanded(
+                    child: Text(
+                      '${size.label} (${(size.scale * 100).toStringAsFixed(0)}%)',
+                      style: TextStyle(fontSize: 16 * size.scale),
+                    ),
+                  ),
+                  if (size == settings.displaySize)
+                    const Icon(Icons.check, size: 18),
+                ],
+              ),
+            ),
+        ],
+      ),
+    );
+    if (selected == null || !context.mounted) return;
+    final result =
+        await ref.read(settingsRepositoryProvider).setDisplaySize(selected);
+    if (!context.mounted) return;
+    _showResult(context, result, success: 'Display size updated.');
+  }
+
+  Future<void> _editAccent(
+      BuildContext context, WidgetRef ref, AppSettings settings) async {
+    final selected = await showDialog<AppAccent>(
+      context: context,
+      builder: (context) => SimpleDialog(
+        title: const Text('Theme colour'),
+        children: [
+          for (final accent in AppAccent.values)
+            SimpleDialogOption(
+              key: Key('accent_${accent.name}'),
+              onPressed: () => Navigator.of(context).pop(accent),
+              child: Row(
+                children: [
+                  Container(
+                    width: 20,
+                    height: 20,
+                    margin: const EdgeInsets.only(right: 12),
+                    decoration: BoxDecoration(
+                      color: Color(accent.seedValue),
+                      shape: BoxShape.circle,
+                    ),
+                  ),
+                  Expanded(child: Text(accent.label)),
+                  if (accent == settings.accent)
+                    const Icon(Icons.check, size: 18),
+                ],
+              ),
+            ),
+        ],
+      ),
+    );
+    if (selected == null || !context.mounted) return;
+    final result =
+        await ref.read(settingsRepositoryProvider).setAccent(selected);
+    if (!context.mounted) return;
+    _showResult(context, result, success: 'Theme colour updated.');
+  }
+
   Future<void> _confirmClearSample(BuildContext context, WidgetRef ref) async {
     final confirmed = await showDialog<bool>(
       context: context,
@@ -352,6 +912,22 @@ class SettingsPage extends ConsumerWidget {
       case Err<String>():
         _showResult(context, Err<void>((result).message), success: '');
       case Ok<String>(:final value):
+        int courses = 0;
+        int sessions = 0;
+        try {
+          final decoded = jsonDecode(value);
+          if (decoded is Map) {
+            final c = decoded['courses'];
+            final s = decoded['sessions'];
+            if (c is List) courses = c.length;
+            if (s is List) sessions = s.length;
+          }
+        } catch (_) {}
+        final kb = (value.length / 1024).toStringAsFixed(1);
+        const previewLimit = 4000;
+        final preview = value.length > previewLimit
+            ? '${value.substring(0, previewLimit)}\n… (truncated — full backup is $kb KB, use Copy for everything)'
+            : value;
         await showDialog<void>(
           context: context,
           builder: (context) => AlertDialog(
@@ -359,10 +935,19 @@ class SettingsPage extends ConsumerWidget {
             content: SizedBox(
               width: double.maxFinite,
               child: SingleChildScrollView(
-                child: SelectableText(
-                  value,
-                  key: const Key('exportJsonText'),
-                  style: const TextStyle(fontFamily: 'monospace', fontSize: 12),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Text('$courses course(s) · $sessions session(s) · $kb KB'),
+                    const SizedBox(height: 8),
+                    SelectableText(
+                      preview,
+                      key: const Key('exportJsonText'),
+                      style:
+                          const TextStyle(fontFamily: 'monospace', fontSize: 12),
+                    ),
+                  ],
                 ),
               ),
             ),
@@ -390,53 +975,164 @@ class SettingsPage extends ConsumerWidget {
 
   Future<void> _importData(BuildContext context, WidgetRef ref) async {
     final controller = TextEditingController();
-    final confirmed = await showDialog<bool>(
+    ImportMode mode = ImportMode.replace;
+    String? previewText;
+    bool previewOk = false;
+    String previewError = '';
+    int previewCourses = 0;
+    int previewSessions = 0;
+    await showDialog<void>(
       context: context,
-      builder: (context) => AlertDialog(
-        title: const Text('Import data'),
-        content: SizedBox(
-          width: double.maxFinite,
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const Text(
-                'This replaces ALL courses, sessions, and settings with the imported backup.',
-              ),
-              const SizedBox(height: 12),
-              TextField(
-                key: const Key('importJsonField'),
-                controller: controller,
-                maxLines: 6,
-                decoration: const InputDecoration(
-                  labelText: 'Paste exported JSON',
-                  border: OutlineInputBorder(),
+      builder: (context) => StatefulBuilder(
+        builder: (context, setState) {
+          Future<void> validate() async {
+            final text = controller.text;
+            if (text.trim().isEmpty) {
+              setState(() {
+                previewOk = false;
+                previewError = '';
+                previewText = null;
+              });
+              return;
+            }
+            final res =
+                await ref.read(backupRepositoryProvider).previewImport(text);
+            if (!context.mounted) return;
+            switch (res) {
+              case Ok<BackupPreview>(:final value):
+                setState(() {
+                  previewOk = true;
+                  previewError = '';
+                  previewCourses = value.courses;
+                  previewSessions = value.sessions;
+                  previewText =
+                      '${value.courses} course(s) · ${value.sessions} session(s)'
+                      '${value.exportedAt != null ? ' · exported ${value.exportedAt}' : ''}'
+                      '${value.dbSchema != null ? ' · schema v${value.dbSchema}' : ''}';
+                });
+              case Err<BackupPreview>(:final message):
+                setState(() {
+                  previewOk = false;
+                  previewError = message;
+                  previewText = null;
+                });
+            }
+          }
+
+          return AlertDialog(
+            title: const Text('Import data'),
+            content: SizedBox(
+              width: double.maxFinite,
+              child: SingleChildScrollView(
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const Text(
+                      'Append adds the backup alongside your current data (settings kept). '
+                      'Replace wipes ALL courses, sessions, and settings first.',
+                    ),
+                    const SizedBox(height: 12),
+                    TextField(
+                      key: const Key('importJsonField'),
+                      controller: controller,
+                      maxLines: 6,
+                      decoration: const InputDecoration(
+                        labelText: 'Paste exported JSON',
+                        border: OutlineInputBorder(),
+                      ),
+                      onChanged: (_) => validate(),
+                    ),
+                    const SizedBox(height: 8),
+                    if (previewError.isNotEmpty)
+                      Text(
+                        previewError,
+                        key: const Key('importPreviewError'),
+                        style: TextStyle(
+                            color: Theme.of(context).colorScheme.error),
+                      ),
+                    if (previewText != null)
+                      Text(
+                        previewText!,
+                        key: const Key('importPreviewOk'),
+                        style: const TextStyle(fontWeight: FontWeight.w600),
+                      ),
+                    const SizedBox(height: 8),
+                    SegmentedButton<ImportMode>(
+                      segments: const [
+                        ButtonSegment(
+                          value: ImportMode.append,
+                          label: Text('Append'),
+                          icon: Icon(Icons.add),
+                        ),
+                        ButtonSegment(
+                          value: ImportMode.replace,
+                          label: Text('Replace'),
+                          icon: Icon(Icons.warning_amber_outlined),
+                        ),
+                      ],
+                      selected: {mode},
+                      onSelectionChanged: (s) =>
+                          setState(() => mode = s.first),
+                    ),
+                    if (mode == ImportMode.replace) ...[
+                      const SizedBox(height: 12),
+                      const Text(
+                        'Replace deletes everything first. Press and HOLD the button below for 10 seconds to confirm.',
+                      ),
+                      const SizedBox(height: 8),
+                      _HoldToConfirmButton(
+                        enabled: previewOk,
+                        seconds: 10,
+                        label: 'Hold to replace everything',
+                        onConfirmed: () async {
+                          final text = controller.text;
+                          Navigator.of(context).pop();
+                          final result = await ref
+                              .read(backupRepositoryProvider)
+                              .importJson(text, mode: ImportMode.replace);
+                          if (!context.mounted) return;
+                          _showResult(context, result,
+                              success:
+                                  'Data replaced: $previewCourses course(s), $previewSessions session(s) restored.',
+                              errorKey: const Key('importDataError'));
+                        },
+                      ),
+                    ],
+                  ],
                 ),
               ),
+            ),
+            actions: [
+              TextButton(
+                onPressed: () => Navigator.of(context).pop(),
+                child: const Text('Cancel'),
+              ),
+              if (mode == ImportMode.append)
+                FilledButton(
+                  key: const Key('confirmImportData'),
+                  onPressed: !previewOk
+                      ? null
+                      : () async {
+                          final text = controller.text;
+                          Navigator.of(context).pop();
+                          final result = await ref
+                              .read(backupRepositoryProvider)
+                              .importJson(text, mode: ImportMode.append);
+                          if (!context.mounted) return;
+                          _showResult(context, result,
+                              success:
+                                  'Data appended: $previewCourses course(s), $previewSessions session(s) added.',
+                              errorKey: const Key('importDataError'));
+                        },
+                  child: const Text('Import (append)'),
+                ),
             ],
-          ),
-        ),
-        actions: [
-          TextButton(
-            onPressed: () => Navigator.of(context).pop(false),
-            child: const Text('Cancel'),
-          ),
-          FilledButton(
-            key: const Key('confirmImportData'),
-            onPressed: () => Navigator.of(context).pop(true),
-            child: const Text('Import'),
-          ),
-        ],
+          );
+        },
       ),
     );
-    final text = controller.text;
     WidgetsBinding.instance.addPostFrameCallback((_) => controller.dispose());
-    if (confirmed != true || !context.mounted) return;
-    final result = await ref.read(backupRepositoryProvider).importJson(text);
-    if (!context.mounted) return;
-    _showResult(context, result,
-        success: 'Data imported. Your backup has been restored.',
-        errorKey: const Key('importDataError'));
   }
 
   Future<void> _confirmResetSettings(BuildContext context, WidgetRef ref) async {
@@ -445,7 +1141,7 @@ class SettingsPage extends ConsumerWidget {
       builder: (context) => AlertDialog(
         title: const Text('Reset settings?'),
         content: const Text(
-          'Restores hours-per-ECTS (30), daily target (none), first weekday (Monday), and theme (system). Courses and sessions are kept.',
+          'Restores hours-per-ECTS (30), daily target (none), first weekday (Monday), theme (system), tolerance (5 days), overload (35 h/week), size (comfortable), colour (teal). Courses and sessions are kept.',
         ),
         actions: [
           TextButton(
@@ -508,5 +1204,272 @@ class SettingsPage extends ConsumerWidget {
         ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(key: errorKey, content: Text(message)));
     }
+  }
+}
+
+class _SettingsCard extends StatelessWidget {
+  const _SettingsCard({required this.children, this.danger = false});
+
+  final List<Widget> children;
+  final bool danger;
+
+  @override
+  Widget build(BuildContext context) {
+    final scheme = Theme.of(context).colorScheme;
+    return Card(
+      color: danger ? scheme.errorContainer.withValues(alpha: 0.35) : null,
+      child: Padding(
+        padding: const EdgeInsets.symmetric(vertical: 4),
+        child: Column(children: children),
+      ),
+    );
+  }
+}
+
+class _SettingsTile extends StatelessWidget {
+  const _SettingsTile({
+    this.tileKey,
+    required this.icon,
+    required this.title,
+    required this.subtitle,
+    this.onTap,
+    this.onIconTap,
+    this.showDivider = true,
+    this.topDivider = false,
+    this.danger = false,
+  });
+
+  final Key? tileKey;
+  final IconData icon;
+  final String title;
+  final Widget subtitle;
+  final VoidCallback? onTap;
+
+  /// Hidden dev-mode unlock hook: taps on the leading icon with zero
+  /// visual feedback (no splash/animation).
+  final VoidCallback? onIconTap;
+  final bool showDivider;
+  final bool topDivider;
+  final bool danger;
+
+  @override
+  Widget build(BuildContext context) {
+    final scheme = Theme.of(context).colorScheme;
+    final fg = danger ? scheme.error : scheme.onSurface;
+    final iconBg = danger
+        ? scheme.error.withValues(alpha: 0.14)
+        : scheme.primaryContainer.withValues(alpha: 0.7);
+    final iconFg = danger ? scheme.error : scheme.onPrimaryContainer;
+    final iconBox = Container(
+      width: 38,
+      height: 38,
+      decoration: BoxDecoration(
+        color: iconBg,
+        borderRadius: BorderRadius.circular(13),
+      ),
+      child: Icon(icon, size: 20, color: iconFg),
+    );
+    return Column(
+      children: [
+        if (topDivider)
+          Divider(
+            height: 1,
+            indent: 62,
+            endIndent: 16,
+            color: scheme.outlineVariant.withValues(alpha: 0.6),
+          ),
+        ListTile(
+          key: tileKey,
+          onTap: onTap,
+          leading: onIconTap == null
+              ? iconBox
+              : GestureDetector(
+                  behavior: HitTestBehavior.opaque,
+                  onTap: onIconTap,
+                  child: iconBox,
+                ),
+          title: Text(
+            title,
+            style: Theme.of(context).textTheme.titleSmall?.copyWith(
+                  fontWeight: FontWeight.w800,
+                  color: fg,
+                ),
+          ),
+          subtitle: DefaultTextStyle.merge(
+            style: TextStyle(color: scheme.onSurfaceVariant),
+            child: subtitle,
+          ),
+          trailing: onTap == null
+              ? null
+              : Icon(Icons.chevron_right,
+                  color: scheme.onSurfaceVariant.withValues(alpha: 0.7)),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(16),
+          ),
+        ),
+        if (showDivider)
+          Divider(
+            height: 1,
+            indent: 62,
+            endIndent: 16,
+            color: scheme.outlineVariant.withValues(alpha: 0.6),
+          ),
+      ],
+    );
+  }
+}
+
+/// Section header whose icon is a hidden tap target: [onIconTap] fires with
+/// zero visual feedback (plain [GestureDetector], no splash/animation).
+class _UnlockableSectionHeader extends StatelessWidget {
+  const _UnlockableSectionHeader({
+    required this.title,
+    required this.icon,
+    required this.onIconTap,
+  });
+
+  final String title;
+  final IconData icon;
+  final VoidCallback onIconTap;
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.fromLTRB(4, 20, 4, 8),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          GestureDetector(
+            behavior: HitTestBehavior.opaque,
+            onTap: onIconTap,
+            child: Container(
+              width: AppSizes.headerIconBox,
+              height: AppSizes.headerIconBox,
+              margin: const EdgeInsets.only(right: AppSizes.headerGap),
+              decoration: BoxDecoration(
+                color: Theme.of(context).colorScheme.primaryContainer,
+                borderRadius:
+                    BorderRadius.circular(AppSizes.headerIconRadius),
+              ),
+              child: Icon(icon,
+                  size: AppSizes.headerIcon,
+                  color: Theme.of(context).colorScheme.onPrimaryContainer),
+            ),
+          ),
+          Expanded(
+            child: Align(
+              alignment: Alignment.centerLeft,
+              child: Text(
+                title,
+                textHeightBehavior: const TextHeightBehavior(
+                  leadingDistribution: TextLeadingDistribution.even,
+                ),
+                style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                      fontWeight: FontWeight.w800,
+                      letterSpacing: -0.2,
+                      height: 1.05,
+                    ),
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+/// Destructive-action guard: the user must press AND HOLD for [seconds]
+/// (default 10 s). Releasing early resets progress. Disabled until the
+/// backup preview validates ([enabled]).
+class _HoldToConfirmButton extends StatefulWidget {
+  const _HoldToConfirmButton({
+    required this.enabled,
+    required this.onConfirmed,
+    this.seconds = 10,
+    this.label = 'Hold to confirm',
+  });
+
+  final bool enabled;
+  final Future<void> Function() onConfirmed;
+  final int seconds;
+  final String label;
+
+  @override
+  State<_HoldToConfirmButton> createState() => _HoldToConfirmButtonState();
+}
+
+class _HoldToConfirmButtonState extends State<_HoldToConfirmButton> {
+  Timer? _timer;
+  double _held = 0;
+  bool _fired = false;
+
+  void _cancel() {
+    _timer?.cancel();
+    _timer = null;
+    if (mounted && !_fired) setState(() => _held = 0);
+  }
+
+  void _start() {
+    if (!widget.enabled || _fired) return;
+    _timer?.cancel();
+    const step = Duration(milliseconds: 100);
+    _timer = Timer.periodic(step, (t) {
+      if (!mounted) return t.cancel();
+      setState(() => _held += 0.1);
+      if (_held >= widget.seconds && !_fired) {
+        _fired = true;
+        t.cancel();
+        widget.onConfirmed();
+      }
+    });
+  }
+
+  @override
+  void dispose() {
+    _timer?.cancel();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final progress = (_held / widget.seconds).clamp(0.0, 1.0);
+    final remaining = (widget.seconds - _held).ceil().clamp(0, widget.seconds);
+    return Opacity(
+      opacity: widget.enabled ? 1 : 0.5,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          GestureDetector(
+            onLongPressStart: (_) => _start(),
+            onLongPressEnd: (_) => _cancel(),
+            onLongPressCancel: _cancel,
+            child: FilledButton(
+              key: const Key('holdToConfirmReplace'),
+              onPressed: null,
+              style: FilledButton.styleFrom(
+                backgroundColor: Theme.of(context).colorScheme.error,
+                disabledBackgroundColor:
+                    Theme.of(context).colorScheme.error.withValues(alpha: 0.6),
+              ),
+              child: Text(widget.enabled
+                  ? (_held > 0
+                      ? 'Keep holding… $remaining s'
+                      : '${widget.label} (${widget.seconds}s hold)')
+                  : 'Paste a valid backup first'),
+            ),
+          ),
+          const SizedBox(height: 6),
+          LinearProgressIndicator(
+            value: progress,
+            minHeight: 6,
+            backgroundColor:
+                Theme.of(context).colorScheme.surfaceContainerHighest,
+            valueColor: AlwaysStoppedAnimation<Color>(
+                Theme.of(context).colorScheme.error),
+          ),
+        ],
+      ),
+    );
   }
 }

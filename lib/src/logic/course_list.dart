@@ -52,11 +52,13 @@ class CourseWithProgress {
 ///
 /// Sessions are grouped by `courseId`; a course with no sessions gets an empty
 /// iterable. [now] is the reference instant (injectable for tests).
+/// [toleranceDays] is the ahead/behind band from Settings (default 5).
 List<CourseWithProgress> coursesWithProgress(
   List<Course> courses,
   List<StudySession> sessions, {
   required double hoursPerEcts,
   required DateTime now,
+  double toleranceDays = defaultPaceToleranceDays,
 }) {
   final byCourse = <int, List<StudySession>>{};
   for (final s in sessions) {
@@ -71,9 +73,44 @@ List<CourseWithProgress> coursesWithProgress(
           byCourse[c.id] ?? const <StudySession>[],
           hoursPerEcts: hoursPerEcts,
           now: now,
+          toleranceDays: toleranceDays,
         ),
       ),
   ];
+}
+
+/// View priority for the dashboard Courses section: most urgent first
+/// (overdue, behind, onTrack, ahead, completed), then soonest deadline,
+/// then name as a stable tie-breaker.
+int statusPriority(CourseStatus status) => _statusPriority[status]!;
+
+/// Sorts a dashboard course list by view priority (see [statusPriority]).
+List<CourseWithProgress> sortByViewPriority(List<CourseWithProgress> items) {
+  final sorted = List<CourseWithProgress>.of(items);
+  sorted.sort((a, b) {
+    final cmp = _statusPriority[a.progress.status]!
+        .compareTo(_statusPriority[b.progress.status]!);
+    if (cmp != 0) return cmp;
+    final dc = _compareDeadline(a, b);
+    if (dc != 0) return dc;
+    return a.course.name
+        .toLowerCase()
+        .compareTo(b.course.name.toLowerCase());
+  });
+  return sorted;
+}
+
+/// Items for the dashboard Courses section: started and not completed,
+/// sorted by view priority. Completed courses live in the Courses tab (not
+/// essential to the dashboard's "what needs work today" job); future-start
+/// courses live in Upcoming.
+List<CourseWithProgress> dashboardItems(
+    List<CourseWithProgress> items, DateTime now) {
+  return sortByViewPriority(items
+      .where((e) =>
+          !isScheduledCourse(e.course, now) &&
+          e.progress.status != CourseStatus.completed)
+      .toList());
 }
 
 /// Filters by [statusFilter] (null = all) and sorts by [sort].

@@ -102,6 +102,21 @@ class $CoursesTable extends Courses with TableInfo<$CoursesTable, CourseRow> {
     ),
     defaultValue: const Constant(false),
   );
+  static const VerificationMeta _startEarlyMeta = const VerificationMeta(
+    'startEarly',
+  );
+  @override
+  late final GeneratedColumn<bool> startEarly = GeneratedColumn<bool>(
+    'start_early',
+    aliasedName,
+    false,
+    type: DriftSqlType.bool,
+    requiredDuringInsert: false,
+    defaultConstraints: GeneratedColumn.constraintIsAlways(
+      'CHECK ("start_early" IN (0, 1))',
+    ),
+    defaultValue: const Constant(false),
+  );
   @override
   List<GeneratedColumn> get $columns => [
     id,
@@ -112,6 +127,7 @@ class $CoursesTable extends Courses with TableInfo<$CoursesTable, CourseRow> {
     notes,
     colorValue,
     isSample,
+    startEarly,
   ];
   @override
   String get aliasedName => _alias ?? actualTableName;
@@ -177,6 +193,12 @@ class $CoursesTable extends Courses with TableInfo<$CoursesTable, CourseRow> {
         isSample.isAcceptableOrUnknown(data['is_sample']!, _isSampleMeta),
       );
     }
+    if (data.containsKey('start_early')) {
+      context.handle(
+        _startEarlyMeta,
+        startEarly.isAcceptableOrUnknown(data['start_early']!, _startEarlyMeta),
+      );
+    }
     return context;
   }
 
@@ -218,6 +240,10 @@ class $CoursesTable extends Courses with TableInfo<$CoursesTable, CourseRow> {
         DriftSqlType.bool,
         data['${effectivePrefix}is_sample'],
       )!,
+      startEarly: attachedDatabase.typeMapping.read(
+        DriftSqlType.bool,
+        data['${effectivePrefix}start_early'],
+      )!,
     );
   }
 
@@ -236,6 +262,7 @@ class CourseRow extends DataClass implements Insertable<CourseRow> {
   final String? notes;
   final int? colorValue;
   final bool isSample;
+  final bool startEarly;
   const CourseRow({
     required this.id,
     required this.name,
@@ -245,6 +272,7 @@ class CourseRow extends DataClass implements Insertable<CourseRow> {
     this.notes,
     this.colorValue,
     required this.isSample,
+    required this.startEarly,
   });
   @override
   Map<String, Expression> toColumns(bool nullToAbsent) {
@@ -265,6 +293,7 @@ class CourseRow extends DataClass implements Insertable<CourseRow> {
       map['color_value'] = Variable<int>(colorValue);
     }
     map['is_sample'] = Variable<bool>(isSample);
+    map['start_early'] = Variable<bool>(startEarly);
     return map;
   }
 
@@ -286,6 +315,7 @@ class CourseRow extends DataClass implements Insertable<CourseRow> {
           ? const Value.absent()
           : Value(colorValue),
       isSample: Value(isSample),
+      startEarly: Value(startEarly),
     );
   }
 
@@ -303,6 +333,7 @@ class CourseRow extends DataClass implements Insertable<CourseRow> {
       notes: serializer.fromJson<String?>(json['notes']),
       colorValue: serializer.fromJson<int?>(json['colorValue']),
       isSample: serializer.fromJson<bool>(json['isSample']),
+      startEarly: serializer.fromJson<bool>(json['startEarly']),
     );
   }
   @override
@@ -317,6 +348,7 @@ class CourseRow extends DataClass implements Insertable<CourseRow> {
       'notes': serializer.toJson<String?>(notes),
       'colorValue': serializer.toJson<int?>(colorValue),
       'isSample': serializer.toJson<bool>(isSample),
+      'startEarly': serializer.toJson<bool>(startEarly),
     };
   }
 
@@ -329,6 +361,7 @@ class CourseRow extends DataClass implements Insertable<CourseRow> {
     Value<String?> notes = const Value.absent(),
     Value<int?> colorValue = const Value.absent(),
     bool? isSample,
+    bool? startEarly,
   }) => CourseRow(
     id: id ?? this.id,
     name: name ?? this.name,
@@ -338,6 +371,7 @@ class CourseRow extends DataClass implements Insertable<CourseRow> {
     notes: notes.present ? notes.value : this.notes,
     colorValue: colorValue.present ? colorValue.value : this.colorValue,
     isSample: isSample ?? this.isSample,
+    startEarly: startEarly ?? this.startEarly,
   );
   CourseRow copyWithCompanion(CoursesCompanion data) {
     return CourseRow(
@@ -353,6 +387,9 @@ class CourseRow extends DataClass implements Insertable<CourseRow> {
           ? data.colorValue.value
           : this.colorValue,
       isSample: data.isSample.present ? data.isSample.value : this.isSample,
+      startEarly: data.startEarly.present
+          ? data.startEarly.value
+          : this.startEarly,
     );
   }
 
@@ -366,7 +403,8 @@ class CourseRow extends DataClass implements Insertable<CourseRow> {
           ..write('deadline: $deadline, ')
           ..write('notes: $notes, ')
           ..write('colorValue: $colorValue, ')
-          ..write('isSample: $isSample')
+          ..write('isSample: $isSample, ')
+          ..write('startEarly: $startEarly')
           ..write(')'))
         .toString();
   }
@@ -381,6 +419,7 @@ class CourseRow extends DataClass implements Insertable<CourseRow> {
     notes,
     colorValue,
     isSample,
+    startEarly,
   );
   @override
   bool operator ==(Object other) =>
@@ -393,7 +432,8 @@ class CourseRow extends DataClass implements Insertable<CourseRow> {
           other.deadline == this.deadline &&
           other.notes == this.notes &&
           other.colorValue == this.colorValue &&
-          other.isSample == this.isSample);
+          other.isSample == this.isSample &&
+          other.startEarly == this.startEarly);
 }
 
 class CoursesCompanion extends UpdateCompanion<CourseRow> {
@@ -405,6 +445,7 @@ class CoursesCompanion extends UpdateCompanion<CourseRow> {
   final Value<String?> notes;
   final Value<int?> colorValue;
   final Value<bool> isSample;
+  final Value<bool> startEarly;
   const CoursesCompanion({
     this.id = const Value.absent(),
     this.name = const Value.absent(),
@@ -414,6 +455,7 @@ class CoursesCompanion extends UpdateCompanion<CourseRow> {
     this.notes = const Value.absent(),
     this.colorValue = const Value.absent(),
     this.isSample = const Value.absent(),
+    this.startEarly = const Value.absent(),
   });
   CoursesCompanion.insert({
     this.id = const Value.absent(),
@@ -424,6 +466,7 @@ class CoursesCompanion extends UpdateCompanion<CourseRow> {
     this.notes = const Value.absent(),
     this.colorValue = const Value.absent(),
     this.isSample = const Value.absent(),
+    this.startEarly = const Value.absent(),
   }) : name = Value(name),
        ectsCredits = Value(ectsCredits);
   static Insertable<CourseRow> custom({
@@ -435,6 +478,7 @@ class CoursesCompanion extends UpdateCompanion<CourseRow> {
     Expression<String>? notes,
     Expression<int>? colorValue,
     Expression<bool>? isSample,
+    Expression<bool>? startEarly,
   }) {
     return RawValuesInsertable({
       if (id != null) 'id': id,
@@ -445,6 +489,7 @@ class CoursesCompanion extends UpdateCompanion<CourseRow> {
       if (notes != null) 'notes': notes,
       if (colorValue != null) 'color_value': colorValue,
       if (isSample != null) 'is_sample': isSample,
+      if (startEarly != null) 'start_early': startEarly,
     });
   }
 
@@ -457,6 +502,7 @@ class CoursesCompanion extends UpdateCompanion<CourseRow> {
     Value<String?>? notes,
     Value<int?>? colorValue,
     Value<bool>? isSample,
+    Value<bool>? startEarly,
   }) {
     return CoursesCompanion(
       id: id ?? this.id,
@@ -467,6 +513,7 @@ class CoursesCompanion extends UpdateCompanion<CourseRow> {
       notes: notes ?? this.notes,
       colorValue: colorValue ?? this.colorValue,
       isSample: isSample ?? this.isSample,
+      startEarly: startEarly ?? this.startEarly,
     );
   }
 
@@ -497,6 +544,9 @@ class CoursesCompanion extends UpdateCompanion<CourseRow> {
     if (isSample.present) {
       map['is_sample'] = Variable<bool>(isSample.value);
     }
+    if (startEarly.present) {
+      map['start_early'] = Variable<bool>(startEarly.value);
+    }
     return map;
   }
 
@@ -510,7 +560,8 @@ class CoursesCompanion extends UpdateCompanion<CourseRow> {
           ..write('deadline: $deadline, ')
           ..write('notes: $notes, ')
           ..write('colorValue: $colorValue, ')
-          ..write('isSample: $isSample')
+          ..write('isSample: $isSample, ')
+          ..write('startEarly: $startEarly')
           ..write(')'))
         .toString();
   }
@@ -981,6 +1032,53 @@ class $SettingsTable extends Settings
     requiredDuringInsert: false,
     defaultValue: const Constant(0),
   );
+  static const VerificationMeta _paceToleranceDaysMeta = const VerificationMeta(
+    'paceToleranceDays',
+  );
+  @override
+  late final GeneratedColumn<double> paceToleranceDays =
+      GeneratedColumn<double>(
+        'pace_tolerance_days',
+        aliasedName,
+        false,
+        type: DriftSqlType.double,
+        requiredDuringInsert: false,
+        defaultValue: const Constant(5),
+      );
+  static const VerificationMeta _weeklyOverloadHoursMeta =
+      const VerificationMeta('weeklyOverloadHours');
+  @override
+  late final GeneratedColumn<double> weeklyOverloadHours =
+      GeneratedColumn<double>(
+        'weekly_overload_hours',
+        aliasedName,
+        false,
+        type: DriftSqlType.double,
+        requiredDuringInsert: false,
+        defaultValue: const Constant(35),
+      );
+  static const VerificationMeta _displaySizeMeta = const VerificationMeta(
+    'displaySize',
+  );
+  @override
+  late final GeneratedColumn<int> displaySize = GeneratedColumn<int>(
+    'display_size',
+    aliasedName,
+    false,
+    type: DriftSqlType.int,
+    requiredDuringInsert: false,
+    defaultValue: const Constant(1),
+  );
+  static const VerificationMeta _accentMeta = const VerificationMeta('accent');
+  @override
+  late final GeneratedColumn<int> accent = GeneratedColumn<int>(
+    'accent',
+    aliasedName,
+    false,
+    type: DriftSqlType.int,
+    requiredDuringInsert: false,
+    defaultValue: const Constant(0),
+  );
   @override
   List<GeneratedColumn> get $columns => [
     id,
@@ -988,6 +1086,10 @@ class $SettingsTable extends Settings
     dailyTargetMinutes,
     firstWeekday,
     themeMode,
+    paceToleranceDays,
+    weeklyOverloadHours,
+    displaySize,
+    accent,
   ];
   @override
   String get aliasedName => _alias ?? actualTableName;
@@ -1037,6 +1139,39 @@ class $SettingsTable extends Settings
         themeMode.isAcceptableOrUnknown(data['theme_mode']!, _themeModeMeta),
       );
     }
+    if (data.containsKey('pace_tolerance_days')) {
+      context.handle(
+        _paceToleranceDaysMeta,
+        paceToleranceDays.isAcceptableOrUnknown(
+          data['pace_tolerance_days']!,
+          _paceToleranceDaysMeta,
+        ),
+      );
+    }
+    if (data.containsKey('weekly_overload_hours')) {
+      context.handle(
+        _weeklyOverloadHoursMeta,
+        weeklyOverloadHours.isAcceptableOrUnknown(
+          data['weekly_overload_hours']!,
+          _weeklyOverloadHoursMeta,
+        ),
+      );
+    }
+    if (data.containsKey('display_size')) {
+      context.handle(
+        _displaySizeMeta,
+        displaySize.isAcceptableOrUnknown(
+          data['display_size']!,
+          _displaySizeMeta,
+        ),
+      );
+    }
+    if (data.containsKey('accent')) {
+      context.handle(
+        _accentMeta,
+        accent.isAcceptableOrUnknown(data['accent']!, _accentMeta),
+      );
+    }
     return context;
   }
 
@@ -1066,6 +1201,22 @@ class $SettingsTable extends Settings
         DriftSqlType.int,
         data['${effectivePrefix}theme_mode'],
       )!,
+      paceToleranceDays: attachedDatabase.typeMapping.read(
+        DriftSqlType.double,
+        data['${effectivePrefix}pace_tolerance_days'],
+      )!,
+      weeklyOverloadHours: attachedDatabase.typeMapping.read(
+        DriftSqlType.double,
+        data['${effectivePrefix}weekly_overload_hours'],
+      )!,
+      displaySize: attachedDatabase.typeMapping.read(
+        DriftSqlType.int,
+        data['${effectivePrefix}display_size'],
+      )!,
+      accent: attachedDatabase.typeMapping.read(
+        DriftSqlType.int,
+        data['${effectivePrefix}accent'],
+      )!,
     );
   }
 
@@ -1085,12 +1236,28 @@ class SettingsRow extends DataClass implements Insertable<SettingsRow> {
 
   /// 0=system, 1=light, 2=dark.
   final int themeMode;
+
+  /// Ahead/behind tolerance in days of current need. Default 5.
+  final double paceToleranceDays;
+
+  /// Coming-load overload cutoff in hours/week. Default 35.
+  final double weeklyOverloadHours;
+
+  /// Display size 0=compact, 1=comfortable, 2=large. Default 1.
+  final int displaySize;
+
+  /// Theme accent 0=teal, 1=forest, 2=clay, 3=slate, 4=berry. Default 0.
+  final int accent;
   const SettingsRow({
     required this.id,
     required this.hoursPerEcts,
     required this.dailyTargetMinutes,
     required this.firstWeekday,
     required this.themeMode,
+    required this.paceToleranceDays,
+    required this.weeklyOverloadHours,
+    required this.displaySize,
+    required this.accent,
   });
   @override
   Map<String, Expression> toColumns(bool nullToAbsent) {
@@ -1100,6 +1267,10 @@ class SettingsRow extends DataClass implements Insertable<SettingsRow> {
     map['daily_target_minutes'] = Variable<int>(dailyTargetMinutes);
     map['first_weekday'] = Variable<int>(firstWeekday);
     map['theme_mode'] = Variable<int>(themeMode);
+    map['pace_tolerance_days'] = Variable<double>(paceToleranceDays);
+    map['weekly_overload_hours'] = Variable<double>(weeklyOverloadHours);
+    map['display_size'] = Variable<int>(displaySize);
+    map['accent'] = Variable<int>(accent);
     return map;
   }
 
@@ -1110,6 +1281,10 @@ class SettingsRow extends DataClass implements Insertable<SettingsRow> {
       dailyTargetMinutes: Value(dailyTargetMinutes),
       firstWeekday: Value(firstWeekday),
       themeMode: Value(themeMode),
+      paceToleranceDays: Value(paceToleranceDays),
+      weeklyOverloadHours: Value(weeklyOverloadHours),
+      displaySize: Value(displaySize),
+      accent: Value(accent),
     );
   }
 
@@ -1124,6 +1299,12 @@ class SettingsRow extends DataClass implements Insertable<SettingsRow> {
       dailyTargetMinutes: serializer.fromJson<int>(json['dailyTargetMinutes']),
       firstWeekday: serializer.fromJson<int>(json['firstWeekday']),
       themeMode: serializer.fromJson<int>(json['themeMode']),
+      paceToleranceDays: serializer.fromJson<double>(json['paceToleranceDays']),
+      weeklyOverloadHours: serializer.fromJson<double>(
+        json['weeklyOverloadHours'],
+      ),
+      displaySize: serializer.fromJson<int>(json['displaySize']),
+      accent: serializer.fromJson<int>(json['accent']),
     );
   }
   @override
@@ -1135,6 +1316,10 @@ class SettingsRow extends DataClass implements Insertable<SettingsRow> {
       'dailyTargetMinutes': serializer.toJson<int>(dailyTargetMinutes),
       'firstWeekday': serializer.toJson<int>(firstWeekday),
       'themeMode': serializer.toJson<int>(themeMode),
+      'paceToleranceDays': serializer.toJson<double>(paceToleranceDays),
+      'weeklyOverloadHours': serializer.toJson<double>(weeklyOverloadHours),
+      'displaySize': serializer.toJson<int>(displaySize),
+      'accent': serializer.toJson<int>(accent),
     };
   }
 
@@ -1144,12 +1329,20 @@ class SettingsRow extends DataClass implements Insertable<SettingsRow> {
     int? dailyTargetMinutes,
     int? firstWeekday,
     int? themeMode,
+    double? paceToleranceDays,
+    double? weeklyOverloadHours,
+    int? displaySize,
+    int? accent,
   }) => SettingsRow(
     id: id ?? this.id,
     hoursPerEcts: hoursPerEcts ?? this.hoursPerEcts,
     dailyTargetMinutes: dailyTargetMinutes ?? this.dailyTargetMinutes,
     firstWeekday: firstWeekday ?? this.firstWeekday,
     themeMode: themeMode ?? this.themeMode,
+    paceToleranceDays: paceToleranceDays ?? this.paceToleranceDays,
+    weeklyOverloadHours: weeklyOverloadHours ?? this.weeklyOverloadHours,
+    displaySize: displaySize ?? this.displaySize,
+    accent: accent ?? this.accent,
   );
   SettingsRow copyWithCompanion(SettingsCompanion data) {
     return SettingsRow(
@@ -1164,6 +1357,16 @@ class SettingsRow extends DataClass implements Insertable<SettingsRow> {
           ? data.firstWeekday.value
           : this.firstWeekday,
       themeMode: data.themeMode.present ? data.themeMode.value : this.themeMode,
+      paceToleranceDays: data.paceToleranceDays.present
+          ? data.paceToleranceDays.value
+          : this.paceToleranceDays,
+      weeklyOverloadHours: data.weeklyOverloadHours.present
+          ? data.weeklyOverloadHours.value
+          : this.weeklyOverloadHours,
+      displaySize: data.displaySize.present
+          ? data.displaySize.value
+          : this.displaySize,
+      accent: data.accent.present ? data.accent.value : this.accent,
     );
   }
 
@@ -1174,7 +1377,11 @@ class SettingsRow extends DataClass implements Insertable<SettingsRow> {
           ..write('hoursPerEcts: $hoursPerEcts, ')
           ..write('dailyTargetMinutes: $dailyTargetMinutes, ')
           ..write('firstWeekday: $firstWeekday, ')
-          ..write('themeMode: $themeMode')
+          ..write('themeMode: $themeMode, ')
+          ..write('paceToleranceDays: $paceToleranceDays, ')
+          ..write('weeklyOverloadHours: $weeklyOverloadHours, ')
+          ..write('displaySize: $displaySize, ')
+          ..write('accent: $accent')
           ..write(')'))
         .toString();
   }
@@ -1186,6 +1393,10 @@ class SettingsRow extends DataClass implements Insertable<SettingsRow> {
     dailyTargetMinutes,
     firstWeekday,
     themeMode,
+    paceToleranceDays,
+    weeklyOverloadHours,
+    displaySize,
+    accent,
   );
   @override
   bool operator ==(Object other) =>
@@ -1195,7 +1406,11 @@ class SettingsRow extends DataClass implements Insertable<SettingsRow> {
           other.hoursPerEcts == this.hoursPerEcts &&
           other.dailyTargetMinutes == this.dailyTargetMinutes &&
           other.firstWeekday == this.firstWeekday &&
-          other.themeMode == this.themeMode);
+          other.themeMode == this.themeMode &&
+          other.paceToleranceDays == this.paceToleranceDays &&
+          other.weeklyOverloadHours == this.weeklyOverloadHours &&
+          other.displaySize == this.displaySize &&
+          other.accent == this.accent);
 }
 
 class SettingsCompanion extends UpdateCompanion<SettingsRow> {
@@ -1204,12 +1419,20 @@ class SettingsCompanion extends UpdateCompanion<SettingsRow> {
   final Value<int> dailyTargetMinutes;
   final Value<int> firstWeekday;
   final Value<int> themeMode;
+  final Value<double> paceToleranceDays;
+  final Value<double> weeklyOverloadHours;
+  final Value<int> displaySize;
+  final Value<int> accent;
   const SettingsCompanion({
     this.id = const Value.absent(),
     this.hoursPerEcts = const Value.absent(),
     this.dailyTargetMinutes = const Value.absent(),
     this.firstWeekday = const Value.absent(),
     this.themeMode = const Value.absent(),
+    this.paceToleranceDays = const Value.absent(),
+    this.weeklyOverloadHours = const Value.absent(),
+    this.displaySize = const Value.absent(),
+    this.accent = const Value.absent(),
   });
   SettingsCompanion.insert({
     this.id = const Value.absent(),
@@ -1217,6 +1440,10 @@ class SettingsCompanion extends UpdateCompanion<SettingsRow> {
     this.dailyTargetMinutes = const Value.absent(),
     this.firstWeekday = const Value.absent(),
     this.themeMode = const Value.absent(),
+    this.paceToleranceDays = const Value.absent(),
+    this.weeklyOverloadHours = const Value.absent(),
+    this.displaySize = const Value.absent(),
+    this.accent = const Value.absent(),
   });
   static Insertable<SettingsRow> custom({
     Expression<int>? id,
@@ -1224,6 +1451,10 @@ class SettingsCompanion extends UpdateCompanion<SettingsRow> {
     Expression<int>? dailyTargetMinutes,
     Expression<int>? firstWeekday,
     Expression<int>? themeMode,
+    Expression<double>? paceToleranceDays,
+    Expression<double>? weeklyOverloadHours,
+    Expression<int>? displaySize,
+    Expression<int>? accent,
   }) {
     return RawValuesInsertable({
       if (id != null) 'id': id,
@@ -1232,6 +1463,11 @@ class SettingsCompanion extends UpdateCompanion<SettingsRow> {
         'daily_target_minutes': dailyTargetMinutes,
       if (firstWeekday != null) 'first_weekday': firstWeekday,
       if (themeMode != null) 'theme_mode': themeMode,
+      if (paceToleranceDays != null) 'pace_tolerance_days': paceToleranceDays,
+      if (weeklyOverloadHours != null)
+        'weekly_overload_hours': weeklyOverloadHours,
+      if (displaySize != null) 'display_size': displaySize,
+      if (accent != null) 'accent': accent,
     });
   }
 
@@ -1241,6 +1477,10 @@ class SettingsCompanion extends UpdateCompanion<SettingsRow> {
     Value<int>? dailyTargetMinutes,
     Value<int>? firstWeekday,
     Value<int>? themeMode,
+    Value<double>? paceToleranceDays,
+    Value<double>? weeklyOverloadHours,
+    Value<int>? displaySize,
+    Value<int>? accent,
   }) {
     return SettingsCompanion(
       id: id ?? this.id,
@@ -1248,6 +1488,10 @@ class SettingsCompanion extends UpdateCompanion<SettingsRow> {
       dailyTargetMinutes: dailyTargetMinutes ?? this.dailyTargetMinutes,
       firstWeekday: firstWeekday ?? this.firstWeekday,
       themeMode: themeMode ?? this.themeMode,
+      paceToleranceDays: paceToleranceDays ?? this.paceToleranceDays,
+      weeklyOverloadHours: weeklyOverloadHours ?? this.weeklyOverloadHours,
+      displaySize: displaySize ?? this.displaySize,
+      accent: accent ?? this.accent,
     );
   }
 
@@ -1269,6 +1513,20 @@ class SettingsCompanion extends UpdateCompanion<SettingsRow> {
     if (themeMode.present) {
       map['theme_mode'] = Variable<int>(themeMode.value);
     }
+    if (paceToleranceDays.present) {
+      map['pace_tolerance_days'] = Variable<double>(paceToleranceDays.value);
+    }
+    if (weeklyOverloadHours.present) {
+      map['weekly_overload_hours'] = Variable<double>(
+        weeklyOverloadHours.value,
+      );
+    }
+    if (displaySize.present) {
+      map['display_size'] = Variable<int>(displaySize.value);
+    }
+    if (accent.present) {
+      map['accent'] = Variable<int>(accent.value);
+    }
     return map;
   }
 
@@ -1279,7 +1537,11 @@ class SettingsCompanion extends UpdateCompanion<SettingsRow> {
           ..write('hoursPerEcts: $hoursPerEcts, ')
           ..write('dailyTargetMinutes: $dailyTargetMinutes, ')
           ..write('firstWeekday: $firstWeekday, ')
-          ..write('themeMode: $themeMode')
+          ..write('themeMode: $themeMode, ')
+          ..write('paceToleranceDays: $paceToleranceDays, ')
+          ..write('weeklyOverloadHours: $weeklyOverloadHours, ')
+          ..write('displaySize: $displaySize, ')
+          ..write('accent: $accent')
           ..write(')'))
         .toString();
   }
@@ -1321,6 +1583,7 @@ typedef $$CoursesTableCreateCompanionBuilder = CoursesCompanion Function({
   Value<String?> notes,
   Value<int?> colorValue,
   Value<bool> isSample,
+  Value<bool> startEarly,
 });
 typedef $$CoursesTableUpdateCompanionBuilder = CoursesCompanion Function({
   Value<int> id,
@@ -1331,6 +1594,7 @@ typedef $$CoursesTableUpdateCompanionBuilder = CoursesCompanion Function({
   Value<String?> notes,
   Value<int?> colorValue,
   Value<bool> isSample,
+  Value<bool> startEarly,
 });
 
 final class $$CoursesTableReferences
@@ -1402,6 +1666,11 @@ class $$CoursesTableFilterComposer
 
   ColumnFilters<bool> get isSample => $composableBuilder(
     column: $table.isSample,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<bool> get startEarly => $composableBuilder(
+    column: $table.startEarly,
     builder: (column) => ColumnFilters(column),
   );
 
@@ -1479,6 +1748,11 @@ class $$CoursesTableOrderingComposer
     column: $table.isSample,
     builder: (column) => ColumnOrderings(column),
   );
+
+  ColumnOrderings<bool> get startEarly => $composableBuilder(
+    column: $table.startEarly,
+    builder: (column) => ColumnOrderings(column),
+  );
 }
 
 class $$CoursesTableAnnotationComposer
@@ -1517,6 +1791,11 @@ class $$CoursesTableAnnotationComposer
 
   GeneratedColumn<bool> get isSample =>
       $composableBuilder(column: $table.isSample, builder: (column) => column);
+
+  GeneratedColumn<bool> get startEarly => $composableBuilder(
+    column: $table.startEarly,
+    builder: (column) => column,
+  );
 
   Expression<T> studySessionsRefs<T extends Object>(
     Expression<T> Function($$StudySessionsTableAnnotationComposer a) f,
@@ -1580,6 +1859,7 @@ class $$CoursesTableTableManager
                 Value<String?> notes = const Value.absent(),
                 Value<int?> colorValue = const Value.absent(),
                 Value<bool> isSample = const Value.absent(),
+                Value<bool> startEarly = const Value.absent(),
               }) => CoursesCompanion(
                 id: id,
                 name: name,
@@ -1589,6 +1869,7 @@ class $$CoursesTableTableManager
                 notes: notes,
                 colorValue: colorValue,
                 isSample: isSample,
+                startEarly: startEarly,
               ),
           createCompanionCallback:
               ({
@@ -1600,6 +1881,7 @@ class $$CoursesTableTableManager
                 Value<String?> notes = const Value.absent(),
                 Value<int?> colorValue = const Value.absent(),
                 Value<bool> isSample = const Value.absent(),
+                Value<bool> startEarly = const Value.absent(),
               }) => CoursesCompanion.insert(
                 id: id,
                 name: name,
@@ -1609,6 +1891,7 @@ class $$CoursesTableTableManager
                 notes: notes,
                 colorValue: colorValue,
                 isSample: isSample,
+                startEarly: startEarly,
               ),
           withReferenceMapper: (p0) => p0
               .map(
@@ -2006,6 +2289,10 @@ typedef $$SettingsTableCreateCompanionBuilder = SettingsCompanion Function({
   Value<int> dailyTargetMinutes,
   Value<int> firstWeekday,
   Value<int> themeMode,
+  Value<double> paceToleranceDays,
+  Value<double> weeklyOverloadHours,
+  Value<int> displaySize,
+  Value<int> accent,
 });
 typedef $$SettingsTableUpdateCompanionBuilder = SettingsCompanion Function({
   Value<int> id,
@@ -2013,6 +2300,10 @@ typedef $$SettingsTableUpdateCompanionBuilder = SettingsCompanion Function({
   Value<int> dailyTargetMinutes,
   Value<int> firstWeekday,
   Value<int> themeMode,
+  Value<double> paceToleranceDays,
+  Value<double> weeklyOverloadHours,
+  Value<int> displaySize,
+  Value<int> accent,
 });
 
 class $$SettingsTableFilterComposer
@@ -2046,6 +2337,26 @@ class $$SettingsTableFilterComposer
 
   ColumnFilters<int> get themeMode => $composableBuilder(
     column: $table.themeMode,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<double> get paceToleranceDays => $composableBuilder(
+    column: $table.paceToleranceDays,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<double> get weeklyOverloadHours => $composableBuilder(
+    column: $table.weeklyOverloadHours,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<int> get displaySize => $composableBuilder(
+    column: $table.displaySize,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<int> get accent => $composableBuilder(
+    column: $table.accent,
     builder: (column) => ColumnFilters(column),
   );
 }
@@ -2083,6 +2394,26 @@ class $$SettingsTableOrderingComposer
     column: $table.themeMode,
     builder: (column) => ColumnOrderings(column),
   );
+
+  ColumnOrderings<double> get paceToleranceDays => $composableBuilder(
+    column: $table.paceToleranceDays,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<double> get weeklyOverloadHours => $composableBuilder(
+    column: $table.weeklyOverloadHours,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<int> get displaySize => $composableBuilder(
+    column: $table.displaySize,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<int> get accent => $composableBuilder(
+    column: $table.accent,
+    builder: (column) => ColumnOrderings(column),
+  );
 }
 
 class $$SettingsTableAnnotationComposer
@@ -2114,6 +2445,24 @@ class $$SettingsTableAnnotationComposer
 
   GeneratedColumn<int> get themeMode =>
       $composableBuilder(column: $table.themeMode, builder: (column) => column);
+
+  GeneratedColumn<double> get paceToleranceDays => $composableBuilder(
+    column: $table.paceToleranceDays,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<double> get weeklyOverloadHours => $composableBuilder(
+    column: $table.weeklyOverloadHours,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<int> get displaySize => $composableBuilder(
+    column: $table.displaySize,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<int> get accent =>
+      $composableBuilder(column: $table.accent, builder: (column) => column);
 }
 
 class $$SettingsTableTableManager
@@ -2152,12 +2501,20 @@ class $$SettingsTableTableManager
                 Value<int> dailyTargetMinutes = const Value.absent(),
                 Value<int> firstWeekday = const Value.absent(),
                 Value<int> themeMode = const Value.absent(),
+                Value<double> paceToleranceDays = const Value.absent(),
+                Value<double> weeklyOverloadHours = const Value.absent(),
+                Value<int> displaySize = const Value.absent(),
+                Value<int> accent = const Value.absent(),
               }) => SettingsCompanion(
                 id: id,
                 hoursPerEcts: hoursPerEcts,
                 dailyTargetMinutes: dailyTargetMinutes,
                 firstWeekday: firstWeekday,
                 themeMode: themeMode,
+                paceToleranceDays: paceToleranceDays,
+                weeklyOverloadHours: weeklyOverloadHours,
+                displaySize: displaySize,
+                accent: accent,
               ),
           createCompanionCallback:
               ({
@@ -2166,12 +2523,20 @@ class $$SettingsTableTableManager
                 Value<int> dailyTargetMinutes = const Value.absent(),
                 Value<int> firstWeekday = const Value.absent(),
                 Value<int> themeMode = const Value.absent(),
+                Value<double> paceToleranceDays = const Value.absent(),
+                Value<double> weeklyOverloadHours = const Value.absent(),
+                Value<int> displaySize = const Value.absent(),
+                Value<int> accent = const Value.absent(),
               }) => SettingsCompanion.insert(
                 id: id,
                 hoursPerEcts: hoursPerEcts,
                 dailyTargetMinutes: dailyTargetMinutes,
                 firstWeekday: firstWeekday,
                 themeMode: themeMode,
+                paceToleranceDays: paceToleranceDays,
+                weeklyOverloadHours: weeklyOverloadHours,
+                displaySize: displaySize,
+                accent: accent,
               ),
           withReferenceMapper: (p0) => p0
               .map(

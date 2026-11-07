@@ -1090,6 +1090,102 @@ void main() {
     });
   });
 
+  group('weeklyOverloadHours setting (Coming-load overload threshold)', () {
+    late SettingsRepository settings;
+    late BackupRepository backup;
+
+    setUp(() {
+      settings = SettingsRepository(db);
+      backup = BackupRepository(db);
+    });
+
+    test('defaults to 35 h/week', () async {
+      expect((await settings.get()).weeklyOverloadHours, 35);
+      expect((await settings.watch().first).weeklyOverloadHours, 35);
+    });
+
+    test('persists a valid threshold', () async {
+      final res = await settings.setWeeklyOverloadHours(48);
+      expect(res, isA<Ok<void>>());
+      expect((await settings.get()).weeklyOverloadHours, 48);
+      expect((await settings.watch().first).weeklyOverloadHours, 48);
+    });
+
+    test('rejects out-of-range values and leaves the row unchanged',
+        () async {
+      await settings.setWeeklyOverloadHours(48);
+      for (final bad in [4.9, 0.0, -10.0, 100.1, 200.0]) {
+        final res = await settings.setWeeklyOverloadHours(bad);
+        expect(res, isA<Err<void>>());
+        expect(
+          (res as Err<void>).message,
+          'Overload threshold must be between 5 and 100 h/week.',
+        );
+      }
+      expect((await settings.get()).weeklyOverloadHours, 48);
+    });
+
+    test('accepts the 5..100 boundaries', () async {
+      expect(await settings.setWeeklyOverloadHours(5), isA<Ok<void>>());
+      expect((await settings.get()).weeklyOverloadHours, 5);
+      expect(await settings.setWeeklyOverloadHours(100), isA<Ok<void>>());
+      expect((await settings.get()).weeklyOverloadHours, 100);
+    });
+
+    test('resetToDefaults restores 35 alongside other defaults', () async {
+      await settings.setWeeklyOverloadHours(60);
+      await settings.setPaceToleranceDays(2);
+      final res = await settings.resetToDefaults();
+      expect(res, isA<Ok<void>>());
+      final current = await settings.get();
+      expect(current.weeklyOverloadHours,
+          AppSettings.defaultWeeklyOverloadHours);
+      expect(current.paceToleranceDays,
+          AppSettings.defaultPaceToleranceDays);
+    });
+
+    test('exportJson/importJson round-trip preserves the threshold',
+        () async {
+      await settings.setWeeklyOverloadHours(52);
+      final exported = await backup.exportJson();
+      expect(exported, isA<Ok<String>>());
+      expect((exported as Ok<String>).value,
+          contains('weeklyOverloadHours'));
+
+      expect(await backup.resetAllData(), isA<Ok<void>>());
+      expect((await settings.get()).weeklyOverloadHours,
+          AppSettings.defaultWeeklyOverloadHours);
+
+      expect(await backup.importJson(exported.value), isA<Ok<void>>());
+      expect((await settings.get()).weeklyOverloadHours, 52);
+    });
+
+    test('importJson rejects an out-of-range threshold without mutating',
+        () async {
+      await settings.setWeeklyOverloadHours(42);
+      await courses.addCourse(name: 'Keep', ectsCredits: 3);
+
+      final exported = await backup.exportJson();
+      final json = (exported as Ok<String>).value;
+      final tampered =
+          json.replaceAll('"weeklyOverloadHours": 42', '"weeklyOverloadHours": 500');
+      expect(tampered, isNot(json));
+
+      final res = await backup.importJson(tampered);
+      expect(res, isA<Err<void>>());
+      expect((await settings.get()).weeklyOverloadHours, 42);
+      expect(await courses.watchAll().first, hasLength(1));
+    });
+
+    test('importJson without the key falls back to the 35 default', () async {
+      final res = await backup.importJson(
+          '{"settings": {"hoursPerEcts": 30}, "courses": [], "sessions": []}');
+      expect(res, isA<Ok<void>>());
+      expect((await settings.get()).weeklyOverloadHours,
+          AppSettings.defaultWeeklyOverloadHours);
+    });
+  });
+
   group('ECTS-011 settings + backup', () {
     late SettingsRepository settings;
     late BackupRepository backup;

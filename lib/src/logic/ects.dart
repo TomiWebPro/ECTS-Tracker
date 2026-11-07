@@ -137,6 +137,58 @@ double? currentDailyPace(
 }) =>
     finishedDailyPace(completed, startDate, now, sessions: sessions);
 
+/// True when [startDate] lies on a calendar day after [now]: the course has
+/// not started yet.
+bool isFutureStart(DateTime? startDate, DateTime now) {
+  if (startDate == null) return false;
+  return _dateOnly(startDate).isAfter(_dateOnly(now));
+}
+
+/// Effective pace baseline for a course.
+///
+/// Past/today starts are unchanged. A future start respected by the student
+/// (`startEarly == false`) stays in the future so pace stays undefined until
+/// then. Opting to start now (`startEarly == true`) moves the baseline to the
+/// earliest log (when present) or to [now], so time is divided until now and
+/// early work counts toward status.
+DateTime? effectivePaceStart({
+  required DateTime? startDate,
+  required bool startEarly,
+  required DateTime now,
+  required Iterable<StudySession> sessions,
+}) {
+  if (startDate == null) return null;
+  if (!isFutureStart(startDate, now)) return startDate;
+  if (!startEarly) return startDate;
+  DateTime? first;
+  for (final s in sessions) {
+    if (s.minutes <= 0) continue;
+    if (first == null || s.date.isBefore(first)) first = s.date;
+  }
+  if (first != null && !first.isAfter(now)) return first;
+  return now;
+}
+
+/// Required daily pace quoted from the (future) start date instead of today:
+/// `remaining / (deadline - startDate)`. Null unless both bounds exist and the
+/// start precedes the deadline. Used for `Scheduled` display ("2.1 h/day from
+/// Mar 10") so a future course is not divided by today's longer runway.
+double? requiredDailyHoursFromStart(
+  double remaining,
+  DateTime? startDate,
+  DateTime? deadline,
+) {
+  if (startDate == null || deadline == null || remaining <= 0) return null;
+  final minutes = deadline.difference(startDate).inMinutes;
+  if (minutes <= 0) return null;
+  return remaining / (minutes / (60 * 24));
+}
+
+/// True when a course is scheduled for the future and the student chose NOT to
+/// start early: excluded from today's required pace, shown under Upcoming.
+bool isScheduledCourse(Course course, DateTime now) =>
+    isFutureStart(course.startDate, now) && !course.startEarly;
+
 /// Which instant the achieved pace of a course is measured from.
 ///
 /// The start date when the course has one; otherwise the **first logged
@@ -214,19 +266,25 @@ class CourseProgress {
 ///    today, so the shortfall is unbounded, never healthy `onTrack`
 ///    (`requiredDailyHours` stays null there — reporting only, no divide by 0).
 /// 4. no deadline → [CourseStatus.onTrack] (no schedule to be behind).
-/// 5. logged hours above the linear expectation to date → [CourseStatus.ahead].
-/// 6. otherwise the course finishes on time at the pace it has *actually*
-///    achieved so far ([finishedDailyPace]) → [CourseStatus.onTrack].
-/// 7. when the achieved pace is below the [requiredDailyHours] needed to hit
-///    the deadline → [CourseStatus.behind]. This is the only way a course can
-///    be behind: the finished-hours baseline is measured against the pace
-///    actually required from here on, not the linear expectation.
+/// 5. running schedule with a linear expectation → 5-day workload band:
+///    `surplus = completed - expected`, `need = remaining / timeLeft`,
+///    `buffer = 5 * need`. `surplus >= +buffer` → [CourseStatus.ahead],
+///    `surplus <= -buffer` → [CourseStatus.behind], else [CourseStatus.onTrack].
+///    A single session (e.g. 1.5 h of 360 h) cannot flip the label — it takes
+///    five full days of over/under-work.
+/// 6. no linear expectation (e.g. deadline-only course) → pace comparison:
+///    [finishedDailyPace] vs [requiredDailyHours]. This is the only way a
+///    deadline-only course can be behind. `ahead` is unreachable here (no
+///    expectation to be ahead of).
 ///
 /// A course without a start date has no linear expectation (step 5 is skipped),
 /// but it is **not** therefore always [CourseStatus.onTrack]: its achieved pace
 /// is measured from its first logged session, so a deadline-only course — the
 /// normal case, a user who sets just a deadline — that logs too little, or
 /// nothing at all, is correctly reported [CourseStatus.behind].
+/// Default ahead/behind tolerance (days of current need). Exposed in Settings.
+const double defaultPaceToleranceDays = 5;
+
 CourseProgress courseProgress({
   required double ectsCredits,
   required double hoursPerEcts,
@@ -234,21 +292,30 @@ CourseProgress courseProgress({
   DateTime? startDate,
   DateTime? deadline,
   required DateTime now,
+  bool startEarly = false,
+  double toleranceDays = defaultPaceToleranceDays,
 }) {
   final required = requiredHours(ectsCredits, hoursPerEcts);
   final logged = sessions.toList(growable: false);
   final done = completedHours(logged);
   final left = remainingHours(required, done);
   final daysLeft = remainingDays(deadline, now);
+  final effectiveStart = effectivePaceStart(
+    startDate: startDate,
+    startEarly: startEarly,
+    now: now,
+    sessions: logged,
+  );
 
   final status = _status(
     remaining: left,
     completed: done,
     required: required,
     sessions: logged,
-    startDate: startDate,
+    startDate: effectiveStart,
     deadline: deadline,
     now: now,
+    toleranceDays: toleranceDays,
   );
 
   final daily = requiredDailyHours(left, deadline, now);
@@ -271,6 +338,7 @@ CourseProgress courseProgressFor(
   Iterable<StudySession> sessions, {
   required double hoursPerEcts,
   required DateTime now,
+  double toleranceDays = defaultPaceToleranceDays,
 }) =>
     courseProgress(
       ectsCredits: course.ectsCredits,
@@ -279,6 +347,8 @@ CourseProgress courseProgressFor(
       startDate: course.startDate,
       deadline: course.deadline,
       now: now,
+      startEarly: course.startEarly,
+      toleranceDays: toleranceDays,
     );
 
 /// True when the deadline *day* is already before today — the deadline day
@@ -296,6 +366,7 @@ CourseStatus _status({
   required DateTime? startDate,
   required DateTime? deadline,
   required DateTime now,
+  double toleranceDays = defaultPaceToleranceDays,
 }) {
   if (remaining <= 0) return CourseStatus.completed;
   if (isPastDeadline(deadline, now)) return CourseStatus.overdue;
@@ -309,21 +380,25 @@ CourseStatus _status({
   // No deadline → nothing to fall behind; there is no required pace to compare.
   if (deadline == null) return CourseStatus.onTrack;
 
-  // `ahead` is "more than the linear expectation to date" (AGENTS.md §4). It is
-  // only meaningful once the course schedule is active: before `startDate`
-  // arrives the expectation is 0 and any pre-start logging must not be reported
-  // as `ahead` (ECTS-041). Pre-start courses fall through to the pace engine.
+  // Workload band (Settings → tolerance, default 5 days): ahead/behind
+  // require ±toleranceDays of normal workload (need), not a single session.
+  // surplus = completed - expected. Middle band → onTrack (stable).
   final scheduleActive =
       startDate == null || !_dateOnly(startDate).isAfter(_dateOnly(now));
   if (scheduleActive) {
     final expected = expectedHoursToDate(required, startDate, deadline, now);
-    if (expected != null && completed > expected) return CourseStatus.ahead;
+    final needForBuffer = requiredDailyHours(remaining, deadline, now);
+    if (expected != null && needForBuffer != null) {
+      final surplus = completed - expected;
+      final buffer = toleranceDays * needForBuffer;
+      if (surplus >= buffer) return CourseStatus.ahead;
+      if (surplus <= -buffer) return CourseStatus.behind;
+      return CourseStatus.onTrack;
+    }
   }
 
-  // Level with (or without) the linear expectation, or pre-start: the course is
-  // on track only if the "current pace" it has actually achieved so far would
-  // still finish in time (AGENTS.md §4). The baseline is the start date, or the
-  // first logged session when there is none (ECTS-021).
+  // No linear expectation (e.g. deadline-only course): fall back to the
+  // achieved vs needed pace check. Ahead is unreachable here.
   final achieved = currentDailyPace(completed, startDate, now, sessions: sessions);
   final needed = requiredDailyHours(remaining, deadline, now);
   // ECTS-037 policy (AGENTS.md §4 "no sessions logged"): with a start date the

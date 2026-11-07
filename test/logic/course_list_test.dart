@@ -70,11 +70,13 @@ void main() {
 
     setUp(() {
       // Build a deterministic set covering name/deadline/progress/status.
+      // 5-day band: behind needs deficit ≥ 5*need, so Zulu uses start 10-01
+      // (expected ≈126 h) with 1 h logged → behind.
       final cBehind = course(
         1,
         'Zulu',
         ects: 5,
-        startDate: DateTime(2026, 11, 1),
+        startDate: DateTime(2026, 10, 1),
         deadline: DateTime(2026, 11, 11),
       );
       final cAhead = course(
@@ -141,6 +143,44 @@ void main() {
       expect(statuses.first, CourseStatus.overdue);
       expect(statuses[1], CourseStatus.behind);
       expect(statuses.last, CourseStatus.ahead);
+    });
+
+    test('sortByViewPriority orders behind, onTrack, ahead', () {
+      final sorted = sortByViewPriority(items);
+      final names = sorted.map((e) => e.course.name).toList();
+      // Overdue (Mike) + behind (Zulu) first, ahead (Alpha) last.
+      expect(names.indexOf('Mike') < names.indexOf('Bravo'), isTrue);
+      expect(names.indexOf('Zulu') < names.indexOf('Bravo'), isTrue);
+      expect(sorted.last.course.name, 'Alpha');
+      expect(sorted.last.progress.status, CourseStatus.ahead);
+    });
+
+    test('dashboardItems excludes completed and scheduled, keeps priority', () {
+      final done = course(5, 'Done', ects: 2); // no dates, completed
+      final future = course(
+        6,
+        'Future',
+        ects: 5,
+        startDate: DateTime(2026, 12, 1),
+        deadline: DateTime(2027, 2, 1),
+      );
+      final all = coursesWithProgress(
+        [done, future],
+        [session(5, 60 * 60)], // completes Done (60/60h)
+        hoursPerEcts: 30,
+        now: now,
+      );
+      expect(
+        all.firstWhere((e) => e.course.name == 'Done').progress.status,
+        CourseStatus.completed,
+      );
+      final dash = dashboardItems([...items, ...all], now);
+      final names = dash.map((e) => e.course.name).toList();
+      expect(names, isNot(contains('Done')));
+      expect(names, isNot(contains('Future')));
+      // Priority order preserved: overdue/behind before onTrack before ahead.
+      expect(names.indexOf('Zulu') < names.indexOf('Bravo'), isTrue);
+      expect(dash.last.course.name, 'Alpha');
     });
 
     test('filter by status returns only matching courses', () {

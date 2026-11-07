@@ -30,6 +30,14 @@ final backupRepositoryProvider = Provider<BackupRepository>(
   (ref) => BackupRepository(ref.watch(databaseProvider)),
 );
 
+final devPumpRepositoryProvider = Provider<DevPumpRepository>(
+  (ref) => DevPumpRepository(ref.watch(databaseProvider)),
+);
+
+/// Hidden dev mode (unlocked by tapping the Data section icon 10× rapidly).
+/// In-memory only: never persisted, never exported.
+final devModeProvider = StateProvider<bool>((ref) => false);
+
 final coursesProvider = StreamProvider<List<Course>>(
   (ref) => ref.watch(courseRepositoryProvider).watchAll(),
 );

@@ -6,15 +6,16 @@ import '../data/repositories.dart';
 import '../logic/ects.dart';
 import '../models/models.dart';
 import '../state/providers.dart';
+import 'app_sizes.dart';
 
 /// Preset colors for courses (ARGB values). Null means "no color".
 const List<int?> courseColorOptions = [
   null,
   0xFFE57373, // red
-  0xFF64B5F6, // blue
+  0xFF4E8CA8, // steel cyan (replaces Material default blue)
   0xFF81C784, // green
   0xFFFFB74D, // orange
-  0xFFBA68C8, // purple
+  0xFFC27A8A, // dusty rose (replaces Material default purple)
   0xFF4DB6AC, // teal
   0xFFFFF176, // yellow
 ];
@@ -50,8 +51,18 @@ class _CourseFormDialogState extends ConsumerState<CourseFormDialog> {
   int? _colorValue;
   String? _error;
   bool _saving = false;
+  bool _startEarly = false;
 
   bool get _isEdit => widget.existing != null;
+
+  bool get _isFutureStart {
+    final s = _startDate;
+    if (s == null) return false;
+    final now = DateTime.now();
+    final sd = DateTime(s.year, s.month, s.day);
+    final nd = DateTime(now.year, now.month, now.day);
+    return sd.isAfter(nd);
+  }
 
   @override
   void initState() {
@@ -65,6 +76,7 @@ class _CourseFormDialogState extends ConsumerState<CourseFormDialog> {
     _startDate = c?.startDate;
     _deadline = c?.deadline;
     _colorValue = c?.colorValue;
+    _startEarly = c?.startEarly ?? false;
   }
 
   String _formatEcts(double v) {
@@ -125,6 +137,7 @@ class _CourseFormDialogState extends ConsumerState<CourseFormDialog> {
         deadline: _deadline,
         notes: notes.isEmpty ? null : notes,
         colorValue: _colorValue,
+        startEarly: _isFutureStart ? _startEarly : false,
       );
     } else {
       final addResult = await repo.addCourse(
@@ -134,6 +147,7 @@ class _CourseFormDialogState extends ConsumerState<CourseFormDialog> {
         deadline: _deadline,
         notes: notes.isEmpty ? null : notes,
         colorValue: _colorValue,
+        startEarly: _isFutureStart ? _startEarly : false,
       );
       result = switch (addResult) {
         Ok<int>() => const Ok(null),
@@ -246,6 +260,24 @@ class _CourseFormDialogState extends ConsumerState<CourseFormDialog> {
                   ),
                 ],
               ),
+              if (_isFutureStart) ...[
+                const SizedBox(height: 4),
+                CheckboxListTile(
+                  key: const Key('courseStartEarlyCheckbox'),
+                  value: _startEarly,
+                  onChanged: (v) =>
+                      setState(() => _startEarly = v ?? false),
+                  title: const Text('Start now despite future start'),
+                  subtitle: Text(
+                    _startEarly
+                        ? 'On: time is divided until now and counts toward Today’s pace.'
+                        : 'Off: no pressure until ${_dateLabel(_startDate)}; excluded from Today’s pace.',
+                  ),
+                  controlAffinity: ListTileControlAffinity.leading,
+                  contentPadding: EdgeInsets.zero,
+                  dense: true,
+                ),
+              ],
               const SizedBox(height: 8),
               TextFormField(
                 key: const Key('courseNotesField'),
@@ -257,14 +289,24 @@ class _CourseFormDialogState extends ConsumerState<CourseFormDialog> {
               Text('Color', style: Theme.of(context).textTheme.labelLarge),
               const SizedBox(height: 4),
               Wrap(
-                spacing: 8,
+                spacing: AppSizes.colorOptionSpacing,
+                runSpacing: AppSizes.colorOptionRunSpacing,
+                crossAxisAlignment: WrapCrossAlignment.center,
                 children: [
                   for (final c in courseColorOptions)
                     ChoiceChip(
                       key: Key('courseColor_${c ?? 'none'}'),
+                      // Only "None" shows a checkmark. Color swatches use
+                      // opacity (selected vs unselected) instead — otherwise
+                      // the check icon makes the selected chip taller and the
+                      // wrapped rows look vertically cranked.
+                      showCheckmark: c == null,
                       label: c == null
                           ? const Text('None')
-                          : const SizedBox(width: 16, height: 16),
+                          : const SizedBox(
+                              width: AppSizes.colorSwatchW,
+                              height: AppSizes.colorSwatchH,
+                            ),
                       selected: _colorValue == c,
                       selectedColor: c == null ? null : Color(c),
                       backgroundColor: c == null ? null : Color(c).withValues(alpha: 0.6),
