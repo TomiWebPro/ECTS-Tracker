@@ -147,6 +147,14 @@ abstract final class AppSizes {
   static const double heroAfterBarsGap = 8.0;
 
   // ------------------------------------------------------------------
+  // Project logo (assets/images/ects-tracker-logo.{svg,png}, bg #FAF9F4)
+  // ------------------------------------------------------------------
+  static const double logoDefault = 44.0;
+  static const double logoRadius = 14.0;
+  static const double logoAppBar = 36.0;
+  static const double logoAppBarRadius = 10.0;
+
+  // ------------------------------------------------------------------
   // Progress bars
   // ------------------------------------------------------------------
   static const double barDefault = 8.0;

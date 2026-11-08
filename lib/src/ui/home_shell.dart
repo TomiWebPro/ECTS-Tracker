@@ -12,6 +12,7 @@ import 'course_form.dart';
 import 'session_form.dart';
 import 'settings_page.dart';
 import 'statistics_page.dart';
+import 'app_logo.dart';
 import 'app_sizes.dart';
 import 'widgets.dart';
 
@@ -42,6 +43,15 @@ class _HomeShellState extends State<HomeShell> {
     final scheme = Theme.of(context).colorScheme;
     return Scaffold(
       appBar: AppBar(
+        leading: const Padding(
+          padding: EdgeInsets.only(left: 12.0),
+          child: Center(
+            child: AppLogo(
+              size: AppSizes.logoAppBar,
+              radius: AppSizes.logoAppBarRadius,
+            ),
+          ),
+        ),
         title: Text(
           titles[_index],
           style: const TextStyle(fontSize: 26),
@@ -277,20 +287,9 @@ class _OverviewPage extends ConsumerWidget {
               ),
               child: Column(
                 children: [
-                  Container(
-                    width: AppSizes.emptyIconBox,
-                    height: AppSizes.emptyIconBox,
-                    decoration: BoxDecoration(
-                      color: Theme.of(context)
-                          .colorScheme
-                          .primaryContainer
-                          .withValues(alpha: 0.6),
-                      borderRadius:
-                          BorderRadius.circular(AppSizes.emptyIconRadius),
-                    ),
-                    child: Icon(Icons.school_outlined,
-                        size: AppSizes.emptyIcon,
-                        color: Theme.of(context).colorScheme.onPrimaryContainer),
+                  const AppLogo(
+                    size: AppSizes.emptyIconBox,
+                    radius: AppSizes.emptyIconRadius,
                   ),
                   const SizedBox(height: AppSizes.emptyGap),
                   Text(
@@ -401,16 +400,9 @@ class _OverallProgressCard extends StatelessWidget {
             Row(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                Container(
-                  width: AppSizes.heroIconBox,
-                  height: AppSizes.heroIconBox,
-                  decoration: BoxDecoration(
-                    color: scheme.primary,
-                    borderRadius:
-                        BorderRadius.circular(AppSizes.heroIconRadius),
-                  ),
-                  child: Icon(Icons.today_outlined,
-                      color: scheme.onPrimary, size: AppSizes.heroIcon),
+                const AppLogo(
+                  size: AppSizes.heroIconBox,
+                  radius: AppSizes.heroIconRadius,
                 ),
                 const SizedBox(width: AppSizes.heroGap),
                 Expanded(
@@ -1095,21 +1087,9 @@ class _CoursesPageState extends ConsumerState<_CoursesPage> {
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  Container(
-                    width: AppSizes.emptyIconBox,
-                    height: AppSizes.emptyIconBox,
-                    decoration: BoxDecoration(
-                      color: Theme.of(context)
-                          .colorScheme
-                          .primaryContainer
-                          .withValues(alpha: 0.6),
-                      borderRadius: BorderRadius.circular(
-                          AppSizes.emptyIconRadius),
-                    ),
-                    child: Icon(Icons.menu_book_outlined,
-                        size: AppSizes.emptyIcon,
-                        color:
-                            Theme.of(context).colorScheme.onPrimaryContainer),
+                  const AppLogo(
+                    size: AppSizes.emptyIconBox,
+                    radius: AppSizes.emptyIconRadius,
                   ),
                   const SizedBox(height: AppSizes.emptyGap),
                   Text(l10n.coursesEmptyTitle,
@@ -1529,21 +1509,9 @@ class _StudyLogPage extends ConsumerWidget {
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  Container(
-                    width: AppSizes.emptyIconBox,
-                    height: AppSizes.emptyIconBox,
-                    decoration: BoxDecoration(
-                      color: Theme.of(context)
-                          .colorScheme
-                          .primaryContainer
-                          .withValues(alpha: 0.6),
-                      borderRadius: BorderRadius.circular(
-                          AppSizes.emptyIconRadius),
-                    ),
-                    child: Icon(Icons.timer_outlined,
-                        size: AppSizes.emptyIcon,
-                        color:
-                            Theme.of(context).colorScheme.onPrimaryContainer),
+                  const AppLogo(
+                    size: AppSizes.emptyIconBox,
+                    radius: AppSizes.emptyIconRadius,
                   ),
                   const SizedBox(height: AppSizes.emptyGap),
                   Text(

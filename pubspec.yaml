@@ -24,6 +24,7 @@ dependencies:
   path_provider: ^2.1.4
   path: ^1.9.0
   intl: ^0.20.3
+  flutter_svg: ^2.0.10
 
 dev_dependencies:
   flutter_test:
@@ -37,3 +38,6 @@ dev_dependencies:
 flutter:
   uses-material-design: true
   generate: true
+  assets:
+    - assets/images/ects-tracker-logo.svg
+    - assets/images/ects-tracker-logo.png

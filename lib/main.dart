@@ -8,6 +8,7 @@ import 'src/i18n/app_locales.dart';
 import 'src/models/models.dart';
 import 'src/startup.dart';
 import 'src/state/providers.dart';
+import 'src/ui/app_fonts.dart';
 import 'src/ui/app_sizes.dart';
 import 'src/ui/home_shell.dart';
 
@@ -22,19 +23,27 @@ class EctsTrackerApp extends StatelessWidget {
 
   final StartupState startup;
 
-  static ThemeData buildLightTheme({Color seed = const Color(0xFF51606E)}) {
+  static ThemeData buildLightTheme({
+    Color seed = const Color(0xFF51606E),
+    List<String>? fontFamilyFallback,
+  }) {
     final base = ThemeData(
       colorSchemeSeed: seed,
       useMaterial3: true,
+      fontFamilyFallback: fontFamilyFallback ?? AppFonts.general,
     );
     return _polish(base);
   }
 
-  static ThemeData buildDarkTheme({Color seed = const Color(0xFF51606E)}) {
+  static ThemeData buildDarkTheme({
+    Color seed = const Color(0xFF51606E),
+    List<String>? fontFamilyFallback,
+  }) {
     final base = ThemeData(
       colorSchemeSeed: seed,
       brightness: Brightness.dark,
       useMaterial3: true,
+      fontFamilyFallback: fontFamilyFallback ?? AppFonts.general,
     );
     return _polish(base);
   }
@@ -185,6 +194,12 @@ class _ThemedApp extends ConsumerWidget {
     final settings = ref.watch(settingsProvider);
     final s = settings.valueOrNull ?? const AppSettings();
     final seed = Color(s.accent.seedValue);
+    final appLocale = appLocaleFromCode(s.localeCode);
+    // System locale when the user picks "system default": ensures CJK
+    // Han-unification picks the right sans (SC vs JP vs KR) even without
+    // an explicit app language.
+    final systemLocale = WidgetsBinding.instance.platformDispatcher.locale;
+    final fallback = fontFallbackForLocale(appLocale ?? systemLocale);
     return MaterialApp(
       onGenerateTitle: (context) =>
           AppLocalizations.of(context)!.appTitle,
@@ -194,8 +209,10 @@ class _ThemedApp extends ConsumerWidget {
         AppThemeMode.dark => ThemeMode.dark,
         _ => ThemeMode.system,
       },
-      theme: EctsTrackerApp.buildLightTheme(seed: seed),
-      darkTheme: EctsTrackerApp.buildDarkTheme(seed: seed),
+      theme: EctsTrackerApp.buildLightTheme(
+          seed: seed, fontFamilyFallback: fallback),
+      darkTheme: EctsTrackerApp.buildDarkTheme(
+          seed: seed, fontFamilyFallback: fallback),
       localizationsDelegates: const [
         AppLocalizations.delegate,
         GlobalMaterialLocalizations.delegate,

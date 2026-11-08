@@ -1,5 +1,7 @@
 # ECTS Tracker
 
+![ECTS Tracker logo](assets/images/ects-tracker-logo.png)
+
 I'm a student at TUM, and I built this tracker for one simple reason: I wanted
 to stay on top of my studies. Deadlines pile up, lectures blur together, and
 "how much work is this course, really?" is a question I kept getting wrong. So
