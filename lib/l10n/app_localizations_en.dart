@@ -19,9 +19,6 @@ class AppLocalizationsEn extends AppLocalizations {
   String get commonClose => 'Close';
 
   @override
-  String get commonConfirm => 'Confirm';
-
-  @override
   String get commonDelete => 'Delete';
 
   @override
@@ -32,9 +29,6 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get commonNone => 'None';
-
-  @override
-  String get commonRetry => 'Retry';
 
   @override
   String get commonSave => 'Save';
@@ -63,6 +57,11 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get courseFormEctsLabel => 'ECTS credits';
+
+  @override
+  String courseFormHoursPerEctsValue(String value) {
+    return '$value h/ECTS';
+  }
 
   @override
   String get courseFormNameLabel => 'Name';

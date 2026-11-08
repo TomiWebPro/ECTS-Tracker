@@ -1414,8 +1414,8 @@ class _HoldToConfirmButton extends StatefulWidget {
   const _HoldToConfirmButton({
     required this.enabled,
     required this.onConfirmed,
+    required this.label,
     this.seconds = 10,
-    this.label = 'Hold to confirm',
   });
 
   final bool enabled;

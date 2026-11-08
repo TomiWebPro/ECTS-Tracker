@@ -3,12 +3,10 @@
   "appTitle": "ECTS Tracker",
   "commonCancel": "Cancel",
   "commonClose": "Close",
-  "commonConfirm": "Confirm",
   "commonDelete": "Delete",
   "commonEdit": "Edit",
   "commonError": "Error",
   "commonNone": "None",
-  "commonRetry": "Retry",
   "commonSave": "Save",
   "courseFormAutoHoursValue": "Required hours (auto): {value}",
   "courseFormClearDeadlineTooltip": "Clear deadline",
@@ -17,6 +15,7 @@
   "courseFormDateNotSet": "Not set",
   "courseFormDeadlineButton": "Deadline: {date}",
   "courseFormEctsLabel": "ECTS credits",
+  "courseFormHoursPerEctsValue": "{value} h/ECTS",
   "courseFormNameLabel": "Name",
   "courseFormNotesLabel": "Notes (optional)",
   "courseFormSaving": "Saving…",
@@ -315,9 +314,6 @@
   "@commonClose": {
     "description": "Generic close/dismiss action."
   },
-  "@commonConfirm": {
-    "description": "Generic confirm action."
-  },
   "@commonDelete": {
     "description": "Generic delete action."
   },
@@ -329,9 +325,6 @@
   },
   "@commonNone": {
     "description": "Generic empty/none label."
-  },
-  "@commonRetry": {
-    "description": "Generic retry action."
   },
   "@commonSave": {
     "description": "Generic save action."
@@ -368,6 +361,15 @@
   },
   "@courseFormEctsLabel": {
     "description": "Label of the ECTS credits text field."
+  },
+  "@courseFormHoursPerEctsValue": {
+    "description": "Hours-per-ECTS factor shown inside the auto-computed required-hours hint. {value} is the numeric factor, e.g. '30'.",
+    "placeholders": {
+      "value": {
+        "type": "String",
+        "example": "30"
+      }
+    }
   },
   "@courseFormNameLabel": {
     "description": "Label of the course name text field."

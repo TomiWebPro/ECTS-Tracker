@@ -112,12 +112,6 @@ abstract class AppLocalizations {
   /// **'Close'**
   String get commonClose;
 
-  /// Generic confirm action.
-  ///
-  /// In en, this message translates to:
-  /// **'Confirm'**
-  String get commonConfirm;
-
   /// Generic delete action.
   ///
   /// In en, this message translates to:
@@ -141,12 +135,6 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'None'**
   String get commonNone;
-
-  /// Generic retry action.
-  ///
-  /// In en, this message translates to:
-  /// **'Retry'**
-  String get commonRetry;
 
   /// Generic save action.
   ///
@@ -195,6 +183,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'ECTS credits'**
   String get courseFormEctsLabel;
+
+  /// Hours-per-ECTS factor shown inside the auto-computed required-hours hint. {value} is the numeric factor, e.g. '30'.
+  ///
+  /// In en, this message translates to:
+  /// **'{value} h/ECTS'**
+  String courseFormHoursPerEctsValue(String value);
 
   /// Label of the course name text field.
   ///

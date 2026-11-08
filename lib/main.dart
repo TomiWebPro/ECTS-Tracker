@@ -147,7 +147,8 @@ class EctsTrackerApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return switch (startup) {
       StartupFailed(:final message) => MaterialApp(
-          title: 'ECTS Tracker',
+          onGenerateTitle: (context) =>
+              AppLocalizations.of(context)!.appTitle,
           debugShowCheckedModeBanner: false,
           theme: buildLightTheme(),
           darkTheme: buildDarkTheme(),
@@ -185,7 +186,8 @@ class _ThemedApp extends ConsumerWidget {
     final s = settings.valueOrNull ?? const AppSettings();
     final seed = Color(s.accent.seedValue);
     return MaterialApp(
-      title: 'ECTS Tracker',
+      onGenerateTitle: (context) =>
+          AppLocalizations.of(context)!.appTitle,
       debugShowCheckedModeBanner: false,
       themeMode: switch (s.themeMode) {
         AppThemeMode.light => ThemeMode.light,

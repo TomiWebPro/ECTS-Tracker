@@ -224,7 +224,7 @@ class _CourseFormDialogState extends ConsumerState<CourseFormDialog> {
               Text(
                 l10n.courseFormAutoHoursValue(
                   computedHours != null
-                      ? '${computedHours.toStringAsFixed(1)} h (${hoursPerEcts.toStringAsFixed(0)} h/ECTS)'
+                      ? '${l10n.statsHoursValue(computedHours.toStringAsFixed(1))} (${l10n.courseFormHoursPerEctsValue(hoursPerEcts.toStringAsFixed(0))})'
                       : '—',
                 ),
                 key: const Key('courseAutoHours'),

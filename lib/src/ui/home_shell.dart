@@ -145,7 +145,7 @@ class _OverviewPage extends ConsumerWidget {
     if (error != null) {
       return Center(
         child: Text(
-          'Error: $error',
+          '${l10n.commonError}: $error',
           key: const Key('overviewError'),
         ),
       );
@@ -843,7 +843,7 @@ class _DashboardCourseCard extends StatelessWidget {
         ? (daysToStart <= 0
             ? l10n.dashboardStartsSoon
             : l10n.dashboardStartsIn('$daysToStart'))
-        : courseStatusLabel(p.status);
+        : courseStatusLabelL10n(p.status, l10n);
     final pillStatus =
         scheduled ? CourseStatus.onTrack : p.status;
     return Card(
@@ -1072,7 +1072,9 @@ class _CoursesPageState extends ConsumerState<_CoursesPage> {
 
     final error =
         coursesAsync.error ?? sessionsAsync.error ?? settingsAsync.error;
-    if (error != null) return Center(child: Text('Error: $error'));
+    if (error != null) {
+      return Center(child: Text('${l10n.commonError}: $error'));
+    }
     if (coursesAsync.isLoading ||
         sessionsAsync.isLoading ||
         settingsAsync.isLoading) {
@@ -1181,7 +1183,7 @@ class _CoursesPageState extends ConsumerState<_CoursesPage> {
                         value: s,
                         key: Key('courseSort_${s.name}'),
                         child: Text(l10n.coursesSortOption(
-                            courseSortLabel(s))),
+                            courseSortLabelL10n(s, l10n))),
                       ),
                   ],
                 ),
@@ -1210,7 +1212,7 @@ class _CoursesPageState extends ConsumerState<_CoursesPage> {
                       DropdownMenuItem<CourseStatus?>(
                         value: s,
                         key: Key('courseFilter_${s.name}'),
-                        child: Text(courseStatusLabel(s)),
+                        child: Text(courseStatusLabelL10n(s, l10n)),
                       ),
                   ],
                 ),
@@ -1347,7 +1349,7 @@ class _CoursesPageState extends ConsumerState<_CoursesPage> {
                                 l10n.coursesProgressWithStatus(
                                     p.completedHours.toStringAsFixed(1),
                                     p.requiredHours.toStringAsFixed(1),
-                                    courseStatusLabel(p.status)),
+                                    courseStatusLabelL10n(p.status, l10n)),
                                 key: Key('courseProgressText_${course.id}'),
                                 style: Theme.of(context)
                                     .textTheme
@@ -1517,7 +1519,8 @@ class _StudyLogPage extends ConsumerWidget {
 
     return sessionsAsync.when(
       loading: () => const Center(child: CircularProgressIndicator()),
-      error: (e, _) => Center(child: Text('Error: $e')),
+      error: (e, _) =>
+          Center(child: Text('${l10n.commonError}: $e')),
       data: (sessionList) {
         if (sessionList.isEmpty) {
           return Center(

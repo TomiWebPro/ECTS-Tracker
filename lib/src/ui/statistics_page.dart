@@ -23,7 +23,7 @@ class StatisticsPage extends ConsumerWidget {
 
     final error = coursesAsync.error ?? sessionsAsync.error ?? settingsAsync.error;
     if (error != null) {
-      return Center(child: Text('Error: $error'));
+      return Center(child: Text('${l10n.commonError}: $error'));
     }
     if (coursesAsync.isLoading || sessionsAsync.isLoading || settingsAsync.isLoading) {
       return const Center(child: CircularProgressIndicator());
