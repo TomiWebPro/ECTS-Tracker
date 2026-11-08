@@ -1,4 +1,6 @@
+import 'package:ects_tracker/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'src/data/connection.dart';
@@ -149,6 +151,14 @@ class EctsTrackerApp extends StatelessWidget {
           debugShowCheckedModeBanner: false,
           theme: buildLightTheme(),
           darkTheme: buildDarkTheme(),
+          localizationsDelegates: const [
+            AppLocalizations.delegate,
+            GlobalMaterialLocalizations.delegate,
+            GlobalWidgetsLocalizations.delegate,
+            GlobalCupertinoLocalizations.delegate,
+          ],
+          supportedLocales: const [Locale('en')],
+          locale: const Locale('en'),
           home: StartupErrorScreen(message: message),
         ),
       StartupReady(:final db) => ProviderScope(
@@ -184,6 +194,14 @@ class _ThemedApp extends ConsumerWidget {
       },
       theme: EctsTrackerApp.buildLightTheme(seed: seed),
       darkTheme: EctsTrackerApp.buildDarkTheme(seed: seed),
+      localizationsDelegates: const [
+        AppLocalizations.delegate,
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
+      ],
+      supportedLocales: const [Locale('en')],
+      locale: const Locale('en'),
       builder: (context, child) {
         final scaler = TextScaler.linear(s.displaySize.scale);
         return MediaQuery(
@@ -217,7 +235,7 @@ class StartupErrorScreen extends StatelessWidget {
                 Icon(Icons.error_outline, size: 56, color: scheme.error),
                 const SizedBox(height: 16),
                 Text(
-                  'Could not start ECTS Tracker',
+                  AppLocalizations.of(context)!.startupTitle,
                   style: Theme.of(context).textTheme.titleLarge,
                   textAlign: TextAlign.center,
                 ),

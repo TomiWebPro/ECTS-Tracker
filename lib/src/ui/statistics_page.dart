@@ -1,3 +1,4 @@
+import 'package:ects_tracker/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -15,6 +16,7 @@ class StatisticsPage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final l10n = AppLocalizations.of(context)!;
     final coursesAsync = ref.watch(coursesProvider);
     final sessionsAsync = ref.watch(sessionsProvider);
     final settingsAsync = ref.watch(settingsProvider);
@@ -72,7 +74,7 @@ class StatisticsPage extends ConsumerWidget {
         AppSizes.pageBottomPadNoFab,
       ),
       children: [
-        const SectionHeader(title: 'Overview', icon: Icons.insights_outlined),
+        SectionHeader(title: l10n.statsOverview, icon: Icons.insights_outlined),
         Card(
           color: scheme.primaryContainer.withValues(alpha: 0.45),
           child: Padding(
@@ -84,21 +86,22 @@ class StatisticsPage extends ConsumerWidget {
                     Expanded(
                       child: _MiniStat(
                         icon: Icons.schedule_outlined,
-                        label: 'Total',
-                        value: '${stats.totalHours.toStringAsFixed(1)} h',
+                        label: l10n.statsTotal,
+                        value: l10n.statsHoursValue(
+                            stats.totalHours.toStringAsFixed(1)),
                       ),
                     ),
                     Expanded(
                       child: _MiniStat(
                         icon: Icons.bolt_outlined,
-                        label: 'Sessions',
+                        label: l10n.statsSessions,
                         value: '${stats.sessionsCount}',
                       ),
                     ),
                     Expanded(
                       child: _MiniStat(
                         icon: Icons.event_available_outlined,
-                        label: 'Active days',
+                        label: l10n.statsActiveDays,
                         value: '${stats.activeDays}',
                       ),
                     ),
@@ -116,9 +119,9 @@ class StatisticsPage extends ConsumerWidget {
                     children: [
                       Expanded(
                         child: _InlineStat(
-                          label: 'Last 7 days',
-                          value:
-                              '${stats.last7DaysHours.toStringAsFixed(1)} h',
+                          label: l10n.statsLast7Days,
+                          value: l10n.statsHoursValue(
+                              stats.last7DaysHours.toStringAsFixed(1)),
                         ),
                       ),
                       Container(
@@ -128,9 +131,9 @@ class StatisticsPage extends ConsumerWidget {
                       ),
                       Expanded(
                         child: _InlineStat(
-                          label: 'Last 30 days',
-                          value:
-                              '${stats.last30DaysHours.toStringAsFixed(1)} h',
+                          label: l10n.statsLast30Days,
+                          value: l10n.statsHoursValue(
+                              stats.last30DaysHours.toStringAsFixed(1)),
                         ),
                       ),
                     ],
@@ -141,8 +144,8 @@ class StatisticsPage extends ConsumerWidget {
           ),
         ),
         const SizedBox(height: 20),
-        const SectionHeader(
-            title: 'Consistency', icon: Icons.calendar_month_outlined),
+        SectionHeader(
+            title: l10n.statsConsistency, icon: Icons.calendar_month_outlined),
         Card(
           child: Padding(
             padding: const EdgeInsets.all(16),
@@ -153,7 +156,8 @@ class StatisticsPage extends ConsumerWidget {
                   children: [
                     Expanded(
                       child: Text(
-                        '${(stats.consistencyScore * 100).toStringAsFixed(0)}% of last 30 days',
+                        l10n.statsConsistencyScore(
+                            (stats.consistencyScore * 100).toStringAsFixed(0)),
                         style: Theme.of(context)
                             .textTheme
                             .titleMedium
@@ -168,7 +172,7 @@ class StatisticsPage extends ConsumerWidget {
                         borderRadius: BorderRadius.circular(999),
                       ),
                       child: Text(
-                        '${stats.activeDays}d active',
+                        l10n.statsActiveDaysBadge(stats.activeDays),
                         style: Theme.of(context)
                             .textTheme
                             .labelMedium
@@ -184,7 +188,7 @@ class StatisticsPage extends ConsumerWidget {
                 RoundedProgressBar(value: stats.consistencyScore),
                 const SizedBox(height: 6),
                 Text(
-                  'Study days in the last 30 days. Small steps every day beat cramming.',
+                  l10n.statsConsistencyHint,
                   style: Theme.of(context).textTheme.bodySmall?.copyWith(
                         color: scheme.onSurfaceVariant,
                       ),
@@ -194,8 +198,8 @@ class StatisticsPage extends ConsumerWidget {
           ),
         ),
         const SizedBox(height: 20),
-        const SectionHeader(
-            title: 'Past vs needed', icon: Icons.history_outlined),
+        SectionHeader(
+            title: l10n.statsPastVsNeeded, icon: Icons.history_outlined),
         Card(
           child: Padding(
             padding: const EdgeInsets.all(16),
@@ -206,31 +210,33 @@ class StatisticsPage extends ConsumerWidget {
                   children: [
                     Expanded(
                       child: _InlineStat(
-                        label: 'Did / day (14d)',
-                        value: '${pastAvg.toStringAsFixed(1)} h',
-                      ),
-                    ),
-                    Container(
-                      width: 1,
-                      height: 28,
-                      color: scheme.outlineVariant,
-                    ),
-                    Expanded(
-                      child: _InlineStat(
-                        label: 'Need / day',
-                        value: '${needSum.toStringAsFixed(1)} h',
-                      ),
-                    ),
-                    Container(
-                      width: 1,
-                      height: 28,
-                      color: scheme.outlineVariant,
-                    ),
-                    Expanded(
-                      child: _InlineStat(
-                        label: 'Gap',
+                        label: l10n.statsDidPerDay,
                         value:
-                            '${gap <= 0 ? '+' : ''}${(-gap).toStringAsFixed(1)} h',
+                            l10n.statsHoursValue(pastAvg.toStringAsFixed(1)),
+                      ),
+                    ),
+                    Container(
+                      width: 1,
+                      height: 28,
+                      color: scheme.outlineVariant,
+                    ),
+                    Expanded(
+                      child: _InlineStat(
+                        label: l10n.statsNeedPerDay,
+                        value:
+                            l10n.statsHoursValue(needSum.toStringAsFixed(1)),
+                      ),
+                    ),
+                    Container(
+                      width: 1,
+                      height: 28,
+                      color: scheme.outlineVariant,
+                    ),
+                    Expanded(
+                      child: _InlineStat(
+                        label: l10n.statsGap,
+                        value: l10n.statsGapValue(gap <= 0 ? '+' : '',
+                            (-gap).toStringAsFixed(1)),
                       ),
                     ),
                   ],
@@ -244,8 +250,8 @@ class StatisticsPage extends ConsumerWidget {
                 const SizedBox(height: 6),
                 Text(
                   gap <= 0
-                      ? 'Past pace covers what’s needed. Keep the streak.'
-                      : 'Past pace is ${gap.toStringAsFixed(1)} h/day short — add a block or trim scope.',
+                      ? l10n.statsPaceCovers
+                      : l10n.statsPaceShort(gap.toStringAsFixed(1)),
                   style: Theme.of(context).textTheme.bodySmall?.copyWith(
                         color: gap > 0
                             ? scheme.error
@@ -259,8 +265,8 @@ class StatisticsPage extends ConsumerWidget {
           ),
         ),
         const SizedBox(height: 20),
-        const SectionHeader(
-            title: 'Coming load', icon: Icons.event_note_outlined),
+        SectionHeader(
+            title: l10n.statsComingLoad, icon: Icons.event_note_outlined),
         Card(
           child: Padding(
             padding: const EdgeInsets.all(16),
@@ -271,7 +277,7 @@ class StatisticsPage extends ConsumerWidget {
                   children: [
                     Expanded(
                       child: Text(
-                        'Next 8 weeks',
+                        l10n.statsNext8Weeks,
                         style: Theme.of(context)
                             .textTheme
                             .titleMedium
@@ -288,7 +294,7 @@ class StatisticsPage extends ConsumerWidget {
                         borderRadius: BorderRadius.circular(999),
                       ),
                       child: Text(
-                        'peak ${peak.toStringAsFixed(0)}h/wk',
+                        l10n.statsPeakPerWeek(peak.toStringAsFixed(0)),
                         style: Theme.of(context)
                             .textTheme
                             .labelMedium
@@ -305,8 +311,11 @@ class StatisticsPage extends ConsumerWidget {
                 const SizedBox(height: 4),
                 Text(
                   sortedByDeadline.isEmpty
-                      ? 'Add deadlines to forecast the load.'
-                      : 'Suggested order: ${sortedByDeadline.take(3).map((e) => e.course.name).join(' → ')} (earliest deadline first)',
+                      ? l10n.statsAddDeadlines
+                      : l10n.statsSuggestedOrder(sortedByDeadline
+                          .take(3)
+                          .map((e) => e.course.name)
+                          .join(' → ')),
                   style: Theme.of(context).textTheme.bodySmall?.copyWith(
                         color: scheme.onSurfaceVariant,
                       ),
@@ -352,7 +361,8 @@ class StatisticsPage extends ConsumerWidget {
                         SizedBox(
                           width: 52,
                           child: Text(
-                            '${w.hours.toStringAsFixed(0)}h',
+                            l10n.statsHoursCompact(
+                                w.hours.toStringAsFixed(0)),
                             textAlign: TextAlign.end,
                             style: Theme.of(context)
                                 .textTheme
@@ -375,7 +385,8 @@ class StatisticsPage extends ConsumerWidget {
                   Padding(
                     padding: const EdgeInsets.only(top: 4),
                     child: Text(
-                      'Overload weeks >${overloadAt.toStringAsFixed(overloadAt % 1 == 0 ? 0 : 1)}h flagged red — move a deadline or cut scope.',
+                      l10n.statsOverloadWarning(overloadAt.toStringAsFixed(
+                          overloadAt % 1 == 0 ? 0 : 1)),
                       style: Theme.of(context).textTheme.bodySmall?.copyWith(
                             color: scheme.error,
                             fontWeight: FontWeight.w700,
@@ -387,25 +398,25 @@ class StatisticsPage extends ConsumerWidget {
           ),
         ),
         const SizedBox(height: 20),
-        const SectionHeader(title: 'Last 7 days', icon: Icons.bar_chart_outlined),
+        SectionHeader(title: l10n.statsLast7Days, icon: Icons.bar_chart_outlined),
         _BarChart(
           value: stats.last7DaysMinutes / 60.0,
           maxValue: (stats.last30DaysMinutes / 60.0).clamp(1.0, double.infinity),
-          label: '${stats.last7DaysHours.toStringAsFixed(1)} h',
-          caption: 'of last 30 days volume',
+          label: l10n.statsHoursValue(stats.last7DaysHours.toStringAsFixed(1)),
+          caption: l10n.statsOfLast30DaysVolume,
         ),
         const SizedBox(height: 16),
-        const SectionHeader(
-            title: 'Last 30 days', icon: Icons.stacked_bar_chart_outlined),
+        SectionHeader(
+            title: l10n.statsLast30Days, icon: Icons.stacked_bar_chart_outlined),
         _BarChart(
           value: stats.last30DaysMinutes / 60.0,
           maxValue: (stats.last30DaysMinutes / 60.0).clamp(1.0, double.infinity),
-          label: '${stats.last30DaysHours.toStringAsFixed(1)} h',
-          caption: 'total volume',
+          label: l10n.statsHoursValue(stats.last30DaysHours.toStringAsFixed(1)),
+          caption: l10n.statsTotalVolume,
         ),
         const SizedBox(height: 20),
         SectionHeader(
-          title: 'Per course',
+          title: l10n.statsPerCourse,
           icon: Icons.menu_book_outlined,
           trailing: '${stats.perCourseMinutes.length}',
         ),
@@ -418,7 +429,7 @@ class StatisticsPage extends ConsumerWidget {
                   Icon(Icons.hourglass_empty_outlined,
                       color: scheme.onSurfaceVariant),
                   const SizedBox(width: 10),
-                  const Expanded(child: Text('No sessions yet')),
+                  Expanded(child: Text(l10n.statsEmpty)),
                 ],
               ),
             ),
@@ -438,7 +449,8 @@ class StatisticsPage extends ConsumerWidget {
                 child: Row(
                   children: [
                     CourseAvatar(
-                      name: course?.name ?? 'C${entry.key}',
+                      name: course?.name ??
+                          l10n.statsCourseShortFallback(entry.key),
                       colorValue: course?.colorValue,
                     ),
                     const SizedBox(width: 12),
@@ -447,7 +459,8 @@ class StatisticsPage extends ConsumerWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            course?.name ?? 'Course ${entry.key}',
+                            course?.name ??
+                                l10n.statsCourseFallback(entry.key),
                             style: Theme.of(context)
                                 .textTheme
                                 .titleSmall
@@ -455,7 +468,10 @@ class StatisticsPage extends ConsumerWidget {
                           ),
                           const SizedBox(height: 4),
                           Text(
-                            '${hours.toStringAsFixed(1)} h / ${required.toStringAsFixed(0)} h · ${(progress * 100).toStringAsFixed(0)}%',
+                            l10n.statsPerCourseProgress(
+                                hours.toStringAsFixed(1),
+                                required.toStringAsFixed(0),
+                                (progress * 100).toStringAsFixed(0)),
                             style: Theme.of(context)
                                 .textTheme
                                 .bodySmall
@@ -566,6 +582,7 @@ class _BarChart extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     final scheme = Theme.of(context).colorScheme;
     final ratio = maxValue == 0 ? 0.0 : (value / maxValue).clamp(0.0, 1.0);
     return Card(
@@ -585,7 +602,7 @@ class _BarChart extends StatelessWidget {
                   ),
                 ),
                 Text(
-                  '${(ratio * 100).toStringAsFixed(0)}%',
+                  l10n.statsPercentValue((ratio * 100).toStringAsFixed(0)),
                   style: Theme.of(context).textTheme.labelLarge?.copyWith(
                         color: scheme.primary,
                         fontWeight: FontWeight.w800,

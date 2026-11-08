@@ -6,6 +6,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import 'package:ects_tracker/l10n/app_localizations.dart';
+
 import '../data/repositories.dart';
 import '../dev/stress_seed.dart';
 import '../models/models.dart';
@@ -44,23 +46,21 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
 
   Future<void> _askActivateDevMode() async {
     if (ref.read(devModeProvider)) return;
+    final l10n = AppLocalizations.of(context)!;
     final confirmed = await showDialog<bool>(
       context: context,
       builder: (context) => AlertDialog(
-        title: const Text('Activate dev mode?'),
-        content: const Text(
-          'This unlocks hidden stress-test tools (pump generated data). '
-          'Only for development.',
-        ),
+        title: Text(l10n.devToolsActivateTitle),
+        content: Text(l10n.devToolsActivateMessage),
         actions: [
           TextButton(
             onPressed: () => Navigator.of(context).pop(false),
-            child: const Text('Cancel'),
+            child: Text(l10n.commonCancel),
           ),
           FilledButton(
             key: const Key('confirmActivateDevMode'),
             onPressed: () => Navigator.of(context).pop(true),
-            child: const Text('Activate'),
+            child: Text(l10n.devToolsActivate),
           ),
         ],
       ),
@@ -68,32 +68,29 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
     if (confirmed == true && mounted) {
       ref.read(devModeProvider.notifier).state = true;
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Dev mode activated.')),
+        SnackBar(content: Text(l10n.devToolsActivated)),
       );
     }
   }
 
   Future<void> _pumpTestData() async {
     if (_pumping) return;
+    final l10n = AppLocalizations.of(context)!;
     // Confirm twice: intent, then consequence.
     final step1 = await showDialog<bool>(
       context: context,
       builder: (context) => AlertDialog(
-        title: const Text('Pump test data?'),
-        content: const Text(
-          'This inserts a realistic generated semester (~10 courses, '
-          '~800 sessions over the last 12 weeks). '
-          'Your existing data is kept. Continue?',
-        ),
+        title: Text(l10n.devToolsPumpTitle),
+        content: Text(l10n.devToolsPumpMessage),
         actions: [
           TextButton(
             onPressed: () => Navigator.of(context).pop(false),
-            child: const Text('Cancel'),
+            child: Text(l10n.commonCancel),
           ),
           FilledButton(
             key: const Key('confirmPumpStep1'),
             onPressed: () => Navigator.of(context).pop(true),
-            child: const Text('Continue'),
+            child: Text(l10n.devToolsContinue),
           ),
         ],
       ),
@@ -102,20 +99,17 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
     final step2 = await showDialog<bool>(
       context: context,
       builder: (context) => AlertDialog(
-        title: const Text('Confirm stress pump'),
-        content: const Text(
-          'Second confirmation: this will inflate courses, lists, charts, '
-          'and pace calculations, and may take a few seconds. Pump now?',
-        ),
+        title: Text(l10n.devToolsConfirmPumpTitle),
+        content: Text(l10n.devToolsConfirmPumpMessage),
         actions: [
           TextButton(
             onPressed: () => Navigator.of(context).pop(false),
-            child: const Text('Cancel'),
+            child: Text(l10n.commonCancel),
           ),
           FilledButton(
             key: const Key('confirmPumpStep2'),
             onPressed: () => Navigator.of(context).pop(true),
-            child: const Text('Pump data'),
+            child: Text(l10n.devToolsPumpData),
           ),
         ],
       ),
@@ -131,8 +125,8 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
         case Ok<(int, int)>(:final value):
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(
-                content: Text(
-                    'Pumped ${value.$1} courses, ${value.$2} sessions.')),
+                content: Text(l10n.devToolsPumped(
+                    '${value.$1}', '${value.$2}'))),
           );
         case Err<(int, int)>(:final message):
           ScaffoldMessenger.of(context).showSnackBar(
@@ -145,23 +139,21 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
   }
 
   Future<void> _clearPumpedData() async {
+    final l10n = AppLocalizations.of(context)!;
     final confirmed = await showDialog<bool>(
       context: context,
       builder: (context) => AlertDialog(
-        title: const Text('Clear pumped data?'),
-        content: const Text(
-          'Deletes the generated STRESS courses and their sessions. '
-          'Your own data is kept.',
-        ),
+        title: Text(l10n.devToolsClearPumpedTitle),
+        content: Text(l10n.devToolsClearPumpedMessage),
         actions: [
           TextButton(
             onPressed: () => Navigator.of(context).pop(false),
-            child: const Text('Cancel'),
+            child: Text(l10n.commonCancel),
           ),
           FilledButton(
             key: const Key('confirmClearPumpedData'),
             onPressed: () => Navigator.of(context).pop(true),
-            child: const Text('Clear'),
+            child: Text(l10n.settingsClear),
           ),
         ],
       ),
@@ -172,7 +164,7 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
     switch (result) {
       case Ok<int>(:final value):
         ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('Cleared $value pumped course(s).')),
+          SnackBar(content: Text(l10n.devToolsCleared('$value'))),
         );
       case Err<int>(:final message):
         ScaffoldMessenger.of(context).showSnackBar(
@@ -182,18 +174,16 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
   }
 
   Future<void> _confirmRemoveAllDev() async {
+    final l10n = AppLocalizations.of(context)!;
     final confirmed = await showDialog<bool>(
       context: context,
       builder: (context) => AlertDialog(
-        title: const Text('Remove all data?'),
-        content: const Text(
-          'Dev shortcut: this permanently deletes ALL courses, sessions, '
-          'and settings. This cannot be undone.',
-        ),
+        title: Text(l10n.devToolsRemoveAllTitle),
+        content: Text(l10n.devToolsRemoveAllMessage),
         actions: [
           TextButton(
             onPressed: () => Navigator.of(context).pop(false),
-            child: const Text('Cancel'),
+            child: Text(l10n.commonCancel),
           ),
           FilledButton(
             key: const Key('confirmRemoveAllDataDev'),
@@ -201,7 +191,7 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
               backgroundColor: Theme.of(context).colorScheme.error,
             ),
             onPressed: () => Navigator.of(context).pop(true),
-            child: const Text('Delete everything'),
+            child: Text(l10n.settingsDeleteEverything),
           ),
         ],
       ),
@@ -209,7 +199,7 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
     if (confirmed != true || !mounted) return;
     final result = await ref.read(backupRepositoryProvider).resetAllData();
     if (!mounted) return;
-    _showResult(context, result, success: 'All data deleted.');
+    _showResult(context, result, success: l10n.settingsAllDataDeleted);
   }
 
   @override
@@ -218,6 +208,7 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
     final settingsAsync = ref.watch(settingsProvider);
     final settings = settingsAsync.valueOrNull ?? const AppSettings();
     final devMode = ref.watch(devModeProvider);
+    final l10n = AppLocalizations.of(context)!;
 
     return Align(
       alignment: Alignment.topCenter,
@@ -232,33 +223,38 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
             AppSizes.pageBottomPadNoFab,
           ),
           children: [
-            _sectionHeader(context, 'Study settings', Icons.school_outlined),
+            _sectionHeader(
+                context, l10n.settingsStudySettings, Icons.school_outlined),
             _SettingsCard(
               children: [
                 _SettingsTile(
                   tileKey: const Key('hoursPerEctsTile'),
                   icon: Icons.timelapse_outlined,
-                  title: 'Hours per ECTS',
+                  title: l10n.settingsHoursPerEcts,
                   subtitle: Text(
-                    '${settings.hoursPerEcts.toStringAsFixed(settings.hoursPerEcts % 1 == 0 ? 0 : 1)} h',
+                    l10n.settingsHoursPerEctsValue(settings.hoursPerEcts
+                        .toStringAsFixed(
+                            settings.hoursPerEcts % 1 == 0 ? 0 : 1)),
                   ),
                   onTap: () => _editHoursPerEcts(context, ref, settings),
                 ),
                 _SettingsTile(
                   tileKey: const Key('dailyTargetTile'),
                   icon: Icons.flag_outlined,
-                  title: 'Daily study target',
+                  title: l10n.settingsDailyTarget,
                   subtitle: Text(settings.dailyTargetMinutes > 0
-                      ? '${settings.dailyTargetMinutes} min/day'
-                      : 'No target set'),
+                      ? l10n.settingsDailyTargetValue(
+                          '${settings.dailyTargetMinutes}')
+                      : l10n.settingsNoTarget),
                   onTap: () => _editDailyTarget(context, ref, settings),
                   showDivider: false,
                 ),
                 _SettingsTile(
                   tileKey: const Key('firstWeekdayTile'),
                   icon: Icons.view_week_outlined,
-                  title: 'First day of week',
-                  subtitle: Text(_weekdayName(settings.firstWeekday)),
+                  title: l10n.settingsFirstWeekday,
+                  subtitle:
+                      Text(_weekdayName(l10n, settings.firstWeekday)),
                   onTap: () => _editFirstWeekday(context, ref, settings),
                   showDivider: false,
                   topDivider: true,
@@ -266,9 +262,10 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
                 _SettingsTile(
                   tileKey: const Key('paceToleranceTile'),
                   icon: Icons.speed_outlined,
-                  title: 'Ahead / behind tolerance',
+                  title: l10n.settingsPaceTolerance,
                   subtitle: Text(
-                    '${_formatTolerance(settings.paceToleranceDays)} of work',
+                    l10n.settingsToleranceOfWork(
+                        _formatTolerance(l10n, settings.paceToleranceDays)),
                   ),
                   onTap: () => _editPaceTolerance(context, ref, settings),
                   topDivider: true,
@@ -276,9 +273,10 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
                 _SettingsTile(
                   tileKey: const Key('overloadThresholdTile'),
                   icon: Icons.local_fire_department_outlined,
-                  title: 'Weekly overload threshold',
+                  title: l10n.settingsOverloadThreshold,
                   subtitle: Text(
-                    '${_formatOverload(settings.weeklyOverloadHours)}/week flags red',
+                    l10n.settingsOverloadSubtitle(_formatOverload(
+                        l10n, settings.weeklyOverloadHours)),
                   ),
                   onTap: () => _editOverloadThreshold(context, ref, settings),
                   showDivider: false,
@@ -286,29 +284,31 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
                 ),
               ],
             ),
-            _sectionHeader(context, 'Display', Icons.palette_outlined),
+            _sectionHeader(context, l10n.settingsDisplay, Icons.palette_outlined),
             _SettingsCard(
               children: [
                 _SettingsTile(
                   tileKey: const Key('themeModeTile'),
                   icon: Icons.brightness_6_outlined,
-                  title: 'Appearance (dark / light)',
-                  subtitle: Text(_themeModeName(settings.themeMode)),
+                  title: l10n.settingsAppearance,
+                  subtitle:
+                      Text(_themeModeName(l10n, settings.themeMode)),
                   onTap: () => _editThemeMode(context, ref, settings),
                   topDivider: false,
                 ),
                 _SettingsTile(
                   tileKey: const Key('displaySizeTile'),
                   icon: Icons.format_size_outlined,
-                  title: 'Text & element size',
-                  subtitle: Text(settings.displaySize.label),
+                  title: l10n.settingsDisplaySize,
+                  subtitle:
+                      Text(_displaySizeName(l10n, settings.displaySize)),
                   onTap: () => _editDisplaySize(context, ref, settings),
                   topDivider: true,
                 ),
                 _SettingsTile(
                   tileKey: const Key('accentTile'),
                   icon: Icons.color_lens_outlined,
-                  title: 'Theme colour',
+                  title: l10n.settingsAccent,
                   subtitle: Row(
                     mainAxisSize: MainAxisSize.min,
                     children: [
@@ -321,7 +321,8 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
                           shape: BoxShape.circle,
                         ),
                       ),
-                      Flexible(child: Text(settings.accent.label)),
+                      Flexible(
+                          child: Text(_accentName(l10n, settings.accent))),
                     ],
                   ),
                   onTap: () => _editAccent(context, ref, settings),
@@ -331,67 +332,63 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
               ],
             ),
             _UnlockableSectionHeader(
-              title: 'Data',
+              title: l10n.settingsData,
               icon: Icons.storage_outlined,
               onIconTap: _registerDevTap,
             ),
             _SettingsCard(
               children: [
                 hasSample.when(
-                  loading: () => const ListTile(
-                    leading: SizedBox(
+                  loading: () => ListTile(
+                    leading: const SizedBox(
                       width: 24,
                       height: 24,
                       child: CircularProgressIndicator(strokeWidth: 2),
                     ),
-                    title: Text('Checking sample data…'),
+                    title: Text(l10n.settingsCheckingSample),
                   ),
                   error: (e, _) => ListTile(
                     leading: const Icon(Icons.error_outline),
-                    title: const Text('Sample data'),
-                    subtitle: Text('Error: $e'),
+                    title: Text(l10n.settingsSampleData),
+                    subtitle: Text(l10n.settingsSampleDataError('$e')),
                   ),
                   data: (present) => present
                       ? _SettingsTile(
                           tileKey: const Key('clearSampleDataTile'),
                           icon: Icons.delete_sweep_outlined,
-                          title: 'Clear sample data',
-                          subtitle: const Text(
-                            'Remove the seeded example courses and sessions. Your own data is kept.',
+                          title: l10n.settingsClearSample,
+                          subtitle: Text(
+                            l10n.settingsClearSampleSubtitle,
                           ),
                           onTap: () => _confirmClearSample(context, ref),
                         )
                       : _SettingsTile(
                           tileKey: const Key('noSampleDataTile'),
                           icon: Icons.check_circle_outline,
-                          title: 'No sample data',
-                          subtitle: const Text(
-                              'Seeded example data has already been cleared.'),
+                          title: l10n.settingsNoSample,
+                          subtitle: Text(l10n.settingsNoSampleSubtitle),
                           onIconTap: _registerDevTap,
                         ),
                 ),
                 _SettingsTile(
                   tileKey: const Key('exportDataTile'),
                   icon: Icons.file_upload_outlined,
-                  title: 'Export data',
-                  subtitle: const Text(
-                      'Copy all courses, sessions, and settings as JSON.'),
+                  title: l10n.settingsExport,
+                  subtitle: Text(l10n.settingsExportSubtitle),
                   onTap: () => _exportData(context, ref),
                 ),
                 _SettingsTile(
                   tileKey: const Key('importDataTile'),
                   icon: Icons.file_download_outlined,
-                  title: 'Import data',
-                  subtitle: const Text(
-                      'Replace all data from a previously exported JSON backup.'),
+                  title: l10n.settingsImport,
+                  subtitle: Text(l10n.settingsImportSubtitle),
                   onTap: () => _importData(context, ref),
                 ),
                 _SettingsTile(
                   tileKey: const Key('resetSettingsTile'),
                   icon: Icons.settings_backup_restore_outlined,
-                  title: 'Reset settings',
-                  subtitle: const Text(
-                      'Restore defaults: 30 h/ECTS, no target, Monday, system theme, 5-day tolerance, 35 h/week overload, comfortable size, teal colour.'),
+                  title: l10n.settingsResetSettings,
+                  subtitle: Text(l10n.settingsResetSettingsSubtitle),
                   onTap: () => _confirmResetSettings(context, ref),
                   showDivider: false,
                 ),
@@ -399,41 +396,39 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
             ),
             if (devMode) ...[
               const SizedBox(height: 12),
-              _sectionHeader(context, 'Dev mode', Icons.bug_report_outlined),
+              _sectionHeader(
+                  context, l10n.settingsDevMode, Icons.bug_report_outlined),
               _SettingsCard(
                 children: [
                   _SettingsTile(
                     tileKey: const Key('pumpTestDataTile'),
                     icon: Icons.science_outlined,
-                    title: 'Pump test data',
+                    title: l10n.devToolsPumpTile,
                     subtitle: Text(_pumping
-                        ? 'Pumping test data…'
-                        : 'Insert a generated semester (~10 courses, ~800 sessions, 12 weeks). Existing data kept.'),
+                        ? l10n.devToolsPumping
+                        : l10n.devToolsPumpSubtitle),
                     onTap: _pumping ? null : _pumpTestData,
                   ),
                   _SettingsTile(
                     tileKey: const Key('clearPumpedDataTile'),
                     icon: Icons.cleaning_services_outlined,
-                    title: 'Clear pumped data',
-                    subtitle: const Text(
-                        'Delete generated STRESS courses and sessions.'),
+                    title: l10n.devToolsClearPumped,
+                    subtitle: Text(l10n.devToolsClearPumpedSubtitle),
                     onTap: _clearPumpedData,
                   ),
                   _SettingsTile(
                     tileKey: const Key('removeAllDataDevTile'),
                     icon: Icons.delete_forever_outlined,
-                    title: 'Remove all data',
-                    subtitle: const Text(
-                        'Dev shortcut: delete ALL courses, sessions, and settings.'),
+                    title: l10n.devToolsRemoveAll,
+                    subtitle: Text(l10n.devToolsRemoveAllSubtitle),
                     onTap: _confirmRemoveAllDev,
                     showDivider: false,
                   ),
                   _SettingsTile(
                     tileKey: const Key('exitDevModeTile'),
                     icon: Icons.logout_outlined,
-                    title: 'Exit dev mode',
-                    subtitle:
-                        const Text('Hide dev tools on this device.'),
+                    title: l10n.devToolsExit,
+                    subtitle: Text(l10n.devToolsExitSubtitle),
                     onTap: () =>
                         ref.read(devModeProvider.notifier).state = false,
                     showDivider: false,
@@ -448,9 +443,8 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
                 _SettingsTile(
                   tileKey: const Key('resetAllDataTile'),
                   icon: Icons.delete_forever_outlined,
-                  title: 'Reset all data',
-                  subtitle: const Text(
-                      'Delete all courses, sessions, and settings.'),
+                  title: l10n.settingsResetAll,
+                  subtitle: Text(l10n.settingsResetAllSubtitle),
                   onTap: () => _confirmResetAll(context, ref),
                   showDivider: false,
                   danger: true,
@@ -505,30 +499,53 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
         ),
       );
 
-  String _weekdayName(int weekday) => const {
-        1: 'Monday',
-        2: 'Tuesday',
-        3: 'Wednesday',
-        4: 'Thursday',
-        5: 'Friday',
-        6: 'Saturday',
-        7: 'Sunday',
-      }[weekday] ?? 'Monday';
-
-  String _themeModeName(AppThemeMode mode) => switch (mode) {
-        AppThemeMode.system => 'System default',
-        AppThemeMode.light => 'Light',
-        AppThemeMode.dark => 'Dark',
+  String _weekdayName(AppLocalizations l10n, int weekday) => switch (weekday) {
+        1 => l10n.settingsWeekdayMonday,
+        2 => l10n.settingsWeekdayTuesday,
+        3 => l10n.settingsWeekdayWednesday,
+        4 => l10n.settingsWeekdayThursday,
+        5 => l10n.settingsWeekdayFriday,
+        6 => l10n.settingsWeekdaySaturday,
+        7 => l10n.settingsWeekdaySunday,
+        _ => l10n.settingsWeekdayMonday,
       };
 
-  String _formatTolerance(double v) =>
-      v % 1 == 0 ? '${v.toStringAsFixed(0)} days' : '${v.toStringAsFixed(1)} days';
+  String _themeModeName(AppLocalizations l10n, AppThemeMode mode) =>
+      switch (mode) {
+        AppThemeMode.system => l10n.settingsThemeSystem,
+        AppThemeMode.light => l10n.settingsThemeLight,
+        AppThemeMode.dark => l10n.settingsThemeDark,
+      };
 
-  String _formatOverload(double v) =>
-      v % 1 == 0 ? '${v.toStringAsFixed(0)} h' : '${v.toStringAsFixed(1)} h';
+  String _displaySizeName(AppLocalizations l10n, AppDisplaySize size) =>
+      switch (size) {
+        AppDisplaySize.compact => l10n.settingsDisplayCompact,
+        AppDisplaySize.comfortable => l10n.settingsDisplayComfortable,
+        AppDisplaySize.large => l10n.settingsDisplayLarge,
+      };
+
+  String _accentName(AppLocalizations l10n, AppAccent accent) =>
+      switch (accent) {
+        AppAccent.teal => l10n.settingsAccentTeal,
+        AppAccent.forest => l10n.settingsAccentForest,
+        AppAccent.clay => l10n.settingsAccentClay,
+        AppAccent.slate => l10n.settingsAccentSlate,
+        AppAccent.berry => l10n.settingsAccentBerry,
+      };
+
+  String _formatTolerance(AppLocalizations l10n, double v) =>
+      l10n.settingsToleranceDays(v % 1 == 0
+          ? v.toStringAsFixed(0)
+          : v.toStringAsFixed(1));
+
+  String _formatOverload(AppLocalizations l10n, double v) =>
+      l10n.settingsOverloadHours(v % 1 == 0
+          ? v.toStringAsFixed(0)
+          : v.toStringAsFixed(1));
 
   Future<void> _editOverloadThreshold(
       BuildContext context, WidgetRef ref, AppSettings settings) async {
+    final l10n = AppLocalizations.of(context)!;
     final controller =
         TextEditingController(text: settings.weeklyOverloadHours.toString());
     String? errorText;
@@ -536,16 +553,15 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
       context: context,
       builder: (context) => StatefulBuilder(
         builder: (context, setState) => AlertDialog(
-          title: const Text('Weekly overload threshold'),
+          title: Text(l10n.settingsOverloadThreshold),
           content: TextField(
             key: const Key('overloadThresholdField'),
             controller: controller,
             keyboardType:
                 const TextInputType.numberWithOptions(decimal: true),
             decoration: InputDecoration(
-              labelText: 'Hours per week (5–100)',
-              helperText:
-                  'Coming-load weeks above this are flagged red. Full-time study is ~35–40 h/week.',
+              labelText: l10n.settingsOverloadLabel,
+              helperText: l10n.settingsOverloadHelper,
               errorText: errorText,
             ),
             autofocus: true,
@@ -553,7 +569,7 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
           actions: [
             TextButton(
               onPressed: () => Navigator.of(context).pop(),
-              child: const Text('Cancel'),
+              child: Text(l10n.commonCancel),
             ),
             FilledButton(
               key: const Key('saveOverloadThreshold'),
@@ -562,12 +578,12 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
                     controller.text.trim().replaceAll(',', '.'));
                 if (parsed == null || parsed < 5 || parsed > 100) {
                   setState(
-                      () => errorText = 'Enter a number 5–100 h/week.');
+                      () => errorText = l10n.settingsOverloadError);
                   return;
                 }
                 Navigator.of(context).pop(parsed);
               },
-              child: const Text('Save'),
+              child: Text(l10n.commonSave),
             ),
           ],
         ),
@@ -579,11 +595,12 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
         .read(settingsRepositoryProvider)
         .setWeeklyOverloadHours(value);
     if (!context.mounted) return;
-    _showResult(context, result, success: 'Overload threshold updated.');
+    _showResult(context, result, success: l10n.settingsOverloadUpdated);
   }
 
   Future<void> _editPaceTolerance(
       BuildContext context, WidgetRef ref, AppSettings settings) async {
+    final l10n = AppLocalizations.of(context)!;
     final controller =
         TextEditingController(text: settings.paceToleranceDays.toString());
     String? errorText;
@@ -591,16 +608,15 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
       context: context,
       builder: (context) => StatefulBuilder(
         builder: (context, setState) => AlertDialog(
-          title: const Text('Ahead / behind tolerance'),
+          title: Text(l10n.settingsPaceTolerance),
           content: TextField(
             key: const Key('paceToleranceField'),
             controller: controller,
             keyboardType:
                 const TextInputType.numberWithOptions(decimal: true),
             decoration: InputDecoration(
-              labelText: 'Days of work (0–30)',
-              helperText:
-                  'Ahead needs +N days surplus, behind −N days. 5 = stable, 0 = sensitive.',
+              labelText: l10n.settingsToleranceLabel,
+              helperText: l10n.settingsToleranceHelper,
               errorText: errorText,
             ),
             autofocus: true,
@@ -608,7 +624,7 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
           actions: [
             TextButton(
               onPressed: () => Navigator.of(context).pop(),
-              child: const Text('Cancel'),
+              child: Text(l10n.commonCancel),
             ),
             FilledButton(
               key: const Key('savePaceTolerance'),
@@ -617,12 +633,12 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
                     controller.text.trim().replaceAll(',', '.'));
                 if (parsed == null || parsed < 0 || parsed > 30) {
                   setState(
-                      () => errorText = 'Enter a number 0–30 days.');
+                      () => errorText = l10n.settingsToleranceError);
                   return;
                 }
                 Navigator.of(context).pop(parsed);
               },
-              child: const Text('Save'),
+              child: Text(l10n.commonSave),
             ),
           ],
         ),
@@ -634,11 +650,12 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
         .read(settingsRepositoryProvider)
         .setPaceToleranceDays(value);
     if (!context.mounted) return;
-    _showResult(context, result, success: 'Tolerance updated.');
+    _showResult(context, result, success: l10n.settingsToleranceUpdated);
   }
 
   Future<void> _editHoursPerEcts(
       BuildContext context, WidgetRef ref, AppSettings settings) async {
+    final l10n = AppLocalizations.of(context)!;
     final controller = TextEditingController(
         text: settings.hoursPerEcts.toStringAsFixed(
             settings.hoursPerEcts % 1 == 0 ? 0 : 1));
@@ -647,14 +664,14 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
       context: context,
       builder: (context) => StatefulBuilder(
         builder: (context, setState) => AlertDialog(
-          title: const Text('Hours per ECTS'),
+          title: Text(l10n.settingsHoursPerEcts),
           content: TextField(
             key: const Key('hoursPerEctsField'),
             controller: controller,
             keyboardType: const TextInputType.numberWithOptions(decimal: true),
             decoration: InputDecoration(
-              labelText: 'Hours per ECTS credit',
-              helperText: 'Default 30. Changing recalculates requirements; logs kept.',
+              labelText: l10n.settingsHoursLabel,
+              helperText: l10n.settingsHoursHelper,
               errorText: errorText,
             ),
             autofocus: true,
@@ -662,19 +679,19 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
           actions: [
             TextButton(
               onPressed: () => Navigator.of(context).pop(),
-              child: const Text('Cancel'),
+              child: Text(l10n.commonCancel),
             ),
             FilledButton(
               key: const Key('saveHoursPerEcts'),
               onPressed: () {
                 final parsed = double.tryParse(controller.text.trim().replaceAll(',', '.'));
                 if (parsed == null || parsed <= 0) {
-                  setState(() => errorText = 'Enter a number greater than zero.');
+                  setState(() => errorText = l10n.settingsHoursError);
                   return;
                 }
                 Navigator.of(context).pop(parsed);
               },
-              child: const Text('Save'),
+              child: Text(l10n.commonSave),
             ),
           ],
         ),
@@ -685,11 +702,12 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
     final result =
         await ref.read(settingsRepositoryProvider).setHoursPerEcts(value);
     if (!context.mounted) return;
-    _showResult(context, result, success: 'Hours per ECTS updated.');
+    _showResult(context, result, success: l10n.settingsHoursUpdated);
   }
 
   Future<void> _editDailyTarget(
       BuildContext context, WidgetRef ref, AppSettings settings) async {
+    final l10n = AppLocalizations.of(context)!;
     final controller =
         TextEditingController(text: settings.dailyTargetMinutes.toString());
     String? errorText;
@@ -697,13 +715,13 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
       context: context,
       builder: (context) => StatefulBuilder(
         builder: (context, setState) => AlertDialog(
-          title: const Text('Daily study target'),
+          title: Text(l10n.settingsDailyTarget),
           content: TextField(
             key: const Key('dailyTargetField'),
             controller: controller,
             keyboardType: TextInputType.number,
             decoration: InputDecoration(
-              labelText: 'Minutes per day (0 = no target)',
+              labelText: l10n.settingsDailyLabel,
               errorText: errorText,
             ),
             autofocus: true,
@@ -711,19 +729,19 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
           actions: [
             TextButton(
               onPressed: () => Navigator.of(context).pop(),
-              child: const Text('Cancel'),
+              child: Text(l10n.commonCancel),
             ),
             FilledButton(
               key: const Key('saveDailyTarget'),
               onPressed: () {
                 final parsed = int.tryParse(controller.text.trim());
                 if (parsed == null || parsed < 0) {
-                  setState(() => errorText = 'Enter 0 or a positive number of minutes.');
+                  setState(() => errorText = l10n.settingsDailyError);
                   return;
                 }
                 Navigator.of(context).pop(parsed);
               },
-              child: const Text('Save'),
+              child: Text(l10n.commonSave),
             ),
           ],
         ),
@@ -735,15 +753,16 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
         .read(settingsRepositoryProvider)
         .setDailyTargetMinutes(value);
     if (!context.mounted) return;
-    _showResult(context, result, success: 'Daily target updated.');
+    _showResult(context, result, success: l10n.settingsDailyUpdated);
   }
 
   Future<void> _editFirstWeekday(
       BuildContext context, WidgetRef ref, AppSettings settings) async {
+    final l10n = AppLocalizations.of(context)!;
     final selected = await showDialog<int>(
       context: context,
       builder: (context) => SimpleDialog(
-        title: const Text('First day of week'),
+        title: Text(l10n.settingsFirstWeekday),
         children: [
           for (var day = 1; day <= 7; day++)
             SimpleDialogOption(
@@ -751,7 +770,7 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
               onPressed: () => Navigator.of(context).pop(day),
               child: Row(
                 children: [
-                  Expanded(child: Text(_weekdayName(day))),
+                  Expanded(child: Text(_weekdayName(l10n, day))),
                   if (day == settings.firstWeekday)
                     const Icon(Icons.check, size: 18),
                 ],
@@ -764,15 +783,16 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
     final result =
         await ref.read(settingsRepositoryProvider).setFirstWeekday(selected);
     if (!context.mounted) return;
-    _showResult(context, result, success: 'First day of week updated.');
+    _showResult(context, result, success: l10n.settingsFirstWeekdayUpdated);
   }
 
   Future<void> _editThemeMode(
       BuildContext context, WidgetRef ref, AppSettings settings) async {
+    final l10n = AppLocalizations.of(context)!;
     final selected = await showDialog<AppThemeMode>(
       context: context,
       builder: (context) => SimpleDialog(
-        title: const Text('Theme'),
+        title: Text(l10n.settingsThemeTitle),
         children: [
           for (final mode in AppThemeMode.values)
             SimpleDialogOption(
@@ -780,7 +800,7 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
               onPressed: () => Navigator.of(context).pop(mode),
               child: Row(
                 children: [
-                  Expanded(child: Text(_themeModeName(mode))),
+                  Expanded(child: Text(_themeModeName(l10n, mode))),
                   if (mode == settings.themeMode)
                     const Icon(Icons.check, size: 18),
                 ],
@@ -793,15 +813,16 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
     final result =
         await ref.read(settingsRepositoryProvider).setThemeMode(selected);
     if (!context.mounted) return;
-    _showResult(context, result, success: 'Theme updated.');
+    _showResult(context, result, success: l10n.settingsThemeUpdated);
   }
 
   Future<void> _editDisplaySize(
       BuildContext context, WidgetRef ref, AppSettings settings) async {
+    final l10n = AppLocalizations.of(context)!;
     final selected = await showDialog<AppDisplaySize>(
       context: context,
       builder: (context) => SimpleDialog(
-        title: const Text('Text & element size'),
+        title: Text(l10n.settingsDisplaySize),
         children: [
           for (final size in AppDisplaySize.values)
             SimpleDialogOption(
@@ -811,7 +832,10 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
                 children: [
                   Expanded(
                     child: Text(
-                      '${size.label} (${(size.scale * 100).toStringAsFixed(0)}%)',
+                      l10n.settingsDisplaySizeOption(
+                        _displaySizeName(l10n, size),
+                        (size.scale * 100).toStringAsFixed(0),
+                      ),
                       style: TextStyle(fontSize: 16 * size.scale),
                     ),
                   ),
@@ -827,15 +851,16 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
     final result =
         await ref.read(settingsRepositoryProvider).setDisplaySize(selected);
     if (!context.mounted) return;
-    _showResult(context, result, success: 'Display size updated.');
+    _showResult(context, result, success: l10n.settingsDisplaySizeUpdated);
   }
 
   Future<void> _editAccent(
       BuildContext context, WidgetRef ref, AppSettings settings) async {
+    final l10n = AppLocalizations.of(context)!;
     final selected = await showDialog<AppAccent>(
       context: context,
       builder: (context) => SimpleDialog(
-        title: const Text('Theme colour'),
+        title: Text(l10n.settingsAccent),
         children: [
           for (final accent in AppAccent.values)
             SimpleDialogOption(
@@ -852,7 +877,7 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
                       shape: BoxShape.circle,
                     ),
                   ),
-                  Expanded(child: Text(accent.label)),
+                  Expanded(child: Text(_accentName(l10n, accent))),
                   if (accent == settings.accent)
                     const Icon(Icons.check, size: 18),
                 ],
@@ -865,26 +890,25 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
     final result =
         await ref.read(settingsRepositoryProvider).setAccent(selected);
     if (!context.mounted) return;
-    _showResult(context, result, success: 'Theme colour updated.');
+    _showResult(context, result, success: l10n.settingsAccentUpdated);
   }
 
   Future<void> _confirmClearSample(BuildContext context, WidgetRef ref) async {
+    final l10n = AppLocalizations.of(context)!;
     final confirmed = await showDialog<bool>(
       context: context,
       builder: (context) => AlertDialog(
-        title: const Text('Clear sample data?'),
-        content: const Text(
-          'This removes the example courses and sessions. Courses or sessions you added yourself are not removed.',
-        ),
+        title: Text(l10n.settingsClearSampleTitle),
+        content: Text(l10n.settingsClearSampleMessage),
         actions: [
           TextButton(
             onPressed: () => Navigator.of(context).pop(false),
-            child: const Text('Cancel'),
+            child: Text(l10n.commonCancel),
           ),
           FilledButton(
             key: const Key('confirmClearSampleData'),
             onPressed: () => Navigator.of(context).pop(true),
-            child: const Text('Clear'),
+            child: Text(l10n.settingsClear),
           ),
         ],
       ),
@@ -906,6 +930,7 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
   }
 
   Future<void> _exportData(BuildContext context, WidgetRef ref) async {
+    final l10n = AppLocalizations.of(context)!;
     final result = await ref.read(backupRepositoryProvider).exportJson();
     if (!context.mounted) return;
     switch (result) {
@@ -926,12 +951,12 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
         final kb = (value.length / 1024).toStringAsFixed(1);
         const previewLimit = 4000;
         final preview = value.length > previewLimit
-            ? '${value.substring(0, previewLimit)}\n… (truncated — full backup is $kb KB, use Copy for everything)'
+            ? '${value.substring(0, previewLimit)}\n${l10n.settingsExportTruncated(kb)}'
             : value;
         await showDialog<void>(
           context: context,
           builder: (context) => AlertDialog(
-            title: const Text('Export data'),
+            title: Text(l10n.settingsExport),
             content: SizedBox(
               width: double.maxFinite,
               child: SingleChildScrollView(
@@ -939,7 +964,8 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    Text('$courses course(s) · $sessions session(s) · $kb KB'),
+                    Text(l10n.settingsExportSummary(
+                        '$courses', '$sessions', kb)),
                     const SizedBox(height: 8),
                     SelectableText(
                       preview,
@@ -957,15 +983,15 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
                   await Clipboard.setData(ClipboardData(text: value));
                   if (context.mounted) {
                     ScaffoldMessenger.of(context).showSnackBar(
-                      const SnackBar(content: Text('Export copied to clipboard.')),
+                      SnackBar(content: Text(l10n.settingsExportCopied)),
                     );
                   }
                 },
-                child: const Text('Copy'),
+                child: Text(l10n.settingsCopy),
               ),
               FilledButton(
                 onPressed: () => Navigator.of(context).pop(),
-                child: const Text('Close'),
+                child: Text(l10n.commonClose),
               ),
             ],
           ),
@@ -974,6 +1000,7 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
   }
 
   Future<void> _importData(BuildContext context, WidgetRef ref) async {
+    final l10n = AppLocalizations.of(context)!;
     final controller = TextEditingController();
     ImportMode mode = ImportMode.replace;
     String? previewText;
@@ -1006,9 +1033,16 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
                   previewCourses = value.courses;
                   previewSessions = value.sessions;
                   previewText =
-                      '${value.courses} course(s) · ${value.sessions} session(s)'
-                      '${value.exportedAt != null ? ' · exported ${value.exportedAt}' : ''}'
-                      '${value.dbSchema != null ? ' · schema v${value.dbSchema}' : ''}';
+                      l10n.settingsImportPreview(
+                          '${value.courses}', '${value.sessions}') +
+                      (value.exportedAt != null
+                          ? l10n.settingsImportPreviewExported(
+                              '${value.exportedAt}')
+                          : '') +
+                      (value.dbSchema != null
+                          ? l10n.settingsImportPreviewSchema(
+                              '${value.dbSchema}')
+                          : '');
                 });
               case Err<BackupPreview>(:final message):
                 setState(() {
@@ -1020,7 +1054,7 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
           }
 
           return AlertDialog(
-            title: const Text('Import data'),
+            title: Text(l10n.settingsImport),
             content: SizedBox(
               width: double.maxFinite,
               child: SingleChildScrollView(
@@ -1028,18 +1062,15 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
                   mainAxisSize: MainAxisSize.min,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const Text(
-                      'Append adds the backup alongside your current data (settings kept). '
-                      'Replace wipes ALL courses, sessions, and settings first.',
-                    ),
+                    Text(l10n.settingsImportInfo),
                     const SizedBox(height: 12),
                     TextField(
                       key: const Key('importJsonField'),
                       controller: controller,
                       maxLines: 6,
-                      decoration: const InputDecoration(
-                        labelText: 'Paste exported JSON',
-                        border: OutlineInputBorder(),
+                      decoration: InputDecoration(
+                        labelText: l10n.settingsImportLabel,
+                        border: const OutlineInputBorder(),
                       ),
                       onChanged: (_) => validate(),
                     ),
@@ -1059,16 +1090,16 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
                       ),
                     const SizedBox(height: 8),
                     SegmentedButton<ImportMode>(
-                      segments: const [
+                      segments: [
                         ButtonSegment(
                           value: ImportMode.append,
-                          label: Text('Append'),
-                          icon: Icon(Icons.add),
+                          label: Text(l10n.settingsImportAppend),
+                          icon: const Icon(Icons.add),
                         ),
                         ButtonSegment(
                           value: ImportMode.replace,
-                          label: Text('Replace'),
-                          icon: Icon(Icons.warning_amber_outlined),
+                          label: Text(l10n.settingsImportReplace),
+                          icon: const Icon(Icons.warning_amber_outlined),
                         ),
                       ],
                       selected: {mode},
@@ -1077,14 +1108,14 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
                     ),
                     if (mode == ImportMode.replace) ...[
                       const SizedBox(height: 12),
-                      const Text(
-                        'Replace deletes everything first. Press and HOLD the button below for 10 seconds to confirm.',
+                      Text(
+                        l10n.settingsImportReplaceWarning('10'),
                       ),
                       const SizedBox(height: 8),
                       _HoldToConfirmButton(
                         enabled: previewOk,
                         seconds: 10,
-                        label: 'Hold to replace everything',
+                        label: l10n.settingsHoldToReplace,
                         onConfirmed: () async {
                           final text = controller.text;
                           Navigator.of(context).pop();
@@ -1093,8 +1124,8 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
                               .importJson(text, mode: ImportMode.replace);
                           if (!context.mounted) return;
                           _showResult(context, result,
-                              success:
-                                  'Data replaced: $previewCourses course(s), $previewSessions session(s) restored.',
+                              success: l10n.settingsImportReplaced(
+                                  '$previewCourses', '$previewSessions'),
                               errorKey: const Key('importDataError'));
                         },
                       ),
@@ -1106,7 +1137,7 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
             actions: [
               TextButton(
                 onPressed: () => Navigator.of(context).pop(),
-                child: const Text('Cancel'),
+                child: Text(l10n.commonCancel),
               ),
               if (mode == ImportMode.append)
                 FilledButton(
@@ -1121,11 +1152,11 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
                               .importJson(text, mode: ImportMode.append);
                           if (!context.mounted) return;
                           _showResult(context, result,
-                              success:
-                                  'Data appended: $previewCourses course(s), $previewSessions session(s) added.',
+                              success: l10n.settingsImportAppended(
+                                  '$previewCourses', '$previewSessions'),
                               errorKey: const Key('importDataError'));
                         },
-                  child: const Text('Import (append)'),
+                  child: Text(l10n.settingsImportAppendAction),
                 ),
             ],
           );
@@ -1136,22 +1167,21 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
   }
 
   Future<void> _confirmResetSettings(BuildContext context, WidgetRef ref) async {
+    final l10n = AppLocalizations.of(context)!;
     final confirmed = await showDialog<bool>(
       context: context,
       builder: (context) => AlertDialog(
-        title: const Text('Reset settings?'),
-        content: const Text(
-          'Restores hours-per-ECTS (30), daily target (none), first weekday (Monday), theme (system), tolerance (5 days), overload (35 h/week), size (comfortable), colour (teal). Courses and sessions are kept.',
-        ),
+        title: Text(l10n.settingsResetSettingsTitle),
+        content: Text(l10n.settingsResetSettingsMessage),
         actions: [
           TextButton(
             onPressed: () => Navigator.of(context).pop(false),
-            child: const Text('Cancel'),
+            child: Text(l10n.commonCancel),
           ),
           FilledButton(
             key: const Key('confirmResetSettings'),
             onPressed: () => Navigator.of(context).pop(true),
-            child: const Text('Reset'),
+            child: Text(l10n.settingsReset),
           ),
         ],
       ),
@@ -1159,21 +1189,20 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
     if (confirmed != true || !context.mounted) return;
     final result = await ref.read(settingsRepositoryProvider).resetToDefaults();
     if (!context.mounted) return;
-    _showResult(context, result, success: 'Settings reset to defaults.');
+    _showResult(context, result, success: l10n.settingsResetSettingsDone);
   }
 
   Future<void> _confirmResetAll(BuildContext context, WidgetRef ref) async {
+    final l10n = AppLocalizations.of(context)!;
     final confirmed = await showDialog<bool>(
       context: context,
       builder: (context) => AlertDialog(
-        title: const Text('Reset all data?'),
-        content: const Text(
-          'This permanently deletes ALL courses, sessions, and settings. This cannot be undone. Export a backup first if needed.',
-        ),
+        title: Text(l10n.settingsResetAllTitle),
+        content: Text(l10n.settingsResetAllMessage),
         actions: [
           TextButton(
             onPressed: () => Navigator.of(context).pop(false),
-            child: const Text('Cancel'),
+            child: Text(l10n.commonCancel),
           ),
           FilledButton(
             key: const Key('confirmResetAllData'),
@@ -1181,7 +1210,7 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
               backgroundColor: Theme.of(context).colorScheme.error,
             ),
             onPressed: () => Navigator.of(context).pop(true),
-            child: const Text('Delete everything'),
+            child: Text(l10n.settingsDeleteEverything),
           ),
         ],
       ),
@@ -1189,7 +1218,7 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
     if (confirmed != true || !context.mounted) return;
     final result = await ref.read(backupRepositoryProvider).resetAllData();
     if (!context.mounted) return;
-    _showResult(context, result, success: 'All data deleted.');
+    _showResult(context, result, success: l10n.settingsAllDataDeleted);
   }
 
   void _showResult(BuildContext context, Result<void> result,
@@ -1432,6 +1461,7 @@ class _HoldToConfirmButtonState extends State<_HoldToConfirmButton> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     final progress = (_held / widget.seconds).clamp(0.0, 1.0);
     final remaining = (widget.seconds - _held).ceil().clamp(0, widget.seconds);
     return Opacity(
@@ -1454,9 +1484,10 @@ class _HoldToConfirmButtonState extends State<_HoldToConfirmButton> {
               ),
               child: Text(widget.enabled
                   ? (_held > 0
-                      ? 'Keep holding… $remaining s'
-                      : '${widget.label} (${widget.seconds}s hold)')
-                  : 'Paste a valid backup first'),
+                      ? l10n.settingsKeepHolding('$remaining')
+                      : l10n.settingsHoldLabel(
+                          widget.label, '${widget.seconds}'))
+                  : l10n.settingsPasteValidBackup),
             ),
           ),
           const SizedBox(height: 6),

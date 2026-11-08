@@ -1,3 +1,4 @@
+import 'package:ects_tracker/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -93,16 +94,17 @@ class _SessionFormDialogState extends ConsumerState<SessionFormDialog> {
       '${d.year}-${d.month.toString().padLeft(2, '0')}-${d.day.toString().padLeft(2, '0')}';
 
   Future<void> _save() async {
+    final l10n = AppLocalizations.of(context)!;
     setState(() => _error = null);
     if (!_formKey.currentState!.validate()) return;
     final courseId = _courseId;
     if (courseId == null) {
-      setState(() => _error = 'Select a course.');
+      setState(() => _error = l10n.sessionFormNoCourseError);
       return;
     }
     final minutes = _totalMinutes;
     if (minutes <= 0) {
-      setState(() => _error = 'Duration must be greater than zero.');
+      setState(() => _error = l10n.sessionFormDurationError);
       return;
     }
     setState(() => _saving = true);
@@ -141,6 +143,7 @@ class _SessionFormDialogState extends ConsumerState<SessionFormDialog> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     final coursesAsync = ref.watch(coursesProvider);
     final courses = coursesAsync.valueOrNull ?? const [];
     // Keep selection valid if courses load after first build.
@@ -152,7 +155,9 @@ class _SessionFormDialogState extends ConsumerState<SessionFormDialog> {
     }
 
     return AlertDialog(
-      title: Text(_isEdit ? 'Edit study session' : 'Log study session'),
+      title: Text(
+        _isEdit ? l10n.sessionFormTitleEdit : l10n.sessionFormTitleAdd,
+      ),
       content: SingleChildScrollView(
         child: Form(
           key: _formKey,
@@ -168,7 +173,7 @@ class _SessionFormDialogState extends ConsumerState<SessionFormDialog> {
               DropdownButtonFormField<int>(
                 key: const Key('sessionCourseDropdown'),
                 initialValue: _courseId,
-                decoration: const InputDecoration(labelText: 'Course'),
+                decoration: InputDecoration(labelText: l10n.sessionFormCourseLabel),
                 items: [
                   for (final c in courses)
                     DropdownMenuItem<int>(
@@ -179,13 +184,14 @@ class _SessionFormDialogState extends ConsumerState<SessionFormDialog> {
                 onChanged: courses.isEmpty
                     ? null
                     : (v) => setState(() => _courseId = v),
-                validator: (v) => v == null ? 'Select a course' : null,
+                validator: (v) =>
+                    v == null ? l10n.validationSessionCourseRequired : null,
               ),
               if (courses.isEmpty && !coursesAsync.isLoading)
                 Padding(
                   padding: const EdgeInsets.only(top: 4),
                   child: Text(
-                    'Add a course first to log a session.',
+                    l10n.sessionFormNoCoursesHint,
                     key: const Key('sessionNoCoursesHint'),
                     style: TextStyle(
                       color: Theme.of(context).colorScheme.error,
@@ -199,7 +205,9 @@ class _SessionFormDialogState extends ConsumerState<SessionFormDialog> {
                     child: TextFormField(
                       key: const Key('sessionHoursField'),
                       controller: _hoursController,
-                      decoration: const InputDecoration(labelText: 'Hours'),
+                      decoration: InputDecoration(
+                        labelText: l10n.sessionFormHoursLabel,
+                      ),
                       keyboardType: TextInputType.number,
                       inputFormatters: [FilteringTextInputFormatter.digitsOnly],
                       onChanged: (_) => setState(() {}),
@@ -210,13 +218,15 @@ class _SessionFormDialogState extends ConsumerState<SessionFormDialog> {
                     child: TextFormField(
                       key: const Key('sessionMinutesField'),
                       controller: _minutesController,
-                      decoration: const InputDecoration(labelText: 'Minutes'),
+                      decoration: InputDecoration(
+                        labelText: l10n.sessionFormMinutesLabel,
+                      ),
                       keyboardType: TextInputType.number,
                       inputFormatters: [FilteringTextInputFormatter.digitsOnly],
                       onChanged: (_) => setState(() {}),
                       validator: (_) {
                         if (_totalMinutes <= 0) {
-                          return 'Enter a duration';
+                          return l10n.validationSessionDurationRequired;
                         }
                         return null;
                       },
@@ -227,7 +237,9 @@ class _SessionFormDialogState extends ConsumerState<SessionFormDialog> {
               Padding(
                 padding: const EdgeInsets.only(top: 4),
                 child: Text(
-                  'Total: ${(_totalMinutes / 60.0).toStringAsFixed(2)} h',
+                  l10n.sessionFormTotalHours(
+                    (_totalMinutes / 60.0).toStringAsFixed(2),
+                  ),
                   key: const Key('sessionTotalDuration'),
                   style: Theme.of(context).textTheme.bodySmall,
                 ),
@@ -237,13 +249,13 @@ class _SessionFormDialogState extends ConsumerState<SessionFormDialog> {
                 key: const Key('sessionDateButton'),
                 onPressed: _pickDate,
                 icon: const Icon(Icons.calendar_today),
-                label: Text('Date: ${_dateLabel(_date)}'),
+                label: Text(l10n.sessionFormDateButton(_dateLabel(_date))),
               ),
               const SizedBox(height: 8),
               TextFormField(
                 key: const Key('sessionNotesField'),
                 controller: _notesController,
-                decoration: const InputDecoration(labelText: 'Notes (optional)'),
+                decoration: InputDecoration(labelText: l10n.sessionFormNotesLabel),
                 maxLines: 2,
               ),
               if (_error != null) ...[
@@ -261,12 +273,16 @@ class _SessionFormDialogState extends ConsumerState<SessionFormDialog> {
       actions: [
         TextButton(
           onPressed: _saving ? null : () => Navigator.of(context).pop(false),
-          child: const Text('Cancel'),
+          child: Text(l10n.commonCancel),
         ),
         FilledButton(
           key: const Key('saveSessionButton'),
           onPressed: _saving ? null : _save,
-          child: Text(_saving ? 'Saving…' : (_isEdit ? 'Save' : 'Log session')),
+          child: Text(
+            _saving
+                ? l10n.sessionFormSaving
+                : (_isEdit ? l10n.commonSave : l10n.sessionFormLogAction),
+          ),
         ),
       ],
     );

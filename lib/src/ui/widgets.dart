@@ -1,3 +1,4 @@
+import 'package:ects_tracker/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 
 import '../logic/ects.dart';
@@ -110,6 +111,7 @@ class RoundedProgressBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     final scheme = Theme.of(context).colorScheme;
     final fill = color ?? scheme.primary;
     // Zero state: a bare grey track reads as broken/disabled. Render an
@@ -117,7 +119,7 @@ class RoundedProgressBar extends StatelessWidget {
     // the left edge so it looks like a meter at 0, not an error.
     if ((value ?? 0) <= 0) {
       return Semantics(
-        label: 'No progress yet',
+        label: l10n.widgetNoProgress,
         child: ClipRRect(
           borderRadius: BorderRadius.circular(AppSizes.pillRadius),
           child: Container(

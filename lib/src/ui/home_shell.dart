@@ -1,3 +1,4 @@
+import 'package:ects_tracker/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -28,27 +29,27 @@ class HomeShell extends StatefulWidget {
 class _HomeShellState extends State<HomeShell> {
   int _index = 0;
 
-  static const _titles = [
-    'Dashboard',
-    'Courses',
-    'Study Log',
-    'Statistics',
-    'Settings',
-  ];
-
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
+    final titles = [
+      l10n.navDashboard,
+      l10n.navCourses,
+      l10n.navStudyLog,
+      l10n.navStatistics,
+      l10n.navSettings,
+    ];
     final scheme = Theme.of(context).colorScheme;
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          _titles[_index],
+          titles[_index],
           style: const TextStyle(fontSize: 26),
         ),
         actions: [
           if (_index == 0)
             IconButton(
-              tooltip: 'Log study session',
+              tooltip: l10n.dashboardLogSessionTooltip,
               onPressed: () => showSessionFormDialog(context),
               icon: Container(
                 padding:
@@ -91,28 +92,33 @@ class _HomeShellState extends State<HomeShell> {
         1 => FloatingActionButton.extended(
             key: const Key('addCourseFab'),
             onPressed: () => showCourseFormDialog(context),
-            tooltip: 'Add course',
+            tooltip: l10n.coursesAddTooltip,
             icon: const Icon(Icons.add),
-            label: const Text('New course'),
+            label: Text(l10n.coursesNewCourse),
           ),
         2 => FloatingActionButton.extended(
             key: const Key('logSessionFab'),
             onPressed: () => showSessionFormDialog(context),
-            tooltip: 'Log session',
+            tooltip: l10n.studyLogFabTooltip,
             icon: const Icon(Icons.timer),
-            label: const Text('Log session'),
+            label: Text(l10n.studyLogFabLabel),
           ),
         _ => null,
       },
       bottomNavigationBar: NavigationBar(
         selectedIndex: _index,
         onDestinationSelected: (i) => setState(() => _index = i),
-        destinations: const [
-          NavigationDestination(icon: Icon(Icons.dashboard), label: 'Dashboard'),
-          NavigationDestination(icon: Icon(Icons.book), label: 'Courses'),
-          NavigationDestination(icon: Icon(Icons.timer), label: 'Study Log'),
-          NavigationDestination(icon: Icon(Icons.bar_chart), label: 'Statistics'),
-          NavigationDestination(icon: Icon(Icons.settings), label: 'Settings'),
+        destinations: [
+          NavigationDestination(
+              icon: const Icon(Icons.dashboard), label: l10n.navDashboard),
+          NavigationDestination(
+              icon: const Icon(Icons.book), label: l10n.navCourses),
+          NavigationDestination(
+              icon: const Icon(Icons.timer), label: l10n.navStudyLog),
+          NavigationDestination(
+              icon: const Icon(Icons.bar_chart), label: l10n.navStatistics),
+          NavigationDestination(
+              icon: const Icon(Icons.settings), label: l10n.navSettings),
         ],
       ),
     );
@@ -127,6 +133,7 @@ class _OverviewPage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final l10n = AppLocalizations.of(context)!;
     final coursesAsync = ref.watch(coursesProvider);
     final sessionsAsync = ref.watch(sessionsProvider);
     final settingsAsync = ref.watch(settingsProvider);
@@ -240,7 +247,7 @@ class _OverviewPage extends ConsumerWidget {
               Icons.timer_outlined,
               size: AppSizes.statIcon,
             ),
-            label: const Text('Log study session'),
+            label: Text(l10n.dashboardLogSessionAction),
             style: FilledButton.styleFrom(
               padding: const EdgeInsets.symmetric(
                 horizontal: AppSizes.fabHPad,
@@ -255,7 +262,7 @@ class _OverviewPage extends ConsumerWidget {
         ),
         const SizedBox(height: AppSizes.sectionGap),
         SectionHeader(
-          title: 'Courses',
+          title: l10n.dashboardCoursesTitle,
           titleKey: const Key('coursesTitle'),
           icon: Icons.menu_book_outlined,
           trailing: '${activeItems.length}',
@@ -287,7 +294,9 @@ class _OverviewPage extends ConsumerWidget {
                   ),
                   const SizedBox(height: AppSizes.emptyGap),
                   Text(
-                    withProgress.isEmpty ? 'No courses yet' : 'All done',
+                    withProgress.isEmpty
+                        ? l10n.dashboardNoCourses
+                        : l10n.dashboardAllDone,
                     key: const Key('dashboardNoCourses'),
                     style: Theme.of(context).textTheme.titleLarge?.copyWith(
                           fontWeight: FontWeight.w800,
@@ -296,8 +305,8 @@ class _OverviewPage extends ConsumerWidget {
                   const SizedBox(height: AppSizes.emptySmallGap),
                   Text(
                     withProgress.isEmpty
-                        ? 'Add a course to start tracking your ECTS progress.'
-                        : 'Every course is completed — see the Courses tab for the full list.',
+                        ? l10n.dashboardEmptyHintNoCourses
+                        : l10n.dashboardEmptyHintAllDone,
                     style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                           color:
                               Theme.of(context).colorScheme.onSurfaceVariant,
@@ -318,13 +327,13 @@ class _OverviewPage extends ConsumerWidget {
         if (scheduled.isNotEmpty) ...[
           const SizedBox(height: AppSizes.sectionGap),
           SectionHeader(
-            title: 'Upcoming',
+            title: l10n.dashboardUpcomingTitle,
             titleKey: const Key('upcomingTitle'),
             icon: Icons.schedule_outlined,
             trailing: '${scheduled.length}',
           ),
           Text(
-            'Future starts — no pressure today, excluded from Today’s pace.',
+            l10n.dashboardUpcomingSubtitle,
             style: Theme.of(context).textTheme.bodyLarge?.copyWith(
                   color: Theme.of(context).colorScheme.onSurfaceVariant,
                   fontWeight: FontWeight.w500,
@@ -370,6 +379,7 @@ class _OverallProgressCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     final scheme = Theme.of(context).colorScheme;
     final fraction = progressFraction(totalRequired, totalDone);
     final pct = (fraction * 100).clamp(0, 100).toStringAsFixed(0);
@@ -408,7 +418,9 @@ class _OverallProgressCard extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        isFreshStart ? 'FRESH START' : 'TODAY’S PACE',
+                        isFreshStart
+                            ? l10n.dashboardFreshStart
+                            : l10n.dashboardTodayPaceLabel,
                         style:
                             Theme.of(context).textTheme.labelMedium?.copyWith(
                                   color: scheme.onPrimaryContainer,
@@ -419,8 +431,8 @@ class _OverallProgressCard extends StatelessWidget {
                       const SizedBox(height: AppSizes.heroTitleGap),
                       Text(
                         runwayDays > 0
-                            ? '$runwayDays days of runway'
-                            : 'No deadlines scheduled',
+                            ? l10n.dashboardRunwayDays(runwayDays)
+                            : l10n.dashboardNoDeadlines,
                         style:
                             Theme.of(context).textTheme.bodyMedium?.copyWith(
                                   color: scheme.onPrimaryContainer,
@@ -443,7 +455,7 @@ class _OverallProgressCard extends StatelessWidget {
                   child: Text(
                     // Empty (no courses) is not 0% progress — there is
                     // nothing to measure yet, so invite action, not a number.
-                    isEmpty ? 'NEW' : '$pct%',
+                    isEmpty ? l10n.dashboardNewBadge : '$pct%',
                     key: const Key('dashboardOverallPct'),
                     style: Theme.of(context).textTheme.titleSmall?.copyWith(
                           color: isFreshStart
@@ -458,10 +470,13 @@ class _OverallProgressCard extends StatelessWidget {
             const SizedBox(height: AppSizes.heroAfterHeadGap),
             Text(
               hasDueToday
-                  ? 'Due today — ${todayLogged.toStringAsFixed(1)} h logged'
+                  ? l10n.dashboardDueToday(todayLogged.toStringAsFixed(1))
                   : todayPace <= 0
-                      ? 'No pace due today'
-                      : '${todayLogged.toStringAsFixed(1)} / ${todayPace.toStringAsFixed(1)} h today',
+                      ? l10n.dashboardNoPaceDue
+                      : l10n.dashboardTodayProgress(
+                          todayLogged.toStringAsFixed(1),
+                          todayPace.toStringAsFixed(1),
+                        ),
               key: const Key('dashboardTodayPace'),
               style: Theme.of(context).textTheme.headlineSmall?.copyWith(
                     fontWeight: FontWeight.w800,
@@ -516,7 +531,9 @@ class _OverallProgressCard extends StatelessWidget {
                             Text(
                               e.progress.requiredDailyHours == null
                                   ? '—'
-                                  : '${e.progress.requiredDailyHours!.toStringAsFixed(1)} h/d',
+                                  : l10n.dashboardHoursPerDay(e.progress
+                                      .requiredDailyHours!
+                                      .toStringAsFixed(1)),
                               style: Theme.of(context)
                                   .textTheme
                                   .bodyMedium
@@ -540,8 +557,8 @@ class _OverallProgressCard extends StatelessWidget {
                   Expanded(
                     child: Text(
                       isEmpty
-                          ? 'Add your first course — your daily pace and progress will appear here.'
-                          : 'First 25 min counts most — pick the course due first.',
+                          ? l10n.dashboardTipEmpty
+                          : l10n.dashboardTipFirst,
                       style: Theme.of(context).textTheme.bodySmall?.copyWith(
                             color: scheme.onPrimaryContainer,
                           ),
@@ -555,7 +572,7 @@ class _OverallProgressCard extends StatelessWidget {
               Row(
                 children: [
                   Text(
-                    'TODAY $todayPct%',
+                    l10n.dashboardTodayLabel(todayPct),
                     style: Theme.of(context).textTheme.labelMedium?.copyWith(
                           color: scheme.onPrimaryContainer,
                           fontWeight: FontWeight.w800,
@@ -564,7 +581,8 @@ class _OverallProgressCard extends StatelessWidget {
                   ),
                   const Spacer(),
                   Text(
-                    '${todayLogged.toStringAsFixed(1)} / ${todayPace.toStringAsFixed(1)} h',
+                    l10n.dashboardTodayHours(todayLogged.toStringAsFixed(1),
+                        todayPace.toStringAsFixed(1)),
                     style: Theme.of(context).textTheme.labelMedium?.copyWith(
                           color: scheme.onPrimaryContainer,
                           fontWeight: FontWeight.w600,
@@ -583,7 +601,7 @@ class _OverallProgressCard extends StatelessWidget {
               Row(
                 children: [
                   Text(
-                    'TODAY',
+                    l10n.dashboardTodayBare,
                     style: Theme.of(context).textTheme.labelMedium?.copyWith(
                           color: scheme.onPrimaryContainer,
                           fontWeight: FontWeight.w800,
@@ -593,10 +611,11 @@ class _OverallProgressCard extends StatelessWidget {
                   const Spacer(),
                   Text(
                     isEmpty
-                        ? 'Nothing to track yet'
+                        ? l10n.dashboardNothingToTrack
                         : (todayLogged > 0
-                            ? '${todayLogged.toStringAsFixed(1)} h logged (bonus)'
-                            : 'Nothing due'),
+                            ? l10n.dashboardBonusLogged(
+                                todayLogged.toStringAsFixed(1))
+                            : l10n.dashboardNothingDue),
                     style: Theme.of(context).textTheme.labelMedium?.copyWith(
                           color: scheme.onPrimaryContainer,
                           fontWeight: FontWeight.w600,
@@ -610,7 +629,7 @@ class _OverallProgressCard extends StatelessWidget {
               Row(
                 children: [
                   Text(
-                    'PROGRAM $pct%',
+                    l10n.dashboardProgramLabel(pct),
                     style:
                         Theme.of(context).textTheme.labelMedium?.copyWith(
                               color: scheme.onPrimaryContainer
@@ -621,8 +640,9 @@ class _OverallProgressCard extends StatelessWidget {
                   ),
                   const Spacer(),
                   Text(
-                    '${totalDone.toStringAsFixed(1)} / '
-                    '${totalRequired.toStringAsFixed(0)} h',
+                    l10n.dashboardProgramHours(
+                        totalDone.toStringAsFixed(1),
+                        totalRequired.toStringAsFixed(0)),
                     key: const Key('dashboardTotals'),
                     style:
                         Theme.of(context).textTheme.labelMedium?.copyWith(
@@ -645,7 +665,7 @@ class _OverallProgressCard extends StatelessWidget {
               Row(
                 children: [
                   Text(
-                    'PROGRAM',
+                    l10n.dashboardProgramBare,
                     style:
                         Theme.of(context).textTheme.labelMedium?.copyWith(
                               color: scheme.onPrimaryContainer
@@ -656,7 +676,7 @@ class _OverallProgressCard extends StatelessWidget {
                   ),
                   const Spacer(),
                   Text(
-                    'Add a course to start tracking',
+                    l10n.dashboardProgramEmptyHint,
                     style:
                         Theme.of(context).textTheme.labelMedium?.copyWith(
                               color: scheme.onPrimaryContainer
@@ -670,8 +690,10 @@ class _OverallProgressCard extends StatelessWidget {
             ],
             if (!isEmpty)
               Text(
-                '$courseCount course(s)'
-                '${upcomingCount > 0 ? ' · $upcomingCount upcoming not in today’s pace' : ''}',
+                upcomingCount > 0
+                    ? l10n.dashboardCourseCountWithUpcoming(
+                        '$courseCount', '$upcomingCount')
+                    : l10n.dashboardCourseCount('$courseCount'),
                 key: const Key('dashboardCourseCount'),
                 style: Theme.of(context).textTheme.bodySmall?.copyWith(
                       color: scheme.onPrimaryContainer.withValues(alpha: 0.7),
@@ -691,21 +713,26 @@ class _DashboardCourseCard extends StatelessWidget {
   final CourseWithProgress item;
   final DateTime now;
 
-  String _deadlineLabel(CourseProgress progress, DateTime? deadline) {
-    if (deadline == null) return 'No deadline';
+  String _deadlineLabel(
+      AppLocalizations l10n, CourseProgress progress, DateTime? deadline) {
+    if (deadline == null) return l10n.dashboardNoDeadline;
     final d = '${deadline.year}-'
         '${deadline.month.toString().padLeft(2, '0')}-'
         '${deadline.day.toString().padLeft(2, '0')}';
-    if (progress.status == CourseStatus.overdue) return 'Deadline $d (overdue)';
-    if (progress.status == CourseStatus.completed) return 'Deadline $d';
+    if (progress.status == CourseStatus.overdue) {
+      return l10n.dashboardDeadlineOverdue(d);
+    }
+    if (progress.status == CourseStatus.completed) return l10n.dashboardDeadline(d);
     final days = progress.remainingDays;
-    if (days == null) return 'Deadline $d';
-    if (days == 0) return 'Deadline $d (today)';
-    return 'Deadline $d ($days day${days == 1 ? '' : 's'} left)';
+    if (days == null) return l10n.dashboardDeadline(d);
+    if (days == 0) return l10n.dashboardDeadlineToday(d);
+    if (days == 1) return l10n.dashboardDeadlineOneDayLeft(d);
+    return l10n.dashboardDeadlineDaysLeft(d, '$days');
   }
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     final course = item.course;
     final p = item.progress;
     final scheme = Theme.of(context).colorScheme;
@@ -719,7 +746,7 @@ class _DashboardCourseCard extends StatelessWidget {
             .inDays
         : 0;
     String startLabel(DateTime? d) => d == null
-        ? 'Not set'
+        ? l10n.dashboardStartNotSet
         : '${d.year}-${d.month.toString().padLeft(2, '0')}-${d.day.toString().padLeft(2, '0')}';
 
     // Pace action line.
@@ -731,19 +758,25 @@ class _DashboardCourseCard extends StatelessWidget {
       final fromStart = requiredDailyHoursFromStart(
           p.remainingHours, course.startDate, course.deadline);
       paceText = fromStart == null
-          ? 'Starts ${startLabel(course.startDate)} · ${p.remainingHours.toStringAsFixed(1)}h to do'
-          : 'Need ${fromStart.toStringAsFixed(1)} h/day from ${startLabel(course.startDate)} · not in Today’s pace';
+          ? l10n.dashboardPaceStarts(startLabel(course.startDate),
+              p.remainingHours.toStringAsFixed(1))
+          : l10n.dashboardPaceNeedFrom(fromStart.toStringAsFixed(1),
+              startLabel(course.startDate));
       paceColor = scheme.onSurfaceVariant;
       paceIcon = Icons.schedule_outlined;
     } else if (p.requiredDailyHours != null) {
       final daily = p.requiredDailyHours!;
       final weekly = p.requiredWeeklyHours;
-      paceText =
-          'Need ${daily.toStringAsFixed(1)} h/day${weekly == null ? '' : ' · ${weekly.toStringAsFixed(1)} h/week'} to finish';
+      if (weekly == null) {
+        paceText = l10n.dashboardPaceNeedDaily(daily.toStringAsFixed(1));
+      } else {
+        paceText = l10n.dashboardPaceNeedDailyWeekly(
+            daily.toStringAsFixed(1), weekly.toStringAsFixed(1));
+      }
       if (daily > 6) {
         paceColor = scheme.error;
         paceIcon = Icons.warning_amber_outlined;
-        paceText += ' · unrealistic';
+        paceText = l10n.dashboardPaceUnrealistic(paceText);
       } else if (daily > 4) {
         paceColor = scheme.error.withValues(alpha: 0.9);
         paceIcon = Icons.speed_outlined;
@@ -752,20 +785,23 @@ class _DashboardCourseCard extends StatelessWidget {
         paceIcon = Icons.bolt_outlined;
       }
     } else if (p.remainingHours > 0 && p.remainingDays == 0) {
-      paceText = 'Due today — ${p.remainingHours.toStringAsFixed(1)}h left';
+      paceText = l10n.dashboardPaceDueToday(p.remainingHours.toStringAsFixed(1));
       paceColor = scheme.error;
       paceIcon = Icons.error_outline;
     } else if (course.deadline == null) {
-      paceText =
-          'No deadline — ${p.remainingHours.toStringAsFixed(1)}h left · no daily pressure';
+      paceText = l10n.dashboardPaceNoDeadline(
+          p.remainingHours.toStringAsFixed(1));
       paceIcon = Icons.all_inclusive;
     }
 
     // Behind / on-track explainer.
     String? explainerText;
     if (scheduled) {
-      explainerText =
-          'Starts in $daysToStart d · counted from ${startLabel(course.startDate)}${course.startEarly ? ' · early start on' : ''}';
+      explainerText = course.startEarly
+          ? l10n.dashboardExplainerStartsInEarly(
+              '$daysToStart', startLabel(course.startDate))
+          : l10n.dashboardExplainerStartsIn(
+              '$daysToStart', startLabel(course.startDate));
     } else if (p.status == CourseStatus.behind) {
       final effStart = effectivePaceStart(
         startDate: course.startDate,
@@ -778,11 +814,16 @@ class _DashboardCourseCard extends StatelessWidget {
           ? p.completedHours / elapsed
           : (p.completedHours > 0 ? p.completedHours : 0.0);
       final need = p.requiredDailyHours;
-      explainerText = need == null
-          ? 'Behind: no finite pace hits a today deadline with hours left'
-          : 'Behind = doing ${achieved.toStringAsFixed(1)}/d, need ${need.toStringAsFixed(1)}/d';
-      if (course.startEarly && isFutureStart(course.startDate, now)) {
-        explainerText += ' · early start';
+      final earlyStart =
+          course.startEarly && isFutureStart(course.startDate, now);
+      if (need == null) {
+        explainerText = l10n.dashboardExplainerBehindNoPace;
+      } else if (earlyStart) {
+        explainerText = l10n.dashboardExplainerBehindEarly(
+            achieved.toStringAsFixed(1), need.toStringAsFixed(1));
+      } else {
+        explainerText = l10n.dashboardExplainerBehind(
+            achieved.toStringAsFixed(1), need.toStringAsFixed(1));
       }
     } else if (p.status == CourseStatus.onTrack &&
         p.requiredDailyHours != null) {
@@ -794,14 +835,14 @@ class _DashboardCourseCard extends StatelessWidget {
       );
       final elapsed = elapsedDays(effStart, now);
       if (elapsed <= 0 && p.completedHours <= 0) {
-        explainerText = 'On track: no pace yet — log first session to confirm';
+        explainerText = l10n.dashboardExplainerOnTrackNoPace;
       }
     }
 
     final pillLabel = scheduled
         ? (daysToStart <= 0
-            ? 'Starts soon'
-            : 'Starts in ${daysToStart}d')
+            ? l10n.dashboardStartsSoon
+            : l10n.dashboardStartsIn('$daysToStart'))
         : courseStatusLabel(p.status);
     final pillStatus =
         scheduled ? CourseStatus.onTrack : p.status;
@@ -852,7 +893,9 @@ class _DashboardCourseCard extends StatelessWidget {
                     color: scheme.onSurfaceVariant),
                 const SizedBox(width: AppSizes.dashboardIconGap),
                 Text(
-                  '${p.completedHours.toStringAsFixed(1)} / ${p.requiredHours.toStringAsFixed(1)} h',
+                  l10n.dashboardHoursFraction(
+                      p.completedHours.toStringAsFixed(1),
+                      p.requiredHours.toStringAsFixed(1)),
                   key: Key('dashboardHours_${course.id}'),
                   style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                         fontWeight: FontWeight.w700,
@@ -861,7 +904,9 @@ class _DashboardCourseCard extends StatelessWidget {
                 const SizedBox(width: AppSizes.dashboardIconGap),
                 Expanded(
                   child: Text(
-                    '· ${(p.progressFraction * 100).toStringAsFixed(0)}% · ${p.remainingHours.toStringAsFixed(0)}h left',
+                    l10n.dashboardHoursDetail(
+                        (p.progressFraction * 100).toStringAsFixed(0),
+                        p.remainingHours.toStringAsFixed(0)),
                     style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                           color: scheme.onSurfaceVariant,
                           fontWeight: FontWeight.w600,
@@ -939,7 +984,7 @@ class _DashboardCourseCard extends StatelessWidget {
                 const SizedBox(width: AppSizes.dashboardIconGap),
                 Expanded(
                   child: Text(
-                    _deadlineLabel(p, course.deadline),
+                    _deadlineLabel(l10n, p, course.deadline),
                     key: Key('dashboardDeadline_${course.id}'),
                     style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                           color: deadlineUrgent
@@ -976,23 +1021,26 @@ class _CoursesPageState extends ConsumerState<_CoursesPage> {
   Future<void> _confirmDelete(Course course) async {
     final confirmed = await showDialog<bool>(
       context: context,
-      builder: (context) => AlertDialog(
-        title: const Text('Delete course?'),
-        content: Text(
-          'Delete "${course.name}" and all its study sessions? This cannot be undone.',
-        ),
-        actions: [
-          TextButton(
-            onPressed: () => Navigator.of(context).pop(false),
-            child: const Text('Cancel'),
+      builder: (context) {
+        final l10n = AppLocalizations.of(context)!;
+        return AlertDialog(
+          title: Text(l10n.coursesDeleteTitle),
+          content: Text(
+            l10n.coursesDeleteBody(course.name),
           ),
-          FilledButton(
-            key: const Key('confirmDeleteCourse'),
-            onPressed: () => Navigator.of(context).pop(true),
-            child: const Text('Delete'),
-          ),
-        ],
-      ),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.of(context).pop(false),
+              child: Text(l10n.commonCancel),
+            ),
+            FilledButton(
+              key: const Key('confirmDeleteCourse'),
+              onPressed: () => Navigator.of(context).pop(true),
+              child: Text(l10n.commonDelete),
+            ),
+          ],
+        );
+      },
     );
     if (confirmed != true || !mounted) return;
     final result = await ref.read(courseRepositoryProvider).deleteCourse(course.id);
@@ -1017,6 +1065,7 @@ class _CoursesPageState extends ConsumerState<_CoursesPage> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     final coursesAsync = ref.watch(coursesProvider);
     final sessionsAsync = ref.watch(sessionsProvider);
     final settingsAsync = ref.watch(settingsProvider);
@@ -1061,13 +1110,13 @@ class _CoursesPageState extends ConsumerState<_CoursesPage> {
                             Theme.of(context).colorScheme.onPrimaryContainer),
                   ),
                   const SizedBox(height: AppSizes.emptyGap),
-                  Text('No courses yet',
+                  Text(l10n.coursesEmptyTitle,
                       style: Theme.of(context).textTheme.titleMedium?.copyWith(
                             fontWeight: FontWeight.w800,
                           )),
                   const SizedBox(height: AppSizes.emptySmallGap),
                   Text(
-                    'Tap “New course” to create your first course.',
+                    l10n.coursesEmptyHint,
                     style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                           color:
                               Theme.of(context).colorScheme.onSurfaceVariant,
@@ -1131,7 +1180,8 @@ class _CoursesPageState extends ConsumerState<_CoursesPage> {
                       DropdownMenuItem(
                         value: s,
                         key: Key('courseSort_${s.name}'),
-                        child: Text('Sort: ${courseSortLabel(s)}'),
+                        child: Text(l10n.coursesSortOption(
+                            courseSortLabel(s))),
                       ),
                   ],
                 ),
@@ -1151,10 +1201,10 @@ class _CoursesPageState extends ConsumerState<_CoursesPage> {
                       ),
                   onChanged: (v) => setState(() => _statusFilter = v),
                   items: [
-                    const DropdownMenuItem<CourseStatus?>(
+                    DropdownMenuItem<CourseStatus?>(
                       value: null,
-                      key: Key('courseFilter_all'),
-                      child: Text('All statuses'),
+                      key: const Key('courseFilter_all'),
+                      child: Text(l10n.coursesFilterAll),
                     ),
                     for (final s in CourseStatus.values)
                       DropdownMenuItem<CourseStatus?>(
@@ -1176,7 +1226,7 @@ class _CoursesPageState extends ConsumerState<_CoursesPage> {
                       BorderRadius.circular(AppSizes.pillRadius),
                 ),
                 child: Text(
-                  '${visible.length} shown',
+                  l10n.coursesShownCount('${visible.length}'),
                   style: Theme.of(context).textTheme.labelMedium?.copyWith(
                         color:
                             Theme.of(context).colorScheme.onSecondaryContainer,
@@ -1200,7 +1250,7 @@ class _CoursesPageState extends ConsumerState<_CoursesPage> {
                         color: Theme.of(context).colorScheme.outline),
                     const SizedBox(height: AppSizes.sectionInnerGap),
                     Text(
-                      'No courses match this filter',
+                      l10n.coursesFilterEmpty,
                       key: const Key('coursesFilterEmpty'),
                       style: Theme.of(context).textTheme.titleSmall,
                     ),
@@ -1253,11 +1303,11 @@ class _CoursesPageState extends ConsumerState<_CoursesPage> {
                           ),
                         ),
                         if (course.isSample)
-                          const Padding(
-                            padding: EdgeInsets.only(left: 8),
+                          Padding(
+                            padding: const EdgeInsets.only(left: 8),
                             child: Chip(
-                              key: Key('sampleCourseMarker'),
-                              label: Text('Sample'),
+                              key: const Key('sampleCourseMarker'),
+                              label: Text(l10n.sampleBadge),
                               visualDensity: VisualDensity.compact,
                             ),
                           ),
@@ -1280,7 +1330,7 @@ class _CoursesPageState extends ConsumerState<_CoursesPage> {
                                     AppSizes.innerRadius),
                               ),
                               child: Text(
-                                '${course.ectsCredits} ECTS',
+                                l10n.coursesEctsValue(course.ectsCredits),
                                 style: Theme.of(context)
                                     .textTheme
                                     .labelMedium
@@ -1294,8 +1344,10 @@ class _CoursesPageState extends ConsumerState<_CoursesPage> {
                             const SizedBox(width: AppSizes.sectionInnerGap),
                             Expanded(
                               child: Text(
-                                '${p.completedHours.toStringAsFixed(1)} / ${p.requiredHours.toStringAsFixed(1)} h'
-                                ' • ${courseStatusLabel(p.status)}',
+                                l10n.coursesProgressWithStatus(
+                                    p.completedHours.toStringAsFixed(1),
+                                    p.requiredHours.toStringAsFixed(1),
+                                    courseStatusLabel(p.status)),
                                 key: Key('courseProgressText_${course.id}'),
                                 style: Theme.of(context)
                                     .textTheme
@@ -1334,8 +1386,15 @@ class _CoursesPageState extends ConsumerState<_CoursesPage> {
                                     width: AppSizes.dashboardSmallGap),
                                 Expanded(
                                   child: Text(
-                                    '${p.requiredDailyHours!.toStringAsFixed(1)} h/day'
-                                    '${p.requiredWeeklyHours == null ? '' : ' • ${p.requiredWeeklyHours!.toStringAsFixed(1)} h/week'} needed',
+                                    p.requiredWeeklyHours == null
+                                        ? l10n.coursesPaceNeeded(p
+                                            .requiredDailyHours!
+                                            .toStringAsFixed(1))
+                                        : l10n.coursesPaceNeededWeekly(
+                                            p.requiredDailyHours!
+                                                .toStringAsFixed(1),
+                                            p.requiredWeeklyHours!
+                                                .toStringAsFixed(1)),
                                     style: Theme.of(context)
                                         .textTheme
                                         .bodyMedium
@@ -1361,7 +1420,7 @@ class _CoursesPageState extends ConsumerState<_CoursesPage> {
                         ? IconButton(
                             key: const Key('removeSampleCourse'),
                             icon: const Icon(Icons.delete_outline),
-                            tooltip: 'Remove sample course',
+                            tooltip: l10n.coursesRemoveSampleTooltip,
                             style: IconButton.styleFrom(
                               foregroundColor: scheme.onSurfaceVariant,
                             ),
@@ -1380,12 +1439,18 @@ class _CoursesPageState extends ConsumerState<_CoursesPage> {
                                 _confirmDelete(course);
                               }
                             },
-                            itemBuilder: (context) => const [
-                              PopupMenuItem(
-                                  value: 'edit', child: Text('Edit')),
-                              PopupMenuItem(
-                                  value: 'delete', child: Text('Delete')),
-                            ],
+                            itemBuilder: (context) {
+                              final menuL10n =
+                                  AppLocalizations.of(context)!;
+                              return [
+                                PopupMenuItem(
+                                    value: 'edit',
+                                    child: Text(menuL10n.commonEdit)),
+                                PopupMenuItem(
+                                    value: 'delete',
+                                    child: Text(menuL10n.commonDelete)),
+                              ];
+                            },
                           ),
                   ),
                 );
@@ -1409,23 +1474,26 @@ class _StudyLogPage extends ConsumerWidget {
   ) async {
     final confirmed = await showDialog<bool>(
       context: context,
-      builder: (context) => AlertDialog(
-        title: const Text('Delete session?'),
-        content: const Text(
-          'Delete this study session? This cannot be undone.',
-        ),
-        actions: [
-          TextButton(
-            onPressed: () => Navigator.of(context).pop(false),
-            child: const Text('Cancel'),
+      builder: (context) {
+        final l10n = AppLocalizations.of(context)!;
+        return AlertDialog(
+          title: Text(l10n.studyLogDeleteTitle),
+          content: Text(
+            l10n.studyLogDeleteBody,
           ),
-          FilledButton(
-            key: const Key('confirmDeleteSession'),
-            onPressed: () => Navigator.of(context).pop(true),
-            child: const Text('Delete'),
-          ),
-        ],
-      ),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.of(context).pop(false),
+              child: Text(l10n.commonCancel),
+            ),
+            FilledButton(
+              key: const Key('confirmDeleteSession'),
+              onPressed: () => Navigator.of(context).pop(true),
+              child: Text(l10n.commonDelete),
+            ),
+          ],
+        );
+      },
     );
     if (confirmed != true || !context.mounted) return;
     final result =
@@ -1440,6 +1508,7 @@ class _StudyLogPage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final l10n = AppLocalizations.of(context)!;
     final sessionsAsync = ref.watch(sessionsProvider);
     final coursesAsync = ref.watch(coursesProvider);
     final settings = ref.watch(settingsProvider).valueOrNull;
@@ -1475,7 +1544,7 @@ class _StudyLogPage extends ConsumerWidget {
                   ),
                   const SizedBox(height: AppSizes.emptyGap),
                   Text(
-                    'No study sessions yet',
+                    l10n.studyLogEmptyTitle,
                     key: const Key('studyLogEmpty'),
                     style: Theme.of(context).textTheme.titleLarge?.copyWith(
                           fontWeight: FontWeight.w800,
@@ -1483,7 +1552,7 @@ class _StudyLogPage extends ConsumerWidget {
                   ),
                   const SizedBox(height: AppSizes.emptySmallGap),
                   Text(
-                    'Log a session to track your study time.',
+                    l10n.studyLogEmptyHint,
                     style: Theme.of(context).textTheme.bodyLarge?.copyWith(
                           color: Theme.of(context).colorScheme.onSurfaceVariant,
                         ),
@@ -1526,9 +1595,9 @@ class _StudyLogPage extends ConsumerWidget {
                       Expanded(
                         child: StatTile(
                           icon: Icons.today_outlined,
-                          label: 'Today',
-                          value:
-                              '${totals.dailyHours.toStringAsFixed(1)} h',
+                          label: l10n.studyLogToday,
+                          value: l10n.studyLogHoursValue(
+                              totals.dailyHours.toStringAsFixed(1)),
                           valueKey: const Key('dailyTotal'),
                         ),
                       ),
@@ -1545,9 +1614,9 @@ class _StudyLogPage extends ConsumerWidget {
                       Expanded(
                         child: StatTile(
                           icon: Icons.date_range_outlined,
-                          label: 'This week',
-                          value:
-                              '${totals.weeklyHours.toStringAsFixed(1)} h',
+                          label: l10n.studyLogThisWeek,
+                          value: l10n.studyLogHoursValue(
+                              totals.weeklyHours.toStringAsFixed(1)),
                           valueKey: const Key('weeklyTotal'),
                         ),
                       ),
@@ -1589,14 +1658,18 @@ class _StudyLogPage extends ConsumerWidget {
                         vertical: AppSizes.coursePadV,
                       ),
                       leading: CourseAvatar(
-                        name: course?.name ?? 'C${session.courseId}',
+                        name: course?.name ??
+                            l10n.studyLogUnknownCourseShort(
+                                '${session.courseId}'),
                         colorValue: course?.colorValue,
                       ),
                       title: Row(
                         children: [
                           Expanded(
                             child: Text(
-                              course?.name ?? 'Course ${session.courseId}',
+                              course?.name ??
+                                  l10n.studyLogUnknownCourse(
+                                      '${session.courseId}'),
                               style: Theme.of(context)
                                   .textTheme
                                   .titleSmall
@@ -1616,7 +1689,8 @@ class _StudyLogPage extends ConsumerWidget {
                                   AppSizes.pillRadius),
                             ),
                             child: Text(
-                              '${hours.toStringAsFixed(1)} h',
+                              l10n.studyLogHoursValue(
+                                  hours.toStringAsFixed(1)),
                               style: Theme.of(context)
                                   .textTheme
                                   .labelMedium
@@ -1627,11 +1701,11 @@ class _StudyLogPage extends ConsumerWidget {
                             ),
                           ),
                           if (session.isSample)
-                            const Padding(
-                              padding: EdgeInsets.only(left: 6),
+                            Padding(
+                              padding: const EdgeInsets.only(left: 6),
                               child: Chip(
-                                key: Key('sampleSessionMarker'),
-                                label: Text('Sample'),
+                                key: const Key('sampleSessionMarker'),
+                                label: Text(l10n.sampleBadge),
                                 visualDensity: VisualDensity.compact,
                               ),
                             ),
@@ -1659,7 +1733,7 @@ class _StudyLogPage extends ConsumerWidget {
                           ? IconButton(
                               key: const Key('removeSampleSession'),
                               icon: const Icon(Icons.delete_outline),
-                              tooltip: 'Remove sample session',
+                              tooltip: l10n.studyLogRemoveSampleTooltip,
                               onPressed: () async {
                                 final result = await ref
                                     .read(sessionRepositoryProvider)
@@ -1686,12 +1760,18 @@ class _StudyLogPage extends ConsumerWidget {
                                   _confirmDeleteSession(context, ref, session);
                                 }
                               },
-                              itemBuilder: (context) => const [
-                                PopupMenuItem(
-                                    value: 'edit', child: Text('Edit')),
-                                PopupMenuItem(
-                                    value: 'delete', child: Text('Delete')),
-                              ],
+                              itemBuilder: (context) {
+                                final menuL10n =
+                                    AppLocalizations.of(context)!;
+                                return [
+                                  PopupMenuItem(
+                                      value: 'edit',
+                                      child: Text(menuL10n.commonEdit)),
+                                  PopupMenuItem(
+                                      value: 'delete',
+                                      child: Text(menuL10n.commonDelete)),
+                                ];
+                              },
                             ),
                     ),
                   );

@@ -1,3 +1,4 @@
+import 'package:ects_tracker/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -164,13 +165,14 @@ class _CourseFormDialogState extends ConsumerState<CourseFormDialog> {
     }
   }
 
-  String _dateLabel(DateTime? d) {
-    if (d == null) return 'Not set';
+  String _dateLabel(DateTime? d, String notSet) {
+    if (d == null) return notSet;
     return '${d.year}-${d.month.toString().padLeft(2, '0')}-${d.day.toString().padLeft(2, '0')}';
   }
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
     final settingsAsync = ref.watch(settingsProvider);
     final hoursPerEcts = settingsAsync.valueOrNull?.hoursPerEcts ?? AppSettings.defaultHoursPerEcts;
     final ects = _parseEcts();
@@ -179,7 +181,7 @@ class _CourseFormDialogState extends ConsumerState<CourseFormDialog> {
         : null;
 
     return AlertDialog(
-      title: Text(_isEdit ? 'Edit course' : 'Add course'),
+      title: Text(_isEdit ? l10n.courseFormTitleEdit : l10n.courseFormTitleAdd),
       content: SingleChildScrollView(
         child: Form(
           key: _formKey,
@@ -190,12 +192,14 @@ class _CourseFormDialogState extends ConsumerState<CourseFormDialog> {
               TextFormField(
                 key: const Key('courseNameField'),
                 controller: _name,
-                decoration: const InputDecoration(labelText: 'Name'),
+                decoration: InputDecoration(labelText: l10n.courseFormNameLabel),
                 textCapitalization: TextCapitalization.words,
                 validator: (v) {
                   final t = v?.trim() ?? '';
-                  if (t.isEmpty) return 'Name is required';
-                  if (t.length > courseNameMaxLength) return 'Name is too long';
+                  if (t.isEmpty) return l10n.validationCourseNameRequired;
+                  if (t.length > courseNameMaxLength) {
+                    return l10n.validationCourseNameTooLong;
+                  }
                   return null;
                 },
               ),
@@ -203,7 +207,7 @@ class _CourseFormDialogState extends ConsumerState<CourseFormDialog> {
               TextFormField(
                 key: const Key('courseEctsField'),
                 controller: _ects,
-                decoration: const InputDecoration(labelText: 'ECTS credits'),
+                decoration: InputDecoration(labelText: l10n.courseFormEctsLabel),
                 keyboardType: const TextInputType.numberWithOptions(decimal: true),
                 inputFormatters: [
                   FilteringTextInputFormatter.allow(RegExp(r'[0-9.,]')),
@@ -211,16 +215,18 @@ class _CourseFormDialogState extends ConsumerState<CourseFormDialog> {
                 onChanged: (_) => setState(() {}),
                 validator: (v) {
                   final parsed = _parseEcts();
-                  if (parsed == null) return 'Enter ECTS credits';
-                  if (parsed <= 0) return 'ECTS must be greater than zero';
+                  if (parsed == null) return l10n.validationCourseEctsRequired;
+                  if (parsed <= 0) return l10n.validationCourseEctsPositive;
                   return null;
                 },
               ),
               const SizedBox(height: 4),
               Text(
-                computedHours != null
-                    ? 'Required hours (auto): ${computedHours.toStringAsFixed(1)} h (${hoursPerEcts.toStringAsFixed(0)} h/ECTS)'
-                    : 'Required hours (auto): —',
+                l10n.courseFormAutoHoursValue(
+                  computedHours != null
+                      ? '${computedHours.toStringAsFixed(1)} h (${hoursPerEcts.toStringAsFixed(0)} h/ECTS)'
+                      : '—',
+                ),
                 key: const Key('courseAutoHours'),
                 style: Theme.of(context).textTheme.bodySmall,
               ),
@@ -231,12 +237,16 @@ class _CourseFormDialogState extends ConsumerState<CourseFormDialog> {
                     child: OutlinedButton(
                       key: const Key('courseStartDateButton'),
                       onPressed: () => _pickDate(start: true),
-                      child: Text('Start: ${_dateLabel(_startDate)}'),
+                      child: Text(
+                        l10n.courseFormStartButton(
+                          _dateLabel(_startDate, l10n.courseFormDateNotSet),
+                        ),
+                      ),
                     ),
                   ),
                   IconButton(
                     key: const Key('clearCourseStartDate'),
-                    tooltip: 'Clear start date',
+                    tooltip: l10n.courseFormClearStartTooltip,
                     onPressed: _startDate == null ? null : () => setState(() => _startDate = null),
                     icon: const Icon(Icons.clear),
                   ),
@@ -249,12 +259,16 @@ class _CourseFormDialogState extends ConsumerState<CourseFormDialog> {
                     child: OutlinedButton(
                       key: const Key('courseDeadlineButton'),
                       onPressed: () => _pickDate(start: false),
-                      child: Text('Deadline: ${_dateLabel(_deadline)}'),
+                      child: Text(
+                        l10n.courseFormDeadlineButton(
+                          _dateLabel(_deadline, l10n.courseFormDateNotSet),
+                        ),
+                      ),
                     ),
                   ),
                   IconButton(
                     key: const Key('clearCourseDeadline'),
-                    tooltip: 'Clear deadline',
+                    tooltip: l10n.courseFormClearDeadlineTooltip,
                     onPressed: _deadline == null ? null : () => setState(() => _deadline = null),
                     icon: const Icon(Icons.clear),
                   ),
@@ -267,11 +281,13 @@ class _CourseFormDialogState extends ConsumerState<CourseFormDialog> {
                   value: _startEarly,
                   onChanged: (v) =>
                       setState(() => _startEarly = v ?? false),
-                  title: const Text('Start now despite future start'),
+                  title: Text(l10n.courseFormStartEarlyTitle),
                   subtitle: Text(
                     _startEarly
-                        ? 'On: time is divided until now and counts toward Today’s pace.'
-                        : 'Off: no pressure until ${_dateLabel(_startDate)}; excluded from Today’s pace.',
+                        ? l10n.courseFormStartEarlyOn
+                        : l10n.courseFormStartEarlyOff(
+                            _dateLabel(_startDate, l10n.courseFormDateNotSet),
+                          ),
                   ),
                   controlAffinity: ListTileControlAffinity.leading,
                   contentPadding: EdgeInsets.zero,
@@ -282,11 +298,11 @@ class _CourseFormDialogState extends ConsumerState<CourseFormDialog> {
               TextFormField(
                 key: const Key('courseNotesField'),
                 controller: _notes,
-                decoration: const InputDecoration(labelText: 'Notes (optional)'),
+                decoration: InputDecoration(labelText: l10n.courseFormNotesLabel),
                 maxLines: 2,
               ),
               const SizedBox(height: 12),
-              Text('Color', style: Theme.of(context).textTheme.labelLarge),
+              Text(l10n.courseFormColorLabel, style: Theme.of(context).textTheme.labelLarge),
               const SizedBox(height: 4),
               Wrap(
                 spacing: AppSizes.colorOptionSpacing,
@@ -302,7 +318,7 @@ class _CourseFormDialogState extends ConsumerState<CourseFormDialog> {
                       // wrapped rows look vertically cranked.
                       showCheckmark: c == null,
                       label: c == null
-                          ? const Text('None')
+                          ? Text(l10n.commonNone)
                           : const SizedBox(
                               width: AppSizes.colorSwatchW,
                               height: AppSizes.colorSwatchH,
@@ -329,12 +345,12 @@ class _CourseFormDialogState extends ConsumerState<CourseFormDialog> {
       actions: [
         TextButton(
           onPressed: _saving ? null : () => Navigator.of(context).pop(false),
-          child: const Text('Cancel'),
+          child: Text(l10n.commonCancel),
         ),
         FilledButton(
           key: const Key('saveCourseButton'),
           onPressed: _saving ? null : _save,
-          child: Text(_saving ? 'Saving…' : 'Save'),
+          child: Text(_saving ? l10n.courseFormSaving : l10n.commonSave),
         ),
       ],
     );
