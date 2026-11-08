@@ -287,9 +287,20 @@ class _OverviewPage extends ConsumerWidget {
               ),
               child: Column(
                 children: [
-                  const AppLogo(
-                    size: AppSizes.emptyIconBox,
-                    radius: AppSizes.emptyIconRadius,
+                  Container(
+                    width: AppSizes.emptyIconBox,
+                    height: AppSizes.emptyIconBox,
+                    decoration: BoxDecoration(
+                      color: Theme.of(context)
+                          .colorScheme
+                          .primaryContainer
+                          .withValues(alpha: 0.6),
+                      borderRadius:
+                          BorderRadius.circular(AppSizes.emptyIconRadius),
+                    ),
+                    child: Icon(Icons.school_outlined,
+                        size: AppSizes.emptyIcon,
+                        color: Theme.of(context).colorScheme.onPrimaryContainer),
                   ),
                   const SizedBox(height: AppSizes.emptyGap),
                   Text(
@@ -400,9 +411,16 @@ class _OverallProgressCard extends StatelessWidget {
             Row(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                const AppLogo(
-                  size: AppSizes.heroIconBox,
-                  radius: AppSizes.heroIconRadius,
+                Container(
+                  width: AppSizes.heroIconBox,
+                  height: AppSizes.heroIconBox,
+                  decoration: BoxDecoration(
+                    color: scheme.primary,
+                    borderRadius:
+                        BorderRadius.circular(AppSizes.heroIconRadius),
+                  ),
+                  child: Icon(Icons.today_outlined,
+                      color: scheme.onPrimary, size: AppSizes.heroIcon),
                 ),
                 const SizedBox(width: AppSizes.heroGap),
                 Expanded(
@@ -1087,9 +1105,21 @@ class _CoursesPageState extends ConsumerState<_CoursesPage> {
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  const AppLogo(
-                    size: AppSizes.emptyIconBox,
-                    radius: AppSizes.emptyIconRadius,
+                  Container(
+                    width: AppSizes.emptyIconBox,
+                    height: AppSizes.emptyIconBox,
+                    decoration: BoxDecoration(
+                      color: Theme.of(context)
+                          .colorScheme
+                          .primaryContainer
+                          .withValues(alpha: 0.6),
+                      borderRadius: BorderRadius.circular(
+                          AppSizes.emptyIconRadius),
+                    ),
+                    child: Icon(Icons.menu_book_outlined,
+                        size: AppSizes.emptyIcon,
+                        color:
+                            Theme.of(context).colorScheme.onPrimaryContainer),
                   ),
                   const SizedBox(height: AppSizes.emptyGap),
                   Text(l10n.coursesEmptyTitle,
@@ -1509,9 +1539,21 @@ class _StudyLogPage extends ConsumerWidget {
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  const AppLogo(
-                    size: AppSizes.emptyIconBox,
-                    radius: AppSizes.emptyIconRadius,
+                  Container(
+                    width: AppSizes.emptyIconBox,
+                    height: AppSizes.emptyIconBox,
+                    decoration: BoxDecoration(
+                      color: Theme.of(context)
+                          .colorScheme
+                          .primaryContainer
+                          .withValues(alpha: 0.6),
+                      borderRadius: BorderRadius.circular(
+                          AppSizes.emptyIconRadius),
+                    ),
+                    child: Icon(Icons.timer_outlined,
+                        size: AppSizes.emptyIcon,
+                        color:
+                            Theme.of(context).colorScheme.onPrimaryContainer),
                   ),
                   const SizedBox(height: AppSizes.emptyGap),
                   Text(
