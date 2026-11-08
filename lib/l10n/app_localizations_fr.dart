@@ -826,11 +826,11 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get settingsResetSettingsMessage =>
-      'Restaure heures-par-ECTS (30), objectif quotidien (aucun), premier jour (lundi), thème (système), tolérance (5 jours), surcharge (35 h/semaine), taille (confortable), couleur (sarcelle). Cours et sessions conservés.';
+      'Restaure heures-par-ECTS (30), objectif quotidien (aucun), premier jour (lundi), thème (système), tolérance (5 jours), surcharge (35 h/semaine), taille (confortable), couleur (ardoise). Cours et sessions conservés.';
 
   @override
   String get settingsResetSettingsSubtitle =>
-      'Restaurer les valeurs par défaut : 30 h/ECTS, aucun objectif, lundi, thème système, tolérance 5 jours, surcharge 35 h/semaine, taille confortable, couleur sarcelle.';
+      'Restaurer les valeurs par défaut : 30 h/ECTS, aucun objectif, lundi, thème système, tolérance 5 jours, surcharge 35 h/semaine, taille confortable, couleur ardoise.';
 
   @override
   String get settingsResetSettingsTitle => 'Réinitialiser les réglages ?';

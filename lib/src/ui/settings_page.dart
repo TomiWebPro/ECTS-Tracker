@@ -445,21 +445,6 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
                 ],
               ),
             ],
-            const SizedBox(height: 12),
-            _SettingsCard(
-              danger: true,
-              children: [
-                _SettingsTile(
-                  tileKey: const Key('resetAllDataTile'),
-                  icon: Icons.delete_forever_outlined,
-                  title: l10n.settingsResetAll,
-                  subtitle: Text(l10n.settingsResetAllSubtitle),
-                  onTap: () => _confirmResetAll(context, ref),
-                  showDivider: false,
-                  danger: true,
-                ),
-              ],
-            ),
             const SizedBox(height: 8),
           ],
         ),
@@ -1254,35 +1239,6 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
     _showResult(context, result, success: l10n.settingsResetSettingsDone);
   }
 
-  Future<void> _confirmResetAll(BuildContext context, WidgetRef ref) async {
-    final l10n = AppLocalizations.of(context)!;
-    final confirmed = await showDialog<bool>(
-      context: context,
-      builder: (context) => AlertDialog(
-        title: Text(l10n.settingsResetAllTitle),
-        content: Text(l10n.settingsResetAllMessage),
-        actions: [
-          TextButton(
-            onPressed: () => Navigator.of(context).pop(false),
-            child: Text(l10n.commonCancel),
-          ),
-          FilledButton(
-            key: const Key('confirmResetAllData'),
-            style: FilledButton.styleFrom(
-              backgroundColor: Theme.of(context).colorScheme.error,
-            ),
-            onPressed: () => Navigator.of(context).pop(true),
-            child: Text(l10n.settingsDeleteEverything),
-          ),
-        ],
-      ),
-    );
-    if (confirmed != true || !context.mounted) return;
-    final result = await ref.read(backupRepositoryProvider).resetAllData();
-    if (!context.mounted) return;
-    _showResult(context, result, success: l10n.settingsAllDataDeleted);
-  }
-
   void _showResult(BuildContext context, Result<void> result,
       {required String success, Key? errorKey}) {
     switch (result) {
@@ -1299,16 +1255,13 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
 }
 
 class _SettingsCard extends StatelessWidget {
-  const _SettingsCard({required this.children, this.danger = false});
+  const _SettingsCard({required this.children});
 
   final List<Widget> children;
-  final bool danger;
 
   @override
   Widget build(BuildContext context) {
-    final scheme = Theme.of(context).colorScheme;
     return Card(
-      color: danger ? scheme.errorContainer.withValues(alpha: 0.35) : null,
       child: Padding(
         padding: const EdgeInsets.symmetric(vertical: 4),
         child: Column(children: children),
@@ -1327,7 +1280,6 @@ class _SettingsTile extends StatelessWidget {
     this.onIconTap,
     this.showDivider = true,
     this.topDivider = false,
-    this.danger = false,
   });
 
   final Key? tileKey;
@@ -1341,24 +1293,18 @@ class _SettingsTile extends StatelessWidget {
   final VoidCallback? onIconTap;
   final bool showDivider;
   final bool topDivider;
-  final bool danger;
 
   @override
   Widget build(BuildContext context) {
     final scheme = Theme.of(context).colorScheme;
-    final fg = danger ? scheme.error : scheme.onSurface;
-    final iconBg = danger
-        ? scheme.error.withValues(alpha: 0.14)
-        : scheme.primaryContainer.withValues(alpha: 0.7);
-    final iconFg = danger ? scheme.error : scheme.onPrimaryContainer;
     final iconBox = Container(
       width: 38,
       height: 38,
       decoration: BoxDecoration(
-        color: iconBg,
+        color: scheme.primaryContainer.withValues(alpha: 0.7),
         borderRadius: BorderRadius.circular(13),
       ),
-      child: Icon(icon, size: 20, color: iconFg),
+      child: Icon(icon, size: 20, color: scheme.onPrimaryContainer),
     );
     return Column(
       children: [
@@ -1383,7 +1329,6 @@ class _SettingsTile extends StatelessWidget {
             title,
             style: Theme.of(context).textTheme.titleSmall?.copyWith(
                   fontWeight: FontWeight.w800,
-                  color: fg,
                 ),
           ),
           subtitle: DefaultTextStyle.merge(

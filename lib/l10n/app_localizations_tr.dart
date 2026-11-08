@@ -822,11 +822,11 @@ class AppLocalizationsTr extends AppLocalizations {
 
   @override
   String get settingsResetSettingsMessage =>
-      'AKTS başına saat (30), günlük hedef (yok), haftanın ilk günü (Pazartesi), tema (sistem), tolerans (5 gün), aşırı yük (35 sa/hafta), boyut (rahat), renk (camgöbeği) geri yüklenir. Dersler ve oturumlar korunur.';
+      'AKTS başına saat (30), günlük hedef (yok), haftanın ilk günü (Pazartesi), tema (sistem), tolerans (5 gün), aşırı yük (35 sa/hafta), boyut (rahat), renk (arduvaz) geri yüklenir. Dersler ve oturumlar korunur.';
 
   @override
   String get settingsResetSettingsSubtitle =>
-      'Varsayılanları geri yükle: 30 sa/AKTS, hedef yok, Pazartesi, sistem teması, 5 gün tolerans, 35 sa/hafta aşırı yük, rahat boyut, camgöbeği renk.';
+      'Varsayılanları geri yükle: 30 sa/AKTS, hedef yok, Pazartesi, sistem teması, 5 gün tolerans, 35 sa/hafta aşırı yük, rahat boyut, arduvaz renk.';
 
   @override
   String get settingsResetSettingsTitle => 'Ayarlar sıfırlansın mı?';

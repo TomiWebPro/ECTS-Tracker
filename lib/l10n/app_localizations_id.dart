@@ -824,11 +824,11 @@ class AppLocalizationsId extends AppLocalizations {
 
   @override
   String get settingsResetSettingsMessage =>
-      'Mengembalikan jam-per-ECTS (30), target harian (tidak ada), hari pertama minggu (Senin), tema (sistem), toleransi (5 hari), beban berlebih (35 jam/minggu), ukuran (nyaman), warna (biru kehijauan).';
+      'Mengembalikan jam-per-ECTS (30), target harian (tidak ada), hari pertama minggu (Senin), tema (sistem), toleransi (5 hari), beban berlebih (35 jam/minggu), ukuran (nyaman), warna (batu tulis).';
 
   @override
   String get settingsResetSettingsSubtitle =>
-      'Kembalikan default: 30 jam/ECTS, tanpa target, Senin, tema sistem, toleransi 5 hari, beban berlebih 35 jam/minggu, ukuran nyaman, warna biru kehijauan.';
+      'Kembalikan default: 30 jam/ECTS, tanpa target, Senin, tema sistem, toleransi 5 hari, beban berlebih 35 jam/minggu, ukuran nyaman, warna batu tulis.';
 
   @override
   String get settingsResetSettingsTitle => 'Atur ulang pengaturan?';

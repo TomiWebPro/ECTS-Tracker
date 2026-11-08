@@ -830,11 +830,11 @@ class AppLocalizationsCa extends AppLocalizations {
 
   @override
   String get settingsResetSettingsMessage =>
-      'Restaura hores per ECTS (30), objectiu diari (cap), primer dia (dilluns), tema (sistema), tolerància (5 dies), sobrecàrrega (35 h/setmana), mida (confortable), color (verd blavós). Les assignatures i sessions es conserven.';
+      'Restaura hores per ECTS (30), objectiu diari (cap), primer dia (dilluns), tema (sistema), tolerància (5 dies), sobrecàrrega (35 h/setmana), mida (confortable), color (pissarra). Les assignatures i sessions es conserven.';
 
   @override
   String get settingsResetSettingsSubtitle =>
-      'Restaura valors: 30 h/ECTS, sense objectiu, dilluns, tema del sistema, tolerància de 5 dies, sobrecàrrega de 35 h/setmana, mida confortable, color verd blavós.';
+      'Restaura valors: 30 h/ECTS, sense objectiu, dilluns, tema del sistema, tolerància de 5 dies, sobrecàrrega de 35 h/setmana, mida confortable, color pissarra.';
 
   @override
   String get settingsResetSettingsTitle => 'Restablir la configuració?';

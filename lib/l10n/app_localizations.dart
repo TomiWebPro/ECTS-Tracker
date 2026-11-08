@@ -1517,13 +1517,13 @@ abstract class AppLocalizations {
   /// Reset settings confirm dialog message
   ///
   /// In en, this message translates to:
-  /// **'Restores hours-per-ECTS (30), daily target (none), first weekday (Monday), theme (system), tolerance (5 days), overload (35 h/week), size (comfortable), colour (teal). Courses and sessions are kept.'**
+  /// **'Restores hours-per-ECTS (30), daily target (none), first weekday (Monday), theme (system), tolerance (5 days), overload (35 h/week), size (comfortable), colour (slate). Courses and sessions are kept.'**
   String get settingsResetSettingsMessage;
 
   /// Reset settings tile subtitle
   ///
   /// In en, this message translates to:
-  /// **'Restore defaults: 30 h/ECTS, no target, Monday, system theme, 5-day tolerance, 35 h/week overload, comfortable size, teal colour.'**
+  /// **'Restore defaults: 30 h/ECTS, no target, Monday, system theme, 5-day tolerance, 35 h/week overload, comfortable size, slate colour.'**
   String get settingsResetSettingsSubtitle;
 
   /// Reset settings confirm dialog title

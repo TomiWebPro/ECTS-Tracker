@@ -797,11 +797,11 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get settingsResetSettingsMessage =>
-      '恢复每 ECTS 30 学时、无每日目标、周一起始、跟随系统主题、5 天容差、每周 35 小时过载、舒适大小、青色。课程和学习记录保留。';
+      '恢复每 ECTS 30 学时、无每日目标、周一起始、跟随系统主题、5 天容差、每周 35 小时过载、舒适大小、石板灰。课程和学习记录保留。';
 
   @override
   String get settingsResetSettingsSubtitle =>
-      '恢复默认值：30 小时/ECTS、无目标、周一、系统主题、5 天容差、每周 35 小时过载、舒适大小、青色。';
+      '恢复默认值：30 小时/ECTS、无目标、周一、系统主题、5 天容差、每周 35 小时过载、舒适大小、石板灰。';
 
   @override
   String get settingsResetSettingsTitle => '重置设置？';
@@ -1889,11 +1889,11 @@ class AppLocalizationsZhHans extends AppLocalizationsZh {
 
   @override
   String get settingsResetSettingsMessage =>
-      '恢复每 ECTS 30 学时、无每日目标、周一起始、跟随系统主题、5 天容差、每周 35 小时过载、舒适大小、青色。课程和学习记录保留。';
+      '恢复每 ECTS 30 学时、无每日目标、周一起始、跟随系统主题、5 天容差、每周 35 小时过载、舒适大小、石板灰。课程和学习记录保留。';
 
   @override
   String get settingsResetSettingsSubtitle =>
-      '恢复默认值：30 小时/ECTS、无目标、周一、系统主题、5 天容差、每周 35 小时过载、舒适大小、青色。';
+      '恢复默认值：30 小时/ECTS、无目标、周一、系统主题、5 天容差、每周 35 小时过载、舒适大小、石板灰。';
 
   @override
   String get settingsResetSettingsTitle => '重置设置？';
@@ -2981,11 +2981,11 @@ class AppLocalizationsZhHant extends AppLocalizationsZh {
 
   @override
   String get settingsResetSettingsMessage =>
-      '恢復每 ECTS 30 學時、無每日目標、週一開始、跟隨系統主題、5 天容差、每週 35 小時過載、舒適大小、青色。課程和學習紀錄保留。';
+      '恢復每 ECTS 30 學時、無每日目標、週一開始、跟隨系統主題、5 天容差、每週 35 小時過載、舒適大小、石板灰。課程和學習紀錄保留。';
 
   @override
   String get settingsResetSettingsSubtitle =>
-      '恢復預設值：30 小時/ECTS、無目標、週一、系統主題、5 天容差、每週 35 小時過載、舒適大小、青色。';
+      '恢復預設值：30 小時/ECTS、無目標、週一、系統主題、5 天容差、每週 35 小時過載、舒適大小、石板灰。';
 
   @override
   String get settingsResetSettingsTitle => '重設設定？';

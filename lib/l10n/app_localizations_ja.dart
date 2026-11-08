@@ -802,11 +802,11 @@ class AppLocalizationsJa extends AppLocalizations {
 
   @override
   String get settingsResetSettingsMessage =>
-      'ECTSあたり時間（30）、毎日目標（なし）、週開始（月曜）、テーマ（システム）、許容（5日）、過負荷（35時間/週）、サイズ（標準）、色（ティール）に戻します。科目と記録は保持されます。';
+      'ECTSあたり時間（30）、毎日目標（なし）、週開始（月曜）、テーマ（システム）、許容（5日）、過負荷（35時間/週）、サイズ（標準）、色（スレート）に戻します。科目と記録は保持されます。';
 
   @override
   String get settingsResetSettingsSubtitle =>
-      '既定値に戻す: 30時間/ECTS、目標なし、月曜、システムテーマ、5日許容、35時間/週、標準サイズ、ティール。';
+      '既定値に戻す: 30時間/ECTS、目標なし、月曜、システムテーマ、5日許容、35時間/週、標準サイズ、スレート。';
 
   @override
   String get settingsResetSettingsTitle => '設定をリセットしますか？';

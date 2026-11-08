@@ -825,11 +825,11 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get settingsResetSettingsMessage =>
-      'Stellt Stunden-pro-ECTS (30), Tagesziel (keins), ersten Wochentag (Montag), Design (System), Toleranz (5 Tage), Überlastung (35 h/Woche), Größe (komfortabel), Farbe (Petrol) wieder her. Kurse und Sitzungen bleiben erhalten.';
+      'Stellt Stunden-pro-ECTS (30), Tagesziel (keins), ersten Wochentag (Montag), Design (System), Toleranz (5 Tage), Überlastung (35 h/Woche), Größe (komfortabel), Farbe (Schiefer) wieder her. Kurse und Sitzungen bleiben erhalten.';
 
   @override
   String get settingsResetSettingsSubtitle =>
-      'Standards wiederherstellen: 30 h/ECTS, kein Ziel, Montag, Systemdesign, 5-Tage-Toleranz, 35 h/Woche Überlastung, komfortable Größe, Petrol.';
+      'Standards wiederherstellen: 30 h/ECTS, kein Ziel, Montag, Systemdesign, 5-Tage-Toleranz, 35 h/Woche Überlastung, komfortable Größe, Schiefer.';
 
   @override
   String get settingsResetSettingsTitle => 'Einstellungen zurücksetzen?';

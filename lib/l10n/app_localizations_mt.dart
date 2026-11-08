@@ -828,11 +828,11 @@ class AppLocalizationsMt extends AppLocalizations {
 
   @override
   String get settingsResetSettingsMessage =>
-      'Jerġaʼ jġib is-sigħat għal kull ECTS (30), il-miri taʼ kuljum (xejn), l-ewwel jum tal-ġimgħa (it-Tnejn), it-tema (sistema), it-tolleranza (5 ijiem), it-tagħbija żejda (35 s/ġimgħa), id-daqs (komdu), il-kulur (aħdar ikħal). Il-korsijiet u s-sessjonijiet jinżammu.';
+      'Jerġaʼ jġib is-sigħat għal kull ECTS (30), il-miri taʼ kuljum (xejn), l-ewwel jum tal-ġimgħa (it-Tnejn), it-tema (sistema), it-tolleranza (5 ijiem), it-tagħbija żejda (35 s/ġimgħa), id-daqs (komdu), il-kulur (lavanja). Il-korsijiet u s-sessjonijiet jinżammu.';
 
   @override
   String get settingsResetSettingsSubtitle =>
-      'Erġaʼ ġib in-normal: 30 s/ECTS, l-ebda miri, it-Tnejn, tema tas-sistema, tolleranza taʼ 5 ijiem, tagħbija żejda taʼ 35 s/ġimgħa, daqs komdu, kulur aħdar ikħal.';
+      'Erġaʼ ġib in-normal: 30 s/ECTS, l-ebda miri, it-Tnejn, tema tas-sistema, tolleranza taʼ 5 ijiem, tagħbija żejda taʼ 35 s/ġimgħa, daqs komdu, kulur lavanja.';
 
   @override
   String get settingsResetSettingsTitle => 'Tirrisettja l-issettjar?';

@@ -22,7 +22,7 @@ class EctsTrackerApp extends StatelessWidget {
 
   final StartupState startup;
 
-  static ThemeData buildLightTheme({Color seed = const Color(0xFF0F766E)}) {
+  static ThemeData buildLightTheme({Color seed = const Color(0xFF51606E)}) {
     final base = ThemeData(
       colorSchemeSeed: seed,
       useMaterial3: true,
@@ -30,7 +30,7 @@ class EctsTrackerApp extends StatelessWidget {
     return _polish(base);
   }
 
-  static ThemeData buildDarkTheme({Color seed = const Color(0xFF0F766E)}) {
+  static ThemeData buildDarkTheme({Color seed = const Color(0xFF51606E)}) {
     final base = ThemeData(
       colorSchemeSeed: seed,
       brightness: Brightness.dark,

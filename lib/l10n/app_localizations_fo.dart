@@ -826,11 +826,11 @@ class AppLocalizationsFo extends AppLocalizations {
 
   @override
   String get settingsResetSettingsMessage =>
-      'Endurstovnar tímar-pr-ECTS (30), dagligt mál (einki), fyrsta vikudag (mánadag), evni (skipan), tol (5 dagar), yvirlast (35 t/viku), stødd (hugnaligt), lit (blágrønt). Skeið og løtur verða varðveitt.';
+      'Endurstovnar tímar-pr-ECTS (30), dagligt mál (einki), fyrsta vikudag (mánadag), evni (skipan), tol (5 dagar), yvirlast (35 t/viku), stødd (hugnaligt), lit (skifer). Skeið og løtur verða varðveitt.';
 
   @override
   String get settingsResetSettingsSubtitle =>
-      'Endurstovna standard: 30 t/ECTS, einki mál, mánadagur, skipanarevni, 5-daga tol, 35 t/viku yvirlast, hugnalig stødd, blágrønur litur.';
+      'Endurstovna standard: 30 t/ECTS, einki mál, mánadagur, skipanarevni, 5-daga tol, 35 t/viku yvirlast, hugnalig stødd, skifer litur.';
 
   @override
   String get settingsResetSettingsTitle => 'Nullstilla innstillingar?';

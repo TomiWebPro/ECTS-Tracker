@@ -826,11 +826,11 @@ class AppLocalizationsNl extends AppLocalizations {
 
   @override
   String get settingsResetSettingsMessage =>
-      'Herstelt uren per ECTS (30), dagdoel (geen), eerste weekdag (maandag), thema (systeem), tolerantie (5 dagen), overbelasting (35 u/week), grootte (comfortabel), kleur (teal). Vakken en sessies blijven behouden.';
+      'Herstelt uren per ECTS (30), dagdoel (geen), eerste weekdag (maandag), thema (systeem), tolerantie (5 dagen), overbelasting (35 u/week), grootte (comfortabel), kleur (leisteen). Vakken en sessies blijven behouden.';
 
   @override
   String get settingsResetSettingsSubtitle =>
-      'Standaarden herstellen: 30 u/ECTS, geen doel, maandag, systeemthema, tolerantie 5 dagen, overbelasting 35 u/week, comfortabele grootte, tealkleur.';
+      'Standaarden herstellen: 30 u/ECTS, geen doel, maandag, systeemthema, tolerantie 5 dagen, overbelasting 35 u/week, comfortabele grootte, leisteenkleur.';
 
   @override
   String get settingsResetSettingsTitle => 'Instellingen opnieuw instellen?';

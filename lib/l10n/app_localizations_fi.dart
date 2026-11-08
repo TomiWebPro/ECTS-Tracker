@@ -827,11 +827,11 @@ class AppLocalizationsFi extends AppLocalizations {
 
   @override
   String get settingsResetSettingsMessage =>
-      'Palauttaa tunnit per ECTS (30), päivätavoitteen (ei mitään), viikon ensimmäisen päivän (maanantai), teeman (järjestelmä), siedon (5 päivää), ylikuormituksen (35 h/viikko), koon (mukava), värin (petrooli). Kurssit ja kerrat säilyvät.';
+      'Palauttaa tunnit per ECTS (30), päivätavoitteen (ei mitään), viikon ensimmäisen päivän (maanantai), teeman (järjestelmä), siedon (5 päivää), ylikuormituksen (35 h/viikko), koon (mukava), värin (liuske). Kurssit ja kerrat säilyvät.';
 
   @override
   String get settingsResetSettingsSubtitle =>
-      'Palauta oletukset: 30 h/ECTS, ei tavoitetta, maanantai, järjestelmäteema, 5 päivän sieto, 35 h/viikko ylikuormitus, mukava koko, petrooli.';
+      'Palauta oletukset: 30 h/ECTS, ei tavoitetta, maanantai, järjestelmäteema, 5 päivän sieto, 35 h/viikko ylikuormitus, mukava koko, liuske.';
 
   @override
   String get settingsResetSettingsTitle => 'Palautetaanko asetukset?';

@@ -120,7 +120,7 @@ AppAccent accentFromInt(int value) => switch (value) {
       2 => AppAccent.clay,
       3 => AppAccent.slate,
       4 => AppAccent.berry,
-      _ => AppAccent.teal,
+      _ => AppAccent.slate,
     };
 
 extension AppAccentX on AppAccent {
@@ -152,7 +152,7 @@ class AppSettings {
     this.paceToleranceDays = defaultPaceToleranceDays,
     this.weeklyOverloadHours = defaultWeeklyOverloadHours,
     this.displaySize = AppDisplaySize.comfortable,
-    this.accent = AppAccent.teal,
+    this.accent = AppAccent.slate,
     this.localeCode,
   });
 

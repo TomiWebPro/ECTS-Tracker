@@ -827,11 +827,11 @@ class AppLocalizationsLt extends AppLocalizations {
 
   @override
   String get settingsResetSettingsMessage =>
-      'Atkuria valandas vienam ECTS (30), kasdienį tikslą (jokio), pirmą savaitės dieną (pirmadienis), temą (sistema), toleranciją (5 dienos), perkrovą (35 v./sav.), dydį (patogus), spalvą (žalsvai mėlyna). Kursai ir sesijos išsaugomi.';
+      'Atkuria valandas vienam ECTS (30), kasdienį tikslą (jokio), pirmą savaitės dieną (pirmadienis), temą (sistema), toleranciją (5 dienos), perkrovą (35 v./sav.), dydį (patogus), spalvą (šiferis). Kursai ir sesijos išsaugomi.';
 
   @override
   String get settingsResetSettingsSubtitle =>
-      'Atkurti numatytuosius: 30 v./ECTS, be tikslo, pirmadienis, sistemos tema, 5 dienų tolerancija, 35 v./sav. perkrova, patogus dydis, žalsvai mėlyna spalva.';
+      'Atkurti numatytuosius: 30 v./ECTS, be tikslo, pirmadienis, sistemos tema, 5 dienų tolerancija, 35 v./sav. perkrova, patogus dydis, šiferis spalva.';
 
   @override
   String get settingsResetSettingsTitle => 'Atstatyti nustatymus?';

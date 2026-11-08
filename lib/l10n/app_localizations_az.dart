@@ -825,11 +825,11 @@ class AppLocalizationsAz extends AppLocalizations {
 
   @override
   String get settingsResetSettingsMessage =>
-      'AKTS başına saat (30), gündəlik hədəf (yoxdur), həftənin ilk günü (bazar ertəsi), tema (sistem), dözümlülük (5 gün), artıq yük (35 s/həftə), ölçü (rahat), rəng (firuzəyi) bərpa olunur. Fənn və sessiyalar saxlanılır.';
+      'AKTS başına saat (30), gündəlik hədəf (yoxdur), həftənin ilk günü (bazar ertəsi), tema (sistem), dözümlülük (5 gün), artıq yük (35 s/həftə), ölçü (rahat), rəng (şifer) bərpa olunur. Fənn və sessiyalar saxlanılır.';
 
   @override
   String get settingsResetSettingsSubtitle =>
-      'Standartları bərpa et: 30 s/AKTS, hədəf yoxdur, bazar ertəsi, sistem teması, 5 günlük dözümlülük, 35 s/həftə artıq yük, rahat ölçü, firuzəyi rəng.';
+      'Standartları bərpa et: 30 s/AKTS, hədəf yoxdur, bazar ertəsi, sistem teması, 5 günlük dözümlülük, 35 s/həftə artıq yük, rahat ölçü, şifer rəng.';
 
   @override
   String get settingsResetSettingsTitle => 'Parametrlər sıfırlansın?';

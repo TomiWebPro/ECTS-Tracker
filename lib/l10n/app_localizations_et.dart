@@ -824,11 +824,11 @@ class AppLocalizationsEt extends AppLocalizations {
 
   @override
   String get settingsResetSettingsMessage =>
-      'Taastab tunnid ECTS-i kohta (30), päevaeesmärgi (puudub), nädala esimese päeva (esmaspäev), teema (süsteem), tolerantsi (5 päeva), ülekoormuse (35 h/nädalas), suuruse (mugav), värvi (petrool). Kursused ja sessioonid säilivad.';
+      'Taastab tunnid ECTS-i kohta (30), päevaeesmärgi (puudub), nädala esimese päeva (esmaspäev), teema (süsteem), tolerantsi (5 päeva), ülekoormuse (35 h/nädalas), suuruse (mugav), värvi (kiltkivi). Kursused ja sessioonid säilivad.';
 
   @override
   String get settingsResetSettingsSubtitle =>
-      'Taasta vaikeväärtused: 30 h/ECTS, eesmärki pole, esmaspäev, süsteemi teema, 5 päeva tolerantsi, 35 h/nädalas ülekoormus, mugav suurus, petroolvärv.';
+      'Taasta vaikeväärtused: 30 h/ECTS, eesmärki pole, esmaspäev, süsteemi teema, 5 päeva tolerantsi, 35 h/nädalas ülekoormus, mugav suurus, kiltkivivärv.';
 
   @override
   String get settingsResetSettingsTitle => 'Lähtestada seaded?';

@@ -829,11 +829,11 @@ class AppLocalizationsRo extends AppLocalizations {
 
   @override
   String get settingsResetSettingsMessage =>
-      'Restabilește ore-per-ECTS (30), obiectiv zilnic (nimic), prima zi (luni), temă (sistem), toleranță (5 zile), suprasolicitare (35 h/săpt.), dimensiune (confortabil), culoare (turcoaz). Cursurile și sesiunile sunt păstrate.';
+      'Restabilește ore-per-ECTS (30), obiectiv zilnic (nimic), prima zi (luni), temă (sistem), toleranță (5 zile), suprasolicitare (35 h/săpt.), dimensiune (confortabil), culoare (ardezie). Cursurile și sesiunile sunt păstrate.';
 
   @override
   String get settingsResetSettingsSubtitle =>
-      'Restabilește implicite: 30 h/ECTS, fără obiectiv, luni, temă sistem, toleranță 5 zile, suprasolicitare 35 h/săpt., dimensiune confortabilă, culoare turcoaz.';
+      'Restabilește implicite: 30 h/ECTS, fără obiectiv, luni, temă sistem, toleranță 5 zile, suprasolicitare 35 h/săpt., dimensiune confortabilă, culoare ardezie.';
 
   @override
   String get settingsResetSettingsTitle => 'Resetezi setările?';

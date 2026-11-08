@@ -828,11 +828,11 @@ class AppLocalizationsCy extends AppLocalizations {
 
   @override
   String get settingsResetSettingsMessage =>
-      'Yn adfer oriau-fesul-ECTS (30), targed dyddiol (dim), dydd cyntaf yr wythnos (dydd Llun), thema (system), goddefiant (5 diwrnod), gorlwytho (35 h/wythnos), maint (cyfforddus), lliw (gwyrddlas). Cedwir modiwlau a sesiynau.';
+      'Yn adfer oriau-fesul-ECTS (30), targed dyddiol (dim), dydd cyntaf yr wythnos (dydd Llun), thema (system), goddefiant (5 diwrnod), gorlwytho (35 h/wythnos), maint (cyfforddus), lliw (llechen). Cedwir modiwlau a sesiynau.';
 
   @override
   String get settingsResetSettingsSubtitle =>
-      'Adfer diofynion: 30 h/ECTS, dim targed, dydd Llun, thema system, goddefiant 5 diwrnod, gorlwytho 35 h/wythnos, maint cyfforddus, lliw gwyrddlas.';
+      'Adfer diofynion: 30 h/ECTS, dim targed, dydd Llun, thema system, goddefiant 5 diwrnod, gorlwytho 35 h/wythnos, maint cyfforddus, lliw llechen.';
 
   @override
   String get settingsResetSettingsTitle => 'Ailosod gosodiadau?';

@@ -829,11 +829,11 @@ class AppLocalizationsPt extends AppLocalizations {
 
   @override
   String get settingsResetSettingsMessage =>
-      'Restaura horas-por-ECTS (30), meta diária (nenhuma), primeiro dia da semana (segunda-feira), tema (sistema), tolerância (5 dias), sobrecarga (35 h/semana), tamanho (confortável), cor (verde-petróleo).';
+      'Restaura horas-por-ECTS (30), meta diária (nenhuma), primeiro dia da semana (segunda-feira), tema (sistema), tolerância (5 dias), sobrecarga (35 h/semana), tamanho (confortável), cor (ardósia).';
 
   @override
   String get settingsResetSettingsSubtitle =>
-      'Restaurar padrões: 30 h/ECTS, sem meta, segunda-feira, tema do sistema, tolerância de 5 dias, sobrecarga de 35 h/semana, tamanho confortável, cor verde-petróleo.';
+      'Restaurar padrões: 30 h/ECTS, sem meta, segunda-feira, tema do sistema, tolerância de 5 dias, sobrecarga de 35 h/semana, tamanho confortável, cor ardósia.';
 
   @override
   String get settingsResetSettingsTitle => 'Redefinir configurações?';

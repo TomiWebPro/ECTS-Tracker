@@ -827,11 +827,11 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get settingsResetSettingsMessage =>
-      'Restaura horas-por-ECTS (30), objetivo diario (ninguno), primer día (lunes), tema (sistema), tolerancia (5 días), sobrecarga (35 h/semana), tamaño (cómodo), color (turquesa). Cursos y sesiones conservados.';
+      'Restaura horas-por-ECTS (30), objetivo diario (ninguno), primer día (lunes), tema (sistema), tolerancia (5 días), sobrecarga (35 h/semana), tamaño (cómodo), color (pizarra). Cursos y sesiones conservados.';
 
   @override
   String get settingsResetSettingsSubtitle =>
-      'Restaurar valores predeterminados: 30 h/ECTS, sin objetivo, lunes, tema del sistema, tolerancia de 5 días, sobrecarga de 35 h/semana, tamaño cómodo, color turquesa.';
+      'Restaurar valores predeterminados: 30 h/ECTS, sin objetivo, lunes, tema del sistema, tolerancia de 5 días, sobrecarga de 35 h/semana, tamaño cómodo, color pizarra.';
 
   @override
   String get settingsResetSettingsTitle => '¿Restablecer ajustes?';

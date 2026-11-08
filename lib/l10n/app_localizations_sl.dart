@@ -825,11 +825,11 @@ class AppLocalizationsSl extends AppLocalizations {
 
   @override
   String get settingsResetSettingsMessage =>
-      'Obnovi ure na ECTS (30), dnevni cilj (brez), prvi dan v tednu (ponedeljek), temo (sistemsko), toleranco (5 dni), preobremenitev (35 h/teden), velikost (udobno), barvo (turkizno). Predmeti in srečanja se ohranijo.';
+      'Obnovi ure na ECTS (30), dnevni cilj (brez), prvi dan v tednu (ponedeljek), temo (sistemsko), toleranco (5 dni), preobremenitev (35 h/teden), velikost (udobno), barvo (skrilavčevo). Predmeti in srečanja se ohranijo.';
 
   @override
   String get settingsResetSettingsSubtitle =>
-      'Obnovi privzeto: 30 h/ECTS, brez cilja, ponedeljek, sistemska tema, 5-dnevna toleranca, 35 h/teden preobremenitev, udobna velikost, turkizna barva.';
+      'Obnovi privzeto: 30 h/ECTS, brez cilja, ponedeljek, sistemska tema, 5-dnevna toleranca, 35 h/teden preobremenitev, udobna velikost, skrilavčeva barva.';
 
   @override
   String get settingsResetSettingsTitle => 'Ponastaviti nastavitve?';

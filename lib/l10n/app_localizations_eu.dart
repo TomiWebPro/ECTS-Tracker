@@ -829,11 +829,11 @@ class AppLocalizationsEu extends AppLocalizations {
 
   @override
   String get settingsResetSettingsMessage =>
-      'Berrezartzen du orduak/ECTS (30), eguneko helburua (bat ere ez), asteko lehen eguna (astelehena), gaia (sistema), tolerantzia (5 egun), gainkarga (35 h/aste), tamaina (erosoa), kolorea (berde-urdina). Ikasgaiak eta saioak gordetzen dira.';
+      'Berrezartzen du orduak/ECTS (30), eguneko helburua (bat ere ez), asteko lehen eguna (astelehena), gaia (sistema), tolerantzia (5 egun), gainkarga (35 h/aste), tamaina (erosoa), kolorea (arbela). Ikasgaiak eta saioak gordetzen dira.';
 
   @override
   String get settingsResetSettingsSubtitle =>
-      'Berrezarri balioak: 30 h/ECTS, helbururik gabe, astelehena, sistemaren gaia, 5 eguneko tolerantzia, 35 h/asteko gainkarga, tamaina erosoa, kolore berde-urdina.';
+      'Berrezarri balioak: 30 h/ECTS, helbururik gabe, astelehena, sistemaren gaia, 5 eguneko tolerantzia, 35 h/asteko gainkarga, tamaina erosoa, kolore arbela.';
 
   @override
   String get settingsResetSettingsTitle => 'Berrezarri ezarpenak?';

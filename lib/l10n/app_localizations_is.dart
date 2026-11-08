@@ -825,11 +825,11 @@ class AppLocalizationsIs extends AppLocalizations {
 
   @override
   String get settingsResetSettingsMessage =>
-      'Endurheimtir klukkutíma á ECTS (30), daglegt markmið (ekkert), fyrsta virkan dag (mánudag), þema (kerfi), vikmörk (5 dagar), ofálag (35 klst/viku), stærð (þægilegt), lit (blágrænan). Áfangar og lotur haldast.';
+      'Endurheimtir klukkutíma á ECTS (30), daglegt markmið (ekkert), fyrsta virkan dag (mánudag), þema (kerfi), vikmörk (5 dagar), ofálag (35 klst/viku), stærð (þægilegt), lit (skífu). Áfangar og lotur haldast.';
 
   @override
   String get settingsResetSettingsSubtitle =>
-      'Endurheimta sjálfgefið: 30 klst/ECTS, ekkert markmið, mánudagur, kerfisþema, 5 daga vikmörk, 35 klst/viku ofálag, þægileg stærð, blágrænn litur.';
+      'Endurheimta sjálfgefið: 30 klst/ECTS, ekkert markmið, mánudagur, kerfisþema, 5 daga vikmörk, 35 klst/viku ofálag, þægileg stærð, skífa litur.';
 
   @override
   String get settingsResetSettingsTitle => 'Endurstilla stillingar?';

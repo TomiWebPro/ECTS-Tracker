@@ -829,11 +829,11 @@ class AppLocalizationsIt extends AppLocalizations {
 
   @override
   String get settingsResetSettingsMessage =>
-      'Ripristina ore-per-ECTS (30), obiettivo giornaliero (nessuno), primo giorno (lunedì), tema (sistema), tolleranza (5 giorni), sovraccarico (35 o/sett.), dimensione (confortevole), colore (verde acqua). Corsi e sessioni conservati.';
+      'Ripristina ore-per-ECTS (30), obiettivo giornaliero (nessuno), primo giorno (lunedì), tema (sistema), tolleranza (5 giorni), sovraccarico (35 o/sett.), dimensione (confortevole), colore (ardesia). Corsi e sessioni conservati.';
 
   @override
   String get settingsResetSettingsSubtitle =>
-      'Ripristina predefiniti: 30 o/ECTS, nessun obiettivo, lunedì, tema sistema, tolleranza 5 giorni, sovraccarico 35 o/sett., dimensione confortevole, colore verde acqua.';
+      'Ripristina predefiniti: 30 o/ECTS, nessun obiettivo, lunedì, tema sistema, tolleranza 5 giorni, sovraccarico 35 o/sett., dimensione confortevole, colore ardesia.';
 
   @override
   String get settingsResetSettingsTitle => 'Reimpostare le impostazioni?';

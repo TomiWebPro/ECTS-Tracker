@@ -1077,7 +1077,7 @@ class $SettingsTable extends Settings
     false,
     type: DriftSqlType.int,
     requiredDuringInsert: false,
-    defaultValue: const Constant(0),
+    defaultValue: const Constant(3),
   );
   static const VerificationMeta _localeCodeMeta = const VerificationMeta(
     'localeCode',
@@ -1268,7 +1268,7 @@ class SettingsRow extends DataClass implements Insertable<SettingsRow> {
   /// Display size 0=compact, 1=comfortable, 2=large. Default 1.
   final int displaySize;
 
-  /// Theme accent 0=teal, 1=forest, 2=clay, 3=slate, 4=berry. Default 0.
+  /// Theme accent 0=teal, 1=forest, 2=clay, 3=slate, 4=berry. Default 3.
   final int accent;
 
   /// App-language code (ARB `@@locale` tag, e.g. `de`, `zh_Hans`).

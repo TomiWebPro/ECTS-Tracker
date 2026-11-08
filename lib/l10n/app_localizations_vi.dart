@@ -821,11 +821,11 @@ class AppLocalizationsVi extends AppLocalizations {
 
   @override
   String get settingsResetSettingsMessage =>
-      'Khôi phục giờ mỗi ECTS (30), mục tiêu ngày (không), ngày đầu tuần (Thứ Hai), giao diện (hệ thống), dung sai (5 ngày), quá tải (35 giờ/tuần), cỡ (thoải mái), màu (xanh mòng két). Môn học và buổi học được giữ lại.';
+      'Khôi phục giờ mỗi ECTS (30), mục tiêu ngày (không), ngày đầu tuần (Thứ Hai), giao diện (hệ thống), dung sai (5 ngày), quá tải (35 giờ/tuần), cỡ (thoải mái), màu (đá phiến). Môn học và buổi học được giữ lại.';
 
   @override
   String get settingsResetSettingsSubtitle =>
-      'Khôi phục mặc định: 30 giờ/ECTS, không mục tiêu, Thứ Hai, giao diện hệ thống, dung sai 5 ngày, quá tải 35 giờ/tuần, cỡ thoải mái, màu xanh mòng két.';
+      'Khôi phục mặc định: 30 giờ/ECTS, không mục tiêu, Thứ Hai, giao diện hệ thống, dung sai 5 ngày, quá tải 35 giờ/tuần, cỡ thoải mái, màu đá phiến.';
 
   @override
   String get settingsResetSettingsTitle => 'Đặt lại cài đặt?';

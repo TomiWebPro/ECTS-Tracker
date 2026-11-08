@@ -828,11 +828,11 @@ class AppLocalizationsSq extends AppLocalizations {
 
   @override
   String get settingsResetSettingsMessage =>
-      'Rikthen orët për ECTS (30), objektivin ditor (asnjë), ditën e parë (e hënë), temën (sistemi), tolerancën (5 ditë), mbingarkesën (35 o/javë), madhësinë (komode), ngjyrën (bruz). Lëndët dhe seancat ruhen.';
+      'Rikthen orët për ECTS (30), objektivin ditor (asnjë), ditën e parë (e hënë), temën (sistemi), tolerancën (5 ditë), mbingarkesën (35 o/javë), madhësinë (komode), ngjyrën (rrasë). Lëndët dhe seancat ruhen.';
 
   @override
   String get settingsResetSettingsSubtitle =>
-      'Rikthe parazgjedhjet: 30 o/ECTS, pa objektiv, e hënë, tema e sistemit, tolerancë 5-ditore, mbingarkesë 35 o/javë, madhësi komode, ngjyrë bruz.';
+      'Rikthe parazgjedhjet: 30 o/ECTS, pa objektiv, e hënë, tema e sistemit, tolerancë 5-ditore, mbingarkesë 35 o/javë, madhësi komode, ngjyrë rrasë.';
 
   @override
   String get settingsResetSettingsTitle => 'Të rivendosen cilësimet?';

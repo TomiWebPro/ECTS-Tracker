@@ -821,11 +821,11 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get settingsResetSettingsMessage =>
-      'Restores hours-per-ECTS (30), daily target (none), first weekday (Monday), theme (system), tolerance (5 days), overload (35 h/week), size (comfortable), colour (teal). Courses and sessions are kept.';
+      'Restores hours-per-ECTS (30), daily target (none), first weekday (Monday), theme (system), tolerance (5 days), overload (35 h/week), size (comfortable), colour (slate). Courses and sessions are kept.';
 
   @override
   String get settingsResetSettingsSubtitle =>
-      'Restore defaults: 30 h/ECTS, no target, Monday, system theme, 5-day tolerance, 35 h/week overload, comfortable size, teal colour.';
+      'Restore defaults: 30 h/ECTS, no target, Monday, system theme, 5-day tolerance, 35 h/week overload, comfortable size, slate colour.';
 
   @override
   String get settingsResetSettingsTitle => 'Reset settings?';

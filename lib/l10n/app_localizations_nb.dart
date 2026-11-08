@@ -826,11 +826,11 @@ class AppLocalizationsNb extends AppLocalizations {
 
   @override
   String get settingsResetSettingsMessage =>
-      'Gjenoppretter timer per studiepoeng (30), daglig mål (ingen), første ukedag (mandag), tema (system), toleranse (5 dager), overbelastning (35 t/uke), størrelse (behagelig), farge (blågrønn). Emner og økter beholdes.';
+      'Gjenoppretter timer per studiepoeng (30), daglig mål (ingen), første ukedag (mandag), tema (system), toleranse (5 dager), overbelastning (35 t/uke), størrelse (behagelig), farge (skifer). Emner og økter beholdes.';
 
   @override
   String get settingsResetSettingsSubtitle =>
-      'Gjenopprett standard: 30 t/studiepoeng, ikke noe mål, mandag, systemtema, 5 dagers toleranse, 35 t/uke overbelastning, behagelig størrelse, blågrønn farge.';
+      'Gjenopprett standard: 30 t/studiepoeng, ikke noe mål, mandag, systemtema, 5 dagers toleranse, 35 t/uke overbelastning, behagelig størrelse, skifer farge.';
 
   @override
   String get settingsResetSettingsTitle => 'Tilbakestille innstillinger?';

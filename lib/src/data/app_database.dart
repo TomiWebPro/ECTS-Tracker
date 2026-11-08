@@ -51,8 +51,8 @@ class Settings extends Table {
   /// Display size 0=compact, 1=comfortable, 2=large. Default 1.
   IntColumn get displaySize => integer().withDefault(const Constant(1))();
 
-  /// Theme accent 0=teal, 1=forest, 2=clay, 3=slate, 4=berry. Default 0.
-  IntColumn get accent => integer().withDefault(const Constant(0))();
+  /// Theme accent 0=teal, 1=forest, 2=clay, 3=slate, 4=berry. Default 3.
+  IntColumn get accent => integer().withDefault(const Constant(3))();
 
   /// App-language code (ARB `@@locale` tag, e.g. `de`, `zh_Hans`).
   /// Null means "follow the system language". Default null.

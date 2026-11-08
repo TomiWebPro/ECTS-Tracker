@@ -612,7 +612,7 @@ class SettingsRepository {
                   const Value(AppSettings.defaultWeeklyOverloadHours),
               displaySize:
                   Value(displaySizeToInt(AppDisplaySize.comfortable)),
-              accent: Value(accentToInt(AppAccent.teal)),
+              accent: Value(accentToInt(AppAccent.slate)),
               localeCode: const Value(null),
             ),
           );
@@ -925,7 +925,7 @@ class BackupRepository {
     final weeklyOverloadHours =
         numD(settingsRaw['weeklyOverloadHours'], AppSettings.defaultWeeklyOverloadHours);
     final displaySize = numI(settingsRaw['displaySize'], 1).clamp(0, 2);
-    final accent = numI(settingsRaw['accent'], 0).clamp(0, 4);
+    final accent = numI(settingsRaw['accent'], 3).clamp(0, 4);
     // Unknown locale codes fall back to system default instead of failing
     // the whole import: language is cosmetic, never structural.
     final localeRaw = settingsRaw['localeCode'];

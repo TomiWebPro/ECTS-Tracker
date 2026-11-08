@@ -826,11 +826,11 @@ class AppLocalizationsLb extends AppLocalizations {
 
   @override
   String get settingsResetSettingsMessage =>
-      'Stellt Stonne-pro-ECTS (30), deeglecht Zil (keng), éischte Wochendag (Méindeg), Theme (System), Toleranz (5 Deeg), Iwwerlaascht (35 St/Woch), Gréisst (confortabel), Faarf (Petrol) erëm hier. Coursen a Sëtzunge bleiwen erhalen.';
+      'Stellt Stonne-pro-ECTS (30), deeglecht Zil (keng), éischte Wochendag (Méindeg), Theme (System), Toleranz (5 Deeg), Iwwerlaascht (35 St/Woch), Gréisst (confortabel), Faarf (Schifer) erëm hier. Coursen a Sëtzunge bleiwen erhalen.';
 
   @override
   String get settingsResetSettingsSubtitle =>
-      'Standard erëm hierstellen: 30 St/ECTS, kee Zil, Méindeg, System-Theme, 5-Deeg-Toleranz, 35 St/Woch Iwwerlaascht, confortabel Gréisst, Petrol-Faarf.';
+      'Standard erëm hierstellen: 30 St/ECTS, kee Zil, Méindeg, System-Theme, 5-Deeg-Toleranz, 35 St/Woch Iwwerlaascht, confortabel Gréisst, Schifer-Faarf.';
 
   @override
   String get settingsResetSettingsTitle => 'Astellungen zrécksetzen?';

@@ -825,11 +825,11 @@ class AppLocalizationsLv extends AppLocalizations {
 
   @override
   String get settingsResetSettingsMessage =>
-      'Atjauno stundas uz ECTS (30), ikdienas mērķi (nekādu), nedēļas pirmo dienu (pirmdiena), motīvu (sistēma), pielaidi (5 dienas), pārslodzi (35 h/nedēļā), izmēru (ērts), krāsu (zilganzaļa). Kursi un sesijas tiek saglabāti.';
+      'Atjauno stundas uz ECTS (30), ikdienas mērķi (nekādu), nedēļas pirmo dienu (pirmdiena), motīvu (sistēma), pielaidi (5 dienas), pārslodzi (35 h/nedēļā), izmēru (ērts), krāsu (šīferis). Kursi un sesijas tiek saglabāti.';
 
   @override
   String get settingsResetSettingsSubtitle =>
-      'Atjaunot noklusējumu: 30 h/ECTS, bez mērķa, pirmdiena, sistēmas motīvs, 5 dienu pielaide, 35 h/nedēļā pārslodze, ērts izmērs, zilganzaļa krāsa.';
+      'Atjaunot noklusējumu: 30 h/ECTS, bez mērķa, pirmdiena, sistēmas motīvs, 5 dienu pielaide, 35 h/nedēļā pārslodze, ērts izmērs, šīferis krāsa.';
 
   @override
   String get settingsResetSettingsTitle => 'Atiestatīt iestatījumus?';

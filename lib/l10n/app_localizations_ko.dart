@@ -806,11 +806,11 @@ class AppLocalizationsKo extends AppLocalizations {
 
   @override
   String get settingsResetSettingsMessage =>
-      'ECTS당 시간(30), 하루 목표(없음), 주 시작(월요일), 테마(시스템), 허용치(5일), 과부하(35시간/주), 크기(보통), 색상(틸)으로 되돌립니다. 과목과 기록은 유지됩니다.';
+      'ECTS당 시간(30), 하루 목표(없음), 주 시작(월요일), 테마(시스템), 허용치(5일), 과부하(35시간/주), 크기(보통), 색상(슬레이트)으로 되돌립니다. 과목과 기록은 유지됩니다.';
 
   @override
   String get settingsResetSettingsSubtitle =>
-      '기본값으로 복원: 30시간/ECTS, 목표 없음, 월요일, 시스템 테마, 5일 허용치, 35시간/주, 보통 크기, 틸 색상.';
+      '기본값으로 복원: 30시간/ECTS, 목표 없음, 월요일, 시스템 테마, 5일 허용치, 35시간/주, 보통 크기, 슬레이트 색상.';
 
   @override
   String get settingsResetSettingsTitle => '설정을 초기화할까요?';

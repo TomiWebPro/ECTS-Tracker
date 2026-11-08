@@ -831,11 +831,11 @@ class AppLocalizationsGa extends AppLocalizations {
 
   @override
   String get settingsResetSettingsMessage =>
-      'Athchóiríonn sé uaireanta in aghaidh ECTS (30), sprioc laethúil (dada), an chéad lá seachtaine (Dé Luain), téama (córas), lamháltas (5 lá), ró-ualach (35 u/seachtain), méid (compordach), dath (glasghorm). Coimeádtar cúrsaí agus seisiúin.';
+      'Athchóiríonn sé uaireanta in aghaidh ECTS (30), sprioc laethúil (dada), an chéad lá seachtaine (Dé Luain), téama (córas), lamháltas (5 lá), ró-ualach (35 u/seachtain), méid (compordach), dath (sláta). Coimeádtar cúrsaí agus seisiúin.';
 
   @override
   String get settingsResetSettingsSubtitle =>
-      'Athchóirigh réamhshocruithe: 30 u/ECTS, gan sprioc, Dé Luain, téama córais, lamháltas 5 lá, ró-ualach 35 u/seachtain, méid compordach, dath glasghorm.';
+      'Athchóirigh réamhshocruithe: 30 u/ECTS, gan sprioc, Dé Luain, téama córais, lamháltas 5 lá, ró-ualach 35 u/seachtain, méid compordach, dath sláta.';
 
   @override
   String get settingsResetSettingsTitle => 'Athshocraigh socruithe?';

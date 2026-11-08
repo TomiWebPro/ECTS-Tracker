@@ -822,11 +822,11 @@ class AppLocalizationsSh extends AppLocalizations {
 
   @override
   String get settingsResetSettingsMessage =>
-      'Vraća sate po ECTS-u (30), dnevni cilj (ništa), prvi dan (ponedjeljak), temu (sistem), toleranciju (5 dana), preopterećenje (35 h/sedm.), veličinu (udobno), boju (tirkizna). Predmeti i sesije ostaju.';
+      'Vraća sate po ECTS-u (30), dnevni cilj (ništa), prvi dan (ponedjeljak), temu (sistem), toleranciju (5 dana), preopterećenje (35 h/sedm.), veličinu (udobno), boju (škriljac). Predmeti i sesije ostaju.';
 
   @override
   String get settingsResetSettingsSubtitle =>
-      'Vrati standardno: 30 h/ECTS, bez cilja, ponedjeljak, tema sistema, tolerancija 5 dana, preopterećenje 35 h/sedm., udobna veličina, tirkizna boja.';
+      'Vrati standardno: 30 h/ECTS, bez cilja, ponedjeljak, tema sistema, tolerancija 5 dana, preopterećenje 35 h/sedm., udobna veličina, škriljac boja.';
 
   @override
   String get settingsResetSettingsTitle => 'Resetovati postavke?';

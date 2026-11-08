@@ -824,11 +824,11 @@ class AppLocalizationsCs extends AppLocalizations {
 
   @override
   String get settingsResetSettingsMessage =>
-      'Obnoví hodiny na ECTS (30), denní cíl (žádný), první den v týdnu (pondělí), motiv (systémový), toleranci (5 dní), přetížení (35 h/týden), velikost (pohodlná), barvu (tyrkysová). Předměty a lekce zůstanou zachovány.';
+      'Obnoví hodiny na ECTS (30), denní cíl (žádný), první den v týdnu (pondělí), motiv (systémový), toleranci (5 dní), přetížení (35 h/týden), velikost (pohodlná), barvu (břidlicová). Předměty a lekce zůstanou zachovány.';
 
   @override
   String get settingsResetSettingsSubtitle =>
-      'Obnovit výchozí hodnoty: 30 h/ECTS, bez cíle, pondělí, systémový motiv, tolerance 5 dní, přetížení 35 h/týden, pohodlná velikost, tyrkysová barva.';
+      'Obnovit výchozí hodnoty: 30 h/ECTS, bez cíle, pondělí, systémový motiv, tolerance 5 dní, přetížení 35 h/týden, pohodlná velikost, břidlicová barva.';
 
   @override
   String get settingsResetSettingsTitle => 'Obnovit nastavení?';

@@ -827,11 +827,11 @@ class AppLocalizationsHu extends AppLocalizations {
 
   @override
   String get settingsResetSettingsMessage =>
-      'Visszaállítja az óra/ECTS (30), napi cél (nincs), hét első napja (hétfő), téma (rendszer), tűrés (5 nap), túlterhelés (35 ó/hét), méret (kényelmes), szín (pávakék) értékeket. A kurzusok és alkalmak megmaradnak.';
+      'Visszaállítja az óra/ECTS (30), napi cél (nincs), hét első napja (hétfő), téma (rendszer), tűrés (5 nap), túlterhelés (35 ó/hét), méret (kényelmes), szín (pala) értékeket. A kurzusok és alkalmak megmaradnak.';
 
   @override
   String get settingsResetSettingsSubtitle =>
-      'Alapértékek visszaállítása: 30 ó/ECTS, nincs cél, hétfő, rendszertéma, 5 napos tűrés, 35 ó/hét túlterhelés, kényelmes méret, pávakék szín.';
+      'Alapértékek visszaállítása: 30 ó/ECTS, nincs cél, hétfő, rendszertéma, 5 napos tűrés, 35 ó/hét túlterhelés, kényelmes méret, pala szín.';
 
   @override
   String get settingsResetSettingsTitle => 'Visszaállítod a beállításokat?';

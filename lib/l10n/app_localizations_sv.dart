@@ -825,11 +825,11 @@ class AppLocalizationsSv extends AppLocalizations {
 
   @override
   String get settingsResetSettingsMessage =>
-      'Återställer timmar-per-ECTS (30), dagligt mål (inget), veckans första dag (måndag), tema (system), tolerans (5 dagar), överbelastning (35 tim/vecka), storlek (bekväm), färg (teal). Kurser och sessioner behålls.';
+      'Återställer timmar-per-ECTS (30), dagligt mål (inget), veckans första dag (måndag), tema (system), tolerans (5 dagar), överbelastning (35 tim/vecka), storlek (bekväm), färg (skiffer). Kurser och sessioner behålls.';
 
   @override
   String get settingsResetSettingsSubtitle =>
-      'Återställ standard: 30 tim/ECTS, inget mål, måndag, systemtema, 5-dagarstolerans, 35 tim/vecka överbelastning, bekväm storlek, tealfärg.';
+      'Återställ standard: 30 tim/ECTS, inget mål, måndag, systemtema, 5-dagarstolerans, 35 tim/vecka överbelastning, bekväm storlek, skifferfärg.';
 
   @override
   String get settingsResetSettingsTitle => 'Återställa inställningar?';

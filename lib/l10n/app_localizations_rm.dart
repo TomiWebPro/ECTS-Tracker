@@ -826,11 +826,11 @@ class AppLocalizationsRm extends AppLocalizations {
 
   @override
   String get settingsResetSettingsMessage =>
-      'Restaurescha uras-per-ECTS (30), finamira quotidiana (nagut), emprim di d\'emna (glindesdi), visad (system), toleranza (5 dis), surchargia (35 u/emna), grondezza (cumadaivla), colur (verd petrol). Curs e sesidas vegnan mantegnds.';
+      'Restaurescha uras-per-ECTS (30), finamira quotidiana (nagut), emprim di d\'emna (glindesdi), visad (system), toleranza (5 dis), surchargia (35 u/emna), grondezza (cumadaivla), colur (schista). Curs e sesidas vegnan mantegnds.';
 
   @override
   String get settingsResetSettingsSubtitle =>
-      'Restaurar ils standards: 30 u/ECTS, nagina finamira, glindesdi, visad da system, toleranza da 5 dis, surchargia 35 u/emna, grondezza cumadaivla, colur verd petrol.';
+      'Restaurar ils standards: 30 u/ECTS, nagina finamira, glindesdi, visad da system, toleranza da 5 dis, surchargia 35 u/emna, grondezza cumadaivla, colur schista.';
 
   @override
   String get settingsResetSettingsTitle => 'Reinizialisar configuraziuns?';

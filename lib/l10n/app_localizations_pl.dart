@@ -828,11 +828,11 @@ class AppLocalizationsPl extends AppLocalizations {
 
   @override
   String get settingsResetSettingsMessage =>
-      'Przywraca godziny na ECTS (30), cel dzienny (brak), pierwszy dzień tygodnia (poniedziałek), motyw (systemowy), tolerancję (5 dni), przeciążenie (35 h/tydzień), rozmiar (wygodny), kolor (morski). Kursy i sesje zostają zachowane.';
+      'Przywraca godziny na ECTS (30), cel dzienny (brak), pierwszy dzień tygodnia (poniedziałek), motyw (systemowy), tolerancję (5 dni), przeciążenie (35 h/tydzień), rozmiar (wygodny), kolor (łupkowy). Kursy i sesje zostają zachowane.';
 
   @override
   String get settingsResetSettingsSubtitle =>
-      'Przywróć domyślne: 30 h/ECTS, brak celu, poniedziałek, motyw systemowy, tolerancja 5 dni, przeciążenie 35 h/tydzień, rozmiar wygodny, kolor morski.';
+      'Przywróć domyślne: 30 h/ECTS, brak celu, poniedziałek, motyw systemowy, tolerancja 5 dni, przeciążenie 35 h/tydzień, rozmiar wygodny, kolor łupkowy.';
 
   @override
   String get settingsResetSettingsTitle => 'Zresetować ustawienia?';

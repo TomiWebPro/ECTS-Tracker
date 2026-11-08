@@ -826,11 +826,11 @@ class AppLocalizationsDa extends AppLocalizations {
 
   @override
   String get settingsResetSettingsMessage =>
-      'Gendanner timer pr. ECTS (30), dagligt mål (ingen), første ugedag (mandag), tema (system), tolerance (5 dage), overbelastning (35 t/uge), størrelse (komfortabel), farve (blågrøn). Fag og sessioner bevares.';
+      'Gendanner timer pr. ECTS (30), dagligt mål (ingen), første ugedag (mandag), tema (system), tolerance (5 dage), overbelastning (35 t/uge), størrelse (komfortabel), farve (skifer). Fag og sessioner bevares.';
 
   @override
   String get settingsResetSettingsSubtitle =>
-      'Gendan standarder: 30 t/ECTS, intet mål, mandag, systemtema, 5 dages tolerance, 35 t/uge overbelastning, komfortabel størrelse, blågrøn farve.';
+      'Gendan standarder: 30 t/ECTS, intet mål, mandag, systemtema, 5 dages tolerance, 35 t/uge overbelastning, komfortabel størrelse, skifer farve.';
 
   @override
   String get settingsResetSettingsTitle => 'Nulstil indstillinger?';

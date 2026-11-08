@@ -833,11 +833,11 @@ class AppLocalizationsGd extends AppLocalizations {
 
   @override
   String get settingsResetSettingsMessage =>
-      'Ag ath-nuadhachadh uairean-gach-ECTS (30), targaid làitheil (gun dad), ciad latha-seachdain (Diluain), ùrlar (siostam), fulangas (5 latha), ro-luchd (35 u/seachdain), meud (cofhurtail), dath (gorm-uaine). Tha cùrsaichean is seiseanan air an gleidheadh.';
+      'Ag ath-nuadhachadh uairean-gach-ECTS (30), targaid làitheil (gun dad), ciad latha-seachdain (Diluain), ùrlar (siostam), fulangas (5 latha), ro-luchd (35 u/seachdain), meud (cofhurtail), dath (sglèat). Tha cùrsaichean is seiseanan air an gleidheadh.';
 
   @override
   String get settingsResetSettingsSubtitle =>
-      'Thoir air ais na bun-roghainnean: 30 u/ECTS, gun targaid, Diluain, ùrlar siostaim, fulangas 5-latha, ro-luchd 35 u/seachdain, meud cofhurtail, dath gorm-uaine.';
+      'Thoir air ais na bun-roghainnean: 30 u/ECTS, gun targaid, Diluain, ùrlar siostaim, fulangas 5-latha, ro-luchd 35 u/seachdain, meud cofhurtail, dath sglèat.';
 
   @override
   String get settingsResetSettingsTitle =>

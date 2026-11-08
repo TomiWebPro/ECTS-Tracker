@@ -822,11 +822,11 @@ class AppLocalizationsPcm extends AppLocalizations {
 
   @override
   String get settingsResetSettingsMessage =>
-      'E go restore hours-per-ECTS (30), daily target (none), first weekday (Monday), theme (system), tolerance (5 days), overload (35 h/week), size (comfortable), colour (teal). Courses and sessions go remain.';
+      'E go restore hours-per-ECTS (30), daily target (none), first weekday (Monday), theme (system), tolerance (5 days), overload (35 h/week), size (comfortable), colour (slate). Courses and sessions go remain.';
 
   @override
   String get settingsResetSettingsSubtitle =>
-      'E go restore defaults: 30 h/ECTS, no target, Monday, system theme, 5-day tolerance, 35 h/week overload, comfortable size, teal colour.';
+      'E go restore defaults: 30 h/ECTS, no target, Monday, system theme, 5-day tolerance, 35 h/week overload, comfortable size, slate colour.';
 
   @override
   String get settingsResetSettingsTitle => 'Reset settings?';
