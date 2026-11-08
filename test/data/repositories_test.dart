@@ -1219,11 +1219,30 @@ void main() {
       expect((await settings.get()).firstWeekday, DateTime.monday);
     });
 
+    test('persists, clears and rejects locale codes', () async {
+      expect((await settings.get()).localeCode, isNull);
+
+      expect(await settings.setLocaleCode('de'), isA<Ok<void>>());
+      expect((await settings.get()).localeCode, 'de');
+      expect(await settings.watch().first.then((s) => s.localeCode), 'de');
+
+      expect(await settings.setLocaleCode('zh_Hans'), isA<Ok<void>>());
+      expect((await settings.get()).localeCode, 'zh_Hans');
+
+      expect(await settings.setLocaleCode(null), isA<Ok<void>>());
+      expect((await settings.get()).localeCode, isNull);
+
+      expect(await settings.setLocaleCode('xx'), isA<Err<void>>());
+      expect(await settings.setLocaleCode(''), isA<Err<void>>());
+      expect((await settings.get()).localeCode, isNull);
+    });
+
     test('resetToDefaults restores defaults and keeps data rows untouched', () async {
       await settings.setHoursPerEcts(25);
       await settings.setDailyTargetMinutes(120);
       await settings.setFirstWeekday(DateTime.sunday);
       await settings.setThemeMode(AppThemeMode.light);
+      await settings.setLocaleCode('de');
       await courses.addCourse(name: 'Keep me', ectsCredits: 5);
 
       final res = await settings.resetToDefaults();
@@ -1233,6 +1252,7 @@ void main() {
       expect(current.dailyTargetMinutes, 0);
       expect(current.firstWeekday, DateTime.monday);
       expect(current.themeMode, AppThemeMode.system);
+      expect(current.localeCode, isNull);
       expect(await courses.watchAll().first, hasLength(1));
     });
 
@@ -1241,6 +1261,7 @@ void main() {
       await settings.setDailyTargetMinutes(45);
       await settings.setFirstWeekday(DateTime.sunday);
       await settings.setThemeMode(AppThemeMode.dark);
+      await settings.setLocaleCode('ja');
       final c1 = await courses.addCourse(
         name: 'Algorithms',
         ectsCredits: 6,
@@ -1265,6 +1286,7 @@ void main() {
       final json = (exported as Ok<String>).value;
       expect(json, contains('Algorithms'));
       expect(json, contains('"hoursPerEcts"'));
+      expect(json, contains('"localeCode": "ja"'));
 
       final wiped = await backup.resetAllData();
       expect(wiped, isA<Ok<void>>());
@@ -1277,6 +1299,7 @@ void main() {
       expect(restoredSettings.dailyTargetMinutes, 45);
       expect(restoredSettings.firstWeekday, DateTime.sunday);
       expect(restoredSettings.themeMode, AppThemeMode.dark);
+      expect(restoredSettings.localeCode, 'ja');
       final restoredCourses = await courses.watchAll().first;
       expect(restoredCourses.map((c) => c.name), containsAll(['Algorithms', 'Math']));
       final restoredSessions = await sessions.watchAll().first;

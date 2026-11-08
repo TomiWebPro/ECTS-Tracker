@@ -1,0 +1,1819 @@
+{
+  "@@locale": "ko",
+  "appTitle": "ECTS Tracker",
+  "commonCancel": "취소",
+  "commonClose": "닫기",
+  "commonDelete": "삭제",
+  "commonEdit": "편집",
+  "commonError": "오류",
+  "commonNone": "없음",
+  "commonSave": "저장",
+  "courseFormAutoHoursValue": "필요 시간(자동): {value}",
+  "courseFormClearDeadlineTooltip": "마감일 지우기",
+  "courseFormClearStartTooltip": "시작일 지우기",
+  "courseFormColorLabel": "색상",
+  "courseFormDateNotSet": "미설정",
+  "courseFormDeadlineButton": "마감일: {date}",
+  "courseFormEctsLabel": "ECTS 학점",
+  "courseFormHoursPerEctsValue": "{value}시간/ECTS",
+  "courseFormNameLabel": "이름",
+  "courseFormNotesLabel": "메모(선택)",
+  "courseFormSaving": "저장 중…",
+  "courseFormStartButton": "시작: {date}",
+  "courseFormStartEarlyOff": "꺼짐: {date}까지 부담 없음. 오늘 페이스에서 제외.",
+  "courseFormStartEarlyOn": "켜짐: 지금까지 시간을 나누어 오늘 페이스에 포함.",
+  "courseFormStartEarlyTitle": "시작일이 미래여도 지금 시작",
+  "courseFormTitleAdd": "과목 추가",
+  "courseFormTitleEdit": "과목 편집",
+  "coursesAddTooltip": "과목 추가",
+  "coursesDeleteBody": "\"{name}\"과(와) 모든 학습 기록을 삭제할까요? 되돌릴 수 없습니다.",
+  "coursesDeleteTitle": "과목을 삭제할까요?",
+  "coursesEctsValue": "{credits} ECTS",
+  "coursesEmptyHint": "\"새 과목\"을 눌러 첫 과목을 만드세요.",
+  "coursesEmptyTitle": "아직 과목이 없습니다",
+  "coursesFilterAll": "모든 상태",
+  "coursesFilterEmpty": "이 필터에 맞는 과목이 없습니다",
+  "coursesNewCourse": "새 과목",
+  "coursesPaceNeeded": "{daily}시간/일 필요",
+  "coursesPaceNeededWeekly": "{daily}시간/일・{weekly}시간/주 필요",
+  "coursesProgressWithStatus": "{done} / {required}시간・{status}",
+  "coursesRemoveSampleTooltip": "샘플 과목 삭제",
+  "coursesShownCount": "{count}개 표시",
+  "coursesSortOption": "정렬: {label}",
+  "dashboardAllDone": "모두 완료",
+  "dashboardBonusLogged": "{hours}시간 기록됨(보너스)",
+  "dashboardCourseCount": "{count}개 과목",
+  "dashboardCourseCountWithUpcoming": "{count}개 과목・{upcoming}개는 예정이라 오늘 페이스 제외",
+  "dashboardCoursesTitle": "과목",
+  "dashboardDeadline": "마감일 {date}",
+  "dashboardDeadlineDaysLeft": "마감일 {date}({days}일 남음)",
+  "dashboardDeadlineOneDayLeft": "마감일 {date}(1일 남음)",
+  "dashboardDeadlineOverdue": "마감일 {date}(기한 초과)",
+  "dashboardDeadlineToday": "마감일 {date}(오늘)",
+  "dashboardDueToday": "오늘 마감 — {hours}시간 기록됨",
+  "dashboardEmptyHintAllDone": "모든 과목이 완료되었습니다 — 전체 목록은 과목 탭에서 확인하세요.",
+  "dashboardEmptyHintNoCourses": "과목을 추가해 ECTS 진도 관리를 시작하세요.",
+  "dashboardExplainerBehind": "지연: {achieved}/일 대비 {need}/일 필요",
+  "dashboardExplainerBehindEarly": "지연: {achieved}/일 대비 {need}/일 필요・조기 시작",
+  "dashboardExplainerBehindNoPace": "지연: 오늘이 마감이고 남은 시간 있음, 유한 페이스 없음",
+  "dashboardExplainerOnTrackNoPace": "정상: 아직 페이스 없음 — 첫 기록 후 확정됩니다",
+  "dashboardExplainerStartsIn": "{days}일 후 시작・{date}부터 계산",
+  "dashboardExplainerStartsInEarly": "{days}일 후 시작・{date}부터 계산・조기 시작 켜짐",
+  "dashboardFreshStart": "새 출발",
+  "dashboardHoursDetail": "・{pct}%・{hours}시간 남음",
+  "dashboardHoursFraction": "{done} / {required}시간",
+  "dashboardHoursPerDay": "{hours}시간/일",
+  "dashboardLogSessionAction": "학습 기록하기",
+  "dashboardLogSessionTooltip": "학습 기록하기",
+  "dashboardNewBadge": "NEW",
+  "dashboardNoCourses": "아직 과목이 없습니다",
+  "dashboardNoDeadline": "마감일 없음",
+  "dashboardNoDeadlines": "예정된 마감일이 없습니다",
+  "dashboardNoPaceDue": "오늘 페이스 없음",
+  "dashboardNothingDue": "마감 없음",
+  "dashboardNothingToTrack": "아직 추적할 항목이 없습니다",
+  "dashboardPaceDueToday": "오늘 마감 — {hours}시간 남음",
+  "dashboardPaceNeedDaily": "완료하려면 {daily}시간/일 필요",
+  "dashboardPaceNeedDailyWeekly": "완료하려면 {daily}시간/일・{weekly}시간/주 필요",
+  "dashboardPaceNeedFrom": "{date}부터 {hours}시간/일 필요・오늘 페이스 제외",
+  "dashboardPaceNoDeadline": "마감일 없음 — {hours}시간 남음・매일 부담 없음",
+  "dashboardPaceStarts": "{date} 시작・{hours}시간 남음",
+  "dashboardPaceUnrealistic": "{pace}・비현실적",
+  "dashboardProgramBare": "프로그램",
+  "dashboardProgramEmptyHint": "과목을 추가해 기록을 시작하세요",
+  "dashboardProgramHours": "{done} / {required}시간",
+  "dashboardProgramLabel": "프로그램 {pct}%",
+  "dashboardRunwayDays": "{days}일분 남음",
+  "dashboardStartNotSet": "미설정",
+  "dashboardStartsIn": "{days}일 후 시작",
+  "dashboardStartsSoon": "곧 시작",
+  "dashboardTipEmpty": "첫 과목을 추가하세요 — 일일 페이스와 진도가 여기에 표시됩니다.",
+  "dashboardTipFirst": "첫 25분이 가장 중요합니다 — 마감일이 가장 빠른 과목부터 하세요.",
+  "dashboardTodayBare": "오늘",
+  "dashboardTodayHours": "{logged} / {pace}시간",
+  "dashboardTodayLabel": "오늘 {pct}%",
+  "dashboardTodayPaceLabel": "오늘의 페이스",
+  "dashboardTodayProgress": "오늘 {logged} / {pace}시간",
+  "dashboardUpcomingSubtitle": "예정된 시작 — 오늘은 부담 없음, 오늘 페이스에서 제외.",
+  "dashboardUpcomingTitle": "예정",
+  "devToolsActivate": "활성화",
+  "devToolsActivateMessage": "숨겨진 스트레스 테스트 도구(생성 데이터 주입)를 엽니다. 개발 전용입니다.",
+  "devToolsActivateTitle": "개발 모드를 활성화할까요?",
+  "devToolsActivated": "개발 모드가 활성화되었습니다.",
+  "devToolsClearPumped": "생성 데이터 지우기",
+  "devToolsClearPumpedMessage": "생성된 STRESS 과목과 기록을 삭제합니다. 내 데이터는 유지됩니다.",
+  "devToolsClearPumpedSubtitle": "생성된 STRESS 과목과 기록을 삭제합니다.",
+  "devToolsClearPumpedTitle": "생성 데이터를 지울까요?",
+  "devToolsCleared": "{count}개의 생성 과목을 지웠습니다.",
+  "devToolsConfirmPumpMessage": "최종 확인: 과목・목록・차트・페이스 계산이 부풀어 오르고 몇 초 걸릴 수 있습니다. 지금 주입할까요?",
+  "devToolsConfirmPumpTitle": "스트레스 주입 확인",
+  "devToolsContinue": "계속",
+  "devToolsExit": "개발 모드 종료",
+  "devToolsExitSubtitle": "이 기기에서 개발 도구를 숨깁니다.",
+  "devToolsPumpData": "데이터 주입",
+  "devToolsPumpMessage": "현실적인 생성 학기(약 10개 과목, 최근 12주간 약 800개 기록)를 삽입합니다. 기존 데이터는 유지됩니다. 계속할까요?",
+  "devToolsPumpSubtitle": "생성 학기 삽입(약 10개 과목・약 800개 기록・12주). 기존 데이터 유지.",
+  "devToolsPumpTile": "테스트 데이터 주입",
+  "devToolsPumpTitle": "테스트 데이터를 주입할까요?",
+  "devToolsPumped": "{courses}개 과목, {sessions}개 기록을 주입했습니다.",
+  "devToolsPumping": "테스트 데이터 주입 중…",
+  "devToolsRemoveAll": "모든 데이터 삭제",
+  "devToolsRemoveAllMessage": "개발용 바로가기: 모든 과목・기록・설정을 완전히 삭제합니다. 되돌릴 수 없습니다.",
+  "devToolsRemoveAllSubtitle": "개발용 바로가기: 모든 과목・기록・설정을 삭제합니다.",
+  "devToolsRemoveAllTitle": "모든 데이터를 삭제할까요?",
+  "navCourses": "과목",
+  "navDashboard": "대시보드",
+  "navSettings": "설정",
+  "navStatistics": "통계",
+  "navStudyLog": "학습 기록",
+  "sampleBadge": "샘플",
+  "sessionFormCourseLabel": "과목",
+  "sessionFormDateButton": "날짜: {date}",
+  "sessionFormDurationError": "시간은 0보다 커야 합니다.",
+  "sessionFormHoursLabel": "시간",
+  "sessionFormLogAction": "기록하기",
+  "sessionFormMinutesLabel": "분",
+  "sessionFormNoCourseError": "과목을 선택하세요.",
+  "sessionFormNoCoursesHint": "먼저 과목을 추가한 뒤 기록하세요.",
+  "sessionFormNotesLabel": "메모(선택)",
+  "sessionFormSaving": "저장 중…",
+  "sessionFormTitleAdd": "학습 기록하기",
+  "sessionFormTitleEdit": "학습 기록 편집",
+  "sessionFormTotalHours": "합계: {hours}시간",
+  "settingsAccent": "테마 색상",
+  "settingsAccentBerry": "베리",
+  "settingsAccentClay": "클레이",
+  "settingsAccentForest": "포레스트",
+  "settingsAccentSlate": "슬레이트",
+  "settingsAccentTeal": "틸",
+  "settingsAccentUpdated": "테마 색상을 업데이트했습니다.",
+  "settingsAllDataDeleted": "모든 데이터를 삭제했습니다.",
+  "settingsAppearance": "외관(다크/라이트)",
+  "settingsCheckingSample": "샘플 데이터 확인 중…",
+  "settingsClear": "지우기",
+  "settingsClearSample": "샘플 데이터 지우기",
+  "settingsClearSampleMessage": "예제 과목과 기록을 삭제합니다. 직접 추가한 과목・기록은 삭제되지 않습니다.",
+  "settingsClearSampleSubtitle": "예제 과목과 기록을 삭제합니다. 내 데이터는 유지됩니다.",
+  "settingsClearSampleTitle": "샘플 데이터를 지울까요?",
+  "settingsCopy": "복사",
+  "settingsDailyError": "0 또는 양의 분 숫자를 입력하세요.",
+  "settingsDailyLabel": "하루 분(0=목표 없음)",
+  "settingsDailyTarget": "하루 학습 목표",
+  "settingsDailyTargetValue": "{minutes}분/일",
+  "settingsDailyUpdated": "하루 목표를 업데이트했습니다.",
+  "settingsData": "데이터",
+  "settingsDeleteEverything": "모두 삭제",
+  "settingsDevMode": "개발 모드",
+  "settingsDisplay": "표시",
+  "settingsDisplayComfortable": "보통",
+  "settingsDisplayCompact": "컴팩트",
+  "settingsDisplayLarge": "크게",
+  "settingsDisplaySize": "글자 및 요소 크기",
+  "settingsDisplaySizeOption": "{label}({percent}%)",
+  "settingsDisplaySizeUpdated": "표시 크기를 업데이트했습니다.",
+  "settingsExport": "데이터 내보내기",
+  "settingsExportCopied": "내보내기를 클립보드에 복사했습니다.",
+  "settingsExportSubtitle": "모든 과목・기록・설정을 JSON으로 복사합니다.",
+  "settingsExportSummary": "{courses}개 과목・{sessions}개 기록・{kb}KB",
+  "settingsExportTruncated": "…(생략 — 전체 백업은 {kb}KB, 전체 복사는 복사 버튼 사용)",
+  "settingsFirstWeekday": "주 시작 요일",
+  "settingsFirstWeekdayUpdated": "주 시작 요일을 업데이트했습니다.",
+  "settingsHoldLabel": "{label}({seconds}초 홀드)",
+  "settingsHoldToReplace": "홀드하여 모두 교체",
+  "settingsHoursError": "0보다 큰 숫자를 입력하세요.",
+  "settingsHoursHelper": "기본값 30. 변경하면 필요 시간이 다시 계산됩니다. 기록은 유지됩니다.",
+  "settingsHoursLabel": "ECTS당 시간",
+  "settingsHoursPerEcts": "ECTS당 시간",
+  "settingsHoursPerEctsValue": "{value}시간",
+  "settingsHoursUpdated": "ECTS당 시간을 업데이트했습니다.",
+  "settingsImport": "데이터 가져오기",
+  "settingsImportAppend": "추가",
+  "settingsImportAppendAction": "가져오기(추가)",
+  "settingsImportAppended": "데이터를 추가했습니다: {courses}개 과목, {sessions}개 기록 추가됨.",
+  "settingsImportInfo": "추가는 현재 데이터에 백업을 더합니다(설정 유지). 교체는 먼저 모든 과목・기록・설정을 지웁니다.",
+  "settingsImportLabel": "내보낸 JSON 붙여넣기",
+  "settingsImportPreview": "{courses}개 과목・{sessions}개 기록",
+  "settingsImportPreviewExported": "・내보냄 {exportedAt}",
+  "settingsImportPreviewSchema": "・스키마 v{schema}",
+  "settingsImportReplace": "교체",
+  "settingsImportReplaceWarning": "교체는 먼저 모두 삭제합니다. 아래 버튼을 {seconds}초간 홀드하여 확인하세요.",
+  "settingsImportReplaced": "데이터를 교체했습니다: {courses}개 과목, {sessions}개 기록 복원됨.",
+  "settingsImportSubtitle": "이전에 내보낸 JSON 백업에서 모든 데이터를 교체합니다.",
+  "settingsKeepHolding": "계속 홀드… {remaining}초 남음",
+  "settingsNoSample": "샘플 데이터 없음",
+  "settingsNoSampleSubtitle": "샘플 데이터가 이미 지워졌습니다.",
+  "settingsNoTarget": "목표 미설정",
+  "settingsOverloadError": "5–100시간/주의 숫자를 입력하세요.",
+  "settingsOverloadHelper": "이 값을 넘는 주는 빨간색으로 표시됩니다. 전일제 학습은 약 35–40시간/주입니다.",
+  "settingsOverloadHours": "{value}시간",
+  "settingsOverloadLabel": "주당 시간(5–100)",
+  "settingsOverloadSubtitle": "{value}/주 초과 시 빨간색 표시",
+  "settingsOverloadThreshold": "주간 과부하 기준",
+  "settingsOverloadUpdated": "과부하 기준을 업데이트했습니다.",
+  "settingsPaceTolerance": "앞서감/지연 허용치",
+  "settingsPasteValidBackup": "먼저 유효한 백업을 붙여넣으세요",
+  "settingsReset": "초기화",
+  "settingsResetAll": "모든 데이터 초기화",
+  "settingsResetAllMessage": "모든 과목・기록・설정을 완전히 삭제합니다. 되돌릴 수 없습니다. 필요하면 먼저 백업을 내보내세요.",
+  "settingsResetAllSubtitle": "모든 과목・기록・설정을 삭제합니다.",
+  "settingsResetAllTitle": "모든 데이터를 초기화할까요?",
+  "settingsResetSettings": "설정 초기화",
+  "settingsResetSettingsDone": "설정을 기본값으로 되돌렸습니다.",
+  "settingsResetSettingsMessage": "ECTS당 시간(30), 하루 목표(없음), 주 시작(월요일), 테마(시스템), 허용치(5일), 과부하(35시간/주), 크기(보통), 색상(틸)으로 되돌립니다. 과목과 기록은 유지됩니다.",
+  "settingsResetSettingsSubtitle": "기본값으로 복원: 30시간/ECTS, 목표 없음, 월요일, 시스템 테마, 5일 허용치, 35시간/주, 보통 크기, 틸 색상.",
+  "settingsResetSettingsTitle": "설정을 초기화할까요?",
+  "settingsSampleData": "샘플 데이터",
+  "settingsSampleDataError": "오류: {error}",
+  "settingsStudySettings": "학습 설정",
+  "settingsThemeDark": "다크",
+  "settingsThemeLight": "라이트",
+  "settingsThemeSystem": "시스템 기본값",
+  "settingsThemeTitle": "테마",
+  "settingsThemeUpdated": "테마를 업데이트했습니다.",
+  "settingsToleranceDays": "{value}일",
+  "settingsToleranceError": "0–30일의 숫자를 입력하세요.",
+  "settingsToleranceHelper": "앞서감은 +N일 여유, 지연은 −N일이 필요합니다. 5=안정, 0=민감.",
+  "settingsToleranceLabel": "작업 일수(0–30)",
+  "settingsToleranceOfWork": "작업 {tolerance}",
+  "settingsToleranceUpdated": "허용치를 업데이트했습니다.",
+  "settingsWeekdayFriday": "금요일",
+  "settingsWeekdayMonday": "월요일",
+  "settingsWeekdaySaturday": "토요일",
+  "settingsWeekdaySunday": "일요일",
+  "settingsWeekdayThursday": "목요일",
+  "settingsWeekdayTuesday": "화요일",
+  "settingsWeekdayWednesday": "수요일",
+  "sortDeadline": "마감일",
+  "sortName": "이름",
+  "sortProgress": "진도",
+  "sortStatus": "상태",
+  "startupTitle": "ECTS Tracker를 시작할 수 없습니다",
+  "statsActiveDays": "학습일",
+  "statsActiveDaysBadge": "{days}일 학습",
+  "statsAddDeadlines": "마감일을 추가해 부담을 예측하세요.",
+  "statsComingLoad": "다가오는 부담",
+  "statsConsistency": "꾸준함",
+  "statsConsistencyHint": "최근 30일간의 학습일 수. 벼락치기보다 매일 조금씩이 효과적입니다.",
+  "statsConsistencyScore": "최근 30일의 {percent}%",
+  "statsCourseFallback": "과목 {id}",
+  "statsCourseShortFallback": "C{id}",
+  "statsDidPerDay": "실적/일(14일)",
+  "statsEmpty": "아직 기록이 없습니다",
+  "statsGap": "차이",
+  "statsGapValue": "{sign}{value}시간",
+  "statsHoursCompact": "{hours}시간",
+  "statsHoursValue": "{hours}시간",
+  "statsLast30Days": "최근 30일",
+  "statsLast7Days": "최근 7일",
+  "statsNeedPerDay": "필요/일",
+  "statsNext8Weeks": "향후 8주",
+  "statsOfLast30DaysVolume": "최근 30일 양 중",
+  "statsOverloadWarning": "과부하 주(>{threshold}시간)는 빨간색 표시 — 마감일을 옮기거나 범위를 줄이세요.",
+  "statsOverview": "개요",
+  "statsPaceCovers": "지금까지의 페이스로 충분합니다. 계속 유지하세요.",
+  "statsPaceShort": "지금까지의 페이스가 {gap}시간/일 부족 — 시간을 확보하거나 범위를 조정하세요.",
+  "statsPastVsNeeded": "실적 대 필요량",
+  "statsPeakPerWeek": "최대 {peak}시간/주",
+  "statsPerCourse": "과목별",
+  "statsPerCourseProgress": "{done}시간 / {required}시간・{percent}%",
+  "statsPercentValue": "{percent}%",
+  "statsSessions": "기록 수",
+  "statsSuggestedOrder": "추천 순서: {order}(마감일 순)",
+  "statsTotal": "합계",
+  "statsTotalVolume": "전체 양",
+  "statusAhead": "앞서감",
+  "statusBehind": "지연",
+  "statusCompleted": "완료",
+  "statusOnTrack": "정상",
+  "statusOverdue": "기한 초과",
+  "studyLogDeleteBody": "이 학습 기록을 삭제할까요? 되돌릴 수 없습니다.",
+  "studyLogDeleteTitle": "기록을 삭제할까요?",
+  "studyLogEmptyHint": "기록을 추가해 학습 시간을 관리하세요.",
+  "studyLogEmptyTitle": "아직 학습 기록이 없습니다",
+  "studyLogFabLabel": "기록하기",
+  "studyLogFabTooltip": "기록하기",
+  "studyLogHoursValue": "{hours}시간",
+  "studyLogRemoveSampleTooltip": "샘플 기록 삭제",
+  "studyLogThisWeek": "이번 주",
+  "studyLogToday": "오늘",
+  "studyLogUnknownCourse": "과목 {id}",
+  "studyLogUnknownCourseShort": "C{id}",
+  "validationCourseEctsPositive": "ECTS는 0보다 커야 합니다",
+  "validationCourseEctsRequired": "ECTS 학점을 입력하세요",
+  "validationCourseNameRequired": "이름은 필수입니다",
+  "validationCourseNameTooLong": "이름이 너무 깁니다",
+  "validationSessionCourseRequired": "과목을 선택하세요",
+  "validationSessionDurationRequired": "시간을 입력하세요",
+  "widgetNoProgress": "아직 진도가 없습니다",
+  "@appTitle": {
+    "description": "Application title shown in MaterialApp and app bars."
+  },
+  "@commonCancel": {
+    "description": "Generic cancel action."
+  },
+  "@commonClose": {
+    "description": "Generic close/dismiss action."
+  },
+  "@commonDelete": {
+    "description": "Generic delete action."
+  },
+  "@commonEdit": {
+    "description": "Generic edit action."
+  },
+  "@commonError": {
+    "description": "Generic error label."
+  },
+  "@commonNone": {
+    "description": "Generic empty/none label."
+  },
+  "@commonSave": {
+    "description": "Generic save action."
+  },
+  "@courseFormAutoHoursValue": {
+    "description": "Auto-computed required-hours hint under the ECTS field. {value} is either a formatted amount like '150.0 h (30 h/ECTS)' or an em dash when no ECTS value is entered.",
+    "placeholders": {
+      "value": {
+        "type": "String",
+        "example": "150.0 h (30 h/ECTS)"
+      }
+    }
+  },
+  "@courseFormClearDeadlineTooltip": {
+    "description": "Tooltip of the clear-deadline icon button."
+  },
+  "@courseFormClearStartTooltip": {
+    "description": "Tooltip of the clear-start-date icon button."
+  },
+  "@courseFormColorLabel": {
+    "description": "Section label above the course color choices. The 'None' chip reuses commonNone."
+  },
+  "@courseFormDateNotSet": {
+    "description": "Placeholder shown in date buttons when no date is picked. Date display format stays yyyy-MM-dd."
+  },
+  "@courseFormDeadlineButton": {
+    "description": "Course deadline picker button. {date} is a yyyy-MM-dd date or the not-set label.",
+    "placeholders": {
+      "date": {
+        "type": "String",
+        "example": "2026-07-31"
+      }
+    }
+  },
+  "@courseFormEctsLabel": {
+    "description": "Label of the ECTS credits text field."
+  },
+  "@courseFormHoursPerEctsValue": {
+    "description": "Hours-per-ECTS factor shown inside the auto-computed required-hours hint. {value} is the numeric factor, e.g. '30'.",
+    "placeholders": {
+      "value": {
+        "type": "String",
+        "example": "30"
+      }
+    }
+  },
+  "@courseFormNameLabel": {
+    "description": "Label of the course name text field."
+  },
+  "@courseFormNotesLabel": {
+    "description": "Label of the course notes text field."
+  },
+  "@courseFormSaving": {
+    "description": "Save-button label while the course form is saving. The idle label reuses commonSave; cancel reuses commonCancel."
+  },
+  "@courseFormStartButton": {
+    "description": "Course start-date picker button. {date} is a yyyy-MM-dd date or the not-set label.",
+    "placeholders": {
+      "date": {
+        "type": "String",
+        "example": "2026-03-15"
+      }
+    }
+  },
+  "@courseFormStartEarlyOff": {
+    "description": "Subtitle of the start-early checkbox when disabled. {date} is the yyyy-MM-dd start date.",
+    "placeholders": {
+      "date": {
+        "type": "String",
+        "example": "2026-03-15"
+      }
+    }
+  },
+  "@courseFormStartEarlyOn": {
+    "description": "Subtitle of the start-early checkbox when enabled."
+  },
+  "@courseFormStartEarlyTitle": {
+    "description": "Title of the start-early checkbox shown when the start date lies in the future."
+  },
+  "@courseFormTitleAdd": {
+    "description": "Title of the add-course dialog."
+  },
+  "@courseFormTitleEdit": {
+    "description": "Title of the edit-course dialog."
+  },
+  "@coursesAddTooltip": {
+    "description": "Tooltip of the Courses-tab FAB that opens the new-course dialog."
+  },
+  "@coursesDeleteBody": {
+    "description": "Body of the delete-course confirmation dialog.",
+    "placeholders": {
+      "name": {
+        "type": "String",
+        "example": "Math 101"
+      }
+    }
+  },
+  "@coursesDeleteTitle": {
+    "description": "Title of the delete-course confirmation dialog."
+  },
+  "@coursesEctsValue": {
+    "description": "ECTS credit badge on a course row.",
+    "placeholders": {
+      "credits": {
+        "type": "double",
+        "example": "6.0"
+      }
+    }
+  },
+  "@coursesEmptyHint": {
+    "description": "Hint shown when no courses exist yet."
+  },
+  "@coursesEmptyTitle": {
+    "description": "Empty-state title shown when no courses exist yet."
+  },
+  "@coursesFilterAll": {
+    "description": "Status-filter dropdown option that disables status filtering."
+  },
+  "@coursesFilterEmpty": {
+    "description": "Message shown when no course matches the active filter."
+  },
+  "@coursesNewCourse": {
+    "description": "Label of the Courses-tab FAB that opens the new-course dialog."
+  },
+  "@coursesPaceNeeded": {
+    "description": "Daily pace line on a course row when no weekly pace exists.",
+    "placeholders": {
+      "daily": {
+        "type": "String",
+        "example": "1.5"
+      }
+    }
+  },
+  "@coursesPaceNeededWeekly": {
+    "description": "Daily + weekly pace line on a course row.",
+    "placeholders": {
+      "daily": {
+        "type": "String",
+        "example": "1.5"
+      },
+      "weekly": {
+        "type": "String",
+        "example": "7.5"
+      }
+    }
+  },
+  "@coursesProgressWithStatus": {
+    "description": "Course row progress line combining hours and the (unlocalized, logic-owned) status label.",
+    "placeholders": {
+      "done": {
+        "type": "String",
+        "example": "4.5"
+      },
+      "required": {
+        "type": "String",
+        "example": "150.0"
+      },
+      "status": {
+        "type": "String",
+        "example": "On track"
+      }
+    }
+  },
+  "@coursesRemoveSampleTooltip": {
+    "description": "Tooltip of the delete icon on a sample course row."
+  },
+  "@coursesShownCount": {
+    "description": "Badge showing how many courses pass the active filter.",
+    "placeholders": {
+      "count": {
+        "type": "String",
+        "example": "3"
+      }
+    }
+  },
+  "@coursesSortOption": {
+    "description": "Sort dropdown item; wraps the (unlocalized, logic-owned) sort label.",
+    "placeholders": {
+      "label": {
+        "type": "String",
+        "example": "Name"
+      }
+    }
+  },
+  "@dashboardAllDone": {
+    "description": "Dashboard empty-state title when every course is completed."
+  },
+  "@dashboardBonusLogged": {
+    "description": "Today line when hours were logged but nothing is due.",
+    "placeholders": {
+      "hours": {
+        "type": "String",
+        "example": "1.5"
+      }
+    }
+  },
+  "@dashboardCourseCount": {
+    "description": "Course-count line in the overall progress card.",
+    "placeholders": {
+      "count": {
+        "type": "String",
+        "example": "3"
+      }
+    }
+  },
+  "@dashboardCourseCountWithUpcoming": {
+    "description": "Course-count line including upcoming courses excluded from pace.",
+    "placeholders": {
+      "count": {
+        "type": "String",
+        "example": "3"
+      },
+      "upcoming": {
+        "type": "String",
+        "example": "1"
+      }
+    }
+  },
+  "@dashboardCoursesTitle": {
+    "description": "Dashboard section header for active courses."
+  },
+  "@dashboardDeadline": {
+    "description": "Neutral deadline label on a dashboard course card.",
+    "placeholders": {
+      "date": {
+        "type": "String",
+        "example": "2026-12-01"
+      }
+    }
+  },
+  "@dashboardDeadlineDaysLeft": {
+    "description": "Deadline label with several days remaining.",
+    "placeholders": {
+      "date": {
+        "type": "String",
+        "example": "2026-12-01"
+      },
+      "days": {
+        "type": "String",
+        "example": "5"
+      }
+    }
+  },
+  "@dashboardDeadlineOneDayLeft": {
+    "description": "Deadline label with exactly one day remaining.",
+    "placeholders": {
+      "date": {
+        "type": "String",
+        "example": "2026-12-01"
+      }
+    }
+  },
+  "@dashboardDeadlineOverdue": {
+    "description": "Deadline label for an overdue course.",
+    "placeholders": {
+      "date": {
+        "type": "String",
+        "example": "2026-12-01"
+      }
+    }
+  },
+  "@dashboardDeadlineToday": {
+    "description": "Deadline label for a course due today.",
+    "placeholders": {
+      "date": {
+        "type": "String",
+        "example": "2026-12-01"
+      }
+    }
+  },
+  "@dashboardDueToday": {
+    "description": "Headline pace line when study time is due today.",
+    "placeholders": {
+      "hours": {
+        "type": "String",
+        "example": "1.5"
+      }
+    }
+  },
+  "@dashboardEmptyHintAllDone": {
+    "description": "Dashboard hint when every course is completed."
+  },
+  "@dashboardEmptyHintNoCourses": {
+    "description": "Dashboard hint when no courses exist yet."
+  },
+  "@dashboardExplainerBehind": {
+    "description": "Explainer comparing achieved vs required daily pace for a behind course.",
+    "placeholders": {
+      "achieved": {
+        "type": "String",
+        "example": "0.5"
+      },
+      "need": {
+        "type": "String",
+        "example": "2.0"
+      }
+    }
+  },
+  "@dashboardExplainerBehindEarly": {
+    "description": "Behind explainer variant for a course with early start.",
+    "placeholders": {
+      "achieved": {
+        "type": "String",
+        "example": "0.5"
+      },
+      "need": {
+        "type": "String",
+        "example": "2.0"
+      }
+    }
+  },
+  "@dashboardExplainerBehindNoPace": {
+    "description": "Explainer for a behind course with no finite daily pace."
+  },
+  "@dashboardExplainerOnTrackNoPace": {
+    "description": "Explainer for an on-track course before the first session is logged."
+  },
+  "@dashboardExplainerStartsIn": {
+    "description": "Explainer for a scheduled future course.",
+    "placeholders": {
+      "days": {
+        "type": "String",
+        "example": "4"
+      },
+      "date": {
+        "type": "String",
+        "example": "2026-12-01"
+      }
+    }
+  },
+  "@dashboardExplainerStartsInEarly": {
+    "description": "Explainer variant for a scheduled course with early start on.",
+    "placeholders": {
+      "days": {
+        "type": "String",
+        "example": "4"
+      },
+      "date": {
+        "type": "String",
+        "example": "2026-12-01"
+      }
+    }
+  },
+  "@dashboardFreshStart": {
+    "description": "Hero-card eyebrow label when nothing has been logged yet."
+  },
+  "@dashboardHoursDetail": {
+    "description": "Compact progress detail on a dashboard course row.",
+    "placeholders": {
+      "pct": {
+        "type": "String",
+        "example": "40"
+      },
+      "hours": {
+        "type": "String",
+        "example": "12"
+      }
+    }
+  },
+  "@dashboardHoursFraction": {
+    "description": "Completed vs required hours on a dashboard course row.",
+    "placeholders": {
+      "done": {
+        "type": "String",
+        "example": "4.5"
+      },
+      "required": {
+        "type": "String",
+        "example": "150.0"
+      }
+    }
+  },
+  "@dashboardHoursPerDay": {
+    "description": "Required daily hours chip in the hero-card top-3 list.",
+    "placeholders": {
+      "hours": {
+        "type": "String",
+        "example": "1.5"
+      }
+    }
+  },
+  "@dashboardLogSessionAction": {
+    "description": "Label of the dashboard button that opens the log-session dialog."
+  },
+  "@dashboardLogSessionTooltip": {
+    "description": "Tooltip of the dashboard app-bar action that opens the log-session dialog."
+  },
+  "@dashboardNewBadge": {
+    "description": "Badge shown instead of a percent when no courses exist."
+  },
+  "@dashboardNoCourses": {
+    "description": "Dashboard empty-state title when no courses exist yet."
+  },
+  "@dashboardNoDeadline": {
+    "description": "Deadline label for a course without a deadline."
+  },
+  "@dashboardNoDeadlines": {
+    "description": "Hero-card subtitle when no deadlines are scheduled."
+  },
+  "@dashboardNoPaceDue": {
+    "description": "Headline pace line when nothing is due today."
+  },
+  "@dashboardNothingDue": {
+    "description": "Today status when nothing is due and nothing was logged."
+  },
+  "@dashboardNothingToTrack": {
+    "description": "Today status when no courses exist yet."
+  },
+  "@dashboardPaceDueToday": {
+    "description": "Pace line for a course due today with hours left.",
+    "placeholders": {
+      "hours": {
+        "type": "String",
+        "example": "2.0"
+      }
+    }
+  },
+  "@dashboardPaceNeedDaily": {
+    "description": "Pace line stating the required daily hours to finish.",
+    "placeholders": {
+      "daily": {
+        "type": "String",
+        "example": "1.5"
+      }
+    }
+  },
+  "@dashboardPaceNeedDailyWeekly": {
+    "description": "Pace line stating required daily and weekly hours to finish.",
+    "placeholders": {
+      "daily": {
+        "type": "String",
+        "example": "1.5"
+      },
+      "weekly": {
+        "type": "String",
+        "example": "7.5"
+      }
+    }
+  },
+  "@dashboardPaceNeedFrom": {
+    "description": "Pace line for a scheduled course with a computable daily pace.",
+    "placeholders": {
+      "hours": {
+        "type": "String",
+        "example": "1.5"
+      },
+      "date": {
+        "type": "String",
+        "example": "2026-12-01"
+      }
+    }
+  },
+  "@dashboardPaceNoDeadline": {
+    "description": "Pace line for a course without a deadline.",
+    "placeholders": {
+      "hours": {
+        "type": "String",
+        "example": "2.0"
+      }
+    }
+  },
+  "@dashboardPaceStarts": {
+    "description": "Pace line for a scheduled course without a computable daily pace.",
+    "placeholders": {
+      "date": {
+        "type": "String",
+        "example": "2026-12-01"
+      },
+      "hours": {
+        "type": "String",
+        "example": "10.0"
+      }
+    }
+  },
+  "@dashboardPaceUnrealistic": {
+    "description": "Suffix wrapper marking a daily pace as unrealistic.",
+    "placeholders": {
+      "pace": {
+        "type": "String",
+        "example": "Need 7.0 h/day to finish"
+      }
+    }
+  },
+  "@dashboardProgramBare": {
+    "description": "Overall-program progress label when no program exists."
+  },
+  "@dashboardProgramEmptyHint": {
+    "description": "Overall-program status when no courses exist."
+  },
+  "@dashboardProgramHours": {
+    "description": "Overall completed vs required hours.",
+    "placeholders": {
+      "done": {
+        "type": "String",
+        "example": "12.5"
+      },
+      "required": {
+        "type": "String",
+        "example": "300"
+      }
+    }
+  },
+  "@dashboardProgramLabel": {
+    "description": "Overall-program progress label with percent.",
+    "placeholders": {
+      "pct": {
+        "type": "String",
+        "example": "40"
+      }
+    }
+  },
+  "@dashboardRunwayDays": {
+    "description": "Hero-card subtitle stating days of runway left.",
+    "placeholders": {
+      "days": {
+        "type": "int",
+        "example": "12"
+      }
+    }
+  },
+  "@dashboardStartNotSet": {
+    "description": "Start-date placeholder when no start date is set."
+  },
+  "@dashboardStartsIn": {
+    "description": "Status pill for a scheduled course starting in N days.",
+    "placeholders": {
+      "days": {
+        "type": "String",
+        "example": "4"
+      }
+    }
+  },
+  "@dashboardStartsSoon": {
+    "description": "Status pill for a scheduled course starting imminently."
+  },
+  "@dashboardTipEmpty": {
+    "description": "Hero-card tip shown when no courses exist."
+  },
+  "@dashboardTipFirst": {
+    "description": "Hero-card tip shown before any hours are logged."
+  },
+  "@dashboardTodayBare": {
+    "description": "Today progress label when nothing is due."
+  },
+  "@dashboardTodayHours": {
+    "description": "Today logged vs required hours.",
+    "placeholders": {
+      "logged": {
+        "type": "String",
+        "example": "1.5"
+      },
+      "pace": {
+        "type": "String",
+        "example": "2.0"
+      }
+    }
+  },
+  "@dashboardTodayLabel": {
+    "description": "Today progress label with percent.",
+    "placeholders": {
+      "pct": {
+        "type": "String",
+        "example": "40"
+      }
+    }
+  },
+  "@dashboardTodayPaceLabel": {
+    "description": "Hero-card eyebrow label for today's required pace."
+  },
+  "@dashboardTodayProgress": {
+    "description": "Headline pace line with logged vs required hours.",
+    "placeholders": {
+      "logged": {
+        "type": "String",
+        "example": "1.5"
+      },
+      "pace": {
+        "type": "String",
+        "example": "2.0"
+      }
+    }
+  },
+  "@dashboardUpcomingSubtitle": {
+    "description": "Explainer under the Upcoming section header."
+  },
+  "@dashboardUpcomingTitle": {
+    "description": "Dashboard section header for scheduled future courses."
+  },
+  "@devToolsActivate": {
+    "description": "Dev-mode unlock dialog confirm action"
+  },
+  "@devToolsActivateMessage": {
+    "description": "Dev-mode unlock dialog message"
+  },
+  "@devToolsActivateTitle": {
+    "description": "Dev-mode unlock dialog title"
+  },
+  "@devToolsActivated": {
+    "description": "SnackBar after dev mode is activated"
+  },
+  "@devToolsClearPumped": {
+    "description": "Dev tools tile title for clearing pumped data"
+  },
+  "@devToolsClearPumpedMessage": {
+    "description": "Clear pumped data confirm dialog message"
+  },
+  "@devToolsClearPumpedSubtitle": {
+    "description": "Dev tools clear-pumped-data tile subtitle"
+  },
+  "@devToolsClearPumpedTitle": {
+    "description": "Clear pumped data confirm dialog title"
+  },
+  "@devToolsCleared": {
+    "description": "SnackBar after pumped data is cleared",
+    "placeholders": {
+      "count": {
+        "type": "String",
+        "example": "10"
+      }
+    }
+  },
+  "@devToolsConfirmPumpMessage": {
+    "description": "Second pump confirmation dialog message"
+  },
+  "@devToolsConfirmPumpTitle": {
+    "description": "Second pump confirmation dialog title"
+  },
+  "@devToolsContinue": {
+    "description": "First pump dialog confirm action"
+  },
+  "@devToolsExit": {
+    "description": "Dev tools exit tile title"
+  },
+  "@devToolsExitSubtitle": {
+    "description": "Dev tools exit tile subtitle"
+  },
+  "@devToolsPumpData": {
+    "description": "Second pump dialog confirm action"
+  },
+  "@devToolsPumpMessage": {
+    "description": "First pump dialog message"
+  },
+  "@devToolsPumpSubtitle": {
+    "description": "Dev tools pump tile subtitle"
+  },
+  "@devToolsPumpTile": {
+    "description": "Dev tools pump tile title"
+  },
+  "@devToolsPumpTitle": {
+    "description": "First pump dialog title"
+  },
+  "@devToolsPumped": {
+    "description": "SnackBar after test data pump",
+    "placeholders": {
+      "courses": {
+        "type": "String",
+        "example": "10"
+      },
+      "sessions": {
+        "type": "String",
+        "example": "800"
+      }
+    }
+  },
+  "@devToolsPumping": {
+    "description": "Dev tools pump tile subtitle while pumping"
+  },
+  "@devToolsRemoveAll": {
+    "description": "Dev tools remove-all tile title"
+  },
+  "@devToolsRemoveAllMessage": {
+    "description": "Dev remove-all confirm dialog message"
+  },
+  "@devToolsRemoveAllSubtitle": {
+    "description": "Dev tools remove-all tile subtitle"
+  },
+  "@devToolsRemoveAllTitle": {
+    "description": "Dev remove-all confirm dialog title"
+  },
+  "@navCourses": {
+    "description": "Bottom-nav destination: courses list."
+  },
+  "@navDashboard": {
+    "description": "Bottom-nav destination and app-bar title: dashboard."
+  },
+  "@navSettings": {
+    "description": "Bottom-nav destination and app-bar title: settings."
+  },
+  "@navStatistics": {
+    "description": "Bottom-nav destination and app-bar title: statistics."
+  },
+  "@navStudyLog": {
+    "description": "Bottom-nav destination and app-bar title: study log."
+  },
+  "@sampleBadge": {
+    "description": "Badge marking sample/seeded content."
+  },
+  "@sessionFormCourseLabel": {
+    "description": "Label of the session course dropdown."
+  },
+  "@sessionFormDateButton": {
+    "description": "Session date picker button. {date} is a yyyy-MM-dd date.",
+    "placeholders": {
+      "date": {
+        "type": "String",
+        "example": "2026-03-15"
+      }
+    }
+  },
+  "@sessionFormDurationError": {
+    "description": "Form error when saving a session with zero duration."
+  },
+  "@sessionFormHoursLabel": {
+    "description": "Label of the session hours field."
+  },
+  "@sessionFormLogAction": {
+    "description": "Save-button label in add mode. Edit mode reuses commonSave; the in-progress label is sessionFormSaving; cancel reuses commonCancel."
+  },
+  "@sessionFormMinutesLabel": {
+    "description": "Label of the session minutes field."
+  },
+  "@sessionFormNoCourseError": {
+    "description": "Form error when saving a session without picking a course (with period; the inline dropdown validator without period is validationSessionCourseRequired)."
+  },
+  "@sessionFormNoCoursesHint": {
+    "description": "Hint shown when no courses exist yet and no session can be logged."
+  },
+  "@sessionFormNotesLabel": {
+    "description": "Label of the session notes text field."
+  },
+  "@sessionFormSaving": {
+    "description": "Save-button label while the session form is saving."
+  },
+  "@sessionFormTitleAdd": {
+    "description": "Title of the log-session dialog."
+  },
+  "@sessionFormTitleEdit": {
+    "description": "Title of the edit-session dialog."
+  },
+  "@sessionFormTotalHours": {
+    "description": "Live total-duration hint under the hours/minutes fields. {hours} is formatted with two decimals.",
+    "placeholders": {
+      "hours": {
+        "type": "String",
+        "example": "1.50"
+      }
+    }
+  },
+  "@settingsAccent": {
+    "description": "Accent tile title and accent picker dialog title"
+  },
+  "@settingsAccentBerry": {
+    "description": "Berry accent option label"
+  },
+  "@settingsAccentClay": {
+    "description": "Clay accent option label"
+  },
+  "@settingsAccentForest": {
+    "description": "Forest accent option label"
+  },
+  "@settingsAccentSlate": {
+    "description": "Slate accent option label"
+  },
+  "@settingsAccentTeal": {
+    "description": "Teal accent option label"
+  },
+  "@settingsAccentUpdated": {
+    "description": "SnackBar after accent change"
+  },
+  "@settingsAllDataDeleted": {
+    "description": "SnackBar after all data is deleted"
+  },
+  "@settingsAppearance": {
+    "description": "Theme mode tile title"
+  },
+  "@settingsCheckingSample": {
+    "description": "Loading title while checking for sample data"
+  },
+  "@settingsClear": {
+    "description": "Clear confirm action (sample and pumped data dialogs)"
+  },
+  "@settingsClearSample": {
+    "description": "Clear sample data tile title"
+  },
+  "@settingsClearSampleMessage": {
+    "description": "Clear sample data confirm dialog message"
+  },
+  "@settingsClearSampleSubtitle": {
+    "description": "Clear sample data tile subtitle"
+  },
+  "@settingsClearSampleTitle": {
+    "description": "Clear sample data confirm dialog title"
+  },
+  "@settingsCopy": {
+    "description": "Export dialog copy-to-clipboard action"
+  },
+  "@settingsDailyError": {
+    "description": "Daily target validation error"
+  },
+  "@settingsDailyLabel": {
+    "description": "Daily target input label"
+  },
+  "@settingsDailyTarget": {
+    "description": "Daily target tile title and edit dialog title"
+  },
+  "@settingsDailyTargetValue": {
+    "description": "Daily target tile subtitle with minutes",
+    "placeholders": {
+      "minutes": {
+        "type": "String",
+        "example": "120"
+      }
+    }
+  },
+  "@settingsDailyUpdated": {
+    "description": "SnackBar after daily target change"
+  },
+  "@settingsData": {
+    "description": "Data section header"
+  },
+  "@settingsDeleteEverything": {
+    "description": "Destructive delete confirm action"
+  },
+  "@settingsDevMode": {
+    "description": "Dev mode section header"
+  },
+  "@settingsDisplay": {
+    "description": "Display section header"
+  },
+  "@settingsDisplayComfortable": {
+    "description": "Comfortable display size option label"
+  },
+  "@settingsDisplayCompact": {
+    "description": "Compact display size option label"
+  },
+  "@settingsDisplayLarge": {
+    "description": "Large display size option label"
+  },
+  "@settingsDisplaySize": {
+    "description": "Display size tile title and picker dialog title"
+  },
+  "@settingsDisplaySizeOption": {
+    "description": "Display size option with scale percent",
+    "placeholders": {
+      "label": {
+        "type": "String",
+        "example": "Comfortable"
+      },
+      "percent": {
+        "type": "String",
+        "example": "100"
+      }
+    }
+  },
+  "@settingsDisplaySizeUpdated": {
+    "description": "SnackBar after display size change"
+  },
+  "@settingsExport": {
+    "description": "Export tile title and export dialog title"
+  },
+  "@settingsExportCopied": {
+    "description": "SnackBar after export copy"
+  },
+  "@settingsExportSubtitle": {
+    "description": "Export tile subtitle"
+  },
+  "@settingsExportSummary": {
+    "description": "Export dialog backup summary line",
+    "placeholders": {
+      "courses": {
+        "type": "String",
+        "example": "10"
+      },
+      "sessions": {
+        "type": "String",
+        "example": "800"
+      },
+      "kb": {
+        "type": "String",
+        "example": "12.3"
+      }
+    }
+  },
+  "@settingsExportTruncated": {
+    "description": "Export preview truncation note",
+    "placeholders": {
+      "kb": {
+        "type": "String",
+        "example": "12.3"
+      }
+    }
+  },
+  "@settingsFirstWeekday": {
+    "description": "First weekday tile title and picker dialog title"
+  },
+  "@settingsFirstWeekdayUpdated": {
+    "description": "SnackBar after first weekday change"
+  },
+  "@settingsHoldLabel": {
+    "description": "Hold-to-confirm button label with hold duration",
+    "placeholders": {
+      "label": {
+        "type": "String",
+        "example": "Hold to replace everything"
+      },
+      "seconds": {
+        "type": "String",
+        "example": "10"
+      }
+    }
+  },
+  "@settingsHoldToReplace": {
+    "description": "Hold-to-confirm button label for replace import"
+  },
+  "@settingsHoursError": {
+    "description": "Hours-per-ECTS validation error"
+  },
+  "@settingsHoursHelper": {
+    "description": "Hours-per-ECTS input helper"
+  },
+  "@settingsHoursLabel": {
+    "description": "Hours-per-ECTS input label"
+  },
+  "@settingsHoursPerEcts": {
+    "description": "Hours-per-ECTS tile title and edit dialog title"
+  },
+  "@settingsHoursPerEctsValue": {
+    "description": "Hours-per-ECTS tile subtitle with hours",
+    "placeholders": {
+      "value": {
+        "type": "String",
+        "example": "30"
+      }
+    }
+  },
+  "@settingsHoursUpdated": {
+    "description": "SnackBar after hours-per-ECTS change"
+  },
+  "@settingsImport": {
+    "description": "Import tile title and import dialog title"
+  },
+  "@settingsImportAppend": {
+    "description": "Import mode segment label"
+  },
+  "@settingsImportAppendAction": {
+    "description": "Import dialog append confirm action"
+  },
+  "@settingsImportAppended": {
+    "description": "SnackBar after append import",
+    "placeholders": {
+      "courses": {
+        "type": "String",
+        "example": "10"
+      },
+      "sessions": {
+        "type": "String",
+        "example": "800"
+      }
+    }
+  },
+  "@settingsImportInfo": {
+    "description": "Import dialog mode explanation"
+  },
+  "@settingsImportLabel": {
+    "description": "Import JSON input label"
+  },
+  "@settingsImportPreview": {
+    "description": "Import preview counts",
+    "placeholders": {
+      "courses": {
+        "type": "String",
+        "example": "10"
+      },
+      "sessions": {
+        "type": "String",
+        "example": "800"
+      }
+    }
+  },
+  "@settingsImportPreviewExported": {
+    "description": "Import preview export timestamp suffix",
+    "placeholders": {
+      "exportedAt": {
+        "type": "String",
+        "example": "2026-01-01"
+      }
+    }
+  },
+  "@settingsImportPreviewSchema": {
+    "description": "Import preview schema suffix",
+    "placeholders": {
+      "schema": {
+        "type": "String",
+        "example": "1"
+      }
+    }
+  },
+  "@settingsImportReplace": {
+    "description": "Import mode segment label"
+  },
+  "@settingsImportReplaceWarning": {
+    "description": "Replace import hold-to-confirm warning",
+    "placeholders": {
+      "seconds": {
+        "type": "String",
+        "example": "10"
+      }
+    }
+  },
+  "@settingsImportReplaced": {
+    "description": "SnackBar after replace import",
+    "placeholders": {
+      "courses": {
+        "type": "String",
+        "example": "10"
+      },
+      "sessions": {
+        "type": "String",
+        "example": "800"
+      }
+    }
+  },
+  "@settingsImportSubtitle": {
+    "description": "Import tile subtitle"
+  },
+  "@settingsKeepHolding": {
+    "description": "Hold-to-confirm button label while holding",
+    "placeholders": {
+      "remaining": {
+        "type": "String",
+        "example": "7"
+      }
+    }
+  },
+  "@settingsNoSample": {
+    "description": "Tile title when no sample data is present"
+  },
+  "@settingsNoSampleSubtitle": {
+    "description": "Tile subtitle when no sample data is present"
+  },
+  "@settingsNoTarget": {
+    "description": "Daily target tile subtitle when no target"
+  },
+  "@settingsOverloadError": {
+    "description": "Overload threshold validation error"
+  },
+  "@settingsOverloadHelper": {
+    "description": "Overload threshold input helper"
+  },
+  "@settingsOverloadHours": {
+    "description": "Overload hours value with unit",
+    "placeholders": {
+      "value": {
+        "type": "String",
+        "example": "35"
+      }
+    }
+  },
+  "@settingsOverloadLabel": {
+    "description": "Overload threshold input label"
+  },
+  "@settingsOverloadSubtitle": {
+    "description": "Overload tile subtitle",
+    "placeholders": {
+      "value": {
+        "type": "String",
+        "example": "35 h"
+      }
+    }
+  },
+  "@settingsOverloadThreshold": {
+    "description": "Overload tile title and edit dialog title"
+  },
+  "@settingsOverloadUpdated": {
+    "description": "SnackBar after overload threshold change"
+  },
+  "@settingsPaceTolerance": {
+    "description": "Pace tolerance tile title and edit dialog title"
+  },
+  "@settingsPasteValidBackup": {
+    "description": "Hold-to-confirm button label when no valid backup"
+  },
+  "@settingsReset": {
+    "description": "Reset settings confirm action"
+  },
+  "@settingsResetAll": {
+    "description": "Reset-all tile title"
+  },
+  "@settingsResetAllMessage": {
+    "description": "Reset-all confirm dialog message"
+  },
+  "@settingsResetAllSubtitle": {
+    "description": "Reset-all tile subtitle"
+  },
+  "@settingsResetAllTitle": {
+    "description": "Reset-all confirm dialog title"
+  },
+  "@settingsResetSettings": {
+    "description": "Reset settings tile title"
+  },
+  "@settingsResetSettingsDone": {
+    "description": "SnackBar after settings reset"
+  },
+  "@settingsResetSettingsMessage": {
+    "description": "Reset settings confirm dialog message"
+  },
+  "@settingsResetSettingsSubtitle": {
+    "description": "Reset settings tile subtitle"
+  },
+  "@settingsResetSettingsTitle": {
+    "description": "Reset settings confirm dialog title"
+  },
+  "@settingsSampleData": {
+    "description": "Sample data error tile title"
+  },
+  "@settingsSampleDataError": {
+    "description": "Sample data error tile subtitle",
+    "placeholders": {
+      "error": {
+        "type": "String",
+        "example": "database unavailable"
+      }
+    }
+  },
+  "@settingsStudySettings": {
+    "description": "Study settings section header"
+  },
+  "@settingsThemeDark": {
+    "description": "Dark theme option label"
+  },
+  "@settingsThemeLight": {
+    "description": "Light theme option label"
+  },
+  "@settingsThemeSystem": {
+    "description": "System theme option label"
+  },
+  "@settingsThemeTitle": {
+    "description": "Theme picker dialog title"
+  },
+  "@settingsThemeUpdated": {
+    "description": "SnackBar after theme change"
+  },
+  "@settingsToleranceDays": {
+    "description": "Tolerance days value with unit",
+    "placeholders": {
+      "value": {
+        "type": "String",
+        "example": "5"
+      }
+    }
+  },
+  "@settingsToleranceError": {
+    "description": "Pace tolerance validation error"
+  },
+  "@settingsToleranceHelper": {
+    "description": "Pace tolerance input helper"
+  },
+  "@settingsToleranceLabel": {
+    "description": "Pace tolerance input label"
+  },
+  "@settingsToleranceOfWork": {
+    "description": "Pace tolerance tile subtitle",
+    "placeholders": {
+      "tolerance": {
+        "type": "String",
+        "example": "5 days"
+      }
+    }
+  },
+  "@settingsToleranceUpdated": {
+    "description": "SnackBar after tolerance change"
+  },
+  "@settingsWeekdayFriday": {
+    "description": "Friday option label"
+  },
+  "@settingsWeekdayMonday": {
+    "description": "Monday option label"
+  },
+  "@settingsWeekdaySaturday": {
+    "description": "Saturday option label"
+  },
+  "@settingsWeekdaySunday": {
+    "description": "Sunday option label"
+  },
+  "@settingsWeekdayThursday": {
+    "description": "Thursday option label"
+  },
+  "@settingsWeekdayTuesday": {
+    "description": "Tuesday option label"
+  },
+  "@settingsWeekdayWednesday": {
+    "description": "Wednesday option label"
+  },
+  "@sortDeadline": {
+    "description": "Statistics/courses: course-sort option Deadline"
+  },
+  "@sortName": {
+    "description": "Statistics/courses: course-sort option Name"
+  },
+  "@sortProgress": {
+    "description": "Statistics/courses: course-sort option Progress"
+  },
+  "@sortStatus": {
+    "description": "Statistics/courses: course-sort option Status"
+  },
+  "@startupTitle": {
+    "description": "Title shown on the startup failure screen when the database cannot be opened."
+  },
+  "@statsActiveDays": {
+    "description": "Statistics page: mini-stat label for distinct study days"
+  },
+  "@statsActiveDaysBadge": {
+    "description": "Statistics page: badge showing active-day count on the consistency card",
+    "placeholders": {
+      "days": {
+        "type": "int",
+        "example": "12"
+      }
+    }
+  },
+  "@statsAddDeadlines": {
+    "description": "Statistics page: coming-load hint when no course has a deadline"
+  },
+  "@statsComingLoad": {
+    "description": "Statistics page: coming-load forecast section header"
+  },
+  "@statsConsistency": {
+    "description": "Statistics page: consistency section header"
+  },
+  "@statsConsistencyHint": {
+    "description": "Statistics page: explainer under the consistency bar"
+  },
+  "@statsConsistencyScore": {
+    "description": "Statistics page: consistency headline, percent is pre-formatted with toStringAsFixed(0)",
+    "placeholders": {
+      "percent": {
+        "type": "String",
+        "example": "80"
+      }
+    }
+  },
+  "@statsCourseFallback": {
+    "description": "Statistics page: per-course row title fallback when the course is unknown",
+    "placeholders": {
+      "id": {
+        "type": "int",
+        "example": "7"
+      }
+    }
+  },
+  "@statsCourseShortFallback": {
+    "description": "Statistics page: avatar-name fallback for an unknown course id",
+    "placeholders": {
+      "id": {
+        "type": "int",
+        "example": "7"
+      }
+    }
+  },
+  "@statsDidPerDay": {
+    "description": "Statistics page: past-pace label, average hours logged per day over 14 days"
+  },
+  "@statsEmpty": {
+    "description": "Statistics page: empty state when there are no study sessions"
+  },
+  "@statsGap": {
+    "description": "Statistics page: gap label, past pace minus needed pace"
+  },
+  "@statsGapValue": {
+    "description": "Statistics page: gap value, sign is '+' or empty and value is pre-formatted with toStringAsFixed(1)",
+    "placeholders": {
+      "sign": {
+        "type": "String",
+        "example": "+"
+      },
+      "value": {
+        "type": "String",
+        "example": "1.5"
+      }
+    }
+  },
+  "@statsHoursCompact": {
+    "description": "Statistics page: compact hours value without space, hours pre-formatted with toStringAsFixed",
+    "placeholders": {
+      "hours": {
+        "type": "String",
+        "example": "12"
+      }
+    }
+  },
+  "@statsHoursValue": {
+    "description": "Statistics page: hours value with unit, hours pre-formatted with toStringAsFixed(1)",
+    "placeholders": {
+      "hours": {
+        "type": "String",
+        "example": "4.5"
+      }
+    }
+  },
+  "@statsLast30Days": {
+    "description": "Statistics page: last-30-days section header and inline-stat label"
+  },
+  "@statsLast7Days": {
+    "description": "Statistics page: last-7-days section header and inline-stat label"
+  },
+  "@statsNeedPerDay": {
+    "description": "Statistics page: required-pace label, hours needed per day"
+  },
+  "@statsNext8Weeks": {
+    "description": "Statistics page: coming-load card title"
+  },
+  "@statsOfLast30DaysVolume": {
+    "description": "Statistics page: caption under the last-7-days bar chart"
+  },
+  "@statsOverloadWarning": {
+    "description": "Statistics page: warning under the forecast when a week exceeds the overload threshold, threshold pre-formatted with toStringAsFixed(0 or 1)",
+    "placeholders": {
+      "threshold": {
+        "type": "String",
+        "example": "20"
+      }
+    }
+  },
+  "@statsOverview": {
+    "description": "Statistics page: overview section header"
+  },
+  "@statsPaceCovers": {
+    "description": "Statistics page: reassurance when past pace meets the required pace"
+  },
+  "@statsPaceShort": {
+    "description": "Statistics page: warning when past pace falls short, gap pre-formatted with toStringAsFixed(1)",
+    "placeholders": {
+      "gap": {
+        "type": "String",
+        "example": "0.8"
+      }
+    }
+  },
+  "@statsPastVsNeeded": {
+    "description": "Statistics page: past-vs-needed section header"
+  },
+  "@statsPeakPerWeek": {
+    "description": "Statistics page: forecast peak badge, peak pre-formatted with toStringAsFixed(0)",
+    "placeholders": {
+      "peak": {
+        "type": "String",
+        "example": "34"
+      }
+    }
+  },
+  "@statsPerCourse": {
+    "description": "Statistics page: per-course breakdown section header"
+  },
+  "@statsPerCourseProgress": {
+    "description": "Statistics page: per-course progress line, all numbers pre-formatted with toStringAsFixed",
+    "placeholders": {
+      "done": {
+        "type": "String",
+        "example": "12.5"
+      },
+      "required": {
+        "type": "String",
+        "example": "150"
+      },
+      "percent": {
+        "type": "String",
+        "example": "8"
+      }
+    }
+  },
+  "@statsPercentValue": {
+    "description": "Statistics page: chart percentage label, percent pre-formatted with toStringAsFixed(0)",
+    "placeholders": {
+      "percent": {
+        "type": "String",
+        "example": "42"
+      }
+    }
+  },
+  "@statsSessions": {
+    "description": "Statistics page: mini-stat label for session count"
+  },
+  "@statsSuggestedOrder": {
+    "description": "Statistics page: forecast hint listing course names in deadline order, order is a pre-joined display string",
+    "placeholders": {
+      "order": {
+        "type": "String",
+        "example": "Math → Physics"
+      }
+    }
+  },
+  "@statsTotal": {
+    "description": "Statistics page: mini-stat label for total hours"
+  },
+  "@statsTotalVolume": {
+    "description": "Statistics page: caption under the last-30-days bar chart"
+  },
+  "@statusAhead": {
+    "description": "Course status label: ahead of pace"
+  },
+  "@statusBehind": {
+    "description": "Course status label: behind pace"
+  },
+  "@statusCompleted": {
+    "description": "Course status label: completed"
+  },
+  "@statusOnTrack": {
+    "description": "Course status label: on track"
+  },
+  "@statusOverdue": {
+    "description": "Course status label: overdue"
+  },
+  "@studyLogDeleteBody": {
+    "description": "Body of the delete-session confirmation dialog."
+  },
+  "@studyLogDeleteTitle": {
+    "description": "Title of the delete-session confirmation dialog."
+  },
+  "@studyLogEmptyHint": {
+    "description": "Hint shown when no study sessions exist yet."
+  },
+  "@studyLogEmptyTitle": {
+    "description": "Empty-state title shown when no study sessions exist yet."
+  },
+  "@studyLogFabLabel": {
+    "description": "Label of the study-log FAB that opens the log-session dialog."
+  },
+  "@studyLogFabTooltip": {
+    "description": "Tooltip of the study-log FAB."
+  },
+  "@studyLogHoursValue": {
+    "description": "Hours value badge (totals and session rows).",
+    "placeholders": {
+      "hours": {
+        "type": "String",
+        "example": "1.5"
+      }
+    }
+  },
+  "@studyLogRemoveSampleTooltip": {
+    "description": "Tooltip of the delete icon on a sample session row."
+  },
+  "@studyLogThisWeek": {
+    "description": "Study-log totals label for the current week."
+  },
+  "@studyLogToday": {
+    "description": "Study-log totals label for today."
+  },
+  "@studyLogUnknownCourse": {
+    "description": "Fallback session title when the course is missing.",
+    "placeholders": {
+      "id": {
+        "type": "String",
+        "example": "7"
+      }
+    }
+  },
+  "@studyLogUnknownCourseShort": {
+    "description": "Fallback avatar initials when the course is missing.",
+    "placeholders": {
+      "id": {
+        "type": "String",
+        "example": "7"
+      }
+    }
+  },
+  "@validationCourseEctsPositive": {
+    "description": "Course ECTS validator: non-positive value."
+  },
+  "@validationCourseEctsRequired": {
+    "description": "Course ECTS validator: unparseable/empty input."
+  },
+  "@validationCourseNameRequired": {
+    "description": "Course name validator: empty name."
+  },
+  "@validationCourseNameTooLong": {
+    "description": "Course name validator: name exceeds the max length."
+  },
+  "@validationSessionCourseRequired": {
+    "description": "Session course dropdown validator: nothing selected."
+  },
+  "@validationSessionDurationRequired": {
+    "description": "Session duration validator: total minutes are zero."
+  },
+  "@widgetNoProgress": {
+    "description": "Accessibility label for the zero-progress meter state."
+  },
+  "settingsLanguage": "언어",
+  "@settingsLanguage": {
+    "description": "Language tile title and language picker dialog title."
+  }
+}

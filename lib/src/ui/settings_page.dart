@@ -10,6 +10,7 @@ import 'package:ects_tracker/l10n/app_localizations.dart';
 
 import '../data/repositories.dart';
 import '../dev/stress_seed.dart';
+import '../i18n/app_locales.dart';
 import '../models/models.dart';
 import '../state/providers.dart';
 import 'app_sizes.dart';
@@ -288,13 +289,21 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
             _SettingsCard(
               children: [
                 _SettingsTile(
+                  tileKey: const Key('languageTile'),
+                  icon: Icons.translate_outlined,
+                  title: l10n.settingsLanguage,
+                  subtitle: Text(_languageName(l10n, settings.localeCode)),
+                  onTap: () => _editLanguage(context, ref, settings),
+                  topDivider: false,
+                ),
+                _SettingsTile(
                   tileKey: const Key('themeModeTile'),
                   icon: Icons.brightness_6_outlined,
                   title: l10n.settingsAppearance,
                   subtitle:
                       Text(_themeModeName(l10n, settings.themeMode)),
                   onTap: () => _editThemeMode(context, ref, settings),
-                  topDivider: false,
+                  topDivider: true,
                 ),
                 _SettingsTile(
                   tileKey: const Key('displaySizeTile'),
@@ -516,6 +525,9 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
         AppThemeMode.light => l10n.settingsThemeLight,
         AppThemeMode.dark => l10n.settingsThemeDark,
       };
+
+  String _languageName(AppLocalizations l10n, String? code) =>
+      appLocaleNativeName(code) ?? l10n.settingsThemeSystem;
 
   String _displaySizeName(AppLocalizations l10n, AppDisplaySize size) =>
       switch (size) {
@@ -786,9 +798,59 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
     _showResult(context, result, success: l10n.settingsFirstWeekdayUpdated);
   }
 
-  Future<void> _editThemeMode(
+  Future<void> _editLanguage(
       BuildContext context, WidgetRef ref, AppSettings settings) async {
     final l10n = AppLocalizations.of(context)!;
+    // The system entry pops '' (dismissal pops null), so picking "system"
+    // is distinguishable from dismissing the dialog.
+    final selected = await showDialog<String>(
+      context: context,
+      builder: (context) => SimpleDialog(
+        title: Text(l10n.settingsLanguage),
+        children: [
+          SimpleDialogOption(
+            key: const Key('language_system'),
+            onPressed: () => Navigator.of(context).pop(''),
+            child: Row(
+              children: [
+                Expanded(child: Text(l10n.settingsThemeSystem)),
+                if (settings.localeCode == null)
+                  const Icon(Icons.check, size: 18),
+              ],
+            ),
+          ),
+          for (final option in kAppLocales)
+            SimpleDialogOption(
+              key: Key('language_${option.code}'),
+              onPressed: () => Navigator.of(context).pop(option.code),
+              child: Row(
+                children: [
+                  Expanded(child: Text(option.nativeName)),
+                  if (option.code == settings.localeCode)
+                    const Icon(Icons.check, size: 18),
+                ],
+              ),
+            ),
+        ],
+      ),
+    );
+    if (selected == null || !context.mounted) return;
+    final result = await ref
+        .read(settingsRepositoryProvider)
+        .setLocaleCode(selected.isEmpty ? null : selected);
+    if (!context.mounted) return;
+    switch (result) {
+      case Ok<void>():
+        break;
+      case Err<void>(:final message):
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text(message)),
+        );
+    }
+  }
+
+  Future<void> _editThemeMode(
+      BuildContext context, WidgetRef ref, AppSettings settings) async {    final l10n = AppLocalizations.of(context)!;
     final selected = await showDialog<AppThemeMode>(
       context: context,
       builder: (context) => SimpleDialog(

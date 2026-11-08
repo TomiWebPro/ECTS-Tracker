@@ -1120,4 +1120,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get widgetNoProgress => 'No progress yet';
+
+  @override
+  String get settingsLanguage => 'Language';
 }

@@ -4,6 +4,7 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'src/data/connection.dart';
+import 'src/i18n/app_locales.dart';
 import 'src/models/models.dart';
 import 'src/startup.dart';
 import 'src/state/providers.dart';
@@ -158,8 +159,7 @@ class EctsTrackerApp extends StatelessWidget {
             GlobalWidgetsLocalizations.delegate,
             GlobalCupertinoLocalizations.delegate,
           ],
-          supportedLocales: const [Locale('en')],
-          locale: const Locale('en'),
+          supportedLocales: AppLocalizations.supportedLocales,
           home: StartupErrorScreen(message: message),
         ),
       StartupReady(:final db) => ProviderScope(
@@ -202,8 +202,8 @@ class _ThemedApp extends ConsumerWidget {
         GlobalWidgetsLocalizations.delegate,
         GlobalCupertinoLocalizations.delegate,
       ],
-      supportedLocales: const [Locale('en')],
-      locale: const Locale('en'),
+      supportedLocales: AppLocalizations.supportedLocales,
+      locale: appLocaleFromCode(s.localeCode),
       builder: (context, child) {
         final scaler = TextScaler.linear(s.displaySize.scale);
         return MediaQuery(

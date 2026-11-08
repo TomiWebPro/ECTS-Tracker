@@ -1079,6 +1079,17 @@ class $SettingsTable extends Settings
     requiredDuringInsert: false,
     defaultValue: const Constant(0),
   );
+  static const VerificationMeta _localeCodeMeta = const VerificationMeta(
+    'localeCode',
+  );
+  @override
+  late final GeneratedColumn<String> localeCode = GeneratedColumn<String>(
+    'locale_code',
+    aliasedName,
+    true,
+    type: DriftSqlType.string,
+    requiredDuringInsert: false,
+  );
   @override
   List<GeneratedColumn> get $columns => [
     id,
@@ -1090,6 +1101,7 @@ class $SettingsTable extends Settings
     weeklyOverloadHours,
     displaySize,
     accent,
+    localeCode,
   ];
   @override
   String get aliasedName => _alias ?? actualTableName;
@@ -1172,6 +1184,12 @@ class $SettingsTable extends Settings
         accent.isAcceptableOrUnknown(data['accent']!, _accentMeta),
       );
     }
+    if (data.containsKey('locale_code')) {
+      context.handle(
+        _localeCodeMeta,
+        localeCode.isAcceptableOrUnknown(data['locale_code']!, _localeCodeMeta),
+      );
+    }
     return context;
   }
 
@@ -1217,6 +1235,10 @@ class $SettingsTable extends Settings
         DriftSqlType.int,
         data['${effectivePrefix}accent'],
       )!,
+      localeCode: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}locale_code'],
+      ),
     );
   }
 
@@ -1248,6 +1270,10 @@ class SettingsRow extends DataClass implements Insertable<SettingsRow> {
 
   /// Theme accent 0=teal, 1=forest, 2=clay, 3=slate, 4=berry. Default 0.
   final int accent;
+
+  /// App-language code (ARB `@@locale` tag, e.g. `de`, `zh_Hans`).
+  /// Null means "follow the system language". Default null.
+  final String? localeCode;
   const SettingsRow({
     required this.id,
     required this.hoursPerEcts,
@@ -1258,6 +1284,7 @@ class SettingsRow extends DataClass implements Insertable<SettingsRow> {
     required this.weeklyOverloadHours,
     required this.displaySize,
     required this.accent,
+    this.localeCode,
   });
   @override
   Map<String, Expression> toColumns(bool nullToAbsent) {
@@ -1271,6 +1298,9 @@ class SettingsRow extends DataClass implements Insertable<SettingsRow> {
     map['weekly_overload_hours'] = Variable<double>(weeklyOverloadHours);
     map['display_size'] = Variable<int>(displaySize);
     map['accent'] = Variable<int>(accent);
+    if (!nullToAbsent || localeCode != null) {
+      map['locale_code'] = Variable<String>(localeCode);
+    }
     return map;
   }
 
@@ -1285,6 +1315,9 @@ class SettingsRow extends DataClass implements Insertable<SettingsRow> {
       weeklyOverloadHours: Value(weeklyOverloadHours),
       displaySize: Value(displaySize),
       accent: Value(accent),
+      localeCode: localeCode == null && nullToAbsent
+          ? const Value.absent()
+          : Value(localeCode),
     );
   }
 
@@ -1305,6 +1338,7 @@ class SettingsRow extends DataClass implements Insertable<SettingsRow> {
       ),
       displaySize: serializer.fromJson<int>(json['displaySize']),
       accent: serializer.fromJson<int>(json['accent']),
+      localeCode: serializer.fromJson<String?>(json['localeCode']),
     );
   }
   @override
@@ -1320,6 +1354,7 @@ class SettingsRow extends DataClass implements Insertable<SettingsRow> {
       'weeklyOverloadHours': serializer.toJson<double>(weeklyOverloadHours),
       'displaySize': serializer.toJson<int>(displaySize),
       'accent': serializer.toJson<int>(accent),
+      'localeCode': serializer.toJson<String?>(localeCode),
     };
   }
 
@@ -1333,6 +1368,7 @@ class SettingsRow extends DataClass implements Insertable<SettingsRow> {
     double? weeklyOverloadHours,
     int? displaySize,
     int? accent,
+    Value<String?> localeCode = const Value.absent(),
   }) => SettingsRow(
     id: id ?? this.id,
     hoursPerEcts: hoursPerEcts ?? this.hoursPerEcts,
@@ -1343,6 +1379,7 @@ class SettingsRow extends DataClass implements Insertable<SettingsRow> {
     weeklyOverloadHours: weeklyOverloadHours ?? this.weeklyOverloadHours,
     displaySize: displaySize ?? this.displaySize,
     accent: accent ?? this.accent,
+    localeCode: localeCode.present ? localeCode.value : this.localeCode,
   );
   SettingsRow copyWithCompanion(SettingsCompanion data) {
     return SettingsRow(
@@ -1367,6 +1404,9 @@ class SettingsRow extends DataClass implements Insertable<SettingsRow> {
           ? data.displaySize.value
           : this.displaySize,
       accent: data.accent.present ? data.accent.value : this.accent,
+      localeCode: data.localeCode.present
+          ? data.localeCode.value
+          : this.localeCode,
     );
   }
 
@@ -1381,7 +1421,8 @@ class SettingsRow extends DataClass implements Insertable<SettingsRow> {
           ..write('paceToleranceDays: $paceToleranceDays, ')
           ..write('weeklyOverloadHours: $weeklyOverloadHours, ')
           ..write('displaySize: $displaySize, ')
-          ..write('accent: $accent')
+          ..write('accent: $accent, ')
+          ..write('localeCode: $localeCode')
           ..write(')'))
         .toString();
   }
@@ -1397,6 +1438,7 @@ class SettingsRow extends DataClass implements Insertable<SettingsRow> {
     weeklyOverloadHours,
     displaySize,
     accent,
+    localeCode,
   );
   @override
   bool operator ==(Object other) =>
@@ -1410,7 +1452,8 @@ class SettingsRow extends DataClass implements Insertable<SettingsRow> {
           other.paceToleranceDays == this.paceToleranceDays &&
           other.weeklyOverloadHours == this.weeklyOverloadHours &&
           other.displaySize == this.displaySize &&
-          other.accent == this.accent);
+          other.accent == this.accent &&
+          other.localeCode == this.localeCode);
 }
 
 class SettingsCompanion extends UpdateCompanion<SettingsRow> {
@@ -1423,6 +1466,7 @@ class SettingsCompanion extends UpdateCompanion<SettingsRow> {
   final Value<double> weeklyOverloadHours;
   final Value<int> displaySize;
   final Value<int> accent;
+  final Value<String?> localeCode;
   const SettingsCompanion({
     this.id = const Value.absent(),
     this.hoursPerEcts = const Value.absent(),
@@ -1433,6 +1477,7 @@ class SettingsCompanion extends UpdateCompanion<SettingsRow> {
     this.weeklyOverloadHours = const Value.absent(),
     this.displaySize = const Value.absent(),
     this.accent = const Value.absent(),
+    this.localeCode = const Value.absent(),
   });
   SettingsCompanion.insert({
     this.id = const Value.absent(),
@@ -1444,6 +1489,7 @@ class SettingsCompanion extends UpdateCompanion<SettingsRow> {
     this.weeklyOverloadHours = const Value.absent(),
     this.displaySize = const Value.absent(),
     this.accent = const Value.absent(),
+    this.localeCode = const Value.absent(),
   });
   static Insertable<SettingsRow> custom({
     Expression<int>? id,
@@ -1455,6 +1501,7 @@ class SettingsCompanion extends UpdateCompanion<SettingsRow> {
     Expression<double>? weeklyOverloadHours,
     Expression<int>? displaySize,
     Expression<int>? accent,
+    Expression<String>? localeCode,
   }) {
     return RawValuesInsertable({
       if (id != null) 'id': id,
@@ -1468,6 +1515,7 @@ class SettingsCompanion extends UpdateCompanion<SettingsRow> {
         'weekly_overload_hours': weeklyOverloadHours,
       if (displaySize != null) 'display_size': displaySize,
       if (accent != null) 'accent': accent,
+      if (localeCode != null) 'locale_code': localeCode,
     });
   }
 
@@ -1481,6 +1529,7 @@ class SettingsCompanion extends UpdateCompanion<SettingsRow> {
     Value<double>? weeklyOverloadHours,
     Value<int>? displaySize,
     Value<int>? accent,
+    Value<String?>? localeCode,
   }) {
     return SettingsCompanion(
       id: id ?? this.id,
@@ -1492,6 +1541,7 @@ class SettingsCompanion extends UpdateCompanion<SettingsRow> {
       weeklyOverloadHours: weeklyOverloadHours ?? this.weeklyOverloadHours,
       displaySize: displaySize ?? this.displaySize,
       accent: accent ?? this.accent,
+      localeCode: localeCode ?? this.localeCode,
     );
   }
 
@@ -1527,6 +1577,9 @@ class SettingsCompanion extends UpdateCompanion<SettingsRow> {
     if (accent.present) {
       map['accent'] = Variable<int>(accent.value);
     }
+    if (localeCode.present) {
+      map['locale_code'] = Variable<String>(localeCode.value);
+    }
     return map;
   }
 
@@ -1541,7 +1594,8 @@ class SettingsCompanion extends UpdateCompanion<SettingsRow> {
           ..write('paceToleranceDays: $paceToleranceDays, ')
           ..write('weeklyOverloadHours: $weeklyOverloadHours, ')
           ..write('displaySize: $displaySize, ')
-          ..write('accent: $accent')
+          ..write('accent: $accent, ')
+          ..write('localeCode: $localeCode')
           ..write(')'))
         .toString();
   }
@@ -2293,6 +2347,7 @@ typedef $$SettingsTableCreateCompanionBuilder = SettingsCompanion Function({
   Value<double> weeklyOverloadHours,
   Value<int> displaySize,
   Value<int> accent,
+  Value<String?> localeCode,
 });
 typedef $$SettingsTableUpdateCompanionBuilder = SettingsCompanion Function({
   Value<int> id,
@@ -2304,6 +2359,7 @@ typedef $$SettingsTableUpdateCompanionBuilder = SettingsCompanion Function({
   Value<double> weeklyOverloadHours,
   Value<int> displaySize,
   Value<int> accent,
+  Value<String?> localeCode,
 });
 
 class $$SettingsTableFilterComposer
@@ -2357,6 +2413,11 @@ class $$SettingsTableFilterComposer
 
   ColumnFilters<int> get accent => $composableBuilder(
     column: $table.accent,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get localeCode => $composableBuilder(
+    column: $table.localeCode,
     builder: (column) => ColumnFilters(column),
   );
 }
@@ -2414,6 +2475,11 @@ class $$SettingsTableOrderingComposer
     column: $table.accent,
     builder: (column) => ColumnOrderings(column),
   );
+
+  ColumnOrderings<String> get localeCode => $composableBuilder(
+    column: $table.localeCode,
+    builder: (column) => ColumnOrderings(column),
+  );
 }
 
 class $$SettingsTableAnnotationComposer
@@ -2463,6 +2529,11 @@ class $$SettingsTableAnnotationComposer
 
   GeneratedColumn<int> get accent =>
       $composableBuilder(column: $table.accent, builder: (column) => column);
+
+  GeneratedColumn<String> get localeCode => $composableBuilder(
+    column: $table.localeCode,
+    builder: (column) => column,
+  );
 }
 
 class $$SettingsTableTableManager
@@ -2505,6 +2576,7 @@ class $$SettingsTableTableManager
                 Value<double> weeklyOverloadHours = const Value.absent(),
                 Value<int> displaySize = const Value.absent(),
                 Value<int> accent = const Value.absent(),
+                Value<String?> localeCode = const Value.absent(),
               }) => SettingsCompanion(
                 id: id,
                 hoursPerEcts: hoursPerEcts,
@@ -2515,6 +2587,7 @@ class $$SettingsTableTableManager
                 weeklyOverloadHours: weeklyOverloadHours,
                 displaySize: displaySize,
                 accent: accent,
+                localeCode: localeCode,
               ),
           createCompanionCallback:
               ({
@@ -2527,6 +2600,7 @@ class $$SettingsTableTableManager
                 Value<double> weeklyOverloadHours = const Value.absent(),
                 Value<int> displaySize = const Value.absent(),
                 Value<int> accent = const Value.absent(),
+                Value<String?> localeCode = const Value.absent(),
               }) => SettingsCompanion.insert(
                 id: id,
                 hoursPerEcts: hoursPerEcts,
@@ -2537,6 +2611,7 @@ class $$SettingsTableTableManager
                 weeklyOverloadHours: weeklyOverloadHours,
                 displaySize: displaySize,
                 accent: accent,
+                localeCode: localeCode,
               ),
           withReferenceMapper: (p0) => p0
               .map(

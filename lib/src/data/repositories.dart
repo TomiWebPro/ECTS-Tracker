@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:drift/drift.dart';
 
 import '../dev/stress_seed.dart';
+import '../i18n/app_locales.dart';
 import '../models/models.dart';
 import 'app_database.dart';
 
@@ -419,6 +420,7 @@ class SettingsRepository {
         weeklyOverloadHours: row.weeklyOverloadHours.clamp(5.0, 100.0),
         displaySize: displaySizeFromInt(row.displaySize),
         accent: accentFromInt(row.accent),
+        localeCode: isAppLocaleCode(row.localeCode) ? row.localeCode : null,
       );
 
   /// One-shot read of the current settings, defaulting to [AppSettings] when
@@ -573,6 +575,27 @@ class SettingsRepository {
     }
   }
 
+  /// Persists the app language ([code] is an ARB `@@locale` tag such as
+  /// `de` or `zh_Hans`). Null clears the override and follows the system
+  /// language. Unknown codes are rejected at the boundary so they never
+  /// reach the row.
+  Future<Result<void>> setLocaleCode(String? code) async {
+    if (code != null && !isAppLocaleCode(code)) {
+      return Err('Unknown language code: $code.');
+    }
+    try {
+      await _db.into(_db.settings).insertOnConflictUpdate(
+            SettingsCompanion.insert(
+              id: const Value(1),
+              localeCode: Value(code),
+            ),
+          );
+      return const Ok(null);
+    } catch (e) {
+      return Err('Failed to save settings: $e');
+    }
+  }
+
   /// Resets settings to defaults (keeps courses/sessions).
   Future<Result<void>> resetToDefaults() async {
     try {
@@ -590,6 +613,7 @@ class SettingsRepository {
               displaySize:
                   Value(displaySizeToInt(AppDisplaySize.comfortable)),
               accent: Value(accentToInt(AppAccent.teal)),
+              localeCode: const Value(null),
             ),
           );
       return const Ok(null);
@@ -676,6 +700,9 @@ class BackupRepository {
                   settingsRow.weeklyOverloadHours.clamp(5.0, 100.0),
               displaySize: displaySizeFromInt(settingsRow.displaySize),
               accent: accentFromInt(settingsRow.accent),
+              localeCode: isAppLocaleCode(settingsRow.localeCode)
+                  ? settingsRow.localeCode
+                  : null,
             );
       final map = <String, Object?>{
         'app': backupAppId,
@@ -693,6 +720,7 @@ class BackupRepository {
           'weeklyOverloadHours': settings.weeklyOverloadHours,
           'displaySize': displaySizeToInt(settings.displaySize),
           'accent': accentToInt(settings.accent),
+          'localeCode': settings.localeCode,
         },
         'courses': courseRows
             .map((c) => {
@@ -789,6 +817,7 @@ class BackupRepository {
                   displaySize:
                       Value((settings['displaySize'] as num).toInt()),
                   accent: Value((settings['accent'] as num).toInt()),
+                  localeCode: Value(settings['localeCode'] as String?),
                 ),
               );
         }
@@ -897,6 +926,12 @@ class BackupRepository {
         numD(settingsRaw['weeklyOverloadHours'], AppSettings.defaultWeeklyOverloadHours);
     final displaySize = numI(settingsRaw['displaySize'], 1).clamp(0, 2);
     final accent = numI(settingsRaw['accent'], 0).clamp(0, 4);
+    // Unknown locale codes fall back to system default instead of failing
+    // the whole import: language is cosmetic, never structural.
+    final localeRaw = settingsRaw['localeCode'];
+    final localeCode = localeRaw is String && isAppLocaleCode(localeRaw)
+        ? localeRaw
+        : null;
     if (hoursPerEcts <= 0 || hoursPerEcts > 1000) {
       return const Err('Invalid import: hoursPerEcts must be 0–1000.');
     }
@@ -997,6 +1032,7 @@ class BackupRepository {
         'weeklyOverloadHours': weeklyOverloadHours,
         'displaySize': displaySize,
         'accent': accent,
+        'localeCode': localeCode,
       },
       courseMaps: courseMaps,
       sessionMaps: sessionMaps,

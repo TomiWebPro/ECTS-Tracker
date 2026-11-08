@@ -153,6 +153,7 @@ class AppSettings {
     this.weeklyOverloadHours = defaultWeeklyOverloadHours,
     this.displaySize = AppDisplaySize.comfortable,
     this.accent = AppAccent.teal,
+    this.localeCode,
   });
 
   /// Default ECTS conversion factor per AGENTS.md §4.
@@ -186,6 +187,10 @@ class AppSettings {
   /// Theme accent seed (away from Material indigo/blue/purple defaults).
   final AppAccent accent;
 
+  /// Persisted app-language code (ARB `@@locale` tag, e.g. `de`, `zh_Hans`).
+  /// Null means "follow the system language".
+  final String? localeCode;
+
   AppSettings copyWith({
     double? hoursPerEcts,
     int? dailyTargetMinutes,
@@ -195,6 +200,7 @@ class AppSettings {
     double? weeklyOverloadHours,
     AppDisplaySize? displaySize,
     AppAccent? accent,
+    String? localeCode,
   }) {
     return AppSettings(
       hoursPerEcts: hoursPerEcts ?? this.hoursPerEcts,
@@ -205,6 +211,7 @@ class AppSettings {
       weeklyOverloadHours: weeklyOverloadHours ?? this.weeklyOverloadHours,
       displaySize: displaySize ?? this.displaySize,
       accent: accent ?? this.accent,
+      localeCode: localeCode ?? this.localeCode,
     );
   }
 }

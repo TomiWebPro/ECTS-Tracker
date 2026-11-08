@@ -1811,5 +1811,9 @@
   },
   "@widgetNoProgress": {
     "description": "Accessibility label for the zero-progress meter state."
+  },
+  "settingsLanguage": "Language",
+  "@settingsLanguage": {
+    "description": "Language tile title and language picker dialog title."
   }
 }

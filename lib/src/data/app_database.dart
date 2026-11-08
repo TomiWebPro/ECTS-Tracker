@@ -54,6 +54,10 @@ class Settings extends Table {
   /// Theme accent 0=teal, 1=forest, 2=clay, 3=slate, 4=berry. Default 0.
   IntColumn get accent => integer().withDefault(const Constant(0))();
 
+  /// App-language code (ARB `@@locale` tag, e.g. `de`, `zh_Hans`).
+  /// Null means "follow the system language". Default null.
+  TextColumn get localeCode => text().nullable()();
+
   @override
   Set<Column> get primaryKey => {id};
 }
@@ -63,7 +67,7 @@ class AppDatabase extends _$AppDatabase {
   AppDatabase(super.e);
 
   @override
-  int get schemaVersion => 6;
+  int get schemaVersion => 7;
 
   /// SQLite does not enforce foreign keys (and thus ON DELETE CASCADE) unless
   /// explicitly asked, on every connection.
@@ -89,6 +93,9 @@ class AppDatabase extends _$AppDatabase {
           if (from < 6) {
             await m.addColumn(settings, settings.displaySize);
             await m.addColumn(settings, settings.accent);
+          }
+          if (from < 7) {
+            await m.addColumn(settings, settings.localeCode);
           }
         },
         beforeOpen: (details) async {
