@@ -335,6 +335,29 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
                     ],
                   ),
                   onTap: () => _editAccent(context, ref, settings),
+                  topDivider: true,
+                ),
+                _SettingsTile(
+                  tileKey: const Key('liquidGlassTile'),
+                  icon: Icons.blur_on_outlined,
+                  title: l10n.settingsLiquidGlass,
+                  subtitle: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Text(l10n.settingsLiquidGlassSubtitle),
+                      Text(
+                        settings.liquidGlass
+                            ? l10n.settingsLiquidGlassOn
+                            : l10n.settingsLiquidGlassOff,
+                      ),
+                    ],
+                  ),
+                  trailing: Switch(
+                    value: settings.liquidGlass,
+                    onChanged: (value) =>
+                        _setLiquidGlass(context, ref, value),
+                  ),
                   showDivider: false,
                   topDivider: true,
                 ),
@@ -940,6 +963,15 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
     _showResult(context, result, success: l10n.settingsAccentUpdated);
   }
 
+  Future<void> _setLiquidGlass(
+      BuildContext context, WidgetRef ref, bool value) async {
+    final l10n = AppLocalizations.of(context)!;
+    final result =
+        await ref.read(settingsRepositoryProvider).setLiquidGlass(value);
+    if (!context.mounted) return;
+    _showResult(context, result, success: l10n.settingsLiquidGlassUpdated);
+  }
+
   Future<void> _confirmClearSample(BuildContext context, WidgetRef ref) async {
     final l10n = AppLocalizations.of(context)!;
     final confirmed = await showDialog<bool>(
@@ -1278,6 +1310,7 @@ class _SettingsTile extends StatelessWidget {
     required this.subtitle,
     this.onTap,
     this.onIconTap,
+    this.trailing,
     this.showDivider = true,
     this.topDivider = false,
   });
@@ -1287,6 +1320,11 @@ class _SettingsTile extends StatelessWidget {
   final String title;
   final Widget subtitle;
   final VoidCallback? onTap;
+
+  /// Optional trailing control (e.g. a [Switch]). When given it replaces
+  /// the chevron; when null the tile keeps the legacy behavior (chevron
+  /// iff [onTap] is set).
+  final Widget? trailing;
 
   /// Hidden dev-mode unlock hook: taps on the leading icon with zero
   /// visual feedback (no splash/animation).
@@ -1335,10 +1373,11 @@ class _SettingsTile extends StatelessWidget {
             style: TextStyle(color: scheme.onSurfaceVariant),
             child: subtitle,
           ),
-          trailing: onTap == null
-              ? null
-              : Icon(Icons.chevron_right,
-                  color: scheme.onSurfaceVariant.withValues(alpha: 0.7)),
+          trailing: trailing ??
+              (onTap == null
+                  ? null
+                  : Icon(Icons.chevron_right,
+                      color: scheme.onSurfaceVariant.withValues(alpha: 0.7))),
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(16),
           ),

@@ -2,6 +2,7 @@ import 'package:ects_tracker/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:liquid_glass_easy/liquid_glass_easy.dart';
 
 import 'src/data/connection.dart';
 import 'src/i18n/app_locales.dart';
@@ -14,6 +15,11 @@ import 'src/ui/home_shell.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  // Pre-compile the liquid-glass shaders so the first lens (ECTS-061+)
+  // is glass on its first frame. Lite glass on Skia: frost + tint + rim,
+  // no shader pass and no capture view needed.
+  await LiquidGlassShaders.ensureLoaded();
+  LiquidGlassEngine.liteGlassOnSkia = true;
   final startup = await initializeApp(openConnection());
   runApp(EctsTrackerApp(startup: startup));
 }

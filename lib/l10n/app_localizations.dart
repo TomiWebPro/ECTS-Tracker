@@ -2035,6 +2035,36 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Language'**
   String get settingsLanguage;
+
+  /// Liquid glass opt-in tile title in the Display section.
+  ///
+  /// In en, this message translates to:
+  /// **'Liquid glass'**
+  String get settingsLiquidGlass;
+
+  /// Liquid glass tile description line.
+  ///
+  /// In en, this message translates to:
+  /// **'Frosted glass cards and bars. Off keeps the classic solid look.'**
+  String get settingsLiquidGlassSubtitle;
+
+  /// Liquid glass tile state label when the opt-in is enabled.
+  ///
+  /// In en, this message translates to:
+  /// **'On'**
+  String get settingsLiquidGlassOn;
+
+  /// Liquid glass tile state label when the opt-in is disabled.
+  ///
+  /// In en, this message translates to:
+  /// **'Off'**
+  String get settingsLiquidGlassOff;
+
+  /// SnackBar after the liquid glass opt-in changes.
+  ///
+  /// In en, this message translates to:
+  /// **'Liquid glass updated.'**
+  String get settingsLiquidGlassUpdated;
 }
 
 class _AppLocalizationsDelegate

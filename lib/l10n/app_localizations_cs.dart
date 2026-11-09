@@ -1126,4 +1126,20 @@ class AppLocalizationsCs extends AppLocalizations {
 
   @override
   String get settingsLanguage => 'Jazyk';
+
+  @override
+  String get settingsLiquidGlass => 'Liquid glass';
+
+  @override
+  String get settingsLiquidGlassSubtitle =>
+      'Frosted glass cards and bars. Off keeps the classic solid look.';
+
+  @override
+  String get settingsLiquidGlassOn => 'On';
+
+  @override
+  String get settingsLiquidGlassOff => 'Off';
+
+  @override
+  String get settingsLiquidGlassUpdated => 'Liquid glass updated.';
 }
