@@ -59,9 +59,12 @@ Color glassTint(
 ///
 /// Shape is the app's card radius ([AppSizes.cardRadius]) as a continuous
 /// rounded rectangle; optics stay subtle (refractionIndex ~1.02, narrow-ish
-/// band, light blur) with a `primaryContainer` tint and a soft contact
-/// shadow. `liteGlass: true` forces the shader-free path (frost + tint +
-/// rim) on every engine, so no `LiquidGlassView` is ever required.
+/// band, light blur) with a `primaryContainer` wash and the shared card
+/// shadow. The wash is deliberately sheer (ECTS-066): glass OVER the
+/// solid page, not solid paint over the glass — a heavy tint buries the
+/// frost/rim and the lens reads flat. `liteGlass: true` forces the
+/// shader-free path (frost + tint + rim) on every engine, so no
+/// `LiquidGlassView` is ever required.
 LiquidGlassStyle glassStyle(BuildContext context) {
   final scheme = Theme.of(context).colorScheme;
   return LiquidGlassStyle(
@@ -71,7 +74,7 @@ LiquidGlassStyle glassStyle(BuildContext context) {
     refractionIndex: 1.02,
     refractionWidth: 30,
     blur: 2.5,
-    color: glassTint(scheme, scheme.primaryContainer),
+    color: glassTint(scheme, scheme.primaryContainer, opacity: 0.35),
     shadow: glassCardShadow,
     liteGlass: true,
   );

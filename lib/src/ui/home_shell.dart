@@ -205,7 +205,7 @@ class _HomeShellState extends State<HomeShell> {
                           foregroundColor: scheme.onPrimaryContainer,
                           style: LiquidGlassButton.defaultStyle.copyWith(
                             color: scheme.primaryContainer
-                                .withValues(alpha: 0.55),
+                                .withValues(alpha: 0.35),
                             // Shared card shadow (ECTS-066) — one depth
                             // language everywhere.
                             shadow: glassCardShadow,
@@ -234,7 +234,7 @@ class _HomeShellState extends State<HomeShell> {
                           foregroundColor: scheme.onPrimaryContainer,
                           style: LiquidGlassButton.defaultStyle.copyWith(
                             color: scheme.primaryContainer
-                                .withValues(alpha: 0.55),
+                                .withValues(alpha: 0.35),
                             // Shared card shadow (ECTS-066) — one depth
                             // language everywhere.
                             shadow: glassCardShadow,
@@ -488,7 +488,9 @@ class _OverviewPage extends ConsumerWidget {
                   label: l10n.dashboardLogSessionAction,
                   foregroundColor: scheme.onPrimaryContainer,
                   style: LiquidGlassButton.defaultStyle.copyWith(
-                    color: scheme.primaryContainer.withValues(alpha: 0.55),
+                    // Sheer wash like the cards (ECTS-066): glass over the
+                    // solid page, dark ink keeps it legible.
+                    color: scheme.primaryContainer.withValues(alpha: 0.35),
                     // Shared card shadow (ECTS-066): one depth language.
                     shadow: glassCardShadow,
                   ),
