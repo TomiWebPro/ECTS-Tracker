@@ -14,6 +14,7 @@ import '../i18n/app_locales.dart';
 import '../models/models.dart';
 import '../state/providers.dart';
 import 'app_sizes.dart';
+import 'glass.dart';
 
 /// Settings (ECTS-011): hours-per-ECTS, targets, first weekday, display prefs,
 /// import/export/reset, plus "clear sample data" (ECTS-016).
@@ -48,12 +49,13 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
   Future<void> _askActivateDevMode() async {
     if (ref.read(devModeProvider)) return;
     final l10n = AppLocalizations.of(context)!;
+    final glass = ref.read(glassEnabledProvider);
     final confirmed = await showDialog<bool>(
       context: context,
-      builder: (context) => AlertDialog(
-        title: Text(l10n.devToolsActivateTitle),
-        content: Text(l10n.devToolsActivateMessage),
-        actions: [
+      builder: (context) {
+        final title = Text(l10n.devToolsActivateTitle);
+        final content = Text(l10n.devToolsActivateMessage);
+        final actions = [
           TextButton(
             onPressed: () => Navigator.of(context).pop(false),
             child: Text(l10n.commonCancel),
@@ -63,8 +65,15 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
             onPressed: () => Navigator.of(context).pop(true),
             child: Text(l10n.devToolsActivate),
           ),
-        ],
-      ),
+        ];
+        // Glass dialogs (ECTS-064): same title/content/actions/Keys.
+        if (!glass) {
+          return AlertDialog(
+              title: title, content: content, actions: actions);
+        }
+        return glassAlert(context,
+            title: title, content: content, actions: actions);
+      },
     );
     if (confirmed == true && mounted) {
       ref.read(devModeProvider.notifier).state = true;
@@ -77,13 +86,14 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
   Future<void> _pumpTestData() async {
     if (_pumping) return;
     final l10n = AppLocalizations.of(context)!;
+    final glass = ref.read(glassEnabledProvider);
     // Confirm twice: intent, then consequence.
     final step1 = await showDialog<bool>(
       context: context,
-      builder: (context) => AlertDialog(
-        title: Text(l10n.devToolsPumpTitle),
-        content: Text(l10n.devToolsPumpMessage),
-        actions: [
+      builder: (context) {
+        final title = Text(l10n.devToolsPumpTitle);
+        final content = Text(l10n.devToolsPumpMessage);
+        final actions = [
           TextButton(
             onPressed: () => Navigator.of(context).pop(false),
             child: Text(l10n.commonCancel),
@@ -93,16 +103,23 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
             onPressed: () => Navigator.of(context).pop(true),
             child: Text(l10n.devToolsContinue),
           ),
-        ],
-      ),
+        ];
+        // Glass dialogs (ECTS-064): same title/content/actions/Keys.
+        if (!glass) {
+          return AlertDialog(
+              title: title, content: content, actions: actions);
+        }
+        return glassAlert(context,
+            title: title, content: content, actions: actions);
+      },
     );
     if (step1 != true || !mounted) return;
     final step2 = await showDialog<bool>(
       context: context,
-      builder: (context) => AlertDialog(
-        title: Text(l10n.devToolsConfirmPumpTitle),
-        content: Text(l10n.devToolsConfirmPumpMessage),
-        actions: [
+      builder: (context) {
+        final title = Text(l10n.devToolsConfirmPumpTitle);
+        final content = Text(l10n.devToolsConfirmPumpMessage);
+        final actions = [
           TextButton(
             onPressed: () => Navigator.of(context).pop(false),
             child: Text(l10n.commonCancel),
@@ -112,8 +129,15 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
             onPressed: () => Navigator.of(context).pop(true),
             child: Text(l10n.devToolsPumpData),
           ),
-        ],
-      ),
+        ];
+        // Glass dialogs (ECTS-064): same title/content/actions/Keys.
+        if (!glass) {
+          return AlertDialog(
+              title: title, content: content, actions: actions);
+        }
+        return glassAlert(context,
+            title: title, content: content, actions: actions);
+      },
     );
     if (step2 != true || !mounted) return;
     setState(() => _pumping = true);
@@ -141,12 +165,13 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
 
   Future<void> _clearPumpedData() async {
     final l10n = AppLocalizations.of(context)!;
+    final glass = ref.read(glassEnabledProvider);
     final confirmed = await showDialog<bool>(
       context: context,
-      builder: (context) => AlertDialog(
-        title: Text(l10n.devToolsClearPumpedTitle),
-        content: Text(l10n.devToolsClearPumpedMessage),
-        actions: [
+      builder: (context) {
+        final title = Text(l10n.devToolsClearPumpedTitle);
+        final content = Text(l10n.devToolsClearPumpedMessage);
+        final actions = [
           TextButton(
             onPressed: () => Navigator.of(context).pop(false),
             child: Text(l10n.commonCancel),
@@ -156,8 +181,15 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
             onPressed: () => Navigator.of(context).pop(true),
             child: Text(l10n.settingsClear),
           ),
-        ],
-      ),
+        ];
+        // Glass dialogs (ECTS-064): same title/content/actions/Keys.
+        if (!glass) {
+          return AlertDialog(
+              title: title, content: content, actions: actions);
+        }
+        return glassAlert(context,
+            title: title, content: content, actions: actions);
+      },
     );
     if (confirmed != true || !mounted) return;
     final result = await ref.read(devPumpRepositoryProvider).clearPumped();
@@ -176,12 +208,13 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
 
   Future<void> _confirmRemoveAllDev() async {
     final l10n = AppLocalizations.of(context)!;
+    final glass = ref.read(glassEnabledProvider);
     final confirmed = await showDialog<bool>(
       context: context,
-      builder: (context) => AlertDialog(
-        title: Text(l10n.devToolsRemoveAllTitle),
-        content: Text(l10n.devToolsRemoveAllMessage),
-        actions: [
+      builder: (context) {
+        final title = Text(l10n.devToolsRemoveAllTitle);
+        final content = Text(l10n.devToolsRemoveAllMessage);
+        final actions = [
           TextButton(
             onPressed: () => Navigator.of(context).pop(false),
             child: Text(l10n.commonCancel),
@@ -194,8 +227,15 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
             onPressed: () => Navigator.of(context).pop(true),
             child: Text(l10n.settingsDeleteEverything),
           ),
-        ],
-      ),
+        ];
+        // Glass dialogs (ECTS-064): same title/content/actions/Keys.
+        if (!glass) {
+          return AlertDialog(
+              title: title, content: content, actions: actions);
+        }
+        return glassAlert(context,
+            title: title, content: content, actions: actions);
+      },
     );
     if (confirmed != true || !mounted) return;
     final result = await ref.read(backupRepositoryProvider).resetAllData();
@@ -566,15 +606,18 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
   Future<void> _editOverloadThreshold(
       BuildContext context, WidgetRef ref, AppSettings settings) async {
     final l10n = AppLocalizations.of(context)!;
+    final glass = ref.read(glassEnabledProvider);
     final controller =
         TextEditingController(text: settings.weeklyOverloadHours.toString());
     String? errorText;
     final value = await showDialog<double>(
       context: context,
       builder: (context) => StatefulBuilder(
-        builder: (context, setState) => AlertDialog(
-          title: Text(l10n.settingsOverloadThreshold),
-          content: TextField(
+        builder: (context, setState) {
+          // Glass dialogs (ECTS-064): same title/content/actions/Keys;
+          // the TextField stays a solid Material surface inside glass.
+          final title = Text(l10n.settingsOverloadThreshold);
+          final content = TextField(
             key: const Key('overloadThresholdField'),
             controller: controller,
             keyboardType:
@@ -585,8 +628,8 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
               errorText: errorText,
             ),
             autofocus: true,
-          ),
-          actions: [
+          );
+          final actions = [
             TextButton(
               onPressed: () => Navigator.of(context).pop(),
               child: Text(l10n.commonCancel),
@@ -605,8 +648,14 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
               },
               child: Text(l10n.commonSave),
             ),
-          ],
-        ),
+          ];
+          if (!glass) {
+            return AlertDialog(
+                title: title, content: content, actions: actions);
+          }
+          return glassAlert(context,
+              title: title, content: content, actions: actions);
+        },
       ),
     );
     WidgetsBinding.instance.addPostFrameCallback((_) => controller.dispose());
@@ -621,15 +670,18 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
   Future<void> _editPaceTolerance(
       BuildContext context, WidgetRef ref, AppSettings settings) async {
     final l10n = AppLocalizations.of(context)!;
+    final glass = ref.read(glassEnabledProvider);
     final controller =
         TextEditingController(text: settings.paceToleranceDays.toString());
     String? errorText;
     final value = await showDialog<double>(
       context: context,
       builder: (context) => StatefulBuilder(
-        builder: (context, setState) => AlertDialog(
-          title: Text(l10n.settingsPaceTolerance),
-          content: TextField(
+        builder: (context, setState) {
+          // Glass dialogs (ECTS-064): same title/content/actions/Keys;
+          // the TextField stays a solid Material surface inside glass.
+          final title = Text(l10n.settingsPaceTolerance);
+          final content = TextField(
             key: const Key('paceToleranceField'),
             controller: controller,
             keyboardType:
@@ -640,8 +692,8 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
               errorText: errorText,
             ),
             autofocus: true,
-          ),
-          actions: [
+          );
+          final actions = [
             TextButton(
               onPressed: () => Navigator.of(context).pop(),
               child: Text(l10n.commonCancel),
@@ -660,8 +712,14 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
               },
               child: Text(l10n.commonSave),
             ),
-          ],
-        ),
+          ];
+          if (!glass) {
+            return AlertDialog(
+                title: title, content: content, actions: actions);
+          }
+          return glassAlert(context,
+              title: title, content: content, actions: actions);
+        },
       ),
     );
     WidgetsBinding.instance.addPostFrameCallback((_) => controller.dispose());
@@ -676,6 +734,7 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
   Future<void> _editHoursPerEcts(
       BuildContext context, WidgetRef ref, AppSettings settings) async {
     final l10n = AppLocalizations.of(context)!;
+    final glass = ref.read(glassEnabledProvider);
     final controller = TextEditingController(
         text: settings.hoursPerEcts.toStringAsFixed(
             settings.hoursPerEcts % 1 == 0 ? 0 : 1));
@@ -683,9 +742,11 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
     final value = await showDialog<double>(
       context: context,
       builder: (context) => StatefulBuilder(
-        builder: (context, setState) => AlertDialog(
-          title: Text(l10n.settingsHoursPerEcts),
-          content: TextField(
+        builder: (context, setState) {
+          // Glass dialogs (ECTS-064): same title/content/actions/Keys;
+          // the TextField stays a solid Material surface inside glass.
+          final title = Text(l10n.settingsHoursPerEcts);
+          final content = TextField(
             key: const Key('hoursPerEctsField'),
             controller: controller,
             keyboardType: const TextInputType.numberWithOptions(decimal: true),
@@ -695,8 +756,8 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
               errorText: errorText,
             ),
             autofocus: true,
-          ),
-          actions: [
+          );
+          final actions = [
             TextButton(
               onPressed: () => Navigator.of(context).pop(),
               child: Text(l10n.commonCancel),
@@ -713,8 +774,14 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
               },
               child: Text(l10n.commonSave),
             ),
-          ],
-        ),
+          ];
+          if (!glass) {
+            return AlertDialog(
+                title: title, content: content, actions: actions);
+          }
+          return glassAlert(context,
+              title: title, content: content, actions: actions);
+        },
       ),
     );
     WidgetsBinding.instance.addPostFrameCallback((_) => controller.dispose());
@@ -728,15 +795,18 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
   Future<void> _editDailyTarget(
       BuildContext context, WidgetRef ref, AppSettings settings) async {
     final l10n = AppLocalizations.of(context)!;
+    final glass = ref.read(glassEnabledProvider);
     final controller =
         TextEditingController(text: settings.dailyTargetMinutes.toString());
     String? errorText;
     final value = await showDialog<int>(
       context: context,
       builder: (context) => StatefulBuilder(
-        builder: (context, setState) => AlertDialog(
-          title: Text(l10n.settingsDailyTarget),
-          content: TextField(
+        builder: (context, setState) {
+          // Glass dialogs (ECTS-064): same title/content/actions/Keys;
+          // the TextField stays a solid Material surface inside glass.
+          final title = Text(l10n.settingsDailyTarget);
+          final content = TextField(
             key: const Key('dailyTargetField'),
             controller: controller,
             keyboardType: TextInputType.number,
@@ -745,8 +815,8 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
               errorText: errorText,
             ),
             autofocus: true,
-          ),
-          actions: [
+          );
+          final actions = [
             TextButton(
               onPressed: () => Navigator.of(context).pop(),
               child: Text(l10n.commonCancel),
@@ -763,8 +833,14 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
               },
               child: Text(l10n.commonSave),
             ),
-          ],
-        ),
+          ];
+          if (!glass) {
+            return AlertDialog(
+                title: title, content: content, actions: actions);
+          }
+          return glassAlert(context,
+              title: title, content: content, actions: actions);
+        },
       ),
     );
     WidgetsBinding.instance.addPostFrameCallback((_) => controller.dispose());
@@ -779,25 +855,48 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
   Future<void> _editFirstWeekday(
       BuildContext context, WidgetRef ref, AppSettings settings) async {
     final l10n = AppLocalizations.of(context)!;
+    final glass = ref.read(glassEnabledProvider);
     final selected = await showDialog<int>(
       context: context,
-      builder: (context) => SimpleDialog(
-        title: Text(l10n.settingsFirstWeekday),
-        children: [
-          for (var day = 1; day <= 7; day++)
-            SimpleDialogOption(
-              key: Key('weekday_$day'),
-              onPressed: () => Navigator.of(context).pop(day),
-              child: Row(
-                children: [
-                  Expanded(child: Text(_weekdayName(l10n, day))),
-                  if (day == settings.firstWeekday)
-                    const Icon(Icons.check, size: 18),
-                ],
-              ),
-            ),
-        ],
-      ),
+      builder: (context) {
+        Widget optionRow(int day) => Row(
+              children: [
+                Expanded(child: Text(_weekdayName(l10n, day))),
+                if (day == settings.firstWeekday)
+                  const Icon(Icons.check, size: 18),
+              ],
+            );
+        // Glass pickers (ECTS-064): off keeps the identical SimpleDialog;
+        // on shows the same options (same Keys/taps) in a glass alert.
+        if (!glass) {
+          return SimpleDialog(
+            title: Text(l10n.settingsFirstWeekday),
+            children: [
+              for (var day = 1; day <= 7; day++)
+                SimpleDialogOption(
+                  key: Key('weekday_$day'),
+                  onPressed: () => Navigator.of(context).pop(day),
+                  child: optionRow(day),
+                ),
+            ],
+          );
+        }
+        return glassAlert(
+          context,
+          title: Text(l10n.settingsFirstWeekday),
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              for (var day = 1; day <= 7; day++)
+                GlassOption(
+                  key: Key('weekday_$day'),
+                  onTap: () => Navigator.of(context).pop(day),
+                  child: optionRow(day),
+                ),
+            ],
+          ),
+        );
+      },
     );
     if (selected == null || !context.mounted) return;
     final result =
@@ -809,38 +908,74 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
   Future<void> _editLanguage(
       BuildContext context, WidgetRef ref, AppSettings settings) async {
     final l10n = AppLocalizations.of(context)!;
+    final glass = ref.read(glassEnabledProvider);
     // The system entry pops '' (dismissal pops null), so picking "system"
     // is distinguishable from dismissing the dialog.
     final selected = await showDialog<String>(
       context: context,
-      builder: (context) => SimpleDialog(
-        title: Text(l10n.settingsLanguage),
-        children: [
-          SimpleDialogOption(
-            key: const Key('language_system'),
-            onPressed: () => Navigator.of(context).pop(''),
-            child: Row(
+      builder: (context) {
+        Widget systemRow() => Row(
               children: [
                 Expanded(child: Text(l10n.settingsThemeSystem)),
                 if (settings.localeCode == null)
                   const Icon(Icons.check, size: 18),
               ],
+            );
+        // Glass pickers (ECTS-064): off keeps the identical SimpleDialog;
+        // on shows the same options (same Keys/taps) in a glass alert.
+        if (!glass) {
+          return SimpleDialog(
+            title: Text(l10n.settingsLanguage),
+            children: [
+              SimpleDialogOption(
+                key: const Key('language_system'),
+                onPressed: () => Navigator.of(context).pop(''),
+                child: systemRow(),
+              ),
+              for (final option in kAppLocales)
+                SimpleDialogOption(
+                  key: Key('language_${option.code}'),
+                  onPressed: () => Navigator.of(context).pop(option.code),
+                  child: Row(
+                    children: [
+                      Expanded(child: Text(option.nativeName)),
+                      if (option.code == settings.localeCode)
+                        const Icon(Icons.check, size: 18),
+                    ],
+                  ),
+                ),
+            ],
+          );
+        }
+        return glassAlert(
+          context,
+          title: Text(l10n.settingsLanguage),
+          content: SingleChildScrollView(
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                GlassOption(
+                  key: const Key('language_system'),
+                  onTap: () => Navigator.of(context).pop(''),
+                  child: systemRow(),
+                ),
+                for (final option in kAppLocales)
+                  GlassOption(
+                    key: Key('language_${option.code}'),
+                    onTap: () => Navigator.of(context).pop(option.code),
+                    child: Row(
+                      children: [
+                        Expanded(child: Text(option.nativeName)),
+                        if (option.code == settings.localeCode)
+                          const Icon(Icons.check, size: 18),
+                      ],
+                    ),
+                  ),
+              ],
             ),
           ),
-          for (final option in kAppLocales)
-            SimpleDialogOption(
-              key: Key('language_${option.code}'),
-              onPressed: () => Navigator.of(context).pop(option.code),
-              child: Row(
-                children: [
-                  Expanded(child: Text(option.nativeName)),
-                  if (option.code == settings.localeCode)
-                    const Icon(Icons.check, size: 18),
-                ],
-              ),
-            ),
-        ],
-      ),
+        );
+      },
     );
     if (selected == null || !context.mounted) return;
     final result = await ref
@@ -859,25 +994,48 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
 
   Future<void> _editThemeMode(
       BuildContext context, WidgetRef ref, AppSettings settings) async {    final l10n = AppLocalizations.of(context)!;
+    final glass = ref.read(glassEnabledProvider);
     final selected = await showDialog<AppThemeMode>(
       context: context,
-      builder: (context) => SimpleDialog(
-        title: Text(l10n.settingsThemeTitle),
-        children: [
-          for (final mode in AppThemeMode.values)
-            SimpleDialogOption(
-              key: Key('theme_${mode.name}'),
-              onPressed: () => Navigator.of(context).pop(mode),
-              child: Row(
-                children: [
-                  Expanded(child: Text(_themeModeName(l10n, mode))),
-                  if (mode == settings.themeMode)
-                    const Icon(Icons.check, size: 18),
-                ],
-              ),
-            ),
-        ],
-      ),
+      builder: (context) {
+        Widget modeRow(AppThemeMode mode) => Row(
+              children: [
+                Expanded(child: Text(_themeModeName(l10n, mode))),
+                if (mode == settings.themeMode)
+                  const Icon(Icons.check, size: 18),
+              ],
+            );
+        // Glass pickers (ECTS-064): off keeps the identical SimpleDialog;
+        // on shows the same options (same Keys/taps) in a glass alert.
+        if (!glass) {
+          return SimpleDialog(
+            title: Text(l10n.settingsThemeTitle),
+            children: [
+              for (final mode in AppThemeMode.values)
+                SimpleDialogOption(
+                  key: Key('theme_${mode.name}'),
+                  onPressed: () => Navigator.of(context).pop(mode),
+                  child: modeRow(mode),
+                ),
+            ],
+          );
+        }
+        return glassAlert(
+          context,
+          title: Text(l10n.settingsThemeTitle),
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              for (final mode in AppThemeMode.values)
+                GlassOption(
+                  key: Key('theme_${mode.name}'),
+                  onTap: () => Navigator.of(context).pop(mode),
+                  child: modeRow(mode),
+                ),
+            ],
+          ),
+        );
+      },
     );
     if (selected == null || !context.mounted) return;
     final result =
@@ -889,33 +1047,56 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
   Future<void> _editDisplaySize(
       BuildContext context, WidgetRef ref, AppSettings settings) async {
     final l10n = AppLocalizations.of(context)!;
+    final glass = ref.read(glassEnabledProvider);
     final selected = await showDialog<AppDisplaySize>(
       context: context,
-      builder: (context) => SimpleDialog(
-        title: Text(l10n.settingsDisplaySize),
-        children: [
-          for (final size in AppDisplaySize.values)
-            SimpleDialogOption(
-              key: Key('displaySize_${size.name}'),
-              onPressed: () => Navigator.of(context).pop(size),
-              child: Row(
-                children: [
-                  Expanded(
-                    child: Text(
-                      l10n.settingsDisplaySizeOption(
-                        _displaySizeName(l10n, size),
-                        (size.scale * 100).toStringAsFixed(0),
-                      ),
-                      style: TextStyle(fontSize: 16 * size.scale),
+      builder: (context) {
+        Widget sizeRow(AppDisplaySize size) => Row(
+              children: [
+                Expanded(
+                  child: Text(
+                    l10n.settingsDisplaySizeOption(
+                      _displaySizeName(l10n, size),
+                      (size.scale * 100).toStringAsFixed(0),
                     ),
+                    style: TextStyle(fontSize: 16 * size.scale),
                   ),
-                  if (size == settings.displaySize)
-                    const Icon(Icons.check, size: 18),
-                ],
-              ),
-            ),
-        ],
-      ),
+                ),
+                if (size == settings.displaySize)
+                  const Icon(Icons.check, size: 18),
+              ],
+            );
+        // Glass pickers (ECTS-064): off keeps the identical SimpleDialog;
+        // on shows the same options (same Keys/taps) in a glass alert.
+        if (!glass) {
+          return SimpleDialog(
+            title: Text(l10n.settingsDisplaySize),
+            children: [
+              for (final size in AppDisplaySize.values)
+                SimpleDialogOption(
+                  key: Key('displaySize_${size.name}'),
+                  onPressed: () => Navigator.of(context).pop(size),
+                  child: sizeRow(size),
+                ),
+            ],
+          );
+        }
+        return glassAlert(
+          context,
+          title: Text(l10n.settingsDisplaySize),
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              for (final size in AppDisplaySize.values)
+                GlassOption(
+                  key: Key('displaySize_${size.name}'),
+                  onTap: () => Navigator.of(context).pop(size),
+                  child: sizeRow(size),
+                ),
+            ],
+          ),
+        );
+      },
     );
     if (selected == null || !context.mounted) return;
     final result =
@@ -927,34 +1108,57 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
   Future<void> _editAccent(
       BuildContext context, WidgetRef ref, AppSettings settings) async {
     final l10n = AppLocalizations.of(context)!;
+    final glass = ref.read(glassEnabledProvider);
     final selected = await showDialog<AppAccent>(
       context: context,
-      builder: (context) => SimpleDialog(
-        title: Text(l10n.settingsAccent),
-        children: [
-          for (final accent in AppAccent.values)
-            SimpleDialogOption(
-              key: Key('accent_${accent.name}'),
-              onPressed: () => Navigator.of(context).pop(accent),
-              child: Row(
-                children: [
-                  Container(
-                    width: 20,
-                    height: 20,
-                    margin: const EdgeInsets.only(right: 12),
-                    decoration: BoxDecoration(
-                      color: Color(accent.seedValue),
-                      shape: BoxShape.circle,
-                    ),
+      builder: (context) {
+        Widget accentRow(AppAccent accent) => Row(
+              children: [
+                Container(
+                  width: 20,
+                  height: 20,
+                  margin: const EdgeInsets.only(right: 12),
+                  decoration: BoxDecoration(
+                    color: Color(accent.seedValue),
+                    shape: BoxShape.circle,
                   ),
-                  Expanded(child: Text(_accentName(l10n, accent))),
-                  if (accent == settings.accent)
-                    const Icon(Icons.check, size: 18),
-                ],
-              ),
-            ),
-        ],
-      ),
+                ),
+                Expanded(child: Text(_accentName(l10n, accent))),
+                if (accent == settings.accent)
+                  const Icon(Icons.check, size: 18),
+              ],
+            );
+        // Glass pickers (ECTS-064): off keeps the identical SimpleDialog;
+        // on shows the same options (same Keys/taps) in a glass alert.
+        if (!glass) {
+          return SimpleDialog(
+            title: Text(l10n.settingsAccent),
+            children: [
+              for (final accent in AppAccent.values)
+                SimpleDialogOption(
+                  key: Key('accent_${accent.name}'),
+                  onPressed: () => Navigator.of(context).pop(accent),
+                  child: accentRow(accent),
+                ),
+            ],
+          );
+        }
+        return glassAlert(
+          context,
+          title: Text(l10n.settingsAccent),
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              for (final accent in AppAccent.values)
+                GlassOption(
+                  key: Key('accent_${accent.name}'),
+                  onTap: () => Navigator.of(context).pop(accent),
+                  child: accentRow(accent),
+                ),
+            ],
+          ),
+        );
+      },
     );
     if (selected == null || !context.mounted) return;
     final result =
@@ -974,12 +1178,13 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
 
   Future<void> _confirmClearSample(BuildContext context, WidgetRef ref) async {
     final l10n = AppLocalizations.of(context)!;
+    final glass = ref.read(glassEnabledProvider);
     final confirmed = await showDialog<bool>(
       context: context,
-      builder: (context) => AlertDialog(
-        title: Text(l10n.settingsClearSampleTitle),
-        content: Text(l10n.settingsClearSampleMessage),
-        actions: [
+      builder: (context) {
+        final title = Text(l10n.settingsClearSampleTitle);
+        final content = Text(l10n.settingsClearSampleMessage);
+        final actions = [
           TextButton(
             onPressed: () => Navigator.of(context).pop(false),
             child: Text(l10n.commonCancel),
@@ -989,8 +1194,15 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
             onPressed: () => Navigator.of(context).pop(true),
             child: Text(l10n.settingsClear),
           ),
-        ],
-      ),
+        ];
+        // Glass dialogs (ECTS-064): same title/content/actions/Keys.
+        if (!glass) {
+          return AlertDialog(
+              title: title, content: content, actions: actions);
+        }
+        return glassAlert(context,
+            title: title, content: content, actions: actions);
+      },
     );
     if (confirmed != true || !context.mounted) return;
     final result = await ref.read(courseRepositoryProvider).deleteSampleData();
@@ -1010,6 +1222,7 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
 
   Future<void> _exportData(BuildContext context, WidgetRef ref) async {
     final l10n = AppLocalizations.of(context)!;
+    final glass = ref.read(glassEnabledProvider);
     final result = await ref.read(backupRepositoryProvider).exportJson();
     if (!context.mounted) return;
     switch (result) {
@@ -1034,9 +1247,10 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
             : value;
         await showDialog<void>(
           context: context,
-          builder: (context) => AlertDialog(
-            title: Text(l10n.settingsExport),
-            content: SizedBox(
+          builder: (context) {
+            // Glass dialogs (ECTS-064): same title/content/actions/Keys.
+            final title = Text(l10n.settingsExport);
+            final content = SizedBox(
               width: double.maxFinite,
               child: SingleChildScrollView(
                 child: Column(
@@ -1055,8 +1269,8 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
                   ],
                 ),
               ),
-            ),
-            actions: [
+            );
+            final actions = [
               TextButton(
                 onPressed: () async {
                   await Clipboard.setData(ClipboardData(text: value));
@@ -1072,14 +1286,21 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
                 onPressed: () => Navigator.of(context).pop(),
                 child: Text(l10n.commonClose),
               ),
-            ],
-          ),
+            ];
+            if (!glass) {
+              return AlertDialog(
+                  title: title, content: content, actions: actions);
+            }
+            return glassAlert(context,
+                title: title, content: content, actions: actions);
+          },
         );
     }
   }
 
   Future<void> _importData(BuildContext context, WidgetRef ref) async {
     final l10n = AppLocalizations.of(context)!;
+    final glass = ref.read(glassEnabledProvider);
     final controller = TextEditingController();
     ImportMode mode = ImportMode.replace;
     String? previewText;
@@ -1132,112 +1353,125 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
             }
           }
 
-          return AlertDialog(
-            title: Text(l10n.settingsImport),
-            content: SizedBox(
-              width: double.maxFinite,
-              child: SingleChildScrollView(
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(l10n.settingsImportInfo),
-                    const SizedBox(height: 12),
-                    TextField(
-                      key: const Key('importJsonField'),
-                      controller: controller,
-                      maxLines: 6,
-                      decoration: InputDecoration(
-                        labelText: l10n.settingsImportLabel,
-                        border: const OutlineInputBorder(),
-                      ),
-                      onChanged: (_) => validate(),
+          // Glass dialogs (ECTS-064): same title/content/actions/Keys;
+          // inputs stay solid Material surfaces inside glass.
+          final importTitle = Text(l10n.settingsImport);
+          final importContent = SizedBox(
+            width: double.maxFinite,
+            child: SingleChildScrollView(
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(l10n.settingsImportInfo),
+                  const SizedBox(height: 12),
+                  TextField(
+                    key: const Key('importJsonField'),
+                    controller: controller,
+                    maxLines: 6,
+                    decoration: InputDecoration(
+                      labelText: l10n.settingsImportLabel,
+                      border: const OutlineInputBorder(),
                     ),
-                    const SizedBox(height: 8),
-                    if (previewError.isNotEmpty)
-                      Text(
-                        previewError,
-                        key: const Key('importPreviewError'),
-                        style: TextStyle(
-                            color: Theme.of(context).colorScheme.error),
-                      ),
-                    if (previewText != null)
-                      Text(
-                        previewText!,
-                        key: const Key('importPreviewOk'),
-                        style: const TextStyle(fontWeight: FontWeight.w600),
-                      ),
-                    const SizedBox(height: 8),
-                    SegmentedButton<ImportMode>(
-                      segments: [
-                        ButtonSegment(
-                          value: ImportMode.append,
-                          label: Text(l10n.settingsImportAppend),
-                          icon: const Icon(Icons.add),
-                        ),
-                        ButtonSegment(
-                          value: ImportMode.replace,
-                          label: Text(l10n.settingsImportReplace),
-                          icon: const Icon(Icons.warning_amber_outlined),
-                        ),
-                      ],
-                      selected: {mode},
-                      onSelectionChanged: (s) =>
-                          setState(() => mode = s.first),
+                    onChanged: (_) => validate(),
+                  ),
+                  const SizedBox(height: 8),
+                  if (previewError.isNotEmpty)
+                    Text(
+                      previewError,
+                      key: const Key('importPreviewError'),
+                      style: TextStyle(
+                          color: Theme.of(context).colorScheme.error),
                     ),
-                    if (mode == ImportMode.replace) ...[
-                      const SizedBox(height: 12),
-                      Text(
-                        l10n.settingsImportReplaceWarning('10'),
+                  if (previewText != null)
+                    Text(
+                      previewText!,
+                      key: const Key('importPreviewOk'),
+                      style: const TextStyle(fontWeight: FontWeight.w600),
+                    ),
+                  const SizedBox(height: 8),
+                  SegmentedButton<ImportMode>(
+                    segments: [
+                      ButtonSegment(
+                        value: ImportMode.append,
+                        label: Text(l10n.settingsImportAppend),
+                        icon: const Icon(Icons.add),
                       ),
-                      const SizedBox(height: 8),
-                      _HoldToConfirmButton(
-                        enabled: previewOk,
-                        seconds: 10,
-                        label: l10n.settingsHoldToReplace,
-                        onConfirmed: () async {
-                          final text = controller.text;
-                          Navigator.of(context).pop();
-                          final result = await ref
-                              .read(backupRepositoryProvider)
-                              .importJson(text, mode: ImportMode.replace);
-                          if (!context.mounted) return;
-                          _showResult(context, result,
-                              success: l10n.settingsImportReplaced(
-                                  '$previewCourses', '$previewSessions'),
-                              errorKey: const Key('importDataError'));
-                        },
+                      ButtonSegment(
+                        value: ImportMode.replace,
+                        label: Text(l10n.settingsImportReplace),
+                        icon: const Icon(Icons.warning_amber_outlined),
                       ),
                     ],
+                    selected: {mode},
+                    onSelectionChanged: (s) =>
+                        setState(() => mode = s.first),
+                  ),
+                  if (mode == ImportMode.replace) ...[
+                    const SizedBox(height: 12),
+                    Text(
+                      l10n.settingsImportReplaceWarning('10'),
+                    ),
+                    const SizedBox(height: 8),
+                    _HoldToConfirmButton(
+                      enabled: previewOk,
+                      seconds: 10,
+                      label: l10n.settingsHoldToReplace,
+                      onConfirmed: () async {
+                        final text = controller.text;
+                        Navigator.of(context).pop();
+                        final result = await ref
+                            .read(backupRepositoryProvider)
+                            .importJson(text, mode: ImportMode.replace);
+                        if (!context.mounted) return;
+                        _showResult(context, result,
+                            success: l10n.settingsImportReplaced(
+                                '$previewCourses', '$previewSessions'),
+                            errorKey: const Key('importDataError'));
+                      },
+                    ),
                   ],
-                ),
+                ],
               ),
             ),
-            actions: [
-              TextButton(
-                onPressed: () => Navigator.of(context).pop(),
-                child: Text(l10n.commonCancel),
+          );
+          final importActions = [
+            TextButton(
+              onPressed: () => Navigator.of(context).pop(),
+              child: Text(l10n.commonCancel),
+            ),
+            if (mode == ImportMode.append)
+              FilledButton(
+                key: const Key('confirmImportData'),
+                onPressed: !previewOk
+                    ? null
+                    : () async {
+                        final text = controller.text;
+                        Navigator.of(context).pop();
+                        final result = await ref
+                            .read(backupRepositoryProvider)
+                            .importJson(text, mode: ImportMode.append);
+                        if (!context.mounted) return;
+                        _showResult(context, result,
+                            success: l10n.settingsImportAppended(
+                                '$previewCourses', '$previewSessions'),
+                            errorKey: const Key('importDataError'));
+                      },
+                child: Text(l10n.settingsImportAppendAction),
               ),
-              if (mode == ImportMode.append)
-                FilledButton(
-                  key: const Key('confirmImportData'),
-                  onPressed: !previewOk
-                      ? null
-                      : () async {
-                          final text = controller.text;
-                          Navigator.of(context).pop();
-                          final result = await ref
-                              .read(backupRepositoryProvider)
-                              .importJson(text, mode: ImportMode.append);
-                          if (!context.mounted) return;
-                          _showResult(context, result,
-                              success: l10n.settingsImportAppended(
-                                  '$previewCourses', '$previewSessions'),
-                              errorKey: const Key('importDataError'));
-                        },
-                  child: Text(l10n.settingsImportAppendAction),
-                ),
-            ],
+          ];
+          if (!glass) {
+            return AlertDialog(
+              title: importTitle,
+              content: importContent,
+              actions: importActions,
+            );
+          }
+          return glassAlert(
+            context,
+            title: importTitle,
+            content: importContent,
+            actions: importActions,
           );
         },
       ),
@@ -1247,12 +1481,13 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
 
   Future<void> _confirmResetSettings(BuildContext context, WidgetRef ref) async {
     final l10n = AppLocalizations.of(context)!;
+    final glass = ref.read(glassEnabledProvider);
     final confirmed = await showDialog<bool>(
       context: context,
-      builder: (context) => AlertDialog(
-        title: Text(l10n.settingsResetSettingsTitle),
-        content: Text(l10n.settingsResetSettingsMessage),
-        actions: [
+      builder: (context) {
+        final title = Text(l10n.settingsResetSettingsTitle);
+        final content = Text(l10n.settingsResetSettingsMessage);
+        final actions = [
           TextButton(
             onPressed: () => Navigator.of(context).pop(false),
             child: Text(l10n.commonCancel),
@@ -1262,8 +1497,15 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
             onPressed: () => Navigator.of(context).pop(true),
             child: Text(l10n.settingsReset),
           ),
-        ],
-      ),
+        ];
+        // Glass dialogs (ECTS-064): same title/content/actions/Keys.
+        if (!glass) {
+          return AlertDialog(
+              title: title, content: content, actions: actions);
+        }
+        return glassAlert(context,
+            title: title, content: content, actions: actions);
+      },
     );
     if (confirmed != true || !context.mounted) return;
     final result = await ref.read(settingsRepositoryProvider).resetToDefaults();

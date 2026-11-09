@@ -113,3 +113,110 @@ class GlassBatch extends ConsumerWidget {
     return LiquidGlassBatch(child: child);
   }
 }
+
+/// Alert dialog honoring the glass gate (ECTS-064).
+///
+/// Off renders the identical Material [AlertDialog] (same title/content/
+/// actions/scrollable); on renders a [LiquidGlassAlertDialog] with the same
+/// slots and Keys. The glass surface uses the shared lite [glassStyle] so
+/// no ancestor `LiquidGlassView` is required on any engine (frosted
+/// fallback under lite, per docs). Title/content text follows the theme's
+/// `onSurface` ink — not the package's white default — so the dialog stays
+/// legible on light themes. Form controls inside (TextFields, Dropdowns,
+/// ChoiceChips) stay plain Material: solid surfaces, never glass lenses.
+class GlassAlertDialog extends ConsumerWidget {
+  const GlassAlertDialog({
+    super.key,
+    this.title,
+    this.content,
+    this.actions,
+    this.scrollable = false,
+  });
+
+  final Widget? title;
+  final Widget? content;
+  final List<Widget>? actions;
+  final bool scrollable;
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    if (!ref.watch(glassEnabledProvider)) {
+      return AlertDialog(
+        title: title,
+        content: content,
+        actions: actions,
+        scrollable: scrollable,
+      );
+    }
+    return glassAlert(context,
+        key: key, title: title, content: content, actions: actions);
+  }
+}
+
+/// Builds the glass branch of [GlassAlertDialog] for call sites that
+/// already read the gate (e.g. `showDialog` builders holding a `WidgetRef`).
+///
+/// Same slots as [AlertDialog]; [key] is forwarded to the
+/// [LiquidGlassAlertDialog] so keyed lookups keep passing. Text styles
+/// follow the theme (see [GlassAlertDialog]); the surface is the shared
+/// lite [glassStyle].
+///
+/// The dialog is always `scrollable`: unlike [AlertDialog] (whose content
+/// area scrolls once it exceeds the viewport), the package dialog lays out
+/// its column at natural height and would push tall forms (course/session
+/// editors) plus their actions past the viewport edge. Scrolling the whole
+/// dialog keeps every Key reachable via `ensureVisible` in both modes.
+LiquidGlassAlertDialog glassAlert(
+  BuildContext context, {
+  Key? key,
+  Widget? title,
+  Widget? content,
+  List<Widget>? actions,
+  bool scrollable = true,
+}) {
+  final theme = Theme.of(context);
+  final ink = theme.colorScheme.onSurface;
+  return LiquidGlassAlertDialog(
+    key: key,
+    title: title,
+    content: content,
+    actions: actions,
+    scrollable: scrollable,
+    style: glassStyle(context),
+    titleTextStyle:
+        (theme.textTheme.headlineSmall ?? const TextStyle(fontSize: 20))
+            .copyWith(color: ink, fontWeight: FontWeight.w600),
+    contentTextStyle:
+        (theme.textTheme.bodyMedium ?? const TextStyle(fontSize: 14))
+            .copyWith(color: ink),
+  );
+}
+
+/// Option row for glass pickers (ECTS-064).
+///
+/// Preserves the caller's [key] and tap while rendering the same [child]
+/// row in a plain Material [ListTile] (solid ink, never glass). Use as the
+/// content row inside [glassAlert] when routing a `SimpleDialog` picker to
+/// glass: off keeps the `SimpleDialog`/`SimpleDialogOption` tree, on shows
+/// the same options (same Keys, same taps) in a glass alert.
+class GlassOption extends StatelessWidget {
+  const GlassOption({
+    super.key,
+    required this.onTap,
+    required this.child,
+  });
+
+  final VoidCallback onTap;
+  final Widget child;
+
+  @override
+  Widget build(BuildContext context) {
+    return ListTile(
+      key: key,
+      onTap: onTap,
+      title: child,
+      contentPadding: const EdgeInsets.symmetric(horizontal: 4),
+      minVerticalPadding: 8,
+    );
+  }
+}

@@ -1237,27 +1237,32 @@ class _CoursesPageState extends ConsumerState<_CoursesPage> {
   CourseStatus? _statusFilter;
 
   Future<void> _confirmDelete(Course course) async {
+    final glass = ref.read(glassEnabledProvider);
     final confirmed = await showDialog<bool>(
       context: context,
       builder: (context) {
         final l10n = AppLocalizations.of(context)!;
-        return AlertDialog(
-          title: Text(l10n.coursesDeleteTitle),
-          content: Text(
-            l10n.coursesDeleteBody(course.name),
-          ),
-          actions: [
-            TextButton(
-              onPressed: () => Navigator.of(context).pop(false),
-              child: Text(l10n.commonCancel),
-            ),
-            FilledButton(
-              key: const Key('confirmDeleteCourse'),
-              onPressed: () => Navigator.of(context).pop(true),
-              child: Text(l10n.commonDelete),
-            ),
-          ],
+        final title = Text(l10n.coursesDeleteTitle);
+        final content = Text(
+          l10n.coursesDeleteBody(course.name),
         );
+        final actions = [
+          TextButton(
+            onPressed: () => Navigator.of(context).pop(false),
+            child: Text(l10n.commonCancel),
+          ),
+          FilledButton(
+            key: const Key('confirmDeleteCourse'),
+            onPressed: () => Navigator.of(context).pop(true),
+            child: Text(l10n.commonDelete),
+          ),
+        ];
+        // Glass dialogs (ECTS-064): same title/content/actions/Keys.
+        if (!glass) {
+          return AlertDialog(title: title, content: content, actions: actions);
+        }
+        return glassAlert(context,
+            title: title, content: content, actions: actions);
       },
     );
     if (confirmed != true || !mounted) return;
@@ -1712,27 +1717,32 @@ class _StudyLogPage extends ConsumerWidget {
     WidgetRef ref,
     StudySession session,
   ) async {
+    final glass = ref.read(glassEnabledProvider);
     final confirmed = await showDialog<bool>(
       context: context,
       builder: (context) {
         final l10n = AppLocalizations.of(context)!;
-        return AlertDialog(
-          title: Text(l10n.studyLogDeleteTitle),
-          content: Text(
-            l10n.studyLogDeleteBody,
-          ),
-          actions: [
-            TextButton(
-              onPressed: () => Navigator.of(context).pop(false),
-              child: Text(l10n.commonCancel),
-            ),
-            FilledButton(
-              key: const Key('confirmDeleteSession'),
-              onPressed: () => Navigator.of(context).pop(true),
-              child: Text(l10n.commonDelete),
-            ),
-          ],
+        final title = Text(l10n.studyLogDeleteTitle);
+        final content = Text(
+          l10n.studyLogDeleteBody,
         );
+        final actions = [
+          TextButton(
+            onPressed: () => Navigator.of(context).pop(false),
+            child: Text(l10n.commonCancel),
+          ),
+          FilledButton(
+            key: const Key('confirmDeleteSession'),
+            onPressed: () => Navigator.of(context).pop(true),
+            child: Text(l10n.commonDelete),
+          ),
+        ];
+        // Glass dialogs (ECTS-064): same title/content/actions/Keys.
+        if (!glass) {
+          return AlertDialog(title: title, content: content, actions: actions);
+        }
+        return glassAlert(context,
+            title: title, content: content, actions: actions);
       },
     );
     if (confirmed != true || !context.mounted) return;

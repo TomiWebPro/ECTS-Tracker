@@ -6,6 +6,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../data/repositories.dart';
 import '../models/models.dart';
 import '../state/providers.dart';
+import 'glass.dart';
 
 /// Shows the log/edit-study-session form. Returns true if a session was saved.
 Future<bool> showSessionFormDialog(
@@ -154,17 +155,51 @@ class _SessionFormDialogState extends ConsumerState<SessionFormDialog> {
       _courseId = null;
     }
 
-    return AlertDialog(
-      title: Text(
-        _isEdit ? l10n.sessionFormTitleEdit : l10n.sessionFormTitleAdd,
+    // Glass gate (ECTS-064): same title/content/actions/Keys; on renders
+    // the glass surface, off the identical AlertDialog. Inputs stay plain
+    // Material (solid, never glass).
+    final glass = ref.watch(glassEnabledProvider);
+    final title = Text(
+      _isEdit ? l10n.sessionFormTitleEdit : l10n.sessionFormTitleAdd,
+    );
+    final content = SingleChildScrollView(
+      child: Form(
+        key: _formKey,
+        child: _sessionFormBody(context, l10n, coursesAsync, courses),
       ),
-      content: SingleChildScrollView(
-        child: Form(
-          key: _formKey,
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
+    );
+    final actions = [
+      TextButton(
+        onPressed: _saving ? null : () => Navigator.of(context).pop(false),
+        child: Text(l10n.commonCancel),
+      ),
+      FilledButton(
+        key: const Key('saveSessionButton'),
+        onPressed: _saving ? null : _save,
+        child: Text(
+          _saving
+              ? l10n.sessionFormSaving
+              : (_isEdit ? l10n.commonSave : l10n.sessionFormLogAction),
+        ),
+      ),
+    ];
+    if (!glass) {
+      return AlertDialog(title: title, content: content, actions: actions);
+    }
+    return glassAlert(context,
+        title: title, content: content, actions: actions);
+  }
+
+  Widget _sessionFormBody(
+    BuildContext context,
+    AppLocalizations l10n,
+    AsyncValue<List<Course>> coursesAsync,
+    List<Course> courses,
+  ) {
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
               if (coursesAsync.isLoading)
                 const Padding(
                   padding: EdgeInsets.only(bottom: 8),
@@ -173,6 +208,10 @@ class _SessionFormDialogState extends ConsumerState<SessionFormDialog> {
               DropdownButtonFormField<int>(
                 key: const Key('sessionCourseDropdown'),
                 initialValue: _courseId,
+                // Glass dialogs (ECTS-064) are narrower than AlertDialog:
+                // fill the content width so long course names ellipsize
+                // instead of overflowing it. Off keeps the legacy layout.
+                isExpanded: ref.watch(glassEnabledProvider),
                 decoration: InputDecoration(labelText: l10n.sessionFormCourseLabel),
                 items: [
                   for (final c in courses)
@@ -267,24 +306,6 @@ class _SessionFormDialogState extends ConsumerState<SessionFormDialog> {
                 ),
               ],
             ],
-          ),
-        ),
-      ),
-      actions: [
-        TextButton(
-          onPressed: _saving ? null : () => Navigator.of(context).pop(false),
-          child: Text(l10n.commonCancel),
-        ),
-        FilledButton(
-          key: const Key('saveSessionButton'),
-          onPressed: _saving ? null : _save,
-          child: Text(
-            _saving
-                ? l10n.sessionFormSaving
-                : (_isEdit ? l10n.commonSave : l10n.sessionFormLogAction),
-          ),
-        ),
-      ],
     );
   }
 }

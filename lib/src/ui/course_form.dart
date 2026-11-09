@@ -8,6 +8,7 @@ import '../logic/ects.dart';
 import '../models/models.dart';
 import '../state/providers.dart';
 import 'app_sizes.dart';
+import 'glass.dart';
 
 /// Preset colors for courses (ARGB values). Null means "no color".
 const List<int?> courseColorOptions = [
@@ -180,9 +181,12 @@ class _CourseFormDialogState extends ConsumerState<CourseFormDialog> {
         ? requiredHours(ects, hoursPerEcts)
         : null;
 
-    return AlertDialog(
-      title: Text(_isEdit ? l10n.courseFormTitleEdit : l10n.courseFormTitleAdd),
-      content: SingleChildScrollView(
+    // Glass dialogs (ECTS-064): same title/content/actions/Keys in both
+    // branches; on renders the glass surface, off the identical AlertDialog.
+    // Form controls stay plain Material (solid, never glass lenses).
+    final title =
+        Text(_isEdit ? l10n.courseFormTitleEdit : l10n.courseFormTitleAdd);
+    final content = SingleChildScrollView(
         child: Form(
           key: _formKey,
           child: Column(
@@ -341,8 +345,8 @@ class _CourseFormDialogState extends ConsumerState<CourseFormDialog> {
             ],
           ),
         ),
-      ),
-      actions: [
+      );
+    final actions = [
         TextButton(
           onPressed: _saving ? null : () => Navigator.of(context).pop(false),
           child: Text(l10n.commonCancel),
@@ -352,7 +356,10 @@ class _CourseFormDialogState extends ConsumerState<CourseFormDialog> {
           onPressed: _saving ? null : _save,
           child: Text(_saving ? l10n.courseFormSaving : l10n.commonSave),
         ),
-      ],
-    );
+      ];
+    if (!ref.watch(glassEnabledProvider)) {
+      return AlertDialog(title: title, content: content, actions: actions);
+    }
+    return glassAlert(context, title: title, content: content, actions: actions);
   }
 }

@@ -203,6 +203,10 @@ void main() {
       await tester.tap(find.byKey(const Key('addCourseFab')));
       await tester.pumpAndSettle();
       expect(find.byKey(const Key('courseNameField')), findsOneWidget);
+      // Glass dialogs scroll tall forms (ECTS-064), so bring the
+      // action into view before tapping it.
+      await tester.ensureVisible(find.text('Cancel').last);
+      await tester.pumpAndSettle();
       await tester.tap(find.text('Cancel').last);
       await tester.pumpAndSettle();
 
