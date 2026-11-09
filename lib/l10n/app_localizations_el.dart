@@ -1139,18 +1139,18 @@ class AppLocalizationsEl extends AppLocalizations {
   String get settingsLanguage => 'Γλώσσα';
 
   @override
-  String get settingsLiquidGlass => 'Liquid glass';
+  String get settingsLiquidGlass => 'Ρευστό γυαλί';
 
   @override
   String get settingsLiquidGlassSubtitle =>
-      'Frosted glass cards and bars. Off keeps the classic solid look.';
+      'Κάρτες και μπάρες από θαμπό γυαλί. Ανενεργό διατηρεί την κλασική συμπαγή εμφάνιση.';
 
   @override
-  String get settingsLiquidGlassOn => 'On';
+  String get settingsLiquidGlassOn => 'Ενεργό';
 
   @override
-  String get settingsLiquidGlassOff => 'Off';
+  String get settingsLiquidGlassOff => 'Ανενεργό';
 
   @override
-  String get settingsLiquidGlassUpdated => 'Liquid glass updated.';
+  String get settingsLiquidGlassUpdated => 'Το ρευστό γυαλί ενημερώθηκε.';
 }

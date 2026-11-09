@@ -1815,5 +1815,25 @@
   "settingsLanguage": "Dil",
   "@settingsLanguage": {
     "description": "Language tile title and language picker dialog title."
+  },
+  "settingsLiquidGlass": "Sıvı cam",
+  "@settingsLiquidGlass": {
+    "description": "Liquid glass opt-in tile title in the Display section."
+  },
+  "settingsLiquidGlassSubtitle": "Buzlu cam kartlar ve çubuklar. Kapalı klasik düz görünümü korur.",
+  "@settingsLiquidGlassSubtitle": {
+    "description": "Liquid glass tile description line."
+  },
+  "settingsLiquidGlassOn": "Açık",
+  "@settingsLiquidGlassOn": {
+    "description": "Liquid glass tile state label when the opt-in is enabled."
+  },
+  "settingsLiquidGlassOff": "Kapalı",
+  "@settingsLiquidGlassOff": {
+    "description": "Liquid glass tile state label when the opt-in is disabled."
+  },
+  "settingsLiquidGlassUpdated": "Sıvı cam güncellendi.",
+  "@settingsLiquidGlassUpdated": {
+    "description": "SnackBar after the liquid glass opt-in changes."
   }
 }

@@ -1130,18 +1130,18 @@ class AppLocalizationsId extends AppLocalizations {
   String get settingsLanguage => 'Bahasa';
 
   @override
-  String get settingsLiquidGlass => 'Liquid glass';
+  String get settingsLiquidGlass => 'Kaca cair';
 
   @override
   String get settingsLiquidGlassSubtitle =>
-      'Frosted glass cards and bars. Off keeps the classic solid look.';
+      'Kartu dan bilah kaca buram. Mati mempertahankan tampilan solid klasik.';
 
   @override
-  String get settingsLiquidGlassOn => 'On';
+  String get settingsLiquidGlassOn => 'Aktif';
 
   @override
-  String get settingsLiquidGlassOff => 'Off';
+  String get settingsLiquidGlassOff => 'Mati';
 
   @override
-  String get settingsLiquidGlassUpdated => 'Liquid glass updated.';
+  String get settingsLiquidGlassUpdated => 'Kaca cair diperbarui.';
 }

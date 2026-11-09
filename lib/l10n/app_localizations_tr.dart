@@ -1127,18 +1127,18 @@ class AppLocalizationsTr extends AppLocalizations {
   String get settingsLanguage => 'Dil';
 
   @override
-  String get settingsLiquidGlass => 'Liquid glass';
+  String get settingsLiquidGlass => 'Sıvı cam';
 
   @override
   String get settingsLiquidGlassSubtitle =>
-      'Frosted glass cards and bars. Off keeps the classic solid look.';
+      'Buzlu cam kartlar ve çubuklar. Kapalı klasik düz görünümü korur.';
 
   @override
-  String get settingsLiquidGlassOn => 'On';
+  String get settingsLiquidGlassOn => 'Açık';
 
   @override
-  String get settingsLiquidGlassOff => 'Off';
+  String get settingsLiquidGlassOff => 'Kapalı';
 
   @override
-  String get settingsLiquidGlassUpdated => 'Liquid glass updated.';
+  String get settingsLiquidGlassUpdated => 'Sıvı cam güncellendi.';
 }

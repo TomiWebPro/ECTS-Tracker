@@ -1815,5 +1815,25 @@
   "settingsLanguage": "Dil",
   "@settingsLanguage": {
     "description": "Language tile title and language picker dialog title."
+  },
+  "settingsLiquidGlass": "Maye şüşə",
+  "@settingsLiquidGlass": {
+    "description": "Liquid glass opt-in tile title in the Display section."
+  },
+  "settingsLiquidGlassSubtitle": "Buzlu şüşə kartlar və panellər. Sönülü klassik tam görünüşü saxlayır.",
+  "@settingsLiquidGlassSubtitle": {
+    "description": "Liquid glass tile description line."
+  },
+  "settingsLiquidGlassOn": "Aktiv",
+  "@settingsLiquidGlassOn": {
+    "description": "Liquid glass tile state label when the opt-in is enabled."
+  },
+  "settingsLiquidGlassOff": "Sönülü",
+  "@settingsLiquidGlassOff": {
+    "description": "Liquid glass tile state label when the opt-in is disabled."
+  },
+  "settingsLiquidGlassUpdated": "Maye şüşə yeniləndi.",
+  "@settingsLiquidGlassUpdated": {
+    "description": "SnackBar after the liquid glass opt-in changes."
   }
 }

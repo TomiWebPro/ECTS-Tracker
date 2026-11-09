@@ -1815,5 +1815,25 @@
   "settingsLanguage": "語言",
   "@settingsLanguage": {
     "description": "Language tile title and language picker dialog title."
+  },
+  "settingsLiquidGlass": "液態玻璃",
+  "@settingsLiquidGlass": {
+    "description": "Liquid glass opt-in tile title in the Display section."
+  },
+  "settingsLiquidGlassSubtitle": "磨砂玻璃卡片和欄。關閉則保持經典純色外觀。",
+  "@settingsLiquidGlassSubtitle": {
+    "description": "Liquid glass tile description line."
+  },
+  "settingsLiquidGlassOn": "開",
+  "@settingsLiquidGlassOn": {
+    "description": "Liquid glass tile state label when the opt-in is enabled."
+  },
+  "settingsLiquidGlassOff": "關",
+  "@settingsLiquidGlassOff": {
+    "description": "Liquid glass tile state label when the opt-in is disabled."
+  },
+  "settingsLiquidGlassUpdated": "液態玻璃已更新。",
+  "@settingsLiquidGlassUpdated": {
+    "description": "SnackBar after the liquid glass opt-in changes."
   }
 }

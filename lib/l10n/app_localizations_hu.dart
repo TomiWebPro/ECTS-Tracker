@@ -1135,18 +1135,18 @@ class AppLocalizationsHu extends AppLocalizations {
   String get settingsLanguage => 'Nyelv';
 
   @override
-  String get settingsLiquidGlass => 'Liquid glass';
+  String get settingsLiquidGlass => 'Folyékony üveg';
 
   @override
   String get settingsLiquidGlassSubtitle =>
-      'Frosted glass cards and bars. Off keeps the classic solid look.';
+      'Mattüveg hatású kártyák és sávok. Ki állapotban marad a klasszikus tömör megjelenés.';
 
   @override
-  String get settingsLiquidGlassOn => 'On';
+  String get settingsLiquidGlassOn => 'Be';
 
   @override
-  String get settingsLiquidGlassOff => 'Off';
+  String get settingsLiquidGlassOff => 'Ki';
 
   @override
-  String get settingsLiquidGlassUpdated => 'Liquid glass updated.';
+  String get settingsLiquidGlassUpdated => 'Folyékony üveg frissítve.';
 }

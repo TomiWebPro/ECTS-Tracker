@@ -1134,18 +1134,18 @@ class AppLocalizationsSq extends AppLocalizations {
   String get settingsLanguage => 'Gjuha';
 
   @override
-  String get settingsLiquidGlass => 'Liquid glass';
+  String get settingsLiquidGlass => 'Xham i lëngshëm';
 
   @override
   String get settingsLiquidGlassSubtitle =>
-      'Frosted glass cards and bars. Off keeps the classic solid look.';
+      'Karta dhe shirita me xham të mat. Fikur ruan pamjen klasike.';
 
   @override
-  String get settingsLiquidGlassOn => 'On';
+  String get settingsLiquidGlassOn => 'Ndezur';
 
   @override
-  String get settingsLiquidGlassOff => 'Off';
+  String get settingsLiquidGlassOff => 'Fikur';
 
   @override
-  String get settingsLiquidGlassUpdated => 'Liquid glass updated.';
+  String get settingsLiquidGlassUpdated => 'Xhami i lëngshëm u përditësua.';
 }

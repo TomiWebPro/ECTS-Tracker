@@ -1128,18 +1128,18 @@ class AppLocalizationsHi extends AppLocalizations {
   String get settingsLanguage => 'भाषा';
 
   @override
-  String get settingsLiquidGlass => 'Liquid glass';
+  String get settingsLiquidGlass => 'लिक्विड ग्लास';
 
   @override
   String get settingsLiquidGlassSubtitle =>
-      'Frosted glass cards and bars. Off keeps the classic solid look.';
+      'फ्रॉस्टेड ग्लास कार्ड और बार। बंद रहने पर क्लासिक सॉलिड लुक रहता है।';
 
   @override
-  String get settingsLiquidGlassOn => 'On';
+  String get settingsLiquidGlassOn => 'चालू';
 
   @override
-  String get settingsLiquidGlassOff => 'Off';
+  String get settingsLiquidGlassOff => 'बंद';
 
   @override
-  String get settingsLiquidGlassUpdated => 'Liquid glass updated.';
+  String get settingsLiquidGlassUpdated => 'लिक्विड ग्लास अपडेट हो गया।';
 }

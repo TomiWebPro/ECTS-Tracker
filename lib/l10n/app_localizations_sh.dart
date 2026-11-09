@@ -1126,18 +1126,18 @@ class AppLocalizationsSh extends AppLocalizations {
   String get settingsLanguage => 'Jezik';
 
   @override
-  String get settingsLiquidGlass => 'Liquid glass';
+  String get settingsLiquidGlass => 'Tečno staklo';
 
   @override
   String get settingsLiquidGlassSubtitle =>
-      'Frosted glass cards and bars. Off keeps the classic solid look.';
+      'Kartice i trake od mat stakla. Isključeno zadržava klasični puni izgled.';
 
   @override
-  String get settingsLiquidGlassOn => 'On';
+  String get settingsLiquidGlassOn => 'Uključeno';
 
   @override
-  String get settingsLiquidGlassOff => 'Off';
+  String get settingsLiquidGlassOff => 'Isključeno';
 
   @override
-  String get settingsLiquidGlassUpdated => 'Liquid glass updated.';
+  String get settingsLiquidGlassUpdated => 'Tečno staklo ažurirano.';
 }

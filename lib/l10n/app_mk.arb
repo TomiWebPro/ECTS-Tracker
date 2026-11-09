@@ -1815,5 +1815,25 @@
   "settingsLanguage": "Јазик",
   "@settingsLanguage": {
     "description": "Language tile title and language picker dialog title."
+  },
+  "settingsLiquidGlass": "Течно стакло",
+  "@settingsLiquidGlass": {
+    "description": "Liquid glass opt-in tile title in the Display section."
+  },
+  "settingsLiquidGlassSubtitle": "Картички и ленти од матирано стакло. Исклучено го задржува класичниот солиден изглед.",
+  "@settingsLiquidGlassSubtitle": {
+    "description": "Liquid glass tile description line."
+  },
+  "settingsLiquidGlassOn": "Вклучено",
+  "@settingsLiquidGlassOn": {
+    "description": "Liquid glass tile state label when the opt-in is enabled."
+  },
+  "settingsLiquidGlassOff": "Исклучено",
+  "@settingsLiquidGlassOff": {
+    "description": "Liquid glass tile state label when the opt-in is disabled."
+  },
+  "settingsLiquidGlassUpdated": "Течното стакло е ажурирано.",
+  "@settingsLiquidGlassUpdated": {
+    "description": "SnackBar after the liquid glass opt-in changes."
   }
 }

@@ -1135,18 +1135,18 @@ class AppLocalizationsRo extends AppLocalizations {
   String get settingsLanguage => 'Limbă';
 
   @override
-  String get settingsLiquidGlass => 'Liquid glass';
+  String get settingsLiquidGlass => 'Sticlă lichidă';
 
   @override
   String get settingsLiquidGlassSubtitle =>
-      'Frosted glass cards and bars. Off keeps the classic solid look.';
+      'Carduri și bare din sticlă mată. Oprit păstrează aspectul clasic solid.';
 
   @override
-  String get settingsLiquidGlassOn => 'On';
+  String get settingsLiquidGlassOn => 'Activat';
 
   @override
-  String get settingsLiquidGlassOff => 'Off';
+  String get settingsLiquidGlassOff => 'Dezactivat';
 
   @override
-  String get settingsLiquidGlassUpdated => 'Liquid glass updated.';
+  String get settingsLiquidGlassUpdated => 'Sticla lichidă a fost actualizată.';
 }

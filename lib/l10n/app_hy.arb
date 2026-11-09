@@ -1815,5 +1815,25 @@
   "settingsLanguage": "Լեզու",
   "@settingsLanguage": {
     "description": "Language tile title and language picker dialog title."
+  },
+  "settingsLiquidGlass": "Հեղուկ ապակի",
+  "@settingsLiquidGlass": {
+    "description": "Liquid glass opt-in tile title in the Display section."
+  },
+  "settingsLiquidGlassSubtitle": "Սառեցված ապակուց քարտեր և գոտիներ։ Անջատված դեպքում պահպանվում է դասական հարթ տեսքը։",
+  "@settingsLiquidGlassSubtitle": {
+    "description": "Liquid glass tile description line."
+  },
+  "settingsLiquidGlassOn": "Միացված",
+  "@settingsLiquidGlassOn": {
+    "description": "Liquid glass tile state label when the opt-in is enabled."
+  },
+  "settingsLiquidGlassOff": "Անջատված",
+  "@settingsLiquidGlassOff": {
+    "description": "Liquid glass tile state label when the opt-in is disabled."
+  },
+  "settingsLiquidGlassUpdated": "Հեղուկ ապակին թարմացվեց։",
+  "@settingsLiquidGlassUpdated": {
+    "description": "SnackBar after the liquid glass opt-in changes."
   }
 }

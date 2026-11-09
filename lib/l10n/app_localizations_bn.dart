@@ -1126,18 +1126,18 @@ class AppLocalizationsBn extends AppLocalizations {
   String get settingsLanguage => 'ভাষা';
 
   @override
-  String get settingsLiquidGlass => 'Liquid glass';
+  String get settingsLiquidGlass => 'তরল কাচ';
 
   @override
   String get settingsLiquidGlassSubtitle =>
-      'Frosted glass cards and bars. Off keeps the classic solid look.';
+      'ফ্রস্টেড কাচের কার্ড ও বার। বন্ধ থাকলে ক্লাসিক সলিড রূপ বজায় থাকে।';
 
   @override
-  String get settingsLiquidGlassOn => 'On';
+  String get settingsLiquidGlassOn => 'চালু';
 
   @override
-  String get settingsLiquidGlassOff => 'Off';
+  String get settingsLiquidGlassOff => 'বন্ধ';
 
   @override
-  String get settingsLiquidGlassUpdated => 'Liquid glass updated.';
+  String get settingsLiquidGlassUpdated => 'তরল কাচ আপডেট হয়েছে।';
 }

@@ -1132,18 +1132,18 @@ class AppLocalizationsLb extends AppLocalizations {
   String get settingsLanguage => 'Sprooch';
 
   @override
-  String get settingsLiquidGlass => 'Liquid glass';
+  String get settingsLiquidGlass => 'Flëssegt Glas';
 
   @override
   String get settingsLiquidGlassSubtitle =>
-      'Frosted glass cards and bars. Off keeps the classic solid look.';
+      'Kaarten a Barre vu Mëllechglas. Aus behält de klassesche massiven Look.';
 
   @override
-  String get settingsLiquidGlassOn => 'On';
+  String get settingsLiquidGlassOn => 'Un';
 
   @override
-  String get settingsLiquidGlassOff => 'Off';
+  String get settingsLiquidGlassOff => 'Aus';
 
   @override
-  String get settingsLiquidGlassUpdated => 'Liquid glass updated.';
+  String get settingsLiquidGlassUpdated => 'Flëssegt Glas aktualiséiert.';
 }

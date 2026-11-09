@@ -1142,18 +1142,18 @@ class AppLocalizationsGd extends AppLocalizations {
   String get settingsLanguage => 'Cànan';
 
   @override
-  String get settingsLiquidGlass => 'Liquid glass';
+  String get settingsLiquidGlass => 'Glainne leaghte';
 
   @override
   String get settingsLiquidGlassSubtitle =>
-      'Frosted glass cards and bars. Off keeps the classic solid look.';
+      'Cairtean is bàraichean glainne reòdte. Glèidhidh Dheth an sealladh cruaidh clasaigeach.';
 
   @override
-  String get settingsLiquidGlassOn => 'On';
+  String get settingsLiquidGlassOn => 'Air';
 
   @override
-  String get settingsLiquidGlassOff => 'Off';
+  String get settingsLiquidGlassOff => 'Dheth';
 
   @override
-  String get settingsLiquidGlassUpdated => 'Liquid glass updated.';
+  String get settingsLiquidGlassUpdated => 'Glainne leaghte air ùrachadh.';
 }

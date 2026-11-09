@@ -1129,18 +1129,18 @@ class AppLocalizationsBe extends AppLocalizations {
   String get settingsLanguage => 'Мова';
 
   @override
-  String get settingsLiquidGlass => 'Liquid glass';
+  String get settingsLiquidGlass => 'Вадкае шкло';
 
   @override
   String get settingsLiquidGlassSubtitle =>
-      'Frosted glass cards and bars. Off keeps the classic solid look.';
+      'Карткі і панэлі з матавага шкла. Выкл. захоўвае класічны суцэльны выгляд.';
 
   @override
-  String get settingsLiquidGlassOn => 'On';
+  String get settingsLiquidGlassOn => 'Укл.';
 
   @override
-  String get settingsLiquidGlassOff => 'Off';
+  String get settingsLiquidGlassOff => 'Выкл.';
 
   @override
-  String get settingsLiquidGlassUpdated => 'Liquid glass updated.';
+  String get settingsLiquidGlassUpdated => 'Вадкае шкло абноўлена.';
 }

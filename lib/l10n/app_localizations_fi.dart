@@ -1132,18 +1132,18 @@ class AppLocalizationsFi extends AppLocalizations {
   String get settingsLanguage => 'Kieli';
 
   @override
-  String get settingsLiquidGlass => 'Liquid glass';
+  String get settingsLiquidGlass => 'Nestelasi';
 
   @override
   String get settingsLiquidGlassSubtitle =>
-      'Frosted glass cards and bars. Off keeps the classic solid look.';
+      'Huurrelasista tehdyt kortit ja palkit. Pois käytössä säilyy klassinen yhtenäinen ilme.';
 
   @override
-  String get settingsLiquidGlassOn => 'On';
+  String get settingsLiquidGlassOn => 'Päällä';
 
   @override
-  String get settingsLiquidGlassOff => 'Off';
+  String get settingsLiquidGlassOff => 'Pois';
 
   @override
-  String get settingsLiquidGlassUpdated => 'Liquid glass updated.';
+  String get settingsLiquidGlassUpdated => 'Nestelasi päivitetty.';
 }

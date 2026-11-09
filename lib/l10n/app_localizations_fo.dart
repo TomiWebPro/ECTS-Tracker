@@ -1131,18 +1131,18 @@ class AppLocalizationsFo extends AppLocalizations {
   String get settingsLanguage => 'Mál';
 
   @override
-  String get settingsLiquidGlass => 'Liquid glass';
+  String get settingsLiquidGlass => 'Flótglas';
 
   @override
   String get settingsLiquidGlassSubtitle =>
-      'Frosted glass cards and bars. Off keeps the classic solid look.';
+      'Frostglas-kort og strikur. Sløkt varðveitir tað klassiska einfalda útsjóndina.';
 
   @override
-  String get settingsLiquidGlassOn => 'On';
+  String get settingsLiquidGlassOn => 'Kveikt';
 
   @override
-  String get settingsLiquidGlassOff => 'Off';
+  String get settingsLiquidGlassOff => 'Sløkt';
 
   @override
-  String get settingsLiquidGlassUpdated => 'Liquid glass updated.';
+  String get settingsLiquidGlassUpdated => 'Flótglas dagført.';
 }

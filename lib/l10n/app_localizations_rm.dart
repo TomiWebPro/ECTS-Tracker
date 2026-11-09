@@ -1133,11 +1133,11 @@ class AppLocalizationsRm extends AppLocalizations {
   String get settingsLanguage => 'Lingua';
 
   @override
-  String get settingsLiquidGlass => 'Liquid glass';
+  String get settingsLiquidGlass => 'Veder liquid';
 
   @override
   String get settingsLiquidGlassSubtitle =>
-      'Frosted glass cards and bars. Off keeps the classic solid look.';
+      'Cartas e travs en veder smeriglià. Off mantegna la cumparsa classica solida.';
 
   @override
   String get settingsLiquidGlassOn => 'On';
@@ -1146,5 +1146,5 @@ class AppLocalizationsRm extends AppLocalizations {
   String get settingsLiquidGlassOff => 'Off';
 
   @override
-  String get settingsLiquidGlassUpdated => 'Liquid glass updated.';
+  String get settingsLiquidGlassUpdated => 'Veder liquid actualisà.';
 }

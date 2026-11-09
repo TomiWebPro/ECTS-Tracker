@@ -1134,18 +1134,18 @@ class AppLocalizationsCy extends AppLocalizations {
   String get settingsLanguage => 'Iaith';
 
   @override
-  String get settingsLiquidGlass => 'Liquid glass';
+  String get settingsLiquidGlass => 'Gwydr hylif';
 
   @override
   String get settingsLiquidGlassSubtitle =>
-      'Frosted glass cards and bars. Off keeps the classic solid look.';
+      'Cardiau a bariau gwydr barugog. Mae I ffwrdd yn cadw\'r olwg solet glasurol.';
 
   @override
-  String get settingsLiquidGlassOn => 'On';
+  String get settingsLiquidGlassOn => 'Ymlaen';
 
   @override
-  String get settingsLiquidGlassOff => 'Off';
+  String get settingsLiquidGlassOff => 'I ffwrdd';
 
   @override
-  String get settingsLiquidGlassUpdated => 'Liquid glass updated.';
+  String get settingsLiquidGlassUpdated => 'Gwydr hylif wedi\'i ddiweddaru.';
 }

@@ -1123,18 +1123,18 @@ class AppLocalizationsVi extends AppLocalizations {
   String get settingsLanguage => 'Ngôn ngữ';
 
   @override
-  String get settingsLiquidGlass => 'Liquid glass';
+  String get settingsLiquidGlass => 'Kính lỏng';
 
   @override
   String get settingsLiquidGlassSubtitle =>
-      'Frosted glass cards and bars. Off keeps the classic solid look.';
+      'Thẻ và thanh kính mờ. Tắt giữ giao diện cổ điển.';
 
   @override
-  String get settingsLiquidGlassOn => 'On';
+  String get settingsLiquidGlassOn => 'Bật';
 
   @override
-  String get settingsLiquidGlassOff => 'Off';
+  String get settingsLiquidGlassOff => 'Tắt';
 
   @override
-  String get settingsLiquidGlassUpdated => 'Liquid glass updated.';
+  String get settingsLiquidGlassUpdated => 'Đã cập nhật kính lỏng.';
 }

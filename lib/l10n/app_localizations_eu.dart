@@ -1135,18 +1135,18 @@ class AppLocalizationsEu extends AppLocalizations {
   String get settingsLanguage => 'Hizkuntza';
 
   @override
-  String get settingsLiquidGlass => 'Liquid glass';
+  String get settingsLiquidGlass => 'Beira likidoa';
 
   @override
   String get settingsLiquidGlassSubtitle =>
-      'Frosted glass cards and bars. Off keeps the classic solid look.';
+      'Beira izoztuzko txartelak eta barrak. Desaktibatuta itxura klasiko trinkoa mantentzen da.';
 
   @override
-  String get settingsLiquidGlassOn => 'On';
+  String get settingsLiquidGlassOn => 'Aktibatuta';
 
   @override
-  String get settingsLiquidGlassOff => 'Off';
+  String get settingsLiquidGlassOff => 'Desaktibatuta';
 
   @override
-  String get settingsLiquidGlassUpdated => 'Liquid glass updated.';
+  String get settingsLiquidGlassUpdated => 'Beira likidoa eguneratu da.';
 }

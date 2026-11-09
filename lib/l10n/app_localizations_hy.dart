@@ -1131,18 +1131,18 @@ class AppLocalizationsHy extends AppLocalizations {
   String get settingsLanguage => 'Լեզու';
 
   @override
-  String get settingsLiquidGlass => 'Liquid glass';
+  String get settingsLiquidGlass => 'Հեղուկ ապակի';
 
   @override
   String get settingsLiquidGlassSubtitle =>
-      'Frosted glass cards and bars. Off keeps the classic solid look.';
+      'Սառեցված ապակուց քարտեր և գոտիներ։ Անջատված դեպքում պահպանվում է դասական հարթ տեսքը։';
 
   @override
-  String get settingsLiquidGlassOn => 'On';
+  String get settingsLiquidGlassOn => 'Միացված';
 
   @override
-  String get settingsLiquidGlassOff => 'Off';
+  String get settingsLiquidGlassOff => 'Անջատված';
 
   @override
-  String get settingsLiquidGlassUpdated => 'Liquid glass updated.';
+  String get settingsLiquidGlassUpdated => 'Հեղուկ ապակին թարմացվեց։';
 }

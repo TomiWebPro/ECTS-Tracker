@@ -1133,18 +1133,18 @@ class AppLocalizationsLt extends AppLocalizations {
   String get settingsLanguage => 'Kalba';
 
   @override
-  String get settingsLiquidGlass => 'Liquid glass';
+  String get settingsLiquidGlass => 'Skystas stiklas';
 
   @override
   String get settingsLiquidGlassSubtitle =>
-      'Frosted glass cards and bars. Off keeps the classic solid look.';
+      'Matinio stiklo kortelės ir juostos. Išjungta palieka klasikinį vientisą vaizdą.';
 
   @override
-  String get settingsLiquidGlassOn => 'On';
+  String get settingsLiquidGlassOn => 'Įjungta';
 
   @override
-  String get settingsLiquidGlassOff => 'Off';
+  String get settingsLiquidGlassOff => 'Išjungta';
 
   @override
-  String get settingsLiquidGlassUpdated => 'Liquid glass updated.';
+  String get settingsLiquidGlassUpdated => 'Skystas stiklas atnaujintas.';
 }

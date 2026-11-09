@@ -1131,18 +1131,18 @@ class AppLocalizationsTe extends AppLocalizations {
   String get settingsLanguage => 'భాష';
 
   @override
-  String get settingsLiquidGlass => 'Liquid glass';
+  String get settingsLiquidGlass => 'లిక్విడ్ గ్లాస్';
 
   @override
   String get settingsLiquidGlassSubtitle =>
-      'Frosted glass cards and bars. Off keeps the classic solid look.';
+      'ఫ్రాస్టెడ్ గ్లాస్ కార్డులు, బార్లు. ఆఫ్‌లో క్లాసిక్ సాలిడ్ రూపం ఉంటుంది.';
 
   @override
-  String get settingsLiquidGlassOn => 'On';
+  String get settingsLiquidGlassOn => 'ఆన్';
 
   @override
-  String get settingsLiquidGlassOff => 'Off';
+  String get settingsLiquidGlassOff => 'ఆఫ్';
 
   @override
-  String get settingsLiquidGlassUpdated => 'Liquid glass updated.';
+  String get settingsLiquidGlassUpdated => 'లిక్విడ్ గ్లాస్ నవీకరించబడింది.';
 }

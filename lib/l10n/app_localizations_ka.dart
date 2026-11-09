@@ -1130,18 +1130,18 @@ class AppLocalizationsKa extends AppLocalizations {
   String get settingsLanguage => 'ენა';
 
   @override
-  String get settingsLiquidGlass => 'Liquid glass';
+  String get settingsLiquidGlass => 'თხევადი მინა';
 
   @override
   String get settingsLiquidGlassSubtitle =>
-      'Frosted glass cards and bars. Off keeps the classic solid look.';
+      'ბარათები და ზოლები მქრქალი მინით. გამორთული ტოვებს კლასიკურ მყარ იერსახეს.';
 
   @override
-  String get settingsLiquidGlassOn => 'On';
+  String get settingsLiquidGlassOn => 'ჩართული';
 
   @override
-  String get settingsLiquidGlassOff => 'Off';
+  String get settingsLiquidGlassOff => 'გამორთული';
 
   @override
-  String get settingsLiquidGlassUpdated => 'Liquid glass updated.';
+  String get settingsLiquidGlassUpdated => 'თხევადი მინა განახლდა.';
 }

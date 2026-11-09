@@ -1135,11 +1135,11 @@ class AppLocalizationsIt extends AppLocalizations {
   String get settingsLanguage => 'Lingua';
 
   @override
-  String get settingsLiquidGlass => 'Liquid glass';
+  String get settingsLiquidGlass => 'Vetro liquido';
 
   @override
   String get settingsLiquidGlassSubtitle =>
-      'Frosted glass cards and bars. Off keeps the classic solid look.';
+      'Schede e barre in vetro satinato. Con Off mantieni il classico aspetto solido.';
 
   @override
   String get settingsLiquidGlassOn => 'On';
@@ -1148,5 +1148,5 @@ class AppLocalizationsIt extends AppLocalizations {
   String get settingsLiquidGlassOff => 'Off';
 
   @override
-  String get settingsLiquidGlassUpdated => 'Liquid glass updated.';
+  String get settingsLiquidGlassUpdated => 'Vetro liquido aggiornato.';
 }

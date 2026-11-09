@@ -1130,18 +1130,18 @@ class AppLocalizationsLv extends AppLocalizations {
   String get settingsLanguage => 'Valoda';
 
   @override
-  String get settingsLiquidGlass => 'Liquid glass';
+  String get settingsLiquidGlass => 'Šķidrais stikls';
 
   @override
   String get settingsLiquidGlassSubtitle =>
-      'Frosted glass cards and bars. Off keeps the classic solid look.';
+      'Matēta stikla kartītes un joslas. Izslēgts saglabā klasisko vienlaidu izskatu.';
 
   @override
-  String get settingsLiquidGlassOn => 'On';
+  String get settingsLiquidGlassOn => 'Ieslēgts';
 
   @override
-  String get settingsLiquidGlassOff => 'Off';
+  String get settingsLiquidGlassOff => 'Izslēgts';
 
   @override
-  String get settingsLiquidGlassUpdated => 'Liquid glass updated.';
+  String get settingsLiquidGlassUpdated => 'Šķidrais stikls atjaunināts.';
 }

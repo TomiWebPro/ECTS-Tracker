@@ -1128,18 +1128,18 @@ class AppLocalizationsCs extends AppLocalizations {
   String get settingsLanguage => 'Jazyk';
 
   @override
-  String get settingsLiquidGlass => 'Liquid glass';
+  String get settingsLiquidGlass => 'Tekuté sklo';
 
   @override
   String get settingsLiquidGlassSubtitle =>
-      'Frosted glass cards and bars. Off keeps the classic solid look.';
+      'Karty a lišty z matného skla. Vypnuto zachová klasický plný vzhled.';
 
   @override
-  String get settingsLiquidGlassOn => 'On';
+  String get settingsLiquidGlassOn => 'Zapnuto';
 
   @override
-  String get settingsLiquidGlassOff => 'Off';
+  String get settingsLiquidGlassOff => 'Vypnuto';
 
   @override
-  String get settingsLiquidGlassUpdated => 'Liquid glass updated.';
+  String get settingsLiquidGlassUpdated => 'Tekuté sklo aktualizováno.';
 }

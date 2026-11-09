@@ -1130,7 +1130,7 @@ class AppLocalizationsPcm extends AppLocalizations {
 
   @override
   String get settingsLiquidGlassSubtitle =>
-      'Frosted glass cards and bars. Off keeps the classic solid look.';
+      'Cards and bars wit frosted glass. Off go keep di classic solid look.';
 
   @override
   String get settingsLiquidGlassOn => 'On';
@@ -1139,5 +1139,5 @@ class AppLocalizationsPcm extends AppLocalizations {
   String get settingsLiquidGlassOff => 'Off';
 
   @override
-  String get settingsLiquidGlassUpdated => 'Liquid glass updated.';
+  String get settingsLiquidGlassUpdated => 'Liquid glass don update.';
 }

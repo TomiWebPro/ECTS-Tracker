@@ -1137,18 +1137,18 @@ class AppLocalizationsGa extends AppLocalizations {
   String get settingsLanguage => 'Teanga';
 
   @override
-  String get settingsLiquidGlass => 'Liquid glass';
+  String get settingsLiquidGlass => 'Gloine leachtach';
 
   @override
   String get settingsLiquidGlassSubtitle =>
-      'Frosted glass cards and bars. Off keeps the classic solid look.';
+      'Cártaí agus barraí gloine sioctha. Coinníonn Múchta an seandhealramh daingean.';
 
   @override
-  String get settingsLiquidGlassOn => 'On';
+  String get settingsLiquidGlassOn => 'Ar siúl';
 
   @override
-  String get settingsLiquidGlassOff => 'Off';
+  String get settingsLiquidGlassOff => 'Múchta';
 
   @override
-  String get settingsLiquidGlassUpdated => 'Liquid glass updated.';
+  String get settingsLiquidGlassUpdated => 'Gloine leachtach nuashonraithe.';
 }

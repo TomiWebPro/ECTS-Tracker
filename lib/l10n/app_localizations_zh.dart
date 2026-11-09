@@ -1097,20 +1097,19 @@ class AppLocalizationsZh extends AppLocalizations {
   String get settingsLanguage => '语言';
 
   @override
-  String get settingsLiquidGlass => 'Liquid glass';
+  String get settingsLiquidGlass => '液态玻璃';
 
   @override
-  String get settingsLiquidGlassSubtitle =>
-      'Frosted glass cards and bars. Off keeps the classic solid look.';
+  String get settingsLiquidGlassSubtitle => '磨砂玻璃卡片和栏。关闭则保持经典纯色外观。';
 
   @override
-  String get settingsLiquidGlassOn => 'On';
+  String get settingsLiquidGlassOn => '开';
 
   @override
-  String get settingsLiquidGlassOff => 'Off';
+  String get settingsLiquidGlassOff => '关';
 
   @override
-  String get settingsLiquidGlassUpdated => 'Liquid glass updated.';
+  String get settingsLiquidGlassUpdated => '液态玻璃已更新。';
 }
 
 /// The translations for Chinese, using the Han script (`zh_Hans`).
@@ -2203,6 +2202,21 @@ class AppLocalizationsZhHans extends AppLocalizationsZh {
 
   @override
   String get settingsLanguage => '语言';
+
+  @override
+  String get settingsLiquidGlass => '液态玻璃';
+
+  @override
+  String get settingsLiquidGlassSubtitle => '磨砂玻璃卡片和栏。关闭则保持经典纯色外观。';
+
+  @override
+  String get settingsLiquidGlassOn => '开';
+
+  @override
+  String get settingsLiquidGlassOff => '关';
+
+  @override
+  String get settingsLiquidGlassUpdated => '液态玻璃已更新。';
 }
 
 /// The translations for Chinese, using the Han script (`zh_Hant`).
@@ -3295,4 +3309,19 @@ class AppLocalizationsZhHant extends AppLocalizationsZh {
 
   @override
   String get settingsLanguage => '語言';
+
+  @override
+  String get settingsLiquidGlass => '液態玻璃';
+
+  @override
+  String get settingsLiquidGlassSubtitle => '磨砂玻璃卡片和欄。關閉則保持經典純色外觀。';
+
+  @override
+  String get settingsLiquidGlassOn => '開';
+
+  @override
+  String get settingsLiquidGlassOff => '關';
+
+  @override
+  String get settingsLiquidGlassUpdated => '液態玻璃已更新。';
 }

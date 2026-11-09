@@ -1131,18 +1131,18 @@ class AppLocalizationsAz extends AppLocalizations {
   String get settingsLanguage => 'Dil';
 
   @override
-  String get settingsLiquidGlass => 'Liquid glass';
+  String get settingsLiquidGlass => 'Maye şüşə';
 
   @override
   String get settingsLiquidGlassSubtitle =>
-      'Frosted glass cards and bars. Off keeps the classic solid look.';
+      'Buzlu şüşə kartlar və panellər. Sönülü klassik tam görünüşü saxlayır.';
 
   @override
-  String get settingsLiquidGlassOn => 'On';
+  String get settingsLiquidGlassOn => 'Aktiv';
 
   @override
-  String get settingsLiquidGlassOff => 'Off';
+  String get settingsLiquidGlassOff => 'Sönülü';
 
   @override
-  String get settingsLiquidGlassUpdated => 'Liquid glass updated.';
+  String get settingsLiquidGlassUpdated => 'Maye şüşə yeniləndi.';
 }

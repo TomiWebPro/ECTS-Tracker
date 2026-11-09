@@ -1135,18 +1135,18 @@ class AppLocalizationsMt extends AppLocalizations {
   String get settingsLanguage => 'Lingwa';
 
   @override
-  String get settingsLiquidGlass => 'Liquid glass';
+  String get settingsLiquidGlass => 'Ħġieġ likwidu';
 
   @override
   String get settingsLiquidGlassSubtitle =>
-      'Frosted glass cards and bars. Off keeps the classic solid look.';
+      'Kards u bars tal-ħġieġ imċajpar. Mitfi jżomm id-dehra klassika solida.';
 
   @override
-  String get settingsLiquidGlassOn => 'On';
+  String get settingsLiquidGlassOn => 'Mixgħul';
 
   @override
-  String get settingsLiquidGlassOff => 'Off';
+  String get settingsLiquidGlassOff => 'Mitfi';
 
   @override
-  String get settingsLiquidGlassUpdated => 'Liquid glass updated.';
+  String get settingsLiquidGlassUpdated => 'Il-ħġieġ likwidu ġie aġġornat.';
 }
