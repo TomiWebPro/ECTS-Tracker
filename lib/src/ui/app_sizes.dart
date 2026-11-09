@@ -199,4 +199,48 @@ abstract final class AppSizes {
   static const double colorOptionRunSpacing = 8.0;
   static const double colorSwatchW = 24.0;
   static const double colorSwatchH = 16.0;
+
+  // ------------------------------------------------------------------
+  // Liquid glass floating chrome (ECTS-062)
+  // ------------------------------------------------------------------
+  /// Floating tab-bar capsule size. Height 68 (not the 62 component
+  /// default): five labeled tabs need the extra cell height — the
+  /// default icon size overflows a 62-pt bar by 3 px (probe ECTS-062).
+  /// Glyph size 24 follows the package's own tab-bar example.
+  static const double glassTabWidth = 328.0;
+  static const double glassTabHeight = 68.0;
+  static const double glassTabIconSize = 24.0;
+
+  /// Gap between floating chrome and the screen edges / page body.
+  static const double glassChromeGap = 8.0;
+
+  /// Bottom offset of the floating tab bar (safe-area inset applies
+  /// on top of this via the enclosing SafeArea).
+  static const double glassTabBottomMargin = 24.0;
+
+  /// Floating app-bar height (LiquidGlassAppBar default) + width clamps
+  /// for the responsive bar width.
+  static const double glassBarHeight = 56.0;
+  static const double glassBarMinWidth = 280.0;
+  static const double glassBarMaxWidth = 520.0;
+
+  /// Leading inset + title size inside the floating app bar (match the
+  /// legacy AppBar look).
+  static const double glassBarLeadingPad = 12.0;
+  static const double glassBarTitleSize = 26.0;
+
+  /// Height of the top/bottom scroll-edge legibility bands pinned over
+  /// the page under the floating chrome.
+  static const double glassEdgeBand = 96.0;
+
+  /// FAB bottom offset in glass mode: clears the floating tab bar
+  /// (glassTabBottomMargin + glassTabHeight + glassChromeGap = 100).
+  static const double glassFabLift = 100.0;
+
+  /// Page insets so the first/last content clears the floating chrome:
+  /// top clears the app bar (glassBarHeight + 2 x glassChromeGap = 72),
+  /// bottom clears the tab bar (glassTabHeight + glassTabBottomMargin
+  /// + glassChromeGap + breathing room = 108).
+  static const double glassPageTopInset = 72.0;
+  static const double glassPageBottomInset = 108.0;
 }
