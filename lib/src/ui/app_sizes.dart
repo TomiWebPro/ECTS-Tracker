@@ -229,10 +229,6 @@ abstract final class AppSizes {
   static const double glassBarLeadingPad = 12.0;
   static const double glassBarTitleSize = 26.0;
 
-  /// Height of the top/bottom scroll-edge legibility bands pinned over
-  /// the page under the floating chrome.
-  static const double glassEdgeBand = 96.0;
-
   /// FAB bottom offset in glass mode: clears the floating tab bar
   /// (glassTabBottomMargin + glassTabHeight + glassChromeGap = 100).
   static const double glassFabLift = 100.0;

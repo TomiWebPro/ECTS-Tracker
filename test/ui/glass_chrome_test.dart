@@ -125,8 +125,8 @@ void main() {
       expect(find.byType(LiquidGlassAppBar), findsOneWidget);
       expect(find.byType(LiquidGlassTabBar), findsOneWidget);
       expect(find.byType(LiquidGlassBatch), findsWidgets);
-      // Top + bottom legibility bands.
-      expect(find.byType(LiquidGlassScrollEdge), findsNWidgets(2));
+      // No scroll-edge bands (ECTS-066): removed, no black fade.
+      expect(find.byType(LiquidGlassScrollEdge), findsNothing);
       // Dashboard log action keeps its Key on the glass button.
       final action = find.byKey(const Key('dashboardLogSessionAction'));
       expect(action, findsOneWidget);
@@ -164,7 +164,8 @@ void main() {
       );
       expect(find.byKey(const Key('addCourseFab')), findsOneWidget);
       expect(
-        tester.widget<LiquidGlassFab>(find.byKey(const Key('addCourseFab'))),
+        tester.widget<LiquidGlassButton>(
+            find.byKey(const Key('addCourseFab'))),
         isNotNull,
       );
 

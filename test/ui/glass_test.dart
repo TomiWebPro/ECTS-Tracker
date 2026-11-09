@@ -157,7 +157,7 @@ void main() {
       );
       expect(
         find.descendant(of: tile, matching: find.text('Off')),
-        findsOneWidget,
+        findsNothing,
       );
 
       final toggle =
@@ -173,7 +173,7 @@ void main() {
       expect(tester.widget<Switch>(toggle).value, isTrue);
       expect(
         find.descendant(of: tile, matching: find.text('On')),
-        findsOneWidget,
+        findsNothing,
       );
       expect(find.text('Liquid glass updated.'), findsOneWidget);
 
@@ -185,7 +185,7 @@ void main() {
       expect(tester.widget<Switch>(toggle).value, isFalse);
       expect(
         find.descendant(of: tile, matching: find.text('Off')),
-        findsOneWidget,
+        findsNothing,
       );
 
       // Tear down in dependency order (see l10n_smoke_test.dart).

@@ -256,7 +256,8 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
       child: ConstrainedBox(
         constraints: const BoxConstraints(
             maxWidth: AppSizes.maxContentWidth),
-        child: ListView(
+        child: GlassBatch(
+          child: ListView(
           padding: const EdgeInsets.fromLTRB(
             AppSizes.pageHPad,
             AppSizes.pageTopPad,
@@ -381,18 +382,9 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
                   tileKey: const Key('liquidGlassTile'),
                   icon: Icons.blur_on_outlined,
                   title: l10n.settingsLiquidGlass,
-                  subtitle: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      Text(l10n.settingsLiquidGlassSubtitle),
-                      Text(
-                        settings.liquidGlass
-                            ? l10n.settingsLiquidGlassOn
-                            : l10n.settingsLiquidGlassOff,
-                      ),
-                    ],
-                  ),
+                  // No On/Off state line (ECTS-066): the Switch itself
+                  // already shows the state.
+                  subtitle: Text(l10n.settingsLiquidGlassSubtitle),
                   trailing: Switch(
                     value: settings.liquidGlass,
                     onChanged: (value) =>
@@ -510,6 +502,7 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
             ],
             const SizedBox(height: 8),
           ],
+          ),
         ),
       ),
     );
@@ -1535,7 +1528,9 @@ class _SettingsCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
+    // Glass cards (ECTS-067): lite lens when on (GlassCard gate renders
+    // the identical Card when off). Tiles keep Keys/taps/dividers.
+    return GlassCard(
       child: Padding(
         padding: const EdgeInsets.symmetric(vertical: 4),
         child: Column(children: children),

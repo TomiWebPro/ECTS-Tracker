@@ -151,8 +151,9 @@ class _HomeShellState extends State<HomeShell> {
         // Glass chrome: one batch over the floating bars so they share a
         // single backdrop read (ECTS-062). Members must not overlap: the
         // app bar sits top, the FAB rides above the tab bar, the tab bar
-        // is the last Stack child (docs' standalone pattern), and the
-        // scroll-edge bands are excluded (each overlaps the chrome).
+        // is the last Stack child (docs' standalone pattern). No
+        // scroll-edge bands (ECTS-066): their black fade gradient washed
+        // over content and read as a dirty overlay.
         return Scaffold(
           extendBody: true,
           body: SafeArea(
@@ -166,28 +167,6 @@ class _HomeShellState extends State<HomeShell> {
                         bottom: AppSizes.glassPageBottomInset,
                       ),
                       child: page,
-                    ),
-                  ),
-                  const Positioned(
-                    top: 0,
-                    left: 0,
-                    right: 0,
-                    height: AppSizes.glassEdgeBand,
-                    child: LiquidGlassBatch.exclude(
-                      child: LiquidGlassScrollEdge(
-                        edge: LiquidGlassEdge.top,
-                      ),
-                    ),
-                  ),
-                  const Positioned(
-                    bottom: 0,
-                    left: 0,
-                    right: 0,
-                    height: AppSizes.glassEdgeBand,
-                    child: LiquidGlassBatch.exclude(
-                      child: LiquidGlassScrollEdge(
-                        edge: LiquidGlassEdge.bottom,
-                      ),
                     ),
                   ),
                   Positioned(
@@ -205,28 +184,69 @@ class _HomeShellState extends State<HomeShell> {
                       ),
                     ),
                   ),
+                  // Glass action pills (ECTS-066): LiquidGlassButton, not Fab —
+                  // only Button answers a finger with the same subtle
+                  // press/drag flex as the dashboard action. Light
+                  // primaryContainer frost + dark ink + soft shadow: airy
+                  // pills that float (package white-on-frost default is
+                  // invisible on light themes). Same Keys/tooltips/taps
+                  // as the legacy FABs.
                   if (_index == 1)
                     Positioned(
                       right: AppSizes.pageHPad,
                       bottom: AppSizes.glassFabLift,
-                      child: LiquidGlassFab.extended(
-                        key: const Key('addCourseFab'),
-                        onPressed: () => showCourseFormDialog(context),
-                        tooltip: l10n.coursesAddTooltip,
-                        icon: Icons.add,
-                        label: Text(l10n.coursesNewCourse),
+                      child: Tooltip(
+                        message: l10n.coursesAddTooltip,
+                        child: LiquidGlassButton(
+                          key: const Key('addCourseFab'),
+                          onPressed: () => showCourseFormDialog(context),
+                          icon: Icons.add,
+                          label: l10n.coursesNewCourse,
+                          foregroundColor: scheme.onPrimaryContainer,
+                          style: LiquidGlassButton.defaultStyle.copyWith(
+                            color: scheme.primaryContainer
+                                .withValues(alpha: 0.55),
+                            // Shared card shadow (ECTS-066) — one depth
+                            // language everywhere.
+                            shadow: glassCardShadow,
+                          ),
+                          touch: const LiquidGlassTouch.flexing(
+                            LiquidGlassFlex.subtle(),
+                          ),
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: AppSizes.fabHPad,
+                            vertical: AppSizes.fabVPad,
+                          ),
+                        ),
                       ),
                     ),
                   if (_index == 2)
                     Positioned(
                       right: AppSizes.pageHPad,
                       bottom: AppSizes.glassFabLift,
-                      child: LiquidGlassFab.extended(
-                        key: const Key('logSessionFab'),
-                        onPressed: () => showSessionFormDialog(context),
-                        tooltip: l10n.studyLogFabTooltip,
-                        icon: Icons.timer,
-                        label: Text(l10n.studyLogFabLabel),
+                      child: Tooltip(
+                        message: l10n.studyLogFabTooltip,
+                        child: LiquidGlassButton(
+                          key: const Key('logSessionFab'),
+                          onPressed: () => showSessionFormDialog(context),
+                          icon: Icons.timer,
+                          label: l10n.studyLogFabLabel,
+                          foregroundColor: scheme.onPrimaryContainer,
+                          style: LiquidGlassButton.defaultStyle.copyWith(
+                            color: scheme.primaryContainer
+                                .withValues(alpha: 0.55),
+                            // Shared card shadow (ECTS-066) — one depth
+                            // language everywhere.
+                            shadow: glassCardShadow,
+                          ),
+                          touch: const LiquidGlassTouch.flexing(
+                            LiquidGlassFlex.subtle(),
+                          ),
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: AppSizes.fabHPad,
+                            vertical: AppSizes.fabVPad,
+                          ),
+                        ),
                       ),
                     ),
                   LiquidGlassTabBar(
@@ -285,6 +305,14 @@ class _HomeShellState extends State<HomeShell> {
       height: AppSizes.glassBarHeight,
       centerTitle: false,
       foregroundColor: scheme.onSurface,
+      // Tinted frost + chrome shadow (ECTS-066): the default near-clear
+      // frost is invisible against the white page — a primaryContainer
+      // wash makes the glass read while the dark onSurface ink stays
+      // legible. Shadow is the shared chrome depth (see glass.dart).
+      style: LiquidGlassAppBar.defaultStyle.copyWith(
+        color: scheme.primaryContainer.withValues(alpha: 0.55),
+        shadow: glassChromeShadow,
+      ),
       leading: const Padding(
         padding: EdgeInsets.only(left: AppSizes.glassBarLeadingPad),
         child: Center(
@@ -309,13 +337,16 @@ class _HomeShellState extends State<HomeShell> {
             icon: Container(
               padding: const EdgeInsets.all(AppSizes.appBarActionPad),
               decoration: BoxDecoration(
-                color: scheme.primaryContainer,
+                // Dark solid chip (ECTS-066): primary on the light bar so
+                // it separates as its own layer — the pale container melted
+                // in. Legacy branch keeps the light container.
+                color: scheme.primary,
                 borderRadius:
                     BorderRadius.circular(AppSizes.appBarActionRadius),
               ),
               child: Icon(Icons.add,
                   size: AppSizes.appBarActionIcon,
-                  color: scheme.onPrimaryContainer),
+                  color: scheme.onPrimary),
             ),
           ),
         const SizedBox(width: AppSizes.dashboardSmallGap),
@@ -333,6 +364,7 @@ class _OverviewPage extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final l10n = AppLocalizations.of(context)!;
+    final scheme = Theme.of(context).colorScheme;
     final coursesAsync = ref.watch(coursesProvider);
     final sessionsAsync = ref.watch(sessionsProvider);
     final settingsAsync = ref.watch(settingsProvider);
@@ -444,12 +476,22 @@ class _OverviewPage extends ConsumerWidget {
           width: double.infinity,
           // Glass gate (ECTS-062): same Key/label/icon/tap, glass body
           // with a subtle press flex; off keeps the FilledButton.
+          // Light frost + dark ink + soft shadow (ECTS-066): airy pill
+          // that floats — the saturated primary wash read as a flat
+          // solid block. Package white-on-frost default is invisible
+          // on light themes, so ink is explicit.
           child: ref.watch(glassEnabledProvider)
               ? LiquidGlassButton(
                   key: const Key('dashboardLogSessionAction'),
                   onPressed: () => showSessionFormDialog(context),
                   icon: Icons.timer_outlined,
                   label: l10n.dashboardLogSessionAction,
+                  foregroundColor: scheme.onPrimaryContainer,
+                  style: LiquidGlassButton.defaultStyle.copyWith(
+                    color: scheme.primaryContainer.withValues(alpha: 0.55),
+                    // Shared card shadow (ECTS-066): one depth language.
+                    shadow: glassCardShadow,
+                  ),
                   touch: const LiquidGlassTouch.flexing(
                     LiquidGlassFlex.subtle(),
                   ),
@@ -1771,45 +1813,62 @@ class _StudyLogPage extends ConsumerWidget {
           Center(child: Text('${l10n.commonError}: $e')),
       data: (sessionList) {
         if (sessionList.isEmpty) {
+          // Same empty-state card as Courses (ECTS-066): solid Card +
+          // icon box + title/hint; only icon/strings/keys differ.
           return Center(
             child: Padding(
               padding: const EdgeInsets.all(AppSizes.pageHPad),
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Container(
-                    width: AppSizes.emptyIconBox,
-                    height: AppSizes.emptyIconBox,
-                    decoration: BoxDecoration(
-                      color: Theme.of(context)
-                          .colorScheme
-                          .primaryContainer
-                          .withValues(alpha: 0.6),
-                      borderRadius: BorderRadius.circular(
-                          AppSizes.emptyIconRadius),
-                    ),
-                    child: Icon(Icons.timer_outlined,
-                        size: AppSizes.emptyIcon,
-                        color:
-                            Theme.of(context).colorScheme.onPrimaryContainer),
+              child: Card(
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(
+                    vertical: AppSizes.emptyVPadding,
+                    horizontal: AppSizes.emptyHPadding,
                   ),
-                  const SizedBox(height: AppSizes.emptyGap),
-                  Text(
-                    l10n.studyLogEmptyTitle,
-                    key: const Key('studyLogEmpty'),
-                    style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                          fontWeight: FontWeight.w800,
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Container(
+                        width: AppSizes.emptyIconBox,
+                        height: AppSizes.emptyIconBox,
+                        decoration: BoxDecoration(
+                          color: Theme.of(context)
+                              .colorScheme
+                              .primaryContainer
+                              .withValues(alpha: 0.6),
+                          borderRadius: BorderRadius.circular(
+                              AppSizes.emptyIconRadius),
                         ),
+                        child: Icon(Icons.timer_outlined,
+                            size: AppSizes.emptyIcon,
+                            color: Theme.of(context)
+                                .colorScheme
+                                .onPrimaryContainer),
+                      ),
+                      const SizedBox(height: AppSizes.emptyGap),
+                      Text(
+                        l10n.studyLogEmptyTitle,
+                        key: const Key('studyLogEmpty'),
+                        style: Theme.of(context)
+                            .textTheme
+                            .titleMedium
+                            ?.copyWith(
+                              fontWeight: FontWeight.w800,
+                            ),
+                      ),
+                      const SizedBox(height: AppSizes.emptySmallGap),
+                      Text(
+                        l10n.studyLogEmptyHint,
+                        style:
+                            Theme.of(context).textTheme.bodyMedium?.copyWith(
+                                  color: Theme.of(context)
+                                      .colorScheme
+                                      .onSurfaceVariant,
+                                ),
+                        textAlign: TextAlign.center,
+                      ),
+                    ],
                   ),
-                  const SizedBox(height: AppSizes.emptySmallGap),
-                  Text(
-                    l10n.studyLogEmptyHint,
-                    style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                          color: Theme.of(context).colorScheme.onSurfaceVariant,
-                        ),
-                    textAlign: TextAlign.center,
-                  ),
-                ],
+                ),
               ),
             ),
           );

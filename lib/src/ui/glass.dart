@@ -14,6 +14,47 @@ final glassEnabledProvider = Provider<bool>(
   (ref) => ref.watch(settingsProvider).valueOrNull?.liquidGlass ?? false,
 );
 
+/// Unified shadow depths (ECTS-066): the only shadow definitions in the
+/// app — every glass surface references one of these, so depth is tuned
+/// in exactly one place. Two tiers, like Material elevations:
+/// [glassCardShadow] for in-flow surfaces (cards, action pills, dialogs)
+/// and [glassChromeShadow] for the floating bars (the app bar mirrors the
+/// tab bar's package default 24/0.12). The card shadow is exterior-only
+/// (`insideGlass: false`) with an explicit downward-RIGHT offset: the
+/// default ring straddles the rim, so its blur halo spills past the top
+/// corners too and the light direction breaks. Offset (4, 5) tucks the
+/// ring just below-right of the outline — close contact, no float —
+/// the exterior clip eats the rest, so shadow pools only at the
+/// bottom-right, like light shining from the top-left.
+const glassCardShadow = LiquidGlassShadow(
+  blur: 3.5,
+  opacity: 0.2,
+  insideGlass: false,
+  offset: Offset(4, 5),
+);
+
+/// Floating-chrome shadow (see [glassCardShadow]): matches the tab bar's
+/// package default so both bars share one depth language.
+const glassChromeShadow = LiquidGlassShadow(blur: 24, opacity: 0.12);
+
+/// Glass tint with separate transparency + brightness knobs (ECTS-066).
+///
+/// A single alpha conflates the two: raising it to hide the backdrop
+/// also deepens the hue (muddy), lowering it to lighten also exposes
+/// the dimmed backdrop (gray). [opacity] sets coverage alone;
+/// [lighten] mixes [base] toward the theme surface (white in light
+/// mode, dark in dark mode) without touching coverage. Defaults
+/// reproduce the card look, so call sites only name what differs.
+Color glassTint(
+  ColorScheme scheme,
+  Color base, {
+  double lighten = 0,
+  double opacity = 0.55,
+}) {
+  final lightened = Color.lerp(base, scheme.surface, lighten) ?? base;
+  return lightened.withValues(alpha: opacity);
+}
+
 /// Shared lite-glass style for cards (ECTS-061).
 ///
 /// Shape is the app's card radius ([AppSizes.cardRadius]) as a continuous
@@ -30,8 +71,8 @@ LiquidGlassStyle glassStyle(BuildContext context) {
     refractionIndex: 1.02,
     refractionWidth: 30,
     blur: 2.5,
-    color: scheme.primaryContainer.withValues(alpha: 0.55),
-    shadow: const LiquidGlassShadow(blur: 3.5, opacity: 0.2),
+    color: glassTint(scheme, scheme.primaryContainer),
+    shadow: glassCardShadow,
     liteGlass: true,
   );
 }
@@ -182,7 +223,18 @@ LiquidGlassAlertDialog glassAlert(
     content: content,
     actions: actions,
     scrollable: scrollable,
-    style: glassStyle(context),
+    // Solid "one color" surface (ECTS-066): the modal barrier dims the
+    // backdrop dark, so translucency only pulls gray into the dialog.
+    // 0.95 coverage — reads solid, keeps a breath of frost at the rim;
+    // lightened tint; lens rim and shadow keep the glass edge.
+    style: glassStyle(context).copyWith(
+      color: glassTint(
+        theme.colorScheme,
+        theme.colorScheme.primaryContainer,
+        lighten: 0.35,
+        opacity: 0.95,
+      ),
+    ),
     titleTextStyle:
         (theme.textTheme.headlineSmall ?? const TextStyle(fontSize: 20))
             .copyWith(color: ink, fontWeight: FontWeight.w600),
