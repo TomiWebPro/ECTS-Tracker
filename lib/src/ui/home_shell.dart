@@ -415,7 +415,10 @@ class _OverviewPage extends ConsumerWidget {
       if (d != null && d > runwayDays) runwayDays = d;
     }
 
-    return ListView(
+    // Glass cards (ECTS-063): hero + course cards share one page batch
+    // (lite lenses only; members never overlap in the scroll list).
+    return GlassBatch(
+      child: ListView(
       key: const Key('dashboardList'),
       padding: const EdgeInsets.fromLTRB(
         AppSizes.pageHPad,
@@ -563,6 +566,7 @@ class _OverviewPage extends ConsumerWidget {
             ),
         ],
       ],
+      ),
     );
   }
 }
@@ -603,11 +607,10 @@ class _OverallProgressCard extends StatelessWidget {
     final hasProgram = totalRequired > 0;
     final hasToday = todayPace > 0;
     final todayPct = (todayFraction * 100).clamp(0, 100).toStringAsFixed(0);
-    return Card(
+    // Glass cards (ECTS-063): tinted primaryContainer lens + shadow when on;
+    // identical Card when off (theme card shape already uses heroRadius).
+    return GlassCard(
       color: scheme.primaryContainer,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(AppSizes.heroRadius),
-      ),
       child: Padding(
         padding: const EdgeInsets.all(AppSizes.heroPadding),
         child: Column(
@@ -1061,7 +1064,7 @@ class _DashboardCourseCard extends StatelessWidget {
         : courseStatusLabelL10n(p.status, l10n);
     final pillStatus =
         scheduled ? CourseStatus.onTrack : p.status;
-    return Card(
+    return GlassCard(
       margin: const EdgeInsets.only(bottom: AppSizes.cardGap),
       child: Padding(
         padding: const EdgeInsets.all(AppSizes.dashboardCardPad),
@@ -1364,7 +1367,15 @@ class _CoursesPageState extends ConsumerState<_CoursesPage> {
       statusFilter: _statusFilter,
     );
 
-    return Column(
+    // Glass cards (ECTS-063): filter chips + count pill render as lite
+    // lenses when on (DropdownButton/Chip untouched inside); the identical
+    // legacy containers when off. Rows below are GlassCards in one batch.
+    final glass = ref.watch(glassEnabledProvider);
+    Widget chip(Widget child, double radius) =>
+        glass ? GlassCard(cornerRadius: radius, child: child) : child;
+
+    return GlassBatch(
+      child: Column(
       children: [
         Padding(
           padding: const EdgeInsets.fromLTRB(
@@ -1378,78 +1389,89 @@ class _CoursesPageState extends ConsumerState<_CoursesPage> {
             runSpacing: AppSizes.sectionInnerGap,
             crossAxisAlignment: WrapCrossAlignment.center,
             children: [
-              FilterDropdownShell(
-                icon: Icons.sort,
-                child: DropdownButton<CourseSort>(
-                  key: const Key('courseSortDropdown'),
-                  value: _sort,
-                  underline: const SizedBox.shrink(),
-                  icon: const Icon(
-                    Icons.expand_more,
-                    size: AppSizes.filterIcon,
-                  ),
-                  style: Theme.of(context).textTheme.titleSmall?.copyWith(
-                        fontWeight: FontWeight.w700,
-                      ),
-                  onChanged: (v) => setState(() => _sort = v ?? CourseSort.name),
-                  items: [
-                    for (final s in CourseSort.values)
-                      DropdownMenuItem(
-                        value: s,
-                        key: Key('courseSort_${s.name}'),
-                        child: Text(l10n.coursesSortOption(
-                            courseSortLabelL10n(s, l10n))),
-                      ),
-                  ],
-                ),
-              ),
-              FilterDropdownShell(
-                icon: Icons.filter_list_outlined,
-                child: DropdownButton<CourseStatus?>(
-                  key: const Key('courseStatusFilterDropdown'),
-                  value: _statusFilter,
-                  underline: const SizedBox.shrink(),
-                  icon: const Icon(
-                    Icons.expand_more,
-                    size: AppSizes.filterIcon,
-                  ),
-                  style: Theme.of(context).textTheme.titleSmall?.copyWith(
-                        fontWeight: FontWeight.w700,
-                      ),
-                  onChanged: (v) => setState(() => _statusFilter = v),
-                  items: [
-                    DropdownMenuItem<CourseStatus?>(
-                      value: null,
-                      key: const Key('courseFilter_all'),
-                      child: Text(l10n.coursesFilterAll),
+              chip(
+                FilterDropdownShell(
+                  icon: Icons.sort,
+                  child: DropdownButton<CourseSort>(
+                    key: const Key('courseSortDropdown'),
+                    value: _sort,
+                    underline: const SizedBox.shrink(),
+                    icon: const Icon(
+                      Icons.expand_more,
+                      size: AppSizes.filterIcon,
                     ),
-                    for (final s in CourseStatus.values)
-                      DropdownMenuItem<CourseStatus?>(
-                        value: s,
-                        key: Key('courseFilter_${s.name}'),
-                        child: Text(courseStatusLabelL10n(s, l10n)),
-                      ),
-                  ],
+                    style: Theme.of(context).textTheme.titleSmall?.copyWith(
+                          fontWeight: FontWeight.w700,
+                        ),
+                    onChanged: (v) =>
+                        setState(() => _sort = v ?? CourseSort.name),
+                    items: [
+                      for (final s in CourseSort.values)
+                        DropdownMenuItem(
+                          value: s,
+                          key: Key('courseSort_${s.name}'),
+                          child: Text(l10n.coursesSortOption(
+                              courseSortLabelL10n(s, l10n))),
+                        ),
+                    ],
+                  ),
                 ),
+                AppSizes.filterRadius,
               ),
-              Container(
-                padding: const EdgeInsets.symmetric(
-                  horizontal: AppSizes.pillHPad,
-                  vertical: AppSizes.pillVPad,
-                ),
-                decoration: BoxDecoration(
-                  color: Theme.of(context).colorScheme.secondaryContainer,
-                  borderRadius:
-                      BorderRadius.circular(AppSizes.pillRadius),
-                ),
-                child: Text(
-                  l10n.coursesShownCount('${visible.length}'),
-                  style: Theme.of(context).textTheme.labelMedium?.copyWith(
-                        color:
-                            Theme.of(context).colorScheme.onSecondaryContainer,
-                        fontWeight: FontWeight.w700,
+              chip(
+                FilterDropdownShell(
+                  icon: Icons.filter_list_outlined,
+                  child: DropdownButton<CourseStatus?>(
+                    key: const Key('courseStatusFilterDropdown'),
+                    value: _statusFilter,
+                    underline: const SizedBox.shrink(),
+                    icon: const Icon(
+                      Icons.expand_more,
+                      size: AppSizes.filterIcon,
+                    ),
+                    style: Theme.of(context).textTheme.titleSmall?.copyWith(
+                          fontWeight: FontWeight.w700,
+                        ),
+                    onChanged: (v) => setState(() => _statusFilter = v),
+                    items: [
+                      DropdownMenuItem<CourseStatus?>(
+                        value: null,
+                        key: const Key('courseFilter_all'),
+                        child: Text(l10n.coursesFilterAll),
                       ),
+                      for (final s in CourseStatus.values)
+                        DropdownMenuItem<CourseStatus?>(
+                          value: s,
+                          key: Key('courseFilter_${s.name}'),
+                          child: Text(courseStatusLabelL10n(s, l10n)),
+                        ),
+                    ],
+                  ),
                 ),
+                AppSizes.filterRadius,
+              ),
+              chip(
+                Container(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: AppSizes.pillHPad,
+                    vertical: AppSizes.pillVPad,
+                  ),
+                  decoration: BoxDecoration(
+                    color: Theme.of(context).colorScheme.secondaryContainer,
+                    borderRadius:
+                        BorderRadius.circular(AppSizes.pillRadius),
+                  ),
+                  child: Text(
+                    l10n.coursesShownCount('${visible.length}'),
+                    style: Theme.of(context).textTheme.labelMedium?.copyWith(
+                          color: Theme.of(context)
+                              .colorScheme
+                              .onSecondaryContainer,
+                          fontWeight: FontWeight.w700,
+                        ),
+                  ),
+                ),
+                AppSizes.pillRadius,
               ),
             ],
           ),
@@ -1494,7 +1516,7 @@ class _CoursesPageState extends ConsumerState<_CoursesPage> {
                 final scheme = Theme.of(context).colorScheme;
                 final (_, statusFg) = statusColors(context, p.status);
                 final paceUrgent = (p.requiredDailyHours ?? 0) > 8;
-                return Card(
+                return GlassCard(
                   margin:
                       const EdgeInsets.only(bottom: AppSizes.cardGap),
                   child: ListTile(
@@ -1675,6 +1697,7 @@ class _CoursesPageState extends ConsumerState<_CoursesPage> {
             ),
           ),
       ],
+      ),
     );
   }
 }
@@ -1791,7 +1814,9 @@ class _StudyLogPage extends ConsumerWidget {
         );
         final sorted = sessionsByDateDesc(sessionList);
 
-        return Column(
+        // Glass cards (ECTS-063): totals + session rows share one page batch.
+        return GlassBatch(
+          child: Column(
           children: [
             Padding(
               padding: const EdgeInsets.fromLTRB(
@@ -1800,7 +1825,7 @@ class _StudyLogPage extends ConsumerWidget {
                 AppSizes.pageHPad,
                 AppSizes.sectionInnerGap,
               ),
-              child: Card(
+              child: GlassCard(
                 key: const Key('studyTotalsCard'),
                 color: Theme.of(context).colorScheme.primaryContainer,
                 child: Padding(
@@ -1867,7 +1892,7 @@ class _StudyLogPage extends ConsumerWidget {
                     subtitleParts.add(session.notes!.trim());
                   }
                   final scheme = Theme.of(context).colorScheme;
-                  return Card(
+                  return GlassCard(
                     margin: const EdgeInsets.only(bottom: AppSizes.cardGap),
                     child: ListTile(
                       key: Key('sessionTile_${session.id}'),
@@ -1997,6 +2022,7 @@ class _StudyLogPage extends ConsumerWidget {
               ),
             ),
           ],
+          ),
         );
       },
     );

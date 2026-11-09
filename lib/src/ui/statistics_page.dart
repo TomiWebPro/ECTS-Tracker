@@ -7,6 +7,7 @@ import '../logic/ects.dart';
 import '../logic/statistics.dart';
 import '../state/providers.dart';
 import 'app_sizes.dart';
+import 'glass.dart';
 import 'widgets.dart';
 
 class StatisticsPage extends ConsumerWidget {
@@ -66,7 +67,10 @@ class StatisticsPage extends ConsumerWidget {
         .toList()
       ..sort((a, b) => a.course.deadline!.compareTo(b.course.deadline!));
 
-    return ListView(
+    // Glass cards (ECTS-063): every section card below is a lite lens sharing
+    // one page batch (members never overlap); pills/bars stay solid inside.
+    return GlassBatch(
+      child: ListView(
       padding: const EdgeInsets.fromLTRB(
         AppSizes.pageHPad,
         AppSizes.dashboardTopPad,
@@ -75,7 +79,7 @@ class StatisticsPage extends ConsumerWidget {
       ),
       children: [
         SectionHeader(title: l10n.statsOverview, icon: Icons.insights_outlined),
-        Card(
+        GlassCard(
           color: scheme.primaryContainer.withValues(alpha: 0.45),
           child: Padding(
             padding: const EdgeInsets.all(16),
@@ -146,7 +150,7 @@ class StatisticsPage extends ConsumerWidget {
         const SizedBox(height: 20),
         SectionHeader(
             title: l10n.statsConsistency, icon: Icons.calendar_month_outlined),
-        Card(
+        GlassCard(
           child: Padding(
             padding: const EdgeInsets.all(16),
             child: Column(
@@ -200,7 +204,7 @@ class StatisticsPage extends ConsumerWidget {
         const SizedBox(height: 20),
         SectionHeader(
             title: l10n.statsPastVsNeeded, icon: Icons.history_outlined),
-        Card(
+        GlassCard(
           child: Padding(
             padding: const EdgeInsets.all(16),
             child: Column(
@@ -267,7 +271,7 @@ class StatisticsPage extends ConsumerWidget {
         const SizedBox(height: 20),
         SectionHeader(
             title: l10n.statsComingLoad, icon: Icons.event_note_outlined),
-        Card(
+        GlassCard(
           child: Padding(
             padding: const EdgeInsets.all(16),
             child: Column(
@@ -442,7 +446,7 @@ class StatisticsPage extends ConsumerWidget {
                 ? 0.0
                 : requiredHours(course.ectsCredits, settings.hoursPerEcts);
             final progress = required == 0 ? 0.0 : (hours / required).clamp(0.0, 1.0);
-            return Card(
+            return GlassCard(
               margin: const EdgeInsets.only(bottom: 10),
               child: Padding(
                 padding: const EdgeInsets.all(16),
@@ -491,6 +495,7 @@ class StatisticsPage extends ConsumerWidget {
             );
           }),
       ],
+      ),
     );
   }
 }
@@ -585,7 +590,7 @@ class _BarChart extends StatelessWidget {
     final l10n = AppLocalizations.of(context)!;
     final scheme = Theme.of(context).colorScheme;
     final ratio = maxValue == 0 ? 0.0 : (value / maxValue).clamp(0.0, 1.0);
-    return Card(
+    return GlassCard(
       child: Padding(
         padding: const EdgeInsets.all(16),
         child: Column(

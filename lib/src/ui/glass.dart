@@ -44,6 +44,9 @@ LiquidGlassStyle glassStyle(BuildContext context) {
 /// Extra [Card] parameters ([margin], [color], [elevation], [clipBehavior])
 /// apply to the legacy branch only; the glass branch tints via [glassStyle]
 /// (overridden by [color] when given) and clips via the lens shape.
+/// [cornerRadius] overrides the lens corner radius on the glass branch only
+/// (default keeps [glassStyle]'s [AppSizes.cardRadius]); use it where the
+/// legacy surface is not a 20-pt card (filter chips, count pills).
 class GlassCard extends ConsumerWidget {
   const GlassCard({
     super.key,
@@ -52,6 +55,7 @@ class GlassCard extends ConsumerWidget {
     this.color,
     this.elevation,
     this.clipBehavior,
+    this.cornerRadius,
   });
 
   final Widget child;
@@ -59,6 +63,7 @@ class GlassCard extends ConsumerWidget {
   final Color? color;
   final double? elevation;
   final Clip? clipBehavior;
+  final double? cornerRadius;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -73,13 +78,38 @@ class GlassCard extends ConsumerWidget {
         child: child,
       );
     }
-    final style = glassStyle(context);
-    final Widget content =
-        margin == null ? child : Padding(padding: margin!, child: child);
-    return LiquidGlassLens(
-      key: key,
-      style: color == null ? style : style.copyWith(color: color),
-      child: content,
-    );
+    var style = glassStyle(context);
+    if (color != null) style = style.copyWith(color: color);
+    if (cornerRadius != null) {
+      style = style.copyWith(
+        shape: LiquidGlassShape.continuousRoundedRectangle(
+          cornerRadius: cornerRadius!,
+        ),
+      );
+    }
+    final Widget content = margin == null
+        ? child
+        : Padding(padding: margin!, child: child);
+    return LiquidGlassLens(key: key, style: style, child: content);
+  }
+}
+
+/// One shared-backdrop batch for a page of glass cards (ECTS-063).
+///
+/// Off renders [child] directly (the identical legacy tree); on wraps it in
+/// a [LiquidGlassBatch] so every [GlassCard] lens below shares one backdrop
+/// read. Members must not overlap — cards in a scroll list don't. Nesting
+/// inside the ECTS-062 chrome batch is intended: lenses join the nearest
+/// batch, so cards share the page read while the floating chrome keeps its
+/// own (cross-batch overlap is fine; only same-batch overlap is banned).
+class GlassBatch extends ConsumerWidget {
+  const GlassBatch({super.key, required this.child});
+
+  final Widget child;
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    if (!ref.watch(glassEnabledProvider)) return child;
+    return LiquidGlassBatch(child: child);
   }
 }
