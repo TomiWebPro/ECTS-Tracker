@@ -1090,6 +1090,21 @@ class $SettingsTable extends Settings
     type: DriftSqlType.string,
     requiredDuringInsert: false,
   );
+  static const VerificationMeta _liquidGlassMeta = const VerificationMeta(
+    'liquidGlass',
+  );
+  @override
+  late final GeneratedColumn<bool> liquidGlass = GeneratedColumn<bool>(
+    'liquid_glass',
+    aliasedName,
+    false,
+    type: DriftSqlType.bool,
+    requiredDuringInsert: false,
+    defaultConstraints: GeneratedColumn.constraintIsAlways(
+      'CHECK ("liquid_glass" IN (0, 1))',
+    ),
+    defaultValue: const Constant(false),
+  );
   @override
   List<GeneratedColumn> get $columns => [
     id,
@@ -1102,6 +1117,7 @@ class $SettingsTable extends Settings
     displaySize,
     accent,
     localeCode,
+    liquidGlass,
   ];
   @override
   String get aliasedName => _alias ?? actualTableName;
@@ -1190,6 +1206,15 @@ class $SettingsTable extends Settings
         localeCode.isAcceptableOrUnknown(data['locale_code']!, _localeCodeMeta),
       );
     }
+    if (data.containsKey('liquid_glass')) {
+      context.handle(
+        _liquidGlassMeta,
+        liquidGlass.isAcceptableOrUnknown(
+          data['liquid_glass']!,
+          _liquidGlassMeta,
+        ),
+      );
+    }
     return context;
   }
 
@@ -1239,6 +1264,10 @@ class $SettingsTable extends Settings
         DriftSqlType.string,
         data['${effectivePrefix}locale_code'],
       ),
+      liquidGlass: attachedDatabase.typeMapping.read(
+        DriftSqlType.bool,
+        data['${effectivePrefix}liquid_glass'],
+      )!,
     );
   }
 
@@ -1274,6 +1303,9 @@ class SettingsRow extends DataClass implements Insertable<SettingsRow> {
   /// App-language code (ARB `@@locale` tag, e.g. `de`, `zh_Hans`).
   /// Null means "follow the system language". Default null.
   final String? localeCode;
+
+  /// Liquid-glass chrome opt-in. Default false (legacy chrome).
+  final bool liquidGlass;
   const SettingsRow({
     required this.id,
     required this.hoursPerEcts,
@@ -1285,6 +1317,7 @@ class SettingsRow extends DataClass implements Insertable<SettingsRow> {
     required this.displaySize,
     required this.accent,
     this.localeCode,
+    required this.liquidGlass,
   });
   @override
   Map<String, Expression> toColumns(bool nullToAbsent) {
@@ -1301,6 +1334,7 @@ class SettingsRow extends DataClass implements Insertable<SettingsRow> {
     if (!nullToAbsent || localeCode != null) {
       map['locale_code'] = Variable<String>(localeCode);
     }
+    map['liquid_glass'] = Variable<bool>(liquidGlass);
     return map;
   }
 
@@ -1318,6 +1352,7 @@ class SettingsRow extends DataClass implements Insertable<SettingsRow> {
       localeCode: localeCode == null && nullToAbsent
           ? const Value.absent()
           : Value(localeCode),
+      liquidGlass: Value(liquidGlass),
     );
   }
 
@@ -1339,6 +1374,7 @@ class SettingsRow extends DataClass implements Insertable<SettingsRow> {
       displaySize: serializer.fromJson<int>(json['displaySize']),
       accent: serializer.fromJson<int>(json['accent']),
       localeCode: serializer.fromJson<String?>(json['localeCode']),
+      liquidGlass: serializer.fromJson<bool>(json['liquidGlass']),
     );
   }
   @override
@@ -1355,6 +1391,7 @@ class SettingsRow extends DataClass implements Insertable<SettingsRow> {
       'displaySize': serializer.toJson<int>(displaySize),
       'accent': serializer.toJson<int>(accent),
       'localeCode': serializer.toJson<String?>(localeCode),
+      'liquidGlass': serializer.toJson<bool>(liquidGlass),
     };
   }
 
@@ -1369,6 +1406,7 @@ class SettingsRow extends DataClass implements Insertable<SettingsRow> {
     int? displaySize,
     int? accent,
     Value<String?> localeCode = const Value.absent(),
+    bool? liquidGlass,
   }) => SettingsRow(
     id: id ?? this.id,
     hoursPerEcts: hoursPerEcts ?? this.hoursPerEcts,
@@ -1380,6 +1418,7 @@ class SettingsRow extends DataClass implements Insertable<SettingsRow> {
     displaySize: displaySize ?? this.displaySize,
     accent: accent ?? this.accent,
     localeCode: localeCode.present ? localeCode.value : this.localeCode,
+    liquidGlass: liquidGlass ?? this.liquidGlass,
   );
   SettingsRow copyWithCompanion(SettingsCompanion data) {
     return SettingsRow(
@@ -1407,6 +1446,9 @@ class SettingsRow extends DataClass implements Insertable<SettingsRow> {
       localeCode: data.localeCode.present
           ? data.localeCode.value
           : this.localeCode,
+      liquidGlass: data.liquidGlass.present
+          ? data.liquidGlass.value
+          : this.liquidGlass,
     );
   }
 
@@ -1422,7 +1464,8 @@ class SettingsRow extends DataClass implements Insertable<SettingsRow> {
           ..write('weeklyOverloadHours: $weeklyOverloadHours, ')
           ..write('displaySize: $displaySize, ')
           ..write('accent: $accent, ')
-          ..write('localeCode: $localeCode')
+          ..write('localeCode: $localeCode, ')
+          ..write('liquidGlass: $liquidGlass')
           ..write(')'))
         .toString();
   }
@@ -1439,6 +1482,7 @@ class SettingsRow extends DataClass implements Insertable<SettingsRow> {
     displaySize,
     accent,
     localeCode,
+    liquidGlass,
   );
   @override
   bool operator ==(Object other) =>
@@ -1453,7 +1497,8 @@ class SettingsRow extends DataClass implements Insertable<SettingsRow> {
           other.weeklyOverloadHours == this.weeklyOverloadHours &&
           other.displaySize == this.displaySize &&
           other.accent == this.accent &&
-          other.localeCode == this.localeCode);
+          other.localeCode == this.localeCode &&
+          other.liquidGlass == this.liquidGlass);
 }
 
 class SettingsCompanion extends UpdateCompanion<SettingsRow> {
@@ -1467,6 +1512,7 @@ class SettingsCompanion extends UpdateCompanion<SettingsRow> {
   final Value<int> displaySize;
   final Value<int> accent;
   final Value<String?> localeCode;
+  final Value<bool> liquidGlass;
   const SettingsCompanion({
     this.id = const Value.absent(),
     this.hoursPerEcts = const Value.absent(),
@@ -1478,6 +1524,7 @@ class SettingsCompanion extends UpdateCompanion<SettingsRow> {
     this.displaySize = const Value.absent(),
     this.accent = const Value.absent(),
     this.localeCode = const Value.absent(),
+    this.liquidGlass = const Value.absent(),
   });
   SettingsCompanion.insert({
     this.id = const Value.absent(),
@@ -1490,6 +1537,7 @@ class SettingsCompanion extends UpdateCompanion<SettingsRow> {
     this.displaySize = const Value.absent(),
     this.accent = const Value.absent(),
     this.localeCode = const Value.absent(),
+    this.liquidGlass = const Value.absent(),
   });
   static Insertable<SettingsRow> custom({
     Expression<int>? id,
@@ -1502,6 +1550,7 @@ class SettingsCompanion extends UpdateCompanion<SettingsRow> {
     Expression<int>? displaySize,
     Expression<int>? accent,
     Expression<String>? localeCode,
+    Expression<bool>? liquidGlass,
   }) {
     return RawValuesInsertable({
       if (id != null) 'id': id,
@@ -1516,6 +1565,7 @@ class SettingsCompanion extends UpdateCompanion<SettingsRow> {
       if (displaySize != null) 'display_size': displaySize,
       if (accent != null) 'accent': accent,
       if (localeCode != null) 'locale_code': localeCode,
+      if (liquidGlass != null) 'liquid_glass': liquidGlass,
     });
   }
 
@@ -1530,6 +1580,7 @@ class SettingsCompanion extends UpdateCompanion<SettingsRow> {
     Value<int>? displaySize,
     Value<int>? accent,
     Value<String?>? localeCode,
+    Value<bool>? liquidGlass,
   }) {
     return SettingsCompanion(
       id: id ?? this.id,
@@ -1542,6 +1593,7 @@ class SettingsCompanion extends UpdateCompanion<SettingsRow> {
       displaySize: displaySize ?? this.displaySize,
       accent: accent ?? this.accent,
       localeCode: localeCode ?? this.localeCode,
+      liquidGlass: liquidGlass ?? this.liquidGlass,
     );
   }
 
@@ -1580,6 +1632,9 @@ class SettingsCompanion extends UpdateCompanion<SettingsRow> {
     if (localeCode.present) {
       map['locale_code'] = Variable<String>(localeCode.value);
     }
+    if (liquidGlass.present) {
+      map['liquid_glass'] = Variable<bool>(liquidGlass.value);
+    }
     return map;
   }
 
@@ -1595,7 +1650,8 @@ class SettingsCompanion extends UpdateCompanion<SettingsRow> {
           ..write('weeklyOverloadHours: $weeklyOverloadHours, ')
           ..write('displaySize: $displaySize, ')
           ..write('accent: $accent, ')
-          ..write('localeCode: $localeCode')
+          ..write('localeCode: $localeCode, ')
+          ..write('liquidGlass: $liquidGlass')
           ..write(')'))
         .toString();
   }
@@ -2348,6 +2404,7 @@ typedef $$SettingsTableCreateCompanionBuilder = SettingsCompanion Function({
   Value<int> displaySize,
   Value<int> accent,
   Value<String?> localeCode,
+  Value<bool> liquidGlass,
 });
 typedef $$SettingsTableUpdateCompanionBuilder = SettingsCompanion Function({
   Value<int> id,
@@ -2360,6 +2417,7 @@ typedef $$SettingsTableUpdateCompanionBuilder = SettingsCompanion Function({
   Value<int> displaySize,
   Value<int> accent,
   Value<String?> localeCode,
+  Value<bool> liquidGlass,
 });
 
 class $$SettingsTableFilterComposer
@@ -2418,6 +2476,11 @@ class $$SettingsTableFilterComposer
 
   ColumnFilters<String> get localeCode => $composableBuilder(
     column: $table.localeCode,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<bool> get liquidGlass => $composableBuilder(
+    column: $table.liquidGlass,
     builder: (column) => ColumnFilters(column),
   );
 }
@@ -2480,6 +2543,11 @@ class $$SettingsTableOrderingComposer
     column: $table.localeCode,
     builder: (column) => ColumnOrderings(column),
   );
+
+  ColumnOrderings<bool> get liquidGlass => $composableBuilder(
+    column: $table.liquidGlass,
+    builder: (column) => ColumnOrderings(column),
+  );
 }
 
 class $$SettingsTableAnnotationComposer
@@ -2534,6 +2602,11 @@ class $$SettingsTableAnnotationComposer
     column: $table.localeCode,
     builder: (column) => column,
   );
+
+  GeneratedColumn<bool> get liquidGlass => $composableBuilder(
+    column: $table.liquidGlass,
+    builder: (column) => column,
+  );
 }
 
 class $$SettingsTableTableManager
@@ -2577,6 +2650,7 @@ class $$SettingsTableTableManager
                 Value<int> displaySize = const Value.absent(),
                 Value<int> accent = const Value.absent(),
                 Value<String?> localeCode = const Value.absent(),
+                Value<bool> liquidGlass = const Value.absent(),
               }) => SettingsCompanion(
                 id: id,
                 hoursPerEcts: hoursPerEcts,
@@ -2588,6 +2662,7 @@ class $$SettingsTableTableManager
                 displaySize: displaySize,
                 accent: accent,
                 localeCode: localeCode,
+                liquidGlass: liquidGlass,
               ),
           createCompanionCallback:
               ({
@@ -2601,6 +2676,7 @@ class $$SettingsTableTableManager
                 Value<int> displaySize = const Value.absent(),
                 Value<int> accent = const Value.absent(),
                 Value<String?> localeCode = const Value.absent(),
+                Value<bool> liquidGlass = const Value.absent(),
               }) => SettingsCompanion.insert(
                 id: id,
                 hoursPerEcts: hoursPerEcts,
@@ -2612,6 +2688,7 @@ class $$SettingsTableTableManager
                 displaySize: displaySize,
                 accent: accent,
                 localeCode: localeCode,
+                liquidGlass: liquidGlass,
               ),
           withReferenceMapper: (p0) => p0
               .map(

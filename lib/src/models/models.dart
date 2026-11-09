@@ -154,6 +154,7 @@ class AppSettings {
     this.displaySize = AppDisplaySize.comfortable,
     this.accent = AppAccent.slate,
     this.localeCode,
+    this.liquidGlass = false,
   });
 
   /// Default ECTS conversion factor per AGENTS.md §4.
@@ -191,6 +192,9 @@ class AppSettings {
   /// Null means "follow the system language".
   final String? localeCode;
 
+  /// Liquid-glass chrome opt-in. Default false (identical legacy chrome).
+  final bool liquidGlass;
+
   AppSettings copyWith({
     double? hoursPerEcts,
     int? dailyTargetMinutes,
@@ -201,6 +205,7 @@ class AppSettings {
     AppDisplaySize? displaySize,
     AppAccent? accent,
     String? localeCode,
+    bool? liquidGlass,
   }) {
     return AppSettings(
       hoursPerEcts: hoursPerEcts ?? this.hoursPerEcts,
@@ -212,6 +217,7 @@ class AppSettings {
       displaySize: displaySize ?? this.displaySize,
       accent: accent ?? this.accent,
       localeCode: localeCode ?? this.localeCode,
+      liquidGlass: liquidGlass ?? this.liquidGlass,
     );
   }
 }

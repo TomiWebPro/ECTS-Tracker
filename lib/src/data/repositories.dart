@@ -421,6 +421,7 @@ class SettingsRepository {
         displaySize: displaySizeFromInt(row.displaySize),
         accent: accentFromInt(row.accent),
         localeCode: isAppLocaleCode(row.localeCode) ? row.localeCode : null,
+        liquidGlass: row.liquidGlass,
       );
 
   /// One-shot read of the current settings, defaulting to [AppSettings] when
@@ -596,6 +597,21 @@ class SettingsRepository {
     }
   }
 
+  /// Persists the liquid-glass chrome opt-in (no validation needed: bool).
+  Future<Result<void>> setLiquidGlass(bool value) async {
+    try {
+      await _db.into(_db.settings).insertOnConflictUpdate(
+            SettingsCompanion.insert(
+              id: const Value(1),
+              liquidGlass: Value(value),
+            ),
+          );
+      return const Ok(null);
+    } catch (e) {
+      return Err('Failed to save settings: $e');
+    }
+  }
+
   /// Resets settings to defaults (keeps courses/sessions).
   Future<Result<void>> resetToDefaults() async {
     try {
@@ -614,6 +630,7 @@ class SettingsRepository {
                   Value(displaySizeToInt(AppDisplaySize.comfortable)),
               accent: Value(accentToInt(AppAccent.slate)),
               localeCode: const Value(null),
+              liquidGlass: const Value(false),
             ),
           );
       return const Ok(null);
@@ -703,6 +720,7 @@ class BackupRepository {
               localeCode: isAppLocaleCode(settingsRow.localeCode)
                   ? settingsRow.localeCode
                   : null,
+              liquidGlass: settingsRow.liquidGlass,
             );
       final map = <String, Object?>{
         'app': backupAppId,
@@ -721,6 +739,7 @@ class BackupRepository {
           'displaySize': displaySizeToInt(settings.displaySize),
           'accent': accentToInt(settings.accent),
           'localeCode': settings.localeCode,
+          'liquidGlass': settings.liquidGlass,
         },
         'courses': courseRows
             .map((c) => {
@@ -818,6 +837,8 @@ class BackupRepository {
                       Value((settings['displaySize'] as num).toInt()),
                   accent: Value((settings['accent'] as num).toInt()),
                   localeCode: Value(settings['localeCode'] as String?),
+                  liquidGlass:
+                      Value(settings['liquidGlass'] == true),
                 ),
               );
         }
@@ -932,6 +953,9 @@ class BackupRepository {
     final localeCode = localeRaw is String && isAppLocaleCode(localeRaw)
         ? localeRaw
         : null;
+    // Missing key (pre-glass backups) defaults to false; any truthy non-bool
+    // stays false so a malformed payload cannot enable chrome by accident.
+    final liquidGlass = settingsRaw['liquidGlass'] == true;
     if (hoursPerEcts <= 0 || hoursPerEcts > 1000) {
       return const Err('Invalid import: hoursPerEcts must be 0–1000.');
     }
@@ -1033,6 +1057,7 @@ class BackupRepository {
         'displaySize': displaySize,
         'accent': accent,
         'localeCode': localeCode,
+        'liquidGlass': liquidGlass,
       },
       courseMaps: courseMaps,
       sessionMaps: sessionMaps,

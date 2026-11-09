@@ -1326,4 +1326,63 @@ void main() {
       expect((await settings.get()).hoursPerEcts, AppSettings.defaultHoursPerEcts);
     });
   });
+
+  group('liquidGlass setting (ECTS-060)', () {
+    late SettingsRepository settings;
+    late BackupRepository backup;
+
+    setUp(() {
+      settings = SettingsRepository(db);
+      backup = BackupRepository(db);
+    });
+
+    test('defaults to false when no row exists', () async {
+      expect((await settings.get()).liquidGlass, isFalse);
+      expect(await settings.watch().first.then((s) => s.liquidGlass),
+          isFalse);
+    });
+
+    test('setLiquidGlass persists via get() and watch()', () async {
+      expect(await settings.setLiquidGlass(true), isA<Ok<void>>());
+      expect((await settings.get()).liquidGlass, isTrue);
+      expect(await settings.watch().first.then((s) => s.liquidGlass),
+          isTrue);
+
+      expect(await settings.setLiquidGlass(false), isA<Ok<void>>());
+      expect((await settings.get()).liquidGlass, isFalse);
+      expect(await settings.watch().first.then((s) => s.liquidGlass),
+          isFalse);
+    });
+
+    test('resetToDefaults clears the flag and keeps data rows', () async {
+      await settings.setLiquidGlass(true);
+      await courses.addCourse(name: 'Keep me', ectsCredits: 5);
+
+      expect(await settings.resetToDefaults(), isA<Ok<void>>());
+      expect((await settings.get()).liquidGlass, isFalse);
+      expect(await courses.watchAll().first, hasLength(1));
+    });
+
+    test('exportJson/importJson round-trip preserves the flag', () async {
+      await settings.setLiquidGlass(true);
+      final exported = await backup.exportJson();
+      expect(exported, isA<Ok<String>>());
+      expect((exported as Ok<String>).value,
+          contains('"liquidGlass": true'));
+
+      expect(await backup.resetAllData(), isA<Ok<void>>());
+      expect((await settings.get()).liquidGlass, isFalse);
+
+      expect(await backup.importJson(exported.value), isA<Ok<void>>());
+      expect((await settings.get()).liquidGlass, isTrue);
+    });
+
+    test('importJson without the key defaults to false', () async {
+      await settings.setLiquidGlass(true);
+      final res = await backup.importJson(
+          '{"settings": {"hoursPerEcts": 30}, "courses": [], "sessions": []}');
+      expect(res, isA<Ok<void>>());
+      expect((await settings.get()).liquidGlass, isFalse);
+    });
+  });
 }

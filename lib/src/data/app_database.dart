@@ -58,6 +58,10 @@ class Settings extends Table {
   /// Null means "follow the system language". Default null.
   TextColumn get localeCode => text().nullable()();
 
+  /// Liquid-glass chrome opt-in. Default false (legacy chrome).
+  BoolColumn get liquidGlass =>
+      boolean().withDefault(const Constant(false))();
+
   @override
   Set<Column> get primaryKey => {id};
 }
@@ -67,7 +71,7 @@ class AppDatabase extends _$AppDatabase {
   AppDatabase(super.e);
 
   @override
-  int get schemaVersion => 7;
+  int get schemaVersion => 8;
 
   /// SQLite does not enforce foreign keys (and thus ON DELETE CASCADE) unless
   /// explicitly asked, on every connection.
@@ -96,6 +100,9 @@ class AppDatabase extends _$AppDatabase {
           }
           if (from < 7) {
             await m.addColumn(settings, settings.localeCode);
+          }
+          if (from < 8) {
+            await m.addColumn(settings, settings.liquidGlass);
           }
         },
         beforeOpen: (details) async {
