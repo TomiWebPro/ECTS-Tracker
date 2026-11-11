@@ -618,6 +618,7 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
             decoration: InputDecoration(
               labelText: l10n.settingsOverloadLabel,
               helperText: l10n.settingsOverloadHelper,
+              helperMaxLines: 3,
               errorText: errorText,
             ),
             autofocus: true,
@@ -682,6 +683,7 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
             decoration: InputDecoration(
               labelText: l10n.settingsToleranceLabel,
               helperText: l10n.settingsToleranceHelper,
+              helperMaxLines: 3,
               errorText: errorText,
             ),
             autofocus: true,
@@ -746,6 +748,7 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
             decoration: InputDecoration(
               labelText: l10n.settingsHoursLabel,
               helperText: l10n.settingsHoursHelper,
+              helperMaxLines: 3,
               errorText: errorText,
             ),
             autofocus: true,

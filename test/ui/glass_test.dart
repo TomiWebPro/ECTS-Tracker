@@ -178,6 +178,8 @@ void main() {
       expect(find.text('Liquid glass updated.'), findsOneWidget);
 
       // Off again: persistence flips back.
+      await tester.ensureVisible(toggle);
+      await tester.pumpAndSettle();
       await tester.tap(toggle);
       await tester.pumpAndSettle();
 

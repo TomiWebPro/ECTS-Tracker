@@ -18,9 +18,19 @@ import 'app_logo.dart';
 import 'app_sizes.dart';
 import 'widgets.dart';
 
+/// Responsive floating tab-bar width (ECTS-068).
+///
+/// The package centers its fixed-width capsule with a computed
+/// `(parentWidth - width) / 2` inset — a window narrower than
+/// [AppSizes.glassTabWidth] made that inset negative and tripped
+/// RenderPadding's `isNonNegative` assert on the Impeller morph-pill path
+/// (Windows crash). Clamping the bar to the available width keeps the
+/// inset non-negative on any window size.
+double glassTabBarWidthFor(double maxWidth) =>
+    (maxWidth - AppSizes.pageHPad * 2).clamp(0.0, AppSizes.glassTabWidth);
+
 /// Root scaffold: bottom nav across the five app areas (AGENTS.md §3).
-class HomeShell extends StatefulWidget {
-  const HomeShell({super.key, this.now});
+class HomeShell extends StatefulWidget {  const HomeShell({super.key, this.now});
 
   /// Reference time for derived progress/status (injectable for tests).
   final DateTime? now;
@@ -249,35 +259,45 @@ class _HomeShellState extends State<HomeShell> {
                         ),
                       ),
                     ),
-                  LiquidGlassTabBar(
-                    items: [
-                      LiquidGlassTabBarItem(
-                          icon: Icons.dashboard, label: l10n.navDashboard),
-                      LiquidGlassTabBarItem(
-                          icon: Icons.book, label: l10n.navCourses),
-                      LiquidGlassTabBarItem(
-                          icon: Icons.timer, label: l10n.navStudyLog),
-                      LiquidGlassTabBarItem(
-                          icon: Icons.bar_chart, label: l10n.navStatistics),
-                      LiquidGlassTabBarItem(
-                          icon: Icons.settings, label: l10n.navSettings),
-                    ],
-                    selectedIndex: _index,
-                    onChanged: (i) => setState(() => _index = i),
-                    // Glass morph pill on Impeller; plain frosted capsule
-                    // on Skia/Web (no capture view needed there).
-                    pillStyle: const LiquidGlassTabPillStyle(
-                      mode: LiquidGlassPillMode.impellerOnly,
-                    ),
-                    itemStyle: const LiquidGlassTabItemStyle(
-                      iconSize: AppSizes.glassTabIconSize,
-                    ),
-                    width: AppSizes.glassTabWidth,
-                    height: AppSizes.glassTabHeight,
-                    alignment: Alignment.bottomCenter,
-                    margin: const EdgeInsets.only(
-                      bottom: AppSizes.glassTabBottomMargin,
-                    ),
+                  LayoutBuilder(
+                    builder: (context, constraints) {
+                      return LiquidGlassTabBar(
+                        items: [
+                          LiquidGlassTabBarItem(
+                              icon: Icons.dashboard,
+                              label: l10n.navDashboard),
+                          LiquidGlassTabBarItem(
+                              icon: Icons.book, label: l10n.navCourses),
+                          LiquidGlassTabBarItem(
+                              icon: Icons.timer, label: l10n.navStudyLog),
+                          LiquidGlassTabBarItem(
+                              icon: Icons.bar_chart,
+                              label: l10n.navStatistics),
+                          LiquidGlassTabBarItem(
+                              icon: Icons.settings, label: l10n.navSettings),
+                        ],
+                        selectedIndex: _index,
+                        onChanged: (i) => setState(() => _index = i),
+                        // Glass morph pill on Impeller; plain frosted capsule
+                        // on Skia/Web (no capture view needed there).
+                        pillStyle: const LiquidGlassTabPillStyle(
+                          mode: LiquidGlassPillMode.impellerOnly,
+                        ),
+                        itemStyle: const LiquidGlassTabItemStyle(
+                          iconSize: AppSizes.glassTabIconSize,
+                        ),
+                        // ECTS-068: fit the bar to the window (see
+                        // [glassTabBarWidthFor]); the package-computed
+                        // centering inset goes negative on narrower windows
+                        // and crashes.
+                        width: glassTabBarWidthFor(constraints.maxWidth),
+                        height: AppSizes.glassTabHeight,
+                        alignment: Alignment.bottomCenter,
+                        margin: const EdgeInsets.only(
+                          bottom: AppSizes.glassTabBottomMargin,
+                        ),
+                      );
+                    },
                   ),
                 ],
               ),
