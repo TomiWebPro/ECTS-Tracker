@@ -148,7 +148,10 @@ void main() {
       await tester.pumpAndSettle();
 
       final tile = find.byKey(const Key('liquidGlassTile'));
-      await tester.ensureVisible(tile);
+      // Scrolls (the Study section grew in M9, so the Display section can
+      // start outside the list's build cache and `ensureVisible` would find
+      // no element — same class of fix as ECTS-068).
+      await tester.scrollUntilVisible(tile, 300);
       await tester.pumpAndSettle();
       expect(tile, findsOneWidget);
       expect(
@@ -170,6 +173,11 @@ void main() {
       await tester.pumpAndSettle();
 
       expect((await SettingsRepository(db).get()).liquidGlass, isTrue);
+      // The glass-on rebuild re-measures the list (M9 tiles + airier
+      // spacing), so the tile can fall out of the built window again —
+      // scroll back before reading (same class of fix as above).
+      await tester.scrollUntilVisible(tile, 300);
+      await tester.pumpAndSettle();
       expect(tester.widget<Switch>(toggle).value, isTrue);
       expect(
         find.descendant(of: tile, matching: find.text('On')),
@@ -178,12 +186,14 @@ void main() {
       expect(find.text('Liquid glass updated.'), findsOneWidget);
 
       // Off again: persistence flips back.
-      await tester.ensureVisible(toggle);
+      await tester.scrollUntilVisible(toggle, 300);
       await tester.pumpAndSettle();
       await tester.tap(toggle);
       await tester.pumpAndSettle();
 
       expect((await SettingsRepository(db).get()).liquidGlass, isFalse);
+      await tester.scrollUntilVisible(tile, 300);
+      await tester.pumpAndSettle();
       expect(tester.widget<Switch>(toggle).value, isFalse);
       expect(
         find.descendant(of: tile, matching: find.text('Off')),

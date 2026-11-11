@@ -6,6 +6,8 @@ import '../data/app_database.dart';
 import '../data/connection.dart';
 import '../data/repositories.dart';
 import '../models/models.dart';
+import '../models/reminder_settings.dart';
+import '../notifications/reminder_prefs.dart';
 
 /// The single app-wide database instance.
 final databaseProvider = Provider<AppDatabase>((ref) {
@@ -78,3 +80,9 @@ final hasSampleDataProvider = Provider<AsyncValue<bool>>((ref) {
     courses.value!.isNotEmpty || sessions.value!.isNotEmpty,
   );
 });
+
+/// Reminder preferences (M9, ECTS-072). SharedPreferences-backed, so this
+/// works without a Drift migration. Invalidate after every save.
+final reminderSettingsProvider = FutureProvider<ReminderSettings>(
+  (ref) => ReminderPrefsRepository().load(),
+);

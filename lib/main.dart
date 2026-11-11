@@ -1,12 +1,18 @@
+import 'dart:async';
+
 import 'package:ects_tracker/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:liquid_glass_easy/liquid_glass_easy.dart';
 
+import 'src/data/app_database.dart';
 import 'src/data/connection.dart';
+import 'src/data/repositories.dart';
 import 'src/i18n/app_locales.dart';
 import 'src/models/models.dart';
+import 'src/notifications/reminder_prefs.dart';
+import 'src/notifications/reminder_service.dart';
 import 'src/startup.dart';
 import 'src/state/providers.dart';
 import 'src/ui/app_fonts.dart';
@@ -21,7 +27,30 @@ Future<void> main() async {
   await LiquidGlassShaders.ensureLoaded();
   LiquidGlassEngine.liteGlassOnSkia = true;
   final startup = await initializeApp(openConnection());
+  if (startup case StartupReady(:final db)) {
+    // Best-effort: never blocks or breaks launch (M9, ECTS-072).
+    unawaited(_rescheduleReminders(db));
+  }
   runApp(EctsTrackerApp(startup: startup));
+}
+
+/// Recomputes scheduled nudges from live data on every launch. Disabled
+/// reminders cancel everything; any failure is swallowed (alarms are
+/// best-effort, the in-app feed in dev mode always works).
+Future<void> _rescheduleReminders(AppDatabase db) async {
+  try {
+    final backend = await RealNotificationBackend.create();
+    final courses = await CourseRepository(db).watchAll().first;
+    final sessions = await SessionRepository(db).watchAll().first;
+    final settings = await SettingsRepository(db).get();
+    await ReminderService(backend, ReminderPrefsRepository()).reschedule(
+      courses: courses,
+      sessions: sessions,
+      hoursPerEcts: settings.hoursPerEcts,
+      toleranceDays: settings.paceToleranceDays,
+      now: DateTime.now(),
+    );
+  } catch (_) {}
 }
 
 class EctsTrackerApp extends StatelessWidget {

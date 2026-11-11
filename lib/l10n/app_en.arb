@@ -1867,5 +1867,21 @@
   "reminderPreviewNoFire": "No upcoming fire.",
   "@reminderPreviewNoFire": {
     "description": "Shown when a demo custom schedule has no future fire."
+  },
+  "settingsReminders": "Study reminders",
+  "@settingsReminders": {
+    "description": "Study reminders opt-in tile title in the Study section."
+  },
+  "settingsRemindersOff": "Off — turn on for a daily nudge.",
+  "@settingsRemindersOff": {
+    "description": "Reminders tile subtitle when reminders are disabled."
+  },
+  "settingsReminderTime": "Reminder time",
+  "@settingsReminderTime": {
+    "description": "Reminder time tile title in the Study section."
+  },
+  "settingsReminderDenied": "Notifications are blocked — enable them in system settings.",
+  "@settingsReminderDenied": {
+    "description": "SnackBar when the OS notification permission is denied."
   }
 }

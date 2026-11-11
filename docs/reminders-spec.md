@@ -64,3 +64,22 @@ deadline countdown when close. Never nag. Phone and tablet identical
   with fake-now trigger) reuses the same pure functions.
 - ECTS-072: real `flutter_local_notifications` scheduling; tested on
   device, logic underneath already proven on Windows.
+
+## v1 platform notes (ECTS-072, locked)
+
+- Transport: `flutter_local_notifications` (inexact alarms — no exact-alarm
+  permission needed) + `timezone`/`flutter_timezone`. Abstraction:
+  `NotificationBackend` (fake in tests) + `ReminderService.reschedule`.
+- Prefs in SharedPreferences (`ReminderPrefsRepository`): enabled (default
+  off), reminder time (default 19:00), deadline window (default 3 d),
+  custom schedules (JSON), overdue fire counts. NOT in Drift — ships
+  without a schema migration; Drift consolidation is an optional follow-up.
+- Reschedule triggers (v1): app launch (`main.dart`, best-effort guarded)
+  + every reminder-pref change in Settings. No background workers: content
+  is composed fresh at each reschedule; scheduled copies stay until the
+  next reschedule replaces them.
+- Countdowns schedule same-day fires only; future days ride the daily
+  repeating ping until recomputed. Weekly/monthly customs schedule their
+  next fire only (repeats continue while the app is opened regularly).
+- Android: `POST_NOTIFICATIONS` (runtime, asked when enabling). iOS: no
+  plist change (runtime alert/badge/sound auth only).

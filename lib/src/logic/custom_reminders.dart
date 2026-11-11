@@ -89,6 +89,65 @@ class CustomSchedule {
 
   /// Minutes since midnight (local) for weekly/monthly fires.
   final int? timeMinutes;
+
+  Map<String, Object?> toJson() => {
+        'id': id,
+        'recurrence': recurrence.name,
+        'courseId': courseId,
+        'label': label,
+        'fireAt': fireAt?.toIso8601String(),
+        'weekdays': weekdays?.toList(),
+        'dayOfMonth': dayOfMonth,
+        'timeMinutes': timeMinutes,
+      };
+
+  /// Throws [FormatException] on malformed input (callers skip bad rows).
+  factory CustomSchedule.fromJson(Map<String, Object?> json) {
+    final id = (json['id'] as num?)?.toInt();
+    if (id == null) throw const FormatException('missing id');
+    final recurrence = switch (json['recurrence']) {
+      'once' => Recurrence.once,
+      'weekly' => Recurrence.weekly,
+      'monthly' => Recurrence.monthly,
+      _ => throw const FormatException('unknown recurrence'),
+    };
+    final courseId = (json['courseId'] as num?)?.toInt();
+    final label = json['label'] as String?;
+    switch (recurrence) {
+      case Recurrence.once:
+        final fireAt = DateTime.tryParse(json['fireAt'] as String? ?? '');
+        if (fireAt == null) throw const FormatException('bad fireAt');
+        return CustomSchedule.once(
+            id: id, fireAt: fireAt, courseId: courseId, label: label);
+      case Recurrence.weekly:
+        final days = json['weekdays'];
+        if (days is! List || days.isEmpty) {
+          throw const FormatException('bad weekdays');
+        }
+        final time = (json['timeMinutes'] as num?)?.toInt();
+        if (time == null) throw const FormatException('bad timeMinutes');
+        return CustomSchedule.weekly(
+          id: id,
+          weekdays: {for (final d in days) (d as num).toInt()},
+          timeMinutes: time,
+          courseId: courseId,
+          label: label,
+        );
+      case Recurrence.monthly:
+        final day = (json['dayOfMonth'] as num?)?.toInt();
+        final time = (json['timeMinutes'] as num?)?.toInt();
+        if (day == null || time == null) {
+          throw const FormatException('bad monthly fields');
+        }
+        return CustomSchedule.monthly(
+          id: id,
+          dayOfMonth: day,
+          timeMinutes: time,
+          courseId: courseId,
+          label: label,
+        );
+    }
+  }
 }
 
 int _daysInMonth(int year, int month) => DateTime(year, month + 1, 0).day;

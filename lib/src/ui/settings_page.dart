@@ -12,6 +12,9 @@ import '../data/repositories.dart';
 import '../dev/stress_seed.dart';
 import '../i18n/app_locales.dart';
 import '../models/models.dart';
+import '../models/reminder_settings.dart';
+import '../notifications/reminder_prefs.dart';
+import '../notifications/reminder_service.dart';
 import '../state/providers.dart';
 import 'app_sizes.dart';
 import 'glass.dart';
@@ -325,6 +328,7 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
                   showDivider: false,
                   topDivider: true,
                 ),
+                const _ReminderTiles(),
               ],
             ),
             _sectionHeader(context, l10n.settingsDisplay, Icons.palette_outlined),
@@ -1533,6 +1537,120 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
       case Err<void>(:final message):
         ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(key: errorKey, content: Text(message)));
+    }
+  }
+}
+
+/// Study-reminder opt-in + time (M9, ECTS-072). Prefs live in
+/// SharedPreferences; every change recomputes the OS schedule.
+class _ReminderTiles extends ConsumerWidget {
+  const _ReminderTiles();
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final l10n = AppLocalizations.of(context)!;
+    final prefs = ref.watch(reminderSettingsProvider);
+    final current = prefs.valueOrNull ?? const ReminderSettings();
+    final time = TimeOfDay(
+        hour: current.timeMinutes ~/ 60, minute: current.timeMinutes % 60);
+    return Column(
+      children: [
+        _SettingsTile(
+          tileKey: const Key('reminderTile'),
+          icon: Icons.notifications_outlined,
+          title: l10n.settingsReminders,
+          subtitle: Text(current.enabled
+              ? time.format(context)
+              : l10n.settingsRemindersOff),
+          trailing: Switch(
+            value: current.enabled,
+            onChanged: (value) => _setEnabled(context, ref, value),
+          ),
+          topDivider: true,
+        ),
+        _SettingsTile(
+          tileKey: const Key('reminderTimeTile'),
+          icon: Icons.schedule_outlined,
+          title: l10n.settingsReminderTime,
+          subtitle: Text(time.format(context)),
+          onTap: () => _editTime(context, ref),
+          showDivider: false,
+          topDivider: true,
+        ),
+      ],
+    );
+  }
+
+  Future<void> _setEnabled(
+      BuildContext context, WidgetRef ref, bool value) async {
+    final l10n = AppLocalizations.of(context)!;
+    if (value) {
+      var granted = false;
+      try {
+        granted = await (await RealNotificationBackend.create())
+            .requestPermissions();
+      } catch (_) {}
+      if (!context.mounted) return;
+      if (!granted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text(l10n.settingsReminderDenied)),
+        );
+        return;
+      }
+    }
+    final repo = ReminderPrefsRepository();
+    final current = await repo.load();
+    final result = await repo.save(current.copyWith(enabled: value));
+    ref.invalidate(reminderSettingsProvider);
+    if (!context.mounted) return;
+    _showResultStatic(context, result);
+    await _rescheduleNow(ref);
+  }
+
+  Future<void> _editTime(BuildContext context, WidgetRef ref) async {
+    final repo = ReminderPrefsRepository();
+    final current = await repo.load();
+    if (!context.mounted) return;
+    final picked = await showTimePicker(
+      context: context,
+      initialTime: TimeOfDay(
+          hour: current.timeMinutes ~/ 60, minute: current.timeMinutes % 60),
+    );
+    if (picked == null || !context.mounted) return;
+    final result = await repo.save(current.copyWith(
+        timeMinutes: picked.hour * 60 + picked.minute));
+    ref.invalidate(reminderSettingsProvider);
+    if (!context.mounted) return;
+    _showResultStatic(context, result);
+    await _rescheduleNow(ref);
+  }
+
+  /// Recomputes the OS schedule from live data. Best-effort: failures are
+  /// swallowed so Settings never breaks (the dev preview always works).
+  Future<void> _rescheduleNow(WidgetRef ref) async {
+    try {
+      final backend = await RealNotificationBackend.create();
+      final courses = await ref.read(coursesProvider.future);
+      final sessions = await ref.read(sessionsProvider.future);
+      final s =
+          ref.read(settingsProvider).valueOrNull ?? const AppSettings();
+      await ReminderService(backend, ReminderPrefsRepository()).reschedule(
+        courses: courses,
+        sessions: sessions,
+        hoursPerEcts: s.hoursPerEcts,
+        toleranceDays: s.paceToleranceDays,
+        now: DateTime.now(),
+      );
+    } catch (_) {}
+  }
+
+  void _showResultStatic(BuildContext context, Result<void> result) {
+    switch (result) {
+      case Ok<void>():
+        break;
+      case Err<void>(:final message):
+        ScaffoldMessenger.of(context)
+            .showSnackBar(SnackBar(content: Text(message)));
     }
   }
 }

@@ -1,4 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Study reminders (M9): runtime permission on API 33+, requested when
+         the user enables reminders in Settings. -->
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
     <application
         android:label="ECTS Tracker"
         android:name="${applicationName}"

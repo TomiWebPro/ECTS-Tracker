@@ -2113,6 +2113,30 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'No upcoming fire.'**
   String get reminderPreviewNoFire;
+
+  /// Study reminders opt-in tile title in the Study section.
+  ///
+  /// In en, this message translates to:
+  /// **'Study reminders'**
+  String get settingsReminders;
+
+  /// Reminders tile subtitle when reminders are disabled.
+  ///
+  /// In en, this message translates to:
+  /// **'Off — turn on for a daily nudge.'**
+  String get settingsRemindersOff;
+
+  /// Reminder time tile title in the Study section.
+  ///
+  /// In en, this message translates to:
+  /// **'Reminder time'**
+  String get settingsReminderTime;
+
+  /// SnackBar when the OS notification permission is denied.
+  ///
+  /// In en, this message translates to:
+  /// **'Notifications are blocked — enable them in system settings.'**
+  String get settingsReminderDenied;
 }
 
 class _AppLocalizationsDelegate
