@@ -1140,4 +1140,30 @@ class AppLocalizationsPcm extends AppLocalizations {
 
   @override
   String get settingsLiquidGlassUpdated => 'Liquid glass don update.';
+
+  @override
+  String get devToolsReminderPreview => 'Reminder preview';
+
+  @override
+  String get devToolsReminderPreviewSubtitle =>
+      'See what would notify right now. Windows-safe test feed.';
+
+  @override
+  String get reminderPreviewTitle => 'Reminder preview';
+
+  @override
+  String get reminderPreviewNow => 'Preview time';
+
+  @override
+  String get reminderPreviewReset => 'Now';
+
+  @override
+  String get reminderPreviewEmpty =>
+      'All quiet — nothing would notify at this time.';
+
+  @override
+  String get reminderPreviewCustom => 'Custom schedules (demo)';
+
+  @override
+  String get reminderPreviewNoFire => 'No upcoming fire.';
 }
