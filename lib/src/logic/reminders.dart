@@ -22,7 +22,7 @@ const int maxNamedCourses = 2;
 /// Default deadline countdown window (days).
 const int defaultDeadlineWarnDays = 3;
 
-enum ReminderKind { daily, behind, deadline, overdue, streak }
+enum ReminderKind { daily, behind, deadline, overdue, streak, custom }
 
 /// One nudge the app may show. [courseId] set for per-course messages so a
 /// tap can deep-link to the course; null for aggregate (daily/streak).
