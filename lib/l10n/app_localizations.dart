@@ -2065,6 +2065,54 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Liquid glass updated.'**
   String get settingsLiquidGlassUpdated;
+
+  /// Dev-mode tile title opening the reminder preview feed.
+  ///
+  /// In en, this message translates to:
+  /// **'Reminder preview'**
+  String get devToolsReminderPreview;
+
+  /// Dev-mode reminder preview tile description line.
+  ///
+  /// In en, this message translates to:
+  /// **'See what would notify right now. Windows-safe test feed.'**
+  String get devToolsReminderPreviewSubtitle;
+
+  /// App-bar title of the dev-mode reminder preview page.
+  ///
+  /// In en, this message translates to:
+  /// **'Reminder preview'**
+  String get reminderPreviewTitle;
+
+  /// Label above the fake-now stepper on the reminder preview page.
+  ///
+  /// In en, this message translates to:
+  /// **'Preview time'**
+  String get reminderPreviewNow;
+
+  /// Button resetting the preview time to the real now.
+  ///
+  /// In en, this message translates to:
+  /// **'Now'**
+  String get reminderPreviewReset;
+
+  /// Empty state of the reminder preview feed.
+  ///
+  /// In en, this message translates to:
+  /// **'All quiet — nothing would notify at this time.'**
+  String get reminderPreviewEmpty;
+
+  /// Section header for demo custom schedules on the preview page.
+  ///
+  /// In en, this message translates to:
+  /// **'Custom schedules (demo)'**
+  String get reminderPreviewCustom;
+
+  /// Shown when a demo custom schedule has no future fire.
+  ///
+  /// In en, this message translates to:
+  /// **'No upcoming fire.'**
+  String get reminderPreviewNoFire;
 }
 
 class _AppLocalizationsDelegate

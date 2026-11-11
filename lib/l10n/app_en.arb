@@ -1835,5 +1835,37 @@
   "settingsLiquidGlassUpdated": "Liquid glass updated.",
   "@settingsLiquidGlassUpdated": {
     "description": "SnackBar after the liquid glass opt-in changes."
+  },
+  "devToolsReminderPreview": "Reminder preview",
+  "@devToolsReminderPreview": {
+    "description": "Dev-mode tile title opening the reminder preview feed."
+  },
+  "devToolsReminderPreviewSubtitle": "See what would notify right now. Windows-safe test feed.",
+  "@devToolsReminderPreviewSubtitle": {
+    "description": "Dev-mode reminder preview tile description line."
+  },
+  "reminderPreviewTitle": "Reminder preview",
+  "@reminderPreviewTitle": {
+    "description": "App-bar title of the dev-mode reminder preview page."
+  },
+  "reminderPreviewNow": "Preview time",
+  "@reminderPreviewNow": {
+    "description": "Label above the fake-now stepper on the reminder preview page."
+  },
+  "reminderPreviewReset": "Now",
+  "@reminderPreviewReset": {
+    "description": "Button resetting the preview time to the real now."
+  },
+  "reminderPreviewEmpty": "All quiet — nothing would notify at this time.",
+  "@reminderPreviewEmpty": {
+    "description": "Empty state of the reminder preview feed."
+  },
+  "reminderPreviewCustom": "Custom schedules (demo)",
+  "@reminderPreviewCustom": {
+    "description": "Section header for demo custom schedules on the preview page."
+  },
+  "reminderPreviewNoFire": "No upcoming fire.",
+  "@reminderPreviewNoFire": {
+    "description": "Shown when a demo custom schedule has no future fire."
   }
 }

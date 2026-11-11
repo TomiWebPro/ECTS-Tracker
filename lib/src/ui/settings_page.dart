@@ -15,6 +15,7 @@ import '../models/models.dart';
 import '../state/providers.dart';
 import 'app_sizes.dart';
 import 'glass.dart';
+import 'reminder_preview.dart';
 
 /// Settings (ECTS-011): hours-per-ECTS, targets, first weekday, display prefs,
 /// import/export/reset, plus "clear sample data" (ECTS-016).
@@ -479,6 +480,18 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
                     title: l10n.devToolsClearPumped,
                     subtitle: Text(l10n.devToolsClearPumpedSubtitle),
                     onTap: _clearPumpedData,
+                  ),
+                  _SettingsTile(
+                    tileKey: const Key('reminderPreviewTile'),
+                    icon: Icons.notifications_outlined,
+                    title: l10n.devToolsReminderPreview,
+                    subtitle:
+                        Text(l10n.devToolsReminderPreviewSubtitle),
+                    onTap: () => Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (_) => const ReminderPreviewPage(),
+                      ),
+                    ),
                   ),
                   _SettingsTile(
                     tileKey: const Key('removeAllDataDevTile'),
