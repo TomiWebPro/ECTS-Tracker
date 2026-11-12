@@ -35,7 +35,10 @@
   "coursesFilterEmpty": "Sellele filtrile ei vasta ükski kursus",
   "coursesNewCourse": "Uus kursus",
   "coursesPaceNeeded": "Vaja {daily} h/päevas",
+  "coursesPaceNeededMinutes": "Vaja {daily} min/päevas",
   "coursesPaceNeededWeekly": "Vaja {daily} h/päevas • {weekly} h/nädalas",
+  "coursesPaceNeededWeeklyMinutes": "Vaja {daily} min/päevas • {weekly} min/nädalas",
+  "coursesPaceNeededWeeklyMinutesHours": "Vaja {daily} min/päevas • {weekly} h/nädalas",
   "coursesProgressWithStatus": "{done} / {required} h • {status}",
   "coursesRemoveSampleTooltip": "Eemalda näidiskursus",
   "coursesShownCount": "Kuvatud {count}",
@@ -63,6 +66,7 @@
   "dashboardHoursDetail": "· {pct}% · {hours} h jäänud",
   "dashboardHoursFraction": "{done} / {required} h",
   "dashboardHoursPerDay": "{hours} h/p",
+  "dashboardMinutesPerDay": "{minutes} min/p",
   "dashboardLogSessionAction": "Logi õppesessioon",
   "dashboardLogSessionTooltip": "Logi õppesessioon",
   "dashboardNewBadge": "UUS",
@@ -74,8 +78,12 @@
   "dashboardNothingToTrack": "Pole veel midagi jälgida",
   "dashboardPaceDueToday": "Täna tähtaeg — jäänud {hours} h",
   "dashboardPaceNeedDaily": "Lõpetamiseks vaja {daily} h/päevas",
+  "dashboardPaceNeedDailyMinutes": "Lõpetamiseks vaja {daily} min/päevas",
   "dashboardPaceNeedDailyWeekly": "Lõpetamiseks vaja {daily} h/päevas · {weekly} h/nädalas",
+  "dashboardPaceNeedDailyWeeklyMinutes": "Lõpetamiseks vaja {daily} min/päevas · {weekly} min/nädalas",
+  "dashboardPaceNeedDailyWeeklyMinutesHours": "Lõpetamiseks vaja {daily} min/päevas · {weekly} h/nädalas",
   "dashboardPaceNeedFrom": "Vaja {hours} h/päevas alates {date} · pole tänases tempos",
+  "dashboardPaceNeedFromMinutes": "Vaja {minutes} min/päevas alates {date} · pole tänases tempos",
   "dashboardPaceNoDeadline": "Tähtaega pole — jäänud {hours} h · igapäevast survet pole",
   "dashboardPaceStarts": "Algab {date} · teha {hours} h",
   "dashboardPaceUnrealistic": "{pace} · ebarealistlik",
@@ -471,6 +479,41 @@
       }
     }
   },
+  "@coursesPaceNeededMinutes": {
+    "description": "Daily pace line in minutes (sub-hour pace) on a course row.",
+    "placeholders": {
+      "daily": {
+        "type": "String",
+        "example": "36"
+      }
+    }
+  },
+  "@coursesPaceNeededWeeklyMinutes": {
+    "description": "Daily + weekly pace line when both are sub-hour (minutes).",
+    "placeholders": {
+      "daily": {
+        "type": "String",
+        "example": "8"
+      },
+      "weekly": {
+        "type": "String",
+        "example": "56"
+      }
+    }
+  },
+  "@coursesPaceNeededWeeklyMinutesHours": {
+    "description": "Daily minutes + weekly hours pace line on a course row.",
+    "placeholders": {
+      "daily": {
+        "type": "String",
+        "example": "36"
+      },
+      "weekly": {
+        "type": "String",
+        "example": "4.3"
+      }
+    }
+  },
   "@coursesProgressWithStatus": {
     "description": "Course row progress line combining hours and the (unlocalized, logic-owned) status label.",
     "placeholders": {
@@ -706,6 +749,15 @@
       }
     }
   },
+  "@dashboardMinutesPerDay": {
+    "description": "Required daily minutes chip (sub-hour pace) in the hero-card top-3 list.",
+    "placeholders": {
+      "minutes": {
+        "type": "String",
+        "example": "36"
+      }
+    }
+  },
   "@dashboardLogSessionAction": {
     "description": "Label of the dashboard button that opens the log-session dialog."
   },
@@ -764,12 +816,60 @@
       }
     }
   },
+  "@dashboardPaceNeedDailyMinutes": {
+    "description": "Pace line stating the required daily minutes (sub-hour pace).",
+    "placeholders": {
+      "daily": {
+        "type": "String",
+        "example": "36"
+      }
+    }
+  },
+  "@dashboardPaceNeedDailyWeeklyMinutes": {
+    "description": "Pace line when both daily and weekly paces are sub-hour.",
+    "placeholders": {
+      "daily": {
+        "type": "String",
+        "example": "8"
+      },
+      "weekly": {
+        "type": "String",
+        "example": "56"
+      }
+    }
+  },
+  "@dashboardPaceNeedDailyWeeklyMinutesHours": {
+    "description": "Pace line with daily minutes and weekly hours.",
+    "placeholders": {
+      "daily": {
+        "type": "String",
+        "example": "36"
+      },
+      "weekly": {
+        "type": "String",
+        "example": "4.3"
+      }
+    }
+  },
   "@dashboardPaceNeedFrom": {
     "description": "Pace line for a scheduled course with a computable daily pace.",
     "placeholders": {
       "hours": {
         "type": "String",
         "example": "1.5"
+      },
+      "date": {
+        "type": "String",
+        "example": "2026-12-01"
+      }
+    }
+  },
+  "@dashboardPaceNeedFromMinutes": {
+    "description": "Pace line for a scheduled course with a sub-hour daily pace.",
+    "placeholders": {
+      "minutes": {
+        "type": "String",
+        "example": "36"
       },
       "date": {
         "type": "String",
@@ -1835,5 +1935,77 @@
   "settingsLiquidGlassUpdated": "Vedel klaas uuendatud.",
   "@settingsLiquidGlassUpdated": {
     "description": "SnackBar after the liquid glass opt-in changes."
+  },
+  "devToolsReminderPreview": "Meeldetuletuse eelvaade",
+  "@devToolsReminderPreview": {
+    "description": "Dev-mode tile title opening the reminder preview feed."
+  },
+  "devToolsReminderPreviewSubtitle": "Vaata, mis praegu teavitaks. Windowsi-turvaline testivoog.",
+  "@devToolsReminderPreviewSubtitle": {
+    "description": "Dev-mode reminder preview tile description line."
+  },
+  "reminderPreviewTitle": "Meeldetuletuse eelvaade",
+  "@reminderPreviewTitle": {
+    "description": "App-bar title of the dev-mode reminder preview page."
+  },
+  "reminderPreviewNow": "Eelvaate aeg",
+  "@reminderPreviewNow": {
+    "description": "Label above the fake-now stepper on the reminder preview page."
+  },
+  "reminderPreviewReset": "Nüüd",
+  "@reminderPreviewReset": {
+    "description": "Button resetting the preview time to the real now."
+  },
+  "reminderPreviewEmpty": "Kõik vaikne — sel ajal ei teavitaks miski.",
+  "@reminderPreviewEmpty": {
+    "description": "Empty state of the reminder preview feed."
+  },
+  "reminderPreviewCustom": "Kohandatud ajakavad (demo)",
+  "@reminderPreviewCustom": {
+    "description": "Section header for demo custom schedules on the preview page."
+  },
+  "reminderPreviewNoFire": "Ühtegi eelseisvat käivitust pole.",
+  "@reminderPreviewNoFire": {
+    "description": "Shown when a demo custom schedule has no future fire."
+  },
+  "reminderKindDaily": "Igapäevane",
+  "@reminderKindDaily": {
+    "description": "Kind chip for the daily-plan nudge on the reminder preview page."
+  },
+  "reminderKindBehind": "Mahajäänud",
+  "@reminderKindBehind": {
+    "description": "Kind chip for a behind-course nudge on the reminder preview page."
+  },
+  "reminderKindDeadline": "Tähtaeg",
+  "@reminderKindDeadline": {
+    "description": "Kind chip for a deadline-countdown nudge on the reminder preview page."
+  },
+  "reminderKindOverdue": "Hilinenud",
+  "@reminderKindOverdue": {
+    "description": "Kind chip for an overdue-course nudge on the reminder preview page."
+  },
+  "reminderKindStreak": "Seeria",
+  "@reminderKindStreak": {
+    "description": "Kind chip for the weekly streak celebration on the reminder preview page."
+  },
+  "reminderKindCustom": "Kohandatud",
+  "@reminderKindCustom": {
+    "description": "Kind chip for a custom-schedule nudge on the reminder preview page."
+  },
+  "settingsReminders": "Õppemeeldetuletused",
+  "@settingsReminders": {
+    "description": "Study reminders opt-in tile title in the Study section."
+  },
+  "settingsRemindersOff": "Väljas — lülita sisse igapäevase meeldetuletuse jaoks.",
+  "@settingsRemindersOff": {
+    "description": "Reminders tile subtitle when reminders are disabled."
+  },
+  "settingsReminderTime": "Meeldetuletuse aeg",
+  "@settingsReminderTime": {
+    "description": "Reminder time tile title in the Study section."
+  },
+  "settingsReminderDenied": "Teavitused on blokeeritud — luba need süsteemi seadetes.",
+  "@settingsReminderDenied": {
+    "description": "SnackBar when the OS notification permission is denied."
   }
 }

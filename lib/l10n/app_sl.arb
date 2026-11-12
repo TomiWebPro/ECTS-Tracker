@@ -35,7 +35,10 @@
   "coursesFilterEmpty": "Noben predmet ne ustreza filtru",
   "coursesNewCourse": "Nov predmet",
   "coursesPaceNeeded": "{daily} h/dan potrebno",
+  "coursesPaceNeededMinutes": "{daily} min/dan potrebno",
   "coursesPaceNeededWeekly": "{daily} h/dan • {weekly} h/teden potrebno",
+  "coursesPaceNeededWeeklyMinutes": "{daily} min/dan • {weekly} min/teden potrebno",
+  "coursesPaceNeededWeeklyMinutesHours": "{daily} min/dan • {weekly} h/teden potrebno",
   "coursesProgressWithStatus": "{done} / {required} h • {status}",
   "coursesRemoveSampleTooltip": "Odstrani vzorčni predmet",
   "coursesShownCount": "{count} prikazanih",
@@ -63,6 +66,7 @@
   "dashboardHoursDetail": "· {pct} % · še {hours} h",
   "dashboardHoursFraction": "{done} / {required} h",
   "dashboardHoursPerDay": "{hours} h/dan",
+  "dashboardMinutesPerDay": "{minutes} min/dan",
   "dashboardLogSessionAction": "Zabeleži učno srečanje",
   "dashboardLogSessionTooltip": "Zabeleži učno srečanje",
   "dashboardNewBadge": "NOVO",
@@ -74,8 +78,12 @@
   "dashboardNothingToTrack": "Ni še ničesar za spremljanje",
   "dashboardPaceDueToday": "Danes zapade — še {hours} h",
   "dashboardPaceNeedDaily": "Za dokončanje potrebuješ {daily} h/dan",
+  "dashboardPaceNeedDailyMinutes": "Za dokončanje potrebuješ {daily} min/dan",
   "dashboardPaceNeedDailyWeekly": "Za dokončanje potrebuješ {daily} h/dan · {weekly} h/teden",
+  "dashboardPaceNeedDailyWeeklyMinutes": "Za dokončanje potrebuješ {daily} min/dan · {weekly} min/teden",
+  "dashboardPaceNeedDailyWeeklyMinutesHours": "Za dokončanje potrebuješ {daily} min/dan · {weekly} h/teden",
   "dashboardPaceNeedFrom": "Potrebuješ {hours} h/dan od {date} · ni v današnjem tempu",
+  "dashboardPaceNeedFromMinutes": "Potrebuješ {minutes} min/dan od {date} · ni v današnjem tempu",
   "dashboardPaceNoDeadline": "Brez roka — še {hours} h · brez dnevnega pritiska",
   "dashboardPaceStarts": "Začne se {date} · še {hours} h",
   "dashboardPaceUnrealistic": "{pace} · nerealno",
@@ -458,6 +466,15 @@
       }
     }
   },
+  "@coursesPaceNeededMinutes": {
+    "description": "Daily pace line in minutes (sub-hour pace) on a course row.",
+    "placeholders": {
+      "daily": {
+        "type": "String",
+        "example": "36"
+      }
+    }
+  },
   "@coursesPaceNeededWeekly": {
     "description": "Daily + weekly pace line on a course row.",
     "placeholders": {
@@ -468,6 +485,32 @@
       "weekly": {
         "type": "String",
         "example": "7.5"
+      }
+    }
+  },
+  "@coursesPaceNeededWeeklyMinutes": {
+    "description": "Daily + weekly pace line when both are sub-hour (minutes).",
+    "placeholders": {
+      "daily": {
+        "type": "String",
+        "example": "8"
+      },
+      "weekly": {
+        "type": "String",
+        "example": "56"
+      }
+    }
+  },
+  "@coursesPaceNeededWeeklyMinutesHours": {
+    "description": "Daily minutes + weekly hours pace line on a course row.",
+    "placeholders": {
+      "daily": {
+        "type": "String",
+        "example": "36"
+      },
+      "weekly": {
+        "type": "String",
+        "example": "4.3"
       }
     }
   },
@@ -706,6 +749,15 @@
       }
     }
   },
+  "@dashboardMinutesPerDay": {
+    "description": "Required daily minutes chip (sub-hour pace) in the hero-card top-3 list.",
+    "placeholders": {
+      "minutes": {
+        "type": "String",
+        "example": "36"
+      }
+    }
+  },
   "@dashboardLogSessionAction": {
     "description": "Label of the dashboard button that opens the log-session dialog."
   },
@@ -751,6 +803,15 @@
       }
     }
   },
+  "@dashboardPaceNeedDailyMinutes": {
+    "description": "Pace line stating the required daily minutes (sub-hour pace).",
+    "placeholders": {
+      "daily": {
+        "type": "String",
+        "example": "36"
+      }
+    }
+  },
   "@dashboardPaceNeedDailyWeekly": {
     "description": "Pace line stating required daily and weekly hours to finish.",
     "placeholders": {
@@ -764,12 +825,51 @@
       }
     }
   },
+  "@dashboardPaceNeedDailyWeeklyMinutes": {
+    "description": "Pace line when both daily and weekly paces are sub-hour.",
+    "placeholders": {
+      "daily": {
+        "type": "String",
+        "example": "8"
+      },
+      "weekly": {
+        "type": "String",
+        "example": "56"
+      }
+    }
+  },
+  "@dashboardPaceNeedDailyWeeklyMinutesHours": {
+    "description": "Pace line with daily minutes and weekly hours.",
+    "placeholders": {
+      "daily": {
+        "type": "String",
+        "example": "36"
+      },
+      "weekly": {
+        "type": "String",
+        "example": "4.3"
+      }
+    }
+  },
   "@dashboardPaceNeedFrom": {
     "description": "Pace line for a scheduled course with a computable daily pace.",
     "placeholders": {
       "hours": {
         "type": "String",
         "example": "1.5"
+      },
+      "date": {
+        "type": "String",
+        "example": "2026-12-01"
+      }
+    }
+  },
+  "@dashboardPaceNeedFromMinutes": {
+    "description": "Pace line for a scheduled course with a sub-hour daily pace.",
+    "placeholders": {
+      "minutes": {
+        "type": "String",
+        "example": "36"
       },
       "date": {
         "type": "String",
@@ -1835,5 +1935,77 @@
   "settingsLiquidGlassUpdated": "Tekoče steklo posodobljeno.",
   "@settingsLiquidGlassUpdated": {
     "description": "SnackBar after the liquid glass opt-in changes."
+  },
+  "devToolsReminderPreview": "Predogled opomnikov",
+  "@devToolsReminderPreview": {
+    "description": "Dev-mode tile title opening the reminder preview feed."
+  },
+  "devToolsReminderPreviewSubtitle": "Poglej, kaj bi se obvestilo prav zdaj. Testni vir, varen za Windows.",
+  "@devToolsReminderPreviewSubtitle": {
+    "description": "Dev-mode reminder preview tile description line."
+  },
+  "reminderPreviewTitle": "Predogled opomnikov",
+  "@reminderPreviewTitle": {
+    "description": "App-bar title of the dev-mode reminder preview page."
+  },
+  "reminderPreviewNow": "Čas predogleda",
+  "@reminderPreviewNow": {
+    "description": "Label above the fake-now stepper on the reminder preview page."
+  },
+  "reminderPreviewReset": "Zdaj",
+  "@reminderPreviewReset": {
+    "description": "Button resetting the preview time to the real now."
+  },
+  "reminderPreviewEmpty": "Vse tiho — ob tem času se ne bi nič obvestilo.",
+  "@reminderPreviewEmpty": {
+    "description": "Empty state of the reminder preview feed."
+  },
+  "reminderPreviewCustom": "Razporedi po meri (predstavitev)",
+  "@reminderPreviewCustom": {
+    "description": "Section header for demo custom schedules on the preview page."
+  },
+  "reminderPreviewNoFire": "Ni prihajajočih sprožitev.",
+  "@reminderPreviewNoFire": {
+    "description": "Shown when a demo custom schedule has no future fire."
+  },
+  "reminderKindDaily": "Dnevni",
+  "@reminderKindDaily": {
+    "description": "Kind chip for the daily-plan nudge on the reminder preview page."
+  },
+  "reminderKindBehind": "V zaostanku",
+  "@reminderKindBehind": {
+    "description": "Kind chip for a behind-course nudge on the reminder preview page."
+  },
+  "reminderKindDeadline": "Rok",
+  "@reminderKindDeadline": {
+    "description": "Kind chip for a deadline-countdown nudge on the reminder preview page."
+  },
+  "reminderKindOverdue": "Zamujeno",
+  "@reminderKindOverdue": {
+    "description": "Kind chip for an overdue-course nudge on the reminder preview page."
+  },
+  "reminderKindStreak": "Niz",
+  "@reminderKindStreak": {
+    "description": "Kind chip for the weekly streak celebration on the reminder preview page."
+  },
+  "reminderKindCustom": "Po meri",
+  "@reminderKindCustom": {
+    "description": "Kind chip for a custom-schedule nudge on the reminder preview page."
+  },
+  "settingsReminders": "Učni opomniki",
+  "@settingsReminders": {
+    "description": "Study reminders opt-in tile title in the Study section."
+  },
+  "settingsRemindersOff": "Izklopljeno — vklopi za dnevni opomnik.",
+  "@settingsRemindersOff": {
+    "description": "Reminders tile subtitle when reminders are disabled."
+  },
+  "settingsReminderTime": "Čas opomnika",
+  "@settingsReminderTime": {
+    "description": "Reminder time tile title in the Study section."
+  },
+  "settingsReminderDenied": "Obvestila so blokirana — omogoči jih v sistemskih nastavitvah.",
+  "@settingsReminderDenied": {
+    "description": "SnackBar when the OS notification permission is denied."
   }
 }

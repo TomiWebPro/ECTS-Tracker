@@ -35,7 +35,10 @@
   "coursesFilterEmpty": "Жоден курс не відповідає фільтру",
   "coursesNewCourse": "Новий курс",
   "coursesPaceNeeded": "Потрібно {daily} год/день",
+  "coursesPaceNeededMinutes": "Потрібно {daily} хв/день",
   "coursesPaceNeededWeekly": "Потрібно {daily} год/день • {weekly} год/тиждень",
+  "coursesPaceNeededWeeklyMinutes": "Потрібно {daily} хв/день • {weekly} хв/тиждень",
+  "coursesPaceNeededWeeklyMinutesHours": "Потрібно {daily} хв/день • {weekly} год/тиждень",
   "coursesProgressWithStatus": "{done} / {required} год • {status}",
   "coursesRemoveSampleTooltip": "Видалити зразковий курс",
   "coursesShownCount": "Показано: {count}",
@@ -63,6 +66,7 @@
   "dashboardHoursDetail": "· {pct}% · залишилось {hours} год",
   "dashboardHoursFraction": "{done} / {required} год",
   "dashboardHoursPerDay": "{hours} год/день",
+  "dashboardMinutesPerDay": "{minutes} хв/день",
   "dashboardLogSessionAction": "Записати навчальну сесію",
   "dashboardLogSessionTooltip": "Записати навчальну сесію",
   "dashboardNewBadge": "НОВЕ",
@@ -74,8 +78,12 @@
   "dashboardNothingToTrack": "Поки нічого відстежувати",
   "dashboardPaceDueToday": "На сьогодні — залишилось {hours} год",
   "dashboardPaceNeedDaily": "Щоб завершити, треба {daily} год/день",
+  "dashboardPaceNeedDailyMinutes": "Щоб завершити, треба {daily} хв/день",
   "dashboardPaceNeedDailyWeekly": "Щоб завершити, треба {daily} год/день · {weekly} год/тиждень",
+  "dashboardPaceNeedDailyWeeklyMinutes": "Щоб завершити, треба {daily} хв/день · {weekly} хв/тиждень",
+  "dashboardPaceNeedDailyWeeklyMinutesHours": "Щоб завершити, треба {daily} хв/день · {weekly} год/тиждень",
   "dashboardPaceNeedFrom": "Треба {hours} год/день з {date} · не в сьогоднішньому темпі",
+  "dashboardPaceNeedFromMinutes": "Треба {minutes} хв/день з {date} · не в сьогоднішньому темпі",
   "dashboardPaceNoDeadline": "Без дедлайну — залишилось {hours} год · без щоденного тиску",
   "dashboardPaceStarts": "Починається {date} · належить {hours} год",
   "dashboardPaceUnrealistic": "{pace} · нереально",
@@ -458,6 +466,15 @@
       }
     }
   },
+  "@coursesPaceNeededMinutes": {
+    "description": "Daily pace line in minutes (sub-hour pace) on a course row.",
+    "placeholders": {
+      "daily": {
+        "type": "String",
+        "example": "36"
+      }
+    }
+  },
   "@coursesPaceNeededWeekly": {
     "description": "Daily + weekly pace line on a course row.",
     "placeholders": {
@@ -468,6 +485,32 @@
       "weekly": {
         "type": "String",
         "example": "7.5"
+      }
+    }
+  },
+  "@coursesPaceNeededWeeklyMinutes": {
+    "description": "Daily + weekly pace line when both are sub-hour (minutes).",
+    "placeholders": {
+      "daily": {
+        "type": "String",
+        "example": "8"
+      },
+      "weekly": {
+        "type": "String",
+        "example": "56"
+      }
+    }
+  },
+  "@coursesPaceNeededWeeklyMinutesHours": {
+    "description": "Daily minutes + weekly hours pace line on a course row.",
+    "placeholders": {
+      "daily": {
+        "type": "String",
+        "example": "36"
+      },
+      "weekly": {
+        "type": "String",
+        "example": "4.3"
       }
     }
   },
@@ -706,6 +749,15 @@
       }
     }
   },
+  "@dashboardMinutesPerDay": {
+    "description": "Required daily minutes chip (sub-hour pace) in the hero-card top-3 list.",
+    "placeholders": {
+      "minutes": {
+        "type": "String",
+        "example": "36"
+      }
+    }
+  },
   "@dashboardLogSessionAction": {
     "description": "Label of the dashboard button that opens the log-session dialog."
   },
@@ -751,6 +803,15 @@
       }
     }
   },
+  "@dashboardPaceNeedDailyMinutes": {
+    "description": "Pace line stating the required daily minutes (sub-hour pace).",
+    "placeholders": {
+      "daily": {
+        "type": "String",
+        "example": "36"
+      }
+    }
+  },
   "@dashboardPaceNeedDailyWeekly": {
     "description": "Pace line stating required daily and weekly hours to finish.",
     "placeholders": {
@@ -764,12 +825,51 @@
       }
     }
   },
+  "@dashboardPaceNeedDailyWeeklyMinutes": {
+    "description": "Pace line when both daily and weekly paces are sub-hour.",
+    "placeholders": {
+      "daily": {
+        "type": "String",
+        "example": "8"
+      },
+      "weekly": {
+        "type": "String",
+        "example": "56"
+      }
+    }
+  },
+  "@dashboardPaceNeedDailyWeeklyMinutesHours": {
+    "description": "Pace line with daily minutes and weekly hours.",
+    "placeholders": {
+      "daily": {
+        "type": "String",
+        "example": "36"
+      },
+      "weekly": {
+        "type": "String",
+        "example": "4.3"
+      }
+    }
+  },
   "@dashboardPaceNeedFrom": {
     "description": "Pace line for a scheduled course with a computable daily pace.",
     "placeholders": {
       "hours": {
         "type": "String",
         "example": "1.5"
+      },
+      "date": {
+        "type": "String",
+        "example": "2026-12-01"
+      }
+    }
+  },
+  "@dashboardPaceNeedFromMinutes": {
+    "description": "Pace line for a scheduled course with a sub-hour daily pace.",
+    "placeholders": {
+      "minutes": {
+        "type": "String",
+        "example": "36"
       },
       "date": {
         "type": "String",
@@ -1835,5 +1935,77 @@
   "settingsLiquidGlassUpdated": "Рідке скло оновлено.",
   "@settingsLiquidGlassUpdated": {
     "description": "SnackBar after the liquid glass opt-in changes."
+  },
+  "devToolsReminderPreview": "Перегляд нагадувань",
+  "@devToolsReminderPreview": {
+    "description": "Dev-mode tile title opening the reminder preview feed."
+  },
+  "devToolsReminderPreviewSubtitle": "Подивіться, що сповістило б просто зараз. Безпечна для Windows тестова стрічка.",
+  "@devToolsReminderPreviewSubtitle": {
+    "description": "Dev-mode reminder preview tile description line."
+  },
+  "reminderPreviewTitle": "Перегляд нагадувань",
+  "@reminderPreviewTitle": {
+    "description": "App-bar title of the dev-mode reminder preview page."
+  },
+  "reminderPreviewNow": "Час перегляду",
+  "@reminderPreviewNow": {
+    "description": "Label above the fake-now stepper on the reminder preview page."
+  },
+  "reminderPreviewReset": "Зараз",
+  "@reminderPreviewReset": {
+    "description": "Button resetting the preview time to the real now."
+  },
+  "reminderPreviewEmpty": "Тихо — у цей час нічого не сповіщатиме.",
+  "@reminderPreviewEmpty": {
+    "description": "Empty state of the reminder preview feed."
+  },
+  "reminderPreviewCustom": "Власні розклади (демо)",
+  "@reminderPreviewCustom": {
+    "description": "Section header for demo custom schedules on the preview page."
+  },
+  "reminderPreviewNoFire": "Немає майбутніх спрацьовувань.",
+  "@reminderPreviewNoFire": {
+    "description": "Shown when a demo custom schedule has no future fire."
+  },
+  "reminderKindDaily": "Щоденний",
+  "@reminderKindDaily": {
+    "description": "Kind chip for the daily-plan nudge on the reminder preview page."
+  },
+  "reminderKindBehind": "Відставання",
+  "@reminderKindBehind": {
+    "description": "Kind chip for a behind-course nudge on the reminder preview page."
+  },
+  "reminderKindDeadline": "Дедлайн",
+  "@reminderKindDeadline": {
+    "description": "Kind chip for a deadline-countdown nudge on the reminder preview page."
+  },
+  "reminderKindOverdue": "Прострочено",
+  "@reminderKindOverdue": {
+    "description": "Kind chip for an overdue-course nudge on the reminder preview page."
+  },
+  "reminderKindStreak": "Серія",
+  "@reminderKindStreak": {
+    "description": "Kind chip for the weekly streak celebration on the reminder preview page."
+  },
+  "reminderKindCustom": "Власний",
+  "@reminderKindCustom": {
+    "description": "Kind chip for a custom-schedule nudge on the reminder preview page."
+  },
+  "settingsReminders": "Нагадування про навчання",
+  "@settingsReminders": {
+    "description": "Study reminders opt-in tile title in the Study section."
+  },
+  "settingsRemindersOff": "Вимкнено — увімкніть для щоденного нагадування.",
+  "@settingsRemindersOff": {
+    "description": "Reminders tile subtitle when reminders are disabled."
+  },
+  "settingsReminderTime": "Час нагадування",
+  "@settingsReminderTime": {
+    "description": "Reminder time tile title in the Study section."
+  },
+  "settingsReminderDenied": "Сповіщення заблоковано — увімкніть їх у системних налаштуваннях.",
+  "@settingsReminderDenied": {
+    "description": "SnackBar when the OS notification permission is denied."
   }
 }

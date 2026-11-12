@@ -1835,5 +1835,177 @@
   "settingsLiquidGlassUpdated": "Flëssegt Glas aktualiséiert.",
   "@settingsLiquidGlassUpdated": {
     "description": "SnackBar after the liquid glass opt-in changes."
+  },
+  "coursesPaceNeededMinutes": "{daily} Min/Dag néideg",
+  "@coursesPaceNeededMinutes": {
+    "description": "Daily pace line in minutes (sub-hour pace) on a course row.",
+    "placeholders": {
+      "daily": {
+        "type": "String",
+        "example": "36"
+      }
+    }
+  },
+  "coursesPaceNeededWeeklyMinutes": "{daily} Min/Dag • {weekly} Min/Woch néideg",
+  "@coursesPaceNeededWeeklyMinutes": {
+    "description": "Daily + weekly pace line when both are sub-hour (minutes).",
+    "placeholders": {
+      "daily": {
+        "type": "String",
+        "example": "8"
+      },
+      "weekly": {
+        "type": "String",
+        "example": "56"
+      }
+    }
+  },
+  "coursesPaceNeededWeeklyMinutesHours": "{daily} Min/Dag • {weekly} St/Woch néideg",
+  "@coursesPaceNeededWeeklyMinutesHours": {
+    "description": "Daily minutes + weekly hours pace line on a course row.",
+    "placeholders": {
+      "daily": {
+        "type": "String",
+        "example": "36"
+      },
+      "weekly": {
+        "type": "String",
+        "example": "4.3"
+      }
+    }
+  },
+  "dashboardMinutesPerDay": "{minutes} Min/Dag",
+  "@dashboardMinutesPerDay": {
+    "description": "Required daily minutes chip (sub-hour pace) in the hero-card top-3 list.",
+    "placeholders": {
+      "minutes": {
+        "type": "String",
+        "example": "36"
+      }
+    }
+  },
+  "dashboardPaceNeedDailyMinutes": "Brauch {daily} Min/Dag fir fäerdeg ze ginn",
+  "@dashboardPaceNeedDailyMinutes": {
+    "description": "Pace line stating the required daily minutes (sub-hour pace).",
+    "placeholders": {
+      "daily": {
+        "type": "String",
+        "example": "36"
+      }
+    }
+  },
+  "dashboardPaceNeedDailyWeeklyMinutes": "Brauch {daily} Min/Dag · {weekly} Min/Woch fir fäerdeg ze ginn",
+  "@dashboardPaceNeedDailyWeeklyMinutes": {
+    "description": "Pace line when both daily and weekly paces are sub-hour.",
+    "placeholders": {
+      "daily": {
+        "type": "String",
+        "example": "8"
+      },
+      "weekly": {
+        "type": "String",
+        "example": "56"
+      }
+    }
+  },
+  "dashboardPaceNeedDailyWeeklyMinutesHours": "Brauch {daily} Min/Dag · {weekly} St/Woch fir fäerdeg ze ginn",
+  "@dashboardPaceNeedDailyWeeklyMinutesHours": {
+    "description": "Pace line with daily minutes and weekly hours.",
+    "placeholders": {
+      "daily": {
+        "type": "String",
+        "example": "36"
+      },
+      "weekly": {
+        "type": "String",
+        "example": "4.3"
+      }
+    }
+  },
+  "dashboardPaceNeedFromMinutes": "Brauch {minutes} Min/Dag vum {date} un · net am Tempo vun Haut",
+  "@dashboardPaceNeedFromMinutes": {
+    "description": "Pace line for a scheduled course with a sub-hour daily pace.",
+    "placeholders": {
+      "minutes": {
+        "type": "String",
+        "example": "36"
+      },
+      "date": {
+        "type": "String",
+        "example": "2026-12-01"
+      }
+    }
+  },
+  "devToolsReminderPreview": "Erënnerungsvirschau",
+  "@devToolsReminderPreview": {
+    "description": "Dev-mode tile title opening the reminder preview feed."
+  },
+  "devToolsReminderPreviewSubtitle": "Kuck wat elo mellen géif. Séchere Testfeed fir Windows.",
+  "@devToolsReminderPreviewSubtitle": {
+    "description": "Dev-mode reminder preview tile description line."
+  },
+  "reminderPreviewTitle": "Erënnerungsvirschau",
+  "@reminderPreviewTitle": {
+    "description": "App-bar title of the dev-mode reminder preview page."
+  },
+  "reminderPreviewNow": "Virschau-Zäit",
+  "@reminderPreviewNow": {
+    "description": "Label above the fake-now stepper on the reminder preview page."
+  },
+  "reminderPreviewReset": "Elo",
+  "@reminderPreviewReset": {
+    "description": "Button resetting the preview time to the real now."
+  },
+  "reminderPreviewEmpty": "Alles roueg — keng Notifikatioun zu dëser Zäit.",
+  "@reminderPreviewEmpty": {
+    "description": "Empty state of the reminder preview feed."
+  },
+  "reminderPreviewCustom": "Eegen Zäitpläng (Demo)",
+  "@reminderPreviewCustom": {
+    "description": "Section header for demo custom schedules on the preview page."
+  },
+  "reminderPreviewNoFire": "Keng Notifikatioun geplangt.",
+  "@reminderPreviewNoFire": {
+    "description": "Shown when a demo custom schedule has no future fire."
+  },
+  "reminderKindDaily": "Deeglech",
+  "@reminderKindDaily": {
+    "description": "Kind chip for the daily-plan nudge on the reminder preview page."
+  },
+  "reminderKindBehind": "Hannerier",
+  "@reminderKindBehind": {
+    "description": "Kind chip for a behind-course nudge on the reminder preview page."
+  },
+  "reminderKindDeadline": "Deadline",
+  "@reminderKindDeadline": {
+    "description": "Kind chip for a deadline-countdown nudge on the reminder preview page."
+  },
+  "reminderKindOverdue": "Iwwerfälleg",
+  "@reminderKindOverdue": {
+    "description": "Kind chip for an overdue-course nudge on the reminder preview page."
+  },
+  "reminderKindStreak": "Serie",
+  "@reminderKindStreak": {
+    "description": "Kind chip for the weekly streak celebration on the reminder preview page."
+  },
+  "reminderKindCustom": "Eegen",
+  "@reminderKindCustom": {
+    "description": "Kind chip for a custom-schedule nudge on the reminder preview page."
+  },
+  "settingsReminders": "Léier-Erënnerungen",
+  "@settingsReminders": {
+    "description": "Study reminders opt-in tile title in the Study section."
+  },
+  "settingsRemindersOff": "Aus — schalt deeglech Erënnerung un.",
+  "@settingsRemindersOff": {
+    "description": "Reminders tile subtitle when reminders are disabled."
+  },
+  "settingsReminderTime": "Erënnerungszäit",
+  "@settingsReminderTime": {
+    "description": "Reminder time tile title in the Study section."
+  },
+  "settingsReminderDenied": "Notifikatioune si blockéiert — aktivéier se an den Systemastellungen.",
+  "@settingsReminderDenied": {
+    "description": "SnackBar when the OS notification permission is denied."
   }
 }

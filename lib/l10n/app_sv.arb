@@ -35,7 +35,10 @@
   "coursesFilterEmpty": "Inga kurser matchar filtret",
   "coursesNewCourse": "Ny kurs",
   "coursesPaceNeeded": "{daily} tim/dag behövs",
+  "coursesPaceNeededMinutes": "{daily} min/dag behövs",
   "coursesPaceNeededWeekly": "{daily} tim/dag • {weekly} tim/vecka behövs",
+  "coursesPaceNeededWeeklyMinutes": "{daily} min/dag • {weekly} min/vecka behövs",
+  "coursesPaceNeededWeeklyMinutesHours": "{daily} min/dag • {weekly} tim/vecka behövs",
   "coursesProgressWithStatus": "{done} / {required} tim • {status}",
   "coursesRemoveSampleTooltip": "Ta bort exempelkurs",
   "coursesShownCount": "{count} visas",
@@ -63,6 +66,7 @@
   "dashboardHoursDetail": "· {pct} % · {hours} tim kvar",
   "dashboardHoursFraction": "{done} / {required} tim",
   "dashboardHoursPerDay": "{hours} tim/dag",
+  "dashboardMinutesPerDay": "{minutes} min/dag",
   "dashboardLogSessionAction": "Logga studiesession",
   "dashboardLogSessionTooltip": "Logga studiesession",
   "dashboardNewBadge": "NY",
@@ -74,8 +78,12 @@
   "dashboardNothingToTrack": "Inget att följa ännu",
   "dashboardPaceDueToday": "Förfaller idag — {hours} tim kvar",
   "dashboardPaceNeedDaily": "Behöver {daily} tim/dag för att bli klar",
+  "dashboardPaceNeedDailyMinutes": "Behöver {daily} min/dag för att bli klar",
   "dashboardPaceNeedDailyWeekly": "Behöver {daily} tim/dag · {weekly} tim/vecka för att bli klar",
+  "dashboardPaceNeedDailyWeeklyMinutes": "Behöver {daily} min/dag · {weekly} min/vecka för att bli klar",
+  "dashboardPaceNeedDailyWeeklyMinutesHours": "Behöver {daily} min/dag · {weekly} tim/vecka för att bli klar",
   "dashboardPaceNeedFrom": "Behöver {hours} tim/dag från {date} · ingår inte i dagens tempo",
+  "dashboardPaceNeedFromMinutes": "Behöver {minutes} min/dag från {date} · ingår inte i dagens tempo",
   "dashboardPaceNoDeadline": "Ingen deadline — {hours} tim kvar · ingen daglig press",
   "dashboardPaceStarts": "Börjar {date} · {hours} tim att göra",
   "dashboardPaceUnrealistic": "{pace} · orealistisk",
@@ -458,6 +466,15 @@
       }
     }
   },
+  "@coursesPaceNeededMinutes": {
+    "description": "Daily pace line in minutes (sub-hour pace) on a course row.",
+    "placeholders": {
+      "daily": {
+        "type": "String",
+        "example": "36"
+      }
+    }
+  },
   "@coursesPaceNeededWeekly": {
     "description": "Daily + weekly pace line on a course row.",
     "placeholders": {
@@ -468,6 +485,32 @@
       "weekly": {
         "type": "String",
         "example": "7.5"
+      }
+    }
+  },
+  "@coursesPaceNeededWeeklyMinutes": {
+    "description": "Daily + weekly pace line when both are sub-hour (minutes).",
+    "placeholders": {
+      "daily": {
+        "type": "String",
+        "example": "8"
+      },
+      "weekly": {
+        "type": "String",
+        "example": "56"
+      }
+    }
+  },
+  "@coursesPaceNeededWeeklyMinutesHours": {
+    "description": "Daily minutes + weekly hours pace line on a course row.",
+    "placeholders": {
+      "daily": {
+        "type": "String",
+        "example": "36"
+      },
+      "weekly": {
+        "type": "String",
+        "example": "4.3"
       }
     }
   },
@@ -706,6 +749,15 @@
       }
     }
   },
+  "@dashboardMinutesPerDay": {
+    "description": "Required daily minutes chip (sub-hour pace) in the hero-card top-3 list.",
+    "placeholders": {
+      "minutes": {
+        "type": "String",
+        "example": "36"
+      }
+    }
+  },
   "@dashboardLogSessionAction": {
     "description": "Label of the dashboard button that opens the log-session dialog."
   },
@@ -751,6 +803,15 @@
       }
     }
   },
+  "@dashboardPaceNeedDailyMinutes": {
+    "description": "Pace line stating the required daily minutes (sub-hour pace).",
+    "placeholders": {
+      "daily": {
+        "type": "String",
+        "example": "36"
+      }
+    }
+  },
   "@dashboardPaceNeedDailyWeekly": {
     "description": "Pace line stating required daily and weekly hours to finish.",
     "placeholders": {
@@ -764,12 +825,51 @@
       }
     }
   },
+  "@dashboardPaceNeedDailyWeeklyMinutes": {
+    "description": "Pace line when both daily and weekly paces are sub-hour.",
+    "placeholders": {
+      "daily": {
+        "type": "String",
+        "example": "8"
+      },
+      "weekly": {
+        "type": "String",
+        "example": "56"
+      }
+    }
+  },
+  "@dashboardPaceNeedDailyWeeklyMinutesHours": {
+    "description": "Pace line with daily minutes and weekly hours.",
+    "placeholders": {
+      "daily": {
+        "type": "String",
+        "example": "36"
+      },
+      "weekly": {
+        "type": "String",
+        "example": "4.3"
+      }
+    }
+  },
   "@dashboardPaceNeedFrom": {
     "description": "Pace line for a scheduled course with a computable daily pace.",
     "placeholders": {
       "hours": {
         "type": "String",
         "example": "1.5"
+      },
+      "date": {
+        "type": "String",
+        "example": "2026-12-01"
+      }
+    }
+  },
+  "@dashboardPaceNeedFromMinutes": {
+    "description": "Pace line for a scheduled course with a sub-hour daily pace.",
+    "placeholders": {
+      "minutes": {
+        "type": "String",
+        "example": "36"
       },
       "date": {
         "type": "String",
@@ -1835,5 +1935,77 @@
   "settingsLiquidGlassUpdated": "Flytande glas uppdaterat.",
   "@settingsLiquidGlassUpdated": {
     "description": "SnackBar after the liquid glass opt-in changes."
+  },
+  "devToolsReminderPreview": "Förhandsvisa påminnelser",
+  "@devToolsReminderPreview": {
+    "description": "Dev-mode tile title opening the reminder preview feed."
+  },
+  "devToolsReminderPreviewSubtitle": "Se vad som skulle avisera just nu. Windows-säkert testflöde.",
+  "@devToolsReminderPreviewSubtitle": {
+    "description": "Dev-mode reminder preview tile description line."
+  },
+  "reminderPreviewTitle": "Förhandsvisa påminnelser",
+  "@reminderPreviewTitle": {
+    "description": "App-bar title of the dev-mode reminder preview page."
+  },
+  "reminderPreviewNow": "Förhandsvisningstid",
+  "@reminderPreviewNow": {
+    "description": "Label above the fake-now stepper on the reminder preview page."
+  },
+  "reminderPreviewReset": "Nu",
+  "@reminderPreviewReset": {
+    "description": "Button resetting the preview time to the real now."
+  },
+  "reminderPreviewEmpty": "Allt lugnt — inget skulle avisera vid den här tiden.",
+  "@reminderPreviewEmpty": {
+    "description": "Empty state of the reminder preview feed."
+  },
+  "reminderPreviewCustom": "Anpassade scheman (demo)",
+  "@reminderPreviewCustom": {
+    "description": "Section header for demo custom schedules on the preview page."
+  },
+  "reminderPreviewNoFire": "Ingen kommande utlösning.",
+  "@reminderPreviewNoFire": {
+    "description": "Shown when a demo custom schedule has no future fire."
+  },
+  "reminderKindDaily": "Daglig",
+  "@reminderKindDaily": {
+    "description": "Kind chip for the daily-plan nudge on the reminder preview page."
+  },
+  "reminderKindBehind": "Bakom",
+  "@reminderKindBehind": {
+    "description": "Kind chip for a behind-course nudge on the reminder preview page."
+  },
+  "reminderKindDeadline": "Deadline",
+  "@reminderKindDeadline": {
+    "description": "Kind chip for a deadline-countdown nudge on the reminder preview page."
+  },
+  "reminderKindOverdue": "Försenad",
+  "@reminderKindOverdue": {
+    "description": "Kind chip for an overdue-course nudge on the reminder preview page."
+  },
+  "reminderKindStreak": "Svit",
+  "@reminderKindStreak": {
+    "description": "Kind chip for the weekly streak celebration on the reminder preview page."
+  },
+  "reminderKindCustom": "Anpassad",
+  "@reminderKindCustom": {
+    "description": "Kind chip for a custom-schedule nudge on the reminder preview page."
+  },
+  "settingsReminders": "Studiepåminnelser",
+  "@settingsReminders": {
+    "description": "Study reminders opt-in tile title in the Study section."
+  },
+  "settingsRemindersOff": "Av — slå på för en daglig påminnelse.",
+  "@settingsRemindersOff": {
+    "description": "Reminders tile subtitle when reminders are disabled."
+  },
+  "settingsReminderTime": "Påminnelsetid",
+  "@settingsReminderTime": {
+    "description": "Reminder time tile title in the Study section."
+  },
+  "settingsReminderDenied": "Aviseringar är blockerade — aktivera dem i systeminställningarna.",
+  "@settingsReminderDenied": {
+    "description": "SnackBar when the OS notification permission is denied."
   }
 }

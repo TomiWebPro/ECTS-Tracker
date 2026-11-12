@@ -29,13 +29,16 @@
   "coursesDeleteBody": "\"{name}\" మరియు దాని అన్ని స్టడీ సెషన్లను తొలగించాలా? దీన్ని రద్దు చేయలేరు.",
   "coursesDeleteTitle": "కోర్సును తొలగించాలా?",
   "coursesEctsValue": "{credits} ECTS",
-  "coursesEmptyHint": "మీ మొదటి కోర్సును సృష్టించడానికి “New course” నొక్కండి.",
+  "coursesEmptyHint": "మీ మొదటి కోర్సును సృష్టించడానికి “కొత్త కోర్సు” నొక్కండి.",
   "coursesEmptyTitle": "ఇంకా కోర్సులు లేవు",
   "coursesFilterAll": "అన్ని స్థితులు",
   "coursesFilterEmpty": "ఈ ఫిల్టర్‌కు ఏ కోర్సూ సరిపోలలేదు",
   "coursesNewCourse": "కొత్త కోర్సు",
   "coursesPaceNeeded": "{daily} గం/రోజు అవసరం",
+  "coursesPaceNeededMinutes": "{daily} నిమి/రోజు అవసరం",
   "coursesPaceNeededWeekly": "{daily} గం/రోజు • {weekly} గం/వారం అవసరం",
+  "coursesPaceNeededWeeklyMinutes": "{daily} నిమి/రోజు • {weekly} నిమి/వారం అవసరం",
+  "coursesPaceNeededWeeklyMinutesHours": "{daily} నిమి/రోజు • {weekly} గం/వారం అవసరం",
   "coursesProgressWithStatus": "{done} / {required} గం • {status}",
   "coursesRemoveSampleTooltip": "నమూనా కోర్సును తొలగించు",
   "coursesShownCount": "{count} చూపబడ్డాయి",
@@ -51,7 +54,7 @@
   "dashboardDeadlineOverdue": "గడువు {date} (మీరిపోయింది)",
   "dashboardDeadlineToday": "గడువు {date} (ఈరోజు)",
   "dashboardDueToday": "ఈరోజు గడువు — {hours} గం నమోదైంది",
-  "dashboardEmptyHintAllDone": "అన్ని కోర్సులు పూర్తయ్యాయి — పూర్తి జాబితా కోసం Courses ట్యాబ్ చూడండి.",
+  "dashboardEmptyHintAllDone": "అన్ని కోర్సులు పూర్తయ్యాయి — పూర్తి జాబితా కోసం కోర్సులు ట్యాబ్ చూడండి.",
   "dashboardEmptyHintNoCourses": "మీ ECTS పురోగతిని ట్రాక్ చేయడానికి కోర్సును జోడించండి.",
   "dashboardExplainerBehind": "వెనుకబడింది = {achieved}/రోజు చేస్తున్నారు, {need}/రోజు అవసరం",
   "dashboardExplainerBehindEarly": "వెనుకబడింది = {achieved}/రోజు, అవసరం {need}/రోజు · ముందస్తు ప్రారంభం",
@@ -63,6 +66,7 @@
   "dashboardHoursDetail": "· {pct}% · {hours}గం మిగిలింది",
   "dashboardHoursFraction": "{done} / {required} గం",
   "dashboardHoursPerDay": "{hours} గం/రోజు",
+  "dashboardMinutesPerDay": "{minutes} నిమి/రోజు",
   "dashboardLogSessionAction": "స్టడీ సెషన్ నమోదు చేయి",
   "dashboardLogSessionTooltip": "స్టడీ సెషన్ నమోదు చేయి",
   "dashboardNewBadge": "కొత్తది",
@@ -74,8 +78,12 @@
   "dashboardNothingToTrack": "ట్రాక్ చేయడానికి ఇంకా ఏమీ లేదు",
   "dashboardPaceDueToday": "ఈరోజు గడువు — {hours}గం మిగిలింది",
   "dashboardPaceNeedDaily": "పూర్తి చేయడానికి {daily} గం/రోజు అవసరం",
+  "dashboardPaceNeedDailyMinutes": "పూర్తి చేయడానికి {daily} నిమి/రోజు అవసరం",
   "dashboardPaceNeedDailyWeekly": "పూర్తికి {daily} గం/రోజు · {weekly} గం/వారం అవసరం",
+  "dashboardPaceNeedDailyWeeklyMinutes": "పూర్తికి {daily} నిమి/రోజు · {weekly} నిమి/వారం అవసరం",
+  "dashboardPaceNeedDailyWeeklyMinutesHours": "పూర్తికి {daily} నిమి/రోజు · {weekly} గం/వారం అవసరం",
   "dashboardPaceNeedFrom": "{date} నుండి {hours} గం/రోజు అవసరం · నేటి వేగంలో లేదు",
+  "dashboardPaceNeedFromMinutes": "{date} నుండి {minutes} నిమి/రోజు అవసరం · నేటి వేగంలో లేదు",
   "dashboardPaceNoDeadline": "గడువు లేదు — {hours}గం మిగిలింది · రోజువారీ ఒత్తిడి లేదు",
   "dashboardPaceStarts": "{date}న మొదలవుతుంది · {hours}గం చేయాలి",
   "dashboardPaceUnrealistic": "{pace} · అవాస్తవికం",
@@ -175,7 +183,7 @@
   "settingsExportCopied": "ఎగుమతి క్లిప్‌బోర్డ్‌కు కాపీ చేయబడింది.",
   "settingsExportSubtitle": "అన్ని కోర్సులు, సెషన్లు, సెట్టింగులను JSONగా కాపీ చేయండి.",
   "settingsExportSummary": "{courses} కోర్సు(లు) · {sessions} సెషన్(లు) · {kb} KB",
-  "settingsExportTruncated": "… (కుదించబడింది — పూర్తి బ్యాకప్ {kb} KB, అన్నింటికీ Copy వాడండి)",
+  "settingsExportTruncated": "… (కుదించబడింది — పూర్తి బ్యాకప్ {kb} KB, అన్నింటికీ కాపీ వాడండి)",
   "settingsFirstWeekday": "వారం మొదటి రోజు",
   "settingsFirstWeekdayUpdated": "వారం మొదటి రోజు నవీకరించబడింది.",
   "settingsHoldLabel": "{label} ({seconds}సె నొక్కి ఉంచండి)",
@@ -190,13 +198,13 @@
   "settingsImportAppend": "జోడించు",
   "settingsImportAppendAction": "దిగుమతి (జోడించు)",
   "settingsImportAppended": "డేటా జోడించబడింది: {courses} కోర్సు(లు), {sessions} సెషన్(లు) చేర్చబడ్డాయి.",
-  "settingsImportInfo": "Append బ్యాకప్‌ను ప్రస్తుత డేటాతో పాటు చేరుస్తుంది (సెట్టింగులు అలాగే ఉంటాయి). Replace ముందు అన్ని కోర్సులు, సెషన్లు, సెట్టింగులను తుడిచివేస్తుంది.",
+  "settingsImportInfo": "జోడించు బ్యాకప్‌ను ప్రస్తుత డేటాతో పాటు చేరుస్తుంది (సెట్టింగులు అలాగే ఉంటాయి). భర్తీ చేయి ముందు అన్ని కోర్సులు, సెషన్లు, సెట్టింగులను తుడిచివేస్తుంది.",
   "settingsImportLabel": "ఎగుమతి చేసిన JSON అతికించండి",
   "settingsImportPreview": "{courses} కోర్సు(లు) · {sessions} సెషన్(లు)",
   "settingsImportPreviewExported": " · ఎగుమతి {exportedAt}",
   "settingsImportPreviewSchema": " · స్కీమా v{schema}",
   "settingsImportReplace": "భర్తీ చేయి",
-  "settingsImportReplaceWarning": "Replace ముందు అన్నీ తొలగిస్తుంది. నిర్ధారించడానికి కింది బటన్‌ను {seconds} సెకన్లు నొక్కి ఉంచండి.",
+  "settingsImportReplaceWarning": "భర్తీ చేయి ముందు అన్నీ తొలగిస్తుంది. నిర్ధారించడానికి కింది బటన్‌ను {seconds} సెకన్లు నొక్కి ఉంచండి.",
   "settingsImportReplaced": "డేటా భర్తీ చేయబడింది: {courses} కోర్సు(లు), {sessions} సెషన్(లు) పునరుద్ధరించబడ్డాయి.",
   "settingsImportSubtitle": "గతంలో ఎగుమతి చేసిన JSON బ్యాకప్ నుండి మొత్తం డేటాను భర్తీ చేయండి.",
   "settingsKeepHolding": "నొక్కి ఉంచండి… {remaining} సె",
@@ -458,6 +466,15 @@
       }
     }
   },
+  "@coursesPaceNeededMinutes": {
+    "description": "Daily pace line in minutes (sub-hour pace) on a course row.",
+    "placeholders": {
+      "daily": {
+        "type": "String",
+        "example": "36"
+      }
+    }
+  },
   "@coursesPaceNeededWeekly": {
     "description": "Daily + weekly pace line on a course row.",
     "placeholders": {
@@ -468,6 +485,32 @@
       "weekly": {
         "type": "String",
         "example": "7.5"
+      }
+    }
+  },
+  "@coursesPaceNeededWeeklyMinutes": {
+    "description": "Daily + weekly pace line when both are sub-hour (minutes).",
+    "placeholders": {
+      "daily": {
+        "type": "String",
+        "example": "8"
+      },
+      "weekly": {
+        "type": "String",
+        "example": "56"
+      }
+    }
+  },
+  "@coursesPaceNeededWeeklyMinutesHours": {
+    "description": "Daily minutes + weekly hours pace line on a course row.",
+    "placeholders": {
+      "daily": {
+        "type": "String",
+        "example": "36"
+      },
+      "weekly": {
+        "type": "String",
+        "example": "4.3"
       }
     }
   },
@@ -706,6 +749,15 @@
       }
     }
   },
+  "@dashboardMinutesPerDay": {
+    "description": "Required daily minutes chip (sub-hour pace) in the hero-card top-3 list.",
+    "placeholders": {
+      "minutes": {
+        "type": "String",
+        "example": "36"
+      }
+    }
+  },
   "@dashboardLogSessionAction": {
     "description": "Label of the dashboard button that opens the log-session dialog."
   },
@@ -751,6 +803,15 @@
       }
     }
   },
+  "@dashboardPaceNeedDailyMinutes": {
+    "description": "Pace line stating the required daily minutes (sub-hour pace).",
+    "placeholders": {
+      "daily": {
+        "type": "String",
+        "example": "36"
+      }
+    }
+  },
   "@dashboardPaceNeedDailyWeekly": {
     "description": "Pace line stating required daily and weekly hours to finish.",
     "placeholders": {
@@ -764,12 +825,51 @@
       }
     }
   },
+  "@dashboardPaceNeedDailyWeeklyMinutes": {
+    "description": "Pace line when both daily and weekly paces are sub-hour.",
+    "placeholders": {
+      "daily": {
+        "type": "String",
+        "example": "8"
+      },
+      "weekly": {
+        "type": "String",
+        "example": "56"
+      }
+    }
+  },
+  "@dashboardPaceNeedDailyWeeklyMinutesHours": {
+    "description": "Pace line with daily minutes and weekly hours.",
+    "placeholders": {
+      "daily": {
+        "type": "String",
+        "example": "36"
+      },
+      "weekly": {
+        "type": "String",
+        "example": "4.3"
+      }
+    }
+  },
   "@dashboardPaceNeedFrom": {
     "description": "Pace line for a scheduled course with a computable daily pace.",
     "placeholders": {
       "hours": {
         "type": "String",
         "example": "1.5"
+      },
+      "date": {
+        "type": "String",
+        "example": "2026-12-01"
+      }
+    }
+  },
+  "@dashboardPaceNeedFromMinutes": {
+    "description": "Pace line for a scheduled course with a sub-hour daily pace.",
+    "placeholders": {
+      "minutes": {
+        "type": "String",
+        "example": "36"
       },
       "date": {
         "type": "String",
@@ -1835,5 +1935,77 @@
   "settingsLiquidGlassUpdated": "లిక్విడ్ గ్లాస్ నవీకరించబడింది.",
   "@settingsLiquidGlassUpdated": {
     "description": "SnackBar after the liquid glass opt-in changes."
+  },
+  "devToolsReminderPreview": "రిమైండర్ ప్రివ్యూ",
+  "@devToolsReminderPreview": {
+    "description": "Dev-mode tile title opening the reminder preview feed."
+  },
+  "devToolsReminderPreviewSubtitle": "ప్రస్తుతం ఏమి నోటిఫై అవుతుందో చూడండి. Windows-సురక్షిత టెస్ట్ ఫీడ్.",
+  "@devToolsReminderPreviewSubtitle": {
+    "description": "Dev-mode reminder preview tile description line."
+  },
+  "reminderPreviewTitle": "రిమైండర్ ప్రివ్యూ",
+  "@reminderPreviewTitle": {
+    "description": "App-bar title of the dev-mode reminder preview page."
+  },
+  "reminderPreviewNow": "ప్రివ్యూ సమయం",
+  "@reminderPreviewNow": {
+    "description": "Label above the fake-now stepper on the reminder preview page."
+  },
+  "reminderPreviewReset": "ఇప్పుడు",
+  "@reminderPreviewReset": {
+    "description": "Button resetting the preview time to the real now."
+  },
+  "reminderPreviewEmpty": "అంతా ప్రశాంతం — ఈ సమయంలో ఏమీ నోటిఫై అవ్వదు.",
+  "@reminderPreviewEmpty": {
+    "description": "Empty state of the reminder preview feed."
+  },
+  "reminderPreviewCustom": "అనుకూల షెడ్యూళ్లు (డెమో)",
+  "@reminderPreviewCustom": {
+    "description": "Section header for demo custom schedules on the preview page."
+  },
+  "reminderPreviewNoFire": "రాబోయే ట్రిగ్గర్ ఏదీ లేదు.",
+  "@reminderPreviewNoFire": {
+    "description": "Shown when a demo custom schedule has no future fire."
+  },
+  "reminderKindDaily": "రోజువారీ",
+  "@reminderKindDaily": {
+    "description": "Kind chip for the daily-plan nudge on the reminder preview page."
+  },
+  "reminderKindBehind": "వెనుకబడింది",
+  "@reminderKindBehind": {
+    "description": "Kind chip for a behind-course nudge on the reminder preview page."
+  },
+  "reminderKindDeadline": "గడువు",
+  "@reminderKindDeadline": {
+    "description": "Kind chip for a deadline-countdown nudge on the reminder preview page."
+  },
+  "reminderKindOverdue": "గడువు మీరింది",
+  "@reminderKindOverdue": {
+    "description": "Kind chip for an overdue-course nudge on the reminder preview page."
+  },
+  "reminderKindStreak": "వరుస",
+  "@reminderKindStreak": {
+    "description": "Kind chip for the weekly streak celebration on the reminder preview page."
+  },
+  "reminderKindCustom": "అనుకూల",
+  "@reminderKindCustom": {
+    "description": "Kind chip for a custom-schedule nudge on the reminder preview page."
+  },
+  "settingsReminders": "స్టడీ రిమైండర్లు",
+  "@settingsReminders": {
+    "description": "Study reminders opt-in tile title in the Study section."
+  },
+  "settingsRemindersOff": "ఆఫ్ — రోజువారీ రిమైండర్ కోసం ఆన్ చేయండి.",
+  "@settingsRemindersOff": {
+    "description": "Reminders tile subtitle when reminders are disabled."
+  },
+  "settingsReminderTime": "రిమైండర్ సమయం",
+  "@settingsReminderTime": {
+    "description": "Reminder time tile title in the Study section."
+  },
+  "settingsReminderDenied": "నోటిఫికేషన్లు బ్లాక్ చేయబడ్డాయి — సిస్టమ్ సెట్టింగుల్లో వాటిని ప్రారంభించండి.",
+  "@settingsReminderDenied": {
+    "description": "SnackBar when the OS notification permission is denied."
   }
 }

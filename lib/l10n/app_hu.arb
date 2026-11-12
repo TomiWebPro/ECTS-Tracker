@@ -35,7 +35,10 @@
   "coursesFilterEmpty": "Nincs a szűrőnek megfelelő kurzus",
   "coursesNewCourse": "Új kurzus",
   "coursesPaceNeeded": "{daily} ó/nap szükséges",
+  "coursesPaceNeededMinutes": "{daily} perc/nap szükséges",
   "coursesPaceNeededWeekly": "{daily} ó/nap • {weekly} ó/hét szükséges",
+  "coursesPaceNeededWeeklyMinutes": "{daily} perc/nap • {weekly} perc/hét szükséges",
+  "coursesPaceNeededWeeklyMinutesHours": "{daily} perc/nap • {weekly} ó/hét szükséges",
   "coursesProgressWithStatus": "{done} / {required} ó • {status}",
   "coursesRemoveSampleTooltip": "Mintakurzus eltávolítása",
   "coursesShownCount": "{count} megjelenítve",
@@ -63,6 +66,7 @@
   "dashboardHoursDetail": "· {pct}% · {hours} ó van hátra",
   "dashboardHoursFraction": "{done} / {required} ó",
   "dashboardHoursPerDay": "{hours} ó/nap",
+  "dashboardMinutesPerDay": "{minutes} perc/nap",
   "dashboardLogSessionAction": "Tanulási alkalom naplózása",
   "dashboardLogSessionTooltip": "Tanulási alkalom naplózása",
   "dashboardNewBadge": "ÚJ",
@@ -74,8 +78,12 @@
   "dashboardNothingToTrack": "Még nincs mit követni",
   "dashboardPaceDueToday": "Mára esedékes — {hours} ó van hátra",
   "dashboardPaceNeedDaily": "A befejezéshez {daily} ó/nap kell",
+  "dashboardPaceNeedDailyMinutes": "A befejezéshez {daily} perc/nap kell",
   "dashboardPaceNeedDailyWeekly": "A befejezéshez {daily} ó/nap · {weekly} ó/hét kell",
+  "dashboardPaceNeedDailyWeeklyMinutes": "A befejezéshez {daily} perc/nap · {weekly} perc/hét kell",
+  "dashboardPaceNeedDailyWeeklyMinutesHours": "A befejezéshez {daily} perc/nap · {weekly} ó/hét kell",
   "dashboardPaceNeedFrom": "{hours} ó/nap kell {date} dátumtól · nem számít a mai tempóba",
+  "dashboardPaceNeedFromMinutes": "{minutes} perc/nap kell {date} dátumtól · nem számít a mai tempóba",
   "dashboardPaceNoDeadline": "Nincs határidő — {hours} ó van hátra · nincs napi nyomás",
   "dashboardPaceStarts": "Kezdődik: {date} · {hours} ó teendő",
   "dashboardPaceUnrealistic": "{pace} · irreális",
@@ -471,6 +479,41 @@
       }
     }
   },
+  "@coursesPaceNeededMinutes": {
+    "description": "Daily pace line in minutes (sub-hour pace) on a course row.",
+    "placeholders": {
+      "daily": {
+        "type": "String",
+        "example": "36"
+      }
+    }
+  },
+  "@coursesPaceNeededWeeklyMinutes": {
+    "description": "Daily + weekly pace line when both are sub-hour (minutes).",
+    "placeholders": {
+      "daily": {
+        "type": "String",
+        "example": "8"
+      },
+      "weekly": {
+        "type": "String",
+        "example": "56"
+      }
+    }
+  },
+  "@coursesPaceNeededWeeklyMinutesHours": {
+    "description": "Daily minutes + weekly hours pace line on a course row.",
+    "placeholders": {
+      "daily": {
+        "type": "String",
+        "example": "36"
+      },
+      "weekly": {
+        "type": "String",
+        "example": "4.3"
+      }
+    }
+  },
   "@coursesProgressWithStatus": {
     "description": "Course row progress line combining hours and the (unlocalized, logic-owned) status label.",
     "placeholders": {
@@ -706,6 +749,15 @@
       }
     }
   },
+  "@dashboardMinutesPerDay": {
+    "description": "Required daily minutes chip (sub-hour pace) in the hero-card top-3 list.",
+    "placeholders": {
+      "minutes": {
+        "type": "String",
+        "example": "36"
+      }
+    }
+  },
   "@dashboardLogSessionAction": {
     "description": "Label of the dashboard button that opens the log-session dialog."
   },
@@ -764,12 +816,60 @@
       }
     }
   },
+  "@dashboardPaceNeedDailyMinutes": {
+    "description": "Pace line stating the required daily minutes (sub-hour pace).",
+    "placeholders": {
+      "daily": {
+        "type": "String",
+        "example": "36"
+      }
+    }
+  },
+  "@dashboardPaceNeedDailyWeeklyMinutes": {
+    "description": "Pace line when both daily and weekly paces are sub-hour.",
+    "placeholders": {
+      "daily": {
+        "type": "String",
+        "example": "8"
+      },
+      "weekly": {
+        "type": "String",
+        "example": "56"
+      }
+    }
+  },
+  "@dashboardPaceNeedDailyWeeklyMinutesHours": {
+    "description": "Pace line with daily minutes and weekly hours.",
+    "placeholders": {
+      "daily": {
+        "type": "String",
+        "example": "36"
+      },
+      "weekly": {
+        "type": "String",
+        "example": "4.3"
+      }
+    }
+  },
   "@dashboardPaceNeedFrom": {
     "description": "Pace line for a scheduled course with a computable daily pace.",
     "placeholders": {
       "hours": {
         "type": "String",
         "example": "1.5"
+      },
+      "date": {
+        "type": "String",
+        "example": "2026-12-01"
+      }
+    }
+  },
+  "@dashboardPaceNeedFromMinutes": {
+    "description": "Pace line for a scheduled course with a sub-hour daily pace.",
+    "placeholders": {
+      "minutes": {
+        "type": "String",
+        "example": "36"
       },
       "date": {
         "type": "String",
@@ -1835,5 +1935,77 @@
   "settingsLiquidGlassUpdated": "Folyékony üveg frissítve.",
   "@settingsLiquidGlassUpdated": {
     "description": "SnackBar after the liquid glass opt-in changes."
+  },
+  "devToolsReminderPreview": "Emlékeztető előnézete",
+  "@devToolsReminderPreview": {
+    "description": "Dev-mode tile title opening the reminder preview feed."
+  },
+  "devToolsReminderPreviewSubtitle": "Nézd meg, mi jelezne most. Windows-biztos tesztcsatorna.",
+  "@devToolsReminderPreviewSubtitle": {
+    "description": "Dev-mode reminder preview tile description line."
+  },
+  "reminderPreviewTitle": "Emlékeztető előnézete",
+  "@reminderPreviewTitle": {
+    "description": "App-bar title of the dev-mode reminder preview page."
+  },
+  "reminderPreviewNow": "Előnézet ideje",
+  "@reminderPreviewNow": {
+    "description": "Label above the fake-now stepper on the reminder preview page."
+  },
+  "reminderPreviewReset": "Most",
+  "@reminderPreviewReset": {
+    "description": "Button resetting the preview time to the real now."
+  },
+  "reminderPreviewEmpty": "Minden csendes — ilyenkor semmi sem jelezne.",
+  "@reminderPreviewEmpty": {
+    "description": "Empty state of the reminder preview feed."
+  },
+  "reminderPreviewCustom": "Egyéni ütemezések (demó)",
+  "@reminderPreviewCustom": {
+    "description": "Section header for demo custom schedules on the preview page."
+  },
+  "reminderPreviewNoFire": "Nincs közelgő jelzés.",
+  "@reminderPreviewNoFire": {
+    "description": "Shown when a demo custom schedule has no future fire."
+  },
+  "reminderKindDaily": "Napi",
+  "@reminderKindDaily": {
+    "description": "Kind chip for the daily-plan nudge on the reminder preview page."
+  },
+  "reminderKindBehind": "Lemaradva",
+  "@reminderKindBehind": {
+    "description": "Kind chip for a behind-course nudge on the reminder preview page."
+  },
+  "reminderKindDeadline": "Határidő",
+  "@reminderKindDeadline": {
+    "description": "Kind chip for a deadline-countdown nudge on the reminder preview page."
+  },
+  "reminderKindOverdue": "Lejárt",
+  "@reminderKindOverdue": {
+    "description": "Kind chip for an overdue-course nudge on the reminder preview page."
+  },
+  "reminderKindStreak": "Sorozat",
+  "@reminderKindStreak": {
+    "description": "Kind chip for the weekly streak celebration on the reminder preview page."
+  },
+  "reminderKindCustom": "Egyéni",
+  "@reminderKindCustom": {
+    "description": "Kind chip for a custom-schedule nudge on the reminder preview page."
+  },
+  "settingsReminders": "Tanulási emlékeztetők",
+  "@settingsReminders": {
+    "description": "Study reminders opt-in tile title in the Study section."
+  },
+  "settingsRemindersOff": "Ki — kapcsold be a napi emlékeztetőért.",
+  "@settingsRemindersOff": {
+    "description": "Reminders tile subtitle when reminders are disabled."
+  },
+  "settingsReminderTime": "Emlékeztető ideje",
+  "@settingsReminderTime": {
+    "description": "Reminder time tile title in the Study section."
+  },
+  "settingsReminderDenied": "Az értesítések le vannak tiltva — engedélyezd őket a rendszerbeállításokban.",
+  "@settingsReminderDenied": {
+    "description": "SnackBar when the OS notification permission is denied."
   }
 }

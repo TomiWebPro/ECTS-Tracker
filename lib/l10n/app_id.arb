@@ -4,7 +4,7 @@
   "commonCancel": "Batal",
   "commonClose": "Tutup",
   "commonDelete": "Hapus",
-  "commonEdit": "Edit",
+  "commonEdit": "Ubah",
   "commonError": "Kesalahan",
   "commonNone": "Tidak ada",
   "commonSave": "Simpan",
@@ -35,7 +35,10 @@
   "coursesFilterEmpty": "Tidak ada kursus yang cocok dengan filter ini",
   "coursesNewCourse": "Kursus baru",
   "coursesPaceNeeded": "perlu {daily} jam/hari",
+  "coursesPaceNeededMinutes": "perlu {daily} mnt/hari",
   "coursesPaceNeededWeekly": "perlu {daily} jam/hari • {weekly} jam/minggu",
+  "coursesPaceNeededWeeklyMinutes": "perlu {daily} mnt/hari • {weekly} mnt/minggu",
+  "coursesPaceNeededWeeklyMinutesHours": "perlu {daily} mnt/hari • {weekly} jam/minggu",
   "coursesProgressWithStatus": "{done} / {required} jam • {status}",
   "coursesRemoveSampleTooltip": "Hapus kursus contoh",
   "coursesShownCount": "{count} ditampilkan",
@@ -63,6 +66,7 @@
   "dashboardHoursDetail": "· {pct}% · sisa {hours} jam",
   "dashboardHoursFraction": "{done} / {required} jam",
   "dashboardHoursPerDay": "{hours} jam/hari",
+  "dashboardMinutesPerDay": "{minutes} mnt/hari",
   "dashboardLogSessionAction": "Catat sesi belajar",
   "dashboardLogSessionTooltip": "Catat sesi belajar",
   "dashboardNewBadge": "BARU",
@@ -74,8 +78,12 @@
   "dashboardNothingToTrack": "Belum ada yang dilacak",
   "dashboardPaceDueToday": "Untuk hari ini — sisa {hours} jam",
   "dashboardPaceNeedDaily": "Butuh {daily} jam/hari untuk selesai",
+  "dashboardPaceNeedDailyMinutes": "Butuh {daily} mnt/hari untuk selesai",
   "dashboardPaceNeedDailyWeekly": "Butuh {daily} jam/hari · {weekly} jam/minggu untuk selesai",
+  "dashboardPaceNeedDailyWeeklyMinutes": "Butuh {daily} mnt/hari · {weekly} mnt/minggu untuk selesai",
+  "dashboardPaceNeedDailyWeeklyMinutesHours": "Butuh {daily} mnt/hari · {weekly} jam/minggu untuk selesai",
   "dashboardPaceNeedFrom": "Butuh {hours} jam/hari mulai {date} · tidak masuk kecepatan Hari Ini",
+  "dashboardPaceNeedFromMinutes": "Butuh {minutes} mnt/hari mulai {date} · tidak masuk kecepatan Hari Ini",
   "dashboardPaceNoDeadline": "Tanpa tenggat — sisa {hours} jam · tanpa tekanan harian",
   "dashboardPaceStarts": "Mulai {date} · {hours} jam harus dikerjakan",
   "dashboardPaceUnrealistic": "{pace} · tidak realistis",
@@ -471,6 +479,41 @@
       }
     }
   },
+  "@coursesPaceNeededMinutes": {
+    "description": "Daily pace line in minutes (sub-hour pace) on a course row.",
+    "placeholders": {
+      "daily": {
+        "type": "String",
+        "example": "36"
+      }
+    }
+  },
+  "@coursesPaceNeededWeeklyMinutes": {
+    "description": "Daily + weekly pace line when both are sub-hour (minutes).",
+    "placeholders": {
+      "daily": {
+        "type": "String",
+        "example": "8"
+      },
+      "weekly": {
+        "type": "String",
+        "example": "56"
+      }
+    }
+  },
+  "@coursesPaceNeededWeeklyMinutesHours": {
+    "description": "Daily minutes + weekly hours pace line on a course row.",
+    "placeholders": {
+      "daily": {
+        "type": "String",
+        "example": "36"
+      },
+      "weekly": {
+        "type": "String",
+        "example": "4.3"
+      }
+    }
+  },
   "@coursesProgressWithStatus": {
     "description": "Course row progress line combining hours and the (unlocalized, logic-owned) status label.",
     "placeholders": {
@@ -706,6 +749,15 @@
       }
     }
   },
+  "@dashboardMinutesPerDay": {
+    "description": "Required daily minutes chip (sub-hour pace) in the hero-card top-3 list.",
+    "placeholders": {
+      "minutes": {
+        "type": "String",
+        "example": "36"
+      }
+    }
+  },
   "@dashboardLogSessionAction": {
     "description": "Label of the dashboard button that opens the log-session dialog."
   },
@@ -764,12 +816,60 @@
       }
     }
   },
+  "@dashboardPaceNeedDailyMinutes": {
+    "description": "Pace line stating the required daily minutes (sub-hour pace).",
+    "placeholders": {
+      "daily": {
+        "type": "String",
+        "example": "36"
+      }
+    }
+  },
+  "@dashboardPaceNeedDailyWeeklyMinutes": {
+    "description": "Pace line when both daily and weekly paces are sub-hour.",
+    "placeholders": {
+      "daily": {
+        "type": "String",
+        "example": "8"
+      },
+      "weekly": {
+        "type": "String",
+        "example": "56"
+      }
+    }
+  },
+  "@dashboardPaceNeedDailyWeeklyMinutesHours": {
+    "description": "Pace line with daily minutes and weekly hours.",
+    "placeholders": {
+      "daily": {
+        "type": "String",
+        "example": "36"
+      },
+      "weekly": {
+        "type": "String",
+        "example": "4.3"
+      }
+    }
+  },
   "@dashboardPaceNeedFrom": {
     "description": "Pace line for a scheduled course with a computable daily pace.",
     "placeholders": {
       "hours": {
         "type": "String",
         "example": "1.5"
+      },
+      "date": {
+        "type": "String",
+        "example": "2026-12-01"
+      }
+    }
+  },
+  "@dashboardPaceNeedFromMinutes": {
+    "description": "Pace line for a scheduled course with a sub-hour daily pace.",
+    "placeholders": {
+      "minutes": {
+        "type": "String",
+        "example": "36"
       },
       "date": {
         "type": "String",
@@ -1835,5 +1935,77 @@
   "settingsLiquidGlassUpdated": "Kaca cair diperbarui.",
   "@settingsLiquidGlassUpdated": {
     "description": "SnackBar after the liquid glass opt-in changes."
+  },
+  "devToolsReminderPreview": "Pratinjau pengingat",
+  "@devToolsReminderPreview": {
+    "description": "Dev-mode tile title opening the reminder preview feed."
+  },
+  "devToolsReminderPreviewSubtitle": "Lihat apa yang akan memberitahu saat ini. Umpan uji yang aman di Windows.",
+  "@devToolsReminderPreviewSubtitle": {
+    "description": "Dev-mode reminder preview tile description line."
+  },
+  "reminderPreviewTitle": "Pratinjau pengingat",
+  "@reminderPreviewTitle": {
+    "description": "App-bar title of the dev-mode reminder preview page."
+  },
+  "reminderPreviewNow": "Waktu pratinjau",
+  "@reminderPreviewNow": {
+    "description": "Label above the fake-now stepper on the reminder preview page."
+  },
+  "reminderPreviewReset": "Sekarang",
+  "@reminderPreviewReset": {
+    "description": "Button resetting the preview time to the real now."
+  },
+  "reminderPreviewEmpty": "Semua tenang — tidak ada yang akan memberitahu saat ini.",
+  "@reminderPreviewEmpty": {
+    "description": "Empty state of the reminder preview feed."
+  },
+  "reminderPreviewCustom": "Jadwal kustom (demo)",
+  "@reminderPreviewCustom": {
+    "description": "Section header for demo custom schedules on the preview page."
+  },
+  "reminderPreviewNoFire": "Tidak ada pemicu berikutnya.",
+  "@reminderPreviewNoFire": {
+    "description": "Shown when a demo custom schedule has no future fire."
+  },
+  "reminderKindDaily": "Harian",
+  "@reminderKindDaily": {
+    "description": "Kind chip for the daily-plan nudge on the reminder preview page."
+  },
+  "reminderKindBehind": "Tertinggal",
+  "@reminderKindBehind": {
+    "description": "Kind chip for a behind-course nudge on the reminder preview page."
+  },
+  "reminderKindDeadline": "Tenggat",
+  "@reminderKindDeadline": {
+    "description": "Kind chip for a deadline-countdown nudge on the reminder preview page."
+  },
+  "reminderKindOverdue": "Terlambat",
+  "@reminderKindOverdue": {
+    "description": "Kind chip for an overdue-course nudge on the reminder preview page."
+  },
+  "reminderKindStreak": "Rentetan",
+  "@reminderKindStreak": {
+    "description": "Kind chip for the weekly streak celebration on the reminder preview page."
+  },
+  "reminderKindCustom": "Kustom",
+  "@reminderKindCustom": {
+    "description": "Kind chip for a custom-schedule nudge on the reminder preview page."
+  },
+  "settingsReminders": "Pengingat belajar",
+  "@settingsReminders": {
+    "description": "Study reminders opt-in tile title in the Study section."
+  },
+  "settingsRemindersOff": "Mati — aktifkan untuk pengingat harian.",
+  "@settingsRemindersOff": {
+    "description": "Reminders tile subtitle when reminders are disabled."
+  },
+  "settingsReminderTime": "Waktu pengingat",
+  "@settingsReminderTime": {
+    "description": "Reminder time tile title in the Study section."
+  },
+  "settingsReminderDenied": "Notifikasi diblokir — aktifkan di pengaturan sistem.",
+  "@settingsReminderDenied": {
+    "description": "SnackBar when the OS notification permission is denied."
   }
 }

@@ -35,7 +35,10 @@
   "coursesFilterEmpty": "इस फ़िल्टर से कोई कोर्स मेल नहीं खाता",
   "coursesNewCourse": "नया कोर्स",
   "coursesPaceNeeded": "{daily} घंटे/दिन आवश्यक",
+  "coursesPaceNeededMinutes": "{daily} मिनट/दिन आवश्यक",
   "coursesPaceNeededWeekly": "{daily} घंटे/दिन • {weekly} घंटे/सप्ताह आवश्यक",
+  "coursesPaceNeededWeeklyMinutes": "{daily} मिनट/दिन • {weekly} मिनट/सप्ताह आवश्यक",
+  "coursesPaceNeededWeeklyMinutesHours": "{daily} मिनट/दिन • {weekly} घंटे/सप्ताह आवश्यक",
   "coursesProgressWithStatus": "{done} / {required} घंटे • {status}",
   "coursesRemoveSampleTooltip": "नमूना कोर्स हटाएँ",
   "coursesShownCount": "{count} दिखाए गए",
@@ -63,6 +66,7 @@
   "dashboardHoursDetail": "· {pct}% · {hours} घंटे शेष",
   "dashboardHoursFraction": "{done} / {required} घंटे",
   "dashboardHoursPerDay": "{hours} घंटे/दिन",
+  "dashboardMinutesPerDay": "{minutes} मिनट/दिन",
   "dashboardLogSessionAction": "अध्ययन सत्र दर्ज करें",
   "dashboardLogSessionTooltip": "अध्ययन सत्र दर्ज करें",
   "dashboardNewBadge": "नया",
@@ -74,8 +78,12 @@
   "dashboardNothingToTrack": "अभी ट्रैक करने को कुछ नहीं",
   "dashboardPaceDueToday": "आज देय — {hours} घंटे शेष",
   "dashboardPaceNeedDaily": "पूरा करने के लिए {daily} घंटे/दिन चाहिए",
+  "dashboardPaceNeedDailyMinutes": "पूरा करने के लिए {daily} मिनट/दिन चाहिए",
   "dashboardPaceNeedDailyWeekly": "पूरा करने के लिए {daily} घंटे/दिन · {weekly} घंटे/सप्ताह चाहिए",
+  "dashboardPaceNeedDailyWeeklyMinutes": "पूरा करने के लिए {daily} मिनट/दिन · {weekly} मिनट/सप्ताह चाहिए",
+  "dashboardPaceNeedDailyWeeklyMinutesHours": "पूरा करने के लिए {daily} मिनट/दिन · {weekly} घंटे/सप्ताह चाहिए",
   "dashboardPaceNeedFrom": "{date} से {hours} घंटे/दिन चाहिए · आज की गति में शामिल नहीं",
+  "dashboardPaceNeedFromMinutes": "{date} से {minutes} मिनट/दिन चाहिए · आज की गति में शामिल नहीं",
   "dashboardPaceNoDeadline": "कोई समय-सीमा नहीं — {hours} घंटे शेष · कोई दैनिक दबाव नहीं",
   "dashboardPaceStarts": "{date} से शुरू · {hours} घंटे करने हैं",
   "dashboardPaceUnrealistic": "{pace} · अवास्तविक",
@@ -471,6 +479,41 @@
       }
     }
   },
+  "@coursesPaceNeededMinutes": {
+    "description": "Daily pace line in minutes (sub-hour pace) on a course row.",
+    "placeholders": {
+      "daily": {
+        "type": "String",
+        "example": "36"
+      }
+    }
+  },
+  "@coursesPaceNeededWeeklyMinutes": {
+    "description": "Daily + weekly pace line when both are sub-hour (minutes).",
+    "placeholders": {
+      "daily": {
+        "type": "String",
+        "example": "8"
+      },
+      "weekly": {
+        "type": "String",
+        "example": "56"
+      }
+    }
+  },
+  "@coursesPaceNeededWeeklyMinutesHours": {
+    "description": "Daily minutes + weekly hours pace line on a course row.",
+    "placeholders": {
+      "daily": {
+        "type": "String",
+        "example": "36"
+      },
+      "weekly": {
+        "type": "String",
+        "example": "4.3"
+      }
+    }
+  },
   "@coursesProgressWithStatus": {
     "description": "Course row progress line combining hours and the (unlocalized, logic-owned) status label.",
     "placeholders": {
@@ -706,6 +749,15 @@
       }
     }
   },
+  "@dashboardMinutesPerDay": {
+    "description": "Required daily minutes chip (sub-hour pace) in the hero-card top-3 list.",
+    "placeholders": {
+      "minutes": {
+        "type": "String",
+        "example": "36"
+      }
+    }
+  },
   "@dashboardLogSessionAction": {
     "description": "Label of the dashboard button that opens the log-session dialog."
   },
@@ -764,12 +816,60 @@
       }
     }
   },
+  "@dashboardPaceNeedDailyMinutes": {
+    "description": "Pace line stating the required daily minutes (sub-hour pace).",
+    "placeholders": {
+      "daily": {
+        "type": "String",
+        "example": "36"
+      }
+    }
+  },
+  "@dashboardPaceNeedDailyWeeklyMinutes": {
+    "description": "Pace line when both daily and weekly paces are sub-hour.",
+    "placeholders": {
+      "daily": {
+        "type": "String",
+        "example": "8"
+      },
+      "weekly": {
+        "type": "String",
+        "example": "56"
+      }
+    }
+  },
+  "@dashboardPaceNeedDailyWeeklyMinutesHours": {
+    "description": "Pace line with daily minutes and weekly hours.",
+    "placeholders": {
+      "daily": {
+        "type": "String",
+        "example": "36"
+      },
+      "weekly": {
+        "type": "String",
+        "example": "4.3"
+      }
+    }
+  },
   "@dashboardPaceNeedFrom": {
     "description": "Pace line for a scheduled course with a computable daily pace.",
     "placeholders": {
       "hours": {
         "type": "String",
         "example": "1.5"
+      },
+      "date": {
+        "type": "String",
+        "example": "2026-12-01"
+      }
+    }
+  },
+  "@dashboardPaceNeedFromMinutes": {
+    "description": "Pace line for a scheduled course with a sub-hour daily pace.",
+    "placeholders": {
+      "minutes": {
+        "type": "String",
+        "example": "36"
       },
       "date": {
         "type": "String",
@@ -1835,5 +1935,77 @@
   "settingsLiquidGlassUpdated": "लिक्विड ग्लास अपडेट हो गया।",
   "@settingsLiquidGlassUpdated": {
     "description": "SnackBar after the liquid glass opt-in changes."
+  },
+  "devToolsReminderPreview": "अनुस्मारक पूर्वावलोकन",
+  "@devToolsReminderPreview": {
+    "description": "Dev-mode tile title opening the reminder preview feed."
+  },
+  "devToolsReminderPreviewSubtitle": "देखें कि अभी क्या सूचित होगा। Windows-सुरक्षित टेस्ट फ़ीड।",
+  "@devToolsReminderPreviewSubtitle": {
+    "description": "Dev-mode reminder preview tile description line."
+  },
+  "reminderPreviewTitle": "अनुस्मारक पूर्वावलोकन",
+  "@reminderPreviewTitle": {
+    "description": "App-bar title of the dev-mode reminder preview page."
+  },
+  "reminderPreviewNow": "पूर्वावलोकन का समय",
+  "@reminderPreviewNow": {
+    "description": "Label above the fake-now stepper on the reminder preview page."
+  },
+  "reminderPreviewReset": "अभी",
+  "@reminderPreviewReset": {
+    "description": "Button resetting the preview time to the real now."
+  },
+  "reminderPreviewEmpty": "सब शांत है — इस समय कोई सूचना नहीं आएगी।",
+  "@reminderPreviewEmpty": {
+    "description": "Empty state of the reminder preview feed."
+  },
+  "reminderPreviewCustom": "कस्टम शेड्यूल (डेमो)",
+  "@reminderPreviewCustom": {
+    "description": "Section header for demo custom schedules on the preview page."
+  },
+  "reminderPreviewNoFire": "कोई आगामी ट्रिगर नहीं।",
+  "@reminderPreviewNoFire": {
+    "description": "Shown when a demo custom schedule has no future fire."
+  },
+  "reminderKindDaily": "दैनिक",
+  "@reminderKindDaily": {
+    "description": "Kind chip for the daily-plan nudge on the reminder preview page."
+  },
+  "reminderKindBehind": "पीछे",
+  "@reminderKindBehind": {
+    "description": "Kind chip for a behind-course nudge on the reminder preview page."
+  },
+  "reminderKindDeadline": "समय-सीमा",
+  "@reminderKindDeadline": {
+    "description": "Kind chip for a deadline-countdown nudge on the reminder preview page."
+  },
+  "reminderKindOverdue": "विलंबित",
+  "@reminderKindOverdue": {
+    "description": "Kind chip for an overdue-course nudge on the reminder preview page."
+  },
+  "reminderKindStreak": "स्ट्रीक",
+  "@reminderKindStreak": {
+    "description": "Kind chip for the weekly streak celebration on the reminder preview page."
+  },
+  "reminderKindCustom": "कस्टम",
+  "@reminderKindCustom": {
+    "description": "Kind chip for a custom-schedule nudge on the reminder preview page."
+  },
+  "settingsReminders": "अध्ययन अनुस्मारक",
+  "@settingsReminders": {
+    "description": "Study reminders opt-in tile title in the Study section."
+  },
+  "settingsRemindersOff": "बंद — दैनिक याद दिलाने के लिए चालू करें।",
+  "@settingsRemindersOff": {
+    "description": "Reminders tile subtitle when reminders are disabled."
+  },
+  "settingsReminderTime": "अनुस्मारक का समय",
+  "@settingsReminderTime": {
+    "description": "Reminder time tile title in the Study section."
+  },
+  "settingsReminderDenied": "सूचनाएँ अवरुद्ध हैं — इन्हें सिस्टम सेटिंग्स में सक्षम करें।",
+  "@settingsReminderDenied": {
+    "description": "SnackBar when the OS notification permission is denied."
   }
 }

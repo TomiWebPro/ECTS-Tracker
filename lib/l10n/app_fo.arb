@@ -35,7 +35,10 @@
   "coursesFilterEmpty": "Onki skeið samsvarar hesum sili",
   "coursesNewCourse": "Nýtt skeið",
   "coursesPaceNeeded": "{daily} t/dag krevst",
+  "coursesPaceNeededMinutes": "{daily} min/dag krevst",
   "coursesPaceNeededWeekly": "{daily} t/dag • {weekly} t/viku krevst",
+  "coursesPaceNeededWeeklyMinutes": "{daily} min/dag • {weekly} min/viku krevst",
+  "coursesPaceNeededWeeklyMinutesHours": "{daily} min/dag • {weekly} t/viku krevst",
   "coursesProgressWithStatus": "{done} / {required} t • {status}",
   "coursesRemoveSampleTooltip": "Strika royndarskeið",
   "coursesShownCount": "{count} víst",
@@ -63,6 +66,7 @@
   "dashboardHoursDetail": "· {pct}% · {hours}t eftir",
   "dashboardHoursFraction": "{done} / {required} t",
   "dashboardHoursPerDay": "{hours} t/d",
+  "dashboardMinutesPerDay": "{minutes} min/d",
   "dashboardLogSessionAction": "Skráset lestrarløtu",
   "dashboardLogSessionTooltip": "Skráset lestrarløtu",
   "dashboardNewBadge": "NÝTT",
@@ -74,8 +78,12 @@
   "dashboardNothingToTrack": "Einki at fylgja enn",
   "dashboardPaceDueToday": "Skal gerast í dag — {hours}t eftir",
   "dashboardPaceNeedDaily": "Krevur {daily} t/dag fyri at verða liðug",
+  "dashboardPaceNeedDailyMinutes": "Krevur {daily} min/dag fyri at verða liðug",
   "dashboardPaceNeedDailyWeekly": "Krevur {daily} t/dag · {weekly} t/viku fyri at verða liðug",
+  "dashboardPaceNeedDailyWeeklyMinutes": "Krevur {daily} min/dag · {weekly} min/viku fyri at verða liðug",
+  "dashboardPaceNeedDailyWeeklyMinutesHours": "Krevur {daily} min/dag · {weekly} t/viku fyri at verða liðug",
   "dashboardPaceNeedFrom": "Krevur {hours} t/dag frá {date} · ikki í tempo dagsins",
+  "dashboardPaceNeedFromMinutes": "Krevur {minutes} min/dag frá {date} · ikki í tempo dagsins",
   "dashboardPaceNoDeadline": "Ongin freist — {hours}t eftir · einki dagligt trýst",
   "dashboardPaceStarts": "Byrjar {date} · {hours}t at gera",
   "dashboardPaceUnrealistic": "{pace} · órealistiskt",
@@ -471,6 +479,41 @@
       }
     }
   },
+  "@coursesPaceNeededMinutes": {
+    "description": "Daily pace line in minutes (sub-hour pace) on a course row.",
+    "placeholders": {
+      "daily": {
+        "type": "String",
+        "example": "36"
+      }
+    }
+  },
+  "@coursesPaceNeededWeeklyMinutes": {
+    "description": "Daily + weekly pace line when both are sub-hour (minutes).",
+    "placeholders": {
+      "daily": {
+        "type": "String",
+        "example": "8"
+      },
+      "weekly": {
+        "type": "String",
+        "example": "56"
+      }
+    }
+  },
+  "@coursesPaceNeededWeeklyMinutesHours": {
+    "description": "Daily minutes + weekly hours pace line on a course row.",
+    "placeholders": {
+      "daily": {
+        "type": "String",
+        "example": "36"
+      },
+      "weekly": {
+        "type": "String",
+        "example": "4.3"
+      }
+    }
+  },
   "@coursesProgressWithStatus": {
     "description": "Course row progress line combining hours and the (unlocalized, logic-owned) status label.",
     "placeholders": {
@@ -706,6 +749,15 @@
       }
     }
   },
+  "@dashboardMinutesPerDay": {
+    "description": "Required daily minutes chip (sub-hour pace) in the hero-card top-3 list.",
+    "placeholders": {
+      "minutes": {
+        "type": "String",
+        "example": "36"
+      }
+    }
+  },
   "@dashboardLogSessionAction": {
     "description": "Label of the dashboard button that opens the log-session dialog."
   },
@@ -764,12 +816,60 @@
       }
     }
   },
+  "@dashboardPaceNeedDailyMinutes": {
+    "description": "Pace line stating the required daily minutes (sub-hour pace).",
+    "placeholders": {
+      "daily": {
+        "type": "String",
+        "example": "36"
+      }
+    }
+  },
+  "@dashboardPaceNeedDailyWeeklyMinutes": {
+    "description": "Pace line when both daily and weekly paces are sub-hour.",
+    "placeholders": {
+      "daily": {
+        "type": "String",
+        "example": "8"
+      },
+      "weekly": {
+        "type": "String",
+        "example": "56"
+      }
+    }
+  },
+  "@dashboardPaceNeedDailyWeeklyMinutesHours": {
+    "description": "Pace line with daily minutes and weekly hours.",
+    "placeholders": {
+      "daily": {
+        "type": "String",
+        "example": "36"
+      },
+      "weekly": {
+        "type": "String",
+        "example": "4.3"
+      }
+    }
+  },
   "@dashboardPaceNeedFrom": {
     "description": "Pace line for a scheduled course with a computable daily pace.",
     "placeholders": {
       "hours": {
         "type": "String",
         "example": "1.5"
+      },
+      "date": {
+        "type": "String",
+        "example": "2026-12-01"
+      }
+    }
+  },
+  "@dashboardPaceNeedFromMinutes": {
+    "description": "Pace line for a scheduled course with a sub-hour daily pace.",
+    "placeholders": {
+      "minutes": {
+        "type": "String",
+        "example": "36"
       },
       "date": {
         "type": "String",
@@ -1835,5 +1935,77 @@
   "settingsLiquidGlassUpdated": "Flótglas dagført.",
   "@settingsLiquidGlassUpdated": {
     "description": "SnackBar after the liquid glass opt-in changes."
+  },
+  "devToolsReminderPreview": "Áminningarforhondskoðan",
+  "@devToolsReminderPreview": {
+    "description": "Dev-mode tile title opening the reminder preview feed."
+  },
+  "devToolsReminderPreviewSubtitle": "Sígg, hvat hevði boðað frá beint nú. Windows-trygg royndarveiting.",
+  "@devToolsReminderPreviewSubtitle": {
+    "description": "Dev-mode reminder preview tile description line."
+  },
+  "reminderPreviewTitle": "Áminningarforhondskoðan",
+  "@reminderPreviewTitle": {
+    "description": "App-bar title of the dev-mode reminder preview page."
+  },
+  "reminderPreviewNow": "Forhondskoðanartíð",
+  "@reminderPreviewNow": {
+    "description": "Label above the fake-now stepper on the reminder preview page."
+  },
+  "reminderPreviewReset": "Nú",
+  "@reminderPreviewReset": {
+    "description": "Button resetting the preview time to the real now."
+  },
+  "reminderPreviewEmpty": "Alt friðaligt — einki hevði boðað frá á hesum tíðarpunkti.",
+  "@reminderPreviewEmpty": {
+    "description": "Empty state of the reminder preview feed."
+  },
+  "reminderPreviewCustom": "Sergjørdar ætlanir (demo)",
+  "@reminderPreviewCustom": {
+    "description": "Section header for demo custom schedules on the preview page."
+  },
+  "reminderPreviewNoFire": "Einki kemur fram.",
+  "@reminderPreviewNoFire": {
+    "description": "Shown when a demo custom schedule has no future fire."
+  },
+  "reminderKindDaily": "Dagligt",
+  "@reminderKindDaily": {
+    "description": "Kind chip for the daily-plan nudge on the reminder preview page."
+  },
+  "reminderKindBehind": "Aftaná",
+  "@reminderKindBehind": {
+    "description": "Kind chip for a behind-course nudge on the reminder preview page."
+  },
+  "reminderKindDeadline": "Freist",
+  "@reminderKindDeadline": {
+    "description": "Kind chip for a deadline-countdown nudge on the reminder preview page."
+  },
+  "reminderKindOverdue": "Yvirgongd",
+  "@reminderKindOverdue": {
+    "description": "Kind chip for an overdue-course nudge on the reminder preview page."
+  },
+  "reminderKindStreak": "Røð",
+  "@reminderKindStreak": {
+    "description": "Kind chip for the weekly streak celebration on the reminder preview page."
+  },
+  "reminderKindCustom": "Sergjørt",
+  "@reminderKindCustom": {
+    "description": "Kind chip for a custom-schedule nudge on the reminder preview page."
+  },
+  "settingsReminders": "Lestraráminningar",
+  "@settingsReminders": {
+    "description": "Study reminders opt-in tile title in the Study section."
+  },
+  "settingsRemindersOff": "Sløkt — tend fyri at fáa dagliga áminning.",
+  "@settingsRemindersOff": {
+    "description": "Reminders tile subtitle when reminders are disabled."
+  },
+  "settingsReminderTime": "Áminningartíð",
+  "@settingsReminderTime": {
+    "description": "Reminder time tile title in the Study section."
+  },
+  "settingsReminderDenied": "Tilkynningar eru forðaðar — loyvið teimum í skipanarinnstillingunum.",
+  "@settingsReminderDenied": {
+    "description": "SnackBar when the OS notification permission is denied."
   }
 }

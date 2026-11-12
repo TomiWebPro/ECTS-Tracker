@@ -35,7 +35,10 @@
   "coursesFilterEmpty": "Gan chúrsa a oireann don scagaire seo",
   "coursesNewCourse": "Cúrsa nua",
   "coursesPaceNeeded": "{daily} u/lá ag teastáil",
+  "coursesPaceNeededMinutes": "{daily} nóim/lá ag teastáil",
   "coursesPaceNeededWeekly": "{daily} u/lá • {weekly} u/seachtain ag teastáil",
+  "coursesPaceNeededWeeklyMinutes": "{daily} nóim/lá • {weekly} nóim/seachtain ag teastáil",
+  "coursesPaceNeededWeeklyMinutesHours": "{daily} nóim/lá • {weekly} u/seachtain ag teastáil",
   "coursesProgressWithStatus": "{done} / {required} u • {status}",
   "coursesRemoveSampleTooltip": "Bain an cúrsa samplach",
   "coursesShownCount": "{count} ar taispeáint",
@@ -63,6 +66,7 @@
   "dashboardHoursDetail": "· {pct}% · {hours} u fágtha",
   "dashboardHoursFraction": "{done} / {required} u",
   "dashboardHoursPerDay": "{hours} u/lá",
+  "dashboardMinutesPerDay": "{minutes} nóim/lá",
   "dashboardLogSessionAction": "Logáil seisiún staidéir",
   "dashboardLogSessionTooltip": "Logáil seisiún staidéir",
   "dashboardNewBadge": "NUA",
@@ -74,8 +78,12 @@
   "dashboardNothingToTrack": "Dada le rianú fós",
   "dashboardPaceDueToday": "Dlúth inniu — {hours} u fágtha",
   "dashboardPaceNeedDaily": "{daily} u/lá ag teastáil chun críochnú",
+  "dashboardPaceNeedDailyMinutes": "{daily} nóim/lá ag teastáil chun críochnú",
   "dashboardPaceNeedDailyWeekly": "{daily} u/lá · {weekly} u/seachtain ag teastáil chun críochnú",
+  "dashboardPaceNeedDailyWeeklyMinutes": "{daily} nóim/lá · {weekly} nóim/seachtain ag teastáil chun críochnú",
+  "dashboardPaceNeedDailyWeeklyMinutesHours": "{daily} nóim/lá · {weekly} u/seachtain ag teastáil chun críochnú",
   "dashboardPaceNeedFrom": "{hours} u/lá ag teastáil ó {date} · ní i luas an lae inniu",
+  "dashboardPaceNeedFromMinutes": "{minutes} nóim/lá ag teastáil ó {date} · ní i luas an lae inniu",
   "dashboardPaceNoDeadline": "Gan spriocdháta — {hours} u fágtha · gan brú laethúil",
   "dashboardPaceStarts": "Tosóidh {date} · {hours} u le déanamh",
   "dashboardPaceUnrealistic": "{pace} · míréalaíoch",
@@ -471,6 +479,41 @@
       }
     }
   },
+  "@coursesPaceNeededMinutes": {
+    "description": "Daily pace line in minutes (sub-hour pace) on a course row.",
+    "placeholders": {
+      "daily": {
+        "type": "String",
+        "example": "36"
+      }
+    }
+  },
+  "@coursesPaceNeededWeeklyMinutes": {
+    "description": "Daily + weekly pace line when both are sub-hour (minutes).",
+    "placeholders": {
+      "daily": {
+        "type": "String",
+        "example": "8"
+      },
+      "weekly": {
+        "type": "String",
+        "example": "56"
+      }
+    }
+  },
+  "@coursesPaceNeededWeeklyMinutesHours": {
+    "description": "Daily minutes + weekly hours pace line on a course row.",
+    "placeholders": {
+      "daily": {
+        "type": "String",
+        "example": "36"
+      },
+      "weekly": {
+        "type": "String",
+        "example": "4.3"
+      }
+    }
+  },
   "@coursesProgressWithStatus": {
     "description": "Course row progress line combining hours and the (unlocalized, logic-owned) status label.",
     "placeholders": {
@@ -706,6 +749,15 @@
       }
     }
   },
+  "@dashboardMinutesPerDay": {
+    "description": "Required daily minutes chip (sub-hour pace) in the hero-card top-3 list.",
+    "placeholders": {
+      "minutes": {
+        "type": "String",
+        "example": "36"
+      }
+    }
+  },
   "@dashboardLogSessionAction": {
     "description": "Label of the dashboard button that opens the log-session dialog."
   },
@@ -764,12 +816,60 @@
       }
     }
   },
+  "@dashboardPaceNeedDailyMinutes": {
+    "description": "Pace line stating the required daily minutes (sub-hour pace).",
+    "placeholders": {
+      "daily": {
+        "type": "String",
+        "example": "36"
+      }
+    }
+  },
+  "@dashboardPaceNeedDailyWeeklyMinutes": {
+    "description": "Pace line when both daily and weekly paces are sub-hour.",
+    "placeholders": {
+      "daily": {
+        "type": "String",
+        "example": "8"
+      },
+      "weekly": {
+        "type": "String",
+        "example": "56"
+      }
+    }
+  },
+  "@dashboardPaceNeedDailyWeeklyMinutesHours": {
+    "description": "Pace line with daily minutes and weekly hours.",
+    "placeholders": {
+      "daily": {
+        "type": "String",
+        "example": "36"
+      },
+      "weekly": {
+        "type": "String",
+        "example": "4.3"
+      }
+    }
+  },
   "@dashboardPaceNeedFrom": {
     "description": "Pace line for a scheduled course with a computable daily pace.",
     "placeholders": {
       "hours": {
         "type": "String",
         "example": "1.5"
+      },
+      "date": {
+        "type": "String",
+        "example": "2026-12-01"
+      }
+    }
+  },
+  "@dashboardPaceNeedFromMinutes": {
+    "description": "Pace line for a scheduled course with a sub-hour daily pace.",
+    "placeholders": {
+      "minutes": {
+        "type": "String",
+        "example": "36"
       },
       "date": {
         "type": "String",
@@ -1835,5 +1935,77 @@
   "settingsLiquidGlassUpdated": "Gloine leachtach nuashonraithe.",
   "@settingsLiquidGlassUpdated": {
     "description": "SnackBar after the liquid glass opt-in changes."
+  },
+  "devToolsReminderPreview": "Réamhamharc meabhrúcháin",
+  "@devToolsReminderPreview": {
+    "description": "Dev-mode tile title opening the reminder preview feed."
+  },
+  "devToolsReminderPreviewSubtitle": "Féach cad a sheolfadh anois. Fotha tástála atá sábháilte ar Windows.",
+  "@devToolsReminderPreviewSubtitle": {
+    "description": "Dev-mode reminder preview tile description line."
+  },
+  "reminderPreviewTitle": "Réamhamharc meabhrúcháin",
+  "@reminderPreviewTitle": {
+    "description": "App-bar title of the dev-mode reminder preview page."
+  },
+  "reminderPreviewNow": "Am an réamhamhairc",
+  "@reminderPreviewNow": {
+    "description": "Label above the fake-now stepper on the reminder preview page."
+  },
+  "reminderPreviewReset": "Anois",
+  "@reminderPreviewReset": {
+    "description": "Button resetting the preview time to the real now."
+  },
+  "reminderPreviewEmpty": "Gach rud ciúin — ní sheolfadh faic ag an am seo.",
+  "@reminderPreviewEmpty": {
+    "description": "Empty state of the reminder preview feed."
+  },
+  "reminderPreviewCustom": "Sceidil shaincheaptha (taispeántas)",
+  "@reminderPreviewCustom": {
+    "description": "Section header for demo custom schedules on the preview page."
+  },
+  "reminderPreviewNoFire": "Níl aon ghníomhachtú le teacht.",
+  "@reminderPreviewNoFire": {
+    "description": "Shown when a demo custom schedule has no future fire."
+  },
+  "reminderKindDaily": "Laethúil",
+  "@reminderKindDaily": {
+    "description": "Kind chip for the daily-plan nudge on the reminder preview page."
+  },
+  "reminderKindBehind": "Ar gcúl",
+  "@reminderKindBehind": {
+    "description": "Kind chip for a behind-course nudge on the reminder preview page."
+  },
+  "reminderKindDeadline": "Spriocdháta",
+  "@reminderKindDeadline": {
+    "description": "Kind chip for a deadline-countdown nudge on the reminder preview page."
+  },
+  "reminderKindOverdue": "Thar téarma",
+  "@reminderKindOverdue": {
+    "description": "Kind chip for an overdue-course nudge on the reminder preview page."
+  },
+  "reminderKindStreak": "Sraith",
+  "@reminderKindStreak": {
+    "description": "Kind chip for the weekly streak celebration on the reminder preview page."
+  },
+  "reminderKindCustom": "Saincheaptha",
+  "@reminderKindCustom": {
+    "description": "Kind chip for a custom-schedule nudge on the reminder preview page."
+  },
+  "settingsReminders": "Meabhrúcháin staidéir",
+  "@settingsReminders": {
+    "description": "Study reminders opt-in tile title in the Study section."
+  },
+  "settingsRemindersOff": "Múchta — cuir ar siúl é le haghaidh meabhrúchán laethúil.",
+  "@settingsRemindersOff": {
+    "description": "Reminders tile subtitle when reminders are disabled."
+  },
+  "settingsReminderTime": "Am meabhrúcháin",
+  "@settingsReminderTime": {
+    "description": "Reminder time tile title in the Study section."
+  },
+  "settingsReminderDenied": "Tá fógraí bactha — cumasaigh iad i socruithe an chórais.",
+  "@settingsReminderDenied": {
+    "description": "SnackBar when the OS notification permission is denied."
   }
 }

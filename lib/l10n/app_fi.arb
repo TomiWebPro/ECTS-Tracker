@@ -35,7 +35,10 @@
   "coursesFilterEmpty": "Yksikään kurssi ei vastaa tätä suodatinta",
   "coursesNewCourse": "Uusi kurssi",
   "coursesPaceNeeded": "Tarvitaan {daily} h/päivä",
+  "coursesPaceNeededMinutes": "Tarvitaan {daily} min/päivä",
   "coursesPaceNeededWeekly": "Tarvitaan {daily} h/päivä • {weekly} h/viikko",
+  "coursesPaceNeededWeeklyMinutes": "Tarvitaan {daily} min/päivä • {weekly} min/viikko",
+  "coursesPaceNeededWeeklyMinutesHours": "Tarvitaan {daily} min/päivä • {weekly} h/viikko",
   "coursesProgressWithStatus": "{done} / {required} h • {status}",
   "coursesRemoveSampleTooltip": "Poista esimerkkikurssi",
   "coursesShownCount": "Näytetään {count}",
@@ -63,6 +66,7 @@
   "dashboardHoursDetail": "· {pct} % · {hours} h jäljellä",
   "dashboardHoursFraction": "{done} / {required} h",
   "dashboardHoursPerDay": "{hours} h/pv",
+  "dashboardMinutesPerDay": "{minutes} min/pv",
   "dashboardLogSessionAction": "Kirjaa opiskelukerta",
   "dashboardLogSessionTooltip": "Kirjaa opiskelukerta",
   "dashboardNewBadge": "UUSI",
@@ -74,8 +78,12 @@
   "dashboardNothingToTrack": "Ei vielä seurattavaa",
   "dashboardPaceDueToday": "Tänään erääntyy — {hours} h jäljellä",
   "dashboardPaceNeedDaily": "Valmistumiseen tarvitaan {daily} h/päivä",
+  "dashboardPaceNeedDailyMinutes": "Valmistumiseen tarvitaan {daily} min/päivä",
   "dashboardPaceNeedDailyWeekly": "Valmistumiseen tarvitaan {daily} h/päivä · {weekly} h/viikko",
+  "dashboardPaceNeedDailyWeeklyMinutes": "Valmistumiseen tarvitaan {daily} min/päivä · {weekly} min/viikko",
+  "dashboardPaceNeedDailyWeeklyMinutesHours": "Valmistumiseen tarvitaan {daily} min/päivä · {weekly} h/viikko",
   "dashboardPaceNeedFrom": "Tarvitaan {hours} h/päivä alkaen {date} · ei tämän päivän tahdissa",
+  "dashboardPaceNeedFromMinutes": "Tarvitaan {minutes} min/päivä alkaen {date} · ei tämän päivän tahdissa",
   "dashboardPaceNoDeadline": "Ei määräaikaa — {hours} h jäljellä · ei päivittäistä painetta",
   "dashboardPaceStarts": "Alkaa {date} · tehtävää {hours} h",
   "dashboardPaceUnrealistic": "{pace} · epärealistinen",
@@ -471,6 +479,41 @@
       }
     }
   },
+  "@coursesPaceNeededMinutes": {
+    "description": "Daily pace line in minutes (sub-hour pace) on a course row.",
+    "placeholders": {
+      "daily": {
+        "type": "String",
+        "example": "36"
+      }
+    }
+  },
+  "@coursesPaceNeededWeeklyMinutes": {
+    "description": "Daily + weekly pace line when both are sub-hour (minutes).",
+    "placeholders": {
+      "daily": {
+        "type": "String",
+        "example": "8"
+      },
+      "weekly": {
+        "type": "String",
+        "example": "56"
+      }
+    }
+  },
+  "@coursesPaceNeededWeeklyMinutesHours": {
+    "description": "Daily minutes + weekly hours pace line on a course row.",
+    "placeholders": {
+      "daily": {
+        "type": "String",
+        "example": "36"
+      },
+      "weekly": {
+        "type": "String",
+        "example": "4.3"
+      }
+    }
+  },
   "@coursesProgressWithStatus": {
     "description": "Course row progress line combining hours and the (unlocalized, logic-owned) status label.",
     "placeholders": {
@@ -706,6 +749,15 @@
       }
     }
   },
+  "@dashboardMinutesPerDay": {
+    "description": "Required daily minutes chip (sub-hour pace) in the hero-card top-3 list.",
+    "placeholders": {
+      "minutes": {
+        "type": "String",
+        "example": "36"
+      }
+    }
+  },
   "@dashboardLogSessionAction": {
     "description": "Label of the dashboard button that opens the log-session dialog."
   },
@@ -764,12 +816,60 @@
       }
     }
   },
+  "@dashboardPaceNeedDailyMinutes": {
+    "description": "Pace line stating the required daily minutes (sub-hour pace).",
+    "placeholders": {
+      "daily": {
+        "type": "String",
+        "example": "36"
+      }
+    }
+  },
+  "@dashboardPaceNeedDailyWeeklyMinutes": {
+    "description": "Pace line when both daily and weekly paces are sub-hour.",
+    "placeholders": {
+      "daily": {
+        "type": "String",
+        "example": "8"
+      },
+      "weekly": {
+        "type": "String",
+        "example": "56"
+      }
+    }
+  },
+  "@dashboardPaceNeedDailyWeeklyMinutesHours": {
+    "description": "Pace line with daily minutes and weekly hours.",
+    "placeholders": {
+      "daily": {
+        "type": "String",
+        "example": "36"
+      },
+      "weekly": {
+        "type": "String",
+        "example": "4.3"
+      }
+    }
+  },
   "@dashboardPaceNeedFrom": {
     "description": "Pace line for a scheduled course with a computable daily pace.",
     "placeholders": {
       "hours": {
         "type": "String",
         "example": "1.5"
+      },
+      "date": {
+        "type": "String",
+        "example": "2026-12-01"
+      }
+    }
+  },
+  "@dashboardPaceNeedFromMinutes": {
+    "description": "Pace line for a scheduled course with a sub-hour daily pace.",
+    "placeholders": {
+      "minutes": {
+        "type": "String",
+        "example": "36"
       },
       "date": {
         "type": "String",
@@ -1835,5 +1935,77 @@
   "settingsLiquidGlassUpdated": "Nestelasi päivitetty.",
   "@settingsLiquidGlassUpdated": {
     "description": "SnackBar after the liquid glass opt-in changes."
+  },
+  "devToolsReminderPreview": "Muistutuksen esikatselu",
+  "@devToolsReminderPreview": {
+    "description": "Dev-mode tile title opening the reminder preview feed."
+  },
+  "devToolsReminderPreviewSubtitle": "Katso, mikä ilmoittaisi juuri nyt. Windows-turvallinen testisyöte.",
+  "@devToolsReminderPreviewSubtitle": {
+    "description": "Dev-mode reminder preview tile description line."
+  },
+  "reminderPreviewTitle": "Muistutuksen esikatselu",
+  "@reminderPreviewTitle": {
+    "description": "App-bar title of the dev-mode reminder preview page."
+  },
+  "reminderPreviewNow": "Esikatseluaika",
+  "@reminderPreviewNow": {
+    "description": "Label above the fake-now stepper on the reminder preview page."
+  },
+  "reminderPreviewReset": "Nyt",
+  "@reminderPreviewReset": {
+    "description": "Button resetting the preview time to the real now."
+  },
+  "reminderPreviewEmpty": "Kaikki hiljaista — mikään ei ilmoittaisi tähän aikaan.",
+  "@reminderPreviewEmpty": {
+    "description": "Empty state of the reminder preview feed."
+  },
+  "reminderPreviewCustom": "Mukautetut aikataulut (demo)",
+  "@reminderPreviewCustom": {
+    "description": "Section header for demo custom schedules on the preview page."
+  },
+  "reminderPreviewNoFire": "Ei tulevia laukaisuja.",
+  "@reminderPreviewNoFire": {
+    "description": "Shown when a demo custom schedule has no future fire."
+  },
+  "reminderKindDaily": "Päivittäinen",
+  "@reminderKindDaily": {
+    "description": "Kind chip for the daily-plan nudge on the reminder preview page."
+  },
+  "reminderKindBehind": "Jäljessä",
+  "@reminderKindBehind": {
+    "description": "Kind chip for a behind-course nudge on the reminder preview page."
+  },
+  "reminderKindDeadline": "Määräaika",
+  "@reminderKindDeadline": {
+    "description": "Kind chip for a deadline-countdown nudge on the reminder preview page."
+  },
+  "reminderKindOverdue": "Myöhässä",
+  "@reminderKindOverdue": {
+    "description": "Kind chip for an overdue-course nudge on the reminder preview page."
+  },
+  "reminderKindStreak": "Putki",
+  "@reminderKindStreak": {
+    "description": "Kind chip for the weekly streak celebration on the reminder preview page."
+  },
+  "reminderKindCustom": "Mukautettu",
+  "@reminderKindCustom": {
+    "description": "Kind chip for a custom-schedule nudge on the reminder preview page."
+  },
+  "settingsReminders": "Opiskelumuistutukset",
+  "@settingsReminders": {
+    "description": "Study reminders opt-in tile title in the Study section."
+  },
+  "settingsRemindersOff": "Pois — ota käyttöön päivittäistä muistutusta varten.",
+  "@settingsRemindersOff": {
+    "description": "Reminders tile subtitle when reminders are disabled."
+  },
+  "settingsReminderTime": "Muistutuksen aika",
+  "@settingsReminderTime": {
+    "description": "Reminder time tile title in the Study section."
+  },
+  "settingsReminderDenied": "Ilmoitukset on estetty — ota ne käyttöön järjestelmän asetuksissa.",
+  "@settingsReminderDenied": {
+    "description": "SnackBar when the OS notification permission is denied."
   }
 }

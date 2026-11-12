@@ -35,7 +35,10 @@
   "coursesFilterEmpty": "Không có môn nào khớp bộ lọc",
   "coursesNewCourse": "Môn mới",
   "coursesPaceNeeded": "Cần {daily} giờ/ngày",
+  "coursesPaceNeededMinutes": "Cần {daily} phút/ngày",
   "coursesPaceNeededWeekly": "Cần {daily} giờ/ngày • {weekly} giờ/tuần",
+  "coursesPaceNeededWeeklyMinutes": "Cần {daily} phút/ngày • {weekly} phút/tuần",
+  "coursesPaceNeededWeeklyMinutesHours": "Cần {daily} phút/ngày • {weekly} giờ/tuần",
   "coursesProgressWithStatus": "{done} / {required} giờ • {status}",
   "coursesRemoveSampleTooltip": "Xóa môn mẫu",
   "coursesShownCount": "Hiển thị {count}",
@@ -63,6 +66,7 @@
   "dashboardHoursDetail": "• {pct}% • còn {hours} giờ",
   "dashboardHoursFraction": "{done} / {required} giờ",
   "dashboardHoursPerDay": "{hours} giờ/ngày",
+  "dashboardMinutesPerDay": "{minutes} phút/ngày",
   "dashboardLogSessionAction": "Ghi buổi học",
   "dashboardLogSessionTooltip": "Ghi buổi học",
   "dashboardNewBadge": "MỚI",
@@ -74,8 +78,12 @@
   "dashboardNothingToTrack": "Chưa có gì để theo dõi",
   "dashboardPaceDueToday": "Đến hạn hôm nay — còn {hours} giờ",
   "dashboardPaceNeedDaily": "Cần {daily} giờ/ngày để hoàn thành",
+  "dashboardPaceNeedDailyMinutes": "Cần {daily} phút/ngày để hoàn thành",
   "dashboardPaceNeedDailyWeekly": "Cần {daily} giờ/ngày • {weekly} giờ/tuần để hoàn thành",
+  "dashboardPaceNeedDailyWeeklyMinutes": "Cần {daily} phút/ngày • {weekly} phút/tuần để hoàn thành",
+  "dashboardPaceNeedDailyWeeklyMinutesHours": "Cần {daily} phút/ngày • {weekly} giờ/tuần để hoàn thành",
   "dashboardPaceNeedFrom": "Cần {hours} giờ/ngày từ {date} • không tính vào nhịp Hôm nay",
+  "dashboardPaceNeedFromMinutes": "Cần {minutes} phút/ngày từ {date} • không tính vào nhịp Hôm nay",
   "dashboardPaceNoDeadline": "Không hạn — còn {hours} giờ • không áp lực hằng ngày",
   "dashboardPaceStarts": "Bắt đầu {date} • còn {hours} giờ",
   "dashboardPaceUnrealistic": "{pace} • phi thực tế",
@@ -458,6 +466,15 @@
       }
     }
   },
+  "@coursesPaceNeededMinutes": {
+    "description": "Daily pace line in minutes (sub-hour pace) on a course row.",
+    "placeholders": {
+      "daily": {
+        "type": "String",
+        "example": "36"
+      }
+    }
+  },
   "@coursesPaceNeededWeekly": {
     "description": "Daily + weekly pace line on a course row.",
     "placeholders": {
@@ -468,6 +485,32 @@
       "weekly": {
         "type": "String",
         "example": "7.5"
+      }
+    }
+  },
+  "@coursesPaceNeededWeeklyMinutes": {
+    "description": "Daily + weekly pace line when both are sub-hour (minutes).",
+    "placeholders": {
+      "daily": {
+        "type": "String",
+        "example": "8"
+      },
+      "weekly": {
+        "type": "String",
+        "example": "56"
+      }
+    }
+  },
+  "@coursesPaceNeededWeeklyMinutesHours": {
+    "description": "Daily minutes + weekly hours pace line on a course row.",
+    "placeholders": {
+      "daily": {
+        "type": "String",
+        "example": "36"
+      },
+      "weekly": {
+        "type": "String",
+        "example": "4.3"
       }
     }
   },
@@ -706,6 +749,15 @@
       }
     }
   },
+  "@dashboardMinutesPerDay": {
+    "description": "Required daily minutes chip (sub-hour pace) in the hero-card top-3 list.",
+    "placeholders": {
+      "minutes": {
+        "type": "String",
+        "example": "36"
+      }
+    }
+  },
   "@dashboardLogSessionAction": {
     "description": "Label of the dashboard button that opens the log-session dialog."
   },
@@ -751,6 +803,15 @@
       }
     }
   },
+  "@dashboardPaceNeedDailyMinutes": {
+    "description": "Pace line stating the required daily minutes (sub-hour pace).",
+    "placeholders": {
+      "daily": {
+        "type": "String",
+        "example": "36"
+      }
+    }
+  },
   "@dashboardPaceNeedDailyWeekly": {
     "description": "Pace line stating required daily and weekly hours to finish.",
     "placeholders": {
@@ -764,12 +825,51 @@
       }
     }
   },
+  "@dashboardPaceNeedDailyWeeklyMinutes": {
+    "description": "Pace line when both daily and weekly paces are sub-hour.",
+    "placeholders": {
+      "daily": {
+        "type": "String",
+        "example": "8"
+      },
+      "weekly": {
+        "type": "String",
+        "example": "56"
+      }
+    }
+  },
+  "@dashboardPaceNeedDailyWeeklyMinutesHours": {
+    "description": "Pace line with daily minutes and weekly hours.",
+    "placeholders": {
+      "daily": {
+        "type": "String",
+        "example": "36"
+      },
+      "weekly": {
+        "type": "String",
+        "example": "4.3"
+      }
+    }
+  },
   "@dashboardPaceNeedFrom": {
     "description": "Pace line for a scheduled course with a computable daily pace.",
     "placeholders": {
       "hours": {
         "type": "String",
         "example": "1.5"
+      },
+      "date": {
+        "type": "String",
+        "example": "2026-12-01"
+      }
+    }
+  },
+  "@dashboardPaceNeedFromMinutes": {
+    "description": "Pace line for a scheduled course with a sub-hour daily pace.",
+    "placeholders": {
+      "minutes": {
+        "type": "String",
+        "example": "36"
       },
       "date": {
         "type": "String",
@@ -1835,5 +1935,77 @@
   "settingsLiquidGlassUpdated": "Đã cập nhật kính lỏng.",
   "@settingsLiquidGlassUpdated": {
     "description": "SnackBar after the liquid glass opt-in changes."
+  },
+  "devToolsReminderPreview": "Xem trước nhắc nhở",
+  "@devToolsReminderPreview": {
+    "description": "Dev-mode tile title opening the reminder preview feed."
+  },
+  "devToolsReminderPreviewSubtitle": "Xem nội dung sẽ thông báo ngay lúc này. Nguồn thử nghiệm an toàn cho Windows.",
+  "@devToolsReminderPreviewSubtitle": {
+    "description": "Dev-mode reminder preview tile description line."
+  },
+  "reminderPreviewTitle": "Xem trước nhắc nhở",
+  "@reminderPreviewTitle": {
+    "description": "App-bar title of the dev-mode reminder preview page."
+  },
+  "reminderPreviewNow": "Thời gian xem trước",
+  "@reminderPreviewNow": {
+    "description": "Label above the fake-now stepper on the reminder preview page."
+  },
+  "reminderPreviewReset": "Bây giờ",
+  "@reminderPreviewReset": {
+    "description": "Button resetting the preview time to the real now."
+  },
+  "reminderPreviewEmpty": "Yên tĩnh — không có gì sẽ thông báo vào lúc này.",
+  "@reminderPreviewEmpty": {
+    "description": "Empty state of the reminder preview feed."
+  },
+  "reminderPreviewCustom": "Lịch tùy chỉnh (demo)",
+  "@reminderPreviewCustom": {
+    "description": "Section header for demo custom schedules on the preview page."
+  },
+  "reminderPreviewNoFire": "Không có lượt kích hoạt nào sắp tới.",
+  "@reminderPreviewNoFire": {
+    "description": "Shown when a demo custom schedule has no future fire."
+  },
+  "reminderKindDaily": "Hằng ngày",
+  "@reminderKindDaily": {
+    "description": "Kind chip for the daily-plan nudge on the reminder preview page."
+  },
+  "reminderKindBehind": "Trễ",
+  "@reminderKindBehind": {
+    "description": "Kind chip for a behind-course nudge on the reminder preview page."
+  },
+  "reminderKindDeadline": "Hạn chót",
+  "@reminderKindDeadline": {
+    "description": "Kind chip for a deadline-countdown nudge on the reminder preview page."
+  },
+  "reminderKindOverdue": "Quá hạn",
+  "@reminderKindOverdue": {
+    "description": "Kind chip for an overdue-course nudge on the reminder preview page."
+  },
+  "reminderKindStreak": "Chuỗi",
+  "@reminderKindStreak": {
+    "description": "Kind chip for the weekly streak celebration on the reminder preview page."
+  },
+  "reminderKindCustom": "Tùy chỉnh",
+  "@reminderKindCustom": {
+    "description": "Kind chip for a custom-schedule nudge on the reminder preview page."
+  },
+  "settingsReminders": "Nhắc nhở học tập",
+  "@settingsReminders": {
+    "description": "Study reminders opt-in tile title in the Study section."
+  },
+  "settingsRemindersOff": "Tắt — bật để nhận nhắc nhở hằng ngày.",
+  "@settingsRemindersOff": {
+    "description": "Reminders tile subtitle when reminders are disabled."
+  },
+  "settingsReminderTime": "Giờ nhắc nhở",
+  "@settingsReminderTime": {
+    "description": "Reminder time tile title in the Study section."
+  },
+  "settingsReminderDenied": "Thông báo bị chặn — hãy bật chúng trong cài đặt hệ thống.",
+  "@settingsReminderDenied": {
+    "description": "SnackBar when the OS notification permission is denied."
   }
 }

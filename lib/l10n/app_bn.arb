@@ -35,7 +35,10 @@
   "coursesFilterEmpty": "এই ফিল্টারের সাথে কোনো কোর্স মিলছে না",
   "coursesNewCourse": "নতুন কোর্স",
   "coursesPaceNeeded": "{daily} ঘণ্টা/দিন প্রয়োজন",
+  "coursesPaceNeededMinutes": "{daily} মিনিট/দিন প্রয়োজন",
   "coursesPaceNeededWeekly": "{daily} ঘণ্টা/দিন • {weekly} ঘণ্টা/সপ্তাহ প্রয়োজন",
+  "coursesPaceNeededWeeklyMinutes": "{daily} মিনিট/দিন • {weekly} মিনিট/সপ্তাহ প্রয়োজন",
+  "coursesPaceNeededWeeklyMinutesHours": "{daily} মিনিট/দিন • {weekly} ঘণ্টা/সপ্তাহ প্রয়োজন",
   "coursesProgressWithStatus": "{done} / {required} ঘণ্টা • {status}",
   "coursesRemoveSampleTooltip": "নমুনা কোর্স সরান",
   "coursesShownCount": "{count}টি দেখানো হচ্ছে",
@@ -63,6 +66,7 @@
   "dashboardHoursDetail": "· {pct}% · {hours}ঘণ্টা বাকি",
   "dashboardHoursFraction": "{done} / {required} ঘণ্টা",
   "dashboardHoursPerDay": "{hours} ঘণ্টা/দিন",
+  "dashboardMinutesPerDay": "{minutes} মিনিট/দিন",
   "dashboardLogSessionAction": "পড়াশোনার সেশন লগ করুন",
   "dashboardLogSessionTooltip": "পড়াশোনার সেশন লগ করুন",
   "dashboardNewBadge": "নতুন",
@@ -74,8 +78,12 @@
   "dashboardNothingToTrack": "এখনও ট্র্যাক করার মতো কিছু নেই",
   "dashboardPaceDueToday": "আজকের লক্ষ্য — {hours}ঘণ্টা বাকি",
   "dashboardPaceNeedDaily": "শেষ করতে {daily} ঘণ্টা/দিন প্রয়োজন",
+  "dashboardPaceNeedDailyMinutes": "শেষ করতে {daily} মিনিট/দিন প্রয়োজন",
   "dashboardPaceNeedDailyWeekly": "শেষ করতে {daily} ঘণ্টা/দিন · {weekly} ঘণ্টা/সপ্তাহ প্রয়োজন",
+  "dashboardPaceNeedDailyWeeklyMinutes": "শেষ করতে {daily} মিনিট/দিন · {weekly} মিনিট/সপ্তাহ প্রয়োজন",
+  "dashboardPaceNeedDailyWeeklyMinutesHours": "শেষ করতে {daily} মিনিট/দিন · {weekly} ঘণ্টা/সপ্তাহ প্রয়োজন",
   "dashboardPaceNeedFrom": "{date} থেকে {hours} ঘণ্টা/দিন প্রয়োজন · আজকের গতিতে নেই",
+  "dashboardPaceNeedFromMinutes": "{date} থেকে {minutes} মিনিট/দিন প্রয়োজন · আজকের গতিতে নেই",
   "dashboardPaceNoDeadline": "সমাপ্তি নেই — {hours}ঘণ্টা বাকি · দৈনিক চাপ নেই",
   "dashboardPaceStarts": "{date} শুরু · {hours}ঘণ্টা বাকি",
   "dashboardPaceUnrealistic": "{pace} · অবাস্তব",
@@ -121,11 +129,25 @@
   "devToolsRemoveAllMessage": "ডেভ শর্টকাট: এটি সব কোর্স, সেশন ও সেটিংস স্থায়ীভাবে মুছে ফেলে। এটি পূর্বাবস্থায় ফেরানো যাবে না।",
   "devToolsRemoveAllSubtitle": "ডেভ শর্টকাট: সব কোর্স, সেশন ও সেটিংস মুছুন।",
   "devToolsRemoveAllTitle": "সব ডেটা সরিয়ে ফেলবেন?",
+  "devToolsReminderPreview": "রিমাইন্ডার প্রিভিউ",
+  "devToolsReminderPreviewSubtitle": "এই মুহূর্তে কী নোটিফাই করবে দেখুন। Windows-নিরাপদ টেস্ট ফিড।",
   "navCourses": "কোর্স",
   "navDashboard": "ড্যাশবোর্ড",
   "navSettings": "সেটিংস",
   "navStatistics": "পরিসংখ্যান",
   "navStudyLog": "পড়াশোনার লগ",
+  "reminderKindBehind": "পিছিয়ে",
+  "reminderKindCustom": "কাস্টম",
+  "reminderKindDaily": "দৈনিক",
+  "reminderKindDeadline": "সমাপ্তি",
+  "reminderKindOverdue": "মেয়াদোত্তীর্ণ",
+  "reminderKindStreak": "ধারা",
+  "reminderPreviewCustom": "কাস্টম সময়সূচি (demo)",
+  "reminderPreviewEmpty": "সব শান্ত — এই সময়ে কিছুই নোটিফাই করবে না।",
+  "reminderPreviewNoFire": "কোনো আসন্ন ট্রিগার নেই।",
+  "reminderPreviewNow": "প্রিভিউ সময়",
+  "reminderPreviewReset": "এখন",
+  "reminderPreviewTitle": "রিমাইন্ডার প্রিভিউ",
   "sampleBadge": "নমুনা",
   "sessionFormCourseLabel": "কোর্স",
   "sessionFormDateButton": "তারিখ: {date}",
@@ -212,6 +234,10 @@
   "settingsOverloadUpdated": "ওভারলোড সীমা আপডেট হয়েছে।",
   "settingsPaceTolerance": "এগিয়ে / পিছিয়ে সহনশীলতা",
   "settingsPasteValidBackup": "আগে একটি বৈধ ব্যাকআপ পেস্ট করুন",
+  "settingsReminderDenied": "বিজ্ঞপ্তি বন্ধ আছে — সিস্টেম সেটিংসে চালু করুন।",
+  "settingsReminderTime": "রিমাইন্ডারের সময়",
+  "settingsReminders": "পড়াশোনার রিমাইন্ডার",
+  "settingsRemindersOff": "বন্ধ — দৈনিক উৎসাহের জন্য চালু করুন।",
   "settingsReset": "রিসেট",
   "settingsResetAll": "সব ডেটা রিসেট",
   "settingsResetAllMessage": "এটি সব কোর্স, সেশন ও সেটিংস স্থায়ীভাবে মুছে ফেলে। এটি পূর্বাবস্থায় ফেরানো যাবে না। প্রয়োজনে আগে ব্যাকআপ এক্সপোর্ট করুন।",
@@ -458,6 +484,15 @@
       }
     }
   },
+  "@coursesPaceNeededMinutes": {
+    "description": "Daily pace line in minutes (sub-hour pace) on a course row.",
+    "placeholders": {
+      "daily": {
+        "type": "String",
+        "example": "36"
+      }
+    }
+  },
   "@coursesPaceNeededWeekly": {
     "description": "Daily + weekly pace line on a course row.",
     "placeholders": {
@@ -468,6 +503,32 @@
       "weekly": {
         "type": "String",
         "example": "7.5"
+      }
+    }
+  },
+  "@coursesPaceNeededWeeklyMinutes": {
+    "description": "Daily + weekly pace line when both are sub-hour (minutes).",
+    "placeholders": {
+      "daily": {
+        "type": "String",
+        "example": "8"
+      },
+      "weekly": {
+        "type": "String",
+        "example": "56"
+      }
+    }
+  },
+  "@coursesPaceNeededWeeklyMinutesHours": {
+    "description": "Daily minutes + weekly hours pace line on a course row.",
+    "placeholders": {
+      "daily": {
+        "type": "String",
+        "example": "36"
+      },
+      "weekly": {
+        "type": "String",
+        "example": "4.3"
       }
     }
   },
@@ -706,6 +767,15 @@
       }
     }
   },
+  "@dashboardMinutesPerDay": {
+    "description": "Required daily minutes chip (sub-hour pace) in the hero-card top-3 list.",
+    "placeholders": {
+      "minutes": {
+        "type": "String",
+        "example": "36"
+      }
+    }
+  },
   "@dashboardLogSessionAction": {
     "description": "Label of the dashboard button that opens the log-session dialog."
   },
@@ -751,6 +821,15 @@
       }
     }
   },
+  "@dashboardPaceNeedDailyMinutes": {
+    "description": "Pace line stating the required daily minutes (sub-hour pace).",
+    "placeholders": {
+      "daily": {
+        "type": "String",
+        "example": "36"
+      }
+    }
+  },
   "@dashboardPaceNeedDailyWeekly": {
     "description": "Pace line stating required daily and weekly hours to finish.",
     "placeholders": {
@@ -764,12 +843,51 @@
       }
     }
   },
+  "@dashboardPaceNeedDailyWeeklyMinutes": {
+    "description": "Pace line when both daily and weekly paces are sub-hour.",
+    "placeholders": {
+      "daily": {
+        "type": "String",
+        "example": "8"
+      },
+      "weekly": {
+        "type": "String",
+        "example": "56"
+      }
+    }
+  },
+  "@dashboardPaceNeedDailyWeeklyMinutesHours": {
+    "description": "Pace line with daily minutes and weekly hours.",
+    "placeholders": {
+      "daily": {
+        "type": "String",
+        "example": "36"
+      },
+      "weekly": {
+        "type": "String",
+        "example": "4.3"
+      }
+    }
+  },
   "@dashboardPaceNeedFrom": {
     "description": "Pace line for a scheduled course with a computable daily pace.",
     "placeholders": {
       "hours": {
         "type": "String",
         "example": "1.5"
+      },
+      "date": {
+        "type": "String",
+        "example": "2026-12-01"
+      }
+    }
+  },
+  "@dashboardPaceNeedFromMinutes": {
+    "description": "Pace line for a scheduled course with a sub-hour daily pace.",
+    "placeholders": {
+      "minutes": {
+        "type": "String",
+        "example": "36"
       },
       "date": {
         "type": "String",
@@ -1004,6 +1122,12 @@
   "@devToolsRemoveAllTitle": {
     "description": "Dev remove-all confirm dialog title"
   },
+  "@devToolsReminderPreview": {
+    "description": "Dev-mode tile title opening the reminder preview feed."
+  },
+  "@devToolsReminderPreviewSubtitle": {
+    "description": "Dev-mode reminder preview tile description line."
+  },
   "@navCourses": {
     "description": "Bottom-nav destination: courses list."
   },
@@ -1018,6 +1142,42 @@
   },
   "@navStudyLog": {
     "description": "Bottom-nav destination and app-bar title: study log."
+  },
+  "@reminderKindBehind": {
+    "description": "Kind chip for a behind-course nudge on the reminder preview page."
+  },
+  "@reminderKindCustom": {
+    "description": "Kind chip for a custom-schedule nudge on the reminder preview page."
+  },
+  "@reminderKindDaily": {
+    "description": "Kind chip for the daily-plan nudge on the reminder preview page."
+  },
+  "@reminderKindDeadline": {
+    "description": "Kind chip for a deadline-countdown nudge on the reminder preview page."
+  },
+  "@reminderKindOverdue": {
+    "description": "Kind chip for an overdue-course nudge on the reminder preview page."
+  },
+  "@reminderKindStreak": {
+    "description": "Kind chip for the weekly streak celebration on the reminder preview page."
+  },
+  "@reminderPreviewCustom": {
+    "description": "Section header for demo custom schedules on the preview page."
+  },
+  "@reminderPreviewEmpty": {
+    "description": "Empty state of the reminder preview feed."
+  },
+  "@reminderPreviewNoFire": {
+    "description": "Shown when a demo custom schedule has no future fire."
+  },
+  "@reminderPreviewNow": {
+    "description": "Label above the fake-now stepper on the reminder preview page."
+  },
+  "@reminderPreviewReset": {
+    "description": "Button resetting the preview time to the real now."
+  },
+  "@reminderPreviewTitle": {
+    "description": "App-bar title of the dev-mode reminder preview page."
   },
   "@sampleBadge": {
     "description": "Badge marking sample/seeded content."
@@ -1406,6 +1566,18 @@
   },
   "@settingsPasteValidBackup": {
     "description": "Hold-to-confirm button label when no valid backup"
+  },
+  "@settingsReminderDenied": {
+    "description": "SnackBar when the OS notification permission is denied."
+  },
+  "@settingsReminderTime": {
+    "description": "Reminder time tile title in the Study section."
+  },
+  "@settingsReminders": {
+    "description": "Study reminders opt-in tile title in the Study section."
+  },
+  "@settingsRemindersOff": {
+    "description": "Reminders tile subtitle when reminders are disabled."
   },
   "@settingsReset": {
     "description": "Reset settings confirm action"

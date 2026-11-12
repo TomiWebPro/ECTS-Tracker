@@ -35,7 +35,10 @@
   "coursesFilterEmpty": "Няма курсове, отговарящи на този филтър",
   "coursesNewCourse": "Нов курс",
   "coursesPaceNeeded": "Нужни са {daily} ч/ден",
+  "coursesPaceNeededMinutes": "Нужни са {daily} мин/ден",
   "coursesPaceNeededWeekly": "Нужни са {daily} ч/ден • {weekly} ч/седмица",
+  "coursesPaceNeededWeeklyMinutes": "Нужни са {daily} мин/ден • {weekly} мин/седмица",
+  "coursesPaceNeededWeeklyMinutesHours": "Нужни са {daily} мин/ден • {weekly} ч/седмица",
   "coursesProgressWithStatus": "{done} / {required} ч • {status}",
   "coursesRemoveSampleTooltip": "Премахни примерния курс",
   "coursesShownCount": "Показани: {count}",
@@ -63,6 +66,7 @@
   "dashboardHoursDetail": "· {pct}% · остават {hours} ч",
   "dashboardHoursFraction": "{done} / {required} ч",
   "dashboardHoursPerDay": "{hours} ч/ден",
+  "dashboardMinutesPerDay": "{minutes} мин/ден",
   "dashboardLogSessionAction": "Запиши учебна сесия",
   "dashboardLogSessionTooltip": "Запиши учебна сесия",
   "dashboardNewBadge": "НОВО",
@@ -74,8 +78,12 @@
   "dashboardNothingToTrack": "Все още няма какво да се следи",
   "dashboardPaceDueToday": "Дължимо днес — остават {hours} ч",
   "dashboardPaceNeedDaily": "Трябват {daily} ч/ден, за да завършиш",
+  "dashboardPaceNeedDailyMinutes": "Трябват {daily} мин/ден, за да завършиш",
   "dashboardPaceNeedDailyWeekly": "Трябват {daily} ч/ден · {weekly} ч/седмица, за да завършиш",
+  "dashboardPaceNeedDailyWeeklyMinutes": "Трябват {daily} мин/ден · {weekly} мин/седмица, за да завършиш",
+  "dashboardPaceNeedDailyWeeklyMinutesHours": "Трябват {daily} мин/ден · {weekly} ч/седмица, за да завършиш",
   "dashboardPaceNeedFrom": "Трябват {hours} ч/ден от {date} · извън днешното темпо",
+  "dashboardPaceNeedFromMinutes": "Трябват {minutes} мин/ден от {date} · извън днешното темпо",
   "dashboardPaceNoDeadline": "Без срок — остават {hours} ч · без дневно напрежение",
   "dashboardPaceStarts": "Започва на {date} · остават {hours} ч",
   "dashboardPaceUnrealistic": "{pace} · нереалистично",
@@ -121,11 +129,25 @@
   "devToolsRemoveAllMessage": "Дев пряк път: това трайно изтрива ВСИЧКИ курсове, сесии и настройки. Не може да се отмени.",
   "devToolsRemoveAllSubtitle": "Дев пряк път: изтрий ВСИЧКИ курсове, сесии и настройки.",
   "devToolsRemoveAllTitle": "Да премахна ли всички данни?",
+  "devToolsReminderPreview": "Преглед на напомнянията",
+  "devToolsReminderPreviewSubtitle": "Виж какво би известило точно сега. Безопасен за Windows тестов поток.",
   "navCourses": "Курсове",
   "navDashboard": "Табло",
   "navSettings": "Настройки",
   "navStatistics": "Статистика",
   "navStudyLog": "Дневник",
+  "reminderKindBehind": "Изостава",
+  "reminderKindCustom": "Персонализирано",
+  "reminderKindDaily": "Дневно",
+  "reminderKindDeadline": "Краен срок",
+  "reminderKindOverdue": "Просрочен",
+  "reminderKindStreak": "Серия",
+  "reminderPreviewCustom": "Персонализирани графици (demo)",
+  "reminderPreviewEmpty": "Тихо е — нищо не би известило в този момент.",
+  "reminderPreviewNoFire": "Няма предстоящо задействане.",
+  "reminderPreviewNow": "Време за преглед",
+  "reminderPreviewReset": "Сега",
+  "reminderPreviewTitle": "Преглед на напомнянията",
   "sampleBadge": "Пример",
   "sessionFormCourseLabel": "Курс",
   "sessionFormDateButton": "Дата: {date}",
@@ -212,6 +234,10 @@
   "settingsOverloadUpdated": "Прагът на претоварване е обновен.",
   "settingsPaceTolerance": "Толеранс напред / назад",
   "settingsPasteValidBackup": "Първо постави валидно копие",
+  "settingsReminderDenied": "Известията са блокирани — разреши ги в системните настройки.",
+  "settingsReminderTime": "Време за напомняне",
+  "settingsReminders": "Учебни напомняния",
+  "settingsRemindersOff": "Изключено — включи за ежедневен тласък.",
   "settingsReset": "Нулирай",
   "settingsResetAll": "Нулирай всички данни",
   "settingsResetAllMessage": "Това трайно изтрива ВСИЧКИ курсове, сесии и настройки. Не може да се отмени. Първо експортирай копие, ако е нужно.",
@@ -261,7 +287,7 @@
   "statsEmpty": "Все още няма сесии",
   "statsGap": "Разлика",
   "statsGapValue": "{sign}{value} ч",
-  "statsHoursCompact": "{hours} ч",
+  "statsHoursCompact": "{hours}ч",
   "statsHoursValue": "{hours} ч",
   "statsLast30Days": "Последните 30 дни",
   "statsLast7Days": "Последните 7 дни",
@@ -458,6 +484,15 @@
       }
     }
   },
+  "@coursesPaceNeededMinutes": {
+    "description": "Daily pace line in minutes (sub-hour pace) on a course row.",
+    "placeholders": {
+      "daily": {
+        "type": "String",
+        "example": "36"
+      }
+    }
+  },
   "@coursesPaceNeededWeekly": {
     "description": "Daily + weekly pace line on a course row.",
     "placeholders": {
@@ -468,6 +503,32 @@
       "weekly": {
         "type": "String",
         "example": "7.5"
+      }
+    }
+  },
+  "@coursesPaceNeededWeeklyMinutes": {
+    "description": "Daily + weekly pace line when both are sub-hour (minutes).",
+    "placeholders": {
+      "daily": {
+        "type": "String",
+        "example": "8"
+      },
+      "weekly": {
+        "type": "String",
+        "example": "56"
+      }
+    }
+  },
+  "@coursesPaceNeededWeeklyMinutesHours": {
+    "description": "Daily minutes + weekly hours pace line on a course row.",
+    "placeholders": {
+      "daily": {
+        "type": "String",
+        "example": "36"
+      },
+      "weekly": {
+        "type": "String",
+        "example": "4.3"
       }
     }
   },
@@ -706,6 +767,15 @@
       }
     }
   },
+  "@dashboardMinutesPerDay": {
+    "description": "Required daily minutes chip (sub-hour pace) in the hero-card top-3 list.",
+    "placeholders": {
+      "minutes": {
+        "type": "String",
+        "example": "36"
+      }
+    }
+  },
   "@dashboardLogSessionAction": {
     "description": "Label of the dashboard button that opens the log-session dialog."
   },
@@ -751,6 +821,15 @@
       }
     }
   },
+  "@dashboardPaceNeedDailyMinutes": {
+    "description": "Pace line stating the required daily minutes (sub-hour pace).",
+    "placeholders": {
+      "daily": {
+        "type": "String",
+        "example": "36"
+      }
+    }
+  },
   "@dashboardPaceNeedDailyWeekly": {
     "description": "Pace line stating required daily and weekly hours to finish.",
     "placeholders": {
@@ -764,12 +843,51 @@
       }
     }
   },
+  "@dashboardPaceNeedDailyWeeklyMinutes": {
+    "description": "Pace line when both daily and weekly paces are sub-hour.",
+    "placeholders": {
+      "daily": {
+        "type": "String",
+        "example": "8"
+      },
+      "weekly": {
+        "type": "String",
+        "example": "56"
+      }
+    }
+  },
+  "@dashboardPaceNeedDailyWeeklyMinutesHours": {
+    "description": "Pace line with daily minutes and weekly hours.",
+    "placeholders": {
+      "daily": {
+        "type": "String",
+        "example": "36"
+      },
+      "weekly": {
+        "type": "String",
+        "example": "4.3"
+      }
+    }
+  },
   "@dashboardPaceNeedFrom": {
     "description": "Pace line for a scheduled course with a computable daily pace.",
     "placeholders": {
       "hours": {
         "type": "String",
         "example": "1.5"
+      },
+      "date": {
+        "type": "String",
+        "example": "2026-12-01"
+      }
+    }
+  },
+  "@dashboardPaceNeedFromMinutes": {
+    "description": "Pace line for a scheduled course with a sub-hour daily pace.",
+    "placeholders": {
+      "minutes": {
+        "type": "String",
+        "example": "36"
       },
       "date": {
         "type": "String",
@@ -1004,6 +1122,12 @@
   "@devToolsRemoveAllTitle": {
     "description": "Dev remove-all confirm dialog title"
   },
+  "@devToolsReminderPreview": {
+    "description": "Dev-mode tile title opening the reminder preview feed."
+  },
+  "@devToolsReminderPreviewSubtitle": {
+    "description": "Dev-mode reminder preview tile description line."
+  },
   "@navCourses": {
     "description": "Bottom-nav destination: courses list."
   },
@@ -1018,6 +1142,42 @@
   },
   "@navStudyLog": {
     "description": "Bottom-nav destination and app-bar title: study log."
+  },
+  "@reminderKindBehind": {
+    "description": "Kind chip for a behind-course nudge on the reminder preview page."
+  },
+  "@reminderKindCustom": {
+    "description": "Kind chip for a custom-schedule nudge on the reminder preview page."
+  },
+  "@reminderKindDaily": {
+    "description": "Kind chip for the daily-plan nudge on the reminder preview page."
+  },
+  "@reminderKindDeadline": {
+    "description": "Kind chip for a deadline-countdown nudge on the reminder preview page."
+  },
+  "@reminderKindOverdue": {
+    "description": "Kind chip for an overdue-course nudge on the reminder preview page."
+  },
+  "@reminderKindStreak": {
+    "description": "Kind chip for the weekly streak celebration on the reminder preview page."
+  },
+  "@reminderPreviewCustom": {
+    "description": "Section header for demo custom schedules on the preview page."
+  },
+  "@reminderPreviewEmpty": {
+    "description": "Empty state of the reminder preview feed."
+  },
+  "@reminderPreviewNoFire": {
+    "description": "Shown when a demo custom schedule has no future fire."
+  },
+  "@reminderPreviewNow": {
+    "description": "Label above the fake-now stepper on the reminder preview page."
+  },
+  "@reminderPreviewReset": {
+    "description": "Button resetting the preview time to the real now."
+  },
+  "@reminderPreviewTitle": {
+    "description": "App-bar title of the dev-mode reminder preview page."
   },
   "@sampleBadge": {
     "description": "Badge marking sample/seeded content."
@@ -1406,6 +1566,18 @@
   },
   "@settingsPasteValidBackup": {
     "description": "Hold-to-confirm button label when no valid backup"
+  },
+  "@settingsReminderDenied": {
+    "description": "SnackBar when the OS notification permission is denied."
+  },
+  "@settingsReminderTime": {
+    "description": "Reminder time tile title in the Study section."
+  },
+  "@settingsReminders": {
+    "description": "Study reminders opt-in tile title in the Study section."
+  },
+  "@settingsRemindersOff": {
+    "description": "Reminders tile subtitle when reminders are disabled."
   },
   "@settingsReset": {
     "description": "Reset settings confirm action"

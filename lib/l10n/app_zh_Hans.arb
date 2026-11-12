@@ -35,7 +35,10 @@
   "coursesFilterEmpty": "没有符合此筛选条件的课程",
   "coursesNewCourse": "新建课程",
   "coursesPaceNeeded": "需要 {daily} 小时/天",
+  "coursesPaceNeededMinutes": "需要 {daily} 分钟/天",
   "coursesPaceNeededWeekly": "需要 {daily} 小时/天 • {weekly} 小时/周",
+  "coursesPaceNeededWeeklyMinutes": "需要 {daily} 分钟/天 • {weekly} 分钟/周",
+  "coursesPaceNeededWeeklyMinutesHours": "需要 {daily} 分钟/天 • {weekly} 小时/周",
   "coursesProgressWithStatus": "{done} / {required} 小时 • {status}",
   "coursesRemoveSampleTooltip": "删除示例课程",
   "coursesShownCount": "已显示 {count} 门",
@@ -63,6 +66,7 @@
   "dashboardHoursDetail": "· {pct}% · 还剩 {hours} 小时",
   "dashboardHoursFraction": "{done} / {required} 小时",
   "dashboardHoursPerDay": "{hours} 小时/天",
+  "dashboardMinutesPerDay": "{minutes} 分钟/天",
   "dashboardLogSessionAction": "记录学习会话",
   "dashboardLogSessionTooltip": "记录学习会话",
   "dashboardNewBadge": "新建",
@@ -74,8 +78,12 @@
   "dashboardNothingToTrack": "暂无可跟踪内容",
   "dashboardPaceDueToday": "今日到期 — 还剩 {hours} 小时",
   "dashboardPaceNeedDaily": "需要 {daily} 小时/天才能完成",
+  "dashboardPaceNeedDailyMinutes": "需要 {daily} 分钟/天才能完成",
   "dashboardPaceNeedDailyWeekly": "需要 {daily} 小时/天 · {weekly} 小时/周才能完成",
+  "dashboardPaceNeedDailyWeeklyMinutes": "需要 {daily} 分钟/天 · {weekly} 分钟/周才能完成",
+  "dashboardPaceNeedDailyWeeklyMinutesHours": "需要 {daily} 分钟/天 · {weekly} 小时/周才能完成",
   "dashboardPaceNeedFrom": "自 {date} 起需要 {hours} 小时/天 · 未计入今日进度",
+  "dashboardPaceNeedFromMinutes": "自 {date} 起需要 {minutes} 分钟/天 · 未计入今日进度",
   "dashboardPaceNoDeadline": "无截止日期 — 还剩 {hours} 小时 · 无每日压力",
   "dashboardPaceStarts": "{date} 开始 · 待完成 {hours} 小时",
   "dashboardPaceUnrealistic": "{pace} · 不切实际",
@@ -458,6 +466,15 @@
       }
     }
   },
+  "@coursesPaceNeededMinutes": {
+    "description": "Daily pace line in minutes (sub-hour pace) on a course row.",
+    "placeholders": {
+      "daily": {
+        "type": "String",
+        "example": "36"
+      }
+    }
+  },
   "@coursesPaceNeededWeekly": {
     "description": "Daily + weekly pace line on a course row.",
     "placeholders": {
@@ -468,6 +485,32 @@
       "weekly": {
         "type": "String",
         "example": "7.5"
+      }
+    }
+  },
+  "@coursesPaceNeededWeeklyMinutes": {
+    "description": "Daily + weekly pace line when both are sub-hour (minutes).",
+    "placeholders": {
+      "daily": {
+        "type": "String",
+        "example": "8"
+      },
+      "weekly": {
+        "type": "String",
+        "example": "56"
+      }
+    }
+  },
+  "@coursesPaceNeededWeeklyMinutesHours": {
+    "description": "Daily minutes + weekly hours pace line on a course row.",
+    "placeholders": {
+      "daily": {
+        "type": "String",
+        "example": "36"
+      },
+      "weekly": {
+        "type": "String",
+        "example": "4.3"
       }
     }
   },
@@ -706,6 +749,15 @@
       }
     }
   },
+  "@dashboardMinutesPerDay": {
+    "description": "Required daily minutes chip (sub-hour pace) in the hero-card top-3 list.",
+    "placeholders": {
+      "minutes": {
+        "type": "String",
+        "example": "36"
+      }
+    }
+  },
   "@dashboardLogSessionAction": {
     "description": "Label of the dashboard button that opens the log-session dialog."
   },
@@ -751,6 +803,15 @@
       }
     }
   },
+  "@dashboardPaceNeedDailyMinutes": {
+    "description": "Pace line stating the required daily minutes (sub-hour pace).",
+    "placeholders": {
+      "daily": {
+        "type": "String",
+        "example": "36"
+      }
+    }
+  },
   "@dashboardPaceNeedDailyWeekly": {
     "description": "Pace line stating required daily and weekly hours to finish.",
     "placeholders": {
@@ -764,12 +825,51 @@
       }
     }
   },
+  "@dashboardPaceNeedDailyWeeklyMinutes": {
+    "description": "Pace line when both daily and weekly paces are sub-hour.",
+    "placeholders": {
+      "daily": {
+        "type": "String",
+        "example": "8"
+      },
+      "weekly": {
+        "type": "String",
+        "example": "56"
+      }
+    }
+  },
+  "@dashboardPaceNeedDailyWeeklyMinutesHours": {
+    "description": "Pace line with daily minutes and weekly hours.",
+    "placeholders": {
+      "daily": {
+        "type": "String",
+        "example": "36"
+      },
+      "weekly": {
+        "type": "String",
+        "example": "4.3"
+      }
+    }
+  },
   "@dashboardPaceNeedFrom": {
     "description": "Pace line for a scheduled course with a computable daily pace.",
     "placeholders": {
       "hours": {
         "type": "String",
         "example": "1.5"
+      },
+      "date": {
+        "type": "String",
+        "example": "2026-12-01"
+      }
+    }
+  },
+  "@dashboardPaceNeedFromMinutes": {
+    "description": "Pace line for a scheduled course with a sub-hour daily pace.",
+    "placeholders": {
+      "minutes": {
+        "type": "String",
+        "example": "36"
       },
       "date": {
         "type": "String",
@@ -1835,5 +1935,77 @@
   "settingsLiquidGlassUpdated": "液态玻璃已更新。",
   "@settingsLiquidGlassUpdated": {
     "description": "SnackBar after the liquid glass opt-in changes."
+  },
+  "devToolsReminderPreview": "提醒预览",
+  "@devToolsReminderPreview": {
+    "description": "Dev-mode tile title opening the reminder preview feed."
+  },
+  "devToolsReminderPreviewSubtitle": "查看当前会触发哪些通知。Windows 安全测试源。",
+  "@devToolsReminderPreviewSubtitle": {
+    "description": "Dev-mode reminder preview tile description line."
+  },
+  "reminderPreviewTitle": "提醒预览",
+  "@reminderPreviewTitle": {
+    "description": "App-bar title of the dev-mode reminder preview page."
+  },
+  "reminderPreviewNow": "预览时间",
+  "@reminderPreviewNow": {
+    "description": "Label above the fake-now stepper on the reminder preview page."
+  },
+  "reminderPreviewReset": "现在",
+  "@reminderPreviewReset": {
+    "description": "Button resetting the preview time to the real now."
+  },
+  "reminderPreviewEmpty": "一切安静——此时不会触发任何通知。",
+  "@reminderPreviewEmpty": {
+    "description": "Empty state of the reminder preview feed."
+  },
+  "reminderPreviewCustom": "自定义计划（演示）",
+  "@reminderPreviewCustom": {
+    "description": "Section header for demo custom schedules on the preview page."
+  },
+  "reminderPreviewNoFire": "没有即将触发的提醒。",
+  "@reminderPreviewNoFire": {
+    "description": "Shown when a demo custom schedule has no future fire."
+  },
+  "reminderKindDaily": "每日",
+  "@reminderKindDaily": {
+    "description": "Kind chip for the daily-plan nudge on the reminder preview page."
+  },
+  "reminderKindBehind": "落后",
+  "@reminderKindBehind": {
+    "description": "Kind chip for a behind-course nudge on the reminder preview page."
+  },
+  "reminderKindDeadline": "截止日期",
+  "@reminderKindDeadline": {
+    "description": "Kind chip for a deadline-countdown nudge on the reminder preview page."
+  },
+  "reminderKindOverdue": "已逾期",
+  "@reminderKindOverdue": {
+    "description": "Kind chip for an overdue-course nudge on the reminder preview page."
+  },
+  "reminderKindStreak": "连击",
+  "@reminderKindStreak": {
+    "description": "Kind chip for the weekly streak celebration on the reminder preview page."
+  },
+  "reminderKindCustom": "自定义",
+  "@reminderKindCustom": {
+    "description": "Kind chip for a custom-schedule nudge on the reminder preview page."
+  },
+  "settingsReminders": "学习提醒",
+  "@settingsReminders": {
+    "description": "Study reminders opt-in tile title in the Study section."
+  },
+  "settingsRemindersOff": "已关闭——开启以接收每日提醒。",
+  "@settingsRemindersOff": {
+    "description": "Reminders tile subtitle when reminders are disabled."
+  },
+  "settingsReminderTime": "提醒时间",
+  "@settingsReminderTime": {
+    "description": "Reminder time tile title in the Study section."
+  },
+  "settingsReminderDenied": "通知已被屏蔽——请在系统设置中启用。",
+  "@settingsReminderDenied": {
+    "description": "SnackBar when the OS notification permission is denied."
   }
 }
