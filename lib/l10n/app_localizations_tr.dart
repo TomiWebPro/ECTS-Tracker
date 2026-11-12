@@ -135,7 +135,7 @@ class AppLocalizationsTr extends AppLocalizations {
 
   @override
   String coursesPaceNeededMinutes(String daily) {
-    return '$daily min/day needed';
+    return '$daily dk/gün gerekli';
   }
 
   @override
@@ -145,12 +145,12 @@ class AppLocalizationsTr extends AppLocalizations {
 
   @override
   String coursesPaceNeededWeeklyMinutes(String daily, String weekly) {
-    return '$daily min/day • $weekly min/week needed';
+    return '$daily dk/gün • $weekly dk/hafta gerekli';
   }
 
   @override
   String coursesPaceNeededWeeklyMinutesHours(String daily, String weekly) {
-    return '$daily min/day • $weekly h/week needed';
+    return '$daily dk/gün • $weekly sa/hafta gerekli';
   }
 
   @override
@@ -282,7 +282,7 @@ class AppLocalizationsTr extends AppLocalizations {
 
   @override
   String dashboardMinutesPerDay(String minutes) {
-    return '$minutes min/d';
+    return '$minutes dk/gün';
   }
 
   @override
@@ -324,7 +324,7 @@ class AppLocalizationsTr extends AppLocalizations {
 
   @override
   String dashboardPaceNeedDailyMinutes(String daily) {
-    return 'Need $daily min/day to finish';
+    return 'Bitirmek için günde $daily dk gerekli';
   }
 
   @override
@@ -334,12 +334,12 @@ class AppLocalizationsTr extends AppLocalizations {
 
   @override
   String dashboardPaceNeedDailyWeeklyMinutes(String daily, String weekly) {
-    return 'Need $daily min/day · $weekly min/week to finish';
+    return 'Bitirmek için günde $daily dk · haftada $weekly dk gerekli';
   }
 
   @override
   String dashboardPaceNeedDailyWeeklyMinutesHours(String daily, String weekly) {
-    return 'Need $daily min/day · $weekly h/week to finish';
+    return 'Bitirmek için günde $daily dk · haftada $weekly sa gerekli';
   }
 
   @override
@@ -349,7 +349,7 @@ class AppLocalizationsTr extends AppLocalizations {
 
   @override
   String dashboardPaceNeedFromMinutes(String minutes, String date) {
-    return 'Need $minutes min/day from $date · not in Today’s pace';
+    return '$date tarihinden itibaren günde $minutes dk gerekli · Bugünün temposunda değil';
   }
 
   @override
@@ -1183,59 +1183,59 @@ class AppLocalizationsTr extends AppLocalizations {
   String get settingsLiquidGlassUpdated => 'Sıvı cam güncellendi.';
 
   @override
-  String get devToolsReminderPreview => 'Reminder preview';
+  String get devToolsReminderPreview => 'Hatırlatıcı önizleme';
 
   @override
   String get devToolsReminderPreviewSubtitle =>
-      'See what would notify right now. Windows-safe test feed.';
+      'Şu anda neyin bildirim vereceğini gör. Windows güvenli test akışı.';
 
   @override
-  String get reminderPreviewTitle => 'Reminder preview';
+  String get reminderPreviewTitle => 'Hatırlatıcı önizleme';
 
   @override
-  String get reminderPreviewNow => 'Preview time';
+  String get reminderPreviewNow => 'Önizleme zamanı';
 
   @override
-  String get reminderPreviewReset => 'Now';
+  String get reminderPreviewReset => 'Şimdi';
 
   @override
   String get reminderPreviewEmpty =>
-      'All quiet — nothing would notify at this time.';
+      'Her yer sessiz — şu anda bildirim verecek bir şey yok.';
 
   @override
-  String get reminderPreviewCustom => 'Custom schedules (demo)';
+  String get reminderPreviewCustom => 'Özel programlar (demo)';
 
   @override
-  String get reminderPreviewNoFire => 'No upcoming fire.';
+  String get reminderPreviewNoFire => 'Yaklaşan tetiklenme yok.';
 
   @override
-  String get reminderKindDaily => 'Daily';
+  String get reminderKindDaily => 'Günlük';
 
   @override
-  String get reminderKindBehind => 'Behind';
+  String get reminderKindBehind => 'Geride';
 
   @override
-  String get reminderKindDeadline => 'Deadline';
+  String get reminderKindDeadline => 'Son tarih';
 
   @override
-  String get reminderKindOverdue => 'Overdue';
+  String get reminderKindOverdue => 'Gecikmiş';
 
   @override
-  String get reminderKindStreak => 'Streak';
+  String get reminderKindStreak => 'Seri';
 
   @override
-  String get reminderKindCustom => 'Custom';
+  String get reminderKindCustom => 'Özel';
 
   @override
-  String get settingsReminders => 'Study reminders';
+  String get settingsReminders => 'Çalışma hatırlatıcıları';
 
   @override
-  String get settingsRemindersOff => 'Off — turn on for a daily nudge.';
+  String get settingsRemindersOff => 'Kapalı — günlük hatırlatma için aç.';
 
   @override
-  String get settingsReminderTime => 'Reminder time';
+  String get settingsReminderTime => 'Hatırlatıcı saati';
 
   @override
   String get settingsReminderDenied =>
-      'Notifications are blocked — enable them in system settings.';
+      'Bildirimler engellendi — sistem ayarlarından etkinleştir.';
 }

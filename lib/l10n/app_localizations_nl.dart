@@ -135,7 +135,7 @@ class AppLocalizationsNl extends AppLocalizations {
 
   @override
   String coursesPaceNeededMinutes(String daily) {
-    return '$daily min/day needed';
+    return '$daily min/dag nodig';
   }
 
   @override
@@ -145,12 +145,12 @@ class AppLocalizationsNl extends AppLocalizations {
 
   @override
   String coursesPaceNeededWeeklyMinutes(String daily, String weekly) {
-    return '$daily min/day • $weekly min/week needed';
+    return '$daily min/dag • $weekly min/week nodig';
   }
 
   @override
   String coursesPaceNeededWeeklyMinutesHours(String daily, String weekly) {
-    return '$daily min/day • $weekly h/week needed';
+    return '$daily min/dag • $weekly u/week nodig';
   }
 
   @override
@@ -324,7 +324,7 @@ class AppLocalizationsNl extends AppLocalizations {
 
   @override
   String dashboardPaceNeedDailyMinutes(String daily) {
-    return 'Need $daily min/day to finish';
+    return '$daily min/dag nodig om af te ronden';
   }
 
   @override
@@ -334,12 +334,12 @@ class AppLocalizationsNl extends AppLocalizations {
 
   @override
   String dashboardPaceNeedDailyWeeklyMinutes(String daily, String weekly) {
-    return 'Need $daily min/day · $weekly min/week to finish';
+    return '$daily min/dag • $weekly min/week nodig om af te ronden';
   }
 
   @override
   String dashboardPaceNeedDailyWeeklyMinutesHours(String daily, String weekly) {
-    return 'Need $daily min/day · $weekly h/week to finish';
+    return '$daily min/dag • $weekly u/week nodig om af te ronden';
   }
 
   @override
@@ -349,7 +349,7 @@ class AppLocalizationsNl extends AppLocalizations {
 
   @override
   String dashboardPaceNeedFromMinutes(String minutes, String date) {
-    return 'Need $minutes min/day from $date · not in Today’s pace';
+    return '$minutes min/dag nodig vanaf $date • niet in het tempo van Vandaag';
   }
 
   @override
@@ -1189,59 +1189,59 @@ class AppLocalizationsNl extends AppLocalizations {
   String get settingsLiquidGlassUpdated => 'Liquid glass bijgewerkt.';
 
   @override
-  String get devToolsReminderPreview => 'Reminder preview';
+  String get devToolsReminderPreview => 'Voorbeeld herinnering';
 
   @override
   String get devToolsReminderPreviewSubtitle =>
-      'See what would notify right now. Windows-safe test feed.';
+      'Zie wat nu een melding zou geven. Windows-veilige testfeed.';
 
   @override
-  String get reminderPreviewTitle => 'Reminder preview';
+  String get reminderPreviewTitle => 'Voorbeeld herinnering';
 
   @override
-  String get reminderPreviewNow => 'Preview time';
+  String get reminderPreviewNow => 'Voorbeeldtijd';
 
   @override
-  String get reminderPreviewReset => 'Now';
+  String get reminderPreviewReset => 'Nu';
 
   @override
-  String get reminderPreviewEmpty =>
-      'All quiet — nothing would notify at this time.';
+  String get reminderPreviewEmpty => 'Helemaal stil — er zou nu niets melden.';
 
   @override
-  String get reminderPreviewCustom => 'Custom schedules (demo)';
+  String get reminderPreviewCustom => 'Aangepaste schema\'s (demo)';
 
   @override
-  String get reminderPreviewNoFire => 'No upcoming fire.';
+  String get reminderPreviewNoFire => 'Geen aankomende melding.';
 
   @override
-  String get reminderKindDaily => 'Daily';
+  String get reminderKindDaily => 'Dagelijks';
 
   @override
-  String get reminderKindBehind => 'Behind';
+  String get reminderKindBehind => 'Achter';
 
   @override
   String get reminderKindDeadline => 'Deadline';
 
   @override
-  String get reminderKindOverdue => 'Overdue';
+  String get reminderKindOverdue => 'Te laat';
 
   @override
-  String get reminderKindStreak => 'Streak';
+  String get reminderKindStreak => 'Reeks';
 
   @override
-  String get reminderKindCustom => 'Custom';
+  String get reminderKindCustom => 'Aangepast';
 
   @override
-  String get settingsReminders => 'Study reminders';
+  String get settingsReminders => 'Studieherinneringen';
 
   @override
-  String get settingsRemindersOff => 'Off — turn on for a daily nudge.';
+  String get settingsRemindersOff =>
+      'Uit — zet aan voor een dagelijkse herinnering.';
 
   @override
-  String get settingsReminderTime => 'Reminder time';
+  String get settingsReminderTime => 'Herinneringstijd';
 
   @override
   String get settingsReminderDenied =>
-      'Notifications are blocked — enable them in system settings.';
+      'Meldingen zijn geblokkeerd — schakel ze in via de systeeminstellingen.';
 }

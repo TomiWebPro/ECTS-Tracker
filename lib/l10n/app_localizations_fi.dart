@@ -135,7 +135,7 @@ class AppLocalizationsFi extends AppLocalizations {
 
   @override
   String coursesPaceNeededMinutes(String daily) {
-    return '$daily min/day needed';
+    return 'Tarvitaan $daily min/päivä';
   }
 
   @override
@@ -145,12 +145,12 @@ class AppLocalizationsFi extends AppLocalizations {
 
   @override
   String coursesPaceNeededWeeklyMinutes(String daily, String weekly) {
-    return '$daily min/day • $weekly min/week needed';
+    return 'Tarvitaan $daily min/päivä • $weekly min/viikko';
   }
 
   @override
   String coursesPaceNeededWeeklyMinutesHours(String daily, String weekly) {
-    return '$daily min/day • $weekly h/week needed';
+    return 'Tarvitaan $daily min/päivä • $weekly h/viikko';
   }
 
   @override
@@ -282,7 +282,7 @@ class AppLocalizationsFi extends AppLocalizations {
 
   @override
   String dashboardMinutesPerDay(String minutes) {
-    return '$minutes min/d';
+    return '$minutes min/pv';
   }
 
   @override
@@ -324,7 +324,7 @@ class AppLocalizationsFi extends AppLocalizations {
 
   @override
   String dashboardPaceNeedDailyMinutes(String daily) {
-    return 'Need $daily min/day to finish';
+    return 'Valmistumiseen tarvitaan $daily min/päivä';
   }
 
   @override
@@ -334,12 +334,12 @@ class AppLocalizationsFi extends AppLocalizations {
 
   @override
   String dashboardPaceNeedDailyWeeklyMinutes(String daily, String weekly) {
-    return 'Need $daily min/day · $weekly min/week to finish';
+    return 'Valmistumiseen tarvitaan $daily min/päivä · $weekly min/viikko';
   }
 
   @override
   String dashboardPaceNeedDailyWeeklyMinutesHours(String daily, String weekly) {
-    return 'Need $daily min/day · $weekly h/week to finish';
+    return 'Valmistumiseen tarvitaan $daily min/päivä · $weekly h/viikko';
   }
 
   @override
@@ -349,7 +349,7 @@ class AppLocalizationsFi extends AppLocalizations {
 
   @override
   String dashboardPaceNeedFromMinutes(String minutes, String date) {
-    return 'Need $minutes min/day from $date · not in Today’s pace';
+    return 'Tarvitaan $minutes min/päivä alkaen $date · ei tämän päivän tahdissa';
   }
 
   @override
@@ -1188,59 +1188,60 @@ class AppLocalizationsFi extends AppLocalizations {
   String get settingsLiquidGlassUpdated => 'Nestelasi päivitetty.';
 
   @override
-  String get devToolsReminderPreview => 'Reminder preview';
+  String get devToolsReminderPreview => 'Muistutuksen esikatselu';
 
   @override
   String get devToolsReminderPreviewSubtitle =>
-      'See what would notify right now. Windows-safe test feed.';
+      'Katso, mikä ilmoittaisi juuri nyt. Windows-turvallinen testisyöte.';
 
   @override
-  String get reminderPreviewTitle => 'Reminder preview';
+  String get reminderPreviewTitle => 'Muistutuksen esikatselu';
 
   @override
-  String get reminderPreviewNow => 'Preview time';
+  String get reminderPreviewNow => 'Esikatseluaika';
 
   @override
-  String get reminderPreviewReset => 'Now';
+  String get reminderPreviewReset => 'Nyt';
 
   @override
   String get reminderPreviewEmpty =>
-      'All quiet — nothing would notify at this time.';
+      'Kaikki hiljaista — mikään ei ilmoittaisi tähän aikaan.';
 
   @override
-  String get reminderPreviewCustom => 'Custom schedules (demo)';
+  String get reminderPreviewCustom => 'Mukautetut aikataulut (demo)';
 
   @override
-  String get reminderPreviewNoFire => 'No upcoming fire.';
+  String get reminderPreviewNoFire => 'Ei tulevia laukaisuja.';
 
   @override
-  String get reminderKindDaily => 'Daily';
+  String get reminderKindDaily => 'Päivittäinen';
 
   @override
-  String get reminderKindBehind => 'Behind';
+  String get reminderKindBehind => 'Jäljessä';
 
   @override
-  String get reminderKindDeadline => 'Deadline';
+  String get reminderKindDeadline => 'Määräaika';
 
   @override
-  String get reminderKindOverdue => 'Overdue';
+  String get reminderKindOverdue => 'Myöhässä';
 
   @override
-  String get reminderKindStreak => 'Streak';
+  String get reminderKindStreak => 'Putki';
 
   @override
-  String get reminderKindCustom => 'Custom';
+  String get reminderKindCustom => 'Mukautettu';
 
   @override
-  String get settingsReminders => 'Study reminders';
+  String get settingsReminders => 'Opiskelumuistutukset';
 
   @override
-  String get settingsRemindersOff => 'Off — turn on for a daily nudge.';
+  String get settingsRemindersOff =>
+      'Pois — ota käyttöön päivittäistä muistutusta varten.';
 
   @override
-  String get settingsReminderTime => 'Reminder time';
+  String get settingsReminderTime => 'Muistutuksen aika';
 
   @override
   String get settingsReminderDenied =>
-      'Notifications are blocked — enable them in system settings.';
+      'Ilmoitukset on estetty — ota ne käyttöön järjestelmän asetuksissa.';
 }

@@ -135,7 +135,7 @@ class AppLocalizationsGa extends AppLocalizations {
 
   @override
   String coursesPaceNeededMinutes(String daily) {
-    return '$daily min/day needed';
+    return '$daily nóim/lá ag teastáil';
   }
 
   @override
@@ -145,12 +145,12 @@ class AppLocalizationsGa extends AppLocalizations {
 
   @override
   String coursesPaceNeededWeeklyMinutes(String daily, String weekly) {
-    return '$daily min/day • $weekly min/week needed';
+    return '$daily nóim/lá • $weekly nóim/seachtain ag teastáil';
   }
 
   @override
   String coursesPaceNeededWeeklyMinutesHours(String daily, String weekly) {
-    return '$daily min/day • $weekly h/week needed';
+    return '$daily nóim/lá • $weekly u/seachtain ag teastáil';
   }
 
   @override
@@ -282,7 +282,7 @@ class AppLocalizationsGa extends AppLocalizations {
 
   @override
   String dashboardMinutesPerDay(String minutes) {
-    return '$minutes min/d';
+    return '$minutes nóim/lá';
   }
 
   @override
@@ -324,7 +324,7 @@ class AppLocalizationsGa extends AppLocalizations {
 
   @override
   String dashboardPaceNeedDailyMinutes(String daily) {
-    return 'Need $daily min/day to finish';
+    return '$daily nóim/lá ag teastáil chun críochnú';
   }
 
   @override
@@ -334,12 +334,12 @@ class AppLocalizationsGa extends AppLocalizations {
 
   @override
   String dashboardPaceNeedDailyWeeklyMinutes(String daily, String weekly) {
-    return 'Need $daily min/day · $weekly min/week to finish';
+    return '$daily nóim/lá · $weekly nóim/seachtain ag teastáil chun críochnú';
   }
 
   @override
   String dashboardPaceNeedDailyWeeklyMinutesHours(String daily, String weekly) {
-    return 'Need $daily min/day · $weekly h/week to finish';
+    return '$daily nóim/lá · $weekly u/seachtain ag teastáil chun críochnú';
   }
 
   @override
@@ -349,7 +349,7 @@ class AppLocalizationsGa extends AppLocalizations {
 
   @override
   String dashboardPaceNeedFromMinutes(String minutes, String date) {
-    return 'Need $minutes min/day from $date · not in Today’s pace';
+    return '$minutes nóim/lá ag teastáil ó $date · ní i luas an lae inniu';
   }
 
   @override
@@ -1193,59 +1193,60 @@ class AppLocalizationsGa extends AppLocalizations {
   String get settingsLiquidGlassUpdated => 'Gloine leachtach nuashonraithe.';
 
   @override
-  String get devToolsReminderPreview => 'Reminder preview';
+  String get devToolsReminderPreview => 'Réamhamharc meabhrúcháin';
 
   @override
   String get devToolsReminderPreviewSubtitle =>
-      'See what would notify right now. Windows-safe test feed.';
+      'Féach cad a sheolfadh anois. Fotha tástála atá sábháilte ar Windows.';
 
   @override
-  String get reminderPreviewTitle => 'Reminder preview';
+  String get reminderPreviewTitle => 'Réamhamharc meabhrúcháin';
 
   @override
-  String get reminderPreviewNow => 'Preview time';
+  String get reminderPreviewNow => 'Am an réamhamhairc';
 
   @override
-  String get reminderPreviewReset => 'Now';
+  String get reminderPreviewReset => 'Anois';
 
   @override
   String get reminderPreviewEmpty =>
-      'All quiet — nothing would notify at this time.';
+      'Gach rud ciúin — ní sheolfadh faic ag an am seo.';
 
   @override
-  String get reminderPreviewCustom => 'Custom schedules (demo)';
+  String get reminderPreviewCustom => 'Sceidil shaincheaptha (taispeántas)';
 
   @override
-  String get reminderPreviewNoFire => 'No upcoming fire.';
+  String get reminderPreviewNoFire => 'Níl aon ghníomhachtú le teacht.';
 
   @override
-  String get reminderKindDaily => 'Daily';
+  String get reminderKindDaily => 'Laethúil';
 
   @override
-  String get reminderKindBehind => 'Behind';
+  String get reminderKindBehind => 'Ar gcúl';
 
   @override
-  String get reminderKindDeadline => 'Deadline';
+  String get reminderKindDeadline => 'Spriocdháta';
 
   @override
-  String get reminderKindOverdue => 'Overdue';
+  String get reminderKindOverdue => 'Thar téarma';
 
   @override
-  String get reminderKindStreak => 'Streak';
+  String get reminderKindStreak => 'Sraith';
 
   @override
-  String get reminderKindCustom => 'Custom';
+  String get reminderKindCustom => 'Saincheaptha';
 
   @override
-  String get settingsReminders => 'Study reminders';
+  String get settingsReminders => 'Meabhrúcháin staidéir';
 
   @override
-  String get settingsRemindersOff => 'Off — turn on for a daily nudge.';
+  String get settingsRemindersOff =>
+      'Múchta — cuir ar siúl é le haghaidh meabhrúchán laethúil.';
 
   @override
-  String get settingsReminderTime => 'Reminder time';
+  String get settingsReminderTime => 'Am meabhrúcháin';
 
   @override
   String get settingsReminderDenied =>
-      'Notifications are blocked — enable them in system settings.';
+      'Tá fógraí bactha — cumasaigh iad i socruithe an chórais.';
 }

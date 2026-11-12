@@ -135,7 +135,7 @@ class AppLocalizationsCa extends AppLocalizations {
 
   @override
   String coursesPaceNeededMinutes(String daily) {
-    return '$daily min/day needed';
+    return 'Calen $daily min/dia';
   }
 
   @override
@@ -145,12 +145,12 @@ class AppLocalizationsCa extends AppLocalizations {
 
   @override
   String coursesPaceNeededWeeklyMinutes(String daily, String weekly) {
-    return '$daily min/day • $weekly min/week needed';
+    return 'Calen $daily min/dia • $weekly min/setmana';
   }
 
   @override
   String coursesPaceNeededWeeklyMinutesHours(String daily, String weekly) {
-    return '$daily min/day • $weekly h/week needed';
+    return 'Calen $daily min/dia • $weekly h/setmana';
   }
 
   @override
@@ -283,7 +283,7 @@ class AppLocalizationsCa extends AppLocalizations {
 
   @override
   String dashboardMinutesPerDay(String minutes) {
-    return '$minutes min/d';
+    return '$minutes min/dia';
   }
 
   @override
@@ -325,7 +325,7 @@ class AppLocalizationsCa extends AppLocalizations {
 
   @override
   String dashboardPaceNeedDailyMinutes(String daily) {
-    return 'Need $daily min/day to finish';
+    return 'Calen $daily min/dia per acabar';
   }
 
   @override
@@ -335,12 +335,12 @@ class AppLocalizationsCa extends AppLocalizations {
 
   @override
   String dashboardPaceNeedDailyWeeklyMinutes(String daily, String weekly) {
-    return 'Need $daily min/day · $weekly min/week to finish';
+    return 'Calen $daily min/dia · $weekly min/setmana per acabar';
   }
 
   @override
   String dashboardPaceNeedDailyWeeklyMinutesHours(String daily, String weekly) {
-    return 'Need $daily min/day · $weekly h/week to finish';
+    return 'Calen $daily min/dia · $weekly h/setmana per acabar';
   }
 
   @override
@@ -350,7 +350,7 @@ class AppLocalizationsCa extends AppLocalizations {
 
   @override
   String dashboardPaceNeedFromMinutes(String minutes, String date) {
-    return 'Need $minutes min/day from $date · not in Today’s pace';
+    return 'Calen $minutes min/dia a partir del $date · no inclòs al ritme d\'avui';
   }
 
   @override
@@ -1193,59 +1193,60 @@ class AppLocalizationsCa extends AppLocalizations {
   String get settingsLiquidGlassUpdated => 'Vidre líquid actualitzat.';
 
   @override
-  String get devToolsReminderPreview => 'Reminder preview';
+  String get devToolsReminderPreview => 'Vista prèvia de recordatoris';
 
   @override
   String get devToolsReminderPreviewSubtitle =>
-      'See what would notify right now. Windows-safe test feed.';
+      'Mira què notificaria ara mateix. Font de prova segura per al Windows.';
 
   @override
-  String get reminderPreviewTitle => 'Reminder preview';
+  String get reminderPreviewTitle => 'Vista prèvia de recordatoris';
 
   @override
-  String get reminderPreviewNow => 'Preview time';
+  String get reminderPreviewNow => 'Hora de vista prèvia';
 
   @override
-  String get reminderPreviewReset => 'Now';
+  String get reminderPreviewReset => 'Ara';
 
   @override
   String get reminderPreviewEmpty =>
-      'All quiet — nothing would notify at this time.';
+      'Tot tranquil — res no notificaria en aquest moment.';
 
   @override
-  String get reminderPreviewCustom => 'Custom schedules (demo)';
+  String get reminderPreviewCustom => 'Horaris personalitzats (demo)';
 
   @override
-  String get reminderPreviewNoFire => 'No upcoming fire.';
+  String get reminderPreviewNoFire => 'Sense propers avisos.';
 
   @override
-  String get reminderKindDaily => 'Daily';
+  String get reminderKindDaily => 'Diari';
 
   @override
-  String get reminderKindBehind => 'Behind';
+  String get reminderKindBehind => 'Endarrerit';
 
   @override
-  String get reminderKindDeadline => 'Deadline';
+  String get reminderKindDeadline => 'Data límit';
 
   @override
-  String get reminderKindOverdue => 'Overdue';
+  String get reminderKindOverdue => 'Vençut';
 
   @override
-  String get reminderKindStreak => 'Streak';
+  String get reminderKindStreak => 'Ratxa';
 
   @override
-  String get reminderKindCustom => 'Custom';
+  String get reminderKindCustom => 'Personalitzat';
 
   @override
-  String get settingsReminders => 'Study reminders';
+  String get settingsReminders => 'Recordatoris d\'estudi';
 
   @override
-  String get settingsRemindersOff => 'Off — turn on for a daily nudge.';
+  String get settingsRemindersOff =>
+      'Desactivat — activa\'ls per a un impuls diari.';
 
   @override
-  String get settingsReminderTime => 'Reminder time';
+  String get settingsReminderTime => 'Hora del recordatori';
 
   @override
   String get settingsReminderDenied =>
-      'Notifications are blocked — enable them in system settings.';
+      'Les notificacions estan bloquejades — activa-les als ajustos del sistema.';
 }

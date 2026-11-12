@@ -135,7 +135,7 @@ class AppLocalizationsKa extends AppLocalizations {
 
   @override
   String coursesPaceNeededMinutes(String daily) {
-    return '$daily min/day needed';
+    return 'საჭიროა $daily წთ/დღეში';
   }
 
   @override
@@ -145,12 +145,12 @@ class AppLocalizationsKa extends AppLocalizations {
 
   @override
   String coursesPaceNeededWeeklyMinutes(String daily, String weekly) {
-    return '$daily min/day • $weekly min/week needed';
+    return 'საჭიროა $daily წთ/დღეში • $weekly წთ/კვირაში';
   }
 
   @override
   String coursesPaceNeededWeeklyMinutesHours(String daily, String weekly) {
-    return '$daily min/day • $weekly h/week needed';
+    return 'საჭიროა $daily წთ/დღეში • $weekly სთ/კვირაში';
   }
 
   @override
@@ -282,7 +282,7 @@ class AppLocalizationsKa extends AppLocalizations {
 
   @override
   String dashboardMinutesPerDay(String minutes) {
-    return '$minutes min/d';
+    return '$minutes წთ/დღეში';
   }
 
   @override
@@ -324,7 +324,7 @@ class AppLocalizationsKa extends AppLocalizations {
 
   @override
   String dashboardPaceNeedDailyMinutes(String daily) {
-    return 'Need $daily min/day to finish';
+    return 'დასასრულებლად საჭიროა $daily წთ/დღეში';
   }
 
   @override
@@ -334,12 +334,12 @@ class AppLocalizationsKa extends AppLocalizations {
 
   @override
   String dashboardPaceNeedDailyWeeklyMinutes(String daily, String weekly) {
-    return 'Need $daily min/day · $weekly min/week to finish';
+    return 'დასასრულებლად საჭიროა $daily წთ/დღეში · $weekly წთ/კვირაში';
   }
 
   @override
   String dashboardPaceNeedDailyWeeklyMinutesHours(String daily, String weekly) {
-    return 'Need $daily min/day · $weekly h/week to finish';
+    return 'დასასრულებლად საჭიროა $daily წთ/დღეში · $weekly სთ/კვირაში';
   }
 
   @override
@@ -349,7 +349,7 @@ class AppLocalizationsKa extends AppLocalizations {
 
   @override
   String dashboardPaceNeedFromMinutes(String minutes, String date) {
-    return 'Need $minutes min/day from $date · not in Today’s pace';
+    return 'საჭიროა $minutes წთ/დღეში $date-დან · დღევანდელ ტემპში არ არის';
   }
 
   @override
@@ -1186,59 +1186,60 @@ class AppLocalizationsKa extends AppLocalizations {
   String get settingsLiquidGlassUpdated => 'თხევადი მინა განახლდა.';
 
   @override
-  String get devToolsReminderPreview => 'Reminder preview';
+  String get devToolsReminderPreview => 'შეხსენების წინასწარი ნახვა';
 
   @override
   String get devToolsReminderPreviewSubtitle =>
-      'See what would notify right now. Windows-safe test feed.';
+      'ნახეთ, რა გაფრთხილდებოდა ახლა. Windows-თვის უსაფრთხო სატესტო არხი.';
 
   @override
-  String get reminderPreviewTitle => 'Reminder preview';
+  String get reminderPreviewTitle => 'შეხსენების წინასწარი ნახვა';
 
   @override
-  String get reminderPreviewNow => 'Preview time';
+  String get reminderPreviewNow => 'წინასწარი დრო';
 
   @override
-  String get reminderPreviewReset => 'Now';
+  String get reminderPreviewReset => 'ახლა';
 
   @override
   String get reminderPreviewEmpty =>
-      'All quiet — nothing would notify at this time.';
+      'ყველაფერი წყნარადაა — ამ დროს არაფერი გაფრთხილდება.';
 
   @override
-  String get reminderPreviewCustom => 'Custom schedules (demo)';
+  String get reminderPreviewCustom => 'მორგებული განრიგები (დემო)';
 
   @override
-  String get reminderPreviewNoFire => 'No upcoming fire.';
+  String get reminderPreviewNoFire => 'მომავალი გაფრთხილება არ არის.';
 
   @override
-  String get reminderKindDaily => 'Daily';
+  String get reminderKindDaily => 'ყოველდღიური';
 
   @override
-  String get reminderKindBehind => 'Behind';
+  String get reminderKindBehind => 'ჩამორჩენილი';
 
   @override
-  String get reminderKindDeadline => 'Deadline';
+  String get reminderKindDeadline => 'ვადა';
 
   @override
-  String get reminderKindOverdue => 'Overdue';
+  String get reminderKindOverdue => 'ვადაგადაცილებული';
 
   @override
-  String get reminderKindStreak => 'Streak';
+  String get reminderKindStreak => 'სერია';
 
   @override
-  String get reminderKindCustom => 'Custom';
+  String get reminderKindCustom => 'მორგებული';
 
   @override
-  String get settingsReminders => 'Study reminders';
+  String get settingsReminders => 'სასწავლო შეხსენებები';
 
   @override
-  String get settingsRemindersOff => 'Off — turn on for a daily nudge.';
+  String get settingsRemindersOff =>
+      'გამორთულია — ჩართეთ ყოველდღიური შეხსენება.';
 
   @override
-  String get settingsReminderTime => 'Reminder time';
+  String get settingsReminderTime => 'შეხსენების დრო';
 
   @override
   String get settingsReminderDenied =>
-      'Notifications are blocked — enable them in system settings.';
+      'შეტყობინებები დაბლოკილია — ჩართეთ სისტემის პარამეტრებში.';
 }

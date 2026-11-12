@@ -135,7 +135,7 @@ class AppLocalizationsNb extends AppLocalizations {
 
   @override
   String coursesPaceNeededMinutes(String daily) {
-    return '$daily min/day needed';
+    return '$daily min/dag nødvendig';
   }
 
   @override
@@ -145,12 +145,12 @@ class AppLocalizationsNb extends AppLocalizations {
 
   @override
   String coursesPaceNeededWeeklyMinutes(String daily, String weekly) {
-    return '$daily min/day • $weekly min/week needed';
+    return '$daily min/dag • $weekly min/uke nødvendig';
   }
 
   @override
   String coursesPaceNeededWeeklyMinutesHours(String daily, String weekly) {
-    return '$daily min/day • $weekly h/week needed';
+    return '$daily min/dag • $weekly t/uke nødvendig';
   }
 
   @override
@@ -324,7 +324,7 @@ class AppLocalizationsNb extends AppLocalizations {
 
   @override
   String dashboardPaceNeedDailyMinutes(String daily) {
-    return 'Need $daily min/day to finish';
+    return 'Trenger $daily min/dag for å bli ferdig';
   }
 
   @override
@@ -334,12 +334,12 @@ class AppLocalizationsNb extends AppLocalizations {
 
   @override
   String dashboardPaceNeedDailyWeeklyMinutes(String daily, String weekly) {
-    return 'Need $daily min/day · $weekly min/week to finish';
+    return 'Trenger $daily min/dag · $weekly min/uke for å bli ferdig';
   }
 
   @override
   String dashboardPaceNeedDailyWeeklyMinutesHours(String daily, String weekly) {
-    return 'Need $daily min/day · $weekly h/week to finish';
+    return 'Trenger $daily min/dag · $weekly t/uke for å bli ferdig';
   }
 
   @override
@@ -349,7 +349,7 @@ class AppLocalizationsNb extends AppLocalizations {
 
   @override
   String dashboardPaceNeedFromMinutes(String minutes, String date) {
-    return 'Need $minutes min/day from $date · not in Today’s pace';
+    return 'Trenger $minutes min/dag fra $date · ikke i dagens tempo';
   }
 
   @override
@@ -1188,59 +1188,59 @@ class AppLocalizationsNb extends AppLocalizations {
   String get settingsLiquidGlassUpdated => 'Flytende glass oppdatert.';
 
   @override
-  String get devToolsReminderPreview => 'Reminder preview';
+  String get devToolsReminderPreview => 'Forhåndsvisning av påminnelse';
 
   @override
   String get devToolsReminderPreviewSubtitle =>
-      'See what would notify right now. Windows-safe test feed.';
+      'Se hva som ville varslet akkurat nå. Windows-sikker testfeed.';
 
   @override
-  String get reminderPreviewTitle => 'Reminder preview';
+  String get reminderPreviewTitle => 'Forhåndsvisning av påminnelse';
 
   @override
-  String get reminderPreviewNow => 'Preview time';
+  String get reminderPreviewNow => 'Forhåndsvisningstid';
 
   @override
-  String get reminderPreviewReset => 'Now';
+  String get reminderPreviewReset => 'Nå';
 
   @override
   String get reminderPreviewEmpty =>
-      'All quiet — nothing would notify at this time.';
+      'Helt stille — ingenting ville varslet på dette tidspunktet.';
 
   @override
-  String get reminderPreviewCustom => 'Custom schedules (demo)';
+  String get reminderPreviewCustom => 'Egendefinerte planer (demo)';
 
   @override
-  String get reminderPreviewNoFire => 'No upcoming fire.';
+  String get reminderPreviewNoFire => 'Ingen kommende varsling.';
 
   @override
-  String get reminderKindDaily => 'Daily';
+  String get reminderKindDaily => 'Daglig';
 
   @override
-  String get reminderKindBehind => 'Behind';
+  String get reminderKindBehind => 'Bak';
 
   @override
-  String get reminderKindDeadline => 'Deadline';
+  String get reminderKindDeadline => 'Frist';
 
   @override
-  String get reminderKindOverdue => 'Overdue';
+  String get reminderKindOverdue => 'Forsinket';
 
   @override
-  String get reminderKindStreak => 'Streak';
+  String get reminderKindStreak => 'Stime';
 
   @override
-  String get reminderKindCustom => 'Custom';
+  String get reminderKindCustom => 'Egendefinert';
 
   @override
-  String get settingsReminders => 'Study reminders';
+  String get settingsReminders => 'Studiepåminnelser';
 
   @override
-  String get settingsRemindersOff => 'Off — turn on for a daily nudge.';
+  String get settingsRemindersOff => 'Av — slå på for en daglig påminnelse.';
 
   @override
-  String get settingsReminderTime => 'Reminder time';
+  String get settingsReminderTime => 'Påminnelsestid';
 
   @override
   String get settingsReminderDenied =>
-      'Notifications are blocked — enable them in system settings.';
+      'Varsler er blokkert — slå dem på i systeminnstillingene.';
 }

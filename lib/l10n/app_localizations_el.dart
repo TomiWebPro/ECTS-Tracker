@@ -136,7 +136,7 @@ class AppLocalizationsEl extends AppLocalizations {
 
   @override
   String coursesPaceNeededMinutes(String daily) {
-    return '$daily min/day needed';
+    return 'Απαιτούνται $daily λεπ/ημέρα';
   }
 
   @override
@@ -146,12 +146,12 @@ class AppLocalizationsEl extends AppLocalizations {
 
   @override
   String coursesPaceNeededWeeklyMinutes(String daily, String weekly) {
-    return '$daily min/day • $weekly min/week needed';
+    return 'Απαιτούνται $daily λεπ/ημέρα • $weekly λεπ/εβδομάδα';
   }
 
   @override
   String coursesPaceNeededWeeklyMinutesHours(String daily, String weekly) {
-    return '$daily min/day • $weekly h/week needed';
+    return 'Απαιτούνται $daily λεπ/ημέρα • $weekly ώ/εβδομάδα';
   }
 
   @override
@@ -283,7 +283,7 @@ class AppLocalizationsEl extends AppLocalizations {
 
   @override
   String dashboardMinutesPerDay(String minutes) {
-    return '$minutes min/d';
+    return '$minutes λεπ/ημ';
   }
 
   @override
@@ -326,7 +326,7 @@ class AppLocalizationsEl extends AppLocalizations {
 
   @override
   String dashboardPaceNeedDailyMinutes(String daily) {
-    return 'Need $daily min/day to finish';
+    return 'Χρειάζεσαι $daily λεπ/ημέρα για να ολοκληρώσεις';
   }
 
   @override
@@ -336,12 +336,12 @@ class AppLocalizationsEl extends AppLocalizations {
 
   @override
   String dashboardPaceNeedDailyWeeklyMinutes(String daily, String weekly) {
-    return 'Need $daily min/day · $weekly min/week to finish';
+    return 'Χρειάζεσαι $daily λεπ/ημέρα · $weekly λεπ/εβδομάδα για να ολοκληρώσεις';
   }
 
   @override
   String dashboardPaceNeedDailyWeeklyMinutesHours(String daily, String weekly) {
-    return 'Need $daily min/day · $weekly h/week to finish';
+    return 'Χρειάζεσαι $daily λεπ/ημέρα · $weekly ώ/εβδομάδα για να ολοκληρώσεις';
   }
 
   @override
@@ -351,7 +351,7 @@ class AppLocalizationsEl extends AppLocalizations {
 
   @override
   String dashboardPaceNeedFromMinutes(String minutes, String date) {
-    return 'Need $minutes min/day from $date · not in Today’s pace';
+    return 'Χρειάζεσαι $minutes λεπ/ημέρα από $date · εκτός σημερινού ρυθμού';
   }
 
   @override
@@ -1195,59 +1195,60 @@ class AppLocalizationsEl extends AppLocalizations {
   String get settingsLiquidGlassUpdated => 'Το ρευστό γυαλί ενημερώθηκε.';
 
   @override
-  String get devToolsReminderPreview => 'Reminder preview';
+  String get devToolsReminderPreview => 'Προεπισκόπηση υπενθυμίσεων';
 
   @override
   String get devToolsReminderPreviewSubtitle =>
-      'See what would notify right now. Windows-safe test feed.';
+      'Δες τι θα ειδοποιούσε αυτή τη στιγμή. Δοκιμαστική ροή ασφαλής για Windows.';
 
   @override
-  String get reminderPreviewTitle => 'Reminder preview';
+  String get reminderPreviewTitle => 'Προεπισκόπηση υπενθυμίσεων';
 
   @override
-  String get reminderPreviewNow => 'Preview time';
+  String get reminderPreviewNow => 'Χρόνος προεπισκόπησης';
 
   @override
-  String get reminderPreviewReset => 'Now';
+  String get reminderPreviewReset => 'Τώρα';
 
   @override
   String get reminderPreviewEmpty =>
-      'All quiet — nothing would notify at this time.';
+      'Όλα ήσυχα — τίποτα δεν θα ειδοποιούσε αυτή τη στιγμή.';
 
   @override
-  String get reminderPreviewCustom => 'Custom schedules (demo)';
+  String get reminderPreviewCustom => 'Προσαρμοσμένα προγράμματα (demo)';
 
   @override
-  String get reminderPreviewNoFire => 'No upcoming fire.';
+  String get reminderPreviewNoFire => 'Καμία επικείμενη ενεργοποίηση.';
 
   @override
-  String get reminderKindDaily => 'Daily';
+  String get reminderKindDaily => 'Ημερήσια';
 
   @override
-  String get reminderKindBehind => 'Behind';
+  String get reminderKindBehind => 'Πίσω';
 
   @override
-  String get reminderKindDeadline => 'Deadline';
+  String get reminderKindDeadline => 'Προθεσμία';
 
   @override
-  String get reminderKindOverdue => 'Overdue';
+  String get reminderKindOverdue => 'Εκπρόθεσμο';
 
   @override
-  String get reminderKindStreak => 'Streak';
+  String get reminderKindStreak => 'Σερί';
 
   @override
-  String get reminderKindCustom => 'Custom';
+  String get reminderKindCustom => 'Προσαρμοσμένο';
 
   @override
-  String get settingsReminders => 'Study reminders';
+  String get settingsReminders => 'Υπενθυμίσεις μελέτης';
 
   @override
-  String get settingsRemindersOff => 'Off — turn on for a daily nudge.';
+  String get settingsRemindersOff =>
+      'Ανενεργό — ενεργοποίησε για μια καθημερινή ώθηση.';
 
   @override
-  String get settingsReminderTime => 'Reminder time';
+  String get settingsReminderTime => 'Ώρα υπενθύμισης';
 
   @override
   String get settingsReminderDenied =>
-      'Notifications are blocked — enable them in system settings.';
+      'Οι ειδοποιήσεις είναι αποκλεισμένες — ενεργοποίησέ τες στις ρυθμίσεις συστήματος.';
 }

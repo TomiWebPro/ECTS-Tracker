@@ -135,7 +135,7 @@ class AppLocalizationsLt extends AppLocalizations {
 
   @override
   String coursesPaceNeededMinutes(String daily) {
-    return '$daily min/day needed';
+    return 'Reikia $daily min./d.';
   }
 
   @override
@@ -145,12 +145,12 @@ class AppLocalizationsLt extends AppLocalizations {
 
   @override
   String coursesPaceNeededWeeklyMinutes(String daily, String weekly) {
-    return '$daily min/day • $weekly min/week needed';
+    return 'Reikia $daily min./d. • $weekly min./sav.';
   }
 
   @override
   String coursesPaceNeededWeeklyMinutesHours(String daily, String weekly) {
-    return '$daily min/day • $weekly h/week needed';
+    return 'Reikia $daily min./d. • $weekly v./sav.';
   }
 
   @override
@@ -282,7 +282,7 @@ class AppLocalizationsLt extends AppLocalizations {
 
   @override
   String dashboardMinutesPerDay(String minutes) {
-    return '$minutes min/d';
+    return '$minutes min./d.';
   }
 
   @override
@@ -324,7 +324,7 @@ class AppLocalizationsLt extends AppLocalizations {
 
   @override
   String dashboardPaceNeedDailyMinutes(String daily) {
-    return 'Need $daily min/day to finish';
+    return 'Norint baigti, reikia $daily min./d.';
   }
 
   @override
@@ -334,12 +334,12 @@ class AppLocalizationsLt extends AppLocalizations {
 
   @override
   String dashboardPaceNeedDailyWeeklyMinutes(String daily, String weekly) {
-    return 'Need $daily min/day · $weekly min/week to finish';
+    return 'Norint baigti, reikia $daily min./d. · $weekly min./sav.';
   }
 
   @override
   String dashboardPaceNeedDailyWeeklyMinutesHours(String daily, String weekly) {
-    return 'Need $daily min/day · $weekly h/week to finish';
+    return 'Norint baigti, reikia $daily min./d. · $weekly v./sav.';
   }
 
   @override
@@ -349,7 +349,7 @@ class AppLocalizationsLt extends AppLocalizations {
 
   @override
   String dashboardPaceNeedFromMinutes(String minutes, String date) {
-    return 'Need $minutes min/day from $date · not in Today’s pace';
+    return 'Reikia $minutes min./d. nuo $date · ne šiandienos tempe';
   }
 
   @override
@@ -1189,59 +1189,60 @@ class AppLocalizationsLt extends AppLocalizations {
   String get settingsLiquidGlassUpdated => 'Skystas stiklas atnaujintas.';
 
   @override
-  String get devToolsReminderPreview => 'Reminder preview';
+  String get devToolsReminderPreview => 'Priminimų peržiūra';
 
   @override
   String get devToolsReminderPreviewSubtitle =>
-      'See what would notify right now. Windows-safe test feed.';
+      'Pamatykite, kas būtų pranešta dabar. „Windows“ saugus bandomasis srautas.';
 
   @override
-  String get reminderPreviewTitle => 'Reminder preview';
+  String get reminderPreviewTitle => 'Priminimų peržiūra';
 
   @override
-  String get reminderPreviewNow => 'Preview time';
+  String get reminderPreviewNow => 'Peržiūros laikas';
 
   @override
-  String get reminderPreviewReset => 'Now';
+  String get reminderPreviewReset => 'Dabar';
 
   @override
   String get reminderPreviewEmpty =>
-      'All quiet — nothing would notify at this time.';
+      'Viskas ramu — šiuo metu niekas nebūtų pranešta.';
 
   @override
-  String get reminderPreviewCustom => 'Custom schedules (demo)';
+  String get reminderPreviewCustom =>
+      'Tinkinti tvarkaraščiai (demonstracinė versija)';
 
   @override
-  String get reminderPreviewNoFire => 'No upcoming fire.';
+  String get reminderPreviewNoFire => 'Artimiausio pranešimo nėra.';
 
   @override
-  String get reminderKindDaily => 'Daily';
+  String get reminderKindDaily => 'Kasdienis';
 
   @override
-  String get reminderKindBehind => 'Behind';
+  String get reminderKindBehind => 'Atsilieka';
 
   @override
-  String get reminderKindDeadline => 'Deadline';
+  String get reminderKindDeadline => 'Terminas';
 
   @override
-  String get reminderKindOverdue => 'Overdue';
+  String get reminderKindOverdue => 'Pradelstas';
 
   @override
-  String get reminderKindStreak => 'Streak';
+  String get reminderKindStreak => 'Serija';
 
   @override
-  String get reminderKindCustom => 'Custom';
+  String get reminderKindCustom => 'Tinkintas';
 
   @override
-  String get settingsReminders => 'Study reminders';
+  String get settingsReminders => 'Mokymosi priminimai';
 
   @override
-  String get settingsRemindersOff => 'Off — turn on for a daily nudge.';
+  String get settingsRemindersOff => 'Išjungta — įjunkite kasdienį priminimą.';
 
   @override
-  String get settingsReminderTime => 'Reminder time';
+  String get settingsReminderTime => 'Priminimo laikas';
 
   @override
   String get settingsReminderDenied =>
-      'Notifications are blocked — enable them in system settings.';
+      'Pranešimai užblokuoti — įjunkite juos sistemos nustatymuose.';
 }

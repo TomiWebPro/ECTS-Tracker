@@ -135,7 +135,7 @@ class AppLocalizationsLv extends AppLocalizations {
 
   @override
   String coursesPaceNeededMinutes(String daily) {
-    return '$daily min/day needed';
+    return 'Nepieciešams $daily min/dienā';
   }
 
   @override
@@ -145,12 +145,12 @@ class AppLocalizationsLv extends AppLocalizations {
 
   @override
   String coursesPaceNeededWeeklyMinutes(String daily, String weekly) {
-    return '$daily min/day • $weekly min/week needed';
+    return 'Nepieciešams $daily min/dienā • $weekly min/nedēļā';
   }
 
   @override
   String coursesPaceNeededWeeklyMinutesHours(String daily, String weekly) {
-    return '$daily min/day • $weekly h/week needed';
+    return 'Nepieciešams $daily min/dienā • $weekly h/nedēļā';
   }
 
   @override
@@ -282,7 +282,7 @@ class AppLocalizationsLv extends AppLocalizations {
 
   @override
   String dashboardMinutesPerDay(String minutes) {
-    return '$minutes min/d';
+    return '$minutes min/dienā';
   }
 
   @override
@@ -324,7 +324,7 @@ class AppLocalizationsLv extends AppLocalizations {
 
   @override
   String dashboardPaceNeedDailyMinutes(String daily) {
-    return 'Need $daily min/day to finish';
+    return 'Lai pabeigtu, vajag $daily min/dienā';
   }
 
   @override
@@ -334,12 +334,12 @@ class AppLocalizationsLv extends AppLocalizations {
 
   @override
   String dashboardPaceNeedDailyWeeklyMinutes(String daily, String weekly) {
-    return 'Need $daily min/day · $weekly min/week to finish';
+    return 'Lai pabeigtu, vajag $daily min/dienā · $weekly min/nedēļā';
   }
 
   @override
   String dashboardPaceNeedDailyWeeklyMinutesHours(String daily, String weekly) {
-    return 'Need $daily min/day · $weekly h/week to finish';
+    return 'Lai pabeigtu, vajag $daily min/dienā · $weekly h/nedēļā';
   }
 
   @override
@@ -349,7 +349,7 @@ class AppLocalizationsLv extends AppLocalizations {
 
   @override
   String dashboardPaceNeedFromMinutes(String minutes, String date) {
-    return 'Need $minutes min/day from $date · not in Today’s pace';
+    return 'Vajag $minutes min/dienā no $date · nav šodienas tempā';
   }
 
   @override
@@ -1186,59 +1186,60 @@ class AppLocalizationsLv extends AppLocalizations {
   String get settingsLiquidGlassUpdated => 'Šķidrais stikls atjaunināts.';
 
   @override
-  String get devToolsReminderPreview => 'Reminder preview';
+  String get devToolsReminderPreview => 'Atgādinājumu priekšskatījums';
 
   @override
   String get devToolsReminderPreviewSubtitle =>
-      'See what would notify right now. Windows-safe test feed.';
+      'Skatiet, kas tiktu paziņots tieši tagad. Drošs testa avots operētājsistēmai Windows.';
 
   @override
-  String get reminderPreviewTitle => 'Reminder preview';
+  String get reminderPreviewTitle => 'Atgādinājumu priekšskatījums';
 
   @override
-  String get reminderPreviewNow => 'Preview time';
+  String get reminderPreviewNow => 'Priekšskatījuma laiks';
 
   @override
-  String get reminderPreviewReset => 'Now';
+  String get reminderPreviewReset => 'Tagad';
 
   @override
   String get reminderPreviewEmpty =>
-      'All quiet — nothing would notify at this time.';
+      'Viss mierīgi — šajā laikā nekas netiktu paziņots.';
 
   @override
-  String get reminderPreviewCustom => 'Custom schedules (demo)';
+  String get reminderPreviewCustom => 'Pielāgoti grafiki (demonstrācija)';
 
   @override
-  String get reminderPreviewNoFire => 'No upcoming fire.';
+  String get reminderPreviewNoFire => 'Nav ieplānota paziņojuma.';
 
   @override
-  String get reminderKindDaily => 'Daily';
+  String get reminderKindDaily => 'Ikdienas';
 
   @override
-  String get reminderKindBehind => 'Behind';
+  String get reminderKindBehind => 'Atpaliek';
 
   @override
-  String get reminderKindDeadline => 'Deadline';
+  String get reminderKindDeadline => 'Termiņš';
 
   @override
-  String get reminderKindOverdue => 'Overdue';
+  String get reminderKindOverdue => 'Nokavēts';
 
   @override
-  String get reminderKindStreak => 'Streak';
+  String get reminderKindStreak => 'Sērija';
 
   @override
-  String get reminderKindCustom => 'Custom';
+  String get reminderKindCustom => 'Pielāgots';
 
   @override
-  String get settingsReminders => 'Study reminders';
+  String get settingsReminders => 'Mācību atgādinājumi';
 
   @override
-  String get settingsRemindersOff => 'Off — turn on for a daily nudge.';
+  String get settingsRemindersOff =>
+      'Izslēgts — ieslēdziet ikdienas atgādinājumu.';
 
   @override
-  String get settingsReminderTime => 'Reminder time';
+  String get settingsReminderTime => 'Atgādinājuma laiks';
 
   @override
   String get settingsReminderDenied =>
-      'Notifications are blocked — enable them in system settings.';
+      'Paziņojumi ir bloķēti — iespējojiet tos sistēmas iestatījumos.';
 }

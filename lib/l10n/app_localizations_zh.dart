@@ -132,7 +132,7 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String coursesPaceNeededMinutes(String daily) {
-    return '$daily min/day needed';
+    return '需要 $daily 分钟/天';
   }
 
   @override
@@ -142,12 +142,12 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String coursesPaceNeededWeeklyMinutes(String daily, String weekly) {
-    return '$daily min/day • $weekly min/week needed';
+    return '需要 $daily 分钟/天 • $weekly 分钟/周';
   }
 
   @override
   String coursesPaceNeededWeeklyMinutesHours(String daily, String weekly) {
-    return '$daily min/day • $weekly h/week needed';
+    return '需要 $daily 分钟/天 • $weekly 小时/周';
   }
 
   @override
@@ -275,7 +275,7 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String dashboardMinutesPerDay(String minutes) {
-    return '$minutes min/d';
+    return '$minutes 分钟/天';
   }
 
   @override
@@ -317,7 +317,7 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String dashboardPaceNeedDailyMinutes(String daily) {
-    return 'Need $daily min/day to finish';
+    return '需要 $daily 分钟/天才能完成';
   }
 
   @override
@@ -327,12 +327,12 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String dashboardPaceNeedDailyWeeklyMinutes(String daily, String weekly) {
-    return 'Need $daily min/day · $weekly min/week to finish';
+    return '需要 $daily 分钟/天 · $weekly 分钟/周才能完成';
   }
 
   @override
   String dashboardPaceNeedDailyWeeklyMinutesHours(String daily, String weekly) {
-    return 'Need $daily min/day · $weekly h/week to finish';
+    return '需要 $daily 分钟/天 · $weekly 小时/周才能完成';
   }
 
   @override
@@ -342,7 +342,7 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String dashboardPaceNeedFromMinutes(String minutes, String date) {
-    return 'Need $minutes min/day from $date · not in Today’s pace';
+    return '自 $date 起需要 $minutes 分钟/天 · 未计入今日进度';
   }
 
   @override
@@ -1152,61 +1152,58 @@ class AppLocalizationsZh extends AppLocalizations {
   String get settingsLiquidGlassUpdated => '液态玻璃已更新。';
 
   @override
-  String get devToolsReminderPreview => 'Reminder preview';
+  String get devToolsReminderPreview => '提醒预览';
 
   @override
-  String get devToolsReminderPreviewSubtitle =>
-      'See what would notify right now. Windows-safe test feed.';
+  String get devToolsReminderPreviewSubtitle => '查看当前会触发哪些通知。Windows 安全测试源。';
 
   @override
-  String get reminderPreviewTitle => 'Reminder preview';
+  String get reminderPreviewTitle => '提醒预览';
 
   @override
-  String get reminderPreviewNow => 'Preview time';
+  String get reminderPreviewNow => '预览时间';
 
   @override
-  String get reminderPreviewReset => 'Now';
+  String get reminderPreviewReset => '现在';
 
   @override
-  String get reminderPreviewEmpty =>
-      'All quiet — nothing would notify at this time.';
+  String get reminderPreviewEmpty => '一切安静——此时不会触发任何通知。';
 
   @override
-  String get reminderPreviewCustom => 'Custom schedules (demo)';
+  String get reminderPreviewCustom => '自定义计划（演示）';
 
   @override
-  String get reminderPreviewNoFire => 'No upcoming fire.';
+  String get reminderPreviewNoFire => '没有即将触发的提醒。';
 
   @override
-  String get reminderKindDaily => 'Daily';
+  String get reminderKindDaily => '每日';
 
   @override
-  String get reminderKindBehind => 'Behind';
+  String get reminderKindBehind => '落后';
 
   @override
-  String get reminderKindDeadline => 'Deadline';
+  String get reminderKindDeadline => '截止日期';
 
   @override
-  String get reminderKindOverdue => 'Overdue';
+  String get reminderKindOverdue => '已逾期';
 
   @override
-  String get reminderKindStreak => 'Streak';
+  String get reminderKindStreak => '连击';
 
   @override
-  String get reminderKindCustom => 'Custom';
+  String get reminderKindCustom => '自定义';
 
   @override
-  String get settingsReminders => 'Study reminders';
+  String get settingsReminders => '学习提醒';
 
   @override
-  String get settingsRemindersOff => 'Off — turn on for a daily nudge.';
+  String get settingsRemindersOff => '已关闭——开启以接收每日提醒。';
 
   @override
-  String get settingsReminderTime => 'Reminder time';
+  String get settingsReminderTime => '提醒时间';
 
   @override
-  String get settingsReminderDenied =>
-      'Notifications are blocked — enable them in system settings.';
+  String get settingsReminderDenied => '通知已被屏蔽——请在系统设置中启用。';
 }
 
 /// The translations for Chinese, using the Han script (`zh_Hans`).
@@ -1335,8 +1332,23 @@ class AppLocalizationsZhHans extends AppLocalizationsZh {
   }
 
   @override
+  String coursesPaceNeededMinutes(String daily) {
+    return '需要 $daily 分钟/天';
+  }
+
+  @override
   String coursesPaceNeededWeekly(String daily, String weekly) {
     return '需要 $daily 小时/天 • $weekly 小时/周';
+  }
+
+  @override
+  String coursesPaceNeededWeeklyMinutes(String daily, String weekly) {
+    return '需要 $daily 分钟/天 • $weekly 分钟/周';
+  }
+
+  @override
+  String coursesPaceNeededWeeklyMinutesHours(String daily, String weekly) {
+    return '需要 $daily 分钟/天 • $weekly 小时/周';
   }
 
   @override
@@ -1463,6 +1475,11 @@ class AppLocalizationsZhHans extends AppLocalizationsZh {
   }
 
   @override
+  String dashboardMinutesPerDay(String minutes) {
+    return '$minutes 分钟/天';
+  }
+
+  @override
   String get dashboardLogSessionAction => '记录学习会话';
 
   @override
@@ -1500,13 +1517,33 @@ class AppLocalizationsZhHans extends AppLocalizationsZh {
   }
 
   @override
+  String dashboardPaceNeedDailyMinutes(String daily) {
+    return '需要 $daily 分钟/天才能完成';
+  }
+
+  @override
   String dashboardPaceNeedDailyWeekly(String daily, String weekly) {
     return '需要 $daily 小时/天 · $weekly 小时/周才能完成';
   }
 
   @override
+  String dashboardPaceNeedDailyWeeklyMinutes(String daily, String weekly) {
+    return '需要 $daily 分钟/天 · $weekly 分钟/周才能完成';
+  }
+
+  @override
+  String dashboardPaceNeedDailyWeeklyMinutesHours(String daily, String weekly) {
+    return '需要 $daily 分钟/天 · $weekly 小时/周才能完成';
+  }
+
+  @override
   String dashboardPaceNeedFrom(String hours, String date) {
     return '自 $date 起需要 $hours 小时/天 · 未计入今日进度';
+  }
+
+  @override
+  String dashboardPaceNeedFromMinutes(String minutes, String date) {
+    return '自 $date 起需要 $minutes 分钟/天 · 未计入今日进度';
   }
 
   @override
@@ -2314,6 +2351,60 @@ class AppLocalizationsZhHans extends AppLocalizationsZh {
 
   @override
   String get settingsLiquidGlassUpdated => '液态玻璃已更新。';
+
+  @override
+  String get devToolsReminderPreview => '提醒预览';
+
+  @override
+  String get devToolsReminderPreviewSubtitle => '查看当前会触发哪些通知。Windows 安全测试源。';
+
+  @override
+  String get reminderPreviewTitle => '提醒预览';
+
+  @override
+  String get reminderPreviewNow => '预览时间';
+
+  @override
+  String get reminderPreviewReset => '现在';
+
+  @override
+  String get reminderPreviewEmpty => '一切安静——此时不会触发任何通知。';
+
+  @override
+  String get reminderPreviewCustom => '自定义计划（演示）';
+
+  @override
+  String get reminderPreviewNoFire => '没有即将触发的提醒。';
+
+  @override
+  String get reminderKindDaily => '每日';
+
+  @override
+  String get reminderKindBehind => '落后';
+
+  @override
+  String get reminderKindDeadline => '截止日期';
+
+  @override
+  String get reminderKindOverdue => '已逾期';
+
+  @override
+  String get reminderKindStreak => '连击';
+
+  @override
+  String get reminderKindCustom => '自定义';
+
+  @override
+  String get settingsReminders => '学习提醒';
+
+  @override
+  String get settingsRemindersOff => '已关闭——开启以接收每日提醒。';
+
+  @override
+  String get settingsReminderTime => '提醒时间';
+
+  @override
+  String get settingsReminderDenied => '通知已被屏蔽——请在系统设置中启用。';
 }
 
 /// The translations for Chinese, using the Han script (`zh_Hant`).
@@ -2442,8 +2533,23 @@ class AppLocalizationsZhHant extends AppLocalizationsZh {
   }
 
   @override
+  String coursesPaceNeededMinutes(String daily) {
+    return '需要 $daily 分鐘/天';
+  }
+
+  @override
   String coursesPaceNeededWeekly(String daily, String weekly) {
     return '需要 $daily 小時/天 • $weekly 小時/週';
+  }
+
+  @override
+  String coursesPaceNeededWeeklyMinutes(String daily, String weekly) {
+    return '需要 $daily 分鐘/天 • $weekly 分鐘/週';
+  }
+
+  @override
+  String coursesPaceNeededWeeklyMinutesHours(String daily, String weekly) {
+    return '需要 $daily 分鐘/天 • $weekly 小時/週';
   }
 
   @override
@@ -2570,6 +2676,11 @@ class AppLocalizationsZhHant extends AppLocalizationsZh {
   }
 
   @override
+  String dashboardMinutesPerDay(String minutes) {
+    return '$minutes 分鐘/天';
+  }
+
+  @override
   String get dashboardLogSessionAction => '記錄學習時段';
 
   @override
@@ -2607,13 +2718,33 @@ class AppLocalizationsZhHant extends AppLocalizationsZh {
   }
 
   @override
+  String dashboardPaceNeedDailyMinutes(String daily) {
+    return '需要 $daily 分鐘/天才能完成';
+  }
+
+  @override
   String dashboardPaceNeedDailyWeekly(String daily, String weekly) {
     return '需要 $daily 小時/天 · $weekly 小時/週才能完成';
   }
 
   @override
+  String dashboardPaceNeedDailyWeeklyMinutes(String daily, String weekly) {
+    return '需要 $daily 分鐘/天 · $weekly 分鐘/週才能完成';
+  }
+
+  @override
+  String dashboardPaceNeedDailyWeeklyMinutesHours(String daily, String weekly) {
+    return '需要 $daily 分鐘/天 · $weekly 小時/週才能完成';
+  }
+
+  @override
   String dashboardPaceNeedFrom(String hours, String date) {
     return '自 $date 起需要 $hours 小時/天 · 未計入今日進度';
+  }
+
+  @override
+  String dashboardPaceNeedFromMinutes(String minutes, String date) {
+    return '自 $date 起需要 $minutes 分鐘/天 · 未計入今日進度';
   }
 
   @override
@@ -3421,4 +3552,58 @@ class AppLocalizationsZhHant extends AppLocalizationsZh {
 
   @override
   String get settingsLiquidGlassUpdated => '液態玻璃已更新。';
+
+  @override
+  String get devToolsReminderPreview => '提醒預覽';
+
+  @override
+  String get devToolsReminderPreviewSubtitle => '查看目前會觸發哪些通知。Windows 安全測試來源。';
+
+  @override
+  String get reminderPreviewTitle => '提醒預覽';
+
+  @override
+  String get reminderPreviewNow => '預覽時間';
+
+  @override
+  String get reminderPreviewReset => '現在';
+
+  @override
+  String get reminderPreviewEmpty => '一切安靜——此時不會觸發任何通知。';
+
+  @override
+  String get reminderPreviewCustom => '自訂計劃（演示）';
+
+  @override
+  String get reminderPreviewNoFire => '沒有即將觸發的提醒。';
+
+  @override
+  String get reminderKindDaily => '每日';
+
+  @override
+  String get reminderKindBehind => '落後';
+
+  @override
+  String get reminderKindDeadline => '截止日期';
+
+  @override
+  String get reminderKindOverdue => '已逾期';
+
+  @override
+  String get reminderKindStreak => '連擊';
+
+  @override
+  String get reminderKindCustom => '自訂';
+
+  @override
+  String get settingsReminders => '學習提醒';
+
+  @override
+  String get settingsRemindersOff => '已關閉——開啟以接收每日提醒。';
+
+  @override
+  String get settingsReminderTime => '提醒時間';
+
+  @override
+  String get settingsReminderDenied => '通知已被封鎖——請在系統設定中啟用。';
 }

@@ -134,7 +134,7 @@ class AppLocalizationsCs extends AppLocalizations {
 
   @override
   String coursesPaceNeededMinutes(String daily) {
-    return '$daily min/day needed';
+    return 'potřeba $daily min/den';
   }
 
   @override
@@ -144,12 +144,12 @@ class AppLocalizationsCs extends AppLocalizations {
 
   @override
   String coursesPaceNeededWeeklyMinutes(String daily, String weekly) {
-    return '$daily min/day • $weekly min/week needed';
+    return 'potřeba $daily min/den • $weekly min/týden';
   }
 
   @override
   String coursesPaceNeededWeeklyMinutesHours(String daily, String weekly) {
-    return '$daily min/day • $weekly h/week needed';
+    return 'potřeba $daily min/den • $weekly h/týden';
   }
 
   @override
@@ -281,7 +281,7 @@ class AppLocalizationsCs extends AppLocalizations {
 
   @override
   String dashboardMinutesPerDay(String minutes) {
-    return '$minutes min/d';
+    return '$minutes min/den';
   }
 
   @override
@@ -323,7 +323,7 @@ class AppLocalizationsCs extends AppLocalizations {
 
   @override
   String dashboardPaceNeedDailyMinutes(String daily) {
-    return 'Need $daily min/day to finish';
+    return 'K dokončení potřeba $daily min/den';
   }
 
   @override
@@ -333,12 +333,12 @@ class AppLocalizationsCs extends AppLocalizations {
 
   @override
   String dashboardPaceNeedDailyWeeklyMinutes(String daily, String weekly) {
-    return 'Need $daily min/day · $weekly min/week to finish';
+    return 'K dokončení potřeba $daily min/den · $weekly min/týden';
   }
 
   @override
   String dashboardPaceNeedDailyWeeklyMinutesHours(String daily, String weekly) {
-    return 'Need $daily min/day · $weekly h/week to finish';
+    return 'K dokončení potřeba $daily min/den · $weekly h/týden';
   }
 
   @override
@@ -348,7 +348,7 @@ class AppLocalizationsCs extends AppLocalizations {
 
   @override
   String dashboardPaceNeedFromMinutes(String minutes, String date) {
-    return 'Need $minutes min/day from $date · not in Today’s pace';
+    return 'Potřeba $minutes min/den od $date · mimo dnešní tempo';
   }
 
   @override
@@ -1010,7 +1010,7 @@ class AppLocalizationsCs extends AppLocalizations {
 
   @override
   String statsHoursCompact(String hours) {
-    return '$hours h';
+    return '${hours}h';
   }
 
   @override
@@ -1184,59 +1184,59 @@ class AppLocalizationsCs extends AppLocalizations {
   String get settingsLiquidGlassUpdated => 'Tekuté sklo aktualizováno.';
 
   @override
-  String get devToolsReminderPreview => 'Reminder preview';
+  String get devToolsReminderPreview => 'Náhled připomenutí';
 
   @override
   String get devToolsReminderPreviewSubtitle =>
-      'See what would notify right now. Windows-safe test feed.';
+      'Podívej se, co by právě teď upozornilo. Testovací zdroj bezpečný pro Windows.';
 
   @override
-  String get reminderPreviewTitle => 'Reminder preview';
+  String get reminderPreviewTitle => 'Náhled připomenutí';
 
   @override
-  String get reminderPreviewNow => 'Preview time';
+  String get reminderPreviewNow => 'Čas náhledu';
 
   @override
-  String get reminderPreviewReset => 'Now';
+  String get reminderPreviewReset => 'Teď';
 
   @override
   String get reminderPreviewEmpty =>
-      'All quiet — nothing would notify at this time.';
+      'Vše klidné — v tuto chvíli by nic neupozornilo.';
 
   @override
-  String get reminderPreviewCustom => 'Custom schedules (demo)';
+  String get reminderPreviewCustom => 'Vlastní plány (demo)';
 
   @override
-  String get reminderPreviewNoFire => 'No upcoming fire.';
+  String get reminderPreviewNoFire => 'Žádné nadcházející spuštění.';
 
   @override
-  String get reminderKindDaily => 'Daily';
+  String get reminderKindDaily => 'Denní';
 
   @override
-  String get reminderKindBehind => 'Behind';
+  String get reminderKindBehind => 'Zpoždění';
 
   @override
-  String get reminderKindDeadline => 'Deadline';
+  String get reminderKindDeadline => 'Termín';
 
   @override
-  String get reminderKindOverdue => 'Overdue';
+  String get reminderKindOverdue => 'Po termínu';
 
   @override
-  String get reminderKindStreak => 'Streak';
+  String get reminderKindStreak => 'Série';
 
   @override
-  String get reminderKindCustom => 'Custom';
+  String get reminderKindCustom => 'Vlastní';
 
   @override
-  String get settingsReminders => 'Study reminders';
+  String get settingsReminders => 'Studijní připomenutí';
 
   @override
-  String get settingsRemindersOff => 'Off — turn on for a daily nudge.';
+  String get settingsRemindersOff => 'Vypnuto — zapni pro denní popostrčení.';
 
   @override
-  String get settingsReminderTime => 'Reminder time';
+  String get settingsReminderTime => 'Čas připomenutí';
 
   @override
   String get settingsReminderDenied =>
-      'Notifications are blocked — enable them in system settings.';
+      'Oznámení jsou zablokována — povol je v nastavení systému.';
 }

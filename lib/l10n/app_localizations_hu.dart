@@ -135,7 +135,7 @@ class AppLocalizationsHu extends AppLocalizations {
 
   @override
   String coursesPaceNeededMinutes(String daily) {
-    return '$daily min/day needed';
+    return '$daily perc/nap szükséges';
   }
 
   @override
@@ -145,12 +145,12 @@ class AppLocalizationsHu extends AppLocalizations {
 
   @override
   String coursesPaceNeededWeeklyMinutes(String daily, String weekly) {
-    return '$daily min/day • $weekly min/week needed';
+    return '$daily perc/nap • $weekly perc/hét szükséges';
   }
 
   @override
   String coursesPaceNeededWeeklyMinutesHours(String daily, String weekly) {
-    return '$daily min/day • $weekly h/week needed';
+    return '$daily perc/nap • $weekly ó/hét szükséges';
   }
 
   @override
@@ -282,7 +282,7 @@ class AppLocalizationsHu extends AppLocalizations {
 
   @override
   String dashboardMinutesPerDay(String minutes) {
-    return '$minutes min/d';
+    return '$minutes perc/nap';
   }
 
   @override
@@ -324,7 +324,7 @@ class AppLocalizationsHu extends AppLocalizations {
 
   @override
   String dashboardPaceNeedDailyMinutes(String daily) {
-    return 'Need $daily min/day to finish';
+    return 'A befejezéshez $daily perc/nap kell';
   }
 
   @override
@@ -334,12 +334,12 @@ class AppLocalizationsHu extends AppLocalizations {
 
   @override
   String dashboardPaceNeedDailyWeeklyMinutes(String daily, String weekly) {
-    return 'Need $daily min/day · $weekly min/week to finish';
+    return 'A befejezéshez $daily perc/nap · $weekly perc/hét kell';
   }
 
   @override
   String dashboardPaceNeedDailyWeeklyMinutesHours(String daily, String weekly) {
-    return 'Need $daily min/day · $weekly h/week to finish';
+    return 'A befejezéshez $daily perc/nap · $weekly ó/hét kell';
   }
 
   @override
@@ -349,7 +349,7 @@ class AppLocalizationsHu extends AppLocalizations {
 
   @override
   String dashboardPaceNeedFromMinutes(String minutes, String date) {
-    return 'Need $minutes min/day from $date · not in Today’s pace';
+    return '$minutes perc/nap kell $date dátumtól · nem számít a mai tempóba';
   }
 
   @override
@@ -1191,59 +1191,59 @@ class AppLocalizationsHu extends AppLocalizations {
   String get settingsLiquidGlassUpdated => 'Folyékony üveg frissítve.';
 
   @override
-  String get devToolsReminderPreview => 'Reminder preview';
+  String get devToolsReminderPreview => 'Emlékeztető előnézete';
 
   @override
   String get devToolsReminderPreviewSubtitle =>
-      'See what would notify right now. Windows-safe test feed.';
+      'Nézd meg, mi jelezne most. Windows-biztos tesztcsatorna.';
 
   @override
-  String get reminderPreviewTitle => 'Reminder preview';
+  String get reminderPreviewTitle => 'Emlékeztető előnézete';
 
   @override
-  String get reminderPreviewNow => 'Preview time';
+  String get reminderPreviewNow => 'Előnézet ideje';
 
   @override
-  String get reminderPreviewReset => 'Now';
+  String get reminderPreviewReset => 'Most';
 
   @override
   String get reminderPreviewEmpty =>
-      'All quiet — nothing would notify at this time.';
+      'Minden csendes — ilyenkor semmi sem jelezne.';
 
   @override
-  String get reminderPreviewCustom => 'Custom schedules (demo)';
+  String get reminderPreviewCustom => 'Egyéni ütemezések (demó)';
 
   @override
-  String get reminderPreviewNoFire => 'No upcoming fire.';
+  String get reminderPreviewNoFire => 'Nincs közelgő jelzés.';
 
   @override
-  String get reminderKindDaily => 'Daily';
+  String get reminderKindDaily => 'Napi';
 
   @override
-  String get reminderKindBehind => 'Behind';
+  String get reminderKindBehind => 'Lemaradva';
 
   @override
-  String get reminderKindDeadline => 'Deadline';
+  String get reminderKindDeadline => 'Határidő';
 
   @override
-  String get reminderKindOverdue => 'Overdue';
+  String get reminderKindOverdue => 'Lejárt';
 
   @override
-  String get reminderKindStreak => 'Streak';
+  String get reminderKindStreak => 'Sorozat';
 
   @override
-  String get reminderKindCustom => 'Custom';
+  String get reminderKindCustom => 'Egyéni';
 
   @override
-  String get settingsReminders => 'Study reminders';
+  String get settingsReminders => 'Tanulási emlékeztetők';
 
   @override
-  String get settingsRemindersOff => 'Off — turn on for a daily nudge.';
+  String get settingsRemindersOff => 'Ki — kapcsold be a napi emlékeztetőért.';
 
   @override
-  String get settingsReminderTime => 'Reminder time';
+  String get settingsReminderTime => 'Emlékeztető ideje';
 
   @override
   String get settingsReminderDenied =>
-      'Notifications are blocked — enable them in system settings.';
+      'Az értesítések le vannak tiltva — engedélyezd őket a rendszerbeállításokban.';
 }

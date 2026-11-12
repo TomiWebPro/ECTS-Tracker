@@ -22,7 +22,7 @@ class AppLocalizationsId extends AppLocalizations {
   String get commonDelete => 'Hapus';
 
   @override
-  String get commonEdit => 'Edit';
+  String get commonEdit => 'Ubah';
 
   @override
   String get commonError => 'Kesalahan';
@@ -136,7 +136,7 @@ class AppLocalizationsId extends AppLocalizations {
 
   @override
   String coursesPaceNeededMinutes(String daily) {
-    return '$daily min/day needed';
+    return 'perlu $daily mnt/hari';
   }
 
   @override
@@ -146,12 +146,12 @@ class AppLocalizationsId extends AppLocalizations {
 
   @override
   String coursesPaceNeededWeeklyMinutes(String daily, String weekly) {
-    return '$daily min/day • $weekly min/week needed';
+    return 'perlu $daily mnt/hari • $weekly mnt/minggu';
   }
 
   @override
   String coursesPaceNeededWeeklyMinutesHours(String daily, String weekly) {
-    return '$daily min/day • $weekly h/week needed';
+    return 'perlu $daily mnt/hari • $weekly jam/minggu';
   }
 
   @override
@@ -283,7 +283,7 @@ class AppLocalizationsId extends AppLocalizations {
 
   @override
   String dashboardMinutesPerDay(String minutes) {
-    return '$minutes min/d';
+    return '$minutes mnt/hari';
   }
 
   @override
@@ -325,7 +325,7 @@ class AppLocalizationsId extends AppLocalizations {
 
   @override
   String dashboardPaceNeedDailyMinutes(String daily) {
-    return 'Need $daily min/day to finish';
+    return 'Butuh $daily mnt/hari untuk selesai';
   }
 
   @override
@@ -335,12 +335,12 @@ class AppLocalizationsId extends AppLocalizations {
 
   @override
   String dashboardPaceNeedDailyWeeklyMinutes(String daily, String weekly) {
-    return 'Need $daily min/day · $weekly min/week to finish';
+    return 'Butuh $daily mnt/hari · $weekly mnt/minggu untuk selesai';
   }
 
   @override
   String dashboardPaceNeedDailyWeeklyMinutesHours(String daily, String weekly) {
-    return 'Need $daily min/day · $weekly h/week to finish';
+    return 'Butuh $daily mnt/hari · $weekly jam/minggu untuk selesai';
   }
 
   @override
@@ -350,7 +350,7 @@ class AppLocalizationsId extends AppLocalizations {
 
   @override
   String dashboardPaceNeedFromMinutes(String minutes, String date) {
-    return 'Need $minutes min/day from $date · not in Today’s pace';
+    return 'Butuh $minutes mnt/hari mulai $date · tidak masuk kecepatan Hari Ini';
   }
 
   @override
@@ -1186,59 +1186,59 @@ class AppLocalizationsId extends AppLocalizations {
   String get settingsLiquidGlassUpdated => 'Kaca cair diperbarui.';
 
   @override
-  String get devToolsReminderPreview => 'Reminder preview';
+  String get devToolsReminderPreview => 'Pratinjau pengingat';
 
   @override
   String get devToolsReminderPreviewSubtitle =>
-      'See what would notify right now. Windows-safe test feed.';
+      'Lihat apa yang akan memberitahu saat ini. Umpan uji yang aman di Windows.';
 
   @override
-  String get reminderPreviewTitle => 'Reminder preview';
+  String get reminderPreviewTitle => 'Pratinjau pengingat';
 
   @override
-  String get reminderPreviewNow => 'Preview time';
+  String get reminderPreviewNow => 'Waktu pratinjau';
 
   @override
-  String get reminderPreviewReset => 'Now';
+  String get reminderPreviewReset => 'Sekarang';
 
   @override
   String get reminderPreviewEmpty =>
-      'All quiet — nothing would notify at this time.';
+      'Semua tenang — tidak ada yang akan memberitahu saat ini.';
 
   @override
-  String get reminderPreviewCustom => 'Custom schedules (demo)';
+  String get reminderPreviewCustom => 'Jadwal kustom (demo)';
 
   @override
-  String get reminderPreviewNoFire => 'No upcoming fire.';
+  String get reminderPreviewNoFire => 'Tidak ada pemicu berikutnya.';
 
   @override
-  String get reminderKindDaily => 'Daily';
+  String get reminderKindDaily => 'Harian';
 
   @override
-  String get reminderKindBehind => 'Behind';
+  String get reminderKindBehind => 'Tertinggal';
 
   @override
-  String get reminderKindDeadline => 'Deadline';
+  String get reminderKindDeadline => 'Tenggat';
 
   @override
-  String get reminderKindOverdue => 'Overdue';
+  String get reminderKindOverdue => 'Terlambat';
 
   @override
-  String get reminderKindStreak => 'Streak';
+  String get reminderKindStreak => 'Rentetan';
 
   @override
-  String get reminderKindCustom => 'Custom';
+  String get reminderKindCustom => 'Kustom';
 
   @override
-  String get settingsReminders => 'Study reminders';
+  String get settingsReminders => 'Pengingat belajar';
 
   @override
-  String get settingsRemindersOff => 'Off — turn on for a daily nudge.';
+  String get settingsRemindersOff => 'Mati — aktifkan untuk pengingat harian.';
 
   @override
-  String get settingsReminderTime => 'Reminder time';
+  String get settingsReminderTime => 'Waktu pengingat';
 
   @override
   String get settingsReminderDenied =>
-      'Notifications are blocked — enable them in system settings.';
+      'Notifikasi diblokir — aktifkan di pengaturan sistem.';
 }

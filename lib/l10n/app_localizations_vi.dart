@@ -134,7 +134,7 @@ class AppLocalizationsVi extends AppLocalizations {
 
   @override
   String coursesPaceNeededMinutes(String daily) {
-    return '$daily min/day needed';
+    return 'Cần $daily phút/ngày';
   }
 
   @override
@@ -144,12 +144,12 @@ class AppLocalizationsVi extends AppLocalizations {
 
   @override
   String coursesPaceNeededWeeklyMinutes(String daily, String weekly) {
-    return '$daily min/day • $weekly min/week needed';
+    return 'Cần $daily phút/ngày • $weekly phút/tuần';
   }
 
   @override
   String coursesPaceNeededWeeklyMinutesHours(String daily, String weekly) {
-    return '$daily min/day • $weekly h/week needed';
+    return 'Cần $daily phút/ngày • $weekly giờ/tuần';
   }
 
   @override
@@ -281,7 +281,7 @@ class AppLocalizationsVi extends AppLocalizations {
 
   @override
   String dashboardMinutesPerDay(String minutes) {
-    return '$minutes min/d';
+    return '$minutes phút/ngày';
   }
 
   @override
@@ -323,7 +323,7 @@ class AppLocalizationsVi extends AppLocalizations {
 
   @override
   String dashboardPaceNeedDailyMinutes(String daily) {
-    return 'Need $daily min/day to finish';
+    return 'Cần $daily phút/ngày để hoàn thành';
   }
 
   @override
@@ -333,12 +333,12 @@ class AppLocalizationsVi extends AppLocalizations {
 
   @override
   String dashboardPaceNeedDailyWeeklyMinutes(String daily, String weekly) {
-    return 'Need $daily min/day · $weekly min/week to finish';
+    return 'Cần $daily phút/ngày • $weekly phút/tuần để hoàn thành';
   }
 
   @override
   String dashboardPaceNeedDailyWeeklyMinutesHours(String daily, String weekly) {
-    return 'Need $daily min/day · $weekly h/week to finish';
+    return 'Cần $daily phút/ngày • $weekly giờ/tuần để hoàn thành';
   }
 
   @override
@@ -348,7 +348,7 @@ class AppLocalizationsVi extends AppLocalizations {
 
   @override
   String dashboardPaceNeedFromMinutes(String minutes, String date) {
-    return 'Need $minutes min/day from $date · not in Today’s pace';
+    return 'Cần $minutes phút/ngày từ $date • không tính vào nhịp Hôm nay';
   }
 
   @override
@@ -1179,59 +1179,59 @@ class AppLocalizationsVi extends AppLocalizations {
   String get settingsLiquidGlassUpdated => 'Đã cập nhật kính lỏng.';
 
   @override
-  String get devToolsReminderPreview => 'Reminder preview';
+  String get devToolsReminderPreview => 'Xem trước nhắc nhở';
 
   @override
   String get devToolsReminderPreviewSubtitle =>
-      'See what would notify right now. Windows-safe test feed.';
+      'Xem nội dung sẽ thông báo ngay lúc này. Nguồn thử nghiệm an toàn cho Windows.';
 
   @override
-  String get reminderPreviewTitle => 'Reminder preview';
+  String get reminderPreviewTitle => 'Xem trước nhắc nhở';
 
   @override
-  String get reminderPreviewNow => 'Preview time';
+  String get reminderPreviewNow => 'Thời gian xem trước';
 
   @override
-  String get reminderPreviewReset => 'Now';
+  String get reminderPreviewReset => 'Bây giờ';
 
   @override
   String get reminderPreviewEmpty =>
-      'All quiet — nothing would notify at this time.';
+      'Yên tĩnh — không có gì sẽ thông báo vào lúc này.';
 
   @override
-  String get reminderPreviewCustom => 'Custom schedules (demo)';
+  String get reminderPreviewCustom => 'Lịch tùy chỉnh (demo)';
 
   @override
-  String get reminderPreviewNoFire => 'No upcoming fire.';
+  String get reminderPreviewNoFire => 'Không có lượt kích hoạt nào sắp tới.';
 
   @override
-  String get reminderKindDaily => 'Daily';
+  String get reminderKindDaily => 'Hằng ngày';
 
   @override
-  String get reminderKindBehind => 'Behind';
+  String get reminderKindBehind => 'Trễ';
 
   @override
-  String get reminderKindDeadline => 'Deadline';
+  String get reminderKindDeadline => 'Hạn chót';
 
   @override
-  String get reminderKindOverdue => 'Overdue';
+  String get reminderKindOverdue => 'Quá hạn';
 
   @override
-  String get reminderKindStreak => 'Streak';
+  String get reminderKindStreak => 'Chuỗi';
 
   @override
-  String get reminderKindCustom => 'Custom';
+  String get reminderKindCustom => 'Tùy chỉnh';
 
   @override
-  String get settingsReminders => 'Study reminders';
+  String get settingsReminders => 'Nhắc nhở học tập';
 
   @override
-  String get settingsRemindersOff => 'Off — turn on for a daily nudge.';
+  String get settingsRemindersOff => 'Tắt — bật để nhận nhắc nhở hằng ngày.';
 
   @override
-  String get settingsReminderTime => 'Reminder time';
+  String get settingsReminderTime => 'Giờ nhắc nhở';
 
   @override
   String get settingsReminderDenied =>
-      'Notifications are blocked — enable them in system settings.';
+      'Thông báo bị chặn — hãy bật chúng trong cài đặt hệ thống.';
 }

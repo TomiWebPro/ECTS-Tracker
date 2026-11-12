@@ -145,12 +145,12 @@ class AppLocalizationsPcm extends AppLocalizations {
 
   @override
   String coursesPaceNeededWeeklyMinutes(String daily, String weekly) {
-    return '$daily min/day • $weekly min/week needed';
+    return '$daily min/day • $weekly min/week need to finish';
   }
 
   @override
   String coursesPaceNeededWeeklyMinutesHours(String daily, String weekly) {
-    return '$daily min/day • $weekly h/week needed';
+    return '$daily min/day • $weekly h/week need to finish';
   }
 
   @override
@@ -324,7 +324,7 @@ class AppLocalizationsPcm extends AppLocalizations {
 
   @override
   String dashboardPaceNeedDailyMinutes(String daily) {
-    return 'Need $daily min/day to finish';
+    return 'You need $daily min/day to finish';
   }
 
   @override
@@ -334,12 +334,12 @@ class AppLocalizationsPcm extends AppLocalizations {
 
   @override
   String dashboardPaceNeedDailyWeeklyMinutes(String daily, String weekly) {
-    return 'Need $daily min/day · $weekly min/week to finish';
+    return 'You need $daily min/day · $weekly min/week to finish';
   }
 
   @override
   String dashboardPaceNeedDailyWeeklyMinutesHours(String daily, String weekly) {
-    return 'Need $daily min/day · $weekly h/week to finish';
+    return 'You need $daily min/day · $weekly h/week to finish';
   }
 
   @override
@@ -349,7 +349,7 @@ class AppLocalizationsPcm extends AppLocalizations {
 
   @override
   String dashboardPaceNeedFromMinutes(String minutes, String date) {
-    return 'Need $minutes min/day from $date · not in Today’s pace';
+    return 'You need $minutes min/day from $date · e no dey inside Today pace';
   }
 
   @override
@@ -1186,7 +1186,7 @@ class AppLocalizationsPcm extends AppLocalizations {
 
   @override
   String get devToolsReminderPreviewSubtitle =>
-      'See what would notify right now. Windows-safe test feed.';
+      'See wetin go notify right now. Windows-safe test feed.';
 
   @override
   String get reminderPreviewTitle => 'Reminder preview';
@@ -1199,7 +1199,7 @@ class AppLocalizationsPcm extends AppLocalizations {
 
   @override
   String get reminderPreviewEmpty =>
-      'All quiet — nothing would notify at this time.';
+      'Everywhere quiet — nothing go notify for dis time.';
 
   @override
   String get reminderPreviewCustom => 'Custom schedules (demo)';
@@ -1229,12 +1229,12 @@ class AppLocalizationsPcm extends AppLocalizations {
   String get settingsReminders => 'Study reminders';
 
   @override
-  String get settingsRemindersOff => 'Off — turn on for a daily nudge.';
+  String get settingsRemindersOff => 'Off — turn on for daily nudge.';
 
   @override
   String get settingsReminderTime => 'Reminder time';
 
   @override
   String get settingsReminderDenied =>
-      'Notifications are blocked — enable them in system settings.';
+      'Notifications don block — enable dem for system settings.';
 }

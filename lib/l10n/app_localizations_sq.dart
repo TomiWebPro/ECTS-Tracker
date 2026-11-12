@@ -135,7 +135,7 @@ class AppLocalizationsSq extends AppLocalizations {
 
   @override
   String coursesPaceNeededMinutes(String daily) {
-    return '$daily min/day needed';
+    return '$daily min/ditë nevojiten';
   }
 
   @override
@@ -145,12 +145,12 @@ class AppLocalizationsSq extends AppLocalizations {
 
   @override
   String coursesPaceNeededWeeklyMinutes(String daily, String weekly) {
-    return '$daily min/day • $weekly min/week needed';
+    return '$daily min/ditë • $weekly min/javë nevojiten';
   }
 
   @override
   String coursesPaceNeededWeeklyMinutesHours(String daily, String weekly) {
-    return '$daily min/day • $weekly h/week needed';
+    return '$daily min/ditë • $weekly o/javë nevojiten';
   }
 
   @override
@@ -324,7 +324,7 @@ class AppLocalizationsSq extends AppLocalizations {
 
   @override
   String dashboardPaceNeedDailyMinutes(String daily) {
-    return 'Need $daily min/day to finish';
+    return 'Duhen $daily min/ditë për të përfunduar';
   }
 
   @override
@@ -334,12 +334,12 @@ class AppLocalizationsSq extends AppLocalizations {
 
   @override
   String dashboardPaceNeedDailyWeeklyMinutes(String daily, String weekly) {
-    return 'Need $daily min/day · $weekly min/week to finish';
+    return 'Duhen $daily min/ditë · $weekly min/javë për të përfunduar';
   }
 
   @override
   String dashboardPaceNeedDailyWeeklyMinutesHours(String daily, String weekly) {
-    return 'Need $daily min/day · $weekly h/week to finish';
+    return 'Duhen $daily min/ditë · $weekly o/javë për të përfunduar';
   }
 
   @override
@@ -349,7 +349,7 @@ class AppLocalizationsSq extends AppLocalizations {
 
   @override
   String dashboardPaceNeedFromMinutes(String minutes, String date) {
-    return 'Need $minutes min/day from $date · not in Today’s pace';
+    return 'Duhen $minutes min/ditë nga $date · jo në ritmin e sotëm';
   }
 
   @override
@@ -1190,59 +1190,59 @@ class AppLocalizationsSq extends AppLocalizations {
   String get settingsLiquidGlassUpdated => 'Xhami i lëngshëm u përditësua.';
 
   @override
-  String get devToolsReminderPreview => 'Reminder preview';
+  String get devToolsReminderPreview => 'Parashikimi i kujtesave';
 
   @override
   String get devToolsReminderPreviewSubtitle =>
-      'See what would notify right now. Windows-safe test feed.';
+      'Shih çfarë do të njoftohej tani. Feed testimi i sigurt për Windows.';
 
   @override
-  String get reminderPreviewTitle => 'Reminder preview';
+  String get reminderPreviewTitle => 'Parashikimi i kujtesave';
 
   @override
-  String get reminderPreviewNow => 'Preview time';
+  String get reminderPreviewNow => 'Koha e parashikimit';
 
   @override
-  String get reminderPreviewReset => 'Now';
+  String get reminderPreviewReset => 'Tani';
 
   @override
   String get reminderPreviewEmpty =>
-      'All quiet — nothing would notify at this time.';
+      'Qetësi e plotë — asgjë nuk do të njoftohej në këtë kohë.';
 
   @override
-  String get reminderPreviewCustom => 'Custom schedules (demo)';
+  String get reminderPreviewCustom => 'Oraret e personalizuara (demo)';
 
   @override
-  String get reminderPreviewNoFire => 'No upcoming fire.';
+  String get reminderPreviewNoFire => 'Nuk ka ndezje të ardhshme.';
 
   @override
-  String get reminderKindDaily => 'Daily';
+  String get reminderKindDaily => 'Ditor';
 
   @override
-  String get reminderKindBehind => 'Behind';
+  String get reminderKindBehind => 'Prapa';
 
   @override
-  String get reminderKindDeadline => 'Deadline';
+  String get reminderKindDeadline => 'Afati';
 
   @override
-  String get reminderKindOverdue => 'Overdue';
+  String get reminderKindOverdue => 'I vonuar';
 
   @override
-  String get reminderKindStreak => 'Streak';
+  String get reminderKindStreak => 'Seri';
 
   @override
-  String get reminderKindCustom => 'Custom';
+  String get reminderKindCustom => 'Personalizuar';
 
   @override
-  String get settingsReminders => 'Study reminders';
+  String get settingsReminders => 'Kujtesat e studimit';
 
   @override
-  String get settingsRemindersOff => 'Off — turn on for a daily nudge.';
+  String get settingsRemindersOff => 'Fikur — ndize për një kujtesë ditore.';
 
   @override
-  String get settingsReminderTime => 'Reminder time';
+  String get settingsReminderTime => 'Koha e kujtesës';
 
   @override
   String get settingsReminderDenied =>
-      'Notifications are blocked — enable them in system settings.';
+      'Njoftimet janë bllokuar — aktivizoji në cilësimet e sistemit.';
 }

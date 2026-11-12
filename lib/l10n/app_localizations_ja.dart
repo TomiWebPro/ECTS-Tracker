@@ -132,7 +132,7 @@ class AppLocalizationsJa extends AppLocalizations {
 
   @override
   String coursesPaceNeededMinutes(String daily) {
-    return '$daily min/day needed';
+    return '$daily分/日が必要';
   }
 
   @override
@@ -142,12 +142,12 @@ class AppLocalizationsJa extends AppLocalizations {
 
   @override
   String coursesPaceNeededWeeklyMinutes(String daily, String weekly) {
-    return '$daily min/day • $weekly min/week needed';
+    return '$daily分/日・$weekly分/週が必要';
   }
 
   @override
   String coursesPaceNeededWeeklyMinutesHours(String daily, String weekly) {
-    return '$daily min/day • $weekly h/week needed';
+    return '$daily分/日・$weekly時間/週が必要';
   }
 
   @override
@@ -275,7 +275,7 @@ class AppLocalizationsJa extends AppLocalizations {
 
   @override
   String dashboardMinutesPerDay(String minutes) {
-    return '$minutes min/d';
+    return '$minutes分/日';
   }
 
   @override
@@ -317,7 +317,7 @@ class AppLocalizationsJa extends AppLocalizations {
 
   @override
   String dashboardPaceNeedDailyMinutes(String daily) {
-    return 'Need $daily min/day to finish';
+    return '完了には$daily分/日が必要';
   }
 
   @override
@@ -327,12 +327,12 @@ class AppLocalizationsJa extends AppLocalizations {
 
   @override
   String dashboardPaceNeedDailyWeeklyMinutes(String daily, String weekly) {
-    return 'Need $daily min/day · $weekly min/week to finish';
+    return '完了には$daily分/日・$weekly分/週が必要';
   }
 
   @override
   String dashboardPaceNeedDailyWeeklyMinutesHours(String daily, String weekly) {
-    return 'Need $daily min/day · $weekly h/week to finish';
+    return '完了には$daily分/日・$weekly時間/週が必要';
   }
 
   @override
@@ -342,7 +342,7 @@ class AppLocalizationsJa extends AppLocalizations {
 
   @override
   String dashboardPaceNeedFromMinutes(String minutes, String date) {
-    return 'Need $minutes min/day from $date · not in Today’s pace';
+    return '$dateから$minutes分/日が必要・今日のペース対象外';
   }
 
   @override
@@ -1158,59 +1158,57 @@ class AppLocalizationsJa extends AppLocalizations {
   String get settingsLiquidGlassUpdated => 'リキッドガラスを更新しました。';
 
   @override
-  String get devToolsReminderPreview => 'Reminder preview';
+  String get devToolsReminderPreview => 'リマインダープレビュー';
 
   @override
   String get devToolsReminderPreviewSubtitle =>
-      'See what would notify right now. Windows-safe test feed.';
+      '今通知される内容を確認。Windowsでも安全なテストフィード。';
 
   @override
-  String get reminderPreviewTitle => 'Reminder preview';
+  String get reminderPreviewTitle => 'リマインダープレビュー';
 
   @override
-  String get reminderPreviewNow => 'Preview time';
+  String get reminderPreviewNow => 'プレビュー時刻';
 
   @override
-  String get reminderPreviewReset => 'Now';
+  String get reminderPreviewReset => '今';
 
   @override
-  String get reminderPreviewEmpty =>
-      'All quiet — nothing would notify at this time.';
+  String get reminderPreviewEmpty => '静かです — この時刻に通知はありません。';
 
   @override
-  String get reminderPreviewCustom => 'Custom schedules (demo)';
+  String get reminderPreviewCustom => 'カスタムスケジュール（デモ）';
 
   @override
-  String get reminderPreviewNoFire => 'No upcoming fire.';
+  String get reminderPreviewNoFire => '予定された通知はありません。';
 
   @override
-  String get reminderKindDaily => 'Daily';
+  String get reminderKindDaily => '毎日';
 
   @override
-  String get reminderKindBehind => 'Behind';
+  String get reminderKindBehind => '遅れ';
 
   @override
-  String get reminderKindDeadline => 'Deadline';
+  String get reminderKindDeadline => '期限';
 
   @override
-  String get reminderKindOverdue => 'Overdue';
+  String get reminderKindOverdue => '期限切れ';
 
   @override
-  String get reminderKindStreak => 'Streak';
+  String get reminderKindStreak => '連続';
 
   @override
-  String get reminderKindCustom => 'Custom';
+  String get reminderKindCustom => 'カスタム';
 
   @override
-  String get settingsReminders => 'Study reminders';
+  String get settingsReminders => '学習リマインダー';
 
   @override
-  String get settingsRemindersOff => 'Off — turn on for a daily nudge.';
+  String get settingsRemindersOff => 'オフ — 毎日の通知をオンにしましょう。';
 
   @override
-  String get settingsReminderTime => 'Reminder time';
+  String get settingsReminderTime => 'リマインダー時刻';
 
   @override
-  String get settingsReminderDenied =>
-      'Notifications are blocked — enable them in system settings.';
+  String get settingsReminderDenied => '通知がブロックされています — システム設定で有効にしてください。';
 }

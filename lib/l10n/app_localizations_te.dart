@@ -114,7 +114,7 @@ class AppLocalizationsTe extends AppLocalizations {
 
   @override
   String get coursesEmptyHint =>
-      'మీ మొదటి కోర్సును సృష్టించడానికి “New course” నొక్కండి.';
+      'మీ మొదటి కోర్సును సృష్టించడానికి “కొత్త కోర్సు” నొక్కండి.';
 
   @override
   String get coursesEmptyTitle => 'ఇంకా కోర్సులు లేవు';
@@ -135,7 +135,7 @@ class AppLocalizationsTe extends AppLocalizations {
 
   @override
   String coursesPaceNeededMinutes(String daily) {
-    return '$daily min/day needed';
+    return '$daily నిమి/రోజు అవసరం';
   }
 
   @override
@@ -145,12 +145,12 @@ class AppLocalizationsTe extends AppLocalizations {
 
   @override
   String coursesPaceNeededWeeklyMinutes(String daily, String weekly) {
-    return '$daily min/day • $weekly min/week needed';
+    return '$daily నిమి/రోజు • $weekly నిమి/వారం అవసరం';
   }
 
   @override
   String coursesPaceNeededWeeklyMinutesHours(String daily, String weekly) {
-    return '$daily min/day • $weekly h/week needed';
+    return '$daily నిమి/రోజు • $weekly గం/వారం అవసరం';
   }
 
   @override
@@ -228,7 +228,7 @@ class AppLocalizationsTe extends AppLocalizations {
 
   @override
   String get dashboardEmptyHintAllDone =>
-      'అన్ని కోర్సులు పూర్తయ్యాయి — పూర్తి జాబితా కోసం Courses ట్యాబ్ చూడండి.';
+      'అన్ని కోర్సులు పూర్తయ్యాయి — పూర్తి జాబితా కోసం కోర్సులు ట్యాబ్ చూడండి.';
 
   @override
   String get dashboardEmptyHintNoCourses =>
@@ -282,7 +282,7 @@ class AppLocalizationsTe extends AppLocalizations {
 
   @override
   String dashboardMinutesPerDay(String minutes) {
-    return '$minutes min/d';
+    return '$minutes నిమి/రోజు';
   }
 
   @override
@@ -324,7 +324,7 @@ class AppLocalizationsTe extends AppLocalizations {
 
   @override
   String dashboardPaceNeedDailyMinutes(String daily) {
-    return 'Need $daily min/day to finish';
+    return 'పూర్తి చేయడానికి $daily నిమి/రోజు అవసరం';
   }
 
   @override
@@ -334,12 +334,12 @@ class AppLocalizationsTe extends AppLocalizations {
 
   @override
   String dashboardPaceNeedDailyWeeklyMinutes(String daily, String weekly) {
-    return 'Need $daily min/day · $weekly min/week to finish';
+    return 'పూర్తికి $daily నిమి/రోజు · $weekly నిమి/వారం అవసరం';
   }
 
   @override
   String dashboardPaceNeedDailyWeeklyMinutesHours(String daily, String weekly) {
-    return 'Need $daily min/day · $weekly h/week to finish';
+    return 'పూర్తికి $daily నిమి/రోజు · $weekly గం/వారం అవసరం';
   }
 
   @override
@@ -349,7 +349,7 @@ class AppLocalizationsTe extends AppLocalizations {
 
   @override
   String dashboardPaceNeedFromMinutes(String minutes, String date) {
-    return 'Need $minutes min/day from $date · not in Today’s pace';
+    return '$date నుండి $minutes నిమి/రోజు అవసరం · నేటి వేగంలో లేదు';
   }
 
   @override
@@ -701,7 +701,7 @@ class AppLocalizationsTe extends AppLocalizations {
 
   @override
   String settingsExportTruncated(String kb) {
-    return '… (కుదించబడింది — పూర్తి బ్యాకప్ $kb KB, అన్నింటికీ Copy వాడండి)';
+    return '… (కుదించబడింది — పూర్తి బ్యాకప్ $kb KB, అన్నింటికీ కాపీ వాడండి)';
   }
 
   @override
@@ -755,7 +755,7 @@ class AppLocalizationsTe extends AppLocalizations {
 
   @override
   String get settingsImportInfo =>
-      'Append బ్యాకప్‌ను ప్రస్తుత డేటాతో పాటు చేరుస్తుంది (సెట్టింగులు అలాగే ఉంటాయి). Replace ముందు అన్ని కోర్సులు, సెషన్లు, సెట్టింగులను తుడిచివేస్తుంది.';
+      'జోడించు బ్యాకప్‌ను ప్రస్తుత డేటాతో పాటు చేరుస్తుంది (సెట్టింగులు అలాగే ఉంటాయి). భర్తీ చేయి ముందు అన్ని కోర్సులు, సెషన్లు, సెట్టింగులను తుడిచివేస్తుంది.';
 
   @override
   String get settingsImportLabel => 'ఎగుమతి చేసిన JSON అతికించండి';
@@ -780,7 +780,7 @@ class AppLocalizationsTe extends AppLocalizations {
 
   @override
   String settingsImportReplaceWarning(String seconds) {
-    return 'Replace ముందు అన్నీ తొలగిస్తుంది. నిర్ధారించడానికి కింది బటన్‌ను $seconds సెకన్లు నొక్కి ఉంచండి.';
+    return 'భర్తీ చేయి ముందు అన్నీ తొలగిస్తుంది. నిర్ధారించడానికి కింది బటన్‌ను $seconds సెకన్లు నొక్కి ఉంచండి.';
   }
 
   @override
@@ -1187,59 +1187,59 @@ class AppLocalizationsTe extends AppLocalizations {
   String get settingsLiquidGlassUpdated => 'లిక్విడ్ గ్లాస్ నవీకరించబడింది.';
 
   @override
-  String get devToolsReminderPreview => 'Reminder preview';
+  String get devToolsReminderPreview => 'రిమైండర్ ప్రివ్యూ';
 
   @override
   String get devToolsReminderPreviewSubtitle =>
-      'See what would notify right now. Windows-safe test feed.';
+      'ప్రస్తుతం ఏమి నోటిఫై అవుతుందో చూడండి. Windows-సురక్షిత టెస్ట్ ఫీడ్.';
 
   @override
-  String get reminderPreviewTitle => 'Reminder preview';
+  String get reminderPreviewTitle => 'రిమైండర్ ప్రివ్యూ';
 
   @override
-  String get reminderPreviewNow => 'Preview time';
+  String get reminderPreviewNow => 'ప్రివ్యూ సమయం';
 
   @override
-  String get reminderPreviewReset => 'Now';
+  String get reminderPreviewReset => 'ఇప్పుడు';
 
   @override
   String get reminderPreviewEmpty =>
-      'All quiet — nothing would notify at this time.';
+      'అంతా ప్రశాంతం — ఈ సమయంలో ఏమీ నోటిఫై అవ్వదు.';
 
   @override
-  String get reminderPreviewCustom => 'Custom schedules (demo)';
+  String get reminderPreviewCustom => 'అనుకూల షెడ్యూళ్లు (డెమో)';
 
   @override
-  String get reminderPreviewNoFire => 'No upcoming fire.';
+  String get reminderPreviewNoFire => 'రాబోయే ట్రిగ్గర్ ఏదీ లేదు.';
 
   @override
-  String get reminderKindDaily => 'Daily';
+  String get reminderKindDaily => 'రోజువారీ';
 
   @override
-  String get reminderKindBehind => 'Behind';
+  String get reminderKindBehind => 'వెనుకబడింది';
 
   @override
-  String get reminderKindDeadline => 'Deadline';
+  String get reminderKindDeadline => 'గడువు';
 
   @override
-  String get reminderKindOverdue => 'Overdue';
+  String get reminderKindOverdue => 'గడువు మీరింది';
 
   @override
-  String get reminderKindStreak => 'Streak';
+  String get reminderKindStreak => 'వరుస';
 
   @override
-  String get reminderKindCustom => 'Custom';
+  String get reminderKindCustom => 'అనుకూల';
 
   @override
-  String get settingsReminders => 'Study reminders';
+  String get settingsReminders => 'స్టడీ రిమైండర్లు';
 
   @override
-  String get settingsRemindersOff => 'Off — turn on for a daily nudge.';
+  String get settingsRemindersOff => 'ఆఫ్ — రోజువారీ రిమైండర్ కోసం ఆన్ చేయండి.';
 
   @override
-  String get settingsReminderTime => 'Reminder time';
+  String get settingsReminderTime => 'రిమైండర్ సమయం';
 
   @override
   String get settingsReminderDenied =>
-      'Notifications are blocked — enable them in system settings.';
+      'నోటిఫికేషన్లు బ్లాక్ చేయబడ్డాయి — సిస్టమ్ సెట్టింగుల్లో వాటిని ప్రారంభించండి.';
 }

@@ -135,7 +135,7 @@ class AppLocalizationsMk extends AppLocalizations {
 
   @override
   String coursesPaceNeededMinutes(String daily) {
-    return '$daily min/day needed';
+    return 'Потребно $daily мин/ден';
   }
 
   @override
@@ -145,12 +145,12 @@ class AppLocalizationsMk extends AppLocalizations {
 
   @override
   String coursesPaceNeededWeeklyMinutes(String daily, String weekly) {
-    return '$daily min/day • $weekly min/week needed';
+    return 'Потребно $daily мин/ден • $weekly мин/седмица';
   }
 
   @override
   String coursesPaceNeededWeeklyMinutesHours(String daily, String weekly) {
-    return '$daily min/day • $weekly h/week needed';
+    return 'Потребно $daily мин/ден • $weekly ч/седмица';
   }
 
   @override
@@ -282,7 +282,7 @@ class AppLocalizationsMk extends AppLocalizations {
 
   @override
   String dashboardMinutesPerDay(String minutes) {
-    return '$minutes min/d';
+    return '$minutes мин/ден';
   }
 
   @override
@@ -324,7 +324,7 @@ class AppLocalizationsMk extends AppLocalizations {
 
   @override
   String dashboardPaceNeedDailyMinutes(String daily) {
-    return 'Need $daily min/day to finish';
+    return 'Потребно $daily мин/ден за да заврши';
   }
 
   @override
@@ -334,12 +334,12 @@ class AppLocalizationsMk extends AppLocalizations {
 
   @override
   String dashboardPaceNeedDailyWeeklyMinutes(String daily, String weekly) {
-    return 'Need $daily min/day · $weekly min/week to finish';
+    return 'Потребно $daily мин/ден · $weekly мин/седмица за да заврши';
   }
 
   @override
   String dashboardPaceNeedDailyWeeklyMinutesHours(String daily, String weekly) {
-    return 'Need $daily min/day · $weekly h/week to finish';
+    return 'Потребно $daily мин/ден · $weekly ч/седмица за да заврши';
   }
 
   @override
@@ -349,7 +349,7 @@ class AppLocalizationsMk extends AppLocalizations {
 
   @override
   String dashboardPaceNeedFromMinutes(String minutes, String date) {
-    return 'Need $minutes min/day from $date · not in Today’s pace';
+    return 'Потребно $minutes мин/ден од $date · не е во денешното темпо';
   }
 
   @override
@@ -1192,59 +1192,59 @@ class AppLocalizationsMk extends AppLocalizations {
   String get settingsLiquidGlassUpdated => 'Течното стакло е ажурирано.';
 
   @override
-  String get devToolsReminderPreview => 'Reminder preview';
+  String get devToolsReminderPreview => 'Преглед на потсетници';
 
   @override
   String get devToolsReminderPreviewSubtitle =>
-      'See what would notify right now. Windows-safe test feed.';
+      'Видете што би известило токму сега. Безбеден тест-фид за Windows.';
 
   @override
-  String get reminderPreviewTitle => 'Reminder preview';
+  String get reminderPreviewTitle => 'Преглед на потсетници';
 
   @override
-  String get reminderPreviewNow => 'Preview time';
+  String get reminderPreviewNow => 'Време на преглед';
 
   @override
-  String get reminderPreviewReset => 'Now';
+  String get reminderPreviewReset => 'Сега';
 
   @override
   String get reminderPreviewEmpty =>
-      'All quiet — nothing would notify at this time.';
+      'Сè е мирно — во ова време нема известувања.';
 
   @override
-  String get reminderPreviewCustom => 'Custom schedules (demo)';
+  String get reminderPreviewCustom => 'Прилагодени распореди (демо)';
 
   @override
-  String get reminderPreviewNoFire => 'No upcoming fire.';
+  String get reminderPreviewNoFire => 'Нема претстојно известување.';
 
   @override
-  String get reminderKindDaily => 'Daily';
+  String get reminderKindDaily => 'Дневен';
 
   @override
-  String get reminderKindBehind => 'Behind';
+  String get reminderKindBehind => 'Задоцнува';
 
   @override
-  String get reminderKindDeadline => 'Deadline';
+  String get reminderKindDeadline => 'Рок';
 
   @override
-  String get reminderKindOverdue => 'Overdue';
+  String get reminderKindOverdue => 'Задоцнето';
 
   @override
-  String get reminderKindStreak => 'Streak';
+  String get reminderKindStreak => 'Серија';
 
   @override
-  String get reminderKindCustom => 'Custom';
+  String get reminderKindCustom => 'Прилагоден';
 
   @override
-  String get settingsReminders => 'Study reminders';
+  String get settingsReminders => 'Потсетници за учење';
 
   @override
-  String get settingsRemindersOff => 'Off — turn on for a daily nudge.';
+  String get settingsRemindersOff => 'Исклучено — вклучете дневен потсетник.';
 
   @override
-  String get settingsReminderTime => 'Reminder time';
+  String get settingsReminderTime => 'Време на потсетник';
 
   @override
   String get settingsReminderDenied =>
-      'Notifications are blocked — enable them in system settings.';
+      'Известувањата се блокирани — овозможете ги во системските поставки.';
 }
