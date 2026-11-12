@@ -177,4 +177,35 @@ void main() {
       expect(content.title, contains('Slipping'));
     });
   });
+
+  group('tryFromJson (never throws)', () {
+    test('round-trips a valid schedule', () {
+      final s = CustomSchedule.weekly(
+          id: 7, weekdays: {3}, timeMinutes: 1140, label: 'gym');
+      final back =
+          CustomSchedule.tryFromJson(Map<String, Object?>.from(s.toJson()));
+      expect(back?.id, 7);
+      expect(back?.weekdays, {3});
+      expect(back?.label, 'gym');
+    });
+
+    test('null on wrong-typed id, unknown recurrence, bad fields', () {
+      expect(CustomSchedule.tryFromJson({'id': 'bad'}), isNull);
+      expect(
+          CustomSchedule.tryFromJson({'id': 1, 'recurrence': 'never'}),
+          isNull);
+      expect(
+          CustomSchedule.tryFromJson(
+              {'id': 2, 'recurrence': 'once', 'fireAt': 'not-a-date'}),
+          isNull);
+      expect(
+          CustomSchedule.tryFromJson({
+            'id': 3,
+            'recurrence': 'weekly',
+            'weekdays': [8],
+            'timeMinutes': 60
+          }),
+          isNull);
+    });
+  });
 }

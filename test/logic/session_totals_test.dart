@@ -37,4 +37,18 @@ void main() {
       expect(sorted.map((s) => s.id).toList(), [2, 3, 1]);
     });
   });
+
+  group('groupSessionsByCourse', () {
+    test('buckets by course id, empty input yields empty map', () {
+      final sessions = [
+        StudySession(id: 1, courseId: 1, minutes: 10, date: DateTime(2026, 1, 1)),
+        StudySession(id: 2, courseId: 2, minutes: 10, date: DateTime(2026, 1, 2)),
+        StudySession(id: 3, courseId: 1, minutes: 10, date: DateTime(2026, 1, 3)),
+      ];
+      final grouped = groupSessionsByCourse(sessions);
+      expect(grouped.keys.toSet(), {1, 2});
+      expect(grouped[1]!.map((s) => s.id).toList(), [1, 3]);
+      expect(groupSessionsByCourse(const []), isEmpty);
+    });
+  });
 }
