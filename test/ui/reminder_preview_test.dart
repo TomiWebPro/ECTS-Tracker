@@ -1,6 +1,7 @@
 import 'package:ects_tracker/l10n/app_localizations.dart';
 import 'package:ects_tracker/src/models/models.dart';
 import 'package:ects_tracker/src/state/providers.dart';
+import 'package:ects_tracker/src/ui/glass.dart';
 import 'package:ects_tracker/src/ui/reminder_preview.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -54,6 +55,12 @@ void main() {
     await tester.pumpAndSettle();
   }
 
+  // GlassCard forwards its key to the underlying Card/lens (ECTS-061), so
+  // key finders match the wrapper and the surface — filter by type, like
+  // glass_cards_test.dart does.
+  Finder glassCardByKey(String key) => find.byWidgetPredicate(
+      (w) => w is GlassCard && w.key == Key(key));
+
   testWidgets(
     'feed shows the daily plan due at the fake now',
     (tester) async {
@@ -66,8 +73,8 @@ void main() {
         nowOverride: fakeNow,
       );
       expect(find.textContaining('Tonight:'), findsOneWidget);
-      expect(find.byKey(const Key('reminderCard_0')), findsOneWidget);
-      expect(find.byKey(const Key('demoRow_0')), findsOneWidget);
+      expect(glassCardByKey('reminderCard_0'), findsOneWidget);
+      expect(glassCardByKey('demoRow_0'), findsOneWidget);
     },
   );
 
