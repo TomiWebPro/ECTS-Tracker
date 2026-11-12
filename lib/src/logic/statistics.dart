@@ -100,6 +100,78 @@ class WeeklyLoad {
   final double hours;
 }
 
+/// Precomputed inputs for the statistics page: the page's data-join + math in
+/// one pure function, unit-testable without pumping widgets (the page only
+/// renders [StatisticsView]).
+class StatisticsView {
+  const StatisticsView({
+    required this.withProgress,
+    required this.pastAvg,
+    required this.needSum,
+    required this.forecast,
+    required this.peak,
+    required this.sortedByDeadline,
+  });
+
+  final List<CourseWithProgress> withProgress;
+  final double pastAvg;
+  final double needSum;
+
+  /// Today's required pace minus the trailing-14-day average (> 0 = behind
+  /// the recent run-rate, must step up).
+  double get gap => needSum - pastAvg;
+
+  final List<WeeklyLoad> forecast;
+  final double peak;
+  final List<CourseWithProgress> sortedByDeadline;
+}
+
+/// Builds the [StatisticsView] for [courses]/[sessions] at [now].
+StatisticsView buildStatisticsView({
+  required List<Course> courses,
+  required List<StudySession> sessions,
+  required double hoursPerEcts,
+  required double toleranceDays,
+  required DateTime now,
+  int weeks = 8,
+  int firstWeekday = DateTime.monday,
+}) {
+  final withProgress = coursesWithProgress(
+    courses,
+    sessions,
+    hoursPerEcts: hoursPerEcts,
+    now: now,
+    toleranceDays: toleranceDays,
+  );
+  final pastAvg = averageDailyHours(sessions, now: now, days: 14);
+  var needSum = 0.0;
+  for (final e in withProgress) {
+    if (isScheduledCourse(e.course, now)) continue;
+    needSum += e.progress.requiredDailyHours ?? 0;
+  }
+  final forecast = forecastWeeklyLoad(
+    withProgress,
+    now: now,
+    weeks: weeks,
+    firstWeekday: firstWeekday,
+  );
+  final peak = forecast.isEmpty
+      ? 0.0
+      : forecast.map((w) => w.hours).reduce((a, b) => a > b ? a : b);
+  final sortedByDeadline = withProgress
+      .where((e) => e.course.deadline != null)
+      .toList()
+    ..sort((a, b) => a.course.deadline!.compareTo(b.course.deadline!));
+  return StatisticsView(
+    withProgress: withProgress,
+    pastAvg: pastAvg,
+    needSum: needSum,
+    forecast: forecast,
+    peak: peak,
+    sortedByDeadline: sortedByDeadline,
+  );
+}
+
 /// Forecast: for each of the next [weeks] weeks (Mon-anchored), sum over
 /// courses of `remaining / remainingDays * activeDaysInThatWeek`.
 ///

@@ -1,5 +1,6 @@
 import 'package:ects_tracker/l10n/app_localizations.dart';
 import 'package:ects_tracker/src/logic/custom_reminders.dart';
+import 'package:ects_tracker/src/logic/date_utils.dart';
 import 'package:ects_tracker/src/logic/reminders.dart';
 import 'package:ects_tracker/src/models/models.dart';
 import 'package:ects_tracker/src/state/providers.dart';
@@ -15,16 +16,16 @@ import 'glass.dart';
 final previewNowProvider = StateProvider<DateTime?>((ref) => null);
 
 String _fmtTime(DateTime t) =>
-    '${t.year}-${t.month.toString().padLeft(2, '0')}-${t.day.toString().padLeft(2, '0')} '
+    '${formatYmd(t)} '
     '${t.hour.toString().padLeft(2, '0')}:${t.minute.toString().padLeft(2, '0')}';
 
-String _kindLabel(ReminderKind kind) => switch (kind) {
-      ReminderKind.daily => 'Daily',
-      ReminderKind.behind => 'Behind',
-      ReminderKind.deadline => 'Deadline',
-      ReminderKind.overdue => 'Overdue',
-      ReminderKind.streak => 'Streak',
-      ReminderKind.custom => 'Custom',
+String _kindLabel(AppLocalizations l10n, ReminderKind kind) => switch (kind) {
+      ReminderKind.daily => l10n.reminderKindDaily,
+      ReminderKind.behind => l10n.reminderKindBehind,
+      ReminderKind.deadline => l10n.reminderKindDeadline,
+      ReminderKind.overdue => l10n.reminderKindOverdue,
+      ReminderKind.streak => l10n.reminderKindStreak,
+      ReminderKind.custom => l10n.reminderKindCustom,
     };
 
 /// Dev-mode feed of what WOULD notify (ECTS-071). Display-only: same pure
@@ -206,7 +207,7 @@ class _Feed extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Chip(label: Text(_kindLabel(items[i].kind))),
+                  Chip(label: Text(_kindLabel(l10n, items[i].kind))),
                   const SizedBox(
                       height: AppSizes.dashboardSmallGap),
                   Text(

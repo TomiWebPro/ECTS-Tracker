@@ -7,6 +7,12 @@ class CourseRepository {
   Stream<List<Course>> watchAll() =>
       _db.select(_db.courses).watch().map((rows) => rows.map(courseFromRow).toList());
 
+  /// One-shot read of all courses (single home for snapshot uses like
+  /// reminder rescheduling — keeps `watchAll().first` stream setups out of
+  /// one-shot call sites).
+  Future<List<Course>> getAll() async =>
+      (await _db.select(_db.courses).get()).map(courseFromRow).toList();
+
   /// Watches only seeded sample courses (AGENTS.md §4 / ECTS-027,029).
   Stream<List<Course>> watchSample() => (_db.select(_db.courses)
         ..where((t) => t.isSample.equals(true)))
@@ -24,7 +30,10 @@ class CourseRepository {
             ..where((t) => t.isSample.equals(true)))
           .get();
       return rows.length;
-    } catch (_) {
+    } catch (e) {
+      // DB fault reads as "no samples" so the clear-sample tile hides
+      // instead of crashing; log in debug so a real fault is visible.
+      if (kDebugMode) debugPrint('countSample DB fault: $e');
       return 0;
     }
   }
@@ -45,7 +54,9 @@ class CourseRepository {
             ..limit(1))
           .getSingleOrNull();
       return s != null;
-    } catch (_) {
+    } catch (e) {
+      // DB fault reads as "no samples" (tile hides); log in debug.
+      if (kDebugMode) debugPrint('hasSampleData DB fault: $e');
       return false;
     }
   }

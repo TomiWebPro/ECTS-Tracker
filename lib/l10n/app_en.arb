@@ -1968,6 +1968,30 @@
   "@reminderPreviewNoFire": {
     "description": "Shown when a demo custom schedule has no future fire."
   },
+  "reminderKindDaily": "Daily",
+  "@reminderKindDaily": {
+    "description": "Kind chip for the daily-plan nudge on the reminder preview page."
+  },
+  "reminderKindBehind": "Behind",
+  "@reminderKindBehind": {
+    "description": "Kind chip for a behind-course nudge on the reminder preview page."
+  },
+  "reminderKindDeadline": "Deadline",
+  "@reminderKindDeadline": {
+    "description": "Kind chip for a deadline-countdown nudge on the reminder preview page."
+  },
+  "reminderKindOverdue": "Overdue",
+  "@reminderKindOverdue": {
+    "description": "Kind chip for an overdue-course nudge on the reminder preview page."
+  },
+  "reminderKindStreak": "Streak",
+  "@reminderKindStreak": {
+    "description": "Kind chip for the weekly streak celebration on the reminder preview page."
+  },
+  "reminderKindCustom": "Custom",
+  "@reminderKindCustom": {
+    "description": "Kind chip for a custom-schedule nudge on the reminder preview page."
+  },
   "settingsReminders": "Study reminders",
   "@settingsReminders": {
     "description": "Study reminders opt-in tile title in the Study section."

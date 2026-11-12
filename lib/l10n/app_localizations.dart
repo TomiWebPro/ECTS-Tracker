@@ -2162,6 +2162,42 @@ abstract class AppLocalizations {
   /// **'No upcoming fire.'**
   String get reminderPreviewNoFire;
 
+  /// Kind chip for the daily-plan nudge on the reminder preview page.
+  ///
+  /// In en, this message translates to:
+  /// **'Daily'**
+  String get reminderKindDaily;
+
+  /// Kind chip for a behind-course nudge on the reminder preview page.
+  ///
+  /// In en, this message translates to:
+  /// **'Behind'**
+  String get reminderKindBehind;
+
+  /// Kind chip for a deadline-countdown nudge on the reminder preview page.
+  ///
+  /// In en, this message translates to:
+  /// **'Deadline'**
+  String get reminderKindDeadline;
+
+  /// Kind chip for an overdue-course nudge on the reminder preview page.
+  ///
+  /// In en, this message translates to:
+  /// **'Overdue'**
+  String get reminderKindOverdue;
+
+  /// Kind chip for the weekly streak celebration on the reminder preview page.
+  ///
+  /// In en, this message translates to:
+  /// **'Streak'**
+  String get reminderKindStreak;
+
+  /// Kind chip for a custom-schedule nudge on the reminder preview page.
+  ///
+  /// In en, this message translates to:
+  /// **'Custom'**
+  String get reminderKindCustom;
+
   /// Study reminders opt-in tile title in the Study section.
   ///
   /// In en, this message translates to:

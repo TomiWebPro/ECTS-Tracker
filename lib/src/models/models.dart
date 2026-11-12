@@ -95,16 +95,10 @@ extension AppDisplaySizeX on AppDisplaySize {
         AppDisplaySize.comfortable => 1.0,
         AppDisplaySize.large => 1.15,
       };
-
-  String get label => switch (this) {
-        AppDisplaySize.compact => 'Compact',
-        AppDisplaySize.comfortable => 'Comfortable',
-        AppDisplaySize.large => 'Large',
-      };
 }
 
 /// Theme accent preference (persisted as int 0..4). Deliberately avoids the
-/// Flutter Material defaults (indigo/blue/purple) — deep teal default.
+/// Flutter Material defaults (indigo/blue/purple) — neutral slate default.
 enum AppAccent { teal, forest, clay, slate, berry }
 
 int accentToInt(AppAccent accent) => switch (accent) {
@@ -132,14 +126,6 @@ extension AppAccentX on AppAccent {
         AppAccent.clay => 0xFFB8542E,
         AppAccent.slate => 0xFF51606E,
         AppAccent.berry => 0xFF8E3A5B,
-      };
-
-  String get label => switch (this) {
-        AppAccent.teal => 'Teal',
-        AppAccent.forest => 'Forest',
-        AppAccent.clay => 'Clay',
-        AppAccent.slate => 'Slate',
-        AppAccent.berry => 'Berry',
       };
 }
 

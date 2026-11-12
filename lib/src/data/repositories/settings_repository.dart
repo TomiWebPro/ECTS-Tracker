@@ -9,7 +9,9 @@ class SettingsRepository {
       .watchSingleOrNull()
       .map((row) => row == null ? const AppSettings() : _fromRow(row));
 
-  AppSettings _fromRow(SettingsRow row) => AppSettings(
+  /// Row → model mapping (single home): clamping/validation of raw row
+  /// values lives here so [watch], [get], and backup export agree.
+  static AppSettings fromRow(SettingsRow row) => AppSettings(
         hoursPerEcts: row.hoursPerEcts,
         dailyTargetMinutes: row.dailyTargetMinutes,
         firstWeekday: row.firstWeekday.clamp(1, 7),
@@ -21,6 +23,8 @@ class SettingsRepository {
         localeCode: isAppLocaleCode(row.localeCode) ? row.localeCode : null,
         liquidGlass: row.liquidGlass,
       );
+
+  AppSettings _fromRow(SettingsRow row) => fromRow(row);
 
   /// One-shot read of the current settings, defaulting to [AppSettings] when
   /// no row exists (same mapping as [watch]). Lets bootstrap/first-frame code

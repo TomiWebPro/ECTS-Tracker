@@ -5,10 +5,9 @@
 /// never stored (AGENTS.md §3/§4).
 library;
 
-import 'package:ects_tracker/l10n/app_localizations.dart';
-
 import '../models/models.dart';
 import 'ects.dart';
+import 'session_totals.dart';
 
 /// How the course list is ordered.
 enum CourseSort {
@@ -42,33 +41,6 @@ String courseStatusLabel(CourseStatus status) => switch (status) {
       CourseStatus.behind => 'Behind',
     };
 
-/// Localized variant of [courseSortLabel].
-///
-/// Takes [AppLocalizations] (keys `sort*`) instead of returning hardcoded
-/// English. The original [courseSortLabel] is intentionally kept unchanged
-/// as the English fallback for tests/compat (see course_list_test.dart).
-String courseSortLabelL10n(CourseSort sort, AppLocalizations l10n) =>
-    switch (sort) {
-      CourseSort.name => l10n.sortName,
-      CourseSort.deadline => l10n.sortDeadline,
-      CourseSort.progress => l10n.sortProgress,
-      CourseSort.status => l10n.sortStatus,
-    };
-
-/// Localized variant of [courseStatusLabel].
-///
-/// Takes [AppLocalizations] (keys `status*`) instead of returning hardcoded
-/// English. The original [courseStatusLabel] is intentionally kept unchanged
-/// as the English fallback for tests/compat (see course_list_test.dart).
-String courseStatusLabelL10n(CourseStatus status, AppLocalizations l10n) =>
-    switch (status) {
-      CourseStatus.completed => l10n.statusCompleted,
-      CourseStatus.overdue => l10n.statusOverdue,
-      CourseStatus.ahead => l10n.statusAhead,
-      CourseStatus.onTrack => l10n.statusOnTrack,
-      CourseStatus.behind => l10n.statusBehind,
-    };
-
 /// A course paired with its derived progress summary.
 class CourseWithProgress {
   const CourseWithProgress(this.course, this.progress);
@@ -89,10 +61,7 @@ List<CourseWithProgress> coursesWithProgress(
   required DateTime now,
   double toleranceDays = defaultPaceToleranceDays,
 }) {
-  final byCourse = <int, List<StudySession>>{};
-  for (final s in sessions) {
-    (byCourse[s.courseId] ??= <StudySession>[]).add(s);
-  }
+  final byCourse = groupSessionsByCourse(sessions);
   return [
     for (final c in courses)
       CourseWithProgress(

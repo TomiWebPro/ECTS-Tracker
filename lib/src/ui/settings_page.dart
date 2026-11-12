@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:convert';
 import 'dart:math';
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -13,12 +14,12 @@ import '../dev/stress_seed.dart';
 import '../i18n/app_locales.dart';
 import '../models/models.dart';
 import '../models/reminder_settings.dart';
-import '../notifications/reminder_prefs.dart';
 import '../notifications/reminder_service.dart';
 import '../state/providers.dart';
 import 'app_sizes.dart';
 import 'glass.dart';
 import 'reminder_preview.dart';
+import 'widgets.dart';
 
 part 'settings/reminder_tiles.dart';
 part 'settings/tiles.dart';
@@ -273,8 +274,11 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
             AppSizes.pageBottomPadNoFab,
           ),
           children: [
-            _sectionHeader(
-                context, l10n.settingsStudySettings, Icons.school_outlined),
+            SectionHeader(
+              title: l10n.settingsStudySettings,
+              icon: Icons.school_outlined,
+              padding: const EdgeInsets.fromLTRB(4, 20, 4, 8),
+            ),
             _SettingsCard(
               children: [
                 _SettingsTile(
@@ -335,7 +339,11 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
                 const _ReminderTiles(),
               ],
             ),
-            _sectionHeader(context, l10n.settingsDisplay, Icons.palette_outlined),
+            SectionHeader(
+              title: l10n.settingsDisplay,
+              icon: Icons.palette_outlined,
+              padding: const EdgeInsets.fromLTRB(4, 20, 4, 8),
+            ),
             _SettingsCard(
               children: [
                 _SettingsTile(
@@ -469,8 +477,11 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
             ),
             if (devMode) ...[
               const SizedBox(height: 12),
-              _sectionHeader(
-                  context, l10n.settingsDevMode, Icons.bug_report_outlined),
+              SectionHeader(
+                title: l10n.settingsDevMode,
+                icon: Icons.bug_report_outlined,
+                padding: const EdgeInsets.fromLTRB(4, 20, 4, 8),
+              ),
               _SettingsCard(
                 children: [
                   _SettingsTile(
@@ -528,47 +539,6 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
       ),
     );
   }
-
-  Widget _sectionHeader(BuildContext context, String title,
-          [IconData? icon]) =>
-      Padding(
-        padding: const EdgeInsets.fromLTRB(4, 20, 4, 8),
-        child: Row(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            if (icon != null)
-              Container(
-                width: AppSizes.headerIconBox,
-                height: AppSizes.headerIconBox,
-                margin: const EdgeInsets.only(right: AppSizes.headerGap),
-                decoration: BoxDecoration(
-                  color: Theme.of(context).colorScheme.primaryContainer,
-                  borderRadius:
-                      BorderRadius.circular(AppSizes.headerIconRadius),
-                ),
-                child: Icon(icon,
-                    size: AppSizes.headerIcon,
-                    color: Theme.of(context).colorScheme.onPrimaryContainer),
-              ),
-            Expanded(
-              child: Align(
-                alignment: Alignment.centerLeft,
-                child: Text(
-                  title,
-                  textHeightBehavior: const TextHeightBehavior(
-                    leadingDistribution: TextLeadingDistribution.even,
-                  ),
-                  style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                        fontWeight: FontWeight.w800,
-                        letterSpacing: -0.2,
-                        height: 1.05,
-                      ),
-                ),
-              ),
-            ),
-          ],
-        ),
-      );
 
   String _weekdayName(AppLocalizations l10n, int weekday) => switch (weekday) {
         1 => l10n.settingsWeekdayMonday,
@@ -1256,7 +1226,10 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
             if (c is List) courses = c.length;
             if (s is List) sessions = s.length;
           }
-        } catch (_) {}
+        } catch (_) {
+          // Counts are display-only; a decode miss keeps 0/0, the raw
+          // JSON below is still shown (value came from our own export).
+        }
         final kb = (value.length / 1024).toStringAsFixed(1);
         const previewLimit = 4000;
         final preview = value.length > previewLimit

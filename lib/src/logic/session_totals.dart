@@ -12,6 +12,17 @@ class SessionTotals {
   double get weeklyHours => weeklyMinutes / 60.0;
 }
 
+/// Groups sessions by `courseId` (single home — one copy instead of one per
+/// caller). A course with no sessions simply has no entry; use `?? []`.
+Map<int, List<StudySession>> groupSessionsByCourse(
+    Iterable<StudySession> sessions) {
+  final byCourse = <int, List<StudySession>>{};
+  for (final s in sessions) {
+    (byCourse[s.courseId] ??= <StudySession>[]).add(s);
+  }
+  return byCourse;
+}
+
 /// Start of the week containing [date], using [firstWeekday] (DateTime.monday
 /// by default; ISO week). [firstWeekday] must be 1..7 (DateTime weekday values).
 DateTime startOfWeek(DateTime date, {int firstWeekday = DateTime.monday}) {

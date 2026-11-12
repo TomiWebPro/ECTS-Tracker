@@ -28,6 +28,13 @@ class SessionRepository {
       .watch()
       .map((rows) => rows.map(sessionFromRow).toList());
 
+  /// One-shot read of all sessions (see [CourseRepository.getAll]).
+  Future<List<StudySession>> getAll() async => (await _db
+          .select(_db.studySessions)
+          .get())
+      .map(sessionFromRow)
+      .toList();
+
   /// Watches only seeded sample sessions (AGENTS.md §4 / ECTS-027,029).
   Stream<List<StudySession>> watchSample() => (_db.select(_db.studySessions)
         ..where((t) => t.isSample.equals(true)))
@@ -45,7 +52,9 @@ class SessionRepository {
             ..where((t) => t.isSample.equals(true)))
           .get();
       return rows.length;
-    } catch (_) {
+    } catch (e) {
+      // DB fault reads as "no samples"; log in debug.
+      if (kDebugMode) debugPrint('countSample sessions DB fault: $e');
       return 0;
     }
   }

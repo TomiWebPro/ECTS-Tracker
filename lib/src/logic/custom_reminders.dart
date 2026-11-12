@@ -12,6 +12,7 @@ import '../models/models.dart';
 import 'date_utils.dart';
 import 'ects.dart';
 import 'reminders.dart';
+import 'session_totals.dart';
 
 /// Stable notification ID base for custom reminders (ECTS-072).
 /// Fire ID = `customReminderIdBase + (scheduleId % 100000)`.
@@ -149,6 +150,19 @@ class CustomSchedule {
         );
     }
   }
+
+  /// Null on malformed input (never throws): the prefs loader skips bad
+  /// rows with this instead of try/catch. Dynamic JSON can fail with any
+  /// error type ([FormatException], [ArgumentError] from the named ctors,
+  /// [TypeError] on wrong-typed fields), so everything is caught here at
+  /// the trust boundary.
+  static CustomSchedule? tryFromJson(Map<String, Object?> json) {
+    try {
+      return CustomSchedule.fromJson(json);
+    } catch (_) {
+      return null;
+    }
+  }
 }
 
 int _daysInMonth(int year, int month) => DateTime(year, month + 1, 0).day;
@@ -195,10 +209,7 @@ Course? automaticTopic({
   required DateTime now,
   double toleranceDays = defaultPaceToleranceDays,
 }) {
-  final byCourse = <int, List<StudySession>>{};
-  for (final s in sessions) {
-    (byCourse[s.courseId] ??= <StudySession>[]).add(s);
-  }
+  final byCourse = groupSessionsByCourse(sessions);
   Course? fallback;
   DateTime? fallbackDeadline;
   final behind = <Course>[];
@@ -246,10 +257,7 @@ ReminderContent? composeCustomContent({
   required DateTime now,
   double toleranceDays = defaultPaceToleranceDays,
 }) {
-  final byCourse = <int, List<StudySession>>{};
-  for (final s in sessions) {
-    (byCourse[s.courseId] ??= <StudySession>[]).add(s);
-  }
+  final byCourse = groupSessionsByCourse(sessions);
   final Course? target;
   if (schedule.courseId != null) {
     final matches =

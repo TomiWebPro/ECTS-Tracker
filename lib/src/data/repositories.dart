@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:drift/drift.dart';
+import 'package:flutter/foundation.dart';
 
 import '../dev/stress_seed.dart';
 import '../i18n/app_locales.dart';

@@ -64,15 +64,13 @@ class ReminderPrefsRepository {
       final out = <CustomSchedule>[];
       for (final entry in decoded) {
         if (entry is! Map) continue;
-        try {
-          out.add(CustomSchedule.fromJson(
-              Map<String, Object?>.from(entry)));
-        } catch (_) {
-          continue;
-        }
+        final schedule =
+            CustomSchedule.tryFromJson(Map<String, Object?>.from(entry));
+        if (schedule != null) out.add(schedule);
       }
       return out;
     } catch (_) {
+      // Corrupt JSON: start from no schedules (doc on [loadCustom]).
       return const [];
     }
   }

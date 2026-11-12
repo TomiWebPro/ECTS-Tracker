@@ -66,62 +66,11 @@ class _StudyLogPage extends ConsumerWidget {
         if (sessionList.isEmpty) {
           // Same empty-state card as Courses (ECTS-066): solid Card +
           // icon box + title/hint; only icon/strings/keys differ.
-          return Center(
-            child: Padding(
-              padding: const EdgeInsets.all(AppSizes.pageHPad),
-              child: Card(
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(
-                    vertical: AppSizes.emptyVPadding,
-                    horizontal: AppSizes.emptyHPadding,
-                  ),
-                  child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      Container(
-                        width: AppSizes.emptyIconBox,
-                        height: AppSizes.emptyIconBox,
-                        decoration: BoxDecoration(
-                          color: Theme.of(context)
-                              .colorScheme
-                              .primaryContainer
-                              .withValues(alpha: 0.6),
-                          borderRadius: BorderRadius.circular(
-                              AppSizes.emptyIconRadius),
-                        ),
-                        child: Icon(Icons.timer_outlined,
-                            size: AppSizes.emptyIcon,
-                            color: Theme.of(context)
-                                .colorScheme
-                                .onPrimaryContainer),
-                      ),
-                      const SizedBox(height: AppSizes.emptyGap),
-                      Text(
-                        l10n.studyLogEmptyTitle,
-                        key: const Key('studyLogEmpty'),
-                        style: Theme.of(context)
-                            .textTheme
-                            .titleMedium
-                            ?.copyWith(
-                              fontWeight: FontWeight.w800,
-                            ),
-                      ),
-                      const SizedBox(height: AppSizes.emptySmallGap),
-                      Text(
-                        l10n.studyLogEmptyHint,
-                        style:
-                            Theme.of(context).textTheme.bodyMedium?.copyWith(
-                                  color: Theme.of(context)
-                                      .colorScheme
-                                      .onSurfaceVariant,
-                                ),
-                        textAlign: TextAlign.center,
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-            ),
+          return EmptyStateCard(
+            icon: Icons.timer_outlined,
+            title: l10n.studyLogEmptyTitle,
+            titleKey: const Key('studyLogEmpty'),
+            hint: l10n.studyLogEmptyHint,
           );
         }
         final courseMap = {
@@ -219,9 +168,7 @@ class _StudyLogPage extends ConsumerWidget {
                   final session = sorted[i];
                   final course = courseMap[session.courseId];
                   final hours = session.minutes / 60.0;
-                  final dateLabel = '${session.date.year}-'
-                      '${session.date.month.toString().padLeft(2, '0')}-'
-                      '${session.date.day.toString().padLeft(2, '0')}';
+                  final dateLabel = formatYmd(session.date);
                   final subtitleParts = <String>[
                     dateLabel,
                   ];

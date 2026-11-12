@@ -186,53 +186,17 @@ class _OverviewPage extends ConsumerWidget {
         ),
         SizedBox(height: innerGap),
         if (activeItems.isEmpty)
-          Card(
-            child: Padding(
-              padding: const EdgeInsets.symmetric(
-                vertical: AppSizes.emptyVPadding,
-                horizontal: AppSizes.emptyHPadding,
-              ),
-              child: Column(
-                children: [
-                  Container(
-                    width: AppSizes.emptyIconBox,
-                    height: AppSizes.emptyIconBox,
-                    decoration: BoxDecoration(
-                      color: Theme.of(context)
-                          .colorScheme
-                          .primaryContainer
-                          .withValues(alpha: 0.6),
-                      borderRadius:
-                          BorderRadius.circular(AppSizes.emptyIconRadius),
-                    ),
-                    child: Icon(Icons.school_outlined,
-                        size: AppSizes.emptyIcon,
-                        color: Theme.of(context).colorScheme.onPrimaryContainer),
-                  ),
-                  const SizedBox(height: AppSizes.emptyGap),
-                  Text(
-                    withProgress.isEmpty
-                        ? l10n.dashboardNoCourses
-                        : l10n.dashboardAllDone,
-                    key: const Key('dashboardNoCourses'),
-                    style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                          fontWeight: FontWeight.w800,
-                        ),
-                  ),
-                  const SizedBox(height: AppSizes.emptySmallGap),
-                  Text(
-                    withProgress.isEmpty
-                        ? l10n.dashboardEmptyHintNoCourses
-                        : l10n.dashboardEmptyHintAllDone,
-                    style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                          color:
-                              Theme.of(context).colorScheme.onSurfaceVariant,
-                        ),
-                    textAlign: TextAlign.center,
-                  ),
-                ],
-              ),
-            ),
+          EmptyStateCard(
+            inset: false,
+            icon: Icons.school_outlined,
+            title: withProgress.isEmpty
+                ? l10n.dashboardNoCourses
+                : l10n.dashboardAllDone,
+            titleKey: const Key('dashboardNoCourses'),
+            titleLarge: true,
+            hint: withProgress.isEmpty
+                ? l10n.dashboardEmptyHintNoCourses
+                : l10n.dashboardEmptyHintAllDone,
           )
         else
           for (final item in activeItems)

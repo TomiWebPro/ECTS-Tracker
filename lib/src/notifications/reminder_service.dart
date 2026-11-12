@@ -82,6 +82,7 @@ class RealNotificationBackend implements NotificationBackend {
       final zone = await FlutterTimezone.getLocalTimezone();
       tz.setLocalLocation(tz.getLocation(zone.identifier));
     } catch (_) {
+      // Timezone lookup is best-effort; UTC keeps scheduling working.
       tz.setLocalLocation(tz.UTC);
     }
     final plugin = FlutterLocalNotificationsPlugin();

@@ -4,6 +4,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../data/repositories.dart';
+import '../logic/date_utils.dart';
 import '../models/models.dart';
 import '../state/providers.dart';
 import 'app_sizes.dart';
@@ -42,21 +43,31 @@ class _SessionFormDialogState extends ConsumerState<SessionFormDialog> {
 
   bool get _isEdit => widget.existing != null;
 
+  /// Effective course selection: pure function of the loaded courses, so
+  /// build never mutates state. Auto-selects the only course, clears a
+  /// stale id; edit mode keeps the edited session's course untouched.
+  int? _resolvedCourseId(List<Course> courses) {
+    if (_isEdit) return _courseId;
+    if (_courseId != null) {
+      return courses.any((c) => c.id == _courseId) ? _courseId : null;
+    }
+    return courses.length == 1 ? courses.first.id : null;
+  }
+
   @override
   void initState() {
     super.initState();
     final e = widget.existing;
     if (e != null) {
       _courseId = e.courseId;
-      _date = DateTime(e.date.year, e.date.month, e.date.day);
+      _date = dateOnly(e.date);
       final h = e.minutes ~/ 60;
       final m = e.minutes % 60;
       _hoursController = TextEditingController(text: '$h');
       _minutesController = TextEditingController(text: '$m');
       _notesController = TextEditingController(text: e.notes ?? '');
     } else {
-      final now = DateTime.now();
-      _date = DateTime(now.year, now.month, now.day);
+      _date = dateOnly(DateTime.now());
       _hoursController = TextEditingController(text: '0');
       _minutesController = TextEditingController(text: '30');
       _notesController = TextEditingController();
@@ -85,21 +96,29 @@ class _SessionFormDialogState extends ConsumerState<SessionFormDialog> {
     final picked = await showDatePicker(
       context: context,
       initialDate: _date,
-      firstDate: DateTime(2000),
-      lastDate: DateTime(2100),
+      firstDate: minPickerDate,
+      lastDate: maxPickerDate,
     );
     if (picked == null) return;
     setState(() => _date = picked);
   }
 
-  String _dateLabel(DateTime d) =>
-      '${d.year}-${d.month.toString().padLeft(2, '0')}-${d.day.toString().padLeft(2, '0')}';
+  String _dateLabel(DateTime d) => formatYmd(d);
 
   Future<void> _save() async {
     final l10n = AppLocalizations.of(context)!;
     setState(() => _error = null);
     if (!_formKey.currentState!.validate()) return;
-    final courseId = _courseId;
+    // Resolve against live courses (same pure function the dropdown uses):
+    // a course deleted while the dialog was open fails closed with the
+    // no-course error instead of a FK rejection.
+    List<Course> courses = const [];
+    try {
+      courses = await ref.read(coursesProvider.future);
+    } catch (_) {
+      // Stream fault: resolve against nothing (fails closed below).
+    }
+    final courseId = _resolvedCourseId(courses);
     if (courseId == null) {
       setState(() => _error = l10n.sessionFormNoCourseError);
       return;
@@ -148,13 +167,6 @@ class _SessionFormDialogState extends ConsumerState<SessionFormDialog> {
     final l10n = AppLocalizations.of(context)!;
     final coursesAsync = ref.watch(coursesProvider);
     final courses = coursesAsync.valueOrNull ?? const [];
-    // Keep selection valid if courses load after first build.
-    if (_courseId == null && courses.length == 1) {
-      _courseId = courses.first.id;
-    }
-    if (_courseId != null && courses.every((c) => c.id != _courseId) && !_isEdit) {
-      _courseId = null;
-    }
 
     // Glass gate (ECTS-064): same title/content/actions/Keys; on renders
     // the glass surface, off the identical AlertDialog. Inputs stay plain
@@ -199,6 +211,9 @@ class _SessionFormDialogState extends ConsumerState<SessionFormDialog> {
   ) {
     // ECTS-074: single glass read for the Apple menu styling below.
     final glassMenu = ref.watch(glassEnabledProvider);
+    // Resolved (not stored) selection: pure in build, so a course list
+    // arriving after first build still yields a valid dropdown value.
+    final courseId = _resolvedCourseId(courses);
     return Column(
       mainAxisSize: MainAxisSize.min,
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -210,7 +225,7 @@ class _SessionFormDialogState extends ConsumerState<SessionFormDialog> {
                 ),
               DropdownButtonFormField<int>(
                 key: const Key('sessionCourseDropdown'),
-                initialValue: _courseId,
+                initialValue: courseId,
                 // Glass dialogs (ECTS-064) are narrower than AlertDialog:
                 // fill the content width so long course names ellipsize
                 // instead of overflowing it. Off keeps the legacy layout.
@@ -238,7 +253,7 @@ class _SessionFormDialogState extends ConsumerState<SessionFormDialog> {
                       value: c.id,
                       child: glassMenu
                           ? GlassMenuRow(
-                              selected: _courseId == c.id,
+                              selected: courseId == c.id,
                               child: Text(c.name),
                             )
                           : Text(c.name),

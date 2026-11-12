@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:ects_tracker/l10n/app_localizations.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -40,8 +41,8 @@ Future<void> main() async {
 Future<void> _rescheduleReminders(AppDatabase db) async {
   try {
     final backend = await RealNotificationBackend.create();
-    final courses = await CourseRepository(db).watchAll().first;
-    final sessions = await SessionRepository(db).watchAll().first;
+    final courses = await CourseRepository(db).getAll();
+    final sessions = await SessionRepository(db).getAll();
     final settings = await SettingsRepository(db).get();
     await ReminderService(backend, ReminderPrefsRepository()).reschedule(
       courses: courses,
@@ -50,7 +51,10 @@ Future<void> _rescheduleReminders(AppDatabase db) async {
       toleranceDays: settings.paceToleranceDays,
       now: DateTime.now(),
     );
-  } catch (_) {}
+  } catch (e) {
+    // Launch-time reschedule is best-effort (alarms only); log in debug.
+    if (kDebugMode) debugPrint('launch reschedule failed: $e');
+  }
 }
 
 class EctsTrackerApp extends StatelessWidget {
@@ -226,10 +230,18 @@ class _ThemedApp extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final settings = ref.watch(settingsProvider);
-    final s = settings.valueOrNull ?? const AppSettings();
-    final seed = Color(s.accent.seedValue);
-    final appLocale = appLocaleFromCode(s.localeCode);
+    // Scoped watches: a settings write (e.g. daily target) rebuilds only
+    // what its own field feeds, not the whole MaterialApp.
+    final accent = ref.watch(settingsProvider
+        .select((s) => s.valueOrNull?.accent ?? AppAccent.slate));
+    final themeMode = ref.watch(settingsProvider.select(
+        (s) => s.valueOrNull?.themeMode ?? AppThemeMode.system));
+    final localeCode = ref.watch(
+        settingsProvider.select((s) => s.valueOrNull?.localeCode));
+    final displayScale = ref.watch(settingsProvider.select((s) =>
+        s.valueOrNull?.displaySize.scale ?? AppDisplaySize.comfortable.scale));
+    final seed = Color(accent.seedValue);
+    final appLocale = appLocaleFromCode(localeCode);
     // System locale when the user picks "system default": ensures CJK
     // Han-unification picks the right sans (SC vs JP vs KR) even without
     // an explicit app language.
@@ -239,7 +251,7 @@ class _ThemedApp extends ConsumerWidget {
       onGenerateTitle: (context) =>
           AppLocalizations.of(context)!.appTitle,
       debugShowCheckedModeBanner: false,
-      themeMode: switch (s.themeMode) {
+      themeMode: switch (themeMode) {
         AppThemeMode.light => ThemeMode.light,
         AppThemeMode.dark => ThemeMode.dark,
         _ => ThemeMode.system,
@@ -255,11 +267,16 @@ class _ThemedApp extends ConsumerWidget {
         GlobalCupertinoLocalizations.delegate,
       ],
       supportedLocales: AppLocalizations.supportedLocales,
-      locale: appLocaleFromCode(s.localeCode),
+      locale: appLocale,
       builder: (context, child) {
-        final scaler = TextScaler.linear(s.displaySize.scale);
+        // App density multiplies the OS scaler (sampled at 16sp) instead
+        // of replacing it, so system large-text settings keep working.
+        final system = MediaQuery.textScalerOf(context);
+        final composed =
+            (system.scale(16) / 16 * displayScale).clamp(0.5, 3.0);
         return MediaQuery(
-          data: MediaQuery.of(context).copyWith(textScaler: scaler),
+          data: MediaQuery.of(context)
+              .copyWith(textScaler: TextScaler.linear(composed)),
           child: child!,
         );
       },

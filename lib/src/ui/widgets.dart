@@ -35,6 +35,88 @@ import 'app_sizes.dart';
   }
 }
 
+/// Shared empty-state card (icon box + title + hint).
+///
+/// Pixel-identical to the three hand-rolled originals it replaces
+/// (courses/dashboard/study-log); only icon/strings/title size differ per
+/// call site. [inset] wraps the card in the page padding + centering used by
+/// full-page empties; dashboard's in-list card passes false.
+class EmptyStateCard extends StatelessWidget {
+  const EmptyStateCard({
+    super.key,
+    required this.icon,
+    required this.title,
+    this.titleKey,
+    this.titleLarge = false,
+    required this.hint,
+    this.inset = true,
+  });
+
+  final IconData icon;
+  final String title;
+  final Key? titleKey;
+  final bool titleLarge;
+  final String hint;
+  final bool inset;
+
+  @override
+  Widget build(BuildContext context) {
+    final scheme = Theme.of(context).colorScheme;
+    final textTheme = Theme.of(context).textTheme;
+    final card = Card(
+      child: Padding(
+        padding: const EdgeInsets.symmetric(
+          vertical: AppSizes.emptyVPadding,
+          horizontal: AppSizes.emptyHPadding,
+        ),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Container(
+              width: AppSizes.emptyIconBox,
+              height: AppSizes.emptyIconBox,
+              decoration: BoxDecoration(
+                color: scheme.primaryContainer.withValues(alpha: 0.6),
+                borderRadius:
+                    BorderRadius.circular(AppSizes.emptyIconRadius),
+              ),
+              child: Icon(icon,
+                  size: AppSizes.emptyIcon,
+                  color: scheme.onPrimaryContainer),
+            ),
+            const SizedBox(height: AppSizes.emptyGap),
+            Text(
+              title,
+              key: titleKey,
+              style: (titleLarge
+                      ? textTheme.titleLarge
+                      : textTheme.titleMedium)
+                  ?.copyWith(
+                fontWeight: FontWeight.w800,
+              ),
+            ),
+            const SizedBox(height: AppSizes.emptySmallGap),
+            Text(
+              hint,
+              style: textTheme.bodyMedium?.copyWith(
+                color: scheme.onSurfaceVariant,
+              ),
+              textAlign: TextAlign.center,
+            ),
+          ],
+        ),
+      ),
+    );
+    if (!inset) return card;
+    return Center(
+      child: Padding(
+        padding: const EdgeInsets.all(AppSizes.pageHPad),
+        child: card,
+      ),
+    );
+  }
+}
+
 /// Small pill badge for `Behind` / `Overdue` / `On track` / …
 /// The inner [Text] keeps the caller-provided [textKey] so tests keep passing.
 class StatusPill extends StatelessWidget {
@@ -209,6 +291,10 @@ class SectionHeader extends StatelessWidget {
     this.titleKey,
     this.icon,
     this.trailing,
+    this.padding = const EdgeInsets.only(
+      top: AppSizes.headerTopPad,
+      bottom: AppSizes.headerBottomPad,
+    ),
   });
 
   final String title;
@@ -216,14 +302,15 @@ class SectionHeader extends StatelessWidget {
   final IconData? icon;
   final String? trailing;
 
+  /// Outer insets. The default matches page sections; the Settings page
+  /// passes its tighter legacy insets so both render pixel-identical.
+  final EdgeInsetsGeometry padding;
+
   @override
   Widget build(BuildContext context) {
     final scheme = Theme.of(context).colorScheme;
     return Padding(
-      padding: const EdgeInsets.only(
-        top: AppSizes.headerTopPad,
-        bottom: AppSizes.headerBottomPad,
-      ),
+      padding: padding,
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [

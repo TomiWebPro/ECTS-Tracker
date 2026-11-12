@@ -10,6 +10,7 @@ library;
 import '../models/models.dart';
 import 'date_utils.dart';
 import 'ects.dart';
+import 'session_totals.dart';
 
 /// Stable notification IDs for the platform layer (ECTS-072).
 const int dailyReminderId = 1000;
@@ -19,6 +20,15 @@ const int streakReminderId = 4000;
 
 /// Max courses named inline in one message before folding into "+N more".
 const int maxNamedCourses = 2;
+
+/// Max behind/overdue courses given their own nudge in one schedule pass.
+const int maxNudgedCourses = 2;
+
+/// Max upcoming deadlines listed in one countdown/summary.
+const int maxCountdownCourses = 3;
+
+/// Sort key pushing deadline-less courses last ("no deadline sorts last").
+const int noDeadlineSortLast = 1 << 30;
 
 /// Default deadline countdown window (days).
 const int defaultDeadlineWarnDays = 3;
@@ -54,15 +64,6 @@ class StreakInfo {
 String formatHours(double hours) =>
     hours % 1 == 0 ? hours.toStringAsFixed(0) : hours.toStringAsFixed(1);
 
-Map<int, List<StudySession>> _sessionsByCourse(
-    Iterable<StudySession> sessions) {
-  final byCourse = <int, List<StudySession>>{};
-  for (final s in sessions) {
-    (byCourse[s.courseId] ??= <StudySession>[]).add(s);
-  }
-  return byCourse;
-}
-
 class _PaceNeed {
   const _PaceNeed(this.course, this.pace);
   final Course course;
@@ -79,7 +80,7 @@ ReminderContent? computeDailyPlan({
   required DateTime now,
   double toleranceDays = defaultPaceToleranceDays,
 }) {
-  final byCourse = _sessionsByCourse(sessions);
+  final byCourse = groupSessionsByCourse(sessions);
   // Hours already logged today per course: the nudge states what is STILL
   // needed (ECTS-075) — "studied 3 h of a 4 h day ⇒ 1 h left", never the
   // full need on top of today's work.
@@ -148,9 +149,10 @@ List<ReminderContent> computeBehindNudges({
   required DateTime now,
   double toleranceDays = defaultPaceToleranceDays,
 }) {
-  final byCourse = _sessionsByCourse(sessions);
+  final byCourse = groupSessionsByCourse(sessions);
   final out = <ReminderContent>[];
   final behind = <Course>[];
+  final seen = <Course, CourseProgress>{};
   for (final course in courses) {
     if (isScheduledCourse(course, now)) continue;
     final progress = courseProgressFor(
@@ -160,22 +162,20 @@ List<ReminderContent> computeBehindNudges({
       now: now,
       toleranceDays: toleranceDays,
     );
-    if (progress.status == CourseStatus.behind) behind.add(course);
+    if (progress.status == CourseStatus.behind) {
+      behind.add(course);
+      seen[course] = progress;
+    }
   }
   behind.sort((a, b) {
-    int daysOf(Course c) => remainingDays(c.deadline, now) ?? 1 << 30;
+    int daysOf(Course c) => remainingDays(c.deadline, now) ?? noDeadlineSortLast;
     final cmp = daysOf(a).compareTo(daysOf(b));
     if (cmp != 0) return cmp;
     return a.name.toLowerCase().compareTo(b.name.toLowerCase());
   });
-  for (final course in behind.take(2)) {
-    final progress = courseProgressFor(
-      course,
-      byCourse[course.id] ?? const <StudySession>[],
-      hoursPerEcts: hoursPerEcts,
-      now: now,
-      toleranceDays: toleranceDays,
-    );
+  for (final course in behind.take(maxNudgedCourses)) {
+    // Reuse the progress from the collect pass above (same inputs).
+    final progress = seen[course]!;
     final left = progress.remainingHours;
     final days = progress.remainingDays;
     final pace = progress.requiredDailyHours;
@@ -281,7 +281,7 @@ List<ReminderContent> computeDeadlineCountdowns({
   double toleranceDays = defaultPaceToleranceDays,
   int warnDays = defaultDeadlineWarnDays,
 }) {
-  final byCourse = _sessionsByCourse(sessions);
+  final byCourse = groupSessionsByCourse(sessions);
   final due = <Course>[];
   for (final course in courses) {
     if (course.deadline == null || isScheduledCourse(course, now)) continue;
@@ -303,7 +303,7 @@ List<ReminderContent> computeDeadlineCountdowns({
     return a.name.toLowerCase().compareTo(b.name.toLowerCase());
   });
   final out = <ReminderContent>[];
-  for (final course in due.take(3)) {
+  for (final course in due.take(maxCountdownCourses)) {
     final progress = courseProgressFor(
       course,
       byCourse[course.id] ?? const <StudySession>[],
@@ -344,8 +344,8 @@ List<ReminderContent> computeOverdue({
   required DateTime now,
   double toleranceDays = defaultPaceToleranceDays,
 }) {
-  final byCourse = _sessionsByCourse(sessions);
-  final late = <Course>[];
+  final byCourse = groupSessionsByCourse(sessions);
+  final late = <Course, CourseProgress>{};
   for (final course in courses) {
     final progress = courseProgressFor(
       course,
@@ -354,24 +354,25 @@ List<ReminderContent> computeOverdue({
       now: now,
       toleranceDays: toleranceDays,
     );
-    if (progress.status == CourseStatus.overdue) late.add(course);
+    if (progress.status == CourseStatus.overdue) late[course] = progress;
   }
-  late.sort((a, b) {
-    final da = a.deadline;
-    final db = b.deadline;
-    if (da == null && db == null) return 0;
-    if (da == null) return 1;
-    if (db == null) return -1;
-    final cmp = da.compareTo(db);
-    if (cmp != 0) return cmp;
-    return a.name.toLowerCase().compareTo(b.name.toLowerCase());
-  });
+  final ordered = late.keys.toList()
+    ..sort((a, b) {
+      final da = a.deadline;
+      final db = b.deadline;
+      if (da == null && db == null) return 0;
+      if (da == null) return 1;
+      if (db == null) return -1;
+      final cmp = da.compareTo(db);
+      if (cmp != 0) return cmp;
+      return a.name.toLowerCase().compareTo(b.name.toLowerCase());
+    });
   return [
-    for (final course in late.take(2))
+    for (final course in ordered.take(maxNudgedCourses))
       ReminderContent(
         kind: ReminderKind.overdue,
         title:
-            '❌ ${course.name} passed its deadline with ${formatHours(courseProgressFor(course, byCourse[course.id] ?? const <StudySession>[], hoursPerEcts: hoursPerEcts, now: now, toleranceDays: toleranceDays).remainingHours)} h open',
+            '❌ ${course.name} passed its deadline with ${formatHours(late[course]!.remainingHours)} h open',
         body: 'Move the deadline or finish the hours — the course stays in Needs attention until then.',
         courseId: course.id,
       ),
@@ -418,7 +419,7 @@ ReminderContent? computeStreakNudge({
 }) {
   final streak = computeStreak(sessions: sessions, now: now);
   if (streak.days < 2) return null;
-  final byCourse = _sessionsByCourse(sessions);
+  final byCourse = groupSessionsByCourse(sessions);
   for (final course in courses) {
     if (isScheduledCourse(course, now)) continue;
     final status = courseProgressFor(

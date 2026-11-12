@@ -24,8 +24,14 @@ class AppLogo extends StatelessWidget {
   static const String svgAsset = 'assets/images/ects-tracker-logo.svg';
   static const String pngAsset = 'assets/images/ects-tracker-logo.png';
 
+  /// Warm paper backdrop behind the mark (brand token, not theme surface).
+  static const Color backdrop = Color(0xFFFAF9F4);
+
   @override
   Widget build(BuildContext context) {
+    // Missing-asset red screen becomes a plain icon: the errorBuilder
+    // covers a broken/missing SVG, and the PNG branch needs none (a
+    // missing PNG falls back to the icon the same way).
     final child = useSvg
         ? SvgPicture.asset(
             svgAsset,
@@ -33,6 +39,11 @@ class AppLogo extends StatelessWidget {
             height: size,
             fit: BoxFit.contain,
             semanticsLabel: 'ECTS Tracker logo',
+            errorBuilder: (context, error, stackTrace) => Icon(
+              Icons.school_outlined,
+              size: size * 0.6,
+              color: Theme.of(context).colorScheme.primary,
+            ),
           )
         : Image.asset(
             pngAsset,
@@ -40,13 +51,18 @@ class AppLogo extends StatelessWidget {
             height: size,
             fit: BoxFit.contain,
             semanticLabel: 'ECTS Tracker logo',
+            errorBuilder: (context, error, stackTrace) => Icon(
+              Icons.school_outlined,
+              size: size * 0.6,
+              color: Theme.of(context).colorScheme.primary,
+            ),
           );
     return ClipRRect(
       borderRadius: BorderRadius.circular(radius),
       child: Container(
         width: size,
         height: size,
-        color: const Color(0xFFFAF9F4),
+        color: AppLogo.backdrop,
         alignment: Alignment.center,
         child: child,
       ),

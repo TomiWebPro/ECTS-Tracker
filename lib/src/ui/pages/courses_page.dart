@@ -83,53 +83,10 @@ class _CoursesPageState extends ConsumerState<_CoursesPage> {
 
     final courses = coursesAsync.requireValue;
     if (courses.isEmpty) {
-      return Center(
-        child: Padding(
-          padding: const EdgeInsets.all(AppSizes.pageHPad),
-          child: Card(
-            child: Padding(
-              padding: const EdgeInsets.symmetric(
-                vertical: AppSizes.emptyVPadding,
-                horizontal: AppSizes.emptyHPadding,
-              ),
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Container(
-                    width: AppSizes.emptyIconBox,
-                    height: AppSizes.emptyIconBox,
-                    decoration: BoxDecoration(
-                      color: Theme.of(context)
-                          .colorScheme
-                          .primaryContainer
-                          .withValues(alpha: 0.6),
-                      borderRadius: BorderRadius.circular(
-                          AppSizes.emptyIconRadius),
-                    ),
-                    child: Icon(Icons.menu_book_outlined,
-                        size: AppSizes.emptyIcon,
-                        color:
-                            Theme.of(context).colorScheme.onPrimaryContainer),
-                  ),
-                  const SizedBox(height: AppSizes.emptyGap),
-                  Text(l10n.coursesEmptyTitle,
-                      style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                            fontWeight: FontWeight.w800,
-                          )),
-                  const SizedBox(height: AppSizes.emptySmallGap),
-                  Text(
-                    l10n.coursesEmptyHint,
-                    style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                          color:
-                              Theme.of(context).colorScheme.onSurfaceVariant,
-                        ),
-                    textAlign: TextAlign.center,
-                  ),
-                ],
-              ),
-            ),
-          ),
-        ),
+      return EmptyStateCard(
+        icon: Icons.menu_book_outlined,
+        title: l10n.coursesEmptyTitle,
+        hint: l10n.coursesEmptyHint,
       );
     }
 
@@ -384,7 +341,8 @@ class _CoursesPageState extends ConsumerState<_CoursesPage> {
                 final p = item.progress;
                 final scheme = Theme.of(context).colorScheme;
                 final (_, statusFg) = statusColors(context, p.status);
-                final paceUrgent = (p.requiredDailyHours ?? 0) > 8;
+                final paceUrgent = (p.requiredDailyHours ?? 0) >
+                    courseTileUrgentDailyHours;
                 return GlassCard(
                   margin:
                       EdgeInsets.only(bottom: cardGap),

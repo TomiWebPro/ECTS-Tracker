@@ -1,4 +1,5 @@
 import 'package:drift/drift.dart';
+import 'package:flutter/foundation.dart';
 
 import 'data/app_database.dart';
 import 'data/bootstrap.dart';
@@ -38,7 +39,10 @@ Future<StartupState> initializeApp(QueryExecutor executor) async {
     // A partially opened database must not leak.
     try {
       await db?.close();
-    } catch (_) {}
+    } catch (e) {
+      // Already on the failure path; log the secondary fault in debug.
+      if (kDebugMode) debugPrint('startup DB close failed: $e');
+    }
     return StartupFailed('Failed to open or prepare the database.', e);
   }
 }

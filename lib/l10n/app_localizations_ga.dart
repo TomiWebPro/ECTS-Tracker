@@ -1219,6 +1219,24 @@ class AppLocalizationsGa extends AppLocalizations {
   String get reminderPreviewNoFire => 'No upcoming fire.';
 
   @override
+  String get reminderKindDaily => 'Daily';
+
+  @override
+  String get reminderKindBehind => 'Behind';
+
+  @override
+  String get reminderKindDeadline => 'Deadline';
+
+  @override
+  String get reminderKindOverdue => 'Overdue';
+
+  @override
+  String get reminderKindStreak => 'Streak';
+
+  @override
+  String get reminderKindCustom => 'Custom';
+
+  @override
   String get settingsReminders => 'Study reminders';
 
   @override

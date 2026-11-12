@@ -66,22 +66,7 @@ class BackupRepository {
       final sessionRows = await _db.select(_db.studySessions).get();
       final settings = settingsRow == null
           ? const AppSettings()
-          : AppSettings(
-              hoursPerEcts: settingsRow.hoursPerEcts,
-              dailyTargetMinutes: settingsRow.dailyTargetMinutes,
-              firstWeekday: settingsRow.firstWeekday.clamp(1, 7),
-              themeMode: themeModeFromInt(settingsRow.themeMode),
-              paceToleranceDays:
-                  settingsRow.paceToleranceDays.clamp(0.0, 30.0),
-              weeklyOverloadHours:
-                  settingsRow.weeklyOverloadHours.clamp(5.0, 100.0),
-              displaySize: displaySizeFromInt(settingsRow.displaySize),
-              accent: accentFromInt(settingsRow.accent),
-              localeCode: isAppLocaleCode(settingsRow.localeCode)
-                  ? settingsRow.localeCode
-                  : null,
-              liquidGlass: settingsRow.liquidGlass,
-            );
+          : SettingsRepository.fromRow(settingsRow);
       final map = <String, Object?>{
         'app': backupAppId,
         'formatVersion': backupFormatVersion,

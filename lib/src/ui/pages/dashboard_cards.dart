@@ -368,9 +368,7 @@ class _DashboardCourseCard extends ConsumerWidget {
   String _deadlineLabel(
       AppLocalizations l10n, CourseProgress progress, DateTime? deadline) {
     if (deadline == null) return l10n.dashboardNoDeadline;
-    final d = '${deadline.year}-'
-        '${deadline.month.toString().padLeft(2, '0')}-'
-        '${deadline.day.toString().padLeft(2, '0')}';
+    final d = formatYmd(deadline);
     if (progress.status == CourseStatus.overdue) {
       return l10n.dashboardDeadlineOverdue(d);
     }
@@ -393,13 +391,10 @@ class _DashboardCourseCard extends ConsumerWidget {
         p.status == CourseStatus.behind;
     final scheduled = isScheduledCourse(course, now);
     final daysToStart = scheduled && course.startDate != null
-        ? course.startDate!
-            .difference(DateTime(now.year, now.month, now.day))
-            .inDays
+        ? course.startDate!.difference(dateOnly(now)).inDays
         : 0;
-    String startLabel(DateTime? d) => d == null
-        ? l10n.dashboardStartNotSet
-        : '${d.year}-${d.month.toString().padLeft(2, '0')}-${d.day.toString().padLeft(2, '0')}';
+    String startLabel(DateTime? d) =>
+        d == null ? l10n.dashboardStartNotSet : formatYmd(d);
 
     // Pace action line.
     String? paceText;
@@ -436,11 +431,11 @@ class _DashboardCourseCard extends ConsumerWidget {
         paceText = l10n.dashboardPaceNeedDailyWeekly(
             formatPaceValue(daily), formatPaceValue(weekly));
       }
-      if (daily > 6) {
+      if (daily > unrealisticDailyPaceHours) {
         paceColor = scheme.error;
         paceIcon = Icons.warning_amber_outlined;
         paceText = l10n.dashboardPaceUnrealistic(paceText);
-      } else if (daily > 4) {
+      } else if (daily > elevatedDailyPaceHours) {
         paceColor = scheme.error.withValues(alpha: 0.9);
         paceIcon = Icons.speed_outlined;
       } else {

@@ -43,4 +43,18 @@ void main() {
       expect(DateTime.parse(formatYmd(d)), dateOnly(d));
     });
   });
+
+  group('formatMonthDay', () {
+    test('renders compact MM/DD', () {
+      expect(formatMonthDay(DateTime(2026, 1, 5)), '01/05');
+    });
+  });
+
+  group('picker bounds', () {
+    test('min precedes max by a wide margin', () {
+      expect(minPickerDate.isBefore(maxPickerDate), isTrue);
+      expect(minPickerDate.year, 2000);
+      expect(maxPickerDate.year, 2100);
+    });
+  });
 }

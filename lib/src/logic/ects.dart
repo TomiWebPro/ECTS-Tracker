@@ -8,6 +8,10 @@ import '../models/models.dart';
 import 'date_utils.dart';
 
 /// `requiredHours = ectsCredits * hoursPerEcts` (default hoursPerEcts = 30).
+///
+/// Throws [ArgumentError] when `hoursPerEcts <= 0` (a non-positive factor is
+/// a programming error, never user input: the settings boundary rejects it
+/// with a typed [Err] before this is called). `ectsCredits <= 0` returns 0.
 double requiredHours(double ectsCredits, double hoursPerEcts) {
   if (hoursPerEcts <= 0) {
     throw ArgumentError.value(hoursPerEcts, 'hoursPerEcts', 'must be > 0');

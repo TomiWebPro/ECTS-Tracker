@@ -2,7 +2,7 @@ import 'package:ects_tracker/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../logic/course_list.dart';
+import '../logic/date_utils.dart';
 import '../logic/ects.dart';
 import '../logic/statistics.dart';
 import '../state/providers.dart';
@@ -38,34 +38,24 @@ class StatisticsPage extends ConsumerWidget {
     final stats = computeStatistics(sessions, now: effectiveNow);
     final courseMap = {for (final c in courses) c.id: c};
     final scheme = Theme.of(context).colorScheme;
-    final withProgress = coursesWithProgress(
-      courses,
-      sessions,
+    // Page math lives in buildStatisticsView (pure, unit-tested); the page
+    // only renders the view.
+    final view = buildStatisticsView(
+      courses: courses,
+      sessions: sessions,
       hoursPerEcts: settings.hoursPerEcts,
-      now: effectiveNow,
       toleranceDays: settings.paceToleranceDays,
-    );
-    final pastAvg = averageDailyHours(sessions, now: effectiveNow, days: 14);
-    var needSum = 0.0;
-    for (final e in withProgress) {
-      if (isScheduledCourse(e.course, effectiveNow)) continue;
-      needSum += e.progress.requiredDailyHours ?? 0;
-    }
-    final gap = needSum - pastAvg;
-    final forecast = forecastWeeklyLoad(
-      withProgress,
       now: effectiveNow,
       weeks: 8,
       firstWeekday: settings.firstWeekday,
     );
+    final pastAvg = view.pastAvg;
+    final needSum = view.needSum;
+    final gap = view.gap;
+    final forecast = view.forecast;
     final overloadAt = settings.weeklyOverloadHours;
-    final peak = forecast.isEmpty
-        ? 0.0
-        : forecast.map((w) => w.hours).reduce((a, b) => a > b ? a : b);
-    final sortedByDeadline = withProgress
-        .where((e) => e.course.deadline != null)
-        .toList()
-      ..sort((a, b) => a.course.deadline!.compareTo(b.course.deadline!));
+    final peak = view.peak;
+    final sortedByDeadline = view.sortedByDeadline;
 
     // Glass cards (ECTS-063): every section card below is a lite lens sharing
     // one page batch (members never overlap); pills/bars stay solid inside.
@@ -326,8 +316,7 @@ class StatisticsPage extends ConsumerWidget {
                 ),
                 const SizedBox(height: 12),
                 ...forecast.map((w) {
-                  final label =
-                      '${w.weekStart.month.toString().padLeft(2, '0')}/${w.weekStart.day.toString().padLeft(2, '0')}';
+                  final label = formatMonthDay(w.weekStart);
                   final ratio = peak <= 0
                       ? 0.0
                       : (w.hours / peak).clamp(0.0, 1.0);

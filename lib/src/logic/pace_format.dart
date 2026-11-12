@@ -8,6 +8,16 @@ library;
 /// Below this (in hours) a pace is shown in minutes.
 const double kSubHourPaceThresholdHours = 1.0;
 
+/// Daily pace above this is "elevated" (dashboard emphasis tier 1).
+const double elevatedDailyPaceHours = 4.0;
+
+/// Daily pace above this is "unrealistic" (dashboard error + warning copy).
+const double unrealisticDailyPaceHours = 6.0;
+
+/// Daily pace above this marks a course tile urgent. Higher than the
+/// dashboard bands: a single tile shouts only when extreme.
+const double courseTileUrgentDailyHours = 8.0;
+
 /// True when [hours] should render as minutes.
 bool isSubHourPace(double hours) => hours < kSubHourPaceThresholdHours;
 

@@ -46,9 +46,12 @@ class _ReminderTiles extends ConsumerWidget {
     if (value) {
       var granted = false;
       try {
-        granted = await (await RealNotificationBackend.create())
+        granted = await (await ref.read(notificationBackendProvider.future))
             .requestPermissions();
-      } catch (_) {}
+      } catch (e) {
+        // Permission request failed: treat as denied (snackbar below).
+        if (kDebugMode) debugPrint('notification permission failed: $e');
+      }
       if (!context.mounted) return;
       if (!granted) {
         ScaffoldMessenger.of(context).showSnackBar(
@@ -57,7 +60,7 @@ class _ReminderTiles extends ConsumerWidget {
         return;
       }
     }
-    final repo = ReminderPrefsRepository();
+    final repo = ref.read(reminderPrefsProvider);
     final current = await repo.load();
     final result = await repo.save(current.copyWith(enabled: value));
     ref.invalidate(reminderSettingsProvider);
@@ -67,7 +70,7 @@ class _ReminderTiles extends ConsumerWidget {
   }
 
   Future<void> _editTime(BuildContext context, WidgetRef ref) async {
-    final repo = ReminderPrefsRepository();
+    final repo = ref.read(reminderPrefsProvider);
     final current = await repo.load();
     if (!context.mounted) return;
     final picked = await showTimePicker(
@@ -88,19 +91,23 @@ class _ReminderTiles extends ConsumerWidget {
   /// swallowed so Settings never breaks (the dev preview always works).
   Future<void> _rescheduleNow(WidgetRef ref) async {
     try {
-      final backend = await RealNotificationBackend.create();
+      final backend = await ref.read(notificationBackendProvider.future);
       final courses = await ref.read(coursesProvider.future);
       final sessions = await ref.read(sessionsProvider.future);
       final s =
           ref.read(settingsProvider).valueOrNull ?? const AppSettings();
-      await ReminderService(backend, ReminderPrefsRepository()).reschedule(
+      await ReminderService(backend, ref.read(reminderPrefsProvider))
+          .reschedule(
         courses: courses,
         sessions: sessions,
         hoursPerEcts: s.hoursPerEcts,
         toleranceDays: s.paceToleranceDays,
         now: DateTime.now(),
       );
-    } catch (_) {}
+    } catch (e) {
+      // Best-effort reschedule (doc above); log in debug.
+      if (kDebugMode) debugPrint('settings reschedule failed: $e');
+    }
   }
 
   void _showResultStatic(BuildContext context, Result<void> result) {

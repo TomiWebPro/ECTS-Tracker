@@ -6,6 +6,7 @@ import '../data/repositories.dart';
 import '../models/models.dart';
 import '../models/reminder_settings.dart';
 import '../notifications/reminder_prefs.dart';
+import '../notifications/reminder_service.dart';
 
 /// The single app-wide database instance.
 final databaseProvider = Provider<AppDatabase>((ref) {
@@ -83,4 +84,16 @@ final hasSampleDataProvider = Provider<AsyncValue<bool>>((ref) {
 /// works without a Drift migration. Invalidate after every save.
 final reminderSettingsProvider = FutureProvider<ReminderSettings>(
   (ref) => ReminderPrefsRepository().load(),
+);
+
+/// Shared [ReminderPrefsRepository] instance (single home — no per-call
+/// `ReminderPrefsRepository()` in UI, one SharedPreferences handle).
+final reminderPrefsProvider = Provider<ReminderPrefsRepository>(
+  (ref) => ReminderPrefsRepository(),
+);
+
+/// Real OS notification backend, created once (tz init + plugin init).
+/// Tests override with a fake.
+final notificationBackendProvider = FutureProvider<NotificationBackend>(
+  (ref) => RealNotificationBackend.create(),
 );

@@ -4,6 +4,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../data/repositories.dart';
+import '../logic/date_utils.dart';
 import '../logic/ects.dart';
 import '../models/models.dart';
 import '../state/providers.dart';
@@ -60,10 +61,7 @@ class _CourseFormDialogState extends ConsumerState<CourseFormDialog> {
   bool get _isFutureStart {
     final s = _startDate;
     if (s == null) return false;
-    final now = DateTime.now();
-    final sd = DateTime(s.year, s.month, s.day);
-    final nd = DateTime(now.year, now.month, now.day);
-    return sd.isAfter(nd);
+    return dateOnly(s).isAfter(dateOnly(DateTime.now()));
   }
 
   @override
@@ -105,8 +103,8 @@ class _CourseFormDialogState extends ConsumerState<CourseFormDialog> {
     final picked = await showDatePicker(
       context: context,
       initialDate: initial,
-      firstDate: DateTime(2000),
-      lastDate: DateTime(2100),
+      firstDate: minPickerDate,
+      lastDate: maxPickerDate,
     );
     if (picked == null) return;
     setState(() {
@@ -168,7 +166,7 @@ class _CourseFormDialogState extends ConsumerState<CourseFormDialog> {
 
   String _dateLabel(DateTime? d, String notSet) {
     if (d == null) return notSet;
-    return '${d.year}-${d.month.toString().padLeft(2, '0')}-${d.day.toString().padLeft(2, '0')}';
+    return formatYmd(d);
   }
 
   @override
