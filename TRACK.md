@@ -107,6 +107,7 @@ Conventions: `AGENTS.md` (binding, incl. new-locale policy §6) · `README.md` (
 | ECTS-083 | M10 | Coverage + config + closure: gap tests, lints probe, deps prune, ECTS-069 resolve, ARCHITECTURE.md | done | analyze clean; full 332/332; tests+config commit 728681f; docs commit (this run); 2026-11-12 |
 | ECTS-084 | M9 | Reminder preview full-bleed layout + sub-hour minutes copy | done | analyze clean; full 335/335; 2026-11-12 |
 | ECTS-085 | M8 | Liquid-glass bottom nav flow-through (content scrolls under tab bar, no white block) | done | analyze clean; glass chrome/cards/dialogs 25/25 green, full suite 306+ no failures at timeout (slow UI); commit 502c65c; 2026-11-12 |
+| ECTS-086 | M7 | Bulk locale pass: translate missing 26 keys + units audit for all 53 non-EN ARBs | done | analyze clean; gen-l10n ok; full 335/335; 5-way subagent split (A-E) |
 
 Note: ECTS-033/034 were announced in a 2026-11-05 log but never got rows; IDs skipped, do NOT renumber.
 
