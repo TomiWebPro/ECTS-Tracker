@@ -135,8 +135,23 @@ class AppLocalizationsPt extends AppLocalizations {
   }
 
   @override
+  String coursesPaceNeededMinutes(String daily) {
+    return '$daily min/day needed';
+  }
+
+  @override
   String coursesPaceNeededWeekly(String daily, String weekly) {
     return '$daily h/dia • $weekly h/semana necessárias';
+  }
+
+  @override
+  String coursesPaceNeededWeeklyMinutes(String daily, String weekly) {
+    return '$daily min/day • $weekly min/week needed';
+  }
+
+  @override
+  String coursesPaceNeededWeeklyMinutesHours(String daily, String weekly) {
+    return '$daily min/day • $weekly h/week needed';
   }
 
   @override
@@ -267,6 +282,11 @@ class AppLocalizationsPt extends AppLocalizations {
   }
 
   @override
+  String dashboardMinutesPerDay(String minutes) {
+    return '$minutes min/d';
+  }
+
+  @override
   String get dashboardLogSessionAction => 'Registrar sessão de estudo';
 
   @override
@@ -304,13 +324,33 @@ class AppLocalizationsPt extends AppLocalizations {
   }
 
   @override
+  String dashboardPaceNeedDailyMinutes(String daily) {
+    return 'Need $daily min/day to finish';
+  }
+
+  @override
   String dashboardPaceNeedDailyWeekly(String daily, String weekly) {
     return 'Precisa de $daily h/dia · $weekly h/semana para concluir';
   }
 
   @override
+  String dashboardPaceNeedDailyWeeklyMinutes(String daily, String weekly) {
+    return 'Need $daily min/day · $weekly min/week to finish';
+  }
+
+  @override
+  String dashboardPaceNeedDailyWeeklyMinutesHours(String daily, String weekly) {
+    return 'Need $daily min/day · $weekly h/week to finish';
+  }
+
+  @override
   String dashboardPaceNeedFrom(String hours, String date) {
     return 'Precisa de $hours h/dia a partir de $date · fora do ritmo de Hoje';
+  }
+
+  @override
+  String dashboardPaceNeedFromMinutes(String minutes, String date) {
+    return 'Need $minutes min/day from $date · not in Today’s pace';
   }
 
   @override

@@ -35,7 +35,10 @@
   "coursesFilterEmpty": "No courses match this filter",
   "coursesNewCourse": "New course",
   "coursesPaceNeeded": "{daily} h/day needed",
+  "coursesPaceNeededMinutes": "{daily} min/day needed",
   "coursesPaceNeededWeekly": "{daily} h/day • {weekly} h/week needed",
+  "coursesPaceNeededWeeklyMinutes": "{daily} min/day • {weekly} min/week needed",
+  "coursesPaceNeededWeeklyMinutesHours": "{daily} min/day • {weekly} h/week needed",
   "coursesProgressWithStatus": "{done} / {required} h • {status}",
   "coursesRemoveSampleTooltip": "Remove sample course",
   "coursesShownCount": "{count} shown",
@@ -63,6 +66,7 @@
   "dashboardHoursDetail": "· {pct}% · {hours}h left",
   "dashboardHoursFraction": "{done} / {required} h",
   "dashboardHoursPerDay": "{hours} h/d",
+  "dashboardMinutesPerDay": "{minutes} min/d",
   "dashboardLogSessionAction": "Log study session",
   "dashboardLogSessionTooltip": "Log study session",
   "dashboardNewBadge": "NEW",
@@ -74,8 +78,12 @@
   "dashboardNothingToTrack": "Nothing to track yet",
   "dashboardPaceDueToday": "Due today — {hours}h left",
   "dashboardPaceNeedDaily": "Need {daily} h/day to finish",
+  "dashboardPaceNeedDailyMinutes": "Need {daily} min/day to finish",
   "dashboardPaceNeedDailyWeekly": "Need {daily} h/day · {weekly} h/week to finish",
+  "dashboardPaceNeedDailyWeeklyMinutes": "Need {daily} min/day · {weekly} min/week to finish",
+  "dashboardPaceNeedDailyWeeklyMinutesHours": "Need {daily} min/day · {weekly} h/week to finish",
   "dashboardPaceNeedFrom": "Need {hours} h/day from {date} · not in Today’s pace",
+  "dashboardPaceNeedFromMinutes": "Need {minutes} min/day from {date} · not in Today’s pace",
   "dashboardPaceNoDeadline": "No deadline — {hours}h left · no daily pressure",
   "dashboardPaceStarts": "Starts {date} · {hours}h to do",
   "dashboardPaceUnrealistic": "{pace} · unrealistic",
@@ -471,6 +479,41 @@
       }
     }
   },
+  "@coursesPaceNeededMinutes": {
+    "description": "Daily pace line in minutes (sub-hour pace) on a course row.",
+    "placeholders": {
+      "daily": {
+        "type": "String",
+        "example": "36"
+      }
+    }
+  },
+  "@coursesPaceNeededWeeklyMinutes": {
+    "description": "Daily + weekly pace line when both are sub-hour (minutes).",
+    "placeholders": {
+      "daily": {
+        "type": "String",
+        "example": "8"
+      },
+      "weekly": {
+        "type": "String",
+        "example": "56"
+      }
+    }
+  },
+  "@coursesPaceNeededWeeklyMinutesHours": {
+    "description": "Daily minutes + weekly hours pace line on a course row.",
+    "placeholders": {
+      "daily": {
+        "type": "String",
+        "example": "36"
+      },
+      "weekly": {
+        "type": "String",
+        "example": "4.3"
+      }
+    }
+  },
   "@coursesProgressWithStatus": {
     "description": "Course row progress line combining hours and the (unlocalized, logic-owned) status label.",
     "placeholders": {
@@ -706,6 +749,15 @@
       }
     }
   },
+  "@dashboardMinutesPerDay": {
+    "description": "Required daily minutes chip (sub-hour pace) in the hero-card top-3 list.",
+    "placeholders": {
+      "minutes": {
+        "type": "String",
+        "example": "36"
+      }
+    }
+  },
   "@dashboardLogSessionAction": {
     "description": "Label of the dashboard button that opens the log-session dialog."
   },
@@ -764,12 +816,60 @@
       }
     }
   },
+  "@dashboardPaceNeedDailyMinutes": {
+    "description": "Pace line stating the required daily minutes (sub-hour pace).",
+    "placeholders": {
+      "daily": {
+        "type": "String",
+        "example": "36"
+      }
+    }
+  },
+  "@dashboardPaceNeedDailyWeeklyMinutes": {
+    "description": "Pace line when both daily and weekly paces are sub-hour.",
+    "placeholders": {
+      "daily": {
+        "type": "String",
+        "example": "8"
+      },
+      "weekly": {
+        "type": "String",
+        "example": "56"
+      }
+    }
+  },
+  "@dashboardPaceNeedDailyWeeklyMinutesHours": {
+    "description": "Pace line with daily minutes and weekly hours.",
+    "placeholders": {
+      "daily": {
+        "type": "String",
+        "example": "36"
+      },
+      "weekly": {
+        "type": "String",
+        "example": "4.3"
+      }
+    }
+  },
   "@dashboardPaceNeedFrom": {
     "description": "Pace line for a scheduled course with a computable daily pace.",
     "placeholders": {
       "hours": {
         "type": "String",
         "example": "1.5"
+      },
+      "date": {
+        "type": "String",
+        "example": "2026-12-01"
+      }
+    }
+  },
+  "@dashboardPaceNeedFromMinutes": {
+    "description": "Pace line for a scheduled course with a sub-hour daily pace.",
+    "placeholders": {
+      "minutes": {
+        "type": "String",
+        "example": "36"
       },
       "date": {
         "type": "String",

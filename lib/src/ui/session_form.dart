@@ -6,6 +6,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../data/repositories.dart';
 import '../models/models.dart';
 import '../state/providers.dart';
+import 'app_sizes.dart';
 import 'glass.dart';
 
 /// Shows the log/edit-study-session form. Returns true if a session was saved.
@@ -196,6 +197,8 @@ class _SessionFormDialogState extends ConsumerState<SessionFormDialog> {
     AsyncValue<List<Course>> coursesAsync,
     List<Course> courses,
   ) {
+    // ECTS-074: single glass read for the Apple menu styling below.
+    final glassMenu = ref.watch(glassEnabledProvider);
     return Column(
       mainAxisSize: MainAxisSize.min,
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -211,13 +214,34 @@ class _SessionFormDialogState extends ConsumerState<SessionFormDialog> {
                 // Glass dialogs (ECTS-064) are narrower than AlertDialog:
                 // fill the content width so long course names ellipsize
                 // instead of overflowing it. Off keeps the legacy layout.
-                isExpanded: ref.watch(glassEnabledProvider),
+                isExpanded: glassMenu,
                 decoration: InputDecoration(labelText: l10n.sessionFormCourseLabel),
+                // ECTS-074 Apple polish (glass-only): frosted rounded menu,
+                // text-only selection. Legacy keeps defaults. Closed-face
+                // stays plain text via selectedItemBuilder so no menu
+                // padding leaks into the field (ECTS-074d).
+                dropdownColor:
+                    glassMenu ? glassMenuColor(context) : null,
+                borderRadius: glassMenu
+                    ? BorderRadius.circular(AppSizes.glassMenuRadius)
+                    : null,
+                menuMaxHeight:
+                    glassMenu ? AppSizes.glassMenuMaxHeight : null,
+                selectedItemBuilder: glassMenu
+                    ? (context) => [
+                          for (final c in courses) Text(c.name),
+                        ]
+                    : null,
                 items: [
                   for (final c in courses)
                     DropdownMenuItem<int>(
                       value: c.id,
-                      child: Text(c.name),
+                      child: glassMenu
+                          ? GlassMenuRow(
+                              selected: _courseId == c.id,
+                              child: Text(c.name),
+                            )
+                          : Text(c.name),
                     ),
                 ],
                 onChanged: courses.isEmpty

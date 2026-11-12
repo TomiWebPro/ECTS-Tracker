@@ -133,8 +133,23 @@ class AppLocalizationsBn extends AppLocalizations {
   }
 
   @override
+  String coursesPaceNeededMinutes(String daily) {
+    return '$daily min/day needed';
+  }
+
+  @override
   String coursesPaceNeededWeekly(String daily, String weekly) {
     return '$daily ঘণ্টা/দিন • $weekly ঘণ্টা/সপ্তাহ প্রয়োজন';
+  }
+
+  @override
+  String coursesPaceNeededWeeklyMinutes(String daily, String weekly) {
+    return '$daily min/day • $weekly min/week needed';
+  }
+
+  @override
+  String coursesPaceNeededWeeklyMinutesHours(String daily, String weekly) {
+    return '$daily min/day • $weekly h/week needed';
   }
 
   @override
@@ -265,6 +280,11 @@ class AppLocalizationsBn extends AppLocalizations {
   }
 
   @override
+  String dashboardMinutesPerDay(String minutes) {
+    return '$minutes min/d';
+  }
+
+  @override
   String get dashboardLogSessionAction => 'পড়াশোনার সেশন লগ করুন';
 
   @override
@@ -302,13 +322,33 @@ class AppLocalizationsBn extends AppLocalizations {
   }
 
   @override
+  String dashboardPaceNeedDailyMinutes(String daily) {
+    return 'Need $daily min/day to finish';
+  }
+
+  @override
   String dashboardPaceNeedDailyWeekly(String daily, String weekly) {
     return 'শেষ করতে $daily ঘণ্টা/দিন · $weekly ঘণ্টা/সপ্তাহ প্রয়োজন';
   }
 
   @override
+  String dashboardPaceNeedDailyWeeklyMinutes(String daily, String weekly) {
+    return 'Need $daily min/day · $weekly min/week to finish';
+  }
+
+  @override
+  String dashboardPaceNeedDailyWeeklyMinutesHours(String daily, String weekly) {
+    return 'Need $daily min/day · $weekly h/week to finish';
+  }
+
+  @override
   String dashboardPaceNeedFrom(String hours, String date) {
     return '$date থেকে $hours ঘণ্টা/দিন প্রয়োজন · আজকের গতিতে নেই';
+  }
+
+  @override
+  String dashboardPaceNeedFromMinutes(String minutes, String date) {
+    return 'Need $minutes min/day from $date · not in Today’s pace';
   }
 
   @override

@@ -134,8 +134,23 @@ class AppLocalizationsHu extends AppLocalizations {
   }
 
   @override
+  String coursesPaceNeededMinutes(String daily) {
+    return '$daily min/day needed';
+  }
+
+  @override
   String coursesPaceNeededWeekly(String daily, String weekly) {
     return '$daily ó/nap • $weekly ó/hét szükséges';
+  }
+
+  @override
+  String coursesPaceNeededWeeklyMinutes(String daily, String weekly) {
+    return '$daily min/day • $weekly min/week needed';
+  }
+
+  @override
+  String coursesPaceNeededWeeklyMinutesHours(String daily, String weekly) {
+    return '$daily min/day • $weekly h/week needed';
   }
 
   @override
@@ -266,6 +281,11 @@ class AppLocalizationsHu extends AppLocalizations {
   }
 
   @override
+  String dashboardMinutesPerDay(String minutes) {
+    return '$minutes min/d';
+  }
+
+  @override
   String get dashboardLogSessionAction => 'Tanulási alkalom naplózása';
 
   @override
@@ -303,13 +323,33 @@ class AppLocalizationsHu extends AppLocalizations {
   }
 
   @override
+  String dashboardPaceNeedDailyMinutes(String daily) {
+    return 'Need $daily min/day to finish';
+  }
+
+  @override
   String dashboardPaceNeedDailyWeekly(String daily, String weekly) {
     return 'A befejezéshez $daily ó/nap · $weekly ó/hét kell';
   }
 
   @override
+  String dashboardPaceNeedDailyWeeklyMinutes(String daily, String weekly) {
+    return 'Need $daily min/day · $weekly min/week to finish';
+  }
+
+  @override
+  String dashboardPaceNeedDailyWeeklyMinutesHours(String daily, String weekly) {
+    return 'Need $daily min/day · $weekly h/week to finish';
+  }
+
+  @override
   String dashboardPaceNeedFrom(String hours, String date) {
     return '$hours ó/nap kell $date dátumtól · nem számít a mai tempóba';
+  }
+
+  @override
+  String dashboardPaceNeedFromMinutes(String minutes, String date) {
+    return 'Need $minutes min/day from $date · not in Today’s pace';
   }
 
   @override

@@ -6,6 +6,7 @@ import 'package:liquid_glass_easy/liquid_glass_easy.dart';
 import '../data/repositories.dart';
 import '../logic/course_list.dart';
 import '../logic/ects.dart';
+import '../logic/pace_format.dart';
 import '../logic/session_totals.dart';
 import '../models/models.dart';
 import '../state/providers.dart';
@@ -469,12 +470,22 @@ class _OverviewPage extends ConsumerWidget {
 
     // Glass cards (ECTS-063): hero + course cards share one page batch
     // (lite lenses only; members never overlap in the scroll list).
+    // ECTS-074 Apple polish (glass-only): airier rhythm — larger top pad,
+    // section gaps and card gaps so frosted cards breathe.
+    final glass = ref.watch(glassEnabledProvider);
+    final topPad =
+        glass ? AppSizes.glassDashboardTopPad : AppSizes.dashboardTopPad;
+    final sectionGap =
+        glass ? AppSizes.glassSectionGap : AppSizes.sectionGap;
+    final innerGap = glass
+        ? AppSizes.glassSectionInnerGap
+        : AppSizes.sectionInnerGap;
     return GlassBatch(
       child: ListView(
       key: const Key('dashboardList'),
-      padding: const EdgeInsets.fromLTRB(
+      padding: EdgeInsets.fromLTRB(
         AppSizes.pageHPad,
-        AppSizes.dashboardTopPad,
+        topPad,
         AppSizes.pageHPad,
         AppSizes.pageBottomPadNoFab,
       ),
@@ -491,7 +502,7 @@ class _OverviewPage extends ConsumerWidget {
           runwayDays: runwayDays,
           activeItems: activeItems,
         ),
-        const SizedBox(height: AppSizes.sectionGap),
+        SizedBox(height: sectionGap),
         SizedBox(
           width: double.infinity,
           // Glass gate (ECTS-062): same Key/label/icon/tap, glass body
@@ -500,7 +511,7 @@ class _OverviewPage extends ConsumerWidget {
           // that floats — the saturated primary wash read as a flat
           // solid block. Package white-on-frost default is invisible
           // on light themes, so ink is explicit.
-          child: ref.watch(glassEnabledProvider)
+          child: glass
               ? LiquidGlassButton(
                   key: const Key('dashboardLogSessionAction'),
                   onPressed: () => showSessionFormDialog(context),
@@ -542,14 +553,14 @@ class _OverviewPage extends ConsumerWidget {
                   ),
                 ),
         ),
-        const SizedBox(height: AppSizes.sectionGap),
+        SizedBox(height: sectionGap),
         SectionHeader(
           title: l10n.dashboardCoursesTitle,
           titleKey: const Key('coursesTitle'),
           icon: Icons.menu_book_outlined,
           trailing: '${activeItems.length}',
         ),
-        const SizedBox(height: AppSizes.sectionInnerGap),
+        SizedBox(height: innerGap),
         if (activeItems.isEmpty)
           Card(
             child: Padding(
@@ -607,7 +618,7 @@ class _OverviewPage extends ConsumerWidget {
               now: effectiveNow,
             ),
         if (scheduled.isNotEmpty) ...[
-          const SizedBox(height: AppSizes.sectionGap),
+          SizedBox(height: sectionGap),
           SectionHeader(
             title: l10n.dashboardUpcomingTitle,
             titleKey: const Key('upcomingTitle'),
@@ -621,7 +632,7 @@ class _OverviewPage extends ConsumerWidget {
                   fontWeight: FontWeight.w500,
                 ),
           ),
-          const SizedBox(height: AppSizes.sectionInnerGap),
+          SizedBox(height: innerGap),
           for (final item in scheduled)
             _DashboardCourseCard(
               key: Key('upcomingCard_${item.course.id}'),
@@ -813,9 +824,14 @@ class _OverallProgressCard extends StatelessWidget {
                             Text(
                               e.progress.requiredDailyHours == null
                                   ? '—'
-                                  : l10n.dashboardHoursPerDay(e.progress
-                                      .requiredDailyHours!
-                                      .toStringAsFixed(1)),
+                                  : isSubHourPace(
+                                          e.progress.requiredDailyHours!)
+                                      ? l10n.dashboardMinutesPerDay(
+                                          formatPaceValue(e.progress
+                                              .requiredDailyHours!))
+                                      : l10n.dashboardHoursPerDay(
+                                          formatPaceValue(e.progress
+                                              .requiredDailyHours!)),
                               style: Theme.of(context)
                                   .textTheme
                                   .bodyMedium
@@ -988,7 +1004,7 @@ class _OverallProgressCard extends StatelessWidget {
   }
 }
 
-class _DashboardCourseCard extends StatelessWidget {
+class _DashboardCourseCard extends ConsumerWidget {
   const _DashboardCourseCard(
       {super.key, required this.item, required this.now});
 
@@ -1013,7 +1029,7 @@ class _DashboardCourseCard extends StatelessWidget {
   }
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final l10n = AppLocalizations.of(context)!;
     final course = item.course;
     final p = item.progress;
@@ -1042,18 +1058,29 @@ class _DashboardCourseCard extends StatelessWidget {
       paceText = fromStart == null
           ? l10n.dashboardPaceStarts(startLabel(course.startDate),
               p.remainingHours.toStringAsFixed(1))
-          : l10n.dashboardPaceNeedFrom(fromStart.toStringAsFixed(1),
-              startLabel(course.startDate));
+          : isSubHourPace(fromStart)
+              ? l10n.dashboardPaceNeedFromMinutes(
+                  formatPaceValue(fromStart), startLabel(course.startDate))
+              : l10n.dashboardPaceNeedFrom(formatPaceValue(fromStart),
+                  startLabel(course.startDate));
       paceColor = scheme.onSurfaceVariant;
       paceIcon = Icons.schedule_outlined;
     } else if (p.requiredDailyHours != null) {
       final daily = p.requiredDailyHours!;
       final weekly = p.requiredWeeklyHours;
       if (weekly == null) {
-        paceText = l10n.dashboardPaceNeedDaily(daily.toStringAsFixed(1));
+        paceText = isSubHourPace(daily)
+            ? l10n.dashboardPaceNeedDailyMinutes(formatPaceValue(daily))
+            : l10n.dashboardPaceNeedDaily(formatPaceValue(daily));
+      } else if (isSubHourPace(daily)) {
+        paceText = isSubHourPace(weekly)
+            ? l10n.dashboardPaceNeedDailyWeeklyMinutes(
+                formatPaceValue(daily), formatPaceValue(weekly))
+            : l10n.dashboardPaceNeedDailyWeeklyMinutesHours(
+                formatPaceValue(daily), formatPaceValue(weekly));
       } else {
         paceText = l10n.dashboardPaceNeedDailyWeekly(
-            daily.toStringAsFixed(1), weekly.toStringAsFixed(1));
+            formatPaceValue(daily), formatPaceValue(weekly));
       }
       if (daily > 6) {
         paceColor = scheme.error;
@@ -1128,8 +1155,12 @@ class _DashboardCourseCard extends StatelessWidget {
         : courseStatusLabelL10n(p.status, l10n);
     final pillStatus =
         scheduled ? CourseStatus.onTrack : p.status;
+    // ECTS-074 Apple polish (glass-only): airier card rhythm.
+    final glass = ref.watch(glassEnabledProvider);
+    final cardGap =
+        glass ? AppSizes.glassCardGap : AppSizes.cardGap;
     return GlassCard(
-      margin: const EdgeInsets.only(bottom: AppSizes.cardGap),
+      margin: EdgeInsets.only(bottom: cardGap),
       child: Padding(
         padding: const EdgeInsets.all(AppSizes.dashboardCardPad),
         child: Column(
@@ -1439,32 +1470,62 @@ class _CoursesPageState extends ConsumerState<_CoursesPage> {
     // Glass cards (ECTS-063): filter chips + count pill render as lite
     // lenses when on (DropdownButton/Chip untouched inside); the identical
     // legacy containers when off. Rows below are GlassCards in one batch.
+    // ECTS-074 Apple polish (glass-only): airier gaps + frosted Apple
+    // menus (rounded, near-opaque, checkmark selection). Legacy stays
+    // byte-identical.
     final glass = ref.watch(glassEnabledProvider);
     Widget chip(Widget child, double radius) =>
         glass ? GlassCard(cornerRadius: radius, child: child) : child;
+    final filterGap =
+        glass ? AppSizes.glassSectionInnerGap : AppSizes.sectionInnerGap;
+    final listTopPad =
+        glass ? AppSizes.glassSectionInnerGap : AppSizes.sectionInnerGap;
+    final pageTopPad =
+        glass ? AppSizes.glassPageTopPad : AppSizes.pageTopPad;
+    final cardGap =
+        glass ? AppSizes.glassCardGap : AppSizes.cardGap;
+    // Apple-style menu surface (glass-only): null keeps legacy defaults.
+    final menuColor = glass ? glassMenuColor(context) : null;
+    final menuRadius = glass
+        ? BorderRadius.circular(AppSizes.glassMenuRadius)
+        : null;
+    final menuElevationInt =
+        glass ? AppSizes.glassMenuElevation.toInt() : null;
+    final menuElevationDouble =
+        glass ? AppSizes.glassMenuElevation : null;
 
     return GlassBatch(
       child: Column(
       children: [
         Padding(
-          padding: const EdgeInsets.fromLTRB(
+          padding: EdgeInsets.fromLTRB(
             AppSizes.pageHPad,
-            AppSizes.pageTopPad,
+            pageTopPad,
             AppSizes.pageHPad,
-            AppSizes.sectionInnerGap,
+            filterGap,
           ),
           child: Wrap(
-            spacing: AppSizes.sectionInnerGap,
-            runSpacing: AppSizes.sectionInnerGap,
+            spacing: filterGap,
+            runSpacing: filterGap,
+            alignment: WrapAlignment.center,
+            runAlignment: WrapAlignment.center,
             crossAxisAlignment: WrapCrossAlignment.center,
             children: [
               chip(
                 FilterDropdownShell(
                   icon: Icons.sort,
-                  child: DropdownButton<CourseSort>(
+                  transparent: glass,
+                  child: GlassInkClear(
+                    enabled: glass,
+                    child: DropdownButton<CourseSort>(
                     key: const Key('courseSortDropdown'),
                     value: _sort,
                     underline: const SizedBox.shrink(),
+                    focusColor: Colors.transparent,
+                    // Dense closed face (ECTS-077): the default 48px
+                    // itemHeight makes the chip ~2x taller than the
+                    // count pill, so the row reads off-center.
+                    isDense: true,
                     icon: const Icon(
                       Icons.expand_more,
                       size: AppSizes.filterIcon,
@@ -1472,17 +1533,41 @@ class _CoursesPageState extends ConsumerState<_CoursesPage> {
                     style: Theme.of(context).textTheme.titleSmall?.copyWith(
                           fontWeight: FontWeight.w700,
                         ),
+                    dropdownColor: menuColor,
+                    borderRadius: menuRadius,
+                    elevation: menuElevationInt ?? 8,
+                    menuMaxHeight: glass
+                        ? AppSizes.glassMenuMaxHeight
+                        : null,
                     onChanged: (v) =>
                         setState(() => _sort = v ?? CourseSort.name),
+                    // Closed-face stays plain text (ECTS-074d): without
+                    // this the button renders the selected item's
+                    // GlassMenuRow, leaking menu padding/weight into the
+                    // chip as a second pill.
+                    selectedItemBuilder: glass
+                        ? (context) => [
+                              for (final s in CourseSort.values)
+                                Text(l10n.coursesSortOption(
+                                    courseSortLabelL10n(s, l10n))),
+                            ]
+                        : null,
                     items: [
                       for (final s in CourseSort.values)
                         DropdownMenuItem(
                           value: s,
                           key: Key('courseSort_${s.name}'),
-                          child: Text(l10n.coursesSortOption(
-                              courseSortLabelL10n(s, l10n))),
+                          child: glass
+                              ? GlassMenuRow(
+                                  selected: _sort == s,
+                                  child: Text(l10n.coursesSortOption(
+                                      courseSortLabelL10n(s, l10n))),
+                                )
+                              : Text(l10n.coursesSortOption(
+                                  courseSortLabelL10n(s, l10n))),
                         ),
                     ],
+                    ),
                   ),
                 ),
                 AppSizes.filterRadius,
@@ -1490,10 +1575,16 @@ class _CoursesPageState extends ConsumerState<_CoursesPage> {
               chip(
                 FilterDropdownShell(
                   icon: Icons.filter_list_outlined,
-                  child: DropdownButton<CourseStatus?>(
+                  transparent: glass,
+                  child: GlassInkClear(
+                    enabled: glass,
+                    child: DropdownButton<CourseStatus?>(
                     key: const Key('courseStatusFilterDropdown'),
                     value: _statusFilter,
                     underline: const SizedBox.shrink(),
+                    focusColor: Colors.transparent,
+                    // Dense closed face (ECTS-077): see sort dropdown.
+                    isDense: true,
                     icon: const Icon(
                       Icons.expand_more,
                       size: AppSizes.filterIcon,
@@ -1501,20 +1592,47 @@ class _CoursesPageState extends ConsumerState<_CoursesPage> {
                     style: Theme.of(context).textTheme.titleSmall?.copyWith(
                           fontWeight: FontWeight.w700,
                         ),
+                    dropdownColor: menuColor,
+                    borderRadius: menuRadius,
+                    elevation: menuElevationInt ?? 8,
+                    menuMaxHeight: glass
+                        ? AppSizes.glassMenuMaxHeight
+                        : null,
                     onChanged: (v) => setState(() => _statusFilter = v),
+                    // Closed-face stays plain text (ECTS-074d): see sort
+                    // dropdown above — no menu row leaks into the chip.
+                    selectedItemBuilder: glass
+                        ? (context) => [
+                              Text(l10n.coursesFilterAll),
+                              for (final s in CourseStatus.values)
+                                Text(courseStatusLabelL10n(s, l10n)),
+                            ]
+                        : null,
                     items: [
                       DropdownMenuItem<CourseStatus?>(
                         value: null,
                         key: const Key('courseFilter_all'),
-                        child: Text(l10n.coursesFilterAll),
+                        child: glass
+                            ? GlassMenuRow(
+                                selected: _statusFilter == null,
+                                child: Text(l10n.coursesFilterAll),
+                              )
+                            : Text(l10n.coursesFilterAll),
                       ),
                       for (final s in CourseStatus.values)
                         DropdownMenuItem<CourseStatus?>(
                           value: s,
                           key: Key('courseFilter_${s.name}'),
-                          child: Text(courseStatusLabelL10n(s, l10n)),
+                          child: glass
+                              ? GlassMenuRow(
+                                  selected: _statusFilter == s,
+                                  child: Text(
+                                      courseStatusLabelL10n(s, l10n)),
+                                )
+                              : Text(courseStatusLabelL10n(s, l10n)),
                         ),
                     ],
+                    ),
                   ),
                 ),
                 AppSizes.filterRadius,
@@ -1556,7 +1674,7 @@ class _CoursesPageState extends ConsumerState<_CoursesPage> {
                     Icon(Icons.filter_alt_off_outlined,
                         size: AppSizes.emptyIcon,
                         color: Theme.of(context).colorScheme.outline),
-                    const SizedBox(height: AppSizes.sectionInnerGap),
+                    SizedBox(height: filterGap),
                     Text(
                       l10n.coursesFilterEmpty,
                       key: const Key('coursesFilterEmpty'),
@@ -1571,9 +1689,9 @@ class _CoursesPageState extends ConsumerState<_CoursesPage> {
           Expanded(
             child: ListView.builder(
               key: const Key('coursesList'),
-              padding: const EdgeInsets.fromLTRB(
+              padding: EdgeInsets.fromLTRB(
                 AppSizes.pageHPad,
-                AppSizes.sectionInnerGap,
+                listTopPad,
                 AppSizes.pageHPad,
                 AppSizes.pageBottomPad,
               ),
@@ -1587,7 +1705,7 @@ class _CoursesPageState extends ConsumerState<_CoursesPage> {
                 final paceUrgent = (p.requiredDailyHours ?? 0) > 8;
                 return GlassCard(
                   margin:
-                      const EdgeInsets.only(bottom: AppSizes.cardGap),
+                      EdgeInsets.only(bottom: cardGap),
                   child: ListTile(
                     key: Key('courseTile_${course.id}'),
                     isThreeLine: true,
@@ -1695,14 +1813,33 @@ class _CoursesPageState extends ConsumerState<_CoursesPage> {
                                 Expanded(
                                   child: Text(
                                     p.requiredWeeklyHours == null
-                                        ? l10n.coursesPaceNeeded(p
-                                            .requiredDailyHours!
-                                            .toStringAsFixed(1))
-                                        : l10n.coursesPaceNeededWeekly(
-                                            p.requiredDailyHours!
-                                                .toStringAsFixed(1),
-                                            p.requiredWeeklyHours!
-                                                .toStringAsFixed(1)),
+                                        ? (isSubHourPace(
+                                                p.requiredDailyHours!)
+                                            ? l10n.coursesPaceNeededMinutes(
+                                                formatPaceValue(p
+                                                    .requiredDailyHours!))
+                                            : l10n.coursesPaceNeeded(
+                                                formatPaceValue(p
+                                                    .requiredDailyHours!)))
+                                        : isSubHourPace(
+                                                p.requiredDailyHours!)
+                                            ? (isSubHourPace(
+                                                    p.requiredWeeklyHours!)
+                                                ? l10n.coursesPaceNeededWeeklyMinutes(
+                                                    formatPaceValue(p
+                                                        .requiredDailyHours!),
+                                                    formatPaceValue(p
+                                                        .requiredWeeklyHours!))
+                                                : l10n.coursesPaceNeededWeeklyMinutesHours(
+                                                    formatPaceValue(p
+                                                        .requiredDailyHours!),
+                                                    formatPaceValue(p
+                                                        .requiredWeeklyHours!)))
+                                            : l10n.coursesPaceNeededWeekly(
+                                                formatPaceValue(p
+                                                    .requiredDailyHours!),
+                                                formatPaceValue(p
+                                                    .requiredWeeklyHours!)),
                                     style: Theme.of(context)
                                         .textTheme
                                         .bodyMedium
@@ -1736,10 +1873,14 @@ class _CoursesPageState extends ConsumerState<_CoursesPage> {
                           )
                         : PopupMenuButton<String>(
                             key: Key('courseMenu_${course.id}'),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(
-                                  AppSizes.listTileRadius),
-                            ),
+                            shape: glass
+                                ? glassMenuShape()
+                                : RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(
+                                        AppSizes.listTileRadius),
+                                  ),
+                            color: menuColor,
+                            elevation: menuElevationDouble,
                             onSelected: (value) {
                               if (value == 'edit') {
                                 showCourseFormDialog(context, existing: course);
@@ -1750,13 +1891,58 @@ class _CoursesPageState extends ConsumerState<_CoursesPage> {
                             itemBuilder: (context) {
                               final menuL10n =
                                   AppLocalizations.of(context)!;
+                              if (!glass) {
+                                return [
+                                  PopupMenuItem(
+                                      value: 'edit',
+                                      child: Text(menuL10n.commonEdit)),
+                                  PopupMenuItem(
+                                      value: 'delete',
+                                      child: Text(menuL10n.commonDelete)),
+                                ];
+                              }
+                              // Apple-style glass menu (ECTS-074): rounded
+                              // frosted surface, icon rows, red delete.
                               return [
                                 PopupMenuItem(
-                                    value: 'edit',
-                                    child: Text(menuL10n.commonEdit)),
+                                  value: 'edit',
+                                  child: GlassMenuRow(
+                                    selected: false,
+                                    child: Row(
+                                      mainAxisSize: MainAxisSize.min,
+                                      children: [
+                                        const Icon(Icons.edit_outlined,
+                                            size: 18),
+                                        const SizedBox(width: 10),
+                                        Flexible(
+                                          fit: FlexFit.loose,
+                                          child: Text(
+                                              menuL10n.commonEdit),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
                                 PopupMenuItem(
-                                    value: 'delete',
-                                    child: Text(menuL10n.commonDelete)),
+                                  value: 'delete',
+                                  child: GlassMenuRow(
+                                    selected: false,
+                                    destructive: true,
+                                    child: Row(
+                                      mainAxisSize: MainAxisSize.min,
+                                      children: [
+                                        const Icon(Icons.delete_outline,
+                                            size: 18),
+                                        const SizedBox(width: 10),
+                                        Flexible(
+                                          fit: FlexFit.loose,
+                                          child: Text(
+                                              menuL10n.commonDelete),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
                               ];
                             },
                           ),
@@ -1906,15 +2092,32 @@ class _StudyLogPage extends ConsumerWidget {
         final sorted = sessionsByDateDesc(sessionList);
 
         // Glass cards (ECTS-063): totals + session rows share one page batch.
+        // ECTS-074 Apple polish (glass-only): airier gaps + Apple menus.
+        final glass = ref.watch(glassEnabledProvider);
+        final filterGap =
+            glass ? AppSizes.glassSectionInnerGap : AppSizes.sectionInnerGap;
+        final pageTopPad =
+            glass ? AppSizes.glassPageTopPad : AppSizes.pageTopPad;
+        final cardGap =
+            glass ? AppSizes.glassCardGap : AppSizes.cardGap;
+        final menuColor = glass ? glassMenuColor(context) : null;
+        final menuShape = glass
+            ? glassMenuShape()
+            : RoundedRectangleBorder(
+                borderRadius:
+                    BorderRadius.circular(AppSizes.listTileRadius),
+              );
+        final menuElevation =
+            glass ? AppSizes.glassMenuElevation : null;
         return GlassBatch(
           child: Column(
           children: [
             Padding(
-              padding: const EdgeInsets.fromLTRB(
+              padding: EdgeInsets.fromLTRB(
                 AppSizes.pageHPad,
-                AppSizes.pageTopPad,
+                pageTopPad,
                 AppSizes.pageHPad,
-                AppSizes.sectionInnerGap,
+                filterGap,
               ),
               child: GlassCard(
                 key: const Key('studyTotalsCard'),
@@ -1962,9 +2165,9 @@ class _StudyLogPage extends ConsumerWidget {
             Expanded(
               child: ListView.builder(
                 key: const Key('studyLogList'),
-                padding: const EdgeInsets.fromLTRB(
+                padding: EdgeInsets.fromLTRB(
                   AppSizes.pageHPad,
-                  AppSizes.sectionInnerGap,
+                  filterGap,
                   AppSizes.pageHPad,
                   AppSizes.pageBottomPad,
                 ),
@@ -1984,7 +2187,7 @@ class _StudyLogPage extends ConsumerWidget {
                   }
                   final scheme = Theme.of(context).colorScheme;
                   return GlassCard(
-                    margin: const EdgeInsets.only(bottom: AppSizes.cardGap),
+                    margin: EdgeInsets.only(bottom: cardGap),
                     child: ListTile(
                       key: Key('sessionTile_${session.id}'),
                       contentPadding: const EdgeInsets.symmetric(
@@ -2082,10 +2285,9 @@ class _StudyLogPage extends ConsumerWidget {
                             )
                           : PopupMenuButton<String>(
                               key: Key('sessionMenu_${session.id}'),
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(
-                                    AppSizes.listTileRadius),
-                              ),
+                              shape: menuShape,
+                              color: menuColor,
+                              elevation: menuElevation,
                               onSelected: (value) {
                                 if (value == 'edit') {
                                   showSessionFormDialog(context,
@@ -2097,13 +2299,56 @@ class _StudyLogPage extends ConsumerWidget {
                               itemBuilder: (context) {
                                 final menuL10n =
                                     AppLocalizations.of(context)!;
+                                if (!glass) {
+                                  return [
+                                    PopupMenuItem(
+                                        value: 'edit',
+                                        child: Text(menuL10n.commonEdit)),
+                                    PopupMenuItem(
+                                        value: 'delete',
+                                        child: Text(menuL10n.commonDelete)),
+                                  ];
+                                }
                                 return [
                                   PopupMenuItem(
-                                      value: 'edit',
-                                      child: Text(menuL10n.commonEdit)),
+                                    value: 'edit',
+                                    child: GlassMenuRow(
+                                      selected: false,
+                                      child: Row(
+                                        mainAxisSize: MainAxisSize.min,
+                                        children: [
+                                          const Icon(Icons.edit_outlined,
+                                              size: 18),
+                                          const SizedBox(width: 10),
+                                          Flexible(
+                                            fit: FlexFit.loose,
+                                            child: Text(
+                                                menuL10n.commonEdit),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ),
                                   PopupMenuItem(
-                                      value: 'delete',
-                                      child: Text(menuL10n.commonDelete)),
+                                    value: 'delete',
+                                    child: GlassMenuRow(
+                                      selected: false,
+                                      destructive: true,
+                                      child: Row(
+                                        mainAxisSize: MainAxisSize.min,
+                                        children: [
+                                          const Icon(Icons.delete_outline,
+                                              size: 18),
+                                          const SizedBox(width: 10),
+                                          Flexible(
+                                            fit: FlexFit.loose,
+                                            child: Text(
+                                                menuL10n.commonDelete),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ),
                                 ];
                               },
                             ),

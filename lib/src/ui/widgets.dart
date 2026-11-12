@@ -356,14 +356,40 @@ class FilterDropdownShell extends StatelessWidget {
     super.key,
     required this.icon,
     required this.child,
+    this.transparent = false,
   });
 
   final IconData icon;
   final Widget child;
 
+  /// Glass-only Apple polish (ECTS-074): when true, skip the solid fill +
+  /// border so the surrounding [GlassCard] frost shows through as a single
+  /// layer instead of solid paint over glass. Padding is kept identical
+  /// (ECTS-074e) — dropping it jams content against the lens edge.
+  final bool transparent;
+
   @override
   Widget build(BuildContext context) {
     final scheme = Theme.of(context).colorScheme;
+    if (transparent) {
+      return Padding(
+        padding: const EdgeInsets.symmetric(
+          horizontal: AppSizes.filterHPad,
+          vertical: AppSizes.filterVPad,
+        ),
+        child: Row(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Icon(icon,
+                size: AppSizes.filterIcon,
+                color: scheme.onSurfaceVariant),
+            const SizedBox(width: AppSizes.filterGap),
+            child,
+          ],
+        ),
+      );
+    }
     return Container(
       padding: const EdgeInsets.symmetric(
         horizontal: AppSizes.filterHPad,

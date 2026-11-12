@@ -85,9 +85,11 @@ LiquidGlassStyle glassStyle(BuildContext context) {
 ///
 /// The widget [key] is forwarded to the underlying [Card]/[LiquidGlassLens]
 /// in both branches so keyed lookups keep passing regardless of the toggle.
-/// Extra [Card] parameters ([margin], [color], [elevation], [clipBehavior])
-/// apply to the legacy branch only; the glass branch tints via [glassStyle]
-/// (overridden by [color] when given) and clips via the lens shape.
+/// Extra [Card] parameters ([color], [elevation], [clipBehavior]) apply to
+/// the legacy branch only (glass tints via [glassStyle], overridden by
+/// [color]); [margin] is outer space in both branches (ECTS-074b); the
+/// glass branch wraps the lens in [Padding], the legacy branch uses
+/// [Card.margin].
 /// [cornerRadius] overrides the lens corner radius on the glass branch only
 /// (default keeps [glassStyle]'s [AppSizes.cardRadius]); use it where the
 /// legacy surface is not a 20-pt card (filter chips, count pills).
@@ -131,10 +133,12 @@ class GlassCard extends ConsumerWidget {
         ),
       );
     }
-    final Widget content = margin == null
-        ? child
-        : Padding(padding: margin!, child: child);
-    return LiquidGlassLens(key: key, style: style, child: content);
+    // ECTS-074b: margin is OUTER space between lenses (like Card.margin).
+    // Previously it was inner Padding inside the lens, so adjacent frosted
+    // surfaces touched edge-to-edge and cards read as one slab.
+    final lens = LiquidGlassLens(key: key, style: style, child: child);
+    if (margin == null) return lens;
+    return Padding(padding: margin!, child: lens);
   }
 }
 
@@ -272,6 +276,122 @@ class GlassOption extends StatelessWidget {
       title: child,
       contentPadding: const EdgeInsets.symmetric(horizontal: 4),
       minVerticalPadding: 8,
+    );
+  }
+}
+
+/// Apple-style menu surface for the glass gate only (ECTS-074).
+///
+/// Dropdown + popup overlays live in the [Overlay], outside any
+/// [LiquidGlassBatch], so they cannot be real lenses. Approximate the
+/// Apple look with a frosted-solid fill: surface lifted toward the theme
+/// surface, near-opaque so the dimmed page behind does not turn gray.
+Color glassMenuColor(BuildContext context) {
+  final scheme = Theme.of(context).colorScheme;
+  final base = scheme.surfaceContainerHigh;
+  return glassTint(scheme, base, lighten: 0.35, opacity: 0.97);
+}
+
+/// Shared Apple-style menu shape (glass-only, ECTS-074).
+RoundedRectangleBorder glassMenuShape() => RoundedRectangleBorder(
+      borderRadius:
+          BorderRadius.circular(AppSizes.glassMenuRadius),
+    );
+
+/// Strips Material ink overlays under glass (ECTS-074e).
+///
+/// The frosted lens IS the surface — the default grey hover/focus/ripple
+/// reads as a dirty block inside the chip and lingers on the last-tapped
+/// button on desktop. When [enabled] (glass gate on) forces all four ink
+/// colors transparent for the subtree (button face AND its overlay menu,
+/// which inherits this theme); off-gate it passes [child] through
+/// untouched so legacy keeps stock feedback.
+class GlassInkClear extends StatelessWidget {
+  const GlassInkClear({
+    super.key,
+    required this.enabled,
+    required this.child,
+  });
+
+  final bool enabled;
+  final Widget child;
+
+  @override
+  Widget build(BuildContext context) {
+    if (!enabled) return child;
+    return Theme(
+      data: Theme.of(context).copyWith(
+        hoverColor: Colors.transparent,
+        focusColor: Colors.transparent,
+        splashColor: Colors.transparent,
+        highlightColor: Colors.transparent,
+      ),
+      child: child,
+    );
+  }
+}
+
+/// Apple-style dropdown/popup item row (glass-only, ECTS-074).
+///
+/// [selected] renders a tinted rounded highlight + semibold ink; unselected
+/// renders plain ink. No checkmark (ECTS-074c) — the tint alone marks
+/// selection. Color lives ONLY in the open menu (ECTS-074f): closed
+/// button faces use plain `Text` via `selectedItemBuilder`, never this
+/// row, so no pill leaks into the chip.
+/// Keeps the caller's text widget untouched (same strings/Keys) — only
+/// wraps it in padding + selection tint. Use inside
+/// `DropdownMenuItem.child` and `PopupMenuItem.child` when the glass gate
+/// is on; legacy branch keeps the bare `Text`.
+class GlassMenuRow extends StatelessWidget {
+  const GlassMenuRow({
+    super.key,
+    required this.selected,
+    required this.child,
+    this.destructive = false,
+  });
+
+  final bool selected;
+  final Widget child;
+  final bool destructive;
+
+  @override
+  Widget build(BuildContext context) {
+    final scheme = Theme.of(context).colorScheme;
+    final ink = destructive ? scheme.error : scheme.onSurface;
+    return Container(
+      padding: const EdgeInsets.symmetric(
+        horizontal: AppSizes.glassMenuItemHPad,
+        vertical: AppSizes.glassMenuItemVPad,
+      ),
+      decoration: selected
+          ? BoxDecoration(
+              color: scheme.primaryContainer.withValues(alpha: 0.55),
+              borderRadius: BorderRadius.circular(10),
+            )
+          : null,
+      // NOTE: Flexible-loose, not Expanded — DropdownMenuItem measures
+      // its child with unbounded width (0..Infinity), where Expanded
+      // throws "flex but incoming width constraints are unbounded".
+      // No trailing check (ECTS-074c) — the tint alone marks selection.
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Flexible(
+            fit: FlexFit.loose,
+            child: DefaultTextStyle.merge(
+              style: TextStyle(
+                color: ink,
+                fontWeight:
+                    selected ? FontWeight.w700 : FontWeight.w500,
+              ),
+              child: IconTheme.merge(
+                data: IconThemeData(color: ink, size: 18),
+                child: child,
+              ),
+            ),
+          ),
+        ],
+      ),
     );
   }
 }

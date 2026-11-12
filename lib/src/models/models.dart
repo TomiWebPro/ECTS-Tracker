@@ -116,6 +116,7 @@ int accentToInt(AppAccent accent) => switch (accent) {
     };
 
 AppAccent accentFromInt(int value) => switch (value) {
+      0 => AppAccent.teal,
       1 => AppAccent.forest,
       2 => AppAccent.clay,
       3 => AppAccent.slate,

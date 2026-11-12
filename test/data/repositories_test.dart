@@ -1385,4 +1385,32 @@ void main() {
       expect((await settings.get()).liquidGlass, isFalse);
     });
   });
+
+  group('accent setting (ECTS-069)', () {
+    late SettingsRepository settings;
+
+    setUp(() {
+      settings = SettingsRepository(db);
+    });
+
+    test('accentToInt/accentFromInt round-trip every accent', () {
+      for (final accent in AppAccent.values) {
+        expect(accentFromInt(accentToInt(accent)), accent,
+            reason: 'round-trip for $accent');
+      }
+    });
+
+    test('teal (int 0) reads back as teal, not slate', () {
+      expect(accentFromInt(0), AppAccent.teal);
+    });
+
+    test('setAccent persists every accent via get() and watch()', () async {
+      for (final accent in AppAccent.values) {
+        expect(await settings.setAccent(accent), isA<Ok<void>>());
+        expect((await settings.get()).accent, accent);
+        expect(
+            await settings.watch().first.then((s) => s.accent), accent);
+      }
+    });
+  });
 }

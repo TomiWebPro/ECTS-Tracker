@@ -410,11 +410,29 @@ abstract class AppLocalizations {
   /// **'{daily} h/day needed'**
   String coursesPaceNeeded(String daily);
 
+  /// Daily pace line in minutes (sub-hour pace) on a course row.
+  ///
+  /// In en, this message translates to:
+  /// **'{daily} min/day needed'**
+  String coursesPaceNeededMinutes(String daily);
+
   /// Daily + weekly pace line on a course row.
   ///
   /// In en, this message translates to:
   /// **'{daily} h/day • {weekly} h/week needed'**
   String coursesPaceNeededWeekly(String daily, String weekly);
+
+  /// Daily + weekly pace line when both are sub-hour (minutes).
+  ///
+  /// In en, this message translates to:
+  /// **'{daily} min/day • {weekly} min/week needed'**
+  String coursesPaceNeededWeeklyMinutes(String daily, String weekly);
+
+  /// Daily minutes + weekly hours pace line on a course row.
+  ///
+  /// In en, this message translates to:
+  /// **'{daily} min/day • {weekly} h/week needed'**
+  String coursesPaceNeededWeeklyMinutesHours(String daily, String weekly);
 
   /// Course row progress line combining hours and the (unlocalized, logic-owned) status label.
   ///
@@ -578,6 +596,12 @@ abstract class AppLocalizations {
   /// **'{hours} h/d'**
   String dashboardHoursPerDay(String hours);
 
+  /// Required daily minutes chip (sub-hour pace) in the hero-card top-3 list.
+  ///
+  /// In en, this message translates to:
+  /// **'{minutes} min/d'**
+  String dashboardMinutesPerDay(String minutes);
+
   /// Label of the dashboard button that opens the log-session dialog.
   ///
   /// In en, this message translates to:
@@ -644,17 +668,41 @@ abstract class AppLocalizations {
   /// **'Need {daily} h/day to finish'**
   String dashboardPaceNeedDaily(String daily);
 
+  /// Pace line stating the required daily minutes (sub-hour pace).
+  ///
+  /// In en, this message translates to:
+  /// **'Need {daily} min/day to finish'**
+  String dashboardPaceNeedDailyMinutes(String daily);
+
   /// Pace line stating required daily and weekly hours to finish.
   ///
   /// In en, this message translates to:
   /// **'Need {daily} h/day · {weekly} h/week to finish'**
   String dashboardPaceNeedDailyWeekly(String daily, String weekly);
 
+  /// Pace line when both daily and weekly paces are sub-hour.
+  ///
+  /// In en, this message translates to:
+  /// **'Need {daily} min/day · {weekly} min/week to finish'**
+  String dashboardPaceNeedDailyWeeklyMinutes(String daily, String weekly);
+
+  /// Pace line with daily minutes and weekly hours.
+  ///
+  /// In en, this message translates to:
+  /// **'Need {daily} min/day · {weekly} h/week to finish'**
+  String dashboardPaceNeedDailyWeeklyMinutesHours(String daily, String weekly);
+
   /// Pace line for a scheduled course with a computable daily pace.
   ///
   /// In en, this message translates to:
   /// **'Need {hours} h/day from {date} · not in Today’s pace'**
   String dashboardPaceNeedFrom(String hours, String date);
+
+  /// Pace line for a scheduled course with a sub-hour daily pace.
+  ///
+  /// In en, this message translates to:
+  /// **'Need {minutes} min/day from {date} · not in Today’s pace'**
+  String dashboardPaceNeedFromMinutes(String minutes, String date);
 
   /// Pace line for a course without a deadline.
   ///

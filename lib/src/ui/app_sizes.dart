@@ -239,4 +239,25 @@ abstract final class AppSizes {
   /// + glassChromeGap + breathing room = 108).
   static const double glassPageTopInset = 72.0;
   static const double glassPageBottomInset = 108.0;
+
+  // ------------------------------------------------------------------
+  // Liquid glass Apple polish (ECTS-074/074b, glass-only).
+  //
+  // Apple-style air: larger gaps so frosted cards breathe. Legacy values
+  // above stay untouched — these are picked only when the glass gate is
+  // on (see home_shell.dart ternaries). ECTS-074b: 12px still read as
+  // touching once the margin-outside fix landed, so step up to 16/24/16.
+  // ------------------------------------------------------------------
+  static const double glassCardGap = 16.0;
+  static const double glassSectionGap = 24.0;
+  static const double glassSectionInnerGap = 16.0;
+  static const double glassPageTopPad = 20.0;
+  static const double glassDashboardTopPad = 24.0;
+
+  // Apple-style menus (glass-only): rounded frosted overlays.
+  static const double glassMenuRadius = 18.0;
+  static const double glassMenuElevation = 12.0;
+  static const double glassMenuItemVPad = 10.0;
+  static const double glassMenuItemHPad = 12.0;
+  static const double glassMenuMaxHeight = 340.0;
 }
