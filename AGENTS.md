@@ -57,3 +57,12 @@ One run owns ONE task. No sidecars, no tooling — the `TRACK.md` row is the loc
 - One task per run. Small commit for code only (`git commit`, explicit paths).
 - NEVER `git push`. NEVER commit anything outside this repo.
 - Update the TRACK.md row to `done` with test evidence.
+
+## 6. Locale policy for new work
+
+- New user-visible strings go into `lib/l10n/app_en.arb` ONLY (English),
+  with full `@description` metadata.
+- All other locale ARBs are left untouched (runtime fallback to English).
+- Pending non-English translations are done later in one bulk pass.
+- Feature changes cover functionality + the English key only — just leave
+  the key; never hand-translate other locales in the feature change.

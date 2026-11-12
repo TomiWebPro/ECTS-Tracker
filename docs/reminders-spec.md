@@ -1,5 +1,7 @@
 # Study reminders — v1 spec (locked 2026-11-11, ECTS-070)
 
+> Project overview in [README.md](../README.md); this file is the normative spec.
+
 Goal: nudge the student back to studying. Max 1 ping a day plus a
 deadline countdown when close. Never nag. Phone and tablet identical
 (local notifications, no server, no FCM).
@@ -38,14 +40,13 @@ deadline countdown when close. Never nag. Phone and tablet identical
 
 ## Rules (non-negotiable)
 
-- Never notify when everything is `Completed`/`Ahead`/no deadlines.
-- Scheduled-future courses (`isScheduledCourse`) are excluded from
-  "tonight's number".
+- Returns `[]`/`null` (no notification) when everything is `Completed`/`Ahead`/no deadlines.
+- Returns `[]` (excluded) for scheduled-future courses (`isScheduledCourse`) in "tonight's number".
 - One daily summary names max 2 courses, rest folds into "+N more".
 - Daily ping is silent (no sound); sound only on deadline-tomorrow/overdue.
-- `remindersEnabled == false` → cancel all. `resetAllData` → cancel all.
-- Overdue: max 2 pushes per course-deadline, then silent.
-- Streak: at most 1 per week.
+- Returns `[]` (and cancels all scheduled) when `remindersEnabled == false`; `resetAllData` cancels all.
+- Returns `[]` for overdue beyond max 2 pushes per course-deadline, then silent.
+- Returns `null` for streak when already fired within the past week (at most 1 per week).
 - Tap payload carries `courseId` (or `open:dashboard`); app deep-links to
   the course with the log-session sheet one tap away.
 
@@ -89,3 +90,8 @@ deadline countdown when close. Never nag. Phone and tablet identical
   next fire only (repeats continue while the app is opened regularly).
 - Android: `POST_NOTIFICATIONS` (runtime, asked when enabling). iOS: no
   plist change (runtime alert/badge/sound auth only).
+
+## Status
+
+Locked 2026-11-11 ECTS-070; extended ECTS-073/075.
+Implementation: lib/src/logic/reminders.dart + custom_reminders.dart, tests test/logic/reminders_test.dart + custom_reminders_test.dart.
