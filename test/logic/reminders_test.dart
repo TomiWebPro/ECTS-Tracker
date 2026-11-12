@@ -1,3 +1,4 @@
+import 'package:ects_tracker/src/logic/ects.dart';
 import 'package:ects_tracker/src/logic/reminders.dart';
 import 'package:ects_tracker/src/models/models.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -198,6 +199,121 @@ void main() {
         computeStreakNudge(courses: behind, sessions: withRecent, hoursPerEcts: 30, now: now),
         isNull,
       );
+    });
+  });
+
+  group('daily deducts today (ECTS-075)', () {
+    Course oneEcts(int id, String name) => course(
+        id: id, name: name, ects: 1, deadline: DateTime(2026, 11, 21, 19));
+    // 30 h / 10 d = 3.0 h/day pace.
+
+    test('states what is still needed today', () {
+      final plan = computeDailyPlan(
+        courses: [oneEcts(1, 'Biology')],
+        sessions: [
+          session(courseId: 1, minutes: 60, date: DateTime(2026, 11, 11, 9)),
+        ],
+        hoursPerEcts: 30,
+        now: now,
+      )!;
+      expect(plan.title, '📚 Tonight: 2 h to stay on track');
+      expect(plan.body, contains('2 h left today'));
+    });
+
+    test('fully covered day returns null', () {
+      expect(
+        computeDailyPlan(
+          courses: [oneEcts(1, 'Biology')],
+          sessions: [
+            session(courseId: 1, minutes: 180, date: DateTime(2026, 11, 11, 9)),
+          ],
+          hoursPerEcts: 30,
+          now: now,
+        ),
+        isNull,
+      );
+    });
+
+    test('yesterday still counts toward remaining, not today', () {
+      final plan = computeDailyPlan(
+        courses: [oneEcts(1, 'Biology')],
+        sessions: [
+          session(courseId: 1, minutes: 60, date: DateTime(2026, 11, 10, 9)),
+        ],
+        hoursPerEcts: 30,
+        now: now,
+      )!;
+      // 29 h left / 10 d = 2.9 h/day, nothing logged today to deduct.
+      expect(plan.title, '📚 Tonight: 2.9 h to stay on track');
+    });
+
+    test('covered courses drop out of the named list', () {
+      final plan = computeDailyPlan(
+        courses: [oneEcts(1, 'Algebra'), oneEcts(2, 'Biology')],
+        sessions: [
+          session(courseId: 1, minutes: 180, date: DateTime(2026, 11, 11, 9)),
+        ],
+        hoursPerEcts: 30,
+        now: now,
+      )!;
+      expect(plan.body, contains('Biology'));
+      expect(plan.body, isNot(contains('Algebra')));
+    });
+  });
+
+  group('catchUpHoursToOnTrack (ECTS-075)', () {
+    Course slipped() => course(
+          id: 1,
+          name: 'Linear Algebra',
+          ects: 5,
+          start: DateTime(2026, 10, 1),
+          deadline: DateTime(2026, 12, 1),
+        );
+    List<StudySession> oneHour() => [
+          session(courseId: 1, minutes: 60, date: DateTime(2026, 10, 5, 10)),
+        ];
+
+    CourseProgress statusAfter(Course c, List<StudySession> base, double extraHours) =>
+        courseProgressFor(
+          c,
+          [...base, session(courseId: c.id, minutes: (extraHours * 60).round(), date: now)],
+          hoursPerEcts: 30,
+          now: now,
+        );
+
+    test('zero when not behind', () {
+      final calm = course(id: 1, name: 'Steady', ects: 5, deadline: DateTime(2026, 12, 1, 19));
+      expect(catchUpHoursToOnTrack(calm, const [], hoursPerEcts: 30, now: now), 0);
+    });
+
+    test('figure is sufficient and minimal', () {
+      final c = slipped();
+      final base = oneHour();
+      final catchUp = catchUpHoursToOnTrack(c, base, hoursPerEcts: 30, now: now);
+      expect(catchUp, greaterThan(0));
+      expect(catchUp, lessThan(149));
+      // Logging the rounded-up figure provably exits behind...
+      final enough = (catchUp * 10).ceil() / 10;
+      expect(statusAfter(c, base, enough).status, isNot(CourseStatus.behind));
+      // ...while clearly less keeps it behind (0.5 h margin dwarfs rounding).
+      expect(statusAfter(c, base, catchUp - 0.5).status, CourseStatus.behind);
+    });
+
+    test('deadline-day returns the full remaining hours', () {
+      final c = course(id: 1, name: 'Due Today', ects: 5, deadline: DateTime(2026, 11, 11, 20));
+      // Minute-granularity probing: trials within half a minute of full
+      // completion round to it, so assert closeness, not exact equality.
+      expect(catchUpHoursToOnTrack(c, const [], hoursPerEcts: 30, now: now), closeTo(150, 0.02));
+    });
+
+    test('nudge body states the computed figure, never a hardcode', () {
+      final nudges = computeBehindNudges(
+          courses: [slipped()], sessions: oneHour(), hoursPerEcts: 30, now: now);
+      expect(nudges, hasLength(1));
+      expect(nudges.first.body, contains('to get back On track'));
+      expect(nudges.first.body, contains('Log '));
+      expect(nudges.first.body, isNot(contains('45-min')));
+      expect(nudges.first.body, isNot(contains('stops the slide')));
     });
   });
 

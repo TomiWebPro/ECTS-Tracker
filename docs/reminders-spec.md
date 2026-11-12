@@ -6,8 +6,11 @@ deadline countdown when close. Never nag. Phone and tablet identical
 
 ## Message types (English v1; other locales later per M7 precedent)
 
-1. **Daily plan** (19:00 default, user-settable later): total still needed
-   today = Σ finite `requiredDailyHours` over started, incomplete courses.
+1. **Daily plan** (19:00 default, user-settable later): per course, today's
+   target is the start-of-day pace (remaining as if nothing logged today);
+   still needed = max(0, target − hours already logged *today*).
+   Covered courses drop out; all covered → silence
+   (or the "Today is covered" variant via `todayLoggedHours`).
    - Needs work: `📚 Tonight: {X} h to stay on track` /
      `{Course} needs {p} h/day · {Course2} {p2} h/day. Log a session to clear today.`
    - Covered: `✅ Today is covered — {X} h logged. {Course} is back On track.`
@@ -15,7 +18,10 @@ deadline countdown when close. Never nag. Phone and tablet identical
 2. **Behind** (folded into the daily ping, no extra push): only when
    `status == behind` (real shortfall past the tolerance band, not one
    missed evening). `⚠️ {Course} slipped to Behind` /
-   `{left} h left, {d} days to go — {p} h/day from here. A 45-min session tonight stops the slide.`
+   `{left} h left, {d} days to go — {p} h/day from here. Log {catchUp} h
+   to get back On track.` — where {catchUp} is computed by bisection over
+   the engine (ECTS-075, never a hardcoded session size); when only
+   finishing clears it, the copy says so honestly.
 3. **Deadline countdown** (`deadlineWarnDays = 3`, fires at reminder time on
    `deadline - warnDays`, plus tomorrow/today variants):
    - `⏳ {Course} exam in {d} days — {left} h left` / `That's {p} h/day. Split it: 2 sessions a day beats one marathon.`

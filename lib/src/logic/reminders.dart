@@ -79,19 +79,47 @@ ReminderContent? computeDailyPlan({
   double toleranceDays = defaultPaceToleranceDays,
 }) {
   final byCourse = _sessionsByCourse(sessions);
+  // Hours already logged today per course: the nudge states what is STILL
+  // needed (ECTS-075) — "studied 3 h of a 4 h day ⇒ 1 h left", never the
+  // full need on top of today's work.
+  final today = DateTime(now.year, now.month, now.day);
+  double todayHoursFor(int courseId) {
+    var minutes = 0;
+    for (final s in byCourse[courseId] ?? const <StudySession>[]) {
+      if (s.minutes <= 0) continue;
+      final day = DateTime(s.date.year, s.date.month, s.date.day);
+      if (day == today) minutes += s.minutes;
+    }
+    return minutes / 60.0;
+  }
+
   final needs = <_PaceNeed>[];
   for (final course in courses) {
     if (isScheduledCourse(course, now)) continue;
+    final sessionsForCourse =
+        byCourse[course.id] ?? const <StudySession>[];
     final progress = courseProgressFor(
       course,
-      byCourse[course.id] ?? const <StudySession>[],
+      sessionsForCourse,
       hoursPerEcts: hoursPerEcts,
       now: now,
       toleranceDays: toleranceDays,
     );
-    final pace = progress.requiredDailyHours;
-    if (pace == null || pace <= 0) continue;
-    needs.add(_PaceNeed(course, pace));
+    // Skip when no finite pace exists today (no deadline, deadline-day,
+    // completed) — checked on live remaining first.
+    if (progress.requiredDailyHours == null ||
+        progress.requiredDailyHours! <= 0) {
+      continue;
+    }
+    final loggedToday = todayHoursFor(course.id);
+    // Today's target is the start-of-day pace: remaining as if nothing had
+    // been logged today. Still needed = target − logged today.
+    final target = requiredDailyHours(
+            progress.remainingHours + loggedToday, course.deadline, now) ??
+        0;
+    final share = target - loggedToday;
+    if (share <= 1e-9) continue;
+    needs.add(_PaceNeed(course, share));
   }
   if (needs.isEmpty) return null;
   needs.sort((a, b) => b.pace.compareTo(a.pace));
@@ -100,7 +128,7 @@ ReminderContent? computeDailyPlan({
   final rest = needs.length - named.length;
   final parts = [
     for (final n in named)
-      '${n.course.name} ${formatHours(n.pace)} h/day',
+      '${n.course.name} ${formatHours(n.pace)} h left today',
   ];
   final detail = rest > 0 ? '${parts.join(' · ')} (+$rest more)' : parts.join(' · ');
   return ReminderContent(
@@ -150,11 +178,33 @@ List<ReminderContent> computeBehindNudges({
     final left = progress.remainingHours;
     final days = progress.remainingDays;
     final pace = progress.requiredDailyHours;
-    final body = pace == null
-        // Deadline-day (or past) with hours outstanding: no finite pace
-        // exists, so report action instead of a number (ects.dart rule).
-        ? '${formatHours(left)} h still open and the deadline is here. Anything you log now counts.'
-        : '${formatHours(left)} h left, $days days to go — ${formatHours(pace)} h/day from here. A 45-min session tonight stops the slide.';
+    final sessions = byCourse[course.id] ?? const <StudySession>[];
+    String body;
+    if (pace == null) {
+      // Deadline-day (or past) with hours outstanding: no finite pace
+      // exists, so report action instead of a number (ects.dart rule).
+      body =
+          '${formatHours(left)} h still open and the deadline is here. Anything you log now counts.';
+    } else {
+      // Honest catch-up: the hours that provably flip status back out of
+      // behind (ECTS-075 — never a hardcoded session size).
+      final catchUp = catchUpHoursToOnTrack(
+        course,
+        sessions,
+        hoursPerEcts: hoursPerEcts,
+        now: now,
+        toleranceDays: toleranceDays,
+      );
+      if (catchUp >= left - 1e-9) {
+        body =
+            '${formatHours(left)} h left, $days days to go — ${formatHours(pace)} h/day from here. Only finishing the full ${formatHours(left)} h clears this — start tonight.';
+      } else {
+        // Round UP so the promise holds (hi sits on the flip boundary).
+        final display = (catchUp * 10).ceil() / 10;
+        body =
+            '${formatHours(left)} h left, $days days to go — ${formatHours(pace)} h/day from here. Log ${formatHours(display)} h to get back On track.';
+      }
+    }
     out.add(ReminderContent(
       kind: ReminderKind.behind,
       title: '⚠️ ${course.name} slipped to Behind',
@@ -163,6 +213,61 @@ List<ReminderContent> computeBehindNudges({
     ));
   }
   return out;
+}
+
+/// Minimal extra hours that flip a `behind` course back out of it.
+///
+/// Found by bisection over the engine itself ([courseProgressFor] with a
+/// synthetic session dated [now]): exact by construction, so this can never
+/// drift from the status rules. The synthetic session never moves the pace
+/// baseline (it is dated [now], never earlier than real history), and
+/// status is monotonic in logged hours (more work only raises the surplus
+/// and lowers the need), so the bisection converges. Returns 0 when the
+/// course is not currently behind; returns the full remaining hours when
+/// only finishing clears it (deadline-day, or less time left than the
+/// tolerance band absorbs).
+double catchUpHoursToOnTrack(
+  Course course,
+  Iterable<StudySession> sessions, {
+  required double hoursPerEcts,
+  required DateTime now,
+  double toleranceDays = defaultPaceToleranceDays,
+}) {
+  final base = sessions.toList(growable: false);
+  final progress = courseProgressFor(
+    course,
+    base,
+    hoursPerEcts: hoursPerEcts,
+    now: now,
+    toleranceDays: toleranceDays,
+  );
+  if (progress.status != CourseStatus.behind) return 0;
+  var lo = 0.0;
+  var hi = progress.remainingHours;
+  for (var i = 0; i < 40; i++) {
+    final mid = (lo + hi) / 2;
+    final trial = [
+      ...base,
+      StudySession(
+          id: -1,
+          courseId: course.id,
+          minutes: (mid * 60).round(),
+          date: now),
+    ];
+    final status = courseProgressFor(
+      course,
+      trial,
+      hoursPerEcts: hoursPerEcts,
+      now: now,
+      toleranceDays: toleranceDays,
+    ).status;
+    if (status == CourseStatus.behind) {
+      lo = mid;
+    } else {
+      hi = mid;
+    }
+  }
+  return hi;
 }
 
 /// Deadline countdown pings for courses due within [warnDays] (1..warnDays,
