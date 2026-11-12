@@ -1,4 +1,5 @@
 import '../models/models.dart';
+import 'date_utils.dart';
 
 /// Pure helpers for study-log totals (ECTS-007). Derived, never stored.
 class SessionTotals {
@@ -11,12 +12,10 @@ class SessionTotals {
   double get weeklyHours => weeklyMinutes / 60.0;
 }
 
-DateTime _dateOnly(DateTime d) => DateTime(d.year, d.month, d.day);
-
 /// Start of the week containing [date], using [firstWeekday] (DateTime.monday
 /// by default; ISO week). [firstWeekday] must be 1..7 (DateTime weekday values).
 DateTime startOfWeek(DateTime date, {int firstWeekday = DateTime.monday}) {
-  final d = _dateOnly(date);
+  final d = dateOnly(date);
   final delta = (d.weekday - firstWeekday + 7) % 7;
   return d.subtract(Duration(days: delta));
 }
@@ -28,13 +27,13 @@ SessionTotals sessionTotals(
   required DateTime now,
   int firstWeekday = DateTime.monday,
 }) {
-  final today = _dateOnly(now);
+  final today = dateOnly(now);
   final weekStart = startOfWeek(now, firstWeekday: firstWeekday);
   final weekEndExclusive = weekStart.add(const Duration(days: 7));
   var daily = 0;
   var weekly = 0;
   for (final s in sessions) {
-    final day = _dateOnly(s.date);
+    final day = dateOnly(s.date);
     if (day == today) daily += s.minutes;
     if (!day.isBefore(weekStart) && day.isBefore(weekEndExclusive)) {
       weekly += s.minutes;

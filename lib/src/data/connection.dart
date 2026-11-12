@@ -5,8 +5,6 @@ import 'package:drift/native.dart';
 import 'package:path/path.dart' as p;
 import 'package:path_provider/path_provider.dart';
 
-
-
 /// Opens the on-device SQLite database file.
 LazyDatabase openConnection() {
   return LazyDatabase(() async {

@@ -9,6 +9,7 @@
 library;
 
 import '../models/models.dart';
+import 'date_utils.dart';
 import 'ects.dart';
 import 'reminders.dart';
 
@@ -163,8 +164,7 @@ DateTime? nextFireAt(CustomSchedule schedule, DateTime now) {
       final days = schedule.weekdays!;
       final minutes = schedule.timeMinutes!;
       for (var offset = 0; offset <= 7; offset++) {
-        final day = DateTime(now.year, now.month, now.day)
-            .add(Duration(days: offset));
+        final day = dateOnly(now).add(Duration(days: offset));
         if (!days.contains(day.weekday)) continue;
         final candidate = DateTime(
             day.year, day.month, day.day, minutes ~/ 60, minutes % 60);

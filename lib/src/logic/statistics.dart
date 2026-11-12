@@ -1,5 +1,6 @@
 import '../models/models.dart';
 import 'course_list.dart';
+import 'date_utils.dart';
 import 'ects.dart';
 
 /// Aggregated statistics for study sessions.
@@ -27,14 +28,12 @@ class StudyStatistics {
   double get last30DaysHours => last30DaysMinutes / 60.0;
 }
 
-DateTime _dateOnly(DateTime d) => DateTime(d.year, d.month, d.day);
-
 /// Compute study statistics from [sessions] relative to [now].
 StudyStatistics computeStatistics(
   List<StudySession> sessions, {
   required DateTime now,
 }) {
-  final today = _dateOnly(now);
+  final today = dateOnly(now);
   final sevenDaysAgo = today.subtract(const Duration(days: 6)); // last 7 days including today
   final thirtyDaysAgo = today.subtract(const Duration(days: 29)); // last 30 days including today
 
@@ -46,7 +45,7 @@ StudyStatistics computeStatistics(
 
   for (final s in sessions) {
     totalMinutes += s.minutes;
-    final day = _dateOnly(s.date);
+    final day = dateOnly(s.date);
     activeDaysSet.add(day);
     perCourseMinutes[s.courseId] = (perCourseMinutes[s.courseId] ?? 0) + s.minutes;
 
@@ -83,11 +82,11 @@ double averageDailyHours(
   int days = 14,
 }) {
   if (days <= 0) return 0;
-  final today = _dateOnly(now);
+  final today = dateOnly(now);
   final start = today.subtract(Duration(days: days - 1));
   var minutes = 0;
   for (final s in sessions) {
-    final day = _dateOnly(s.date);
+    final day = dateOnly(s.date);
     if (!day.isBefore(start) && !day.isAfter(today)) minutes += s.minutes;
   }
   return minutes / 60.0 / days;
@@ -113,7 +112,7 @@ List<WeeklyLoad> forecastWeeklyLoad(
   int weeks = 8,
   int firstWeekday = DateTime.monday,
 }) {
-  final today = _dateOnly(now);
+  final today = dateOnly(now);
   // Anchor to week start containing today.
   final delta = (today.weekday - firstWeekday + 7) % 7;
   final anchor = today.subtract(Duration(days: delta));
@@ -131,8 +130,8 @@ List<WeeklyLoad> forecastWeeklyLoad(
       final start = course.startDate ?? today;
       // Skip weeks entirely before the (effective) start.
       final effectiveStart =
-          isScheduledCourse(course, now) ? _dateOnly(start) : today;
-      final effectiveEnd = _dateOnly(deadline);
+          isScheduledCourse(course, now) ? dateOnly(start) : today;
+      final effectiveEnd = dateOnly(deadline);
       // Overlap of [weekStart, weekEnd) with [effectiveStart, effectiveEnd].
       final overlapStart = effectiveStart.isAfter(weekStart)
           ? effectiveStart

@@ -6,22 +6,9 @@ import '../dev/stress_seed.dart';
 import '../i18n/app_locales.dart';
 import '../models/models.dart';
 import 'app_database.dart';
+import 'result.dart';
 
-/// Result wrapper: repositories return errors as values, never throw across
-/// layers (AGENTS.md §3).
-sealed class Result<T> {
-  const Result();
-}
-
-class Ok<T> extends Result<T> {
-  const Ok(this.value);
-  final T value;
-}
-
-class Err<T> extends Result<T> {
-  const Err(this.message);
-  final String message;
-}
+export 'result.dart';
 
 /// Maps a DB row to the plain model.
 Course courseFromRow(CourseRow row) => Course(
@@ -805,13 +792,13 @@ class BackupRepository {
   Future<Result<void>> importJson(String json,
       {ImportMode mode = ImportMode.replace}) async {
     final parsed = _parseAndValidate(json);
+    final _ValidatedBackup backup;
     switch (parsed) {
       case Err<_ValidatedBackup>(:final message):
         return Err(message);
-      case Ok<_ValidatedBackup>():
-        break;
+      case Ok<_ValidatedBackup>(:final value):
+        backup = value;
     }
-    final backup = (parsed as Ok).value as _ValidatedBackup;
     final settings = backup.settings;
     try {
       await _db.transaction(() async {

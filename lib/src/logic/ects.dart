@@ -5,6 +5,7 @@
 library;
 
 import '../models/models.dart';
+import 'date_utils.dart';
 
 /// `requiredHours = ectsCredits * hoursPerEcts` (default hoursPerEcts = 30).
 double requiredHours(double ectsCredits, double hoursPerEcts) {
@@ -42,7 +43,7 @@ double progressFraction(double required, double completed) {
 /// Whole days from [now] to [deadline], floored at 0. Null when no deadline.
 int? remainingDays(DateTime? deadline, DateTime now) {
   if (deadline == null) return null;
-  final diff = _dateOnly(deadline).difference(_dateOnly(now)).inDays;
+  final diff = dateOnly(deadline).difference(dateOnly(now)).inDays;
   return diff > 0 ? diff : 0;
 }
 
@@ -141,7 +142,7 @@ double? currentDailyPace(
 /// not started yet.
 bool isFutureStart(DateTime? startDate, DateTime now) {
   if (startDate == null) return false;
-  return _dateOnly(startDate).isAfter(_dateOnly(now));
+  return dateOnly(startDate).isAfter(dateOnly(now));
 }
 
 /// Effective pace baseline for a course.
@@ -355,7 +356,7 @@ CourseProgress courseProgressFor(
 /// itself is never "past". Null deadline is never past.
 bool isPastDeadline(DateTime? deadline, DateTime now) {
   if (deadline == null) return false;
-  return _dateOnly(deadline).isBefore(_dateOnly(now));
+  return dateOnly(deadline).isBefore(dateOnly(now));
 }
 
 CourseStatus _status({
@@ -384,7 +385,7 @@ CourseStatus _status({
   // require ±toleranceDays of normal workload (need), not a single session.
   // surplus = completed - expected. Middle band → onTrack (stable).
   final scheduleActive =
-      startDate == null || !_dateOnly(startDate).isAfter(_dateOnly(now));
+      startDate == null || !dateOnly(startDate).isAfter(dateOnly(now));
   if (scheduleActive) {
     final expected = expectedHoursToDate(required, startDate, deadline, now);
     final needForBuffer = requiredDailyHours(remaining, deadline, now);
@@ -416,5 +417,3 @@ CourseStatus _status({
 /// Tolerance so floating-point noise on an exact-pace course is not labelled
 /// `behind` (pace is in hours/day).
 const double _paceEpsilon = 1e-9;
-
-DateTime _dateOnly(DateTime d) => DateTime(d.year, d.month, d.day);

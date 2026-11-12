@@ -8,6 +8,7 @@
 library;
 
 import '../models/models.dart';
+import 'date_utils.dart';
 import 'ects.dart';
 
 /// Stable notification IDs for the platform layer (ECTS-072).
@@ -82,12 +83,12 @@ ReminderContent? computeDailyPlan({
   // Hours already logged today per course: the nudge states what is STILL
   // needed (ECTS-075) — "studied 3 h of a 4 h day ⇒ 1 h left", never the
   // full need on top of today's work.
-  final today = DateTime(now.year, now.month, now.day);
+  final today = dateOnly(now);
   double todayHoursFor(int courseId) {
     var minutes = 0;
     for (final s in byCourse[courseId] ?? const <StudySession>[]) {
       if (s.minutes <= 0) continue;
-      final day = DateTime(s.date.year, s.date.month, s.date.day);
+      final day = dateOnly(s.date);
       if (day == today) minutes += s.minutes;
     }
     return minutes / 60.0;
@@ -387,10 +388,10 @@ StreakInfo computeStreak({
   final dayTotals = <DateTime, int>{};
   for (final s in sessions) {
     if (s.minutes <= 0) continue;
-    final day = DateTime(s.date.year, s.date.month, s.date.day);
+    final day = dateOnly(s.date);
     dayTotals[day] = (dayTotals[day] ?? 0) + s.minutes;
   }
-  final today = DateTime(now.year, now.month, now.day);
+  final today = dateOnly(now);
   var cursor =
       (dayTotals[today] ?? 0) > 0 ? today : today.subtract(const Duration(days: 1));
   var days = 0;
@@ -445,11 +446,11 @@ double todayLoggedHours({
   required List<StudySession> sessions,
   required DateTime now,
 }) {
-  final today = DateTime(now.year, now.month, now.day);
+  final today = dateOnly(now);
   var minutes = 0;
   for (final s in sessions) {
     if (s.minutes <= 0) continue;
-    final day = DateTime(s.date.year, s.date.month, s.date.day);
+    final day = dateOnly(s.date);
     if (day == today) minutes += s.minutes;
   }
   return minutes / 60.0;
