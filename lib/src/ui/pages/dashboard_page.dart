@@ -104,6 +104,11 @@ class _OverviewPage extends ConsumerWidget {
     final innerGap = glass
         ? AppSizes.glassSectionInnerGap
         : AppSizes.sectionInnerGap;
+    // Glass flow-through: outer bottom inset is gone (see home_shell), so
+    // the scrollable carries the tab-bar clearance itself.
+    final bottomPad = glass
+        ? AppSizes.glassPageBottomInset + AppSizes.pageBottomPadNoFab
+        : AppSizes.pageBottomPadNoFab;
     return GlassBatch(
       child: ListView(
       key: const Key('dashboardList'),
@@ -111,7 +116,7 @@ class _OverviewPage extends ConsumerWidget {
         AppSizes.pageHPad,
         topPad,
         AppSizes.pageHPad,
-        AppSizes.pageBottomPadNoFab,
+        bottomPad,
       ),
       children: [
         _OverallProgressCard(

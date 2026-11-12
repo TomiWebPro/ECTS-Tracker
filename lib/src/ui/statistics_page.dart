@@ -57,15 +57,21 @@ class StatisticsPage extends ConsumerWidget {
     final peak = view.peak;
     final sortedByDeadline = view.sortedByDeadline;
 
+    // Glass flow-through: outer bottom inset is gone (see home_shell), so
+    // the scrollable carries the tab-bar clearance itself.
+    final glass = ref.watch(glassEnabledProvider);
+    final bottomPad = glass
+        ? AppSizes.glassPageBottomInset + AppSizes.pageBottomPadNoFab
+        : AppSizes.pageBottomPadNoFab;
     // Glass cards (ECTS-063): every section card below is a lite lens sharing
     // one page batch (members never overlap); pills/bars stay solid inside.
     return GlassBatch(
       child: ListView(
-      padding: const EdgeInsets.fromLTRB(
+      padding: EdgeInsets.fromLTRB(
         AppSizes.pageHPad,
         AppSizes.dashboardTopPad,
         AppSizes.pageHPad,
-        AppSizes.pageBottomPadNoFab,
+        bottomPad,
       ),
       children: [
         SectionHeader(title: l10n.statsOverview, icon: Icons.insights_outlined),

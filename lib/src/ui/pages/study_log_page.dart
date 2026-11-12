@@ -101,6 +101,11 @@ class _StudyLogPage extends ConsumerWidget {
               );
         final menuElevation =
             glass ? AppSizes.glassMenuElevation : null;
+        // Glass flow-through: outer bottom inset is gone (see home_shell),
+        // so the scrollable carries the tab-bar + FAB clearance itself.
+        final bottomPad = glass
+            ? AppSizes.glassPageBottomInset + AppSizes.pageBottomPad
+            : AppSizes.pageBottomPad;
         return GlassBatch(
           child: Column(
           children: [
@@ -161,7 +166,7 @@ class _StudyLogPage extends ConsumerWidget {
                   AppSizes.pageHPad,
                   filterGap,
                   AppSizes.pageHPad,
-                  AppSizes.pageBottomPad,
+                  bottomPad,
                 ),
                 itemCount: sorted.length,
                 itemBuilder: (context, i) {

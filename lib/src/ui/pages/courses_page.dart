@@ -123,6 +123,11 @@ class _CoursesPageState extends ConsumerState<_CoursesPage> {
         glass ? AppSizes.glassPageTopPad : AppSizes.pageTopPad;
     final cardGap =
         glass ? AppSizes.glassCardGap : AppSizes.cardGap;
+    // Glass flow-through: outer bottom inset is gone (see home_shell), so
+    // the scrollable carries the tab-bar + FAB clearance itself.
+    final bottomPad = glass
+        ? AppSizes.glassPageBottomInset + AppSizes.pageBottomPad
+        : AppSizes.pageBottomPad;
     // Apple-style menu surface (glass-only): null keeps legacy defaults.
     final menuColor = glass ? glassMenuColor(context) : null;
     final menuRadius = glass
@@ -332,7 +337,7 @@ class _CoursesPageState extends ConsumerState<_CoursesPage> {
                 AppSizes.pageHPad,
                 listTopPad,
                 AppSizes.pageHPad,
-                AppSizes.pageBottomPad,
+                bottomPad,
               ),
               itemCount: visible.length,
               itemBuilder: (context, i) {

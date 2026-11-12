@@ -178,11 +178,17 @@ class _HomeShellState extends State<HomeShell> {
             child: LiquidGlassBatch(
               child: Stack(
                 children: [
+                  // Glass flow-through (bottom): no outer bottom inset — the
+                  // page fills to the safe-area bottom and the tab bar
+                  // overlays it, so scrolling cards pass *under* the frosted
+                  // bar. Clearance lives INSIDE each scrollable (glass-aware
+                  // bottom padding) so the last item still rests above the
+                  // bar. Top keeps its outer inset (floating app bar over a
+                  // fixed gap; list top padding scrolls under on travel).
                   Positioned.fill(
                     child: Padding(
                       padding: const EdgeInsets.only(
                         top: AppSizes.glassPageTopInset,
-                        bottom: AppSizes.glassPageBottomInset,
                       ),
                       child: page,
                     ),

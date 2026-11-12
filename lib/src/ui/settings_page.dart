@@ -259,6 +259,12 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
     final settings = settingsAsync.valueOrNull ?? const AppSettings();
     final devMode = ref.watch(devModeProvider);
     final l10n = AppLocalizations.of(context)!;
+    // Glass flow-through: outer bottom inset is gone (see home_shell), so
+    // the scrollable carries the tab-bar clearance itself.
+    final glass = ref.watch(glassEnabledProvider);
+    final bottomPad = glass
+        ? AppSizes.glassPageBottomInset + AppSizes.pageBottomPadNoFab
+        : AppSizes.pageBottomPadNoFab;
 
     return Align(
       alignment: Alignment.topCenter,
@@ -267,11 +273,11 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
             maxWidth: AppSizes.maxContentWidth),
         child: GlassBatch(
           child: ListView(
-          padding: const EdgeInsets.fromLTRB(
+          padding: EdgeInsets.fromLTRB(
             AppSizes.pageHPad,
             AppSizes.pageTopPad,
             AppSizes.pageHPad,
-            AppSizes.pageBottomPadNoFab,
+            bottomPad,
           ),
           children: [
             SectionHeader(
