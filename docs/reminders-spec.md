@@ -49,6 +49,9 @@ deadline countdown when close. Never nag. Phone and tablet identical
 - Returns `null` for streak when already fired within the past week (at most 1 per week).
 - Tap payload carries `courseId` (or `open:dashboard`); app deep-links to
   the course with the log-session sheet one tap away.
+- Sub-hour durations render as whole minutes (ECTS-084, same <1 h threshold
+  as ECTS-078 `pace_format`): e.g. `0.7 h/day` → `42 min/day`,
+  `0.45 h/day` → `27 min/day`, `0.1 h` → `6 min`.
 
 ## Notification IDs (platform layer, ECTS-072)
 
@@ -93,5 +96,5 @@ deadline countdown when close. Never nag. Phone and tablet identical
 
 ## Status
 
-Locked 2026-11-11 ECTS-070; extended ECTS-073/075.
+Locked 2026-11-11 ECTS-070; extended ECTS-073/075/084.
 Implementation: lib/src/logic/reminders.dart + custom_reminders.dart, tests test/logic/reminders_test.dart + custom_reminders_test.dart.

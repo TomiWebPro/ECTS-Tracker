@@ -105,7 +105,7 @@ Conventions: `AGENTS.md` (binding, incl. new-locale policy §6) · `README.md` (
 | ECTS-081 | M10 | God-file splits via part files (home_shell, settings_page, repositories), verbatim moves only | done | byte-exact reconstruction vs HEAD; analyze clean; full 309/309; commit a395ec3 (code only); 2026-11-12 |
 | ECTS-082 | M10 | Correctness/small refactors: session_form build fix, course_labels layering, bare-catch logging, constants, copyWith/a11y/main wiring | done | analyze clean; logic+data+ui green; commit bb2a6f4 (code only); 2026-11-12 |
 | ECTS-083 | M10 | Coverage + config + closure: gap tests, lints probe, deps prune, ECTS-069 resolve, ARCHITECTURE.md | done | analyze clean; full 332/332; tests+config commit 728681f; docs commit (this run); 2026-11-12 |
-| ECTS-084 | M9 | Reminder preview full-bleed layout + sub-hour minutes copy | claimed by builder at 2026-11-12T11:02:16Z | — |
+| ECTS-084 | M9 | Reminder preview full-bleed layout + sub-hour minutes copy | done | analyze clean; full 335/335; 2026-11-12 |
 | ECTS-085 | M8 | Liquid-glass bottom nav flow-through (content scrolls under tab bar, no white block) | done | analyze clean; glass chrome/cards/dialogs 25/25 green, full suite 306+ no failures at timeout (slow UI); commit 502c65c; 2026-11-12 |
 
 Note: ECTS-033/034 were announced in a 2026-11-05 log but never got rows; IDs skipped, do NOT renumber.
@@ -125,6 +125,8 @@ trims (different semantics per surface); hold-to-confirm timer test
 (private widget, covered indirectly by settings pumps).
 
 ## Progress log (newest on top)
+
+- 2026-11-12: ECTS-084 done (preview columns stretch to full-bleed equal insets; formatDuration <1 h → min in daily/behind/deadline/overdue/streak/custom; full 335/335).
 
 - 2026-11-12: ECTS-085 done (glass bottom-nav flow-through: outer bottom inset removed, clearance moved inside scrollables; analyze clean; commit 502c65c).
 
