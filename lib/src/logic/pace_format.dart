@@ -37,3 +37,15 @@ String formatPaceValue(double hours) =>
 /// Number string for weekly pace (same rule; weekly = daily * 7 so weekly
 /// minutes only happen when daily is also minutes).
 String formatWeeklyPaceValue(double hours) => formatPaceValue(hours);
+
+/// Full duration with unit for notification copy (ECTS-084).
+///
+/// Sub-hour durations render as whole minutes (`42 min` for 0.7 h);
+/// hours keep the reminders trim (`27 h`, not `27.0 h`; else one decimal).
+/// Single home so daily/behind/deadline/overdue/streak/custom stay in sync
+/// with the dashboard/courses minutes rule (ECTS-078 threshold).
+String formatDuration(double hours) {
+  if (isSubHourPace(hours)) return '${paceMinutes(hours)} min';
+  final n = hours % 1 == 0 ? hours.toStringAsFixed(0) : hours.toStringAsFixed(1);
+  return '$n h';
+}

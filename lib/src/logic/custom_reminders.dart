@@ -11,6 +11,7 @@ library;
 import '../models/models.dart';
 import 'date_utils.dart';
 import 'ects.dart';
+import 'pace_format.dart';
 import 'reminders.dart';
 import 'session_totals.dart';
 
@@ -285,8 +286,8 @@ ReminderContent? composeCustomContent({
   final left = progress.remainingHours;
   final pace = progress.requiredDailyHours;
   final body = pace == null
-      ? '${formatHours(left)} h still open — anything you log now counts.'
-      : '${formatHours(left)} h open · ${formatHours(pace)} h/day to finish on time. Log a session to update progress.';
+      ? '${formatDuration(left)} still open — anything you log now counts.'
+      : '${formatDuration(left)} open · ${formatDuration(pace)}/day to finish on time. Log a session to update progress.';
   final title = schedule.label ??
       (schedule.courseId == null
           ? '📚 Study check-in: ${target.name}'

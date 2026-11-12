@@ -356,4 +356,47 @@ void main() {
       );
     });
   });
+
+  group('sub-hour minutes copy (ECTS-084)', () {
+    test('daily plan renders <1 h as minutes', () {
+      final courses = [
+        course(id: 1, name: 'Biology', ects: 1, deadline: DateTime(2026, 11, 21, 19)),
+      ];
+      // 30 h required, 29 h logged yesterday -> 1 h left over 10 d = 0.1 h/day.
+      final sessions = [
+        session(courseId: 1, minutes: 29 * 60, date: DateTime(2026, 11, 10, 9)),
+      ];
+      final plan = computeDailyPlan(
+        courses: courses,
+        sessions: sessions,
+        hoursPerEcts: 30,
+        now: now,
+      )!;
+      expect(plan.title, '📚 Tonight: 6 min to stay on track');
+      expect(plan.body, contains('6 min left today'));
+      expect(plan.body, isNot(contains('0.1 h')));
+    });
+
+    test('behind nudge renders sub-hour pace as minutes', () {
+      // 1 ECTS = 30 h; start Oct 1, deadline Dec 21 (81 d span). On Nov 11
+      // the linear expectation is ~15.2 h; 12 h logged is a provable
+      // shortfall (behind) while the remaining pace is 18 h / 40 d = 0.45
+      // h/day -> 27 min/day.
+      final courses = [
+        course(id: 1, name: 'Tiny', ects: 1, start: DateTime(2026, 10, 1), deadline: DateTime(2026, 12, 21, 19)),
+      ];
+      final sessions = [
+        session(courseId: 1, minutes: 12 * 60, date: DateTime(2026, 10, 5, 10)),
+      ];
+      final nudges = computeBehindNudges(
+        courses: courses,
+        sessions: sessions,
+        hoursPerEcts: 30,
+        now: now,
+      );
+      expect(nudges, hasLength(1));
+      expect(nudges.first.body, contains('27 min/day'));
+      expect(nudges.first.body, isNot(contains('0.4 h/day')));
+    });
+  });
 }

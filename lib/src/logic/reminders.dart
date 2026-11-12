@@ -10,6 +10,7 @@ library;
 import '../models/models.dart';
 import 'date_utils.dart';
 import 'ects.dart';
+import 'pace_format.dart';
 import 'session_totals.dart';
 
 /// Stable notification IDs for the platform layer (ECTS-072).
@@ -130,12 +131,12 @@ ReminderContent? computeDailyPlan({
   final rest = needs.length - named.length;
   final parts = [
     for (final n in named)
-      '${n.course.name} ${formatHours(n.pace)} h left today',
+      '${n.course.name} ${formatDuration(n.pace)} left today',
   ];
   final detail = rest > 0 ? '${parts.join(' · ')} (+$rest more)' : parts.join(' · ');
   return ReminderContent(
     kind: ReminderKind.daily,
-    title: '📚 Tonight: ${formatHours(total)} h to stay on track',
+    title: '📚 Tonight: ${formatDuration(total)} to stay on track',
     body: '$detail. Log a session to clear today.',
   );
 }
@@ -185,7 +186,7 @@ List<ReminderContent> computeBehindNudges({
       // Deadline-day (or past) with hours outstanding: no finite pace
       // exists, so report action instead of a number (ects.dart rule).
       body =
-          '${formatHours(left)} h still open and the deadline is here. Anything you log now counts.';
+          '${formatDuration(left)} still open and the deadline is here. Anything you log now counts.';
     } else {
       // Honest catch-up: the hours that provably flip status back out of
       // behind (ECTS-075 — never a hardcoded session size).
@@ -198,12 +199,12 @@ List<ReminderContent> computeBehindNudges({
       );
       if (catchUp >= left - 1e-9) {
         body =
-            '${formatHours(left)} h left, $days days to go — ${formatHours(pace)} h/day from here. Only finishing the full ${formatHours(left)} h clears this — start tonight.';
+            '${formatDuration(left)} left, $days days to go — ${formatDuration(pace)}/day from here. Only finishing the full ${formatDuration(left)} clears this — start tonight.';
       } else {
         // Round UP so the promise holds (hi sits on the flip boundary).
         final display = (catchUp * 10).ceil() / 10;
         body =
-            '${formatHours(left)} h left, $days days to go — ${formatHours(pace)} h/day from here. Log ${formatHours(display)} h to get back On track.';
+            '${formatDuration(left)} left, $days days to go — ${formatDuration(pace)}/day from here. Log ${formatDuration(display)} to get back On track.';
       }
     }
     out.add(ReminderContent(
@@ -317,17 +318,17 @@ List<ReminderContent> computeDeadlineCountdowns({
     if (days == 1) {
       out.add(ReminderContent(
         kind: ReminderKind.deadline,
-        title: '🚨 ${course.name} is due tomorrow and still has ${formatHours(left)} h open',
+        title: '🚨 ${course.name} is due tomorrow and still has ${formatDuration(left)} open',
         body: 'Anything you log today counts double.',
         courseId: course.id,
       ));
     } else {
       out.add(ReminderContent(
         kind: ReminderKind.deadline,
-        title: '⏳ ${course.name} exam in $days days — ${formatHours(left)} h left',
+        title: '⏳ ${course.name} exam in $days days — ${formatDuration(left)} left',
         body: pace == null
             ? 'Every hour you log now counts.'
-            : "That's ${formatHours(pace)} h/day. Split it: 2 sessions a day beats one marathon.",
+            : "That's ${formatDuration(pace)}/day. Split it: 2 sessions a day beats one marathon.",
         courseId: course.id,
       ));
     }
@@ -372,7 +373,7 @@ List<ReminderContent> computeOverdue({
       ReminderContent(
         kind: ReminderKind.overdue,
         title:
-            '❌ ${course.name} passed its deadline with ${formatHours(late[course]!.remainingHours)} h open',
+            '❌ ${course.name} passed its deadline with ${formatDuration(late[course]!.remainingHours)} open',
         body: 'Move the deadline or finish the hours — the course stays in Needs attention until then.',
         courseId: course.id,
       ),
@@ -436,7 +437,7 @@ ReminderContent? computeStreakNudge({
   return ReminderContent(
     kind: ReminderKind.streak,
     title:
-        '🔥 ${streak.days}-day streak — ${formatHours(streak.weekHours)} h this week',
+        '🔥 ${streak.days}-day streak — ${formatDuration(streak.weekHours)} this week',
     body: 'All courses On track or Ahead. Nice run.',
   );
 }

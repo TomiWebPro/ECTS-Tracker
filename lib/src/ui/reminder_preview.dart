@@ -196,7 +196,11 @@ class _Feed extends StatelessWidget {
       );
     }
     final scheme = Theme.of(context).colorScheme;
+    // Full-bleed cards: stretch fills the ListView width so left/right
+    // edges line up (ECTS-084). Default Column centering shrink-wraps
+    // GlassCard to its content and reads as staggered centered tiles.
     return Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
         for (var i = 0; i < items.length; i++) ...[
           if (i > 0) SizedBox(height: cardGap),
@@ -273,7 +277,10 @@ class _CustomDemo extends StatelessWidget {
       ),
     ];
     return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
+      // Stretch like [_Feed]: cards fill the width with equal left/right
+      // insets; the header text stays left-aligned within its full-width
+      // slot (ECTS-084).
+      crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
         Text(
           l10n.reminderPreviewCustom,

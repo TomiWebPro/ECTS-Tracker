@@ -31,5 +31,14 @@ void main() {
       expect(paceMinutes(0.0), 0);
       expect(paceMinutes(0.001), 1);
     });
+
+    test('formatDuration carries the unit (ECTS-084)', () {
+      expect(formatDuration(27.0), '27 h');
+      expect(formatDuration(2.5), '2.5 h');
+      expect(formatDuration(1.0), '1 h');
+      expect(formatDuration(0.7), '42 min');
+      expect(formatDuration(0.1), '6 min');
+      expect(formatDuration(0.0), '0 min');
+    });
   });
 }
