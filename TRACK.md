@@ -3,7 +3,7 @@
 Standalone Flutter university study-progress tracker: ECTS workload, session logging, pace/status engine, dashboard, statistics, settings. Local-first, no backend.
 Conventions: `AGENTS.md` (binding, incl. new-locale policy §6) · `README.md` (human overview) · `docs/reminders-spec.md` (reminders copy/behavior spec).
 
-`current: release/stability` - M1-M10 done; all milestones done, all task rows done, **open rows: none**.
+`current: release/stability` - M1-M11 done; all task rows done, **open rows: none**.
 
 ## Milestones
 
@@ -19,6 +19,7 @@ Conventions: `AGENTS.md` (binding, incl. new-locale policy §6) · `README.md` (
 | M8 | Liquid-glass chrome (gated opt-in) | done (060-065/068/073/074; 066/067 done-unverified per screenshot review; 069 not reproducible — mapping correct, test-pinned) |
 | M9 | Study reminders (Windows-testable dev preview + platform wiring) | done (070-078 per docs/reminders-spec.md) |
 | M10 | Docs hygiene + structural refactors | done (079 TRACK compaction + AGENTS.md §6 locale policy + docs cleanup/index/ARCHITECTURE.md; 080 date_utils/result split; 081 part-file splits; 082 correctness pass; 083 coverage + config + 069 closure) |
+| M11 | Study timer (start/pause/resume/finish, restart-proof) | done (ECTS-091) |
 
 ## Open tasks (claim ONE per build run)
 
@@ -112,6 +113,7 @@ Conventions: `AGENTS.md` (binding, incl. new-locale policy §6) · `README.md` (
 | ECTS-088 | M9 | Dev-mode "Remove all data" tile: keep, make visually consistent | done | analyze clean; widgets+dialogs 9/9; divider restored (1-line) |
 | ECTS-089 | M8 | Fix reset-all → liquid-glass flips accent slate→teal (keep slate) | done | analyze clean; full 343/343; reseed + v9 repair + 2 regression tests |
 | ECTS-090 | M9 | Behind-title ⚠️ renders as text glyph, misaligned — swap to color-emoji mark | done | analyze clean; full 343/343; U+26A0→🔻 in logic + 54 ARBs + regen, spec + test updated |
+| ECTS-091 | M11 | Study timer: manual stays, add course-picked start/pause/resume/finish, restart-proof | done | analyze clean; full 358/358 (15 new timer tests); commit 0c500dd; 2026-11-13 |
 
 Note: ECTS-033/034 were announced in a 2026-11-05 log but never got rows; IDs skipped, do NOT renumber.
 
