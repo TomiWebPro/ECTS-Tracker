@@ -1,6 +1,6 @@
-import 'package:ects_tracker/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 
+import '../i18n/app_locales.dart';
 import '../logic/ects.dart';
 import 'app_sizes.dart';
 
@@ -193,7 +193,7 @@ class RoundedProgressBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final l10n = AppLocalizations.of(context)!;
+    final l10n = l10nOf(context);
     final scheme = Theme.of(context).colorScheme;
     final fill = color ?? scheme.primary;
     // Zero state: a bare grey track reads as broken/disabled. Render an
@@ -257,12 +257,13 @@ class CourseAvatar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final scheme = Theme.of(context).colorScheme;
-    final bg = colorValue != null
-        ? Color(colorValue!)
+    final customColor = colorValue;
+    final bg = customColor != null
+        ? Color(customColor)
         : scheme.primaryContainer;
     // Pick readable foreground: dark text on light custom colors, light text
     // on dark custom colors; theme color otherwise.
-    final fg = colorValue != null
+    final fg = customColor != null
         ? (ThemeData.estimateBrightnessForColor(bg) == Brightness.dark
             ? Colors.white
             : Colors.black87)
@@ -309,6 +310,8 @@ class SectionHeader extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final scheme = Theme.of(context).colorScheme;
+    // Hoisted so the null-guard below promotes (fields never promote).
+    final count = trailing;
     return Padding(
       padding: padding,
       child: Row(
@@ -347,7 +350,7 @@ class SectionHeader extends StatelessWidget {
               ),
             ),
           ),
-          if (trailing != null)
+          if (count != null)
             Container(
               padding: const EdgeInsets.symmetric(
                 horizontal: AppSizes.headerCountHPad,
@@ -359,7 +362,7 @@ class SectionHeader extends StatelessWidget {
                     BorderRadius.circular(AppSizes.pillRadius),
               ),
               child: Text(
-                trailing!,
+                count,
                 style: Theme.of(context).textTheme.labelMedium?.copyWith(
                       color: scheme.onSurfaceVariant,
                       fontWeight: FontWeight.w700,

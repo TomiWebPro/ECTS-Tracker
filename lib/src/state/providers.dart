@@ -67,16 +67,28 @@ final hasSampleDataProvider = Provider<AsyncValue<bool>>((ref) {
   final courses = ref.watch(sampleCoursesProvider);
   final sessions = ref.watch(sampleSessionsProvider);
   if (courses.hasError) {
-    return AsyncValue.error(courses.error!, courses.stackTrace ?? StackTrace.empty);
+    // `hasError` implies a non-null error; fall back to loading on the
+    // unreachable null so the provider never throws on `!`.
+    final err = courses.error;
+    if (err == null) return const AsyncValue<bool>.loading();
+    return AsyncValue.error(err, courses.stackTrace ?? StackTrace.empty);
   }
   if (sessions.hasError) {
-    return AsyncValue.error(sessions.error!, sessions.stackTrace ?? StackTrace.empty);
+    final err = sessions.error;
+    if (err == null) return const AsyncValue<bool>.loading();
+    return AsyncValue.error(err, sessions.stackTrace ?? StackTrace.empty);
   }
   if (!courses.hasValue || !sessions.hasValue) {
     return const AsyncValue<bool>.loading();
   }
+  // Hoisted after the guards so no `!` is needed (getters never promote).
+  final courseList = courses.value;
+  final sessionList = sessions.value;
+  if (courseList == null || sessionList == null) {
+    return const AsyncValue<bool>.loading();
+  }
   return AsyncValue.data(
-    courses.value!.isNotEmpty || sessions.value!.isNotEmpty,
+    courseList.isNotEmpty || sessionList.isNotEmpty,
   );
 });
 

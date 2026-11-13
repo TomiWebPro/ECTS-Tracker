@@ -126,10 +126,11 @@ class GlassCard extends ConsumerWidget {
     }
     var style = glassStyle(context);
     if (color != null) style = style.copyWith(color: color);
-    if (cornerRadius != null) {
+    final radius = cornerRadius;
+    if (radius != null) {
       style = style.copyWith(
         shape: LiquidGlassShape.continuousRoundedRectangle(
-          cornerRadius: cornerRadius!,
+          cornerRadius: radius,
         ),
       );
     }
@@ -137,8 +138,9 @@ class GlassCard extends ConsumerWidget {
     // Previously it was inner Padding inside the lens, so adjacent frosted
     // surfaces touched edge-to-edge and cards read as one slab.
     final lens = LiquidGlassLens(key: key, style: style, child: child);
-    if (margin == null) return lens;
-    return Padding(padding: margin!, child: lens);
+    final outer = margin;
+    if (outer == null) return lens;
+    return Padding(padding: outer, child: lens);
   }
 }
 

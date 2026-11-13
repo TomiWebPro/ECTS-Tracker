@@ -374,10 +374,10 @@
     "description": "Section label above the course color choices. The 'None' chip reuses commonNone."
   },
   "@courseFormDateNotSet": {
-    "description": "Placeholder shown in date buttons when no date is picked. Date display format stays yyyy-MM-dd."
+    "description": "Placeholder shown in date buttons when no date is picked. Date display uses the device locale short date."
   },
   "@courseFormDeadlineButton": {
-    "description": "Course deadline picker button. {date} is a yyyy-MM-dd date or the not-set label.",
+    "description": "Course deadline picker button. {date} is a locale-formatted short date or the not-set label.",
     "placeholders": {
       "date": {
         "type": "String",
@@ -407,7 +407,7 @@
     "description": "Save-button label while the course form is saving. The idle label reuses commonSave; cancel reuses commonCancel."
   },
   "@courseFormStartButton": {
-    "description": "Course start-date picker button. {date} is a yyyy-MM-dd date or the not-set label.",
+    "description": "Course start-date picker button. {date} is a locale-formatted short date or the not-set label.",
     "placeholders": {
       "date": {
         "type": "String",
@@ -416,7 +416,7 @@
     }
   },
   "@courseFormStartEarlyOff": {
-    "description": "Subtitle of the start-early checkbox when disabled. {date} is the yyyy-MM-dd start date.",
+    "description": "Subtitle of the start-early checkbox when disabled. {date} is the locale-formatted short start date.",
     "placeholders": {
       "date": {
         "type": "String",
@@ -1144,7 +1144,7 @@
     "description": "Label of the session course dropdown."
   },
   "@sessionFormDateButton": {
-    "description": "Session date picker button. {date} is a yyyy-MM-dd date.",
+    "description": "Session date picker button. {date} is a locale-formatted short date.",
     "placeholders": {
       "date": {
         "type": "String",
@@ -2354,7 +2354,7 @@
   },
   "reminderPreviewNext": "Next: {time}",
   "@reminderPreviewNext": {
-    "description": "Custom-schedule demo row header with the next fire time. {time} is a yyyy-MM-dd HH:mm timestamp (not localized).",
+    "description": "Custom-schedule demo row header with the next fire time. {time} is a locale-formatted short date plus 24-hour HH:mm time.",
     "placeholders": {
       "time": {
         "type": "String",

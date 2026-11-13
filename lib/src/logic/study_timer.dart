@@ -74,8 +74,9 @@ class StudyTimerState {
 
   /// Pause at [nowMs]: banks the running segment, stops counting.
   StudyTimerState pausedAt(int nowMs) {
-    if (runningSinceMs == null) return this;
-    final banked = accumulatedSec + (nowMs - runningSinceMs!) ~/ 1000;
+    final runningSince = runningSinceMs;
+    if (runningSince == null) return this;
+    final banked = accumulatedSec + (nowMs - runningSince) ~/ 1000;
     return copyWith(
       accumulatedSec: banked < 0 ? 0 : banked,
       runningSinceMs: () => null,

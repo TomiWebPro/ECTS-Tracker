@@ -453,9 +453,13 @@ class ReminderService {
         toleranceDays: toleranceDays,
         warnDays: settings.warnDays,
       )) {
+        // Per-course kinds always carry the id; skip defensively if one
+        // ever does not, instead of throwing on `!`.
+        final countdownId = countdown.courseId;
+        if (countdownId == null) continue;
         final text = localizeReminder(l10n, countdown);
         await _backend.scheduleOnce(
-          id: notificationId(deadlineReminderIdBase, countdown.courseId!),
+          id: notificationId(deadlineReminderIdBase, countdownId),
           title: text.title,
           body: text.body,
           fireAt: todayFire,
@@ -473,11 +477,16 @@ class ReminderService {
     )) {
       final course =
           courses.firstWhere((c) => c.id == overdue.courseId);
-      final key = '${course.id}_${course.deadline!.millisecondsSinceEpoch}';
+      // Overdue implies a deadline and a course id; skip defensively when
+      // either is missing instead of throwing on `!`.
+      final overdueId = overdue.courseId;
+      final overdueDeadline = course.deadline;
+      if (overdueId == null || overdueDeadline == null) continue;
+      final key = '${course.id}_${overdueDeadline.millisecondsSinceEpoch}';
       if (await _prefs.overdueCount(key) >= 2) continue;
       final text = localizeReminder(l10n, overdue);
       await _backend.showNow(
-        id: notificationId(overdueReminderIdBase, overdue.courseId!),
+        id: notificationId(overdueReminderIdBase, overdueId),
         title: text.title,
         body: text.body,
       );

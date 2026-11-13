@@ -207,19 +207,29 @@ class BackupRepository {
           final payloadId = (c['id'] as num?)?.toInt() ?? -(i + 1);
           idMap[payloadId] = newId;
         }
+        // Resolve session links before the batch: validation guarantees the
+        // course ids and dates exist, but resolve explicitly (no `!`) so a
+        // corrupt payload becomes an Err instead of a throw.
+        final resolved = <StudySessionsCompanion>[];
+        for (var j = 0; j < backup.sessionMaps.length; j++) {
+          final s = backup.sessionMaps[j];
+          final payloadCourseId = (s['courseId'] as num).toInt();
+          final courseId = idMap[payloadCourseId];
+          final date = _parseDate(s['date']);
+          if (courseId == null || date == null) {
+            return Err('Invalid import file: session #${j + 1} links to data missing from the backup.');
+          }
+          resolved.add(StudySessionsCompanion.insert(
+            courseId: courseId,
+            minutes: (s['minutes'] as num).toInt(),
+            date: date,
+            notes: Value(s['notes'] as String?),
+            isSample: Value(s['isSample'] == true),
+          ));
+        }
         await _db.batch((b) {
-          for (final s in backup.sessionMaps) {
-            final payloadCourseId = (s['courseId'] as num).toInt();
-            b.insert(
-              _db.studySessions,
-              StudySessionsCompanion.insert(
-                courseId: idMap[payloadCourseId]!,
-                minutes: (s['minutes'] as num).toInt(),
-                date: _parseDate(s['date'])!,
-                notes: Value(s['notes'] as String?),
-                isSample: Value(s['isSample'] == true),
-              ),
-            );
+          for (final companion in resolved) {
+            b.insert(_db.studySessions, companion);
           }
         });
       });

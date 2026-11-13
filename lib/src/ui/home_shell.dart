@@ -4,9 +4,11 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:liquid_glass_easy/liquid_glass_easy.dart';
 
 import '../data/repositories.dart';
+import '../i18n/app_locales.dart';
 import '../logic/course_list.dart';
 import '../logic/date_utils.dart';
 import '../logic/ects.dart';
+import '../logic/locale_format.dart';
 import '../logic/pace_format.dart';
 import '../logic/session_totals.dart';
 import '../models/models.dart';
@@ -61,7 +63,7 @@ class _HomeShellState extends State<HomeShell> {
     return Consumer(
       builder: (context, ref, _) {
         final glass = ref.watch(glassEnabledProvider);
-        final l10n = AppLocalizations.of(context)!;
+        final l10n = l10nOf(context);
         final titles = [
           l10n.navDashboard,
           l10n.navCourses,

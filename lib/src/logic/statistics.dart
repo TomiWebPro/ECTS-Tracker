@@ -161,7 +161,15 @@ StatisticsView buildStatisticsView({
   final sortedByDeadline = withProgress
       .where((e) => e.course.deadline != null)
       .toList()
-    ..sort((a, b) => a.course.deadline!.compareTo(b.course.deadline!));
+    ..sort((a, b) {
+      // Filtered non-null above; missing dates sort last, never throw.
+      final da = a.course.deadline;
+      final db = b.course.deadline;
+      if (da == null && db == null) return 0;
+      if (da == null) return 1;
+      if (db == null) return -1;
+      return da.compareTo(db);
+    });
   return StatisticsView(
     withProgress: withProgress,
     pastAvg: pastAvg,

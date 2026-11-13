@@ -18,7 +18,7 @@ class _CoursesPageState extends ConsumerState<_CoursesPage> {
     final confirmed = await showDialog<bool>(
       context: context,
       builder: (context) {
-        final l10n = AppLocalizations.of(context)!;
+        final l10n = l10nOf(context);
         final title = Text(l10n.coursesDeleteTitle);
         final content = Text(
           l10n.coursesDeleteBody(course.name),
@@ -46,7 +46,7 @@ class _CoursesPageState extends ConsumerState<_CoursesPage> {
     final result = await ref.read(courseRepositoryProvider).deleteCourse(course.id);
     if (!mounted) return;
     if (result is Err<void>) {
-      final l10n = AppLocalizations.of(context)!;
+      final l10n = l10nOf(context);
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text(localizeRepoMessage(result.message, l10n))),
       );
@@ -58,7 +58,7 @@ class _CoursesPageState extends ConsumerState<_CoursesPage> {
         await ref.read(courseRepositoryProvider).deleteSampleCourse(course.id);
     if (!mounted) return;
     if (result is Err) {
-      final l10n = AppLocalizations.of(context)!;
+      final l10n = l10nOf(context);
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text(localizeRepoMessage(result.message, l10n))),
       );
@@ -67,7 +67,7 @@ class _CoursesPageState extends ConsumerState<_CoursesPage> {
 
   @override
   Widget build(BuildContext context) {
-    final l10n = AppLocalizations.of(context)!;
+    final l10n = l10nOf(context);
     final coursesAsync = ref.watch(coursesProvider);
     final sessionsAsync = ref.watch(sessionsProvider);
     final settingsAsync = ref.watch(settingsProvider);
@@ -350,6 +350,10 @@ class _CoursesPageState extends ConsumerState<_CoursesPage> {
                 final (_, statusFg) = statusColors(context, p.status);
                 final paceUrgent = (p.requiredDailyHours ?? 0) >
                     courseTileUrgentDailyHours;
+                // Hoisted after the inline null-guard below: the pace row
+                // uses these locals so no `!` is needed.
+                final dailyPace = p.requiredDailyHours;
+                final weeklyPace = p.requiredWeeklyHours;
                 return GlassCard(
                   margin:
                       EdgeInsets.only(bottom: cardGap),
@@ -418,8 +422,10 @@ class _CoursesPageState extends ConsumerState<_CoursesPage> {
                             Expanded(
                               child: Text(
                                 l10n.coursesProgressWithStatus(
-                                    p.completedHours.toStringAsFixed(1),
-                                    p.requiredHours.toStringAsFixed(1),
+                                    formatDecimal(p.completedHours, 1,
+                                        locale: l10n.localeName),
+                                    formatDecimal(p.requiredHours, 1,
+                                        locale: l10n.localeName),
                                     courseStatusLabelL10n(p.status, l10n)),
                                 key: Key('courseProgressText_${course.id}'),
                                 style: Theme.of(context)
@@ -440,7 +446,7 @@ class _CoursesPageState extends ConsumerState<_CoursesPage> {
                               : statusFg,
                           minHeight: AppSizes.barCourse,
                         ),
-                        if (p.requiredDailyHours != null)
+                        if (dailyPace != null)
                           Padding(
                             padding: const EdgeInsets.only(
                                 top: AppSizes.coursePaceGap),
@@ -459,34 +465,38 @@ class _CoursesPageState extends ConsumerState<_CoursesPage> {
                                     width: AppSizes.dashboardSmallGap),
                                 Expanded(
                                   child: Text(
-                                    p.requiredWeeklyHours == null
-                                        ? (isSubHourPace(
-                                                p.requiredDailyHours!)
+                                    weeklyPace == null
+                                        ? (isSubHourPace(dailyPace)
                                             ? l10n.coursesPaceNeededMinutes(
-                                                formatPaceValue(p
-                                                    .requiredDailyHours!))
+                                                formatPaceValue(dailyPace,
+                                                    locale:
+                                                        l10n.localeName))
                                             : l10n.coursesPaceNeeded(
-                                                formatPaceValue(p
-                                                    .requiredDailyHours!)))
-                                        : isSubHourPace(
-                                                p.requiredDailyHours!)
-                                            ? (isSubHourPace(
-                                                    p.requiredWeeklyHours!)
+                                                formatPaceValue(dailyPace,
+                                                    locale:
+                                                        l10n.localeName)))
+                                        : isSubHourPace(dailyPace)
+                                            ? (isSubHourPace(weeklyPace)
                                                 ? l10n.coursesPaceNeededWeeklyMinutes(
-                                                    formatPaceValue(p
-                                                        .requiredDailyHours!),
-                                                    formatPaceValue(p
-                                                        .requiredWeeklyHours!))
+                                                    formatPaceValue(dailyPace,
+                                                        locale:
+                                                            l10n.localeName),
+                                                    formatPaceValue(weeklyPace,
+                                                        locale: l10n
+                                                            .localeName))
                                                 : l10n.coursesPaceNeededWeeklyMinutesHours(
-                                                    formatPaceValue(p
-                                                        .requiredDailyHours!),
-                                                    formatPaceValue(p
-                                                        .requiredWeeklyHours!)))
+                                                    formatPaceValue(dailyPace,
+                                                        locale:
+                                                            l10n.localeName),
+                                                    formatPaceValue(weeklyPace,
+                                                        locale: l10n
+                                                            .localeName)))
                                             : l10n.coursesPaceNeededWeekly(
-                                                formatPaceValue(p
-                                                    .requiredDailyHours!),
-                                                formatPaceValue(p
-                                                    .requiredWeeklyHours!)),
+                                                formatPaceValue(dailyPace,
+                                                    locale: l10n.localeName),
+                                                formatPaceValue(weeklyPace,
+                                                    locale:
+                                                        l10n.localeName)),
                                     style: Theme.of(context)
                                         .textTheme
                                         .bodyMedium
@@ -550,7 +560,7 @@ class _CoursesPageState extends ConsumerState<_CoursesPage> {
                             },
                             itemBuilder: (context) {
                               final menuL10n =
-                                  AppLocalizations.of(context)!;
+                                  l10nOf(context);
                               if (!glass) {
                                 return [
                                   PopupMenuItem(

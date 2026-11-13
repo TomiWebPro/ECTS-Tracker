@@ -6,7 +6,9 @@ import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../data/repositories.dart';
+import '../i18n/app_locales.dart';
 import '../logic/date_utils.dart';
+import '../logic/locale_format.dart';
 import '../logic/study_timer.dart';
 import '../models/models.dart';
 import '../state/providers.dart';
@@ -153,12 +155,13 @@ class _SessionFormDialogState extends ConsumerState<SessionFormDialog> {
     setState(() => _date = picked);
   }
 
-  String _dateLabel(DateTime d) => formatYmd(d);
+  String _dateLabel(DateTime d, String? locale) =>
+      formatDateLocalized(d, locale: locale);
 
   Future<void> _save() async {
-    final l10n = AppLocalizations.of(context)!;
+    final l10n = l10nOf(context);
     setState(() => _error = null);
-    if (!_formKey.currentState!.validate()) return;
+    if (_formKey.currentState?.validate() != true) return;
     // Resolve against live courses (same pure function the dropdown uses):
     // a course deleted while the dialog was open fails closed with the
     // no-course error instead of a FK rejection.
@@ -181,10 +184,13 @@ class _SessionFormDialogState extends ConsumerState<SessionFormDialog> {
     setState(() => _saving = true);
     final notes = _notesController.text.trim();
     final repo = ref.read(sessionRepositoryProvider);
+    // Branch on the row itself (`_isEdit` is `widget.existing != null`,
+    // so this is equivalent); bail (never throw) if it is gone.
+    final existing = widget.existing;
     final Result<void> result;
-    if (_isEdit) {
+    if (existing != null) {
       result = await repo.updateSession(
-        id: widget.existing!.id,
+        id: existing.id,
         courseId: courseId,
         minutes: minutes,
         date: _date,
@@ -213,7 +219,7 @@ class _SessionFormDialogState extends ConsumerState<SessionFormDialog> {
   }
 
   Future<void> _startTimer() async {
-    final l10n = AppLocalizations.of(context)!;
+    final l10n = l10nOf(context);
     setState(() => _error = null);
     List<Course> courses = const [];
     try {
@@ -249,6 +255,8 @@ class _SessionFormDialogState extends ConsumerState<SessionFormDialog> {
     List<Course> courses,
     StudyTimerState? timer,
   ) {
+    // Hoisted so the null-guard below promotes (fields never promote).
+    final errorText = _error;
     // An active timer is driven from here: same shared controls as the
     // standalone active sheet, closing the dialog on finish.
     if (timer != null) {
@@ -317,10 +325,10 @@ class _SessionFormDialogState extends ConsumerState<SessionFormDialog> {
             ),
           ),
         ),
-        if (_error != null) ...[
+        if (errorText != null) ...[
           const SizedBox(height: 8),
           Text(
-            localizeRepoMessage(_error!, l10n),
+            localizeRepoMessage(errorText, l10n),
             key: const Key('studyTimerFormError'),
             style: TextStyle(
               color: Theme.of(context).colorScheme.error,
@@ -333,7 +341,7 @@ class _SessionFormDialogState extends ConsumerState<SessionFormDialog> {
 
   @override
   Widget build(BuildContext context) {
-    final l10n = AppLocalizations.of(context)!;
+    final l10n = l10nOf(context);
     final coursesAsync = ref.watch(coursesProvider);
     final courses = coursesAsync.valueOrNull ?? const [];
 
@@ -434,6 +442,8 @@ class _SessionFormDialogState extends ConsumerState<SessionFormDialog> {
     AsyncValue<List<Course>> coursesAsync,
     List<Course> courses,
   ) {
+    // Hoisted so the null-guard below promotes (fields never promote).
+    final errorText = _error;
     // ECTS-074: single glass read for the Apple menu styling below.
     final glassMenu = ref.watch(glassEnabledProvider);
     // Resolved (not stored) selection: pure in build, so a course list
@@ -541,7 +551,8 @@ class _SessionFormDialogState extends ConsumerState<SessionFormDialog> {
                 padding: const EdgeInsets.only(top: 4),
                 child: Text(
                   l10n.sessionFormTotalHours(
-                    (_totalMinutes / 60.0).toStringAsFixed(2),
+                    formatDecimal(_totalMinutes / 60.0, 2,
+                        locale: l10n.localeName),
                   ),
                   key: const Key('sessionTotalDuration'),
                   style: Theme.of(context).textTheme.bodySmall,
@@ -552,7 +563,8 @@ class _SessionFormDialogState extends ConsumerState<SessionFormDialog> {
                 key: const Key('sessionDateButton'),
                 onPressed: _pickDate,
                 icon: const Icon(Icons.calendar_today),
-                label: Text(l10n.sessionFormDateButton(_dateLabel(_date))),
+                label: Text(l10n.sessionFormDateButton(
+                    _dateLabel(_date, l10n.localeName))),
               ),
               const SizedBox(height: 8),
               TextFormField(
@@ -561,10 +573,10 @@ class _SessionFormDialogState extends ConsumerState<SessionFormDialog> {
                 decoration: InputDecoration(labelText: l10n.sessionFormNotesLabel),
                 maxLines: 2,
               ),
-              if (_error != null) ...[
+              if (errorText != null) ...[
                 const SizedBox(height: 8),
                 Text(
-                  localizeRepoMessage(_error!, l10n),
+                  localizeRepoMessage(errorText, l10n),
                   key: const Key('sessionFormError'),
                   style: TextStyle(color: Theme.of(context).colorScheme.error),
                 ),

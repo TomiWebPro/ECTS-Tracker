@@ -174,11 +174,16 @@ int _daysInMonth(int year, int month) => DateTime(year, month + 1, 0).day;
 DateTime? nextFireAt(CustomSchedule schedule, DateTime now) {
   switch (schedule.recurrence) {
     case Recurrence.once:
-      final fireAt = schedule.fireAt!;
+      // Validated at construction; missing fire time means no fire.
+      final fireAt = schedule.fireAt;
+      if (fireAt == null) return null;
       return fireAt.isAfter(now) ? fireAt : null;
     case Recurrence.weekly:
-      final days = schedule.weekdays!;
-      final minutes = schedule.timeMinutes!;
+      // Validated non-empty/in-range at construction; missing or empty
+      // means no fire instead of a throw.
+      final days = schedule.weekdays;
+      final minutes = schedule.timeMinutes;
+      if (days == null || days.isEmpty || minutes == null) return null;
       for (var offset = 0; offset <= 7; offset++) {
         final day = dateOnly(now).add(Duration(days: offset));
         if (!days.contains(day.weekday)) continue;
@@ -188,8 +193,10 @@ DateTime? nextFireAt(CustomSchedule schedule, DateTime now) {
       }
       return null; // Unreachable: offset 7 always hits the same weekday.
     case Recurrence.monthly:
-      final wanted = schedule.dayOfMonth!;
-      final minutes = schedule.timeMinutes!;
+      // Validated at construction; missing fields mean no fire.
+      final wanted = schedule.dayOfMonth;
+      final minutes = schedule.timeMinutes;
+      if (wanted == null || minutes == null) return null;
       DateTime candidateFor(int year, int month) {
         final day = wanted.clamp(1, _daysInMonth(year, month));
         return DateTime(year, month, day, minutes ~/ 60, minutes % 60);

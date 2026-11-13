@@ -1,8 +1,8 @@
-import 'package:ects_tracker/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../logic/date_utils.dart';
+import '../i18n/app_locales.dart';
+import '../logic/locale_format.dart';
 import '../logic/ects.dart';
 import '../logic/statistics.dart';
 import '../state/providers.dart';
@@ -17,7 +17,7 @@ class StatisticsPage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final l10n = AppLocalizations.of(context)!;
+    final l10n = l10nOf(context);
     final coursesAsync = ref.watch(coursesProvider);
     final sessionsAsync = ref.watch(sessionsProvider);
     final settingsAsync = ref.watch(settingsProvider);
@@ -88,7 +88,7 @@ class StatisticsPage extends ConsumerWidget {
                         icon: Icons.schedule_outlined,
                         label: l10n.statsTotal,
                         value: l10n.statsHoursValue(
-                            stats.totalHours.toStringAsFixed(1)),
+                            formatDecimal(stats.totalHours, 1, locale: l10n.localeName)),
                       ),
                     ),
                     Expanded(
@@ -121,7 +121,7 @@ class StatisticsPage extends ConsumerWidget {
                         child: _InlineStat(
                           label: l10n.statsLast7Days,
                           value: l10n.statsHoursValue(
-                              stats.last7DaysHours.toStringAsFixed(1)),
+                              formatDecimal(stats.last7DaysHours, 1, locale: l10n.localeName)),
                         ),
                       ),
                       Container(
@@ -133,7 +133,7 @@ class StatisticsPage extends ConsumerWidget {
                         child: _InlineStat(
                           label: l10n.statsLast30Days,
                           value: l10n.statsHoursValue(
-                              stats.last30DaysHours.toStringAsFixed(1)),
+                              formatDecimal(stats.last30DaysHours, 1, locale: l10n.localeName)),
                         ),
                       ),
                     ],
@@ -157,7 +157,7 @@ class StatisticsPage extends ConsumerWidget {
                     Expanded(
                       child: Text(
                         l10n.statsConsistencyScore(
-                            (stats.consistencyScore * 100).toStringAsFixed(0)),
+                            formatDecimal(stats.consistencyScore * 100, 0, locale: l10n.localeName)),
                         style: Theme.of(context)
                             .textTheme
                             .titleMedium
@@ -212,7 +212,7 @@ class StatisticsPage extends ConsumerWidget {
                       child: _InlineStat(
                         label: l10n.statsDidPerDay,
                         value:
-                            l10n.statsHoursValue(pastAvg.toStringAsFixed(1)),
+                            l10n.statsHoursValue(formatDecimal(pastAvg, 1, locale: l10n.localeName)),
                       ),
                     ),
                     Container(
@@ -224,7 +224,7 @@ class StatisticsPage extends ConsumerWidget {
                       child: _InlineStat(
                         label: l10n.statsNeedPerDay,
                         value:
-                            l10n.statsHoursValue(needSum.toStringAsFixed(1)),
+                            l10n.statsHoursValue(formatDecimal(needSum, 1, locale: l10n.localeName)),
                       ),
                     ),
                     Container(
@@ -236,7 +236,7 @@ class StatisticsPage extends ConsumerWidget {
                       child: _InlineStat(
                         label: l10n.statsGap,
                         value: l10n.statsGapValue(gap <= 0 ? '+' : '',
-                            (-gap).toStringAsFixed(1)),
+                            formatDecimal(-gap, 1, locale: l10n.localeName)),
                       ),
                     ),
                   ],
@@ -251,7 +251,7 @@ class StatisticsPage extends ConsumerWidget {
                 Text(
                   gap <= 0
                       ? l10n.statsPaceCovers
-                      : l10n.statsPaceShort(gap.toStringAsFixed(1)),
+                      : l10n.statsPaceShort(formatDecimal(gap, 1, locale: l10n.localeName)),
                   style: Theme.of(context).textTheme.bodySmall?.copyWith(
                         color: gap > 0
                             ? scheme.error
@@ -294,7 +294,7 @@ class StatisticsPage extends ConsumerWidget {
                         borderRadius: BorderRadius.circular(999),
                       ),
                       child: Text(
-                        l10n.statsPeakPerWeek(peak.toStringAsFixed(0)),
+                        l10n.statsPeakPerWeek(formatDecimal(peak, 0, locale: l10n.localeName)),
                         style: Theme.of(context)
                             .textTheme
                             .labelMedium
@@ -322,7 +322,8 @@ class StatisticsPage extends ConsumerWidget {
                 ),
                 const SizedBox(height: 12),
                 ...forecast.map((w) {
-                  final label = formatMonthDay(w.weekStart);
+                  final label = formatMonthDayLocalized(w.weekStart,
+                      locale: l10n.localeName);
                   final ratio = peak <= 0
                       ? 0.0
                       : (w.hours / peak).clamp(0.0, 1.0);
@@ -361,7 +362,7 @@ class StatisticsPage extends ConsumerWidget {
                           width: 52,
                           child: Text(
                             l10n.statsHoursCompact(
-                                w.hours.toStringAsFixed(0)),
+                                formatDecimal(w.hours, 0, locale: l10n.localeName)),
                             textAlign: TextAlign.end,
                             style: Theme.of(context)
                                 .textTheme
@@ -384,8 +385,9 @@ class StatisticsPage extends ConsumerWidget {
                   Padding(
                     padding: const EdgeInsets.only(top: 4),
                     child: Text(
-                      l10n.statsOverloadWarning(overloadAt.toStringAsFixed(
-                          overloadAt % 1 == 0 ? 0 : 1)),
+                      l10n.statsOverloadWarning(formatDecimal(overloadAt,
+                          overloadAt % 1 == 0 ? 0 : 1,
+                          locale: l10n.localeName)),
                       style: Theme.of(context).textTheme.bodySmall?.copyWith(
                             color: scheme.error,
                             fontWeight: FontWeight.w700,
@@ -401,7 +403,7 @@ class StatisticsPage extends ConsumerWidget {
         _BarChart(
           value: stats.last7DaysMinutes / 60.0,
           maxValue: (stats.last30DaysMinutes / 60.0).clamp(1.0, double.infinity),
-          label: l10n.statsHoursValue(stats.last7DaysHours.toStringAsFixed(1)),
+          label: l10n.statsHoursValue(formatDecimal(stats.last7DaysHours, 1, locale: l10n.localeName)),
           caption: l10n.statsOfLast30DaysVolume,
         ),
         const SizedBox(height: 16),
@@ -410,7 +412,7 @@ class StatisticsPage extends ConsumerWidget {
         _BarChart(
           value: stats.last30DaysMinutes / 60.0,
           maxValue: (stats.last30DaysMinutes / 60.0).clamp(1.0, double.infinity),
-          label: l10n.statsHoursValue(stats.last30DaysHours.toStringAsFixed(1)),
+          label: l10n.statsHoursValue(formatDecimal(stats.last30DaysHours, 1, locale: l10n.localeName)),
           caption: l10n.statsTotalVolume,
         ),
         const SizedBox(height: 20),
@@ -468,9 +470,12 @@ class StatisticsPage extends ConsumerWidget {
                           const SizedBox(height: 4),
                           Text(
                             l10n.statsPerCourseProgress(
-                                hours.toStringAsFixed(1),
-                                required.toStringAsFixed(0),
-                                (progress * 100).toStringAsFixed(0)),
+                                formatDecimal(hours, 1,
+                                    locale: l10n.localeName),
+                                formatDecimal(required, 0,
+                                    locale: l10n.localeName),
+                                formatDecimal(progress * 100, 0,
+                                    locale: l10n.localeName)),
                             style: Theme.of(context)
                                 .textTheme
                                 .bodySmall
@@ -582,8 +587,9 @@ class _BarChart extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final l10n = AppLocalizations.of(context)!;
+    final l10n = l10nOf(context);
     final scheme = Theme.of(context).colorScheme;
+    final caption = this.caption;
     final ratio = maxValue == 0 ? 0.0 : (value / maxValue).clamp(0.0, 1.0);
     return GlassCard(
       child: Padding(
@@ -602,7 +608,8 @@ class _BarChart extends StatelessWidget {
                   ),
                 ),
                 Text(
-                  l10n.statsPercentValue((ratio * 100).toStringAsFixed(0)),
+                  l10n.statsPercentValue(formatDecimal(ratio * 100, 0,
+                      locale: l10n.localeName)),
                   style: Theme.of(context).textTheme.labelLarge?.copyWith(
                         color: scheme.primary,
                         fontWeight: FontWeight.w800,
@@ -612,7 +619,7 @@ class _BarChart extends StatelessWidget {
             ),
             if (caption != null)
               Text(
-                caption!,
+                caption,
                 style: Theme.of(context).textTheme.bodySmall?.copyWith(
                       color: scheme.onSurfaceVariant,
                     ),

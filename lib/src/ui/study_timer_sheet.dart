@@ -1,10 +1,10 @@
 import 'dart:async';
 
-import 'package:ects_tracker/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../data/repositories.dart';
+import '../i18n/app_locales.dart';
 import '../logic/study_timer.dart';
 import '../models/models.dart';
 import '../state/providers.dart';
@@ -95,7 +95,7 @@ class _StudyTimerActiveControlsState
   }
 
   Future<void> _confirmDiscard() async {
-    final l10n = AppLocalizations.of(context)!;
+    final l10n = l10nOf(context);
     final confirmed = await showDialog<bool>(
       context: context,
       builder: (context) => AlertDialog(
@@ -121,7 +121,9 @@ class _StudyTimerActiveControlsState
 
   @override
   Widget build(BuildContext context) {
-    final l10n = AppLocalizations.of(context)!;
+    final l10n = l10nOf(context);
+    // Hoisted so the null-guard below promotes (fields never promote).
+    final errorText = _error;
     final timer = ref.watch(studyTimerProvider);
     if (timer == null) return const SizedBox.shrink();
     final courses = ref.watch(coursesProvider).valueOrNull ?? const [];
@@ -160,10 +162,10 @@ class _StudyTimerActiveControlsState
             maxLines: 2,
           ),
         ],
-        if (_error != null) ...[
+        if (errorText != null) ...[
           const SizedBox(height: 8),
           Text(
-            localizeRepoMessage(_error!, l10n),
+            localizeRepoMessage(errorText, l10n),
             key: const Key('studyTimerActiveError'),
             style: TextStyle(color: Theme.of(context).colorScheme.error),
           ),
@@ -245,7 +247,7 @@ class _StudyTimerActiveDialogState
 
   @override
   Widget build(BuildContext context) {
-    final l10n = AppLocalizations.of(context)!;
+    final l10n = l10nOf(context);
     final timer = ref.watch(studyTimerProvider);
     final glass = ref.watch(glassEnabledProvider);
     if (timer == null) {
@@ -335,7 +337,7 @@ class _StudyTimerBannerState extends ConsumerState<StudyTimerBanner> {
   Widget build(BuildContext context) {
     final timer = ref.watch(studyTimerProvider);
     if (timer == null) return const SizedBox.shrink();
-    final l10n = AppLocalizations.of(context)!;
+    final l10n = l10nOf(context);
     final courses = ref.watch(coursesProvider).valueOrNull ?? const [];
     final course = _findCourse(courses, timer.courseId);
     final courseName =

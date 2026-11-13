@@ -74,7 +74,7 @@ class _HoldToConfirmButtonState extends State<_HoldToConfirmButton> {
 
   @override
   Widget build(BuildContext context) {
-    final l10n = AppLocalizations.of(context)!;
+    final l10n = l10nOf(context);
     final held = _heldSeconds;
     final progress = (held / widget.seconds).clamp(0.0, 1.0);
     final remaining = (widget.seconds - held).ceil().clamp(0, widget.seconds);

@@ -10,6 +10,7 @@ library;
 import '../models/models.dart';
 import 'date_utils.dart';
 import 'ects.dart';
+import 'locale_format.dart';
 import 'pace_format.dart';
 import 'session_totals.dart';
 
@@ -84,8 +85,10 @@ class StreakInfo {
 }
 
 /// Hours formatted for notification copy: `2` not `2.0`, else one decimal.
-String formatHours(double hours) =>
-    hours % 1 == 0 ? hours.toStringAsFixed(0) : hours.toStringAsFixed(1);
+/// [locale] selects the decimal separator (`2,9` in de); default `en`
+/// keeps the historical rendering byte-identical.
+String formatHours(double hours, {String? locale}) =>
+    formatHoursLocalized(hours, locale: locale);
 
 class _PaceNeed {
   const _PaceNeed(this.course, this.pace);
@@ -205,7 +208,9 @@ List<ReminderContent> computeBehindNudges({
   });
   for (final course in behind.take(maxNudgedCourses)) {
     // Reuse the progress from the collect pass above (same inputs).
-    final progress = seen[course]!;
+    // Defensive: a missing entry is skipped instead of throwing.
+    final progress = seen[course];
+    if (progress == null) continue;
     final left = progress.remainingHours;
     final days = progress.remainingDays;
     final pace = progress.requiredDailyHours;
@@ -214,7 +219,9 @@ List<ReminderContent> computeBehindNudges({
     String messageId;
     // Behind implies a deadline (ects.dart `_status`: no deadline is
     // onTrack, past deadline is overdue), so days is non-null here.
-    final dayCount = days!;
+    // Defensive: without a day count there is no nudge to compose.
+    final dayCount = days;
+    if (dayCount == null) continue;
     final Map<String, Object> args = {
       'course': course.name,
       'left': left,
@@ -343,8 +350,10 @@ List<ReminderContent> computeDeadlineCountdowns({
     if (days != null && days >= 1 && days <= warnDays) due.add(course);
   }
   due.sort((a, b) {
-    final cmp = remainingDays(a.deadline, now)!
-        .compareTo(remainingDays(b.deadline, now)!);
+    // `due` only holds courses with a deadline (filtered above), so the
+    // day counts exist; missing ones sort last instead of throwing.
+    final cmp = (remainingDays(a.deadline, now) ?? noDeadlineSortLast)
+        .compareTo(remainingDays(b.deadline, now) ?? noDeadlineSortLast);
     if (cmp != 0) return cmp;
     return a.name.toLowerCase().compareTo(b.name.toLowerCase());
   });
@@ -358,7 +367,10 @@ List<ReminderContent> computeDeadlineCountdowns({
       toleranceDays: toleranceDays,
     );
     final left = progress.remainingHours;
-    final days = progress.remainingDays!;
+    // Defensive: the filter above only lets 1..warnDays through, so this
+    // is non-null in practice; skip instead of throwing if it ever is.
+    final days = progress.remainingDays;
+    if (days == null) continue;
     final pace = progress.requiredDailyHours;
     if (days == 1) {
       out.add(ReminderContent(
@@ -424,21 +436,26 @@ List<ReminderContent> computeOverdue({
       if (cmp != 0) return cmp;
       return a.name.toLowerCase().compareTo(b.name.toLowerCase());
     });
-  return [
-    for (final course in ordered.take(maxNudgedCourses))
-      ReminderContent(
-        kind: ReminderKind.overdue,
-        title:
-            '❌ ${course.name} passed its deadline with ${formatDuration(late[course]!.remainingHours)} open',
-        body: 'Move the deadline or finish the hours — the course stays in Needs attention until then.',
-        courseId: course.id,
-        messageId: 'overdue',
-        args: {
-          'course': course.name,
-          'left': late[course]!.remainingHours,
-        },
-      ),
-  ];
+  final nudges = <ReminderContent>[];
+  for (final course in ordered.take(maxNudgedCourses)) {
+    // Defensive: entries come from the collect pass above; skip instead
+    // of throwing if one is ever missing.
+    final progress = late[course];
+    if (progress == null) continue;
+    nudges.add(ReminderContent(
+      kind: ReminderKind.overdue,
+      title:
+          '❌ ${course.name} passed its deadline with ${formatDuration(progress.remainingHours)} open',
+      body: 'Move the deadline or finish the hours — the course stays in Needs attention until then.',
+      courseId: course.id,
+      messageId: 'overdue',
+      args: {
+        'course': course.name,
+        'left': progress.remainingHours,
+      },
+    ));
+  }
+  return nudges;
 }
 
 /// Consecutive calendar days with >0 logged minutes. Counts back from

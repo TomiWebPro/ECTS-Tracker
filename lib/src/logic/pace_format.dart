@@ -5,6 +5,8 @@
 /// Single home for the threshold so dashboard + courses list stay in sync.
 library;
 
+import 'locale_format.dart';
+
 /// Below this (in hours) a pace is shown in minutes.
 const double kSubHourPaceThresholdHours = 1.0;
 
@@ -30,22 +32,27 @@ int paceMinutes(double hours) {
 }
 
 /// Number string for an hours pace: minutes int when sub-hour, else one
-/// decimal (matches the pre-078 `toStringAsFixed(1)` display for hours).
-String formatPaceValue(double hours) =>
-    isSubHourPace(hours) ? '${paceMinutes(hours)}' : hours.toStringAsFixed(1);
+/// decimal — with the locale's own separator when [locale] is given
+/// (default `en` keeps the historical rendering byte-identical).
+String formatPaceValue(double hours, {String? locale}) => isSubHourPace(hours)
+    ? '${paceMinutes(hours)}'
+    : formatDecimal(hours, 1, locale: locale);
 
 /// Number string for weekly pace (same rule; weekly = daily * 7 so weekly
 /// minutes only happen when daily is also minutes).
-String formatWeeklyPaceValue(double hours) => formatPaceValue(hours);
+String formatWeeklyPaceValue(double hours, {String? locale}) =>
+    formatPaceValue(hours, locale: locale);
 
 /// Full duration with unit for notification copy (ECTS-084).
 ///
 /// Sub-hour durations render as whole minutes (`42 min` for 0.7 h);
 /// hours keep the reminders trim (`27 h`, not `27.0 h`; else one decimal).
+/// [locale] localizes the decimal separator of the hour figure
+/// (`2,9 h` in de); the unit words stay English here — the fully localized
+/// rendering lives in `notifDuration` (`reminder_text.dart`).
 /// Single home so daily/behind/deadline/overdue/streak/custom stay in sync
 /// with the dashboard/courses minutes rule (ECTS-078 threshold).
-String formatDuration(double hours) {
+String formatDuration(double hours, {String? locale}) {
   if (isSubHourPace(hours)) return '${paceMinutes(hours)} min';
-  final n = hours % 1 == 0 ? hours.toStringAsFixed(0) : hours.toStringAsFixed(1);
-  return '$n h';
+  return '${formatHoursLocalized(hours, locale: locale)} h';
 }

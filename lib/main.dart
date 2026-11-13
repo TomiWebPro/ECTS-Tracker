@@ -245,7 +245,7 @@ class EctsTrackerApp extends StatelessWidget {
     return switch (startup) {
       StartupFailed(:final message) => MaterialApp(
           onGenerateTitle: (context) =>
-              AppLocalizations.of(context)!.appTitle,
+              l10nOf(context).appTitle,
           debugShowCheckedModeBanner: false,
           theme: buildLightTheme(),
           darkTheme: buildDarkTheme(),
@@ -266,9 +266,8 @@ class EctsTrackerApp extends StatelessWidget {
               });
               return db;
             }),
-            if (notificationBackend != null)
-              timerAlertBackendProvider
-                  .overrideWithValue(notificationBackend!),
+            if (notificationBackend case final backend?)
+              timerAlertBackendProvider.overrideWithValue(backend),
           ],
           child: const _ThemedApp(),
         ),
@@ -318,7 +317,7 @@ class _ThemedApp extends ConsumerWidget {
     final fallback = fontFallbackForLocale(appLocale ?? systemLocale);
     return MaterialApp(
       onGenerateTitle: (context) =>
-          AppLocalizations.of(context)!.appTitle,
+          l10nOf(context).appTitle,
       debugShowCheckedModeBanner: false,
       themeMode: switch (themeMode) {
         AppThemeMode.light => ThemeMode.light,
@@ -346,7 +345,7 @@ class _ThemedApp extends ConsumerWidget {
         return MediaQuery(
           data: MediaQuery.of(context)
               .copyWith(textScaler: TextScaler.linear(composed)),
-          child: child!,
+          child: child ?? const SizedBox.shrink(),
         );
       },
       home: const HomeShell(),
@@ -375,7 +374,7 @@ class StartupErrorScreen extends StatelessWidget {
                 Icon(Icons.error_outline, size: 56, color: scheme.error),
                 const SizedBox(height: 16),
                 Text(
-                  AppLocalizations.of(context)!.startupTitle,
+                  l10nOf(context).startupTitle,
                   style: Theme.of(context).textTheme.titleLarge,
                   textAlign: TextAlign.center,
                 ),

@@ -7,7 +7,7 @@ class _ReminderTiles extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final l10n = AppLocalizations.of(context)!;
+    final l10n = l10nOf(context);
     final prefs = ref.watch(reminderSettingsProvider);
     final current = prefs.valueOrNull ?? const ReminderSettings();
     final time = TimeOfDay(
@@ -42,7 +42,7 @@ class _ReminderTiles extends ConsumerWidget {
 
   Future<void> _setEnabled(
       BuildContext context, WidgetRef ref, bool value) async {
-    final l10n = AppLocalizations.of(context)!;
+    final l10n = l10nOf(context);
     if (value) {
       var granted = false;
       try {
@@ -104,7 +104,7 @@ class _ReminderTiles extends ConsumerWidget {
         hoursPerEcts: s.hoursPerEcts,
         toleranceDays: s.paceToleranceDays,
         now: DateTime.now(),
-        l10n: AppLocalizations.of(context)!,
+        l10n: l10nOf(context),
       );
     } catch (e) {
       // Best-effort reschedule (doc above); log in debug.
@@ -117,7 +117,7 @@ class _ReminderTiles extends ConsumerWidget {
       case Ok<void>():
         break;
       case Err<void>(:final message):
-        final l10n = AppLocalizations.of(context)!;
+        final l10n = l10nOf(context);
         ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(content: Text(localizeRepoMessage(message, l10n))));
     }

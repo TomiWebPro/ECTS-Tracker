@@ -1,3 +1,4 @@
+import 'package:ects_tracker/l10n/app_localizations.dart';
 import 'package:flutter/widgets.dart';
 
 /// Canonical locale registry for ECTS Tracker (M8: full localization).
@@ -142,8 +143,7 @@ bool isAppLocaleCode(String? code) => code != null && kAppLocaleCodes.contains(c
 
 /// Maps a persisted [code] to the [Locale] for `MaterialApp.locale`.
 /// Returns null for null/empty/unknown codes (system default).
-Locale? appLocaleFromCode(String? code) {
-  if (code == null || code.isEmpty || !kAppLocaleCodes.contains(code)) {
+Locale? appLocaleFromCode(String? code) {  if (code == null || code.isEmpty || !kAppLocaleCodes.contains(code)) {
     return null;
   }
   return switch (code) {
@@ -163,3 +163,11 @@ String? appLocaleNativeName(String? code) {
   }
   return null;
 }
+
+/// Never-throwing localization lookup (M13, ECTS-097).
+///
+/// Returns the widget-tree localizations, falling back to English when the
+/// tree has no localizations (tests, headless contexts) instead of throwing
+/// on `!`. Replaces `AppLocalizations.of(context)!` at all UI call sites.
+AppLocalizations l10nOf(BuildContext context) =>
+    AppLocalizations.of(context) ?? lookupAppLocalizations(const Locale('en'));

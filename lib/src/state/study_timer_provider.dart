@@ -64,11 +64,12 @@ class StudyTimerNotifier extends Notifier<StudyTimerState?> {
     }
     if (courseId <= 0) return const Err('Select a course.');
     final nowMs = DateTime.now().millisecondsSinceEpoch;
+    final trimmedNotes = notes?.trim();
     final timer = StudyTimerState(
       courseId: courseId,
       initialStartedAtMs: nowMs,
       runningSinceMs: nowMs,
-      notes: notes?.trim().isEmpty ?? true ? null : notes!.trim(),
+      notes: (trimmedNotes == null || trimmedNotes.isEmpty) ? null : trimmedNotes,
       courseName: await _resolveCourseName(courseId),
     );
     final saved = await ref.read(studyTimerPrefsProvider).save(timer);

@@ -338,7 +338,7 @@ StressPayload buildStressPayload({
         assigned += counts[i];
       }
       final order = List<int>.of(eligible)
-        ..sort((a, b) => frac[b]!.compareTo(frac[a]!));
+        ..sort((a, b) => (frac[b] ?? 0).compareTo(frac[a] ?? 0));
       var k = 0;
       while (assigned < sessionCount) {
         counts[order[k % order.length]]++;
@@ -419,9 +419,8 @@ StressSessionDraft _randomSession(
 }) {
   final course = courses[courseIndex];
   final DateTime earliest;
-  if (course.startEarly &&
-      course.startDate != null &&
-      course.startDate!.isAfter(today)) {
+  final startDate = course.startDate;
+  if (course.startEarly && startDate != null && startDate.isAfter(today)) {
     earliest = DateTime(today.year, today.month, today.day - 6);
   } else {
     final s = course.startDate;

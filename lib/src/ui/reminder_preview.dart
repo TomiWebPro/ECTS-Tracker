@@ -1,8 +1,8 @@
 import 'package:ects_tracker/l10n/app_localizations.dart';
+import 'package:ects_tracker/src/i18n/app_locales.dart';
 import 'package:ects_tracker/src/logic/custom_reminders.dart';
-import 'package:ects_tracker/src/logic/date_utils.dart';
-import 'package:ects_tracker/src/logic/reminders.dart';
-import 'package:ects_tracker/src/models/models.dart';
+import 'package:ects_tracker/src/logic/locale_format.dart';
+import 'package:ects_tracker/src/logic/reminders.dart';import 'package:ects_tracker/src/models/models.dart';
 import 'package:ects_tracker/src/notifications/reminder_text.dart';
 import 'package:ects_tracker/src/state/providers.dart';
 import 'package:flutter/material.dart';
@@ -16,8 +16,8 @@ import 'glass.dart';
 /// notifications cannot be exercised.)
 final previewNowProvider = StateProvider<DateTime?>((ref) => null);
 
-String _fmtTime(DateTime t) =>
-    '${formatYmd(t)} '
+String _fmtTime(DateTime t, {String? locale}) =>
+    '${formatDateLocalized(t, locale: locale)} '
     '${t.hour.toString().padLeft(2, '0')}:${t.minute.toString().padLeft(2, '0')}';
 
 String _kindLabel(AppLocalizations l10n, ReminderKind kind) => switch (kind) {
@@ -38,7 +38,7 @@ class ReminderPreviewPage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final l10n = AppLocalizations.of(context)!;
+    final l10n = l10nOf(context);
     final coursesAsync = ref.watch(coursesProvider);
     final sessionsAsync = ref.watch(sessionsProvider);
     final settingsAsync = ref.watch(settingsProvider);
@@ -116,7 +116,7 @@ class _NowBar extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final l10n = AppLocalizations.of(context)!;
+    final l10n = l10nOf(context);
     final notifier = ref.read(previewNowProvider.notifier);
     return GlassCard(
       child: Padding(
@@ -125,7 +125,7 @@ class _NowBar extends ConsumerWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              '${l10n.reminderPreviewNow}: ${_fmtTime(now)}${hasOverride ? ' ${l10n.reminderPreviewFake}' : ''}',
+              '${l10n.reminderPreviewNow}: ${_fmtTime(now, locale: l10n.localeName)}${hasOverride ? ' ${l10n.reminderPreviewFake}' : ''}',
               key: const Key('previewNowLabel'),
               style: Theme.of(context).textTheme.titleSmall,
             ),
@@ -177,7 +177,7 @@ class _Feed extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final l10n = AppLocalizations.of(context)!;
+    final l10n = l10nOf(context);
     final items = computeReminders(
       courses: courses,
       sessions: sessions,
@@ -257,7 +257,7 @@ class _CustomDemo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final l10n = AppLocalizations.of(context)!;
+    final l10n = l10nOf(context);
     final firstCourseId = courses.isEmpty ? null : courses.first.id;
     final demos = [
       CustomSchedule.weekly(
@@ -324,7 +324,7 @@ class _DemoRow extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final l10n = AppLocalizations.of(context)!;
+    final l10n = l10nOf(context);
     final fire = nextFireAt(schedule, now);
     final raw = composeCustomContent(
       schedule: schedule,
@@ -346,7 +346,8 @@ class _DemoRow extends StatelessWidget {
             Text(
               fire == null
                   ? l10n.reminderPreviewNoFire
-                  : l10n.reminderPreviewNext(_fmtTime(fire)),
+                  : l10n.reminderPreviewNext(
+                      _fmtTime(fire, locale: l10n.localeName)),
               style: Theme.of(context).textTheme.titleSmall?.copyWith(
                     fontWeight: FontWeight.w700,
                   ),

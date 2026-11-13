@@ -27,15 +27,17 @@ class _OverallProgressCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final l10n = AppLocalizations.of(context)!;
+    final l10n = l10nOf(context);
     final scheme = Theme.of(context).colorScheme;
     final fraction = progressFraction(totalRequired, totalDone);
-    final pct = (fraction * 100).clamp(0, 100).toStringAsFixed(0);
+    final pct = formatDecimal((fraction * 100).clamp(0, 100), 0,
+        locale: l10n.localeName);
     final isFreshStart = totalDone <= 0;
     final isEmpty = courseCount <= 0;
     final hasProgram = totalRequired > 0;
     final hasToday = todayPace > 0;
-    final todayPct = (todayFraction * 100).clamp(0, 100).toStringAsFixed(0);
+    final todayPct = formatDecimal((todayFraction * 100).clamp(0, 100), 0,
+        locale: l10n.localeName);
     // Glass cards (ECTS-063): tinted primaryContainer lens + shadow when on;
     // identical Card when off (theme card shape already uses heroRadius).
     return GlassCard(
@@ -117,12 +119,12 @@ class _OverallProgressCard extends StatelessWidget {
             const SizedBox(height: AppSizes.heroAfterHeadGap),
             Text(
               hasDueToday
-                  ? l10n.dashboardDueToday(todayLogged.toStringAsFixed(1))
+                  ? l10n.dashboardDueToday(formatDecimal(todayLogged, 1, locale: l10n.localeName))
                   : todayPace <= 0
                       ? l10n.dashboardNoPaceDue
                       : l10n.dashboardTodayProgress(
-                          todayLogged.toStringAsFixed(1),
-                          todayPace.toStringAsFixed(1),
+                          formatDecimal(todayLogged, 1, locale: l10n.localeName),
+                          formatDecimal(todayPace, 1, locale: l10n.localeName),
                         ),
               key: const Key('dashboardTodayPace'),
               style: Theme.of(context).textTheme.headlineSmall?.copyWith(
@@ -156,9 +158,10 @@ class _OverallProgressCard extends StatelessWidget {
                               width: AppSizes.heroDot,
                               height: AppSizes.heroDot,
                               decoration: BoxDecoration(
-                                color: e.course.colorValue != null
-                                    ? Color(e.course.colorValue!)
-                                    : scheme.primary,
+                                color: switch (e.course.colorValue) {
+                                  null => scheme.primary,
+                                  final c => Color(c),
+                                },
                                 shape: BoxShape.circle,
                               ),
                             ),
@@ -176,16 +179,22 @@ class _OverallProgressCard extends StatelessWidget {
                             ),
                             const SizedBox(width: AppSizes.heroValueGap),
                             Text(
+                              // Hoisted after the null check: no `!` below.
                               e.progress.requiredDailyHours == null
                                   ? '—'
                                   : isSubHourPace(
-                                          e.progress.requiredDailyHours!)
+                                          e.progress.requiredDailyHours ??
+                                              0)
                                       ? l10n.dashboardMinutesPerDay(
-                                          formatPaceValue(e.progress
-                                              .requiredDailyHours!))
+                                          formatPaceValue(
+                                              e.progress.requiredDailyHours ??
+                                                  0,
+                                              locale: l10n.localeName))
                                       : l10n.dashboardHoursPerDay(
-                                          formatPaceValue(e.progress
-                                              .requiredDailyHours!)),
+                                          formatPaceValue(
+                                              e.progress.requiredDailyHours ??
+                                                  0,
+                                              locale: l10n.localeName)),
                               style: Theme.of(context)
                                   .textTheme
                                   .bodyMedium
@@ -233,8 +242,8 @@ class _OverallProgressCard extends StatelessWidget {
                   ),
                   const Spacer(),
                   Text(
-                    l10n.dashboardTodayHours(todayLogged.toStringAsFixed(1),
-                        todayPace.toStringAsFixed(1)),
+                    l10n.dashboardTodayHours(formatDecimal(todayLogged, 1, locale: l10n.localeName),
+                        formatDecimal(todayPace, 1, locale: l10n.localeName)),
                     style: Theme.of(context).textTheme.labelMedium?.copyWith(
                           color: scheme.onPrimaryContainer,
                           fontWeight: FontWeight.w600,
@@ -266,7 +275,7 @@ class _OverallProgressCard extends StatelessWidget {
                         ? l10n.dashboardNothingToTrack
                         : (todayLogged > 0
                             ? l10n.dashboardBonusLogged(
-                                todayLogged.toStringAsFixed(1))
+                                formatDecimal(todayLogged, 1, locale: l10n.localeName))
                             : l10n.dashboardNothingDue),
                     style: Theme.of(context).textTheme.labelMedium?.copyWith(
                           color: scheme.onPrimaryContainer,
@@ -293,8 +302,8 @@ class _OverallProgressCard extends StatelessWidget {
                   const Spacer(),
                   Text(
                     l10n.dashboardProgramHours(
-                        totalDone.toStringAsFixed(1),
-                        totalRequired.toStringAsFixed(0)),
+                        formatDecimal(totalDone, 1, locale: l10n.localeName),
+                        formatDecimal(totalRequired, 0, locale: l10n.localeName)),
                     key: const Key('dashboardTotals'),
                     style:
                         Theme.of(context).textTheme.labelMedium?.copyWith(
@@ -368,7 +377,7 @@ class _DashboardCourseCard extends ConsumerWidget {
   String _deadlineLabel(
       AppLocalizations l10n, CourseProgress progress, DateTime? deadline) {
     if (deadline == null) return l10n.dashboardNoDeadline;
-    final d = formatYmd(deadline);
+    final d = formatDateLocalized(deadline, locale: l10n.localeName);
     if (progress.status == CourseStatus.overdue) {
       return l10n.dashboardDeadlineOverdue(d);
     }
@@ -382,7 +391,7 @@ class _DashboardCourseCard extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final l10n = AppLocalizations.of(context)!;
+    final l10n = l10nOf(context);
     final course = item.course;
     final p = item.progress;
     final scheme = Theme.of(context).colorScheme;
@@ -390,11 +399,13 @@ class _DashboardCourseCard extends ConsumerWidget {
     final deadlineUrgent = p.status == CourseStatus.overdue ||
         p.status == CourseStatus.behind;
     final scheduled = isScheduledCourse(course, now);
-    final daysToStart = scheduled && course.startDate != null
-        ? course.startDate!.difference(dateOnly(now)).inDays
+    final startDate = course.startDate;
+    final daysToStart = scheduled && startDate != null
+        ? startDate.difference(dateOnly(now)).inDays
         : 0;
-    String startLabel(DateTime? d) =>
-        d == null ? l10n.dashboardStartNotSet : formatYmd(d);
+    String startLabel(DateTime? d) => d == null
+        ? l10n.dashboardStartNotSet
+        : formatDateLocalized(d, locale: l10n.localeName);
 
     // Pace action line.
     String? paceText;
@@ -406,30 +417,33 @@ class _DashboardCourseCard extends ConsumerWidget {
           p.remainingHours, course.startDate, course.deadline);
       paceText = fromStart == null
           ? l10n.dashboardPaceStarts(startLabel(course.startDate),
-              p.remainingHours.toStringAsFixed(1))
+              formatDecimal(p.remainingHours, 1, locale: l10n.localeName))
           : isSubHourPace(fromStart)
               ? l10n.dashboardPaceNeedFromMinutes(
-                  formatPaceValue(fromStart), startLabel(course.startDate))
-              : l10n.dashboardPaceNeedFrom(formatPaceValue(fromStart),
+                  formatPaceValue(fromStart, locale: l10n.localeName), startLabel(course.startDate))
+              : l10n.dashboardPaceNeedFrom(formatPaceValue(fromStart, locale: l10n.localeName),
                   startLabel(course.startDate));
       paceColor = scheme.onSurfaceVariant;
       paceIcon = Icons.schedule_outlined;
     } else if (p.requiredDailyHours != null) {
-      final daily = p.requiredDailyHours!;
+      // Hoisted after the null check so no `!` is needed below.
+      // The whole pace block runs only when a daily pace exists.
+      final daily = p.requiredDailyHours;
       final weekly = p.requiredWeeklyHours;
-      if (weekly == null) {
+      if (daily != null) {
+        if (weekly == null) {
         paceText = isSubHourPace(daily)
-            ? l10n.dashboardPaceNeedDailyMinutes(formatPaceValue(daily))
-            : l10n.dashboardPaceNeedDaily(formatPaceValue(daily));
+            ? l10n.dashboardPaceNeedDailyMinutes(formatPaceValue(daily, locale: l10n.localeName))
+            : l10n.dashboardPaceNeedDaily(formatPaceValue(daily, locale: l10n.localeName));
       } else if (isSubHourPace(daily)) {
         paceText = isSubHourPace(weekly)
             ? l10n.dashboardPaceNeedDailyWeeklyMinutes(
-                formatPaceValue(daily), formatPaceValue(weekly))
+                formatPaceValue(daily, locale: l10n.localeName), formatPaceValue(weekly, locale: l10n.localeName))
             : l10n.dashboardPaceNeedDailyWeeklyMinutesHours(
-                formatPaceValue(daily), formatPaceValue(weekly));
+                formatPaceValue(daily, locale: l10n.localeName), formatPaceValue(weekly, locale: l10n.localeName));
       } else {
         paceText = l10n.dashboardPaceNeedDailyWeekly(
-            formatPaceValue(daily), formatPaceValue(weekly));
+            formatPaceValue(daily, locale: l10n.localeName), formatPaceValue(weekly, locale: l10n.localeName));
       }
       if (daily > unrealisticDailyPaceHours) {
         paceColor = scheme.error;
@@ -442,13 +456,14 @@ class _DashboardCourseCard extends ConsumerWidget {
         paceColor = scheme.primary;
         paceIcon = Icons.bolt_outlined;
       }
+      }
     } else if (p.remainingHours > 0 && p.remainingDays == 0) {
-      paceText = l10n.dashboardPaceDueToday(p.remainingHours.toStringAsFixed(1));
+      paceText = l10n.dashboardPaceDueToday(formatDecimal(p.remainingHours, 1, locale: l10n.localeName));
       paceColor = scheme.error;
       paceIcon = Icons.error_outline;
     } else if (course.deadline == null) {
       paceText = l10n.dashboardPaceNoDeadline(
-          p.remainingHours.toStringAsFixed(1));
+          formatDecimal(p.remainingHours, 1, locale: l10n.localeName));
       paceIcon = Icons.all_inclusive;
     }
 
@@ -478,10 +493,12 @@ class _DashboardCourseCard extends ConsumerWidget {
         explainerText = l10n.dashboardExplainerBehindNoPace;
       } else if (earlyStart) {
         explainerText = l10n.dashboardExplainerBehindEarly(
-            achieved.toStringAsFixed(1), need.toStringAsFixed(1));
+            formatDecimal(achieved, 1, locale: l10n.localeName),
+            formatDecimal(need, 1, locale: l10n.localeName));
       } else {
         explainerText = l10n.dashboardExplainerBehind(
-            achieved.toStringAsFixed(1), need.toStringAsFixed(1));
+            formatDecimal(achieved, 1, locale: l10n.localeName),
+            formatDecimal(need, 1, locale: l10n.localeName));
       }
     } else if (p.status == CourseStatus.onTrack &&
         p.requiredDailyHours != null) {
@@ -556,8 +573,8 @@ class _DashboardCourseCard extends ConsumerWidget {
                 const SizedBox(width: AppSizes.dashboardIconGap),
                 Text(
                   l10n.dashboardHoursFraction(
-                      p.completedHours.toStringAsFixed(1),
-                      p.requiredHours.toStringAsFixed(1)),
+                      formatDecimal(p.completedHours, 1, locale: l10n.localeName),
+                      formatDecimal(p.requiredHours, 1, locale: l10n.localeName)),
                   key: Key('dashboardHours_${course.id}'),
                   style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                         fontWeight: FontWeight.w700,
@@ -567,8 +584,10 @@ class _DashboardCourseCard extends ConsumerWidget {
                 Expanded(
                   child: Text(
                     l10n.dashboardHoursDetail(
-                        (p.progressFraction * 100).toStringAsFixed(0),
-                        p.remainingHours.toStringAsFixed(0)),
+                        formatDecimal(p.progressFraction * 100, 0,
+                            locale: l10n.localeName),
+                        formatDecimal(p.remainingHours, 0,
+                            locale: l10n.localeName)),
                     style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                           color: scheme.onSurfaceVariant,
                           fontWeight: FontWeight.w600,

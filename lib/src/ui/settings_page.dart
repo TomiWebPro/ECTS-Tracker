@@ -11,9 +11,11 @@ import 'package:ects_tracker/l10n/app_localizations.dart';
 
 import '../data/repositories.dart';
 import '../dev/stress_seed.dart';
-import '../i18n/app_locales.dart';import '../models/models.dart';
+import '../i18n/app_locales.dart';
+import '../models/models.dart';
 import '../models/reminder_settings.dart';
 import '../notifications/reminder_service.dart';
+import '../logic/locale_format.dart';
 import '../state/providers.dart';
 import 'app_sizes.dart';
 import 'err_text.dart';
@@ -43,8 +45,8 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
 
   void _registerDevTap() {
     final now = DateTime.now();
-    if (_devLastTap != null &&
-        now.difference(_devLastTap!) > const Duration(seconds: 2)) {
+    final lastTap = _devLastTap;
+    if (lastTap != null && now.difference(lastTap) > const Duration(seconds: 2)) {
       _devTaps = 0;
     }
     _devLastTap = now;
@@ -57,7 +59,7 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
 
   Future<void> _askActivateDevMode() async {
     if (ref.read(devModeProvider)) return;
-    final l10n = AppLocalizations.of(context)!;
+    final l10n = l10nOf(context);
     final glass = ref.read(glassEnabledProvider);
     final confirmed = await showDialog<bool>(
       context: context,
@@ -94,7 +96,7 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
 
   Future<void> _pumpTestData() async {
     if (_pumping) return;
-    final l10n = AppLocalizations.of(context)!;
+    final l10n = l10nOf(context);
     final glass = ref.read(glassEnabledProvider);
     // Confirm twice: intent, then consequence.
     final step1 = await showDialog<bool>(
@@ -173,7 +175,7 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
   }
 
   Future<void> _clearPumpedData() async {
-    final l10n = AppLocalizations.of(context)!;
+    final l10n = l10nOf(context);
     final glass = ref.read(glassEnabledProvider);
     final confirmed = await showDialog<bool>(
       context: context,
@@ -216,7 +218,7 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
   }
 
   Future<void> _confirmRemoveAllDev() async {
-    final l10n = AppLocalizations.of(context)!;
+    final l10n = l10nOf(context);
     final glass = ref.read(glassEnabledProvider);
     final confirmed = await showDialog<bool>(
       context: context,
@@ -258,7 +260,7 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
     final settingsAsync = ref.watch(settingsProvider);
     final settings = settingsAsync.valueOrNull ?? const AppSettings();
     final devMode = ref.watch(devModeProvider);
-    final l10n = AppLocalizations.of(context)!;
+    final l10n = l10nOf(context);
     // Glass flow-through: outer bottom inset is gone (see home_shell), so
     // the scrollable carries the tab-bar clearance itself.
     final glass = ref.watch(glassEnabledProvider);
@@ -292,9 +294,10 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
                   icon: Icons.timelapse_outlined,
                   title: l10n.settingsHoursPerEcts,
                   subtitle: Text(
-                    l10n.settingsHoursPerEctsValue(settings.hoursPerEcts
-                        .toStringAsFixed(
-                            settings.hoursPerEcts % 1 == 0 ? 0 : 1)),
+                    l10n.settingsHoursPerEctsValue(formatDecimal(
+                        settings.hoursPerEcts,
+                        settings.hoursPerEcts % 1 == 0 ? 0 : 1,
+                        locale: l10n.localeName)),
                   ),
                   onTap: () => _editHoursPerEcts(context, ref, settings),
                 ),
@@ -583,18 +586,16 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
       };
 
   String _formatTolerance(AppLocalizations l10n, double v) =>
-      l10n.settingsToleranceDays(v % 1 == 0
-          ? v.toStringAsFixed(0)
-          : v.toStringAsFixed(1));
+      l10n.settingsToleranceDays(formatDecimal(v, v % 1 == 0 ? 0 : 1,
+          locale: l10n.localeName));
 
   String _formatOverload(AppLocalizations l10n, double v) =>
-      l10n.settingsOverloadHours(v % 1 == 0
-          ? v.toStringAsFixed(0)
-          : v.toStringAsFixed(1));
+      l10n.settingsOverloadHours(formatDecimal(v, v % 1 == 0 ? 0 : 1,
+          locale: l10n.localeName));
 
   Future<void> _editOverloadThreshold(
       BuildContext context, WidgetRef ref, AppSettings settings) async {
-    final l10n = AppLocalizations.of(context)!;
+    final l10n = l10nOf(context);
     final glass = ref.read(glassEnabledProvider);
     final controller =
         TextEditingController(text: settings.weeklyOverloadHours.toString());
@@ -659,7 +660,7 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
 
   Future<void> _editPaceTolerance(
       BuildContext context, WidgetRef ref, AppSettings settings) async {
-    final l10n = AppLocalizations.of(context)!;
+    final l10n = l10nOf(context);
     final glass = ref.read(glassEnabledProvider);
     final controller =
         TextEditingController(text: settings.paceToleranceDays.toString());
@@ -724,7 +725,7 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
 
   Future<void> _editHoursPerEcts(
       BuildContext context, WidgetRef ref, AppSettings settings) async {
-    final l10n = AppLocalizations.of(context)!;
+    final l10n = l10nOf(context);
     final glass = ref.read(glassEnabledProvider);
     final controller = TextEditingController(
         text: settings.hoursPerEcts.toStringAsFixed(
@@ -786,7 +787,7 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
 
   Future<void> _editDailyTarget(
       BuildContext context, WidgetRef ref, AppSettings settings) async {
-    final l10n = AppLocalizations.of(context)!;
+    final l10n = l10nOf(context);
     final glass = ref.read(glassEnabledProvider);
     final controller =
         TextEditingController(text: settings.dailyTargetMinutes.toString());
@@ -846,7 +847,7 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
 
   Future<void> _editFirstWeekday(
       BuildContext context, WidgetRef ref, AppSettings settings) async {
-    final l10n = AppLocalizations.of(context)!;
+    final l10n = l10nOf(context);
     final glass = ref.read(glassEnabledProvider);
     final selected = await showDialog<int>(
       context: context,
@@ -899,7 +900,7 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
 
   Future<void> _editLanguage(
       BuildContext context, WidgetRef ref, AppSettings settings) async {
-    final l10n = AppLocalizations.of(context)!;
+    final l10n = l10nOf(context);
     final glass = ref.read(glassEnabledProvider);
     // The system entry pops '' (dismissal pops null), so picking "system"
     // is distinguishable from dismissing the dialog.
@@ -981,13 +982,13 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
               content: Text(localizeRepoMessage(
-                  message, AppLocalizations.of(context)!))),
+                  message, l10nOf(context)))),
         );
     }
   }
 
   Future<void> _editThemeMode(
-      BuildContext context, WidgetRef ref, AppSettings settings) async {    final l10n = AppLocalizations.of(context)!;
+      BuildContext context, WidgetRef ref, AppSettings settings) async {    final l10n = l10nOf(context);
     final glass = ref.read(glassEnabledProvider);
     final selected = await showDialog<AppThemeMode>(
       context: context,
@@ -1040,7 +1041,7 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
 
   Future<void> _editDisplaySize(
       BuildContext context, WidgetRef ref, AppSettings settings) async {
-    final l10n = AppLocalizations.of(context)!;
+    final l10n = l10nOf(context);
     final glass = ref.read(glassEnabledProvider);
     final selected = await showDialog<AppDisplaySize>(
       context: context,
@@ -1051,7 +1052,8 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
                   child: Text(
                     l10n.settingsDisplaySizeOption(
                       _displaySizeName(l10n, size),
-                      (size.scale * 100).toStringAsFixed(0),
+                      formatDecimal(size.scale * 100, 0,
+                          locale: l10n.localeName),
                     ),
                     style: TextStyle(fontSize: 16 * size.scale),
                   ),
@@ -1101,7 +1103,7 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
 
   Future<void> _editAccent(
       BuildContext context, WidgetRef ref, AppSettings settings) async {
-    final l10n = AppLocalizations.of(context)!;
+    final l10n = l10nOf(context);
     final glass = ref.read(glassEnabledProvider);
     final selected = await showDialog<AppAccent>(
       context: context,
@@ -1163,7 +1165,7 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
 
   Future<void> _setLiquidGlass(
       BuildContext context, WidgetRef ref, bool value) async {
-    final l10n = AppLocalizations.of(context)!;
+    final l10n = l10nOf(context);
     final result =
         await ref.read(settingsRepositoryProvider).setLiquidGlass(value);
     if (!context.mounted) return;
@@ -1171,7 +1173,7 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
   }
 
   Future<void> _confirmClearSample(BuildContext context, WidgetRef ref) async {
-    final l10n = AppLocalizations.of(context)!;
+    final l10n = l10nOf(context);
     final glass = ref.read(glassEnabledProvider);
     final confirmed = await showDialog<bool>(
       context: context,
@@ -1209,14 +1211,14 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
           SnackBar(
             key: const Key('clearSampleDataError'),
             content: Text(localizeRepoMessage(
-                message, AppLocalizations.of(context)!)),
+                message, l10nOf(context))),
           ),
         );
     }
   }
 
   Future<void> _exportData(BuildContext context, WidgetRef ref) async {
-    final l10n = AppLocalizations.of(context)!;
+    final l10n = l10nOf(context);
     final glass = ref.read(glassEnabledProvider);
     final result = await ref.read(backupRepositoryProvider).exportJson();
     if (!context.mounted) return;
@@ -1238,7 +1240,8 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
           // Counts are display-only; a decode miss keeps 0/0, the raw
           // JSON below is still shown (value came from our own export).
         }
-        final kb = (value.length / 1024).toStringAsFixed(1);
+        final kb = formatDecimal(value.length / 1024, 1,
+            locale: l10n.localeName);
         const previewLimit = 4000;
         final preview = value.length > previewLimit
             ? '${value.substring(0, previewLimit)}\n${l10n.settingsExportTruncated(kb)}'
@@ -1297,7 +1300,7 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
   }
 
   Future<void> _importData(BuildContext context, WidgetRef ref) async {
-    final l10n = AppLocalizations.of(context)!;
+    final l10n = l10nOf(context);
     final glass = ref.read(glassEnabledProvider);
     final controller = TextEditingController();
     ImportMode mode = ImportMode.replace;
@@ -1310,6 +1313,8 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
       context: context,
       builder: (context) => StatefulBuilder(
         builder: (context, setState) {
+          // Hoisted so the null-guard below promotes (captured var).
+          final preview = previewText;
           Future<void> validate() async {
             final text = controller.text;
             if (text.trim().isEmpty) {
@@ -1381,9 +1386,9 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
                       style: TextStyle(
                           color: Theme.of(context).colorScheme.error),
                     ),
-                  if (previewText != null)
+                  if (preview != null)
                     Text(
-                      previewText!,
+                      preview,
                       key: const Key('importPreviewOk'),
                       style: const TextStyle(fontWeight: FontWeight.w600),
                     ),
@@ -1478,7 +1483,7 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
   }
 
   Future<void> _confirmResetSettings(BuildContext context, WidgetRef ref) async {
-    final l10n = AppLocalizations.of(context)!;
+    final l10n = l10nOf(context);
     final glass = ref.read(glassEnabledProvider);
     final confirmed = await showDialog<bool>(
       context: context,
@@ -1520,7 +1525,7 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
               .showSnackBar(SnackBar(content: Text(success)));
         }
       case Err<void>(:final message):
-        final l10n = AppLocalizations.of(context)!;
+        final l10n = l10nOf(context);
         ScaffoldMessenger.of(context).showSnackBar(SnackBar(
             key: errorKey,
             content: Text(localizeRepoMessage(message, l10n))));

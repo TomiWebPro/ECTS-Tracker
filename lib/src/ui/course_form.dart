@@ -1,11 +1,12 @@
-import 'package:ects_tracker/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../data/repositories.dart';
+import '../i18n/app_locales.dart';
 import '../logic/date_utils.dart';
 import '../logic/ects.dart';
+import '../logic/locale_format.dart';
 import '../models/models.dart';
 import '../state/providers.dart';
 import 'app_sizes.dart';
@@ -119,19 +120,26 @@ class _CourseFormDialogState extends ConsumerState<CourseFormDialog> {
 
   Future<void> _save() {
     setState(() => _error = null);
-    if (!_formKey.currentState!.validate()) return Future.value();
+    if (_formKey.currentState?.validate() != true) return Future.value();
     return _doSave();
   }
 
   Future<void> _doSave() async {
     setState(() => _saving = true);
     final repo = ref.read(courseRepositoryProvider);
-    final ects = _parseEcts()!;
+    // Validated in _save before this runs; bail (never throw) if parsing
+    // somehow fails. Edit mode always carries the row; bail if it is gone.
+    final ects = _parseEcts();
+    final existing = widget.existing;
+    if (ects == null) {
+      if (mounted) setState(() => _saving = false);
+      return;
+    }
     final notes = _notes.text.trim();
     final Result<void> result;
-    if (_isEdit) {
+    if (existing != null) {
       result = await repo.updateCourse(
-        id: widget.existing!.id,
+        id: existing.id,
         name: _name.text,
         ectsCredits: ects,
         startDate: _startDate,
@@ -165,14 +173,16 @@ class _CourseFormDialogState extends ConsumerState<CourseFormDialog> {
     }
   }
 
-  String _dateLabel(DateTime? d, String notSet) {
+  String _dateLabel(DateTime? d, String notSet, String? locale) {
     if (d == null) return notSet;
-    return formatYmd(d);
+    return formatDateLocalized(d, locale: locale);
   }
 
   @override
   Widget build(BuildContext context) {
-    final l10n = AppLocalizations.of(context)!;
+    final l10n = l10nOf(context);
+    // Hoisted so the null-guard below promotes (fields never promote).
+    final errorText = _error;
     final settingsAsync = ref.watch(settingsProvider);
     final hoursPerEcts = settingsAsync.valueOrNull?.hoursPerEcts ?? AppSettings.defaultHoursPerEcts;
     final ects = _parseEcts();
@@ -227,7 +237,7 @@ class _CourseFormDialogState extends ConsumerState<CourseFormDialog> {
               Text(
                 l10n.courseFormAutoHoursValue(
                   computedHours != null
-                      ? '${l10n.statsHoursValue(computedHours.toStringAsFixed(1))} (${l10n.courseFormHoursPerEctsValue(hoursPerEcts.toStringAsFixed(0))})'
+                      ? '${l10n.statsHoursValue(formatDecimal(computedHours, 1, locale: l10n.localeName))} (${l10n.courseFormHoursPerEctsValue(formatDecimal(hoursPerEcts, 0, locale: l10n.localeName))})'
                       : '—',
                 ),
                 key: const Key('courseAutoHours'),
@@ -242,7 +252,8 @@ class _CourseFormDialogState extends ConsumerState<CourseFormDialog> {
                       onPressed: () => _pickDate(start: true),
                       child: Text(
                         l10n.courseFormStartButton(
-                          _dateLabel(_startDate, l10n.courseFormDateNotSet),
+                          _dateLabel(_startDate, l10n.courseFormDateNotSet,
+                              l10n.localeName),
                         ),
                       ),
                     ),
@@ -264,7 +275,8 @@ class _CourseFormDialogState extends ConsumerState<CourseFormDialog> {
                       onPressed: () => _pickDate(start: false),
                       child: Text(
                         l10n.courseFormDeadlineButton(
-                          _dateLabel(_deadline, l10n.courseFormDateNotSet),
+                          _dateLabel(_deadline, l10n.courseFormDateNotSet,
+                              l10n.localeName),
                         ),
                       ),
                     ),
@@ -289,7 +301,8 @@ class _CourseFormDialogState extends ConsumerState<CourseFormDialog> {
                     _startEarly
                         ? l10n.courseFormStartEarlyOn
                         : l10n.courseFormStartEarlyOff(
-                            _dateLabel(_startDate, l10n.courseFormDateNotSet),
+                            _dateLabel(_startDate, l10n.courseFormDateNotSet,
+                              l10n.localeName),
                           ),
                   ),
                   controlAffinity: ListTileControlAffinity.leading,
@@ -333,10 +346,10 @@ class _CourseFormDialogState extends ConsumerState<CourseFormDialog> {
                     ),
                 ],
               ),
-              if (_error != null) ...[
+              if (errorText != null) ...[
                 const SizedBox(height: 8),
                 Text(
-                  localizeRepoMessage(_error!, l10n),
+                  localizeRepoMessage(errorText, l10n),
                   key: const Key('courseFormError'),
                   style: TextStyle(color: Theme.of(context).colorScheme.error),
                 ),

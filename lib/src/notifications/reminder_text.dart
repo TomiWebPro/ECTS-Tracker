@@ -9,15 +9,18 @@ library;
 
 import 'package:ects_tracker/l10n/app_localizations.dart';
 
+import '../logic/locale_format.dart';
 import '../logic/pace_format.dart';
 import '../logic/reminders.dart';
 
 /// Localized duration for notification copy, mirroring [formatDuration]'s
 /// sub-hour rule (ECTS-078 threshold): whole minutes below 1 h, else the
-/// trimmed one-decimal hour figure — with the locale's own units.
+/// trimmed one-decimal hour figure — with the locale's own units *and*
+/// decimal separator.
 String notifDuration(AppLocalizations l10n, double hours) {
   if (isSubHourPace(hours)) return l10n.notifDurationMinutes('${paceMinutes(hours)}');
-  return l10n.notifDurationHours(formatHours(hours));
+  return l10n.notifDurationHours(
+      formatHoursLocalized(hours, locale: l10n.localeName));
 }
 
 double _hours(Object? value) => (value as num).toDouble();

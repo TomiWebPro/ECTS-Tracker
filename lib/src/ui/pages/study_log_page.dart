@@ -14,7 +14,7 @@ class _StudyLogPage extends ConsumerWidget {
     final confirmed = await showDialog<bool>(
       context: context,
       builder: (context) {
-        final l10n = AppLocalizations.of(context)!;
+        final l10n = l10nOf(context);
         final title = Text(l10n.studyLogDeleteTitle);
         final content = Text(
           l10n.studyLogDeleteBody,
@@ -43,7 +43,7 @@ class _StudyLogPage extends ConsumerWidget {
         await ref.read(sessionRepositoryProvider).deleteSession(session.id);
     if (!context.mounted) return;
     if (result is Err<void>) {
-      final l10n = AppLocalizations.of(context)!;
+      final l10n = l10nOf(context);
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text(localizeRepoMessage(result.message, l10n))),
       );
@@ -52,7 +52,7 @@ class _StudyLogPage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final l10n = AppLocalizations.of(context)!;
+    final l10n = l10nOf(context);
     final sessionsAsync = ref.watch(sessionsProvider);
     final coursesAsync = ref.watch(coursesProvider);
     final settings = ref.watch(settingsProvider).valueOrNull;
@@ -131,8 +131,9 @@ class _StudyLogPage extends ConsumerWidget {
                         child: StatTile(
                           icon: Icons.today_outlined,
                           label: l10n.studyLogToday,
-                          value: l10n.studyLogHoursValue(
-                              totals.dailyHours.toStringAsFixed(1)),
+                          value: l10n.studyLogHoursValue(formatDecimal(
+                              totals.dailyHours, 1,
+                              locale: l10n.localeName)),
                           valueKey: const Key('dailyTotal'),
                         ),
                       ),
@@ -150,8 +151,9 @@ class _StudyLogPage extends ConsumerWidget {
                         child: StatTile(
                           icon: Icons.date_range_outlined,
                           label: l10n.studyLogThisWeek,
-                          value: l10n.studyLogHoursValue(
-                              totals.weeklyHours.toStringAsFixed(1)),
+                          value: l10n.studyLogHoursValue(formatDecimal(
+                              totals.weeklyHours, 1,
+                              locale: l10n.localeName)),
                           valueKey: const Key('weeklyTotal'),
                         ),
                       ),
@@ -174,12 +176,14 @@ class _StudyLogPage extends ConsumerWidget {
                   final session = sorted[i];
                   final course = courseMap[session.courseId];
                   final hours = session.minutes / 60.0;
-                  final dateLabel = formatYmd(session.date);
+                  final dateLabel = formatDateLocalized(session.date,
+                      locale: l10n.localeName);
                   final subtitleParts = <String>[
                     dateLabel,
                   ];
-                  if (session.notes != null && session.notes!.trim().isNotEmpty) {
-                    subtitleParts.add(session.notes!.trim());
+                  final notes = session.notes;
+                  if (notes != null && notes.trim().isNotEmpty) {
+                    subtitleParts.add(notes.trim());
                   }
                   final scheme = Theme.of(context).colorScheme;
                   return GlassCard(
@@ -222,8 +226,8 @@ class _StudyLogPage extends ConsumerWidget {
                                   AppSizes.pillRadius),
                             ),
                             child: Text(
-                              l10n.studyLogHoursValue(
-                                  hours.toStringAsFixed(1)),
+                              l10n.studyLogHoursValue(formatDecimal(hours, 1,
+                                  locale: l10n.localeName)),
                               style: Theme.of(context)
                                   .textTheme
                                   .labelMedium
@@ -273,7 +277,7 @@ class _StudyLogPage extends ConsumerWidget {
                                     .deleteSession(session.id);
                                 if (!context.mounted) return;
                                 if (result is Err) {
-                                  final l10n = AppLocalizations.of(context)!;
+                                  final l10n = l10nOf(context);
                                   ScaffoldMessenger.of(context).showSnackBar(
                                     SnackBar(
                                         content: Text(localizeRepoMessage(
@@ -297,7 +301,7 @@ class _StudyLogPage extends ConsumerWidget {
                               },
                               itemBuilder: (context) {
                                 final menuL10n =
-                                    AppLocalizations.of(context)!;
+                                    l10nOf(context);
                                 if (!glass) {
                                   return [
                                     PopupMenuItem(

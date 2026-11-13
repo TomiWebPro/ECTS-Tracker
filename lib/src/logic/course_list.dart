@@ -25,13 +25,15 @@ String courseSortLabel(CourseSort sort) => switch (sort) {
     };
 
 /// Status priority for "needs attention" ordering (most urgent first).
-const Map<CourseStatus, int> _statusPriority = {
-  CourseStatus.overdue: 0,
-  CourseStatus.behind: 1,
-  CourseStatus.onTrack: 2,
-  CourseStatus.ahead: 3,
-  CourseStatus.completed: 4,
-};
+/// Total over [CourseStatus]: every status maps explicitly, so lookups
+/// never need `!`.
+int statusPriority(CourseStatus status) => switch (status) {
+      CourseStatus.overdue => 0,
+      CourseStatus.behind => 1,
+      CourseStatus.onTrack => 2,
+      CourseStatus.ahead => 3,
+      CourseStatus.completed => 4,
+    };
 
 String courseStatusLabel(CourseStatus status) => switch (status) {
       CourseStatus.completed => 'Completed',
@@ -80,14 +82,11 @@ List<CourseWithProgress> coursesWithProgress(
 /// View priority for the dashboard Courses section: most urgent first
 /// (overdue, behind, onTrack, ahead, completed), then soonest deadline,
 /// then name as a stable tie-breaker.
-int statusPriority(CourseStatus status) => _statusPriority[status]!;
-
-/// Sorts a dashboard course list by view priority (see [statusPriority]).
 List<CourseWithProgress> sortByViewPriority(List<CourseWithProgress> items) {
   final sorted = List<CourseWithProgress>.of(items);
   sorted.sort((a, b) {
-    final cmp = _statusPriority[a.progress.status]!
-        .compareTo(_statusPriority[b.progress.status]!);
+    final cmp = statusPriority(a.progress.status)
+        .compareTo(statusPriority(b.progress.status));
     if (cmp != 0) return cmp;
     final dc = _compareDeadline(a, b);
     if (dc != 0) return dc;
@@ -136,8 +135,8 @@ List<CourseWithProgress> sortAndFilterCourses(
       CourseSort.deadline => _compareDeadline(a, b),
       CourseSort.progress =>
         b.progress.progressFraction.compareTo(a.progress.progressFraction),
-      CourseSort.status => _statusPriority[a.progress.status]!
-          .compareTo(_statusPriority[b.progress.status]!),
+      CourseSort.status => statusPriority(a.progress.status)
+          .compareTo(statusPriority(b.progress.status)),
     };
     if (cmp != 0) return cmp;
     return byName(a, b);

@@ -8,7 +8,7 @@ class _OverviewPage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final l10n = AppLocalizations.of(context)!;
+    final l10n = l10nOf(context);
     final scheme = Theme.of(context).colorScheme;
     final coursesAsync = ref.watch(coursesProvider);
     final sessionsAsync = ref.watch(sessionsProvider);
