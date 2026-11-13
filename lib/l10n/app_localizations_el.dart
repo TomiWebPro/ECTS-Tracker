@@ -1,6 +1,5 @@
 // ignore: unused_import
 import 'package:intl/intl.dart' as intl;
-
 import 'app_localizations.dart';
 
 // ignore_for_file: type=lint
@@ -83,12 +82,10 @@ class AppLocalizationsEl extends AppLocalizations {
   }
 
   @override
-  String get courseFormStartEarlyOn =>
-      'Ενεργό: ο χρόνος κατανέμεται έως τώρα και προσμετράται στον σημερινό ρυθμό.';
+  String get courseFormStartEarlyOn => 'Ενεργό: ο χρόνος κατανέμεται έως τώρα και προσμετράται στον σημερινό ρυθμό.';
 
   @override
-  String get courseFormStartEarlyTitle =>
-      'Έναρξη τώρα παρά τη μελλοντική έναρξη';
+  String get courseFormStartEarlyTitle => 'Έναρξη τώρα παρά τη μελλοντική έναρξη';
 
   @override
   String get courseFormTitleAdd => 'Προσθήκη μαθήματος';
@@ -113,8 +110,7 @@ class AppLocalizationsEl extends AppLocalizations {
   }
 
   @override
-  String get coursesEmptyHint =>
-      'Πάτησε «Νέο μάθημα» για να δημιουργήσεις το πρώτο σου μάθημα.';
+  String get coursesEmptyHint => 'Πάτησε «Νέο μάθημα» για να δημιουργήσεις το πρώτο σου μάθημα.';
 
   @override
   String get coursesEmptyTitle => 'Δεν υπάρχουν μαθήματα ακόμη';
@@ -123,8 +119,7 @@ class AppLocalizationsEl extends AppLocalizations {
   String get coursesFilterAll => 'Όλες οι καταστάσεις';
 
   @override
-  String get coursesFilterEmpty =>
-      'Κανένα μάθημα δεν ταιριάζει με αυτό το φίλτρο';
+  String get coursesFilterEmpty => 'Κανένα μάθημα δεν ταιριάζει με αυτό το φίλτρο';
 
   @override
   String get coursesNewCourse => 'Νέο μάθημα';
@@ -155,11 +150,7 @@ class AppLocalizationsEl extends AppLocalizations {
   }
 
   @override
-  String coursesProgressWithStatus(
-    String done,
-    String required,
-    String status,
-  ) {
+  String coursesProgressWithStatus(String done, String required, String status) {
     return '$done / $required ώ • $status';
   }
 
@@ -228,12 +219,10 @@ class AppLocalizationsEl extends AppLocalizations {
   }
 
   @override
-  String get dashboardEmptyHintAllDone =>
-      'Όλα τα μαθήματα ολοκληρώθηκαν — δες την πλήρη λίστα στην καρτέλα Μαθήματα.';
+  String get dashboardEmptyHintAllDone => 'Όλα τα μαθήματα ολοκληρώθηκαν — δες την πλήρη λίστα στην καρτέλα Μαθήματα.';
 
   @override
-  String get dashboardEmptyHintNoCourses =>
-      'Πρόσθεσε ένα μάθημα για να παρακολουθείς την πρόοδο ECTS.';
+  String get dashboardEmptyHintNoCourses => 'Πρόσθεσε ένα μάθημα για να παρακολουθείς την πρόοδο ECTS.';
 
   @override
   String dashboardExplainerBehind(String achieved, String need) {
@@ -246,12 +235,10 @@ class AppLocalizationsEl extends AppLocalizations {
   }
 
   @override
-  String get dashboardExplainerBehindNoPace =>
-      'Καθυστέρηση: κανένας πεπερασμένος ρυθμός δεν προλαβαίνει τη σημερινή προθεσμία με υπόλοιπο ωρών';
+  String get dashboardExplainerBehindNoPace => 'Καθυστέρηση: κανένας πεπερασμένος ρυθμός δεν προλαβαίνει τη σημερινή προθεσμία με υπόλοιπο ωρών';
 
   @override
-  String get dashboardExplainerOnTrackNoPace =>
-      'Εντός προγράμματος: δεν υπάρχει ρυθμός ακόμη — κατέγραψε την πρώτη συνεδρία για επιβεβαίωση';
+  String get dashboardExplainerOnTrackNoPace => 'Εντός προγράμματος: δεν υπάρχει ρυθμός ακόμη — κατέγραψε την πρώτη συνεδρία για επιβεβαίωση';
 
   @override
   String dashboardExplainerStartsIn(String days, String date) {
@@ -311,8 +298,7 @@ class AppLocalizationsEl extends AppLocalizations {
   String get dashboardNothingDue => 'Τίποτα οφειλόμενο';
 
   @override
-  String get dashboardNothingToTrack =>
-      'Δεν υπάρχει τίποτα για παρακολούθηση ακόμη';
+  String get dashboardNothingToTrack => 'Δεν υπάρχει τίποτα για παρακολούθηση ακόμη';
 
   @override
   String dashboardPaceDueToday(String hours) {
@@ -373,8 +359,7 @@ class AppLocalizationsEl extends AppLocalizations {
   String get dashboardProgramBare => 'ΠΡΟΓΡΑΜΜΑ';
 
   @override
-  String get dashboardProgramEmptyHint =>
-      'Πρόσθεσε ένα μάθημα για να ξεκινήσεις την παρακολούθηση';
+  String get dashboardProgramEmptyHint => 'Πρόσθεσε ένα μάθημα για να ξεκινήσεις την παρακολούθηση';
 
   @override
   String dashboardProgramHours(String done, String required) {
@@ -403,12 +388,10 @@ class AppLocalizationsEl extends AppLocalizations {
   String get dashboardStartsSoon => 'Ξεκινά σύντομα';
 
   @override
-  String get dashboardTipEmpty =>
-      'Πρόσθεσε το πρώτο σου μάθημα — ο ημερήσιος ρυθμός και η πρόοδός σου θα εμφανιστούν εδώ.';
+  String get dashboardTipEmpty => 'Πρόσθεσε το πρώτο σου μάθημα — ο ημερήσιος ρυθμός και η πρόοδός σου θα εμφανιστούν εδώ.';
 
   @override
-  String get dashboardTipFirst =>
-      'Τα πρώτα 25 λεπτά μετρούν περισσότερο — διάλεξε το μάθημα με την πιο κοντινή προθεσμία.';
+  String get dashboardTipFirst => 'Τα πρώτα 25 λεπτά μετρούν περισσότερο — διάλεξε το μάθημα με την πιο κοντινή προθεσμία.';
 
   @override
   String get dashboardTodayBare => 'ΣΗΜΕΡΑ';
@@ -432,8 +415,7 @@ class AppLocalizationsEl extends AppLocalizations {
   }
 
   @override
-  String get dashboardUpcomingSubtitle =>
-      'Μελλοντικές ενάρξεις — καμία πίεση σήμερα, εξαιρούνται από τον σημερινό ρυθμό.';
+  String get dashboardUpcomingSubtitle => 'Μελλοντικές ενάρξεις — καμία πίεση σήμερα, εξαιρούνται από τον σημερινό ρυθμό.';
 
   @override
   String get dashboardUpcomingTitle => 'Επερχόμενα';
@@ -442,12 +424,10 @@ class AppLocalizationsEl extends AppLocalizations {
   String get devToolsActivate => 'Ενεργοποίηση';
 
   @override
-  String get devToolsActivateMessage =>
-      'Ξεκλειδώνει κρυφά εργαλεία δοκιμής καταπόνησης (προσθήκη παραγόμενων δεδομένων). Μόνο για ανάπτυξη.';
+  String get devToolsActivateMessage => 'Ξεκλειδώνει κρυφά εργαλεία δοκιμής καταπόνησης (προσθήκη παραγόμενων δεδομένων). Μόνο για ανάπτυξη.';
 
   @override
-  String get devToolsActivateTitle =>
-      'Ενεργοποίηση λειτουργίας προγραμματιστή;';
+  String get devToolsActivateTitle => 'Ενεργοποίηση λειτουργίας προγραμματιστή;';
 
   @override
   String get devToolsActivated => 'Η λειτουργία προγραμματιστή ενεργοποιήθηκε.';
@@ -456,12 +436,10 @@ class AppLocalizationsEl extends AppLocalizations {
   String get devToolsClearPumped => 'Εκκαθάριση παραγόμενων δεδομένων';
 
   @override
-  String get devToolsClearPumpedMessage =>
-      'Διαγράφει τα παραγόμενα μαθήματα STRESS και τις συνεδρίες τους. Τα δικά σου δεδομένα διατηρούνται.';
+  String get devToolsClearPumpedMessage => 'Διαγράφει τα παραγόμενα μαθήματα STRESS και τις συνεδρίες τους. Τα δικά σου δεδομένα διατηρούνται.';
 
   @override
-  String get devToolsClearPumpedSubtitle =>
-      'Διαγραφή παραγόμενων μαθημάτων και συνεδριών STRESS.';
+  String get devToolsClearPumpedSubtitle => 'Διαγραφή παραγόμενων μαθημάτων και συνεδριών STRESS.';
 
   @override
   String get devToolsClearPumpedTitle => 'Εκκαθάριση παραγόμενων δεδομένων;';
@@ -472,8 +450,7 @@ class AppLocalizationsEl extends AppLocalizations {
   }
 
   @override
-  String get devToolsConfirmPumpMessage =>
-      'Δεύτερη επιβεβαίωση: θα διογκώσει μαθήματα, λίστες, γραφήματα και υπολογισμούς ρυθμού και μπορεί να πάρει μερικά δευτερόλεπτα. Προσθήκη τώρα;';
+  String get devToolsConfirmPumpMessage => 'Δεύτερη επιβεβαίωση: θα διογκώσει μαθήματα, λίστες, γραφήματα και υπολογισμούς ρυθμού και μπορεί να πάρει μερικά δευτερόλεπτα. Προσθήκη τώρα;';
 
   @override
   String get devToolsConfirmPumpTitle => 'Επιβεβαίωση δοκιμής καταπόνησης';
@@ -485,19 +462,16 @@ class AppLocalizationsEl extends AppLocalizations {
   String get devToolsExit => 'Έξοδος από λειτουργία προγραμματιστή';
 
   @override
-  String get devToolsExitSubtitle =>
-      'Απόκρυψη εργαλείων προγραμματιστή σε αυτή τη συσκευή.';
+  String get devToolsExitSubtitle => 'Απόκρυψη εργαλείων προγραμματιστή σε αυτή τη συσκευή.';
 
   @override
   String get devToolsPumpData => 'Προσθήκη δεδομένων';
 
   @override
-  String get devToolsPumpMessage =>
-      'Εισάγει ένα ρεαλιστικό παραγόμενο εξάμηνο (~10 μαθήματα, ~800 συνεδρίες τις τελευταίες 12 εβδομάδες). Τα υπάρχοντα δεδομένα σου διατηρούνται. Συνέχεια;';
+  String get devToolsPumpMessage => 'Εισάγει ένα ρεαλιστικό παραγόμενο εξάμηνο (~10 μαθήματα, ~800 συνεδρίες τις τελευταίες 12 εβδομάδες). Τα υπάρχοντα δεδομένα σου διατηρούνται. Συνέχεια;';
 
   @override
-  String get devToolsPumpSubtitle =>
-      'Εισαγωγή παραγόμενου εξαμήνου (~10 μαθήματα, ~800 συνεδρίες, 12 εβδομάδες). Τα υπάρχοντα δεδομένα διατηρούνται.';
+  String get devToolsPumpSubtitle => 'Εισαγωγή παραγόμενου εξαμήνου (~10 μαθήματα, ~800 συνεδρίες, 12 εβδομάδες). Τα υπάρχοντα δεδομένα διατηρούνται.';
 
   @override
   String get devToolsPumpTile => 'Προσθήκη δεδομένων δοκιμής';
@@ -517,12 +491,10 @@ class AppLocalizationsEl extends AppLocalizations {
   String get devToolsRemoveAll => 'Κατάργηση όλων των δεδομένων';
 
   @override
-  String get devToolsRemoveAllMessage =>
-      'Συντόμευση προγραμματιστή: διαγράφει οριστικά ΟΛΑ τα μαθήματα, τις συνεδρίες και τις ρυθμίσεις. Δεν μπορεί να αναιρεθεί.';
+  String get devToolsRemoveAllMessage => 'Συντόμευση προγραμματιστή: διαγράφει οριστικά ΟΛΑ τα μαθήματα, τις συνεδρίες και τις ρυθμίσεις. Δεν μπορεί να αναιρεθεί.';
 
   @override
-  String get devToolsRemoveAllSubtitle =>
-      'Συντόμευση προγραμματιστή: διαγραφή ΟΛΩΝ των μαθημάτων, συνεδριών και ρυθμίσεων.';
+  String get devToolsRemoveAllSubtitle => 'Συντόμευση προγραμματιστή: διαγραφή ΟΛΩΝ των μαθημάτων, συνεδριών και ρυθμίσεων.';
 
   @override
   String get devToolsRemoveAllTitle => 'Κατάργηση όλων των δεδομένων;';
@@ -554,8 +526,7 @@ class AppLocalizationsEl extends AppLocalizations {
   }
 
   @override
-  String get sessionFormDurationError =>
-      'Η διάρκεια πρέπει να είναι μεγαλύτερη από μηδέν.';
+  String get sessionFormDurationError => 'Η διάρκεια πρέπει να είναι μεγαλύτερη από μηδέν.';
 
   @override
   String get sessionFormHoursLabel => 'Ώρες';
@@ -570,8 +541,7 @@ class AppLocalizationsEl extends AppLocalizations {
   String get sessionFormNoCourseError => 'Επίλεξε μάθημα.';
 
   @override
-  String get sessionFormNoCoursesHint =>
-      'Πρόσθεσε πρώτα ένα μάθημα για να καταγράψεις συνεδρία.';
+  String get sessionFormNoCoursesHint => 'Πρόσθεσε πρώτα ένα μάθημα για να καταγράψεις συνεδρία.';
 
   @override
   String get sessionFormNotesLabel => 'Σημειώσεις (προαιρετικά)';
@@ -627,12 +597,10 @@ class AppLocalizationsEl extends AppLocalizations {
   String get settingsClearSample => 'Εκκαθάριση δείγματος δεδομένων';
 
   @override
-  String get settingsClearSampleMessage =>
-      'Καταργεί τα παραδειγματικά μαθήματα και συνεδρίες. Τα μαθήματα ή οι συνεδρίες που πρόσθεσες εσύ δεν καταργούνται.';
+  String get settingsClearSampleMessage => 'Καταργεί τα παραδειγματικά μαθήματα και συνεδρίες. Τα μαθήματα ή οι συνεδρίες που πρόσθεσες εσύ δεν καταργούνται.';
 
   @override
-  String get settingsClearSampleSubtitle =>
-      'Κατάργηση των προκαθορισμένων παραδειγματικών μαθημάτων και συνεδριών. Τα δικά σου δεδομένα διατηρούνται.';
+  String get settingsClearSampleSubtitle => 'Κατάργηση των προκαθορισμένων παραδειγματικών μαθημάτων και συνεδριών. Τα δικά σου δεδομένα διατηρούνται.';
 
   @override
   String get settingsClearSampleTitle => 'Εκκαθάριση δείγματος δεδομένων;';
@@ -696,8 +664,7 @@ class AppLocalizationsEl extends AppLocalizations {
   String get settingsExportCopied => 'Η εξαγωγή αντιγράφηκε στο πρόχειρο.';
 
   @override
-  String get settingsExportSubtitle =>
-      'Αντιγραφή όλων των μαθημάτων, συνεδριών και ρυθμίσεων ως JSON.';
+  String get settingsExportSubtitle => 'Αντιγραφή όλων των μαθημάτων, συνεδριών και ρυθμίσεων ως JSON.';
 
   @override
   String settingsExportSummary(String courses, String sessions, String kb) {
@@ -713,8 +680,7 @@ class AppLocalizationsEl extends AppLocalizations {
   String get settingsFirstWeekday => 'Πρώτη ημέρα εβδομάδας';
 
   @override
-  String get settingsFirstWeekdayUpdated =>
-      'Η πρώτη ημέρα εβδομάδας ενημερώθηκε.';
+  String get settingsFirstWeekdayUpdated => 'Η πρώτη ημέρα εβδομάδας ενημερώθηκε.';
 
   @override
   String settingsHoldLabel(String label, String seconds) {
@@ -728,8 +694,7 @@ class AppLocalizationsEl extends AppLocalizations {
   String get settingsHoursError => 'Εισήγαγε αριθμό μεγαλύτερο από μηδέν.';
 
   @override
-  String get settingsHoursHelper =>
-      'Προεπιλογή 30. Η αλλαγή επανυπολογίζει τις απαιτήσεις· οι καταγραφές διατηρούνται.';
+  String get settingsHoursHelper => 'Προεπιλογή 30. Η αλλαγή επανυπολογίζει τις απαιτήσεις· οι καταγραφές διατηρούνται.';
 
   @override
   String get settingsHoursLabel => 'Ώρες ανά πιστωτική μονάδα ECTS';
@@ -760,8 +725,7 @@ class AppLocalizationsEl extends AppLocalizations {
   }
 
   @override
-  String get settingsImportInfo =>
-      'Η προσθήκη προσθέτει το αντίγραφο δίπλα στα τρέχοντα δεδομένα σου (οι ρυθμίσεις διατηρούνται). Η αντικατάσταση διαγράφει πρώτα ΟΛΑ τα μαθήματα, τις συνεδρίες και τις ρυθμίσεις.';
+  String get settingsImportInfo => 'Η προσθήκη προσθέτει το αντίγραφο δίπλα στα τρέχοντα δεδομένα σου (οι ρυθμίσεις διατηρούνται). Η αντικατάσταση διαγράφει πρώτα ΟΛΑ τα μαθήματα, τις συνεδρίες και τις ρυθμίσεις.';
 
   @override
   String get settingsImportLabel => 'Επικόλληση εξαχθέντος JSON';
@@ -795,8 +759,7 @@ class AppLocalizationsEl extends AppLocalizations {
   }
 
   @override
-  String get settingsImportSubtitle =>
-      'Αντικατάσταση όλων των δεδομένων από προηγούμενο αντίγραφο JSON.';
+  String get settingsImportSubtitle => 'Αντικατάσταση όλων των δεδομένων από προηγούμενο αντίγραφο JSON.';
 
   @override
   String settingsKeepHolding(String remaining) {
@@ -807,8 +770,7 @@ class AppLocalizationsEl extends AppLocalizations {
   String get settingsNoSample => 'Χωρίς δείγμα δεδομένων';
 
   @override
-  String get settingsNoSampleSubtitle =>
-      'Τα προκαθορισμένα δεδομένα δείγματος έχουν ήδη εκκαθαριστεί.';
+  String get settingsNoSampleSubtitle => 'Τα προκαθορισμένα δεδομένα δείγματος έχουν ήδη εκκαθαριστεί.';
 
   @override
   String get settingsNoTarget => 'Δεν έχει οριστεί στόχος';
@@ -817,8 +779,7 @@ class AppLocalizationsEl extends AppLocalizations {
   String get settingsOverloadError => 'Εισήγαγε αριθμό 5–100 ώ/εβδομάδα.';
 
   @override
-  String get settingsOverloadHelper =>
-      'Οι εβδομάδες φόρτου πάνω από αυτό επισημαίνονται με κόκκινο. Η πλήρης φοίτηση είναι ~35–40 ώ/εβδομάδα.';
+  String get settingsOverloadHelper => 'Οι εβδομάδες φόρτου πάνω από αυτό επισημαίνονται με κόκκινο. Η πλήρης φοίτηση είναι ~35–40 ώ/εβδομάδα.';
 
   @override
   String settingsOverloadHours(String value) {
@@ -843,8 +804,7 @@ class AppLocalizationsEl extends AppLocalizations {
   String get settingsPaceTolerance => 'Ανοχή προπορείας / καθυστέρησης';
 
   @override
-  String get settingsPasteValidBackup =>
-      'Επικόλλησε πρώτα ένα έγκυρο αντίγραφο';
+  String get settingsPasteValidBackup => 'Επικόλλησε πρώτα ένα έγκυρο αντίγραφο';
 
   @override
   String get settingsReset => 'Επαναφορά';
@@ -853,12 +813,10 @@ class AppLocalizationsEl extends AppLocalizations {
   String get settingsResetAll => 'Επαναφορά όλων των δεδομένων';
 
   @override
-  String get settingsResetAllMessage =>
-      'Διαγράφει οριστικά ΟΛΑ τα μαθήματα, τις συνεδρίες και τις ρυθμίσεις. Δεν μπορεί να αναιρεθεί. Εξήγαγε πρώτα αντίγραφο αν χρειάζεται.';
+  String get settingsResetAllMessage => 'Διαγράφει οριστικά ΟΛΑ τα μαθήματα, τις συνεδρίες και τις ρυθμίσεις. Δεν μπορεί να αναιρεθεί. Εξήγαγε πρώτα αντίγραφο αν χρειάζεται.';
 
   @override
-  String get settingsResetAllSubtitle =>
-      'Διαγραφή όλων των μαθημάτων, συνεδριών και ρυθμίσεων.';
+  String get settingsResetAllSubtitle => 'Διαγραφή όλων των μαθημάτων, συνεδριών και ρυθμίσεων.';
 
   @override
   String get settingsResetAllTitle => 'Επαναφορά όλων των δεδομένων;';
@@ -867,16 +825,13 @@ class AppLocalizationsEl extends AppLocalizations {
   String get settingsResetSettings => 'Επαναφορά ρυθμίσεων';
 
   @override
-  String get settingsResetSettingsDone =>
-      'Οι ρυθμίσεις επανήλθαν στις προεπιλογές.';
+  String get settingsResetSettingsDone => 'Οι ρυθμίσεις επανήλθαν στις προεπιλογές.';
 
   @override
-  String get settingsResetSettingsMessage =>
-      'Επαναφέρει ώρες ανά ECTS (30), ημερήσιο στόχο (κανέναν), πρώτη ημέρα εβδομάδας (Δευτέρα), θέμα (συστήματος), ανοχή (5 ημέρες), υπερφόρτωση (35 ώ/εβδομάδα), μέγεθος (άνετο), χρώμα (σχιστόλιθος). Τα μαθήματα και οι συνεδρίες διατηρούνται.';
+  String get settingsResetSettingsMessage => 'Επαναφέρει ώρες ανά ECTS (30), ημερήσιο στόχο (κανέναν), πρώτη ημέρα εβδομάδας (Δευτέρα), θέμα (συστήματος), ανοχή (5 ημέρες), υπερφόρτωση (35 ώ/εβδομάδα), μέγεθος (άνετο), χρώμα (σχιστόλιθος). Τα μαθήματα και οι συνεδρίες διατηρούνται.';
 
   @override
-  String get settingsResetSettingsSubtitle =>
-      'Επαναφορά προεπιλογών: 30 ώ/ECTS, χωρίς στόχο, Δευτέρα, θέμα συστήματος, ανοχή 5 ημερών, υπερφόρτωση 35 ώ/εβδομάδα, άνετο μέγεθος, χρώμα σχιστόλιθος.';
+  String get settingsResetSettingsSubtitle => 'Επαναφορά προεπιλογών: 30 ώ/ECTS, χωρίς στόχο, Δευτέρα, θέμα συστήματος, ανοχή 5 ημερών, υπερφόρτωση 35 ώ/εβδομάδα, άνετο μέγεθος, χρώμα σχιστόλιθος.';
 
   @override
   String get settingsResetSettingsTitle => 'Επαναφορά ρυθμίσεων;';
@@ -916,8 +871,7 @@ class AppLocalizationsEl extends AppLocalizations {
   String get settingsToleranceError => 'Εισήγαγε αριθμό 0–30 ημέρες.';
 
   @override
-  String get settingsToleranceHelper =>
-      'Η προπορεία χρειάζεται +N ημέρες πλεόνασμα, η καθυστέρηση −N ημέρες. 5 = σταθερό, 0 = ευαίσθητο.';
+  String get settingsToleranceHelper => 'Η προπορεία χρειάζεται +N ημέρες πλεόνασμα, η καθυστέρηση −N ημέρες. 5 = σταθερό, 0 = ευαίσθητο.';
 
   @override
   String get settingsToleranceLabel => 'Ημέρες εργασίας (0–30)';
@@ -975,8 +929,7 @@ class AppLocalizationsEl extends AppLocalizations {
   }
 
   @override
-  String get statsAddDeadlines =>
-      'Πρόσθεσε προθεσμίες για πρόβλεψη του φόρτου.';
+  String get statsAddDeadlines => 'Πρόσθεσε προθεσμίες για πρόβλεψη του φόρτου.';
 
   @override
   String get statsComingLoad => 'Επερχόμενος φόρτος';
@@ -985,8 +938,7 @@ class AppLocalizationsEl extends AppLocalizations {
   String get statsConsistency => 'Συνέπεια';
 
   @override
-  String get statsConsistencyHint =>
-      'Ημέρες μελέτης τις τελευταίες 30 ημέρες. Τα μικρά βήματα κάθε μέρα νικούν το παπαγάλισμα.';
+  String get statsConsistencyHint => 'Ημέρες μελέτης τις τελευταίες 30 ημέρες. Τα μικρά βήματα κάθε μέρα νικούν το παπαγάλισμα.';
 
   @override
   String statsConsistencyScore(String percent) {
@@ -1051,8 +1003,7 @@ class AppLocalizationsEl extends AppLocalizations {
   String get statsOverview => 'Επισκόπηση';
 
   @override
-  String get statsPaceCovers =>
-      'Ο προηγούμενος ρυθμός καλύπτει το απαιτούμενο. Κράτα το σερί.';
+  String get statsPaceCovers => 'Ο προηγούμενος ρυθμός καλύπτει το απαιτούμενο. Κράτα το σερί.';
 
   @override
   String statsPaceShort(String gap) {
@@ -1110,15 +1061,13 @@ class AppLocalizationsEl extends AppLocalizations {
   String get statusOverdue => 'Εκπρόθεσμο';
 
   @override
-  String get studyLogDeleteBody =>
-      'Διαγραφή αυτής της συνεδρίας μελέτης; Δεν μπορεί να αναιρεθεί.';
+  String get studyLogDeleteBody => 'Διαγραφή αυτής της συνεδρίας μελέτης; Δεν μπορεί να αναιρεθεί.';
 
   @override
   String get studyLogDeleteTitle => 'Διαγραφή συνεδρίας;';
 
   @override
-  String get studyLogEmptyHint =>
-      'Κατέγραψε μια συνεδρία για να παρακολουθείς τον χρόνο μελέτης σου.';
+  String get studyLogEmptyHint => 'Κατέγραψε μια συνεδρία για να παρακολουθείς τον χρόνο μελέτης σου.';
 
   @override
   String get studyLogEmptyTitle => 'Δεν υπάρχουν συνεδρίες μελέτης ακόμη';
@@ -1154,8 +1103,53 @@ class AppLocalizationsEl extends AppLocalizations {
   }
 
   @override
-  String get validationCourseEctsPositive =>
-      'Το ECTS πρέπει να είναι μεγαλύτερο από μηδέν';
+  String studyTimerActiveTitle(String course) {
+    return 'Timing $course';
+  }
+
+  @override
+  String get studyTimerAlreadyRunning => 'A timer is already running. Finish or discard it first.';
+
+  @override
+  String get studyTimerCourseLabel => 'Course';
+
+  @override
+  String get studyTimerDiscard => 'Discard';
+
+  @override
+  String get studyTimerDiscardBody => 'Throw away the current timer without logging? This cannot be undone.';
+
+  @override
+  String get studyTimerDiscardTitle => 'Discard timer?';
+
+  @override
+  String studyTimerFinishLog(String minutes) {
+    return 'Finish & log $minutes min';
+  }
+
+  @override
+  String get studyTimerNoCourseError => 'Select a course.';
+
+  @override
+  String get studyTimerNoCoursesHint => 'Add a course first to start a timer.';
+
+  @override
+  String get studyTimerPause => 'Pause';
+
+  @override
+  String get studyTimerResume => 'Resume';
+
+  @override
+  String get studyTimerStart => 'Start timer';
+
+  @override
+  String get studyTimerStartTitle => 'Start study timer';
+
+  @override
+  String get studyTimerTooShort => 'Timer has not run yet.';
+
+  @override
+  String get validationCourseEctsPositive => 'Το ECTS πρέπει να είναι μεγαλύτερο από μηδέν';
 
   @override
   String get validationCourseEctsRequired => 'Εισήγαγε πιστωτικές μονάδες ECTS';
@@ -1182,8 +1176,7 @@ class AppLocalizationsEl extends AppLocalizations {
   String get settingsLiquidGlass => 'Ρευστό γυαλί';
 
   @override
-  String get settingsLiquidGlassSubtitle =>
-      'Κάρτες και μπάρες από θαμπό γυαλί. Ανενεργό διατηρεί την κλασική συμπαγή εμφάνιση.';
+  String get settingsLiquidGlassSubtitle => 'Κάρτες και μπάρες από θαμπό γυαλί. Ανενεργό διατηρεί την κλασική συμπαγή εμφάνιση.';
 
   @override
   String get settingsLiquidGlassOn => 'Ενεργό';
@@ -1198,8 +1191,7 @@ class AppLocalizationsEl extends AppLocalizations {
   String get devToolsReminderPreview => 'Προεπισκόπηση υπενθυμίσεων';
 
   @override
-  String get devToolsReminderPreviewSubtitle =>
-      'Δες τι θα ειδοποιούσε αυτή τη στιγμή. Δοκιμαστική ροή ασφαλής για Windows.';
+  String get devToolsReminderPreviewSubtitle => 'Δες τι θα ειδοποιούσε αυτή τη στιγμή. Δοκιμαστική ροή ασφαλής για Windows.';
 
   @override
   String get reminderPreviewTitle => 'Προεπισκόπηση υπενθυμίσεων';
@@ -1211,8 +1203,7 @@ class AppLocalizationsEl extends AppLocalizations {
   String get reminderPreviewReset => 'Τώρα';
 
   @override
-  String get reminderPreviewEmpty =>
-      'Όλα ήσυχα — τίποτα δεν θα ειδοποιούσε αυτή τη στιγμή.';
+  String get reminderPreviewEmpty => 'Όλα ήσυχα — τίποτα δεν θα ειδοποιούσε αυτή τη στιγμή.';
 
   @override
   String get reminderPreviewCustom => 'Προσαρμοσμένα προγράμματα (demo)';
@@ -1242,15 +1233,13 @@ class AppLocalizationsEl extends AppLocalizations {
   String get settingsReminders => 'Υπενθυμίσεις μελέτης';
 
   @override
-  String get settingsRemindersOff =>
-      'Ανενεργό — ενεργοποίησε για μια καθημερινή ώθηση.';
+  String get settingsRemindersOff => 'Ανενεργό — ενεργοποίησε για μια καθημερινή ώθηση.';
 
   @override
   String get settingsReminderTime => 'Ώρα υπενθύμισης';
 
   @override
-  String get settingsReminderDenied =>
-      'Οι ειδοποιήσεις είναι αποκλεισμένες — ενεργοποίησέ τες στις ρυθμίσεις συστήματος.';
+  String get settingsReminderDenied => 'Οι ειδοποιήσεις είναι αποκλεισμένες — ενεργοποίησέ τες στις ρυθμίσεις συστήματος.';
 
   @override
   String notifDurationHours(String value) {
@@ -1288,12 +1277,7 @@ class AppLocalizationsEl extends AppLocalizations {
   }
 
   @override
-  String notifBehindBodyPace(
-    String left,
-    String days,
-    String pace,
-    String catchUp,
-  ) {
+  String notifBehindBodyPace(String left, String days, String pace, String catchUp) {
     return 'Απομένουν $left, απομένουν $days ημέρες — από εδώ $pace/ημέρα. Κατέγραψε $catchUp για να ξαναμπείς εντός προγράμματος.';
   }
 
@@ -1313,8 +1297,7 @@ class AppLocalizationsEl extends AppLocalizations {
   }
 
   @override
-  String get notifDeadlineTomorrowBody =>
-      'Ό,τι καταγράψεις σήμερα μετράει διπλά.';
+  String get notifDeadlineTomorrowBody => 'Ό,τι καταγράψεις σήμερα μετράει διπλά.';
 
   @override
   String notifDeadlineSoonTitle(String course, String days, String left) {
@@ -1327,8 +1310,7 @@ class AppLocalizationsEl extends AppLocalizations {
   }
 
   @override
-  String get notifDeadlineSoonBodyNoPace =>
-      'Κάθε ώρα που καταγράφεις τώρα μετράει.';
+  String get notifDeadlineSoonBodyNoPace => 'Κάθε ώρα που καταγράφεις τώρα μετράει.';
 
   @override
   String notifOverdueTitle(String course, String left) {
@@ -1336,8 +1318,7 @@ class AppLocalizationsEl extends AppLocalizations {
   }
 
   @override
-  String get notifOverdueBody =>
-      'Μετακίνησε την προθεσμία ή ολοκλήρωσε τις ώρες — μέχρι τότε το μάθημα μένει σε «χρειάζεται προσοχή».';
+  String get notifOverdueBody => 'Μετακίνησε την προθεσμία ή ολοκλήρωσε τις ώρες — μέχρι τότε το μάθημα μένει σε «χρειάζεται προσοχή».';
 
   @override
   String notifStreakTitle(String days, String week) {
@@ -1345,8 +1326,7 @@ class AppLocalizationsEl extends AppLocalizations {
   }
 
   @override
-  String get notifStreakBody =>
-      'Όλα τα μαθήματα εντός προγράμματος ή μπροστά. Ωραίο σερί.';
+  String get notifStreakBody => 'Όλα τα μαθήματα εντός προγράμματος ή μπροστά. Ωραίο σερί.';
 
   @override
   String notifCustomTitleAuto(String course) {

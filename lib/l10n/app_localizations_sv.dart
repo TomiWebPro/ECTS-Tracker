@@ -1,6 +1,5 @@
 // ignore: unused_import
 import 'package:intl/intl.dart' as intl;
-
 import 'app_localizations.dart';
 
 // ignore_for_file: type=lint
@@ -83,8 +82,7 @@ class AppLocalizationsSv extends AppLocalizations {
   }
 
   @override
-  String get courseFormStartEarlyOn =>
-      'På: tiden fördelas fram till nu och räknas mot dagens tempo.';
+  String get courseFormStartEarlyOn => 'På: tiden fördelas fram till nu och räknas mot dagens tempo.';
 
   @override
   String get courseFormStartEarlyTitle => 'Börja nu trots framtida start';
@@ -112,8 +110,7 @@ class AppLocalizationsSv extends AppLocalizations {
   }
 
   @override
-  String get coursesEmptyHint =>
-      'Tryck på ”Ny kurs” för att skapa din första kurs.';
+  String get coursesEmptyHint => 'Tryck på ”Ny kurs” för att skapa din första kurs.';
 
   @override
   String get coursesEmptyTitle => 'Inga kurser ännu';
@@ -153,11 +150,7 @@ class AppLocalizationsSv extends AppLocalizations {
   }
 
   @override
-  String coursesProgressWithStatus(
-    String done,
-    String required,
-    String status,
-  ) {
+  String coursesProgressWithStatus(String done, String required, String status) {
     return '$done / $required tim • $status';
   }
 
@@ -226,12 +219,10 @@ class AppLocalizationsSv extends AppLocalizations {
   }
 
   @override
-  String get dashboardEmptyHintAllDone =>
-      'Alla kurser är avklarade — se fliken Kurser för hela listan.';
+  String get dashboardEmptyHintAllDone => 'Alla kurser är avklarade — se fliken Kurser för hela listan.';
 
   @override
-  String get dashboardEmptyHintNoCourses =>
-      'Lägg till en kurs för att börja följa dina ECTS-framsteg.';
+  String get dashboardEmptyHintNoCourses => 'Lägg till en kurs för att börja följa dina ECTS-framsteg.';
 
   @override
   String dashboardExplainerBehind(String achieved, String need) {
@@ -244,12 +235,10 @@ class AppLocalizationsSv extends AppLocalizations {
   }
 
   @override
-  String get dashboardExplainerBehindNoPace =>
-      'Bakom: ingen ändlig takt hinner en idag-deadline med timmar kvar';
+  String get dashboardExplainerBehindNoPace => 'Bakom: ingen ändlig takt hinner en idag-deadline med timmar kvar';
 
   @override
-  String get dashboardExplainerOnTrackNoPace =>
-      'I fas: ingen takt ännu — logga första sessionen för att bekräfta';
+  String get dashboardExplainerOnTrackNoPace => 'I fas: ingen takt ännu — logga första sessionen för att bekräfta';
 
   @override
   String dashboardExplainerStartsIn(String days, String date) {
@@ -370,8 +359,7 @@ class AppLocalizationsSv extends AppLocalizations {
   String get dashboardProgramBare => 'PROGRAM';
 
   @override
-  String get dashboardProgramEmptyHint =>
-      'Lägg till en kurs för att börja följa';
+  String get dashboardProgramEmptyHint => 'Lägg till en kurs för att börja följa';
 
   @override
   String dashboardProgramHours(String done, String required) {
@@ -400,12 +388,10 @@ class AppLocalizationsSv extends AppLocalizations {
   String get dashboardStartsSoon => 'Börjar snart';
 
   @override
-  String get dashboardTipEmpty =>
-      'Lägg till din första kurs — din dagliga takt och dina framsteg visas här.';
+  String get dashboardTipEmpty => 'Lägg till din första kurs — din dagliga takt och dina framsteg visas här.';
 
   @override
-  String get dashboardTipFirst =>
-      'Första 25 minuterna räknas mest — välj kursen med tidigaste deadline.';
+  String get dashboardTipFirst => 'Första 25 minuterna räknas mest — välj kursen med tidigaste deadline.';
 
   @override
   String get dashboardTodayBare => 'IDAG';
@@ -429,8 +415,7 @@ class AppLocalizationsSv extends AppLocalizations {
   }
 
   @override
-  String get dashboardUpcomingSubtitle =>
-      'Framtida starter — ingen press idag, exkluderade från dagens tempo.';
+  String get dashboardUpcomingSubtitle => 'Framtida starter — ingen press idag, exkluderade från dagens tempo.';
 
   @override
   String get dashboardUpcomingTitle => 'Kommande';
@@ -439,8 +424,7 @@ class AppLocalizationsSv extends AppLocalizations {
   String get devToolsActivate => 'Aktivera';
 
   @override
-  String get devToolsActivateMessage =>
-      'Detta låser upp dolda stresstestverktyg (generera data). Endast för utveckling.';
+  String get devToolsActivateMessage => 'Detta låser upp dolda stresstestverktyg (generera data). Endast för utveckling.';
 
   @override
   String get devToolsActivateTitle => 'Aktivera utvecklarläge?';
@@ -452,12 +436,10 @@ class AppLocalizationsSv extends AppLocalizations {
   String get devToolsClearPumped => 'Rensa genererad data';
 
   @override
-  String get devToolsClearPumpedMessage =>
-      'Tar bort de genererade STRESS-kurserna och deras sessioner. Dina egna data behålls.';
+  String get devToolsClearPumpedMessage => 'Tar bort de genererade STRESS-kurserna och deras sessioner. Dina egna data behålls.';
 
   @override
-  String get devToolsClearPumpedSubtitle =>
-      'Ta bort genererade STRESS-kurser och sessioner.';
+  String get devToolsClearPumpedSubtitle => 'Ta bort genererade STRESS-kurser och sessioner.';
 
   @override
   String get devToolsClearPumpedTitle => 'Rensa genererad data?';
@@ -468,8 +450,7 @@ class AppLocalizationsSv extends AppLocalizations {
   }
 
   @override
-  String get devToolsConfirmPumpMessage =>
-      'Andra bekräftelsen: detta blåser upp kurser, listor, diagram och taktberäkningar och kan ta några sekunder. Generera nu?';
+  String get devToolsConfirmPumpMessage => 'Andra bekräftelsen: detta blåser upp kurser, listor, diagram och taktberäkningar och kan ta några sekunder. Generera nu?';
 
   @override
   String get devToolsConfirmPumpTitle => 'Bekräfta stresstest';
@@ -487,12 +468,10 @@ class AppLocalizationsSv extends AppLocalizations {
   String get devToolsPumpData => 'Generera data';
 
   @override
-  String get devToolsPumpMessage =>
-      'Detta lägger in en realistisk genererad termin (~10 kurser, ~800 sessioner under de senaste 12 veckorna). Dina befintliga data behålls. Fortsätta?';
+  String get devToolsPumpMessage => 'Detta lägger in en realistisk genererad termin (~10 kurser, ~800 sessioner under de senaste 12 veckorna). Dina befintliga data behålls. Fortsätta?';
 
   @override
-  String get devToolsPumpSubtitle =>
-      'Lägg in en genererad termin (~10 kurser, ~800 sessioner, 12 veckor). Befintliga data behålls.';
+  String get devToolsPumpSubtitle => 'Lägg in en genererad termin (~10 kurser, ~800 sessioner, 12 veckor). Befintliga data behålls.';
 
   @override
   String get devToolsPumpTile => 'Generera testdata';
@@ -512,12 +491,10 @@ class AppLocalizationsSv extends AppLocalizations {
   String get devToolsRemoveAll => 'Ta bort all data';
 
   @override
-  String get devToolsRemoveAllMessage =>
-      'Utvecklargenväg: detta tar permanent bort ALLA kurser, sessioner och inställningar. Detta kan inte ångras.';
+  String get devToolsRemoveAllMessage => 'Utvecklargenväg: detta tar permanent bort ALLA kurser, sessioner och inställningar. Detta kan inte ångras.';
 
   @override
-  String get devToolsRemoveAllSubtitle =>
-      'Utvecklargenväg: ta bort ALLA kurser, sessioner och inställningar.';
+  String get devToolsRemoveAllSubtitle => 'Utvecklargenväg: ta bort ALLA kurser, sessioner och inställningar.';
 
   @override
   String get devToolsRemoveAllTitle => 'Ta bort all data?';
@@ -564,8 +541,7 @@ class AppLocalizationsSv extends AppLocalizations {
   String get sessionFormNoCourseError => 'Välj en kurs.';
 
   @override
-  String get sessionFormNoCoursesHint =>
-      'Lägg till en kurs först för att logga en session.';
+  String get sessionFormNoCoursesHint => 'Lägg till en kurs först för att logga en session.';
 
   @override
   String get sessionFormNotesLabel => 'Anteckningar (valfritt)';
@@ -621,12 +597,10 @@ class AppLocalizationsSv extends AppLocalizations {
   String get settingsClearSample => 'Rensa exempeldata';
 
   @override
-  String get settingsClearSampleMessage =>
-      'Detta tar bort exempelkurserna och sessionerna. Kurser eller sessioner du lagt till själv tas inte bort.';
+  String get settingsClearSampleMessage => 'Detta tar bort exempelkurserna och sessionerna. Kurser eller sessioner du lagt till själv tas inte bort.';
 
   @override
-  String get settingsClearSampleSubtitle =>
-      'Ta bort de förifyllda exempelkurserna och sessionerna. Dina egna data behålls.';
+  String get settingsClearSampleSubtitle => 'Ta bort de förifyllda exempelkurserna och sessionerna. Dina egna data behålls.';
 
   @override
   String get settingsClearSampleTitle => 'Rensa exempeldata?';
@@ -690,8 +664,7 @@ class AppLocalizationsSv extends AppLocalizations {
   String get settingsExportCopied => 'Export kopierad till urklipp.';
 
   @override
-  String get settingsExportSubtitle =>
-      'Kopiera alla kurser, sessioner och inställningar som JSON.';
+  String get settingsExportSubtitle => 'Kopiera alla kurser, sessioner och inställningar som JSON.';
 
   @override
   String settingsExportSummary(String courses, String sessions, String kb) {
@@ -721,8 +694,7 @@ class AppLocalizationsSv extends AppLocalizations {
   String get settingsHoursError => 'Ange ett tal större än noll.';
 
   @override
-  String get settingsHoursHelper =>
-      'Standard 30. Ändring räknar om kraven; loggar behålls.';
+  String get settingsHoursHelper => 'Standard 30. Ändring räknar om kraven; loggar behålls.';
 
   @override
   String get settingsHoursLabel => 'Timmar per ECTS-poäng';
@@ -753,8 +725,7 @@ class AppLocalizationsSv extends AppLocalizations {
   }
 
   @override
-  String get settingsImportInfo =>
-      'Lägg till lägger backupen vid sidan av dina nuvarande data (inställningar behålls). Ersätt raderar först ALLA kurser, sessioner och inställningar.';
+  String get settingsImportInfo => 'Lägg till lägger backupen vid sidan av dina nuvarande data (inställningar behålls). Ersätt raderar först ALLA kurser, sessioner och inställningar.';
 
   @override
   String get settingsImportLabel => 'Klistra in exporterad JSON';
@@ -788,8 +759,7 @@ class AppLocalizationsSv extends AppLocalizations {
   }
 
   @override
-  String get settingsImportSubtitle =>
-      'Ersätt all data från en tidigare exporterad JSON-backup.';
+  String get settingsImportSubtitle => 'Ersätt all data från en tidigare exporterad JSON-backup.';
 
   @override
   String settingsKeepHolding(String remaining) {
@@ -800,8 +770,7 @@ class AppLocalizationsSv extends AppLocalizations {
   String get settingsNoSample => 'Ingen exempeldata';
 
   @override
-  String get settingsNoSampleSubtitle =>
-      'Förifylld exempeldata har redan rensats.';
+  String get settingsNoSampleSubtitle => 'Förifylld exempeldata har redan rensats.';
 
   @override
   String get settingsNoTarget => 'Inget mål angivet';
@@ -810,8 +779,7 @@ class AppLocalizationsSv extends AppLocalizations {
   String get settingsOverloadError => 'Ange ett tal 5–100 tim/vecka.';
 
   @override
-  String get settingsOverloadHelper =>
-      'Kommande veckor över detta flaggas rött. Heltidsstudier är ~35–40 tim/vecka.';
+  String get settingsOverloadHelper => 'Kommande veckor över detta flaggas rött. Heltidsstudier är ~35–40 tim/vecka.';
 
   @override
   String settingsOverloadHours(String value) {
@@ -830,8 +798,7 @@ class AppLocalizationsSv extends AppLocalizations {
   String get settingsOverloadThreshold => 'Veckotröskel för överbelastning';
 
   @override
-  String get settingsOverloadUpdated =>
-      'Tröskel för överbelastning uppdaterad.';
+  String get settingsOverloadUpdated => 'Tröskel för överbelastning uppdaterad.';
 
   @override
   String get settingsPaceTolerance => 'Tolerans framåt / bakom';
@@ -846,12 +813,10 @@ class AppLocalizationsSv extends AppLocalizations {
   String get settingsResetAll => 'Återställ all data';
 
   @override
-  String get settingsResetAllMessage =>
-      'Detta tar permanent bort ALLA kurser, sessioner och inställningar. Detta kan inte ångras. Exportera en backup först vid behov.';
+  String get settingsResetAllMessage => 'Detta tar permanent bort ALLA kurser, sessioner och inställningar. Detta kan inte ångras. Exportera en backup först vid behov.';
 
   @override
-  String get settingsResetAllSubtitle =>
-      'Ta bort alla kurser, sessioner och inställningar.';
+  String get settingsResetAllSubtitle => 'Ta bort alla kurser, sessioner och inställningar.';
 
   @override
   String get settingsResetAllTitle => 'Återställa all data?';
@@ -860,16 +825,13 @@ class AppLocalizationsSv extends AppLocalizations {
   String get settingsResetSettings => 'Återställ inställningar';
 
   @override
-  String get settingsResetSettingsDone =>
-      'Inställningar återställda till standard.';
+  String get settingsResetSettingsDone => 'Inställningar återställda till standard.';
 
   @override
-  String get settingsResetSettingsMessage =>
-      'Återställer timmar-per-ECTS (30), dagligt mål (inget), veckans första dag (måndag), tema (system), tolerans (5 dagar), överbelastning (35 tim/vecka), storlek (bekväm), färg (skiffer). Kurser och sessioner behålls.';
+  String get settingsResetSettingsMessage => 'Återställer timmar-per-ECTS (30), dagligt mål (inget), veckans första dag (måndag), tema (system), tolerans (5 dagar), överbelastning (35 tim/vecka), storlek (bekväm), färg (skiffer). Kurser och sessioner behålls.';
 
   @override
-  String get settingsResetSettingsSubtitle =>
-      'Återställ standard: 30 tim/ECTS, inget mål, måndag, systemtema, 5-dagarstolerans, 35 tim/vecka överbelastning, bekväm storlek, skifferfärg.';
+  String get settingsResetSettingsSubtitle => 'Återställ standard: 30 tim/ECTS, inget mål, måndag, systemtema, 5-dagarstolerans, 35 tim/vecka överbelastning, bekväm storlek, skifferfärg.';
 
   @override
   String get settingsResetSettingsTitle => 'Återställa inställningar?';
@@ -909,8 +871,7 @@ class AppLocalizationsSv extends AppLocalizations {
   String get settingsToleranceError => 'Ange ett tal 0–30 dagar.';
 
   @override
-  String get settingsToleranceHelper =>
-      'Framåt kräver +N dagars överskott, bakom −N dagar. 5 = stabilt, 0 = känsligt.';
+  String get settingsToleranceHelper => 'Framåt kräver +N dagars överskott, bakom −N dagar. 5 = stabilt, 0 = känsligt.';
 
   @override
   String get settingsToleranceLabel => 'Dagar av arbete (0–30)';
@@ -968,8 +929,7 @@ class AppLocalizationsSv extends AppLocalizations {
   }
 
   @override
-  String get statsAddDeadlines =>
-      'Lägg till deadlines för att förutse belastningen.';
+  String get statsAddDeadlines => 'Lägg till deadlines för att förutse belastningen.';
 
   @override
   String get statsComingLoad => 'Kommande belastning';
@@ -978,8 +938,7 @@ class AppLocalizationsSv extends AppLocalizations {
   String get statsConsistency => 'Kontinuitet';
 
   @override
-  String get statsConsistencyHint =>
-      'Studiedagar de senaste 30 dagarna. Små steg varje dag slår intensivplugg.';
+  String get statsConsistencyHint => 'Studiedagar de senaste 30 dagarna. Små steg varje dag slår intensivplugg.';
 
   @override
   String statsConsistencyScore(String percent) {
@@ -1044,8 +1003,7 @@ class AppLocalizationsSv extends AppLocalizations {
   String get statsOverview => 'Översikt';
 
   @override
-  String get statsPaceCovers =>
-      'Tidigare takt täcker det som behövs. Håll streaken.';
+  String get statsPaceCovers => 'Tidigare takt täcker det som behövs. Håll streaken.';
 
   @override
   String statsPaceShort(String gap) {
@@ -1103,15 +1061,13 @@ class AppLocalizationsSv extends AppLocalizations {
   String get statusOverdue => 'Försenad';
 
   @override
-  String get studyLogDeleteBody =>
-      'Ta bort denna studiesession? Detta kan inte ångras.';
+  String get studyLogDeleteBody => 'Ta bort denna studiesession? Detta kan inte ångras.';
 
   @override
   String get studyLogDeleteTitle => 'Ta bort session?';
 
   @override
-  String get studyLogEmptyHint =>
-      'Logga en session för att följa din studietid.';
+  String get studyLogEmptyHint => 'Logga en session för att följa din studietid.';
 
   @override
   String get studyLogEmptyTitle => 'Inga studiesessioner ännu';
@@ -1147,6 +1103,52 @@ class AppLocalizationsSv extends AppLocalizations {
   }
 
   @override
+  String studyTimerActiveTitle(String course) {
+    return 'Timing $course';
+  }
+
+  @override
+  String get studyTimerAlreadyRunning => 'A timer is already running. Finish or discard it first.';
+
+  @override
+  String get studyTimerCourseLabel => 'Course';
+
+  @override
+  String get studyTimerDiscard => 'Discard';
+
+  @override
+  String get studyTimerDiscardBody => 'Throw away the current timer without logging? This cannot be undone.';
+
+  @override
+  String get studyTimerDiscardTitle => 'Discard timer?';
+
+  @override
+  String studyTimerFinishLog(String minutes) {
+    return 'Finish & log $minutes min';
+  }
+
+  @override
+  String get studyTimerNoCourseError => 'Select a course.';
+
+  @override
+  String get studyTimerNoCoursesHint => 'Add a course first to start a timer.';
+
+  @override
+  String get studyTimerPause => 'Pause';
+
+  @override
+  String get studyTimerResume => 'Resume';
+
+  @override
+  String get studyTimerStart => 'Start timer';
+
+  @override
+  String get studyTimerStartTitle => 'Start study timer';
+
+  @override
+  String get studyTimerTooShort => 'Timer has not run yet.';
+
+  @override
   String get validationCourseEctsPositive => 'ECTS måste vara större än noll';
 
   @override
@@ -1174,8 +1176,7 @@ class AppLocalizationsSv extends AppLocalizations {
   String get settingsLiquidGlass => 'Flytande glas';
 
   @override
-  String get settingsLiquidGlassSubtitle =>
-      'Kort och fält i frostat glas. Av behåller det klassiska solida utseendet.';
+  String get settingsLiquidGlassSubtitle => 'Kort och fält i frostat glas. Av behåller det klassiska solida utseendet.';
 
   @override
   String get settingsLiquidGlassOn => 'På';
@@ -1190,8 +1191,7 @@ class AppLocalizationsSv extends AppLocalizations {
   String get devToolsReminderPreview => 'Förhandsvisa påminnelser';
 
   @override
-  String get devToolsReminderPreviewSubtitle =>
-      'Se vad som skulle avisera just nu. Windows-säkert testflöde.';
+  String get devToolsReminderPreviewSubtitle => 'Se vad som skulle avisera just nu. Windows-säkert testflöde.';
 
   @override
   String get reminderPreviewTitle => 'Förhandsvisa påminnelser';
@@ -1203,8 +1203,7 @@ class AppLocalizationsSv extends AppLocalizations {
   String get reminderPreviewReset => 'Nu';
 
   @override
-  String get reminderPreviewEmpty =>
-      'Allt lugnt — inget skulle avisera vid den här tiden.';
+  String get reminderPreviewEmpty => 'Allt lugnt — inget skulle avisera vid den här tiden.';
 
   @override
   String get reminderPreviewCustom => 'Anpassade scheman (demo)';
@@ -1240,8 +1239,7 @@ class AppLocalizationsSv extends AppLocalizations {
   String get settingsReminderTime => 'Påminnelsetid';
 
   @override
-  String get settingsReminderDenied =>
-      'Aviseringar är blockerade — aktivera dem i systeminställningarna.';
+  String get settingsReminderDenied => 'Aviseringar är blockerade — aktivera dem i systeminställningarna.';
 
   @override
   String notifDurationHours(String value) {
@@ -1279,12 +1277,7 @@ class AppLocalizationsSv extends AppLocalizations {
   }
 
   @override
-  String notifBehindBodyPace(
-    String left,
-    String days,
-    String pace,
-    String catchUp,
-  ) {
+  String notifBehindBodyPace(String left, String days, String pace, String catchUp) {
     return '$left kvar, $days dagar kvar — $pace/dag härifrån. Logga $catchUp för att komma i fas igen.';
   }
 
@@ -1325,8 +1318,7 @@ class AppLocalizationsSv extends AppLocalizations {
   }
 
   @override
-  String get notifOverdueBody =>
-      'Flytta deadlinen eller beta av timmarna — kursen stannar i Kräver uppmärksamhet tills dess.';
+  String get notifOverdueBody => 'Flytta deadlinen eller beta av timmarna — kursen stannar i Kräver uppmärksamhet tills dess.';
 
   @override
   String notifStreakTitle(String days, String week) {

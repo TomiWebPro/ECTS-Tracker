@@ -306,6 +306,20 @@
   "studyLogToday": "Today",
   "studyLogUnknownCourse": "Course {id}",
   "studyLogUnknownCourseShort": "C{id}",
+  "studyTimerActiveTitle": "Timing {course}",
+  "studyTimerAlreadyRunning": "A timer is already running. Finish or discard it first.",
+  "studyTimerCourseLabel": "Course",
+  "studyTimerDiscard": "Discard",
+  "studyTimerDiscardBody": "Throw away the current timer without logging? This cannot be undone.",
+  "studyTimerDiscardTitle": "Discard timer?",
+  "studyTimerFinishLog": "Finish & log {minutes} min",
+  "studyTimerNoCourseError": "Select a course.",
+  "studyTimerNoCoursesHint": "Add a course first to start a timer.",
+  "studyTimerPause": "Pause",
+  "studyTimerResume": "Resume",
+  "studyTimerStart": "Start timer",
+  "studyTimerStartTitle": "Start study timer",
+  "studyTimerTooShort": "Timer has not run yet.",
   "validationCourseEctsPositive": "ECTS must be greater than zero",
   "validationCourseEctsRequired": "Enter ECTS credits",
   "validationCourseNameRequired": "Name is required",
@@ -1890,6 +1904,60 @@
         "example": "7"
       }
     }
+  },
+  "@studyTimerActiveTitle": {
+    "description": "Active timer sheet title. {course} is the timed course name.",
+    "placeholders": {
+      "course": {
+        "type": "String",
+        "example": "Math 101"
+      }
+    }
+  },
+  "@studyTimerAlreadyRunning": {
+    "description": "Error when starting a timer while one is already active."
+  },
+  "@studyTimerCourseLabel": {
+    "description": "Label of the timer course dropdown."
+  },
+  "@studyTimerDiscard": {
+    "description": "Discard action on the active timer sheet and banner."
+  },
+  "@studyTimerDiscardBody": {
+    "description": "Body of the discard-timer confirmation dialog."
+  },
+  "@studyTimerDiscardTitle": {
+    "description": "Title of the discard-timer confirmation dialog."
+  },
+  "@studyTimerFinishLog": {
+    "description": "Finish action with the loggable minutes preview. {minutes} is ceil(elapsed/60).",
+    "placeholders": {
+      "minutes": {
+        "type": "String",
+        "example": "26"
+      }
+    }
+  },
+  "@studyTimerNoCourseError": {
+    "description": "Form error when starting a timer without picking a course."
+  },
+  "@studyTimerNoCoursesHint": {
+    "description": "Hint shown when no courses exist yet and no timer can start."
+  },
+  "@studyTimerPause": {
+    "description": "Pause action on the active timer."
+  },
+  "@studyTimerResume": {
+    "description": "Resume action on a paused timer."
+  },
+  "@studyTimerStart": {
+    "description": "Start-timer action label (dashboard button, sheet button, course menu)."
+  },
+  "@studyTimerStartTitle": {
+    "description": "Title of the start-timer sheet."
+  },
+  "@studyTimerTooShort": {
+    "description": "Error when finishing a timer before a minute is loggable."
   },
   "@validationCourseEctsPositive": {
     "description": "Course ECTS validator: non-positive value."

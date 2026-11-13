@@ -1,6 +1,5 @@
 // ignore: unused_import
 import 'package:intl/intl.dart' as intl;
-
 import 'app_localizations.dart';
 
 // ignore_for_file: type=lint
@@ -83,12 +82,10 @@ class AppLocalizationsMr extends AppLocalizations {
   }
 
   @override
-  String get courseFormStartEarlyOn =>
-      'चालू: वेळ आतापर्यंत विभागली आहे आणि आजच्या गतीत समाविष्ट आहे.';
+  String get courseFormStartEarlyOn => 'चालू: वेळ आतापर्यंत विभागली आहे आणि आजच्या गतीत समाविष्ट आहे.';
 
   @override
-  String get courseFormStartEarlyTitle =>
-      'सुरुवात पुढे असली तरी आत्ताच सुरू करा';
+  String get courseFormStartEarlyTitle => 'सुरुवात पुढे असली तरी आत्ताच सुरू करा';
 
   @override
   String get courseFormTitleAdd => 'अभ्यासक्रम जोडा';
@@ -113,8 +110,7 @@ class AppLocalizationsMr extends AppLocalizations {
   }
 
   @override
-  String get coursesEmptyHint =>
-      'पहिला अभ्यासक्रम तयार करण्यासाठी “New course” वर टॅप करा.';
+  String get coursesEmptyHint => 'पहिला अभ्यासक्रम तयार करण्यासाठी “New course” वर टॅप करा.';
 
   @override
   String get coursesEmptyTitle => 'अद्याप अभ्यासक्रम नाहीत';
@@ -154,11 +150,7 @@ class AppLocalizationsMr extends AppLocalizations {
   }
 
   @override
-  String coursesProgressWithStatus(
-    String done,
-    String required,
-    String status,
-  ) {
+  String coursesProgressWithStatus(String done, String required, String status) {
     return '$done / $required ता • $status';
   }
 
@@ -227,12 +219,10 @@ class AppLocalizationsMr extends AppLocalizations {
   }
 
   @override
-  String get dashboardEmptyHintAllDone =>
-      'प्रत्येक अभ्यासक्रम पूर्ण — संपूर्ण यादीसाठी अभ्यासक्रम टॅब पहा.';
+  String get dashboardEmptyHintAllDone => 'प्रत्येक अभ्यासक्रम पूर्ण — संपूर्ण यादीसाठी अभ्यासक्रम टॅब पहा.';
 
   @override
-  String get dashboardEmptyHintNoCourses =>
-      'ECTS प्रगतीचा मागोवा घेण्यासाठी अभ्यासक्रम जोडा.';
+  String get dashboardEmptyHintNoCourses => 'ECTS प्रगतीचा मागोवा घेण्यासाठी अभ्यासक्रम जोडा.';
 
   @override
   String dashboardExplainerBehind(String achieved, String need) {
@@ -245,12 +235,10 @@ class AppLocalizationsMr extends AppLocalizations {
   }
 
   @override
-  String get dashboardExplainerBehindNoPace =>
-      'मागे: उरलेल्या तासांत आजची अंतिम तारीख गाठणारी निश्चित गती नाही';
+  String get dashboardExplainerBehindNoPace => 'मागे: उरलेल्या तासांत आजची अंतिम तारीख गाठणारी निश्चित गती नाही';
 
   @override
-  String get dashboardExplainerOnTrackNoPace =>
-      'योग्य मार्गावर: अद्याप गती नाही — खात्रीसाठी पहिले सत्र नोंदवा';
+  String get dashboardExplainerOnTrackNoPace => 'योग्य मार्गावर: अद्याप गती नाही — खात्रीसाठी पहिले सत्र नोंदवा';
 
   @override
   String dashboardExplainerStartsIn(String days, String date) {
@@ -371,8 +359,7 @@ class AppLocalizationsMr extends AppLocalizations {
   String get dashboardProgramBare => 'कार्यक्रम';
 
   @override
-  String get dashboardProgramEmptyHint =>
-      'मागोवा सुरू करण्यासाठी अभ्यासक्रम जोडा';
+  String get dashboardProgramEmptyHint => 'मागोवा सुरू करण्यासाठी अभ्यासक्रम जोडा';
 
   @override
   String dashboardProgramHours(String done, String required) {
@@ -401,12 +388,10 @@ class AppLocalizationsMr extends AppLocalizations {
   String get dashboardStartsSoon => 'लवकरच सुरू';
 
   @override
-  String get dashboardTipEmpty =>
-      'पहिला अभ्यासक्रम जोडा — दैनंदिन गती व प्रगती येथे दिसेल.';
+  String get dashboardTipEmpty => 'पहिला अभ्यासक्रम जोडा — दैनंदिन गती व प्रगती येथे दिसेल.';
 
   @override
-  String get dashboardTipFirst =>
-      'पहिली 25 मिनिटे सर्वांत महत्त्वाची — ज्या अभ्यासक्रमाची अंतिम तारीख आधी, तो निवडा.';
+  String get dashboardTipFirst => 'पहिली 25 मिनिटे सर्वांत महत्त्वाची — ज्या अभ्यासक्रमाची अंतिम तारीख आधी, तो निवडा.';
 
   @override
   String get dashboardTodayBare => 'आज';
@@ -430,8 +415,7 @@ class AppLocalizationsMr extends AppLocalizations {
   }
 
   @override
-  String get dashboardUpcomingSubtitle =>
-      'भविष्यातील सुरुवात — आज दबाव नाही, आजच्या गतीत समाविष्ट नाही.';
+  String get dashboardUpcomingSubtitle => 'भविष्यातील सुरुवात — आज दबाव नाही, आजच्या गतीत समाविष्ट नाही.';
 
   @override
   String get dashboardUpcomingTitle => 'आगामी';
@@ -440,8 +424,7 @@ class AppLocalizationsMr extends AppLocalizations {
   String get devToolsActivate => 'सक्रिय करा';
 
   @override
-  String get devToolsActivateMessage =>
-      'हे लपलेली ताण-चाचणी साधने उघडते (तयार केलेला डेटा भरते). फक्त विकासासाठी.';
+  String get devToolsActivateMessage => 'हे लपलेली ताण-चाचणी साधने उघडते (तयार केलेला डेटा भरते). फक्त विकासासाठी.';
 
   @override
   String get devToolsActivateTitle => 'देव मोड सक्रिय करायचा?';
@@ -453,12 +436,10 @@ class AppLocalizationsMr extends AppLocalizations {
   String get devToolsClearPumped => 'भरलेला डेटा साफ करा';
 
   @override
-  String get devToolsClearPumpedMessage =>
-      'तयार केलेले STRESS अभ्यासक्रम व सत्रे हटवते. तुमचा स्वतःचा डेटा जपला जातो.';
+  String get devToolsClearPumpedMessage => 'तयार केलेले STRESS अभ्यासक्रम व सत्रे हटवते. तुमचा स्वतःचा डेटा जपला जातो.';
 
   @override
-  String get devToolsClearPumpedSubtitle =>
-      'तयार केलेले STRESS अभ्यासक्रम व सत्रे हटवा.';
+  String get devToolsClearPumpedSubtitle => 'तयार केलेले STRESS अभ्यासक्रम व सत्रे हटवा.';
 
   @override
   String get devToolsClearPumpedTitle => 'भरलेला डेटा साफ करायचा?';
@@ -469,8 +450,7 @@ class AppLocalizationsMr extends AppLocalizations {
   }
 
   @override
-  String get devToolsConfirmPumpMessage =>
-      'दुसरी खात्री: यामुळे अभ्यासक्रम, याद्या, तक्ते व गती हिशोब फुगतील आणि काही सेकंद लागू शकतात. आता भरायचे?';
+  String get devToolsConfirmPumpMessage => 'दुसरी खात्री: यामुळे अभ्यासक्रम, याद्या, तक्ते व गती हिशोब फुगतील आणि काही सेकंद लागू शकतात. आता भरायचे?';
 
   @override
   String get devToolsConfirmPumpTitle => 'ताण-भरण्याची खात्री करा';
@@ -488,12 +468,10 @@ class AppLocalizationsMr extends AppLocalizations {
   String get devToolsPumpData => 'डेटा भरा';
 
   @override
-  String get devToolsPumpMessage =>
-      'हे वास्तववादी तयार सत्र जोडते (~10 अभ्यासक्रम, गेल्या 12 आठवड्यांतील ~800 सत्रे). तुमचा विद्यमान डेटा जपला जातो. पुढे जायचे?';
+  String get devToolsPumpMessage => 'हे वास्तववादी तयार सत्र जोडते (~10 अभ्यासक्रम, गेल्या 12 आठवड्यांतील ~800 सत्रे). तुमचा विद्यमान डेटा जपला जातो. पुढे जायचे?';
 
   @override
-  String get devToolsPumpSubtitle =>
-      'तयार सत्र जोडा (~10 अभ्यासक्रम, ~800 सत्रे, 12 आठवडे). विद्यमान डेटा जपला जातो.';
+  String get devToolsPumpSubtitle => 'तयार सत्र जोडा (~10 अभ्यासक्रम, ~800 सत्रे, 12 आठवडे). विद्यमान डेटा जपला जातो.';
 
   @override
   String get devToolsPumpTile => 'चाचणी डेटा भरा';
@@ -513,12 +491,10 @@ class AppLocalizationsMr extends AppLocalizations {
   String get devToolsRemoveAll => 'सर्व डेटा काढा';
 
   @override
-  String get devToolsRemoveAllMessage =>
-      'देव शॉर्टकट: हे सर्व अभ्यासक्रम, सत्रे व सेटिंग्ज कायमचे हटवते. हे पूर्ववत करता येणार नाही.';
+  String get devToolsRemoveAllMessage => 'देव शॉर्टकट: हे सर्व अभ्यासक्रम, सत्रे व सेटिंग्ज कायमचे हटवते. हे पूर्ववत करता येणार नाही.';
 
   @override
-  String get devToolsRemoveAllSubtitle =>
-      'देव शॉर्टकट: सर्व अभ्यासक्रम, सत्रे व सेटिंग्ज हटवा.';
+  String get devToolsRemoveAllSubtitle => 'देव शॉर्टकट: सर्व अभ्यासक्रम, सत्रे व सेटिंग्ज हटवा.';
 
   @override
   String get devToolsRemoveAllTitle => 'सर्व डेटा काढायचा?';
@@ -565,8 +541,7 @@ class AppLocalizationsMr extends AppLocalizations {
   String get sessionFormNoCourseError => 'अभ्यासक्रम निवडा.';
 
   @override
-  String get sessionFormNoCoursesHint =>
-      'सत्र नोंदवण्यासाठी आधी अभ्यासक्रम जोडा.';
+  String get sessionFormNoCoursesHint => 'सत्र नोंदवण्यासाठी आधी अभ्यासक्रम जोडा.';
 
   @override
   String get sessionFormNotesLabel => 'टिपा (पर्यायी)';
@@ -622,12 +597,10 @@ class AppLocalizationsMr extends AppLocalizations {
   String get settingsClearSample => 'नमुना डेटा साफ करा';
 
   @override
-  String get settingsClearSampleMessage =>
-      'हे उदाहरण अभ्यासक्रम व सत्रे काढते. तुम्ही स्वतः जोडलेले अभ्यासक्रम किंवा सत्रे काढली जात नाहीत.';
+  String get settingsClearSampleMessage => 'हे उदाहरण अभ्यासक्रम व सत्रे काढते. तुम्ही स्वतः जोडलेले अभ्यासक्रम किंवा सत्रे काढली जात नाहीत.';
 
   @override
-  String get settingsClearSampleSubtitle =>
-      'दिलेले नमुना अभ्यासक्रम व सत्रे काढा. तुमचा स्वतःचा डेटा जपला जातो.';
+  String get settingsClearSampleSubtitle => 'दिलेले नमुना अभ्यासक्रम व सत्रे काढा. तुमचा स्वतःचा डेटा जपला जातो.';
 
   @override
   String get settingsClearSampleTitle => 'नमुना डेटा साफ करायचा?';
@@ -691,8 +664,7 @@ class AppLocalizationsMr extends AppLocalizations {
   String get settingsExportCopied => 'निर्यात क्लिपबोर्डवर प्रतिलिपी केली.';
 
   @override
-  String get settingsExportSubtitle =>
-      'सर्व अभ्यासक्रम, सत्रे व सेटिंग्ज JSON म्हणून प्रतिलिपी करा.';
+  String get settingsExportSubtitle => 'सर्व अभ्यासक्रम, सत्रे व सेटिंग्ज JSON म्हणून प्रतिलिपी करा.';
 
   @override
   String settingsExportSummary(String courses, String sessions, String kb) {
@@ -708,8 +680,7 @@ class AppLocalizationsMr extends AppLocalizations {
   String get settingsFirstWeekday => 'आठवड्याचा पहिला दिवस';
 
   @override
-  String get settingsFirstWeekdayUpdated =>
-      'आठवड्याचा पहिला दिवस अद्ययावत केला.';
+  String get settingsFirstWeekdayUpdated => 'आठवड्याचा पहिला दिवस अद्ययावत केला.';
 
   @override
   String settingsHoldLabel(String label, String seconds) {
@@ -723,8 +694,7 @@ class AppLocalizationsMr extends AppLocalizations {
   String get settingsHoursError => 'शून्यापेक्षा मोठी संख्या लिहा.';
 
   @override
-  String get settingsHoursHelper =>
-      'पूर्वनिर्धारित 30. बदलामुळे आवश्यकता पुन्हा मोजल्या जातात; नोंदी जपल्या जातात.';
+  String get settingsHoursHelper => 'पूर्वनिर्धारित 30. बदलामुळे आवश्यकता पुन्हा मोजल्या जातात; नोंदी जपल्या जातात.';
 
   @override
   String get settingsHoursLabel => 'प्रति ECTS क्रेडिट तास';
@@ -755,8 +725,7 @@ class AppLocalizationsMr extends AppLocalizations {
   }
 
   @override
-  String get settingsImportInfo =>
-      'जोडणे बॅकअप सध्याच्या डेटाशेजारी ठेवते (सेटिंग्ज जपल्या जातात). बदलणे आधी सर्व अभ्यासक्रम, सत्रे व सेटिंग्ज हटवते.';
+  String get settingsImportInfo => 'जोडणे बॅकअप सध्याच्या डेटाशेजारी ठेवते (सेटिंग्ज जपल्या जातात). बदलणे आधी सर्व अभ्यासक्रम, सत्रे व सेटिंग्ज हटवते.';
 
   @override
   String get settingsImportLabel => 'निर्यात केलेले JSON चिकटवा';
@@ -790,8 +759,7 @@ class AppLocalizationsMr extends AppLocalizations {
   }
 
   @override
-  String get settingsImportSubtitle =>
-      'आधी निर्यात केलेल्या JSON बॅकअपमधून सर्व डेटा बदला.';
+  String get settingsImportSubtitle => 'आधी निर्यात केलेल्या JSON बॅकअपमधून सर्व डेटा बदला.';
 
   @override
   String settingsKeepHolding(String remaining) {
@@ -811,8 +779,7 @@ class AppLocalizationsMr extends AppLocalizations {
   String get settingsOverloadError => '5–100 मधील संख्या लिहा (ता/आठवडा).';
 
   @override
-  String get settingsOverloadHelper =>
-      'यावरील येणारे भार-आठवडे लाल चिन्हांकित होतात. पूर्णवेळ अभ्यास ~35–40 ता/आठवडा.';
+  String get settingsOverloadHelper => 'यावरील येणारे भार-आठवडे लाल चिन्हांकित होतात. पूर्णवेळ अभ्यास ~35–40 ता/आठवडा.';
 
   @override
   String settingsOverloadHours(String value) {
@@ -846,12 +813,10 @@ class AppLocalizationsMr extends AppLocalizations {
   String get settingsResetAll => 'सर्व डेटा पूर्ववत करा';
 
   @override
-  String get settingsResetAllMessage =>
-      'हे सर्व अभ्यासक्रम, सत्रे व सेटिंग्ज कायमचे हटवते. हे पूर्ववत करता येणार नाही. गरज असल्यास आधी बॅकअप निर्यात करा.';
+  String get settingsResetAllMessage => 'हे सर्व अभ्यासक्रम, सत्रे व सेटिंग्ज कायमचे हटवते. हे पूर्ववत करता येणार नाही. गरज असल्यास आधी बॅकअप निर्यात करा.';
 
   @override
-  String get settingsResetAllSubtitle =>
-      'सर्व अभ्यासक्रम, सत्रे व सेटिंग्ज हटवा.';
+  String get settingsResetAllSubtitle => 'सर्व अभ्यासक्रम, सत्रे व सेटिंग्ज हटवा.';
 
   @override
   String get settingsResetAllTitle => 'सर्व डेटा पूर्ववत करायचा?';
@@ -863,12 +828,10 @@ class AppLocalizationsMr extends AppLocalizations {
   String get settingsResetSettingsDone => 'सेटिंग्ज पूर्वनिर्धारित केल्या.';
 
   @override
-  String get settingsResetSettingsMessage =>
-      'प्रति ECTS तास (30), दैनंदिन उद्दिष्ट (नाही), आठवड्याचा पहिला दिवस (सोमवार), थीम (सिस्टम), सहनशीलता (5 दिवस), अतिभार (35 ता/आठवडा), आकार (आरामदायी), रंग (स्लेट) परत आणते. अभ्यासक्रम व सत्रे जपली जातात.';
+  String get settingsResetSettingsMessage => 'प्रति ECTS तास (30), दैनंदिन उद्दिष्ट (नाही), आठवड्याचा पहिला दिवस (सोमवार), थीम (सिस्टम), सहनशीलता (5 दिवस), अतिभार (35 ता/आठवडा), आकार (आरामदायी), रंग (स्लेट) परत आणते. अभ्यासक्रम व सत्रे जपली जातात.';
 
   @override
-  String get settingsResetSettingsSubtitle =>
-      'पूर्वनिर्धारित परत आणा: 30 ता/ECTS, उद्दिष्ट नाही, सोमवार, सिस्टम थीम, 5 दिवस सहनशीलता, 35 ता/आठवडा अतिभार, आरामदायी आकार, स्लेट रंग.';
+  String get settingsResetSettingsSubtitle => 'पूर्वनिर्धारित परत आणा: 30 ता/ECTS, उद्दिष्ट नाही, सोमवार, सिस्टम थीम, 5 दिवस सहनशीलता, 35 ता/आठवडा अतिभार, आरामदायी आकार, स्लेट रंग.';
 
   @override
   String get settingsResetSettingsTitle => 'सेटिंग्ज पूर्ववत करायच्या?';
@@ -908,8 +871,7 @@ class AppLocalizationsMr extends AppLocalizations {
   String get settingsToleranceError => '0–30 मधील दिवस संख्या लिहा.';
 
   @override
-  String get settingsToleranceHelper =>
-      'पुढे राहण्यासाठी +N दिवस जादा, मागे −N दिवस लागतात. 5 = स्थिर, 0 = संवेदनशील.';
+  String get settingsToleranceHelper => 'पुढे राहण्यासाठी +N दिवस जादा, मागे −N दिवस लागतात. 5 = स्थिर, 0 = संवेदनशील.';
 
   @override
   String get settingsToleranceLabel => 'कामाचे दिवस (0–30)';
@@ -976,8 +938,7 @@ class AppLocalizationsMr extends AppLocalizations {
   String get statsConsistency => 'सातत्य';
 
   @override
-  String get statsConsistencyHint =>
-      'गेल्या 30 दिवसांतील अभ्यास दिवस. रोज छोटी पावले घाईघाईच्या अभ्यासापेक्षा चांगली.';
+  String get statsConsistencyHint => 'गेल्या 30 दिवसांतील अभ्यास दिवस. रोज छोटी पावले घाईघाईच्या अभ्यासापेक्षा चांगली.';
 
   @override
   String statsConsistencyScore(String percent) {
@@ -1100,15 +1061,13 @@ class AppLocalizationsMr extends AppLocalizations {
   String get statusOverdue => 'मुदत संपलेली';
 
   @override
-  String get studyLogDeleteBody =>
-      'हे अभ्यास सत्र हटवायचे? हे पूर्ववत करता येणार नाही.';
+  String get studyLogDeleteBody => 'हे अभ्यास सत्र हटवायचे? हे पूर्ववत करता येणार नाही.';
 
   @override
   String get studyLogDeleteTitle => 'सत्र हटवायचे?';
 
   @override
-  String get studyLogEmptyHint =>
-      'अभ्यास वेळेचा मागोवा घेण्यासाठी सत्र नोंदवा.';
+  String get studyLogEmptyHint => 'अभ्यास वेळेचा मागोवा घेण्यासाठी सत्र नोंदवा.';
 
   @override
   String get studyLogEmptyTitle => 'अद्याप अभ्यास सत्रे नाहीत';
@@ -1144,6 +1103,52 @@ class AppLocalizationsMr extends AppLocalizations {
   }
 
   @override
+  String studyTimerActiveTitle(String course) {
+    return 'Timing $course';
+  }
+
+  @override
+  String get studyTimerAlreadyRunning => 'A timer is already running. Finish or discard it first.';
+
+  @override
+  String get studyTimerCourseLabel => 'Course';
+
+  @override
+  String get studyTimerDiscard => 'Discard';
+
+  @override
+  String get studyTimerDiscardBody => 'Throw away the current timer without logging? This cannot be undone.';
+
+  @override
+  String get studyTimerDiscardTitle => 'Discard timer?';
+
+  @override
+  String studyTimerFinishLog(String minutes) {
+    return 'Finish & log $minutes min';
+  }
+
+  @override
+  String get studyTimerNoCourseError => 'Select a course.';
+
+  @override
+  String get studyTimerNoCoursesHint => 'Add a course first to start a timer.';
+
+  @override
+  String get studyTimerPause => 'Pause';
+
+  @override
+  String get studyTimerResume => 'Resume';
+
+  @override
+  String get studyTimerStart => 'Start timer';
+
+  @override
+  String get studyTimerStartTitle => 'Start study timer';
+
+  @override
+  String get studyTimerTooShort => 'Timer has not run yet.';
+
+  @override
   String get validationCourseEctsPositive => 'ECTS शून्यापेक्षा जास्त असावे';
 
   @override
@@ -1171,8 +1176,7 @@ class AppLocalizationsMr extends AppLocalizations {
   String get settingsLiquidGlass => 'लिक्विड ग्लास';
 
   @override
-  String get settingsLiquidGlassSubtitle =>
-      'फ्रॉस्टेड काचेची कार्डे आणि बार. बंद केल्यास पारंपरिक ठोस रूप राहते.';
+  String get settingsLiquidGlassSubtitle => 'फ्रॉस्टेड काचेची कार्डे आणि बार. बंद केल्यास पारंपरिक ठोस रूप राहते.';
 
   @override
   String get settingsLiquidGlassOn => 'चालू';
@@ -1187,8 +1191,7 @@ class AppLocalizationsMr extends AppLocalizations {
   String get devToolsReminderPreview => 'स्मरणपत्र पूर्वावलोकन';
 
   @override
-  String get devToolsReminderPreviewSubtitle =>
-      'आत्ता कशाची सूचना येईल ते पहा. Windows-सुरक्षित चाचणी फीड.';
+  String get devToolsReminderPreviewSubtitle => 'आत्ता कशाची सूचना येईल ते पहा. Windows-सुरक्षित चाचणी फीड.';
 
   @override
   String get reminderPreviewTitle => 'स्मरणपत्र पूर्वावलोकन';
@@ -1236,8 +1239,7 @@ class AppLocalizationsMr extends AppLocalizations {
   String get settingsReminderTime => 'स्मरणपत्र वेळ';
 
   @override
-  String get settingsReminderDenied =>
-      'सूचना अवरोधित आहेत — सिस्टम सेटिंग्जमध्ये सक्षम करा.';
+  String get settingsReminderDenied => 'सूचना अवरोधित आहेत — सिस्टम सेटिंग्जमध्ये सक्षम करा.';
 
   @override
   String notifDurationHours(String value) {
@@ -1275,12 +1277,7 @@ class AppLocalizationsMr extends AppLocalizations {
   }
 
   @override
-  String notifBehindBodyPace(
-    String left,
-    String days,
-    String pace,
-    String catchUp,
-  ) {
+  String notifBehindBodyPace(String left, String days, String pace, String catchUp) {
     return '$left बाकी, $days दिवस बाकी — येथून $pace/दिवस. योग्य मार्गावर परतण्यासाठी $catchUp नोंदवा.';
   }
 
@@ -1300,8 +1297,7 @@ class AppLocalizationsMr extends AppLocalizations {
   }
 
   @override
-  String get notifDeadlineTomorrowBody =>
-      'तुम्ही आज जे नोंदवाल ते दुप्पट मोजले जाईल.';
+  String get notifDeadlineTomorrowBody => 'तुम्ही आज जे नोंदवाल ते दुप्पट मोजले जाईल.';
 
   @override
   String notifDeadlineSoonTitle(String course, String days, String left) {
@@ -1314,8 +1310,7 @@ class AppLocalizationsMr extends AppLocalizations {
   }
 
   @override
-  String get notifDeadlineSoonBodyNoPace =>
-      'तुम्ही आत्ता नोंदवलेला प्रत्येक तास मोजला जाईल.';
+  String get notifDeadlineSoonBodyNoPace => 'तुम्ही आत्ता नोंदवलेला प्रत्येक तास मोजला जाईल.';
 
   @override
   String notifOverdueTitle(String course, String left) {
@@ -1323,8 +1318,7 @@ class AppLocalizationsMr extends AppLocalizations {
   }
 
   @override
-  String get notifOverdueBody =>
-      'अंतिम तारीख पुढे ढकला किंवा तास पूर्ण करा — तोपर्यंत अभ्यासक्रम लक्ष आवश्यक मध्येच राहील.';
+  String get notifOverdueBody => 'अंतिम तारीख पुढे ढकला किंवा तास पूर्ण करा — तोपर्यंत अभ्यासक्रम लक्ष आवश्यक मध्येच राहील.';
 
   @override
   String notifStreakTitle(String days, String week) {
@@ -1332,8 +1326,7 @@ class AppLocalizationsMr extends AppLocalizations {
   }
 
   @override
-  String get notifStreakBody =>
-      'सर्व अभ्यासक्रम योग्य मार्गावर किंवा पुढे आहेत. छान चाललंय.';
+  String get notifStreakBody => 'सर्व अभ्यासक्रम योग्य मार्गावर किंवा पुढे आहेत. छान चाललंय.';
 
   @override
   String notifCustomTitleAuto(String course) {

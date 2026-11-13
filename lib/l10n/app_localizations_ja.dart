@@ -1,6 +1,5 @@
 // ignore: unused_import
 import 'package:intl/intl.dart' as intl;
-
 import 'app_localizations.dart';
 
 // ignore_for_file: type=lint
@@ -151,11 +150,7 @@ class AppLocalizationsJa extends AppLocalizations {
   }
 
   @override
-  String coursesProgressWithStatus(
-    String done,
-    String required,
-    String status,
-  ) {
+  String coursesProgressWithStatus(String done, String required, String status) {
     return '$done / $required時間・$status';
   }
 
@@ -441,8 +436,7 @@ class AppLocalizationsJa extends AppLocalizations {
   String get devToolsClearPumped => '生成データをクリア';
 
   @override
-  String get devToolsClearPumpedMessage =>
-      '生成されたSTRESS科目と記録を削除します。自分のデータは保持されます。';
+  String get devToolsClearPumpedMessage => '生成されたSTRESS科目と記録を削除します。自分のデータは保持されます。';
 
   @override
   String get devToolsClearPumpedSubtitle => '生成されたSTRESS科目と記録を削除します。';
@@ -456,8 +450,7 @@ class AppLocalizationsJa extends AppLocalizations {
   }
 
   @override
-  String get devToolsConfirmPumpMessage =>
-      '最終確認: 科目・リスト・グラフ・ペース計算が膨張し、数秒かかる場合があります。今投入しますか？';
+  String get devToolsConfirmPumpMessage => '最終確認: 科目・リスト・グラフ・ペース計算が膨張し、数秒かかる場合があります。今投入しますか？';
 
   @override
   String get devToolsConfirmPumpTitle => 'ストレステスト投入の確認';
@@ -475,8 +468,7 @@ class AppLocalizationsJa extends AppLocalizations {
   String get devToolsPumpData => 'データを投入';
 
   @override
-  String get devToolsPumpMessage =>
-      '現実的な生成学期（約10科目、過去12週間で約800記録）を挿入します。既存データは保持されます。続けますか？';
+  String get devToolsPumpMessage => '現実的な生成学期（約10科目、過去12週間で約800記録）を挿入します。既存データは保持されます。続けますか？';
 
   @override
   String get devToolsPumpSubtitle => '生成学期を挿入（約10科目・約800記録・12週間）。既存データは保持。';
@@ -499,8 +491,7 @@ class AppLocalizationsJa extends AppLocalizations {
   String get devToolsRemoveAll => 'すべてのデータを削除';
 
   @override
-  String get devToolsRemoveAllMessage =>
-      '開発用ショートカット: すべての科目・記録・設定を完全に削除します。元に戻せません。';
+  String get devToolsRemoveAllMessage => '開発用ショートカット: すべての科目・記録・設定を完全に削除します。元に戻せません。';
 
   @override
   String get devToolsRemoveAllSubtitle => '開発用ショートカット: すべての科目・記録・設定を削除。';
@@ -606,8 +597,7 @@ class AppLocalizationsJa extends AppLocalizations {
   String get settingsClearSample => 'サンプルデータをクリア';
 
   @override
-  String get settingsClearSampleMessage =>
-      'サンプルの科目と記録を削除します。自分で追加した科目・記録は削除されません。';
+  String get settingsClearSampleMessage => 'サンプルの科目と記録を削除します。自分で追加した科目・記録は削除されません。';
 
   @override
   String get settingsClearSampleSubtitle => 'サンプルの科目と記録を削除します。自分のデータは保持されます。';
@@ -735,8 +725,7 @@ class AppLocalizationsJa extends AppLocalizations {
   }
 
   @override
-  String get settingsImportInfo =>
-      '追加は現在のデータにバックアップを加えます（設定は保持）。置き換えは先にすべての科目・記録・設定を消去します。';
+  String get settingsImportInfo => '追加は現在のデータにバックアップを加えます（設定は保持）。置き換えは先にすべての科目・記録・設定を消去します。';
 
   @override
   String get settingsImportLabel => 'エクスポートしたJSONを貼り付け';
@@ -790,8 +779,7 @@ class AppLocalizationsJa extends AppLocalizations {
   String get settingsOverloadError => '5〜100時間/週の数値を入力してください。';
 
   @override
-  String get settingsOverloadHelper =>
-      'この値を超える週は赤く警告されます。フルタイム学習は約35〜40時間/週です。';
+  String get settingsOverloadHelper => 'この値を超える週は赤く警告されます。フルタイム学習は約35〜40時間/週です。';
 
   @override
   String settingsOverloadHours(String value) {
@@ -825,8 +813,7 @@ class AppLocalizationsJa extends AppLocalizations {
   String get settingsResetAll => 'すべてのデータをリセット';
 
   @override
-  String get settingsResetAllMessage =>
-      'すべての科目・記録・設定を完全に削除します。元に戻せません。必要なら先にバックアップをエクスポートしてください。';
+  String get settingsResetAllMessage => 'すべての科目・記録・設定を完全に削除します。元に戻せません。必要なら先にバックアップをエクスポートしてください。';
 
   @override
   String get settingsResetAllSubtitle => 'すべての科目・記録・設定を削除します。';
@@ -841,12 +828,10 @@ class AppLocalizationsJa extends AppLocalizations {
   String get settingsResetSettingsDone => '設定を既定値に戻しました。';
 
   @override
-  String get settingsResetSettingsMessage =>
-      'ECTSあたり時間（30）、毎日目標（なし）、週開始（月曜）、テーマ（システム）、許容（5日）、過負荷（35時間/週）、サイズ（標準）、色（スレート）に戻します。科目と記録は保持されます。';
+  String get settingsResetSettingsMessage => 'ECTSあたり時間（30）、毎日目標（なし）、週開始（月曜）、テーマ（システム）、許容（5日）、過負荷（35時間/週）、サイズ（標準）、色（スレート）に戻します。科目と記録は保持されます。';
 
   @override
-  String get settingsResetSettingsSubtitle =>
-      '既定値に戻す: 30時間/ECTS、目標なし、月曜、システムテーマ、5日許容、35時間/週、標準サイズ、スレート。';
+  String get settingsResetSettingsSubtitle => '既定値に戻す: 30時間/ECTS、目標なし、月曜、システムテーマ、5日許容、35時間/週、標準サイズ、スレート。';
 
   @override
   String get settingsResetSettingsTitle => '設定をリセットしますか？';
@@ -1118,6 +1103,52 @@ class AppLocalizationsJa extends AppLocalizations {
   }
 
   @override
+  String studyTimerActiveTitle(String course) {
+    return 'Timing $course';
+  }
+
+  @override
+  String get studyTimerAlreadyRunning => 'A timer is already running. Finish or discard it first.';
+
+  @override
+  String get studyTimerCourseLabel => 'Course';
+
+  @override
+  String get studyTimerDiscard => 'Discard';
+
+  @override
+  String get studyTimerDiscardBody => 'Throw away the current timer without logging? This cannot be undone.';
+
+  @override
+  String get studyTimerDiscardTitle => 'Discard timer?';
+
+  @override
+  String studyTimerFinishLog(String minutes) {
+    return 'Finish & log $minutes min';
+  }
+
+  @override
+  String get studyTimerNoCourseError => 'Select a course.';
+
+  @override
+  String get studyTimerNoCoursesHint => 'Add a course first to start a timer.';
+
+  @override
+  String get studyTimerPause => 'Pause';
+
+  @override
+  String get studyTimerResume => 'Resume';
+
+  @override
+  String get studyTimerStart => 'Start timer';
+
+  @override
+  String get studyTimerStartTitle => 'Start study timer';
+
+  @override
+  String get studyTimerTooShort => 'Timer has not run yet.';
+
+  @override
   String get validationCourseEctsPositive => 'ECTSは0より大きくしてください';
 
   @override
@@ -1145,8 +1176,7 @@ class AppLocalizationsJa extends AppLocalizations {
   String get settingsLiquidGlass => 'リキッドガラス';
 
   @override
-  String get settingsLiquidGlassSubtitle =>
-      'すりガラス風のカードとバー。オフでは従来のソリッドな見た目になります。';
+  String get settingsLiquidGlassSubtitle => 'すりガラス風のカードとバー。オフでは従来のソリッドな見た目になります。';
 
   @override
   String get settingsLiquidGlassOn => 'オン';
@@ -1161,8 +1191,7 @@ class AppLocalizationsJa extends AppLocalizations {
   String get devToolsReminderPreview => 'リマインダープレビュー';
 
   @override
-  String get devToolsReminderPreviewSubtitle =>
-      '今通知される内容を確認。Windowsでも安全なテストフィード。';
+  String get devToolsReminderPreviewSubtitle => '今通知される内容を確認。Windowsでも安全なテストフィード。';
 
   @override
   String get reminderPreviewTitle => 'リマインダープレビュー';
@@ -1248,12 +1277,7 @@ class AppLocalizationsJa extends AppLocalizations {
   }
 
   @override
-  String notifBehindBodyPace(
-    String left,
-    String days,
-    String pace,
-    String catchUp,
-  ) {
+  String notifBehindBodyPace(String left, String days, String pace, String catchUp) {
     return '残り$left、あと$days日 — ここからは$pace/日。$catchUpを記録して順調に戻しましょう。';
   }
 

@@ -1,6 +1,5 @@
 // ignore: unused_import
 import 'package:intl/intl.dart' as intl;
-
 import 'app_localizations.dart';
 
 // ignore_for_file: type=lint
@@ -83,12 +82,10 @@ class AppLocalizationsFi extends AppLocalizations {
   }
 
   @override
-  String get courseFormStartEarlyOn =>
-      'Päällä: aika jaetaan tähän hetkeen asti ja lasketaan mukaan tämän päivän tahtiin.';
+  String get courseFormStartEarlyOn => 'Päällä: aika jaetaan tähän hetkeen asti ja lasketaan mukaan tämän päivän tahtiin.';
 
   @override
-  String get courseFormStartEarlyTitle =>
-      'Aloita nyt tulevasta aloituksesta huolimatta';
+  String get courseFormStartEarlyTitle => 'Aloita nyt tulevasta aloituksesta huolimatta';
 
   @override
   String get courseFormTitleAdd => 'Lisää kurssi';
@@ -113,8 +110,7 @@ class AppLocalizationsFi extends AppLocalizations {
   }
 
   @override
-  String get coursesEmptyHint =>
-      'Napauta ”Uusi kurssi” luodaksesi ensimmäisen kurssisi.';
+  String get coursesEmptyHint => 'Napauta ”Uusi kurssi” luodaksesi ensimmäisen kurssisi.';
 
   @override
   String get coursesEmptyTitle => 'Ei kursseja vielä';
@@ -154,11 +150,7 @@ class AppLocalizationsFi extends AppLocalizations {
   }
 
   @override
-  String coursesProgressWithStatus(
-    String done,
-    String required,
-    String status,
-  ) {
+  String coursesProgressWithStatus(String done, String required, String status) {
     return '$done / $required h • $status';
   }
 
@@ -227,12 +219,10 @@ class AppLocalizationsFi extends AppLocalizations {
   }
 
   @override
-  String get dashboardEmptyHintAllDone =>
-      'Kaikki kurssit on suoritettu — katso koko luettelo Kurssit-välilehdeltä.';
+  String get dashboardEmptyHintAllDone => 'Kaikki kurssit on suoritettu — katso koko luettelo Kurssit-välilehdeltä.';
 
   @override
-  String get dashboardEmptyHintNoCourses =>
-      'Lisää kurssi aloittaaksesi ECTS-edistymisen seurannan.';
+  String get dashboardEmptyHintNoCourses => 'Lisää kurssi aloittaaksesi ECTS-edistymisen seurannan.';
 
   @override
   String dashboardExplainerBehind(String achieved, String need) {
@@ -245,12 +235,10 @@ class AppLocalizationsFi extends AppLocalizations {
   }
 
   @override
-  String get dashboardExplainerBehindNoPace =>
-      'Jäljessä: mikään rajallinen tahti ei saavuta tämän päivän määräaikaa, kun tunteja on jäljellä';
+  String get dashboardExplainerBehindNoPace => 'Jäljessä: mikään rajallinen tahti ei saavuta tämän päivän määräaikaa, kun tunteja on jäljellä';
 
   @override
-  String get dashboardExplainerOnTrackNoPace =>
-      'Aikataulussa: ei tahtia vielä — kirjaa ensimmäinen kerta vahvistukseksi';
+  String get dashboardExplainerOnTrackNoPace => 'Aikataulussa: ei tahtia vielä — kirjaa ensimmäinen kerta vahvistukseksi';
 
   @override
   String dashboardExplainerStartsIn(String days, String date) {
@@ -371,8 +359,7 @@ class AppLocalizationsFi extends AppLocalizations {
   String get dashboardProgramBare => 'OHJELMA';
 
   @override
-  String get dashboardProgramEmptyHint =>
-      'Lisää kurssi aloittaaksesi seurannan';
+  String get dashboardProgramEmptyHint => 'Lisää kurssi aloittaaksesi seurannan';
 
   @override
   String dashboardProgramHours(String done, String required) {
@@ -401,12 +388,10 @@ class AppLocalizationsFi extends AppLocalizations {
   String get dashboardStartsSoon => 'Alkaa pian';
 
   @override
-  String get dashboardTipEmpty =>
-      'Lisää ensimmäinen kurssisi — päivittäinen tahtisi ja edistymisesi näkyvät täällä.';
+  String get dashboardTipEmpty => 'Lisää ensimmäinen kurssisi — päivittäinen tahtisi ja edistymisesi näkyvät täällä.';
 
   @override
-  String get dashboardTipFirst =>
-      'Ensimmäiset 25 minuuttia merkitsevät eniten — valitse kurssi, jonka määräaika on ensin.';
+  String get dashboardTipFirst => 'Ensimmäiset 25 minuuttia merkitsevät eniten — valitse kurssi, jonka määräaika on ensin.';
 
   @override
   String get dashboardTodayBare => 'TÄNÄÄN';
@@ -430,8 +415,7 @@ class AppLocalizationsFi extends AppLocalizations {
   }
 
   @override
-  String get dashboardUpcomingSubtitle =>
-      'Tulevat aloitukset — ei painetta tänään, jätetty pois tämän päivän tahdista.';
+  String get dashboardUpcomingSubtitle => 'Tulevat aloitukset — ei painetta tänään, jätetty pois tämän päivän tahdista.';
 
   @override
   String get dashboardUpcomingTitle => 'Tulevat';
@@ -440,8 +424,7 @@ class AppLocalizationsFi extends AppLocalizations {
   String get devToolsActivate => 'Aktivoi';
 
   @override
-  String get devToolsActivateMessage =>
-      'Tämä avaa piilotetut kuormitustestityökalut (luodun datan lisääminen). Vain kehitykseen.';
+  String get devToolsActivateMessage => 'Tämä avaa piilotetut kuormitustestityökalut (luodun datan lisääminen). Vain kehitykseen.';
 
   @override
   String get devToolsActivateTitle => 'Aktivoidaanko kehittäjätila?';
@@ -453,12 +436,10 @@ class AppLocalizationsFi extends AppLocalizations {
   String get devToolsClearPumped => 'Tyhjennä luotu data';
 
   @override
-  String get devToolsClearPumpedMessage =>
-      'Poistaa luodut STRESS-kurssit ja niiden kerrat. Omat tietosi säilyvät.';
+  String get devToolsClearPumpedMessage => 'Poistaa luodut STRESS-kurssit ja niiden kerrat. Omat tietosi säilyvät.';
 
   @override
-  String get devToolsClearPumpedSubtitle =>
-      'Poista luodut STRESS-kurssit ja kerrat.';
+  String get devToolsClearPumpedSubtitle => 'Poista luodut STRESS-kurssit ja kerrat.';
 
   @override
   String get devToolsClearPumpedTitle => 'Tyhjennetäänkö luotu data?';
@@ -469,8 +450,7 @@ class AppLocalizationsFi extends AppLocalizations {
   }
 
   @override
-  String get devToolsConfirmPumpMessage =>
-      'Toinen vahvistus: tämä paisuttaa kursseja, luetteloita, kaavioita ja tahtilaskelmia ja voi kestää muutaman sekunnin. Lisätäänkö nyt?';
+  String get devToolsConfirmPumpMessage => 'Toinen vahvistus: tämä paisuttaa kursseja, luetteloita, kaavioita ja tahtilaskelmia ja voi kestää muutaman sekunnin. Lisätäänkö nyt?';
 
   @override
   String get devToolsConfirmPumpTitle => 'Vahvista kuormitustesti';
@@ -482,19 +462,16 @@ class AppLocalizationsFi extends AppLocalizations {
   String get devToolsExit => 'Poistu kehittäjätilasta';
 
   @override
-  String get devToolsExitSubtitle =>
-      'Piilota kehittäjätyökalut tällä laitteella.';
+  String get devToolsExitSubtitle => 'Piilota kehittäjätyökalut tällä laitteella.';
 
   @override
   String get devToolsPumpData => 'Lisää data';
 
   @override
-  String get devToolsPumpMessage =>
-      'Tämä lisää realistisen luodun lukukauden (~10 kurssia, ~800 kertaa viimeisen 12 viikon ajalta). Olemassa olevat tietosi säilyvät. Jatketaanko?';
+  String get devToolsPumpMessage => 'Tämä lisää realistisen luodun lukukauden (~10 kurssia, ~800 kertaa viimeisen 12 viikon ajalta). Olemassa olevat tietosi säilyvät. Jatketaanko?';
 
   @override
-  String get devToolsPumpSubtitle =>
-      'Lisää luotu lukukausi (~10 kurssia, ~800 kertaa, 12 viikkoa). Olemassa oleva data säilyy.';
+  String get devToolsPumpSubtitle => 'Lisää luotu lukukausi (~10 kurssia, ~800 kertaa, 12 viikkoa). Olemassa oleva data säilyy.';
 
   @override
   String get devToolsPumpTile => 'Lisää testidata';
@@ -514,12 +491,10 @@ class AppLocalizationsFi extends AppLocalizations {
   String get devToolsRemoveAll => 'Poista kaikki data';
 
   @override
-  String get devToolsRemoveAllMessage =>
-      'Kehittäjän oikotie: tämä poistaa pysyvästi KAIKKI kurssit, kerrat ja asetukset. Tätä ei voi kumota.';
+  String get devToolsRemoveAllMessage => 'Kehittäjän oikotie: tämä poistaa pysyvästi KAIKKI kurssit, kerrat ja asetukset. Tätä ei voi kumota.';
 
   @override
-  String get devToolsRemoveAllSubtitle =>
-      'Kehittäjän oikotie: poista KAIKKI kurssit, kerrat ja asetukset.';
+  String get devToolsRemoveAllSubtitle => 'Kehittäjän oikotie: poista KAIKKI kurssit, kerrat ja asetukset.';
 
   @override
   String get devToolsRemoveAllTitle => 'Poistetaanko kaikki data?';
@@ -551,8 +526,7 @@ class AppLocalizationsFi extends AppLocalizations {
   }
 
   @override
-  String get sessionFormDurationError =>
-      'Keston on oltava suurempi kuin nolla.';
+  String get sessionFormDurationError => 'Keston on oltava suurempi kuin nolla.';
 
   @override
   String get sessionFormHoursLabel => 'Tunnit';
@@ -567,8 +541,7 @@ class AppLocalizationsFi extends AppLocalizations {
   String get sessionFormNoCourseError => 'Valitse kurssi.';
 
   @override
-  String get sessionFormNoCoursesHint =>
-      'Lisää ensin kurssi kirjataksesi kerran.';
+  String get sessionFormNoCoursesHint => 'Lisää ensin kurssi kirjataksesi kerran.';
 
   @override
   String get sessionFormNotesLabel => 'Muistiinpanot (valinnainen)';
@@ -624,12 +597,10 @@ class AppLocalizationsFi extends AppLocalizations {
   String get settingsClearSample => 'Tyhjennä esimerkkidata';
 
   @override
-  String get settingsClearSampleMessage =>
-      'Tämä poistaa esimerkkikurssit ja -kerrat. Itse lisäämiäsi kursseja tai kertoja ei poisteta.';
+  String get settingsClearSampleMessage => 'Tämä poistaa esimerkkikurssit ja -kerrat. Itse lisäämiäsi kursseja tai kertoja ei poisteta.';
 
   @override
-  String get settingsClearSampleSubtitle =>
-      'Poista valmiit esimerkkikurssit ja -kerrat. Omat tietosi säilyvät.';
+  String get settingsClearSampleSubtitle => 'Poista valmiit esimerkkikurssit ja -kerrat. Omat tietosi säilyvät.';
 
   @override
   String get settingsClearSampleTitle => 'Tyhjennetäänkö esimerkkidata?';
@@ -693,8 +664,7 @@ class AppLocalizationsFi extends AppLocalizations {
   String get settingsExportCopied => 'Vienti kopioitu leikepöydälle.';
 
   @override
-  String get settingsExportSubtitle =>
-      'Kopioi kaikki kurssit, kerrat ja asetukset JSON-muodossa.';
+  String get settingsExportSubtitle => 'Kopioi kaikki kurssit, kerrat ja asetukset JSON-muodossa.';
 
   @override
   String settingsExportSummary(String courses, String sessions, String kb) {
@@ -710,8 +680,7 @@ class AppLocalizationsFi extends AppLocalizations {
   String get settingsFirstWeekday => 'Viikon ensimmäinen päivä';
 
   @override
-  String get settingsFirstWeekdayUpdated =>
-      'Viikon ensimmäinen päivä päivitetty.';
+  String get settingsFirstWeekdayUpdated => 'Viikon ensimmäinen päivä päivitetty.';
 
   @override
   String settingsHoldLabel(String label, String seconds) {
@@ -725,8 +694,7 @@ class AppLocalizationsFi extends AppLocalizations {
   String get settingsHoursError => 'Anna nollaa suurempi luku.';
 
   @override
-  String get settingsHoursHelper =>
-      'Oletus 30. Muutos laskee vaatimukset uudelleen; kirjaukset säilyvät.';
+  String get settingsHoursHelper => 'Oletus 30. Muutos laskee vaatimukset uudelleen; kirjaukset säilyvät.';
 
   @override
   String get settingsHoursLabel => 'Tuntia per ECTS-opintopiste';
@@ -757,8 +725,7 @@ class AppLocalizationsFi extends AppLocalizations {
   }
 
   @override
-  String get settingsImportInfo =>
-      'Liittäminen lisää varmuuskopion nykyisten tietojen rinnalle (asetukset säilyvät). Korvaaminen tyhjentää ensin KAIKKI kurssit, kerrat ja asetukset.';
+  String get settingsImportInfo => 'Liittäminen lisää varmuuskopion nykyisten tietojen rinnalle (asetukset säilyvät). Korvaaminen tyhjentää ensin KAIKKI kurssit, kerrat ja asetukset.';
 
   @override
   String get settingsImportLabel => 'Liitä viety JSON';
@@ -792,8 +759,7 @@ class AppLocalizationsFi extends AppLocalizations {
   }
 
   @override
-  String get settingsImportSubtitle =>
-      'Korvaa kaikki data aiemmin viedystä JSON-varmuuskopiosta.';
+  String get settingsImportSubtitle => 'Korvaa kaikki data aiemmin viedystä JSON-varmuuskopiosta.';
 
   @override
   String settingsKeepHolding(String remaining) {
@@ -804,8 +770,7 @@ class AppLocalizationsFi extends AppLocalizations {
   String get settingsNoSample => 'Ei esimerkkidataa';
 
   @override
-  String get settingsNoSampleSubtitle =>
-      'Valmis esimerkkidata on jo tyhjennetty.';
+  String get settingsNoSampleSubtitle => 'Valmis esimerkkidata on jo tyhjennetty.';
 
   @override
   String get settingsNoTarget => 'Ei tavoitetta';
@@ -814,8 +779,7 @@ class AppLocalizationsFi extends AppLocalizations {
   String get settingsOverloadError => 'Anna luku 5–100 h/viikko.';
 
   @override
-  String get settingsOverloadHelper =>
-      'Tämän ylittävät kuormitusviikot merkitään punaisella. Päätoiminen opiskelu on ~35–40 h/viikko.';
+  String get settingsOverloadHelper => 'Tämän ylittävät kuormitusviikot merkitään punaisella. Päätoiminen opiskelu on ~35–40 h/viikko.';
 
   @override
   String settingsOverloadHours(String value) {
@@ -849,12 +813,10 @@ class AppLocalizationsFi extends AppLocalizations {
   String get settingsResetAll => 'Palauta kaikki data';
 
   @override
-  String get settingsResetAllMessage =>
-      'Tämä poistaa pysyvästi KAIKKI kurssit, kerrat ja asetukset. Tätä ei voi kumota. Vie ensin varmuuskopio tarvittaessa.';
+  String get settingsResetAllMessage => 'Tämä poistaa pysyvästi KAIKKI kurssit, kerrat ja asetukset. Tätä ei voi kumota. Vie ensin varmuuskopio tarvittaessa.';
 
   @override
-  String get settingsResetAllSubtitle =>
-      'Poista kaikki kurssit, kerrat ja asetukset.';
+  String get settingsResetAllSubtitle => 'Poista kaikki kurssit, kerrat ja asetukset.';
 
   @override
   String get settingsResetAllTitle => 'Palautetaanko kaikki data?';
@@ -866,12 +828,10 @@ class AppLocalizationsFi extends AppLocalizations {
   String get settingsResetSettingsDone => 'Asetukset palautettu oletuksiin.';
 
   @override
-  String get settingsResetSettingsMessage =>
-      'Palauttaa tunnit per ECTS (30), päivätavoitteen (ei mitään), viikon ensimmäisen päivän (maanantai), teeman (järjestelmä), siedon (5 päivää), ylikuormituksen (35 h/viikko), koon (mukava), värin (liuske). Kurssit ja kerrat säilyvät.';
+  String get settingsResetSettingsMessage => 'Palauttaa tunnit per ECTS (30), päivätavoitteen (ei mitään), viikon ensimmäisen päivän (maanantai), teeman (järjestelmä), siedon (5 päivää), ylikuormituksen (35 h/viikko), koon (mukava), värin (liuske). Kurssit ja kerrat säilyvät.';
 
   @override
-  String get settingsResetSettingsSubtitle =>
-      'Palauta oletukset: 30 h/ECTS, ei tavoitetta, maanantai, järjestelmäteema, 5 päivän sieto, 35 h/viikko ylikuormitus, mukava koko, liuske.';
+  String get settingsResetSettingsSubtitle => 'Palauta oletukset: 30 h/ECTS, ei tavoitetta, maanantai, järjestelmäteema, 5 päivän sieto, 35 h/viikko ylikuormitus, mukava koko, liuske.';
 
   @override
   String get settingsResetSettingsTitle => 'Palautetaanko asetukset?';
@@ -911,8 +871,7 @@ class AppLocalizationsFi extends AppLocalizations {
   String get settingsToleranceError => 'Anna luku 0–30 päivää.';
 
   @override
-  String get settingsToleranceHelper =>
-      'Edellä vaatii +N päivää ylijäämää, jäljessä −N päivää. 5 = vakaa, 0 = herkkä.';
+  String get settingsToleranceHelper => 'Edellä vaatii +N päivää ylijäämää, jäljessä −N päivää. 5 = vakaa, 0 = herkkä.';
 
   @override
   String get settingsToleranceLabel => 'Työpäivää (0–30)';
@@ -979,8 +938,7 @@ class AppLocalizationsFi extends AppLocalizations {
   String get statsConsistency => 'Säännöllisyys';
 
   @override
-  String get statsConsistencyHint =>
-      'Opiskelupäivät viimeisen 30 päivän aikana. Pienet askeleet joka päivä voittavat pänttäämisen.';
+  String get statsConsistencyHint => 'Opiskelupäivät viimeisen 30 päivän aikana. Pienet askeleet joka päivä voittavat pänttäämisen.';
 
   @override
   String statsConsistencyScore(String percent) {
@@ -1045,8 +1003,7 @@ class AppLocalizationsFi extends AppLocalizations {
   String get statsOverview => 'Yleiskatsaus';
 
   @override
-  String get statsPaceCovers =>
-      'Aiempi tahti kattaa tarvittavan. Pidä putki yllä.';
+  String get statsPaceCovers => 'Aiempi tahti kattaa tarvittavan. Pidä putki yllä.';
 
   @override
   String statsPaceShort(String gap) {
@@ -1104,8 +1061,7 @@ class AppLocalizationsFi extends AppLocalizations {
   String get statusOverdue => 'Myöhässä';
 
   @override
-  String get studyLogDeleteBody =>
-      'Poistetaanko tämä opiskelukerta? Tätä ei voi kumota.';
+  String get studyLogDeleteBody => 'Poistetaanko tämä opiskelukerta? Tätä ei voi kumota.';
 
   @override
   String get studyLogDeleteTitle => 'Poistetaanko kerta?';
@@ -1147,8 +1103,53 @@ class AppLocalizationsFi extends AppLocalizations {
   }
 
   @override
-  String get validationCourseEctsPositive =>
-      'ECTS:n on oltava suurempi kuin nolla';
+  String studyTimerActiveTitle(String course) {
+    return 'Timing $course';
+  }
+
+  @override
+  String get studyTimerAlreadyRunning => 'A timer is already running. Finish or discard it first.';
+
+  @override
+  String get studyTimerCourseLabel => 'Course';
+
+  @override
+  String get studyTimerDiscard => 'Discard';
+
+  @override
+  String get studyTimerDiscardBody => 'Throw away the current timer without logging? This cannot be undone.';
+
+  @override
+  String get studyTimerDiscardTitle => 'Discard timer?';
+
+  @override
+  String studyTimerFinishLog(String minutes) {
+    return 'Finish & log $minutes min';
+  }
+
+  @override
+  String get studyTimerNoCourseError => 'Select a course.';
+
+  @override
+  String get studyTimerNoCoursesHint => 'Add a course first to start a timer.';
+
+  @override
+  String get studyTimerPause => 'Pause';
+
+  @override
+  String get studyTimerResume => 'Resume';
+
+  @override
+  String get studyTimerStart => 'Start timer';
+
+  @override
+  String get studyTimerStartTitle => 'Start study timer';
+
+  @override
+  String get studyTimerTooShort => 'Timer has not run yet.';
+
+  @override
+  String get validationCourseEctsPositive => 'ECTS:n on oltava suurempi kuin nolla';
 
   @override
   String get validationCourseEctsRequired => 'Anna ECTS-opintopisteet';
@@ -1175,8 +1176,7 @@ class AppLocalizationsFi extends AppLocalizations {
   String get settingsLiquidGlass => 'Nestelasi';
 
   @override
-  String get settingsLiquidGlassSubtitle =>
-      'Huurrelasista tehdyt kortit ja palkit. Pois käytössä säilyy klassinen yhtenäinen ilme.';
+  String get settingsLiquidGlassSubtitle => 'Huurrelasista tehdyt kortit ja palkit. Pois käytössä säilyy klassinen yhtenäinen ilme.';
 
   @override
   String get settingsLiquidGlassOn => 'Päällä';
@@ -1191,8 +1191,7 @@ class AppLocalizationsFi extends AppLocalizations {
   String get devToolsReminderPreview => 'Muistutuksen esikatselu';
 
   @override
-  String get devToolsReminderPreviewSubtitle =>
-      'Katso, mikä ilmoittaisi juuri nyt. Windows-turvallinen testisyöte.';
+  String get devToolsReminderPreviewSubtitle => 'Katso, mikä ilmoittaisi juuri nyt. Windows-turvallinen testisyöte.';
 
   @override
   String get reminderPreviewTitle => 'Muistutuksen esikatselu';
@@ -1204,8 +1203,7 @@ class AppLocalizationsFi extends AppLocalizations {
   String get reminderPreviewReset => 'Nyt';
 
   @override
-  String get reminderPreviewEmpty =>
-      'Kaikki hiljaista — mikään ei ilmoittaisi tähän aikaan.';
+  String get reminderPreviewEmpty => 'Kaikki hiljaista — mikään ei ilmoittaisi tähän aikaan.';
 
   @override
   String get reminderPreviewCustom => 'Mukautetut aikataulut (demo)';
@@ -1235,15 +1233,13 @@ class AppLocalizationsFi extends AppLocalizations {
   String get settingsReminders => 'Opiskelumuistutukset';
 
   @override
-  String get settingsRemindersOff =>
-      'Pois — ota käyttöön päivittäistä muistutusta varten.';
+  String get settingsRemindersOff => 'Pois — ota käyttöön päivittäistä muistutusta varten.';
 
   @override
   String get settingsReminderTime => 'Muistutuksen aika';
 
   @override
-  String get settingsReminderDenied =>
-      'Ilmoitukset on estetty — ota ne käyttöön järjestelmän asetuksissa.';
+  String get settingsReminderDenied => 'Ilmoitukset on estetty — ota ne käyttöön järjestelmän asetuksissa.';
 
   @override
   String notifDurationHours(String value) {
@@ -1281,12 +1277,7 @@ class AppLocalizationsFi extends AppLocalizations {
   }
 
   @override
-  String notifBehindBodyPace(
-    String left,
-    String days,
-    String pace,
-    String catchUp,
-  ) {
+  String notifBehindBodyPace(String left, String days, String pace, String catchUp) {
     return '$left jäljellä, $days päivää aikaa — täältä eteenpäin $pace/päivä. Kirjaa $catchUp niin olet taas Aikataulussa.';
   }
 
@@ -1306,8 +1297,7 @@ class AppLocalizationsFi extends AppLocalizations {
   }
 
   @override
-  String get notifDeadlineTomorrowBody =>
-      'Kaikki tänään kirjaamasi lasketaan tuplana.';
+  String get notifDeadlineTomorrowBody => 'Kaikki tänään kirjaamasi lasketaan tuplana.';
 
   @override
   String notifDeadlineSoonTitle(String course, String days, String left) {
@@ -1320,8 +1310,7 @@ class AppLocalizationsFi extends AppLocalizations {
   }
 
   @override
-  String get notifDeadlineSoonBodyNoPace =>
-      'Jokainen nyt kirjaamasi tunti lasketaan.';
+  String get notifDeadlineSoonBodyNoPace => 'Jokainen nyt kirjaamasi tunti lasketaan.';
 
   @override
   String notifOverdueTitle(String course, String left) {
@@ -1329,8 +1318,7 @@ class AppLocalizationsFi extends AppLocalizations {
   }
 
   @override
-  String get notifOverdueBody =>
-      'Siirrä määräaikaa tai tee tunnit täyteen — kurssi vaatii siihen asti huomiota.';
+  String get notifOverdueBody => 'Siirrä määräaikaa tai tee tunnit täyteen — kurssi vaatii siihen asti huomiota.';
 
   @override
   String notifStreakTitle(String days, String week) {
@@ -1338,8 +1326,7 @@ class AppLocalizationsFi extends AppLocalizations {
   }
 
   @override
-  String get notifStreakBody =>
-      'Kaikki kurssit Aikataulussa tai Edellä. Hieno putki.';
+  String get notifStreakBody => 'Kaikki kurssit Aikataulussa tai Edellä. Hieno putki.';
 
   @override
   String notifCustomTitleAuto(String course) {

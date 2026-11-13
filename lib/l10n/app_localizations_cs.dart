@@ -1,6 +1,5 @@
 // ignore: unused_import
 import 'package:intl/intl.dart' as intl;
-
 import 'app_localizations.dart';
 
 // ignore_for_file: type=lint
@@ -83,8 +82,7 @@ class AppLocalizationsCs extends AppLocalizations {
   }
 
   @override
-  String get courseFormStartEarlyOn =>
-      'Zapnuto: čas se dělí až do teď a započítává se do dnešního tempa.';
+  String get courseFormStartEarlyOn => 'Zapnuto: čas se dělí až do teď a započítává se do dnešního tempa.';
 
   @override
   String get courseFormStartEarlyTitle => 'Začít nyní i přes budoucí začátek';
@@ -112,8 +110,7 @@ class AppLocalizationsCs extends AppLocalizations {
   }
 
   @override
-  String get coursesEmptyHint =>
-      'Klepněte na „Nový předmět“ a vytvořte svůj první předmět.';
+  String get coursesEmptyHint => 'Klepněte na „Nový předmět“ a vytvořte svůj první předmět.';
 
   @override
   String get coursesEmptyTitle => 'Zatím žádné předměty';
@@ -153,11 +150,7 @@ class AppLocalizationsCs extends AppLocalizations {
   }
 
   @override
-  String coursesProgressWithStatus(
-    String done,
-    String required,
-    String status,
-  ) {
+  String coursesProgressWithStatus(String done, String required, String status) {
     return '$done / $required h • $status';
   }
 
@@ -226,12 +219,10 @@ class AppLocalizationsCs extends AppLocalizations {
   }
 
   @override
-  String get dashboardEmptyHintAllDone =>
-      'Všechny předměty jsou dokončené — celý seznam najdete na kartě Předměty.';
+  String get dashboardEmptyHintAllDone => 'Všechny předměty jsou dokončené — celý seznam najdete na kartě Předměty.';
 
   @override
-  String get dashboardEmptyHintNoCourses =>
-      'Přidejte předmět a začněte sledovat svůj pokrok ECTS.';
+  String get dashboardEmptyHintNoCourses => 'Přidejte předmět a začněte sledovat svůj pokrok ECTS.';
 
   @override
   String dashboardExplainerBehind(String achieved, String need) {
@@ -244,12 +235,10 @@ class AppLocalizationsCs extends AppLocalizations {
   }
 
   @override
-  String get dashboardExplainerBehindNoPace =>
-      'Zpoždění: žádné konečné tempo nestihne dnešní termín se zbývajícími hodinami';
+  String get dashboardExplainerBehindNoPace => 'Zpoždění: žádné konečné tempo nestihne dnešní termín se zbývajícími hodinami';
 
   @override
-  String get dashboardExplainerOnTrackNoPace =>
-      'Na dobré cestě: zatím žádné tempo — zaznamenejte první lekci pro potvrzení';
+  String get dashboardExplainerOnTrackNoPace => 'Na dobré cestě: zatím žádné tempo — zaznamenejte první lekci pro potvrzení';
 
   @override
   String dashboardExplainerStartsIn(String days, String date) {
@@ -399,12 +388,10 @@ class AppLocalizationsCs extends AppLocalizations {
   String get dashboardStartsSoon => 'Brzy začíná';
 
   @override
-  String get dashboardTipEmpty =>
-      'Přidejte svůj první předmět — zde se objeví vaše denní tempo a pokrok.';
+  String get dashboardTipEmpty => 'Přidejte svůj první předmět — zde se objeví vaše denní tempo a pokrok.';
 
   @override
-  String get dashboardTipFirst =>
-      'Prvních 25 minut je nejdůležitějších — vyberte předmět s nejbližším termínem.';
+  String get dashboardTipFirst => 'Prvních 25 minut je nejdůležitějších — vyberte předmět s nejbližším termínem.';
 
   @override
   String get dashboardTodayBare => 'DNES';
@@ -428,8 +415,7 @@ class AppLocalizationsCs extends AppLocalizations {
   }
 
   @override
-  String get dashboardUpcomingSubtitle =>
-      'Budoucí začátky — dnes žádný tlak, vyloučeno z dnešního tempa.';
+  String get dashboardUpcomingSubtitle => 'Budoucí začátky — dnes žádný tlak, vyloučeno z dnešního tempa.';
 
   @override
   String get dashboardUpcomingTitle => 'Nadcházející';
@@ -438,8 +424,7 @@ class AppLocalizationsCs extends AppLocalizations {
   String get devToolsActivate => 'Aktivovat';
 
   @override
-  String get devToolsActivateMessage =>
-      'Odemkne skryté zátěžové testovací nástroje (generování dat). Pouze pro vývoj.';
+  String get devToolsActivateMessage => 'Odemkne skryté zátěžové testovací nástroje (generování dat). Pouze pro vývoj.';
 
   @override
   String get devToolsActivateTitle => 'Aktivovat vývojářský režim?';
@@ -451,12 +436,10 @@ class AppLocalizationsCs extends AppLocalizations {
   String get devToolsClearPumped => 'Vymazat generovaná data';
 
   @override
-  String get devToolsClearPumpedMessage =>
-      'Smaže generované předměty STRESS a jejich lekce. Vaše vlastní data zůstanou zachována.';
+  String get devToolsClearPumpedMessage => 'Smaže generované předměty STRESS a jejich lekce. Vaše vlastní data zůstanou zachována.';
 
   @override
-  String get devToolsClearPumpedSubtitle =>
-      'Smazat generované předměty STRESS a lekce.';
+  String get devToolsClearPumpedSubtitle => 'Smazat generované předměty STRESS a lekce.';
 
   @override
   String get devToolsClearPumpedTitle => 'Vymazat generovaná data?';
@@ -467,8 +450,7 @@ class AppLocalizationsCs extends AppLocalizations {
   }
 
   @override
-  String get devToolsConfirmPumpMessage =>
-      'Druhé potvrzení: tím se nafouknou předměty, seznamy, grafy a výpočty tempa a může to trvat několik sekund. Generovat nyní?';
+  String get devToolsConfirmPumpMessage => 'Druhé potvrzení: tím se nafouknou předměty, seznamy, grafy a výpočty tempa a může to trvat několik sekund. Generovat nyní?';
 
   @override
   String get devToolsConfirmPumpTitle => 'Potvrdit zátěžové generování';
@@ -480,19 +462,16 @@ class AppLocalizationsCs extends AppLocalizations {
   String get devToolsExit => 'Ukončit vývojářský režim';
 
   @override
-  String get devToolsExitSubtitle =>
-      'Skrýt vývojářské nástroje na tomto zařízení.';
+  String get devToolsExitSubtitle => 'Skrýt vývojářské nástroje na tomto zařízení.';
 
   @override
   String get devToolsPumpData => 'Generovat data';
 
   @override
-  String get devToolsPumpMessage =>
-      'Tím se vloží realisticky generovaný semestr (~10 předmětů, ~800 lekcí za posledních 12 týdnů). Stávající data zůstanou zachována. Pokračovat?';
+  String get devToolsPumpMessage => 'Tím se vloží realisticky generovaný semestr (~10 předmětů, ~800 lekcí za posledních 12 týdnů). Stávající data zůstanou zachována. Pokračovat?';
 
   @override
-  String get devToolsPumpSubtitle =>
-      'Vložit generovaný semestr (~10 předmětů, ~800 lekcí, 12 týdnů). Stávající data zůstanou.';
+  String get devToolsPumpSubtitle => 'Vložit generovaný semestr (~10 předmětů, ~800 lekcí, 12 týdnů). Stávající data zůstanou.';
 
   @override
   String get devToolsPumpTile => 'Generovat testovací data';
@@ -512,12 +491,10 @@ class AppLocalizationsCs extends AppLocalizations {
   String get devToolsRemoveAll => 'Odebrat všechna data';
 
   @override
-  String get devToolsRemoveAllMessage =>
-      'Vývojářská zkratka: trvale smaže VŠECHNY předměty, lekce a nastavení. Tuto akci nelze vrátit.';
+  String get devToolsRemoveAllMessage => 'Vývojářská zkratka: trvale smaže VŠECHNY předměty, lekce a nastavení. Tuto akci nelze vrátit.';
 
   @override
-  String get devToolsRemoveAllSubtitle =>
-      'Vývojářská zkratka: smazat VŠECHNY předměty, lekce a nastavení.';
+  String get devToolsRemoveAllSubtitle => 'Vývojářská zkratka: smazat VŠECHNY předměty, lekce a nastavení.';
 
   @override
   String get devToolsRemoveAllTitle => 'Odebrat všechna data?';
@@ -564,8 +541,7 @@ class AppLocalizationsCs extends AppLocalizations {
   String get sessionFormNoCourseError => 'Vyberte předmět.';
 
   @override
-  String get sessionFormNoCoursesHint =>
-      'Nejprve přidejte předmět, abyste mohli zaznamenat lekci.';
+  String get sessionFormNoCoursesHint => 'Nejprve přidejte předmět, abyste mohli zaznamenat lekci.';
 
   @override
   String get sessionFormNotesLabel => 'Poznámky (volitelné)';
@@ -621,12 +597,10 @@ class AppLocalizationsCs extends AppLocalizations {
   String get settingsClearSample => 'Vymazat ukázková data';
 
   @override
-  String get settingsClearSampleMessage =>
-      'Tím se odeberou ukázkové předměty a lekce. Předměty nebo lekce, které jste přidali sami, se neodeberou.';
+  String get settingsClearSampleMessage => 'Tím se odeberou ukázkové předměty a lekce. Předměty nebo lekce, které jste přidali sami, se neodeberou.';
 
   @override
-  String get settingsClearSampleSubtitle =>
-      'Odebrat předvyplněné ukázkové předměty a lekce. Vaše vlastní data zůstanou.';
+  String get settingsClearSampleSubtitle => 'Odebrat předvyplněné ukázkové předměty a lekce. Vaše vlastní data zůstanou.';
 
   @override
   String get settingsClearSampleTitle => 'Vymazat ukázková data?';
@@ -690,8 +664,7 @@ class AppLocalizationsCs extends AppLocalizations {
   String get settingsExportCopied => 'Export zkopírován do schránky.';
 
   @override
-  String get settingsExportSubtitle =>
-      'Zkopírovat všechny předměty, lekce a nastavení jako JSON.';
+  String get settingsExportSubtitle => 'Zkopírovat všechny předměty, lekce a nastavení jako JSON.';
 
   @override
   String settingsExportSummary(String courses, String sessions, String kb) {
@@ -721,8 +694,7 @@ class AppLocalizationsCs extends AppLocalizations {
   String get settingsHoursError => 'Zadejte číslo větší než nula.';
 
   @override
-  String get settingsHoursHelper =>
-      'Výchozí 30. Změna přepočítá požadavky; záznamy zůstanou.';
+  String get settingsHoursHelper => 'Výchozí 30. Změna přepočítá požadavky; záznamy zůstanou.';
 
   @override
   String get settingsHoursLabel => 'Hodin na kredit ECTS';
@@ -753,8 +725,7 @@ class AppLocalizationsCs extends AppLocalizations {
   }
 
   @override
-  String get settingsImportInfo =>
-      'Připojení přidá zálohu k vašim stávajícím datům (nastavení zůstanou). Nahrazení nejprve smaže VŠECHNY předměty, lekce a nastavení.';
+  String get settingsImportInfo => 'Připojení přidá zálohu k vašim stávajícím datům (nastavení zůstanou). Nahrazení nejprve smaže VŠECHNY předměty, lekce a nastavení.';
 
   @override
   String get settingsImportLabel => 'Vložit exportovaný JSON';
@@ -788,8 +759,7 @@ class AppLocalizationsCs extends AppLocalizations {
   }
 
   @override
-  String get settingsImportSubtitle =>
-      'Nahradit všechna data z dříve exportované zálohy JSON.';
+  String get settingsImportSubtitle => 'Nahradit všechna data z dříve exportované zálohy JSON.';
 
   @override
   String settingsKeepHolding(String remaining) {
@@ -800,8 +770,7 @@ class AppLocalizationsCs extends AppLocalizations {
   String get settingsNoSample => 'Žádná ukázková data';
 
   @override
-  String get settingsNoSampleSubtitle =>
-      'Předvyplněná ukázková data již byla vymazána.';
+  String get settingsNoSampleSubtitle => 'Předvyplněná ukázková data již byla vymazána.';
 
   @override
   String get settingsNoTarget => 'Není nastaven žádný cíl';
@@ -810,8 +779,7 @@ class AppLocalizationsCs extends AppLocalizations {
   String get settingsOverloadError => 'Zadejte číslo 5–100 h/týden.';
 
   @override
-  String get settingsOverloadHelper =>
-      'Týdny s nadcházející zátěží nad touto hodnotou budou označeny červeně. Prezenční studium je ~35–40 h/týden.';
+  String get settingsOverloadHelper => 'Týdny s nadcházející zátěží nad touto hodnotou budou označeny červeně. Prezenční studium je ~35–40 h/týden.';
 
   @override
   String settingsOverloadHours(String value) {
@@ -845,12 +813,10 @@ class AppLocalizationsCs extends AppLocalizations {
   String get settingsResetAll => 'Obnovit všechna data';
 
   @override
-  String get settingsResetAllMessage =>
-      'Tím trvale smažete VŠECHNY předměty, lekce a nastavení. Tuto akci nelze vrátit. V případě potřeby si nejprve exportujte zálohu.';
+  String get settingsResetAllMessage => 'Tím trvale smažete VŠECHNY předměty, lekce a nastavení. Tuto akci nelze vrátit. V případě potřeby si nejprve exportujte zálohu.';
 
   @override
-  String get settingsResetAllSubtitle =>
-      'Smazat všechny předměty, lekce a nastavení.';
+  String get settingsResetAllSubtitle => 'Smazat všechny předměty, lekce a nastavení.';
 
   @override
   String get settingsResetAllTitle => 'Obnovit všechna data?';
@@ -859,16 +825,13 @@ class AppLocalizationsCs extends AppLocalizations {
   String get settingsResetSettings => 'Obnovit nastavení';
 
   @override
-  String get settingsResetSettingsDone =>
-      'Nastavení obnovena do výchozích hodnot.';
+  String get settingsResetSettingsDone => 'Nastavení obnovena do výchozích hodnot.';
 
   @override
-  String get settingsResetSettingsMessage =>
-      'Obnoví hodiny na ECTS (30), denní cíl (žádný), první den v týdnu (pondělí), motiv (systémový), toleranci (5 dní), přetížení (35 h/týden), velikost (pohodlná), barvu (břidlicová). Předměty a lekce zůstanou zachovány.';
+  String get settingsResetSettingsMessage => 'Obnoví hodiny na ECTS (30), denní cíl (žádný), první den v týdnu (pondělí), motiv (systémový), toleranci (5 dní), přetížení (35 h/týden), velikost (pohodlná), barvu (břidlicová). Předměty a lekce zůstanou zachovány.';
 
   @override
-  String get settingsResetSettingsSubtitle =>
-      'Obnovit výchozí hodnoty: 30 h/ECTS, bez cíle, pondělí, systémový motiv, tolerance 5 dní, přetížení 35 h/týden, pohodlná velikost, břidlicová barva.';
+  String get settingsResetSettingsSubtitle => 'Obnovit výchozí hodnoty: 30 h/ECTS, bez cíle, pondělí, systémový motiv, tolerance 5 dní, přetížení 35 h/týden, pohodlná velikost, břidlicová barva.';
 
   @override
   String get settingsResetSettingsTitle => 'Obnovit nastavení?';
@@ -908,8 +871,7 @@ class AppLocalizationsCs extends AppLocalizations {
   String get settingsToleranceError => 'Zadejte číslo 0–30 dní.';
 
   @override
-  String get settingsToleranceHelper =>
-      'Předstih vyžaduje přebytek +N dní, zpoždění −N dní. 5 = stabilní, 0 = citlivé.';
+  String get settingsToleranceHelper => 'Předstih vyžaduje přebytek +N dní, zpoždění −N dní. 5 = stabilní, 0 = citlivé.';
 
   @override
   String get settingsToleranceLabel => 'Dní práce (0–30)';
@@ -976,8 +938,7 @@ class AppLocalizationsCs extends AppLocalizations {
   String get statsConsistency => 'Konzistence';
 
   @override
-  String get statsConsistencyHint =>
-      'Studijní dny za posledních 30 dní. Malé kroky každý den porazí biflování.';
+  String get statsConsistencyHint => 'Studijní dny za posledních 30 dní. Malé kroky každý den porazí biflování.';
 
   @override
   String statsConsistencyScore(String percent) {
@@ -1100,15 +1061,13 @@ class AppLocalizationsCs extends AppLocalizations {
   String get statusOverdue => 'Po termínu';
 
   @override
-  String get studyLogDeleteBody =>
-      'Smazat tuto studijní lekci? Tuto akci nelze vrátit.';
+  String get studyLogDeleteBody => 'Smazat tuto studijní lekci? Tuto akci nelze vrátit.';
 
   @override
   String get studyLogDeleteTitle => 'Smazat lekci?';
 
   @override
-  String get studyLogEmptyHint =>
-      'Zaznamenejte lekci pro sledování studijního času.';
+  String get studyLogEmptyHint => 'Zaznamenejte lekci pro sledování studijního času.';
 
   @override
   String get studyLogEmptyTitle => 'Zatím žádné studijní lekce';
@@ -1144,6 +1103,52 @@ class AppLocalizationsCs extends AppLocalizations {
   }
 
   @override
+  String studyTimerActiveTitle(String course) {
+    return 'Timing $course';
+  }
+
+  @override
+  String get studyTimerAlreadyRunning => 'A timer is already running. Finish or discard it first.';
+
+  @override
+  String get studyTimerCourseLabel => 'Course';
+
+  @override
+  String get studyTimerDiscard => 'Discard';
+
+  @override
+  String get studyTimerDiscardBody => 'Throw away the current timer without logging? This cannot be undone.';
+
+  @override
+  String get studyTimerDiscardTitle => 'Discard timer?';
+
+  @override
+  String studyTimerFinishLog(String minutes) {
+    return 'Finish & log $minutes min';
+  }
+
+  @override
+  String get studyTimerNoCourseError => 'Select a course.';
+
+  @override
+  String get studyTimerNoCoursesHint => 'Add a course first to start a timer.';
+
+  @override
+  String get studyTimerPause => 'Pause';
+
+  @override
+  String get studyTimerResume => 'Resume';
+
+  @override
+  String get studyTimerStart => 'Start timer';
+
+  @override
+  String get studyTimerStartTitle => 'Start study timer';
+
+  @override
+  String get studyTimerTooShort => 'Timer has not run yet.';
+
+  @override
   String get validationCourseEctsPositive => 'ECTS musí být větší než nula';
 
   @override
@@ -1171,8 +1176,7 @@ class AppLocalizationsCs extends AppLocalizations {
   String get settingsLiquidGlass => 'Tekuté sklo';
 
   @override
-  String get settingsLiquidGlassSubtitle =>
-      'Karty a lišty z matného skla. Vypnuto zachová klasický plný vzhled.';
+  String get settingsLiquidGlassSubtitle => 'Karty a lišty z matného skla. Vypnuto zachová klasický plný vzhled.';
 
   @override
   String get settingsLiquidGlassOn => 'Zapnuto';
@@ -1187,8 +1191,7 @@ class AppLocalizationsCs extends AppLocalizations {
   String get devToolsReminderPreview => 'Náhled připomenutí';
 
   @override
-  String get devToolsReminderPreviewSubtitle =>
-      'Podívej se, co by právě teď upozornilo. Testovací zdroj bezpečný pro Windows.';
+  String get devToolsReminderPreviewSubtitle => 'Podívej se, co by právě teď upozornilo. Testovací zdroj bezpečný pro Windows.';
 
   @override
   String get reminderPreviewTitle => 'Náhled připomenutí';
@@ -1200,8 +1203,7 @@ class AppLocalizationsCs extends AppLocalizations {
   String get reminderPreviewReset => 'Teď';
 
   @override
-  String get reminderPreviewEmpty =>
-      'Vše klidné — v tuto chvíli by nic neupozornilo.';
+  String get reminderPreviewEmpty => 'Vše klidné — v tuto chvíli by nic neupozornilo.';
 
   @override
   String get reminderPreviewCustom => 'Vlastní plány (demo)';
@@ -1237,8 +1239,7 @@ class AppLocalizationsCs extends AppLocalizations {
   String get settingsReminderTime => 'Čas připomenutí';
 
   @override
-  String get settingsReminderDenied =>
-      'Oznámení jsou zablokována — povol je v nastavení systému.';
+  String get settingsReminderDenied => 'Oznámení jsou zablokována — povol je v nastavení systému.';
 
   @override
   String notifDurationHours(String value) {
@@ -1276,12 +1277,7 @@ class AppLocalizationsCs extends AppLocalizations {
   }
 
   @override
-  String notifBehindBodyPace(
-    String left,
-    String days,
-    String pace,
-    String catchUp,
-  ) {
+  String notifBehindBodyPace(String left, String days, String pace, String catchUp) {
     return 'Zbývá $left, zbývají $days dní — ode dneška $pace/den. Zaznamenejte $catchUp a budete zase na dobré cestě.';
   }
 
@@ -1301,8 +1297,7 @@ class AppLocalizationsCs extends AppLocalizations {
   }
 
   @override
-  String get notifDeadlineTomorrowBody =>
-      'Všechno, co dnes zaznamenáte, se počítá dvojnásob.';
+  String get notifDeadlineTomorrowBody => 'Všechno, co dnes zaznamenáte, se počítá dvojnásob.';
 
   @override
   String notifDeadlineSoonTitle(String course, String days, String left) {
@@ -1315,8 +1310,7 @@ class AppLocalizationsCs extends AppLocalizations {
   }
 
   @override
-  String get notifDeadlineSoonBodyNoPace =>
-      'Každá hodina, kterou teď zaznamenáte, se počítá.';
+  String get notifDeadlineSoonBodyNoPace => 'Každá hodina, kterou teď zaznamenáte, se počítá.';
 
   @override
   String notifOverdueTitle(String course, String left) {
@@ -1324,8 +1318,7 @@ class AppLocalizationsCs extends AppLocalizations {
   }
 
   @override
-  String get notifOverdueBody =>
-      'Posuňte termín nebo dodělejte hodiny — do té doby předmět zůstává ve stavu „vyžaduje pozornost“.';
+  String get notifOverdueBody => 'Posuňte termín nebo dodělejte hodiny — do té doby předmět zůstává ve stavu „vyžaduje pozornost“.';
 
   @override
   String notifStreakTitle(String days, String week) {
@@ -1333,8 +1326,7 @@ class AppLocalizationsCs extends AppLocalizations {
   }
 
   @override
-  String get notifStreakBody =>
-      'Všechny předměty na dobré cestě nebo v předstihu. Pěkná série.';
+  String get notifStreakBody => 'Všechny předměty na dobré cestě nebo v předstihu. Pěkná série.';
 
   @override
   String notifCustomTitleAuto(String course) {

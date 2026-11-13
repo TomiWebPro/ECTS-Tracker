@@ -1,6 +1,5 @@
 // ignore: unused_import
 import 'package:intl/intl.dart' as intl;
-
 import 'app_localizations.dart';
 
 // ignore_for_file: type=lint
@@ -83,8 +82,7 @@ class AppLocalizationsHy extends AppLocalizations {
   }
 
   @override
-  String get courseFormStartEarlyOn =>
-      'Միացված է․ ժամանակը բաշխվում է մինչև հիմա և հաշվվում է այսօրվա տեմպում։';
+  String get courseFormStartEarlyOn => 'Միացված է․ ժամանակը բաշխվում է մինչև հիմա և հաշվվում է այսօրվա տեմպում։';
 
   @override
   String get courseFormStartEarlyTitle => 'Սկսել հիմա՝ չնայած ապագա մեկնարկին';
@@ -112,8 +110,7 @@ class AppLocalizationsHy extends AppLocalizations {
   }
 
   @override
-  String get coursesEmptyHint =>
-      'Սեղմեք «Նոր դասընթաց»՝ առաջին դասընթացը ստեղծելու համար։';
+  String get coursesEmptyHint => 'Սեղմեք «Նոր դասընթաց»՝ առաջին դասընթացը ստեղծելու համար։';
 
   @override
   String get coursesEmptyTitle => 'Դասընթացներ դեռ չկան';
@@ -122,8 +119,7 @@ class AppLocalizationsHy extends AppLocalizations {
   String get coursesFilterAll => 'Բոլոր կարգավիճակները';
 
   @override
-  String get coursesFilterEmpty =>
-      'Ոչ մի դասընթաց չի համապատասխանում այս զտիչին';
+  String get coursesFilterEmpty => 'Ոչ մի դասընթաց չի համապատասխանում այս զտիչին';
 
   @override
   String get coursesNewCourse => 'Նոր դասընթաց';
@@ -154,11 +150,7 @@ class AppLocalizationsHy extends AppLocalizations {
   }
 
   @override
-  String coursesProgressWithStatus(
-    String done,
-    String required,
-    String status,
-  ) {
+  String coursesProgressWithStatus(String done, String required, String status) {
     return '$done / $required ժ • $status';
   }
 
@@ -227,12 +219,10 @@ class AppLocalizationsHy extends AppLocalizations {
   }
 
   @override
-  String get dashboardEmptyHintAllDone =>
-      'Բոլոր դասընթացներն ավարտված են — ամբողջ ցանկը տեսեք «Դասընթացներ» ներդիրում։';
+  String get dashboardEmptyHintAllDone => 'Բոլոր դասընթացներն ավարտված են — ամբողջ ցանկը տեսեք «Դասընթացներ» ներդիրում։';
 
   @override
-  String get dashboardEmptyHintNoCourses =>
-      'Ավելացրեք դասընթաց՝ ECTS առաջընթացը հետևելու համար։';
+  String get dashboardEmptyHintNoCourses => 'Ավելացրեք դասընթաց՝ ECTS առաջընթացը հետևելու համար։';
 
   @override
   String dashboardExplainerBehind(String achieved, String need) {
@@ -245,12 +235,10 @@ class AppLocalizationsHy extends AppLocalizations {
   }
 
   @override
-  String get dashboardExplainerBehindNoPace =>
-      'Հետ եք մնում․ ոչ մի վերջավոր օրական տեմպ այսօրվա վերջնաժամկետին ժամերով չի հասցնի';
+  String get dashboardExplainerBehindNoPace => 'Հետ եք մնում․ ոչ մի վերջավոր օրական տեմպ այսօրվա վերջնաժամկետին ժամերով չի հասցնի';
 
   @override
-  String get dashboardExplainerOnTrackNoPace =>
-      'Ընթացքը նորմալ է․ տեմպ դեռ չկա — գրանցեք առաջին նիստը հաստատելու համար';
+  String get dashboardExplainerOnTrackNoPace => 'Ընթացքը նորմալ է․ տեմպ դեռ չկա — գրանցեք առաջին նիստը հաստատելու համար';
 
   @override
   String dashboardExplainerStartsIn(String days, String date) {
@@ -371,8 +359,7 @@ class AppLocalizationsHy extends AppLocalizations {
   String get dashboardProgramBare => 'ԾՐԱԳԻՐ';
 
   @override
-  String get dashboardProgramEmptyHint =>
-      'Ավելացրեք դասընթաց՝ հետևելը սկսելու համար';
+  String get dashboardProgramEmptyHint => 'Ավելացրեք դասընթաց՝ հետևելը սկսելու համար';
 
   @override
   String dashboardProgramHours(String done, String required) {
@@ -401,12 +388,10 @@ class AppLocalizationsHy extends AppLocalizations {
   String get dashboardStartsSoon => 'Սկսվում է շուտով';
 
   @override
-  String get dashboardTipEmpty =>
-      'Ավելացրեք առաջին դասընթացը — օրական տեմպն ու առաջընթացը կերևան այստեղ։';
+  String get dashboardTipEmpty => 'Ավելացրեք առաջին դասընթացը — օրական տեմպն ու առաջընթացը կերևան այստեղ։';
 
   @override
-  String get dashboardTipFirst =>
-      'Առաջին 25 րոպեն ամենակարևորն է — ընտրեք ամենամոտ վերջնաժամկետով դասընթացը։';
+  String get dashboardTipFirst => 'Առաջին 25 րոպեն ամենակարևորն է — ընտրեք ամենամոտ վերջնաժամկետով դասընթացը։';
 
   @override
   String get dashboardTodayBare => 'ԱՅՍՕՐ';
@@ -430,8 +415,7 @@ class AppLocalizationsHy extends AppLocalizations {
   }
 
   @override
-  String get dashboardUpcomingSubtitle =>
-      'Ապագա մեկնարկներ — այսօր ճնշում չկա, բացառված են այսօրվա տեմպից։';
+  String get dashboardUpcomingSubtitle => 'Ապագա մեկնարկներ — այսօր ճնշում չկա, բացառված են այսօրվա տեմպից։';
 
   @override
   String get dashboardUpcomingTitle => 'Առաջիկա';
@@ -440,8 +424,7 @@ class AppLocalizationsHy extends AppLocalizations {
   String get devToolsActivate => 'Ակտիվացնել';
 
   @override
-  String get devToolsActivateMessage =>
-      'Սա բացում է թաքնված սթրես-թեստի գործիքները (ստեղծում է տվյալներ)։ Միայն մշակման համար։';
+  String get devToolsActivateMessage => 'Սա բացում է թաքնված սթրես-թեստի գործիքները (ստեղծում է տվյալներ)։ Միայն մշակման համար։';
 
   @override
   String get devToolsActivateTitle => 'Ակտիվացնե՞լ մշակման ռեժիմը';
@@ -453,12 +436,10 @@ class AppLocalizationsHy extends AppLocalizations {
   String get devToolsClearPumped => 'Մաքրել ստեղծված տվյալները';
 
   @override
-  String get devToolsClearPumpedMessage =>
-      'Ջնջում է ստեղծված STRESS դասընթացներն ու նիստերը։ Ձեր տվյալները պահպանվում են։';
+  String get devToolsClearPumpedMessage => 'Ջնջում է ստեղծված STRESS դասընթացներն ու նիստերը։ Ձեր տվյալները պահպանվում են։';
 
   @override
-  String get devToolsClearPumpedSubtitle =>
-      'Ջնջել ստեղծված STRESS դասընթացներն ու նիստերը։';
+  String get devToolsClearPumpedSubtitle => 'Ջնջել ստեղծված STRESS դասընթացներն ու նիստերը։';
 
   @override
   String get devToolsClearPumpedTitle => 'Մաքրե՞լ ստեղծված տվյալները';
@@ -469,8 +450,7 @@ class AppLocalizationsHy extends AppLocalizations {
   }
 
   @override
-  String get devToolsConfirmPumpMessage =>
-      'Երկրորդ հաստատում․ սա կծանրաբեռնի դասընթացները, ցանկերը, գծապատկերներն ու տեմպի հաշվարկները և կարող է տևել մի քանի վայրկյան։ Ստեղծե՞լ հիմա։';
+  String get devToolsConfirmPumpMessage => 'Երկրորդ հաստատում․ սա կծանրաբեռնի դասընթացները, ցանկերը, գծապատկերներն ու տեմպի հաշվարկները և կարող է տևել մի քանի վայրկյան։ Ստեղծե՞լ հիմա։';
 
   @override
   String get devToolsConfirmPumpTitle => 'Հաստատել սթրես-թեստը';
@@ -488,12 +468,10 @@ class AppLocalizationsHy extends AppLocalizations {
   String get devToolsPumpData => 'Ստեղծել տվյալներ';
 
   @override
-  String get devToolsPumpMessage =>
-      'Սա տեղադրում է իրատեսական ստեղծված կիսամյակ (~10 դասընթաց, ~800 նիստ վերջին 12 շաբաթում)։ Ձեր առկա տվյալները պահպանվում են։ Շարունակե՞լ։';
+  String get devToolsPumpMessage => 'Սա տեղադրում է իրատեսական ստեղծված կիսամյակ (~10 դասընթաց, ~800 նիստ վերջին 12 շաբաթում)։ Ձեր առկա տվյալները պահպանվում են։ Շարունակե՞լ։';
 
   @override
-  String get devToolsPumpSubtitle =>
-      'Տեղադրել ստեղծված կիսամյակ (~10 դասընթաց, ~800 նիստ, 12 շաբաթ)։ Առկա տվյալները պահպանվում են։';
+  String get devToolsPumpSubtitle => 'Տեղադրել ստեղծված կիսամյակ (~10 դասընթաց, ~800 նիստ, 12 շաբաթ)։ Առկա տվյալները պահպանվում են։';
 
   @override
   String get devToolsPumpTile => 'Ստեղծել փորձնական տվյալներ';
@@ -513,12 +491,10 @@ class AppLocalizationsHy extends AppLocalizations {
   String get devToolsRemoveAll => 'Հեռացնել բոլոր տվյալները';
 
   @override
-  String get devToolsRemoveAllMessage =>
-      'Մշակման դյուրանցում․ սա ընդմիշտ ջնջում է ԲՈԼՈՐ դասընթացները, նիստերն ու կարգավորումները։ Սա հնարավոր չէ հետարկել։';
+  String get devToolsRemoveAllMessage => 'Մշակման դյուրանցում․ սա ընդմիշտ ջնջում է ԲՈԼՈՐ դասընթացները, նիստերն ու կարգավորումները։ Սա հնարավոր չէ հետարկել։';
 
   @override
-  String get devToolsRemoveAllSubtitle =>
-      'Մշակման դյուրանցում․ ջնջել ԲՈԼՈՐ դասընթացները, նիստերն ու կարգավորումները։';
+  String get devToolsRemoveAllSubtitle => 'Մշակման դյուրանցում․ ջնջել ԲՈԼՈՐ դասընթացները, նիստերն ու կարգավորումները։';
 
   @override
   String get devToolsRemoveAllTitle => 'Հեռացնե՞լ բոլոր տվյալները';
@@ -565,8 +541,7 @@ class AppLocalizationsHy extends AppLocalizations {
   String get sessionFormNoCourseError => 'Ընտրեք դասընթաց։';
 
   @override
-  String get sessionFormNoCoursesHint =>
-      'Նիստ գրանցելու համար նախ ավելացրեք դասընթաց։';
+  String get sessionFormNoCoursesHint => 'Նիստ գրանցելու համար նախ ավելացրեք դասընթաց։';
 
   @override
   String get sessionFormNotesLabel => 'Նշումներ (ըստ ցանկության)';
@@ -622,12 +597,10 @@ class AppLocalizationsHy extends AppLocalizations {
   String get settingsClearSample => 'Մաքրել օրինակելի տվյալները';
 
   @override
-  String get settingsClearSampleMessage =>
-      'Սա հեռացնում է օրինակելի դասընթացներն ու նիստերը։ Ձեր ավելացրած դասընթացներն ու նիստերը չեն հեռացվում։';
+  String get settingsClearSampleMessage => 'Սա հեռացնում է օրինակելի դասընթացներն ու նիստերը։ Ձեր ավելացրած դասընթացներն ու նիստերը չեն հեռացվում։';
 
   @override
-  String get settingsClearSampleSubtitle =>
-      'Հեռացնել ներդրված օրինակելի դասընթացներն ու նիստերը։ Ձեր տվյալները պահպանվում են։';
+  String get settingsClearSampleSubtitle => 'Հեռացնել ներդրված օրինակելի դասընթացներն ու նիստերը։ Ձեր տվյալները պահպանվում են։';
 
   @override
   String get settingsClearSampleTitle => 'Մաքրե՞լ օրինակելի տվյալները';
@@ -691,8 +664,7 @@ class AppLocalizationsHy extends AppLocalizations {
   String get settingsExportCopied => 'Արտահանումը պատճենվեց սեղմատախտակ։';
 
   @override
-  String get settingsExportSubtitle =>
-      'Պատճենել բոլոր դասընթացները, նիստերն ու կարգավորումները որպես JSON։';
+  String get settingsExportSubtitle => 'Պատճենել բոլոր դասընթացները, նիստերն ու կարգավորումները որպես JSON։';
 
   @override
   String settingsExportSummary(String courses, String sessions, String kb) {
@@ -722,8 +694,7 @@ class AppLocalizationsHy extends AppLocalizations {
   String get settingsHoursError => 'Մուտքագրեք զրոյից մեծ թիվ։';
 
   @override
-  String get settingsHoursHelper =>
-      'Ստանդարտը 30 է։ Փոփոխությունը վերահաշվում է պահանջները; գրանցումները պահպանվում են։';
+  String get settingsHoursHelper => 'Ստանդարտը 30 է։ Փոփոխությունը վերահաշվում է պահանջները; գրանցումները պահպանվում են։';
 
   @override
   String get settingsHoursLabel => 'Ժամեր մեկ ECTS կրեդիտի համար';
@@ -754,8 +725,7 @@ class AppLocalizationsHy extends AppLocalizations {
   }
 
   @override
-  String get settingsImportInfo =>
-      'Ավելացնելը պահուստը միացնում է ձեր ընթացիկ տվյալներին (կարգավորումները պահպանվում են)։ Փոխարինելը նախ ջնջում է ԲՈԼՈՐ դասընթացները, նիստերն ու կարգավորումները։';
+  String get settingsImportInfo => 'Ավելացնելը պահուստը միացնում է ձեր ընթացիկ տվյալներին (կարգավորումները պահպանվում են)։ Փոխարինելը նախ ջնջում է ԲՈԼՈՐ դասընթացները, նիստերն ու կարգավորումները։';
 
   @override
   String get settingsImportLabel => 'Տեղադրեք արտահանված JSON-ը';
@@ -789,8 +759,7 @@ class AppLocalizationsHy extends AppLocalizations {
   }
 
   @override
-  String get settingsImportSubtitle =>
-      'Փոխարինել բոլոր տվյալները նախկինում արտահանված JSON պահուստով։';
+  String get settingsImportSubtitle => 'Փոխարինել բոլոր տվյալները նախկինում արտահանված JSON պահուստով։';
 
   @override
   String settingsKeepHolding(String remaining) {
@@ -801,8 +770,7 @@ class AppLocalizationsHy extends AppLocalizations {
   String get settingsNoSample => 'Օրինակելի տվյալներ չկան';
 
   @override
-  String get settingsNoSampleSubtitle =>
-      'Ներդրված օրինակելի տվյալներն արդեն մաքրվել են։';
+  String get settingsNoSampleSubtitle => 'Ներդրված օրինակելի տվյալներն արդեն մաքրվել են։';
 
   @override
   String get settingsNoTarget => 'Նպատակ սահմանված չէ';
@@ -811,8 +779,7 @@ class AppLocalizationsHy extends AppLocalizations {
   String get settingsOverloadError => 'Մուտքագրեք 5–100 ժ/շաբաթ թիվ։';
 
   @override
-  String get settingsOverloadHelper =>
-      'Այս շեմից բարձր գալիք շաբաթները նշվում են կարմիր։ Լրիվ դրույքով ուսումը ~35–40 ժ/շաբաթ է։';
+  String get settingsOverloadHelper => 'Այս շեմից բարձր գալիք շաբաթները նշվում են կարմիր։ Լրիվ դրույքով ուսումը ~35–40 ժ/շաբաթ է։';
 
   @override
   String settingsOverloadHours(String value) {
@@ -846,12 +813,10 @@ class AppLocalizationsHy extends AppLocalizations {
   String get settingsResetAll => 'Զրոյացնել բոլոր տվյալները';
 
   @override
-  String get settingsResetAllMessage =>
-      'Սա ընդմիշտ ջնջում է ԲՈԼՈՐ դասընթացները, նիստերն ու կարգավորումները։ Սա հնարավոր չէ հետարկել։ Անհրաժեշտության դեպքում նախ արտահանեք պահուստ։';
+  String get settingsResetAllMessage => 'Սա ընդմիշտ ջնջում է ԲՈԼՈՐ դասընթացները, նիստերն ու կարգավորումները։ Սա հնարավոր չէ հետարկել։ Անհրաժեշտության դեպքում նախ արտահանեք պահուստ։';
 
   @override
-  String get settingsResetAllSubtitle =>
-      'Ջնջել բոլոր դասընթացները, նիստերն ու կարգավորումները։';
+  String get settingsResetAllSubtitle => 'Ջնջել բոլոր դասընթացները, նիստերն ու կարգավորումները։';
 
   @override
   String get settingsResetAllTitle => 'Զրոյացնե՞լ բոլոր տվյալները';
@@ -860,16 +825,13 @@ class AppLocalizationsHy extends AppLocalizations {
   String get settingsResetSettings => 'Զրոյացնել կարգավորումները';
 
   @override
-  String get settingsResetSettingsDone =>
-      'Կարգավորումները զրոյացվեցին ստանդարտ արժեքների։';
+  String get settingsResetSettingsDone => 'Կարգավորումները զրոյացվեցին ստանդարտ արժեքների։';
 
   @override
-  String get settingsResetSettingsMessage =>
-      'Վերականգնում է ժամեր/ECTS (30), օրական նպատակ (չկա), շաբաթվա առաջին օր (երկուշաբթի), թեմա (համակարգային), հանդուրժողականություն (5 օր), գերծանրաբեռնվածություն (35 ժ/շաբաթ), չափ (հարմարավետ), գույն (սալաքար)։ Դասընթացներն ու նիստերը պահպանվում են։';
+  String get settingsResetSettingsMessage => 'Վերականգնում է ժամեր/ECTS (30), օրական նպատակ (չկա), շաբաթվա առաջին օր (երկուշաբթի), թեմա (համակարգային), հանդուրժողականություն (5 օր), գերծանրաբեռնվածություն (35 ժ/շաբաթ), չափ (հարմարավետ), գույն (սալաքար)։ Դասընթացներն ու նիստերը պահպանվում են։';
 
   @override
-  String get settingsResetSettingsSubtitle =>
-      'Վերականգնել ստանդարտը․ 30 ժ/ECTS, առանց նպատակի, երկուշաբթի, համակարգային թեմա, 5-օրյա հանդուրժողականություն, 35 ժ/շաբաթ գերծանրաբեռնվածություն, հարմարավետ չափ, սալաքար։';
+  String get settingsResetSettingsSubtitle => 'Վերականգնել ստանդարտը․ 30 ժ/ECTS, առանց նպատակի, երկուշաբթի, համակարգային թեմա, 5-օրյա հանդուրժողականություն, 35 ժ/շաբաթ գերծանրաբեռնվածություն, հարմարավետ չափ, սալաքար։';
 
   @override
   String get settingsResetSettingsTitle => 'Զրոյացնե՞լ կարգավորումները';
@@ -909,8 +871,7 @@ class AppLocalizationsHy extends AppLocalizations {
   String get settingsToleranceError => 'Մուտքագրեք 0–30 օր թիվ։';
 
   @override
-  String get settingsToleranceHelper =>
-      'Առաջ լինելը պահանջում է +N օրվա պաշար, հետ մնալը՝ −N օր։ 5 = կայուն, 0 = զգայուն։';
+  String get settingsToleranceHelper => 'Առաջ լինելը պահանջում է +N օրվա պաշար, հետ մնալը՝ −N օր։ 5 = կայուն, 0 = զգայուն։';
 
   @override
   String get settingsToleranceLabel => 'Աշխատանքի օրեր (0–30)';
@@ -968,8 +929,7 @@ class AppLocalizationsHy extends AppLocalizations {
   }
 
   @override
-  String get statsAddDeadlines =>
-      'Ավելացրեք վերջնաժամկետներ՝ բեռը կանխատեսելու համար։';
+  String get statsAddDeadlines => 'Ավելացրեք վերջնաժամկետներ՝ բեռը կանխատեսելու համար։';
 
   @override
   String get statsComingLoad => 'Առաջիկա բեռ';
@@ -978,8 +938,7 @@ class AppLocalizationsHy extends AppLocalizations {
   String get statsConsistency => 'Կայունություն';
 
   @override
-  String get statsConsistencyHint =>
-      'Ուսումնական օրերը վերջին 30 օրում։ Ամեն օր փոքր քայլերը հաղթում են կուտակումներին։';
+  String get statsConsistencyHint => 'Ուսումնական օրերը վերջին 30 օրում։ Ամեն օր փոքր քայլերը հաղթում են կուտակումներին։';
 
   @override
   String statsConsistencyScore(String percent) {
@@ -1044,8 +1003,7 @@ class AppLocalizationsHy extends AppLocalizations {
   String get statsOverview => 'Ակնարկ';
 
   @override
-  String get statsPaceCovers =>
-      'Անցած տեմպը բավարարում է անհրաժեշտը։ Շարունակեք այսպես։';
+  String get statsPaceCovers => 'Անցած տեմպը բավարարում է անհրաժեշտը։ Շարունակեք այսպես։';
 
   @override
   String statsPaceShort(String gap) {
@@ -1103,15 +1061,13 @@ class AppLocalizationsHy extends AppLocalizations {
   String get statusOverdue => 'Ուշացած';
 
   @override
-  String get studyLogDeleteBody =>
-      'Ջնջե՞լ այս ուսումնական նիստը։ Սա հնարավոր չէ հետարկել։';
+  String get studyLogDeleteBody => 'Ջնջե՞լ այս ուսումնական նիստը։ Սա հնարավոր չէ հետարկել։';
 
   @override
   String get studyLogDeleteTitle => 'Ջնջե՞լ նիստը';
 
   @override
-  String get studyLogEmptyHint =>
-      'Գրանցեք նիստ՝ ձեր ուսման ժամանակը հետևելու համար։';
+  String get studyLogEmptyHint => 'Գրանցեք նիստ՝ ձեր ուսման ժամանակը հետևելու համար։';
 
   @override
   String get studyLogEmptyTitle => 'Ուսումնական նիստեր դեռ չկան';
@@ -1147,6 +1103,52 @@ class AppLocalizationsHy extends AppLocalizations {
   }
 
   @override
+  String studyTimerActiveTitle(String course) {
+    return 'Timing $course';
+  }
+
+  @override
+  String get studyTimerAlreadyRunning => 'A timer is already running. Finish or discard it first.';
+
+  @override
+  String get studyTimerCourseLabel => 'Course';
+
+  @override
+  String get studyTimerDiscard => 'Discard';
+
+  @override
+  String get studyTimerDiscardBody => 'Throw away the current timer without logging? This cannot be undone.';
+
+  @override
+  String get studyTimerDiscardTitle => 'Discard timer?';
+
+  @override
+  String studyTimerFinishLog(String minutes) {
+    return 'Finish & log $minutes min';
+  }
+
+  @override
+  String get studyTimerNoCourseError => 'Select a course.';
+
+  @override
+  String get studyTimerNoCoursesHint => 'Add a course first to start a timer.';
+
+  @override
+  String get studyTimerPause => 'Pause';
+
+  @override
+  String get studyTimerResume => 'Resume';
+
+  @override
+  String get studyTimerStart => 'Start timer';
+
+  @override
+  String get studyTimerStartTitle => 'Start study timer';
+
+  @override
+  String get studyTimerTooShort => 'Timer has not run yet.';
+
+  @override
   String get validationCourseEctsPositive => 'ECTS-ը պետք է զրոյից մեծ լինի';
 
   @override
@@ -1174,8 +1176,7 @@ class AppLocalizationsHy extends AppLocalizations {
   String get settingsLiquidGlass => 'Հեղուկ ապակի';
 
   @override
-  String get settingsLiquidGlassSubtitle =>
-      'Սառեցված ապակուց քարտեր և գոտիներ։ Անջատված դեպքում պահպանվում է դասական հարթ տեսքը։';
+  String get settingsLiquidGlassSubtitle => 'Սառեցված ապակուց քարտեր և գոտիներ։ Անջատված դեպքում պահպանվում է դասական հարթ տեսքը։';
 
   @override
   String get settingsLiquidGlassOn => 'Միացված';
@@ -1190,8 +1191,7 @@ class AppLocalizationsHy extends AppLocalizations {
   String get devToolsReminderPreview => 'Հիշեցման նախադիտում';
 
   @override
-  String get devToolsReminderPreviewSubtitle =>
-      'Տեսեք, թե ինչը կծանուցվի հենց հիմա։ Windows-անվտանգ փորձնական հոսք։';
+  String get devToolsReminderPreviewSubtitle => 'Տեսեք, թե ինչը կծանուցվի հենց հիմա։ Windows-անվտանգ փորձնական հոսք։';
 
   @override
   String get reminderPreviewTitle => 'Հիշեցման նախադիտում';
@@ -1203,8 +1203,7 @@ class AppLocalizationsHy extends AppLocalizations {
   String get reminderPreviewReset => 'Հիմա';
 
   @override
-  String get reminderPreviewEmpty =>
-      'Ամեն ինչ հանգիստ է — այս պահին ոչինչ չի ծանուցվի։';
+  String get reminderPreviewEmpty => 'Ամեն ինչ հանգիստ է — այս պահին ոչինչ չի ծանուցվի։';
 
   @override
   String get reminderPreviewCustom => 'Հատուկ ժամանակացույցեր (դեմո)';
@@ -1234,15 +1233,13 @@ class AppLocalizationsHy extends AppLocalizations {
   String get settingsReminders => 'Ուսման հիշեցումներ';
 
   @override
-  String get settingsRemindersOff =>
-      'Անջատված է — միացրեք օրական հիշեցման համար։';
+  String get settingsRemindersOff => 'Անջատված է — միացրեք օրական հիշեցման համար։';
 
   @override
   String get settingsReminderTime => 'Հիշեցման ժամանակ';
 
   @override
-  String get settingsReminderDenied =>
-      'Ծանուցումներն արգելափակված են — միացրեք դրանք համակարգի կարգավորումներում։';
+  String get settingsReminderDenied => 'Ծանուցումներն արգելափակված են — միացրեք դրանք համակարգի կարգավորումներում։';
 
   @override
   String notifDurationHours(String value) {
@@ -1280,12 +1277,7 @@ class AppLocalizationsHy extends AppLocalizations {
   }
 
   @override
-  String notifBehindBodyPace(
-    String left,
-    String days,
-    String pace,
-    String catchUp,
-  ) {
+  String notifBehindBodyPace(String left, String days, String pace, String catchUp) {
     return 'Մնացել է $left, մնաց $days օր — այստեղից՝ $pace/օր։ Գրանցեք $catchUp՝ նորմալ ընթացքին վերադառնալու համար։';
   }
 
@@ -1305,8 +1297,7 @@ class AppLocalizationsHy extends AppLocalizations {
   }
 
   @override
-  String get notifDeadlineTomorrowBody =>
-      'Այն ամենը, ինչ այսօր գրանցեք, կրկնակի է հաշվվում։';
+  String get notifDeadlineTomorrowBody => 'Այն ամենը, ինչ այսօր գրանցեք, կրկնակի է հաշվվում։';
 
   @override
   String notifDeadlineSoonTitle(String course, String days, String left) {
@@ -1319,8 +1310,7 @@ class AppLocalizationsHy extends AppLocalizations {
   }
 
   @override
-  String get notifDeadlineSoonBodyNoPace =>
-      'Յուրաքանչյուր ժամ, որը հիմա գրանցեք, հաշվվում է։';
+  String get notifDeadlineSoonBodyNoPace => 'Յուրաքանչյուր ժամ, որը հիմա գրանցեք, հաշվվում է։';
 
   @override
   String notifOverdueTitle(String course, String left) {
@@ -1328,8 +1318,7 @@ class AppLocalizationsHy extends AppLocalizations {
   }
 
   @override
-  String get notifOverdueBody =>
-      'Տեղափոխեք վերջնաժամկետը կամ ավարտեք ժամերը — մինչ այդ դասընթացը ուշադրության կարիք ունի։';
+  String get notifOverdueBody => 'Տեղափոխեք վերջնաժամկետը կամ ավարտեք ժամերը — մինչ այդ դասընթացը ուշադրության կարիք ունի։';
 
   @override
   String notifStreakTitle(String days, String week) {
@@ -1337,8 +1326,7 @@ class AppLocalizationsHy extends AppLocalizations {
   }
 
   @override
-  String get notifStreakBody =>
-      'Բոլոր դասընթացներն ընթանում են նորմալ կամ առաջ են։ Լավ շարք։';
+  String get notifStreakBody => 'Բոլոր դասընթացներն ընթանում են նորմալ կամ առաջ են։ Լավ շարք։';
 
   @override
   String notifCustomTitleAuto(String course) {

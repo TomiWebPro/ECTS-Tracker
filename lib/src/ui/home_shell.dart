@@ -11,10 +11,12 @@ import '../logic/pace_format.dart';
 import '../logic/session_totals.dart';
 import '../models/models.dart';
 import '../state/providers.dart';
+import '../state/study_timer_provider.dart';
 import 'course_form.dart';
 import 'course_labels.dart';
 import 'glass.dart';
 import 'session_form.dart';
+import 'study_timer_sheet.dart';
 import 'settings_page.dart';
 import 'statistics_page.dart';
 import 'app_logo.dart';
@@ -127,7 +129,12 @@ class _HomeShellState extends State<HomeShell> {
                 const SizedBox(width: AppSizes.dashboardSmallGap),
               ],
             ),
-            body: page,
+            body: Column(
+              children: [
+                const StudyTimerBanner(),
+                Expanded(child: page),
+              ],
+            ),
             floatingActionButton: switch (_index) {
               1 => FloatingActionButton.extended(
                   key: const Key('addCourseFab'),
@@ -136,12 +143,36 @@ class _HomeShellState extends State<HomeShell> {
                   icon: const Icon(Icons.add),
                   label: Text(l10n.coursesNewCourse),
                 ),
-              2 => FloatingActionButton.extended(
-                  key: const Key('logSessionFab'),
-                  onPressed: () => showSessionFormDialog(context),
-                  tooltip: l10n.studyLogFabTooltip,
-                  icon: const Icon(Icons.timer),
-                  label: Text(l10n.studyLogFabLabel),
+              2 => Column(
+                  mainAxisSize: MainAxisSize.min,
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  children: [
+                    FloatingActionButton.extended(
+                      key: const Key('studyTimerFab'),
+                      heroTag: 'studyTimerFab',
+                      onPressed: () {
+                        final active =
+                            ref.read(studyTimerProvider);
+                        if (active != null) {
+                          showStudyTimerActiveSheet(context);
+                        } else {
+                          showStudyTimerStartSheet(context);
+                        }
+                      },
+                      tooltip: l10n.studyTimerStart,
+                      icon: const Icon(Icons.play_arrow),
+                      label: Text(l10n.studyTimerStart),
+                    ),
+                    const SizedBox(height: 8),
+                    FloatingActionButton.extended(
+                      key: const Key('logSessionFab'),
+                      heroTag: 'logSessionFab',
+                      onPressed: () => showSessionFormDialog(context),
+                      tooltip: l10n.studyLogFabTooltip,
+                      icon: const Icon(Icons.timer),
+                      label: Text(l10n.studyLogFabLabel),
+                    ),
+                  ],
                 ),
               _ => null,
             },
@@ -208,6 +239,12 @@ class _HomeShellState extends State<HomeShell> {
                       ),
                     ),
                   ),
+                  const Positioned(
+                    top: AppSizes.glassPageTopInset,
+                    left: 0,
+                    right: 0,
+                    child: StudyTimerBanner(),
+                  ),
                   // Glass action pills (ECTS-066): LiquidGlassButton, not Fab —
                   // only Button answers a finger with the same subtle
                   // press/drag flex as the dashboard action. Light
@@ -248,29 +285,70 @@ class _HomeShellState extends State<HomeShell> {
                     Positioned(
                       right: AppSizes.pageHPad,
                       bottom: AppSizes.glassFabLift,
-                      child: Tooltip(
-                        message: l10n.studyLogFabTooltip,
-                        child: LiquidGlassButton(
-                          key: const Key('logSessionFab'),
-                          onPressed: () => showSessionFormDialog(context),
-                          icon: Icons.timer,
-                          label: l10n.studyLogFabLabel,
-                          foregroundColor: scheme.onPrimaryContainer,
-                          style: LiquidGlassButton.defaultStyle.copyWith(
-                            color: scheme.primaryContainer
-                                .withValues(alpha: 0.35),
-                            // Shared card shadow (ECTS-066) — one depth
-                            // language everywhere.
-                            shadow: glassCardShadow,
+                      child: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        crossAxisAlignment: CrossAxisAlignment.end,
+                        children: [
+                          Tooltip(
+                            message: l10n.studyTimerStart,
+                            child: LiquidGlassButton(
+                              key: const Key('studyTimerFab'),
+                              onPressed: () {
+                                final active = ref
+                                    .read(studyTimerProvider);
+                                if (active != null) {
+                                  showStudyTimerActiveSheet(context);
+                                } else {
+                                  showStudyTimerStartSheet(context);
+                                }
+                              },
+                              icon: Icons.play_arrow,
+                              label: l10n.studyTimerStart,
+                              foregroundColor:
+                                  scheme.onPrimaryContainer,
+                              style: LiquidGlassButton.defaultStyle.copyWith(
+                                color: scheme.primaryContainer
+                                    .withValues(alpha: 0.35),
+                                shadow: glassCardShadow,
+                              ),
+                              touch: const LiquidGlassTouch.flexing(
+                                LiquidGlassFlex.subtle(),
+                              ),
+                              padding: const EdgeInsets.symmetric(
+                                horizontal: AppSizes.fabHPad,
+                                vertical: AppSizes.fabVPad,
+                              ),
+                            ),
                           ),
-                          touch: const LiquidGlassTouch.flexing(
-                            LiquidGlassFlex.subtle(),
+                          const SizedBox(height: 8),
+                          Tooltip(
+                            message: l10n.studyLogFabTooltip,
+                            child: LiquidGlassButton(
+                              key: const Key('logSessionFab'),
+                              onPressed: () =>
+                                  showSessionFormDialog(context),
+                              icon: Icons.timer,
+                              label: l10n.studyLogFabLabel,
+                              foregroundColor:
+                                  scheme.onPrimaryContainer,
+                              style:
+                                  LiquidGlassButton.defaultStyle.copyWith(
+                                color: scheme.primaryContainer
+                                    .withValues(alpha: 0.35),
+                                // Shared card shadow (ECTS-066) — one depth
+                                // language everywhere.
+                                shadow: glassCardShadow,
+                              ),
+                              touch: const LiquidGlassTouch.flexing(
+                                LiquidGlassFlex.subtle(),
+                              ),
+                              padding: const EdgeInsets.symmetric(
+                                horizontal: AppSizes.fabHPad,
+                                vertical: AppSizes.fabVPad,
+                              ),
+                            ),
                           ),
-                          padding: const EdgeInsets.symmetric(
-                            horizontal: AppSizes.fabHPad,
-                            vertical: AppSizes.fabVPad,
-                          ),
-                        ),
+                        ],
                       ),
                     ),
                   LayoutBuilder(

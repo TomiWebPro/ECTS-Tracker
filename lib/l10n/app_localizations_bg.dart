@@ -1,6 +1,5 @@
 // ignore: unused_import
 import 'package:intl/intl.dart' as intl;
-
 import 'app_localizations.dart';
 
 // ignore_for_file: type=lint
@@ -83,12 +82,10 @@ class AppLocalizationsBg extends AppLocalizations {
   }
 
   @override
-  String get courseFormStartEarlyOn =>
-      'Вкл.: времето се разпределя досега и се брои към днешното темпо.';
+  String get courseFormStartEarlyOn => 'Вкл.: времето се разпределя досега и се брои към днешното темпо.';
 
   @override
-  String get courseFormStartEarlyTitle =>
-      'Започни сега въпреки бъдещото начало';
+  String get courseFormStartEarlyTitle => 'Започни сега въпреки бъдещото начало';
 
   @override
   String get courseFormTitleAdd => 'Добави курс';
@@ -113,8 +110,7 @@ class AppLocalizationsBg extends AppLocalizations {
   }
 
   @override
-  String get coursesEmptyHint =>
-      'Докосни „New course“, за да създадеш първия си курс.';
+  String get coursesEmptyHint => 'Докосни „New course“, за да създадеш първия си курс.';
 
   @override
   String get coursesEmptyTitle => 'Все още няма курсове';
@@ -154,11 +150,7 @@ class AppLocalizationsBg extends AppLocalizations {
   }
 
   @override
-  String coursesProgressWithStatus(
-    String done,
-    String required,
-    String status,
-  ) {
+  String coursesProgressWithStatus(String done, String required, String status) {
     return '$done / $required ч • $status';
   }
 
@@ -227,12 +219,10 @@ class AppLocalizationsBg extends AppLocalizations {
   }
 
   @override
-  String get dashboardEmptyHintAllDone =>
-      'Всички курсове са завършени — виж раздела Courses за пълния списък.';
+  String get dashboardEmptyHintAllDone => 'Всички курсове са завършени — виж раздела Courses за пълния списък.';
 
   @override
-  String get dashboardEmptyHintNoCourses =>
-      'Добави курс, за да започнеш да следиш ECTS напредъка си.';
+  String get dashboardEmptyHintNoCourses => 'Добави курс, за да започнеш да следиш ECTS напредъка си.';
 
   @override
   String dashboardExplainerBehind(String achieved, String need) {
@@ -245,12 +235,10 @@ class AppLocalizationsBg extends AppLocalizations {
   }
 
   @override
-  String get dashboardExplainerBehindNoPace =>
-      'Изоставаш: няма постижимо темпо за днешен срок с оставащи часове';
+  String get dashboardExplainerBehindNoPace => 'Изоставаш: няма постижимо темпо за днешен срок с оставащи часове';
 
   @override
-  String get dashboardExplainerOnTrackNoPace =>
-      'В график: още няма темпо — запиши първата сесия за потвърждение';
+  String get dashboardExplainerOnTrackNoPace => 'В график: още няма темпо — запиши първата сесия за потвърждение';
 
   @override
   String dashboardExplainerStartsIn(String days, String date) {
@@ -371,8 +359,7 @@ class AppLocalizationsBg extends AppLocalizations {
   String get dashboardProgramBare => 'ПРОГРАМА';
 
   @override
-  String get dashboardProgramEmptyHint =>
-      'Добави курс, за да започнеш проследяването';
+  String get dashboardProgramEmptyHint => 'Добави курс, за да започнеш проследяването';
 
   @override
   String dashboardProgramHours(String done, String required) {
@@ -401,12 +388,10 @@ class AppLocalizationsBg extends AppLocalizations {
   String get dashboardStartsSoon => 'Започва скоро';
 
   @override
-  String get dashboardTipEmpty =>
-      'Добави първия си курс — дневното ти темпо и напредъкът ще се появят тук.';
+  String get dashboardTipEmpty => 'Добави първия си курс — дневното ти темпо и напредъкът ще се появят тук.';
 
   @override
-  String get dashboardTipFirst =>
-      'Първите 25 мин са най-важни — избери курса с най-близък срок.';
+  String get dashboardTipFirst => 'Първите 25 мин са най-важни — избери курса с най-близък срок.';
 
   @override
   String get dashboardTodayBare => 'ДНЕС';
@@ -430,8 +415,7 @@ class AppLocalizationsBg extends AppLocalizations {
   }
 
   @override
-  String get dashboardUpcomingSubtitle =>
-      'Бъдещи начала — без напрежение днес, изключени от днешното темпо.';
+  String get dashboardUpcomingSubtitle => 'Бъдещи начала — без напрежение днес, изключени от днешното темпо.';
 
   @override
   String get dashboardUpcomingTitle => 'Предстоящи';
@@ -440,8 +424,7 @@ class AppLocalizationsBg extends AppLocalizations {
   String get devToolsActivate => 'Активирай';
 
   @override
-  String get devToolsActivateMessage =>
-      'Това отключва скрити стрес-тест инструменти (генерирани данни). Само за разработка.';
+  String get devToolsActivateMessage => 'Това отключва скрити стрес-тест инструменти (генерирани данни). Само за разработка.';
 
   @override
   String get devToolsActivateTitle => 'Да активирам ли дев режима?';
@@ -453,12 +436,10 @@ class AppLocalizationsBg extends AppLocalizations {
   String get devToolsClearPumped => 'Изчисти генерираните данни';
 
   @override
-  String get devToolsClearPumpedMessage =>
-      'Изтрива генерираните STRESS курсове и сесиите им. Твоите данни се запазват.';
+  String get devToolsClearPumpedMessage => 'Изтрива генерираните STRESS курсове и сесиите им. Твоите данни се запазват.';
 
   @override
-  String get devToolsClearPumpedSubtitle =>
-      'Изтрий генерираните STRESS курсове и сесии.';
+  String get devToolsClearPumpedSubtitle => 'Изтрий генерираните STRESS курсове и сесии.';
 
   @override
   String get devToolsClearPumpedTitle => 'Да изчистя ли генерираните данни?';
@@ -469,8 +450,7 @@ class AppLocalizationsBg extends AppLocalizations {
   }
 
   @override
-  String get devToolsConfirmPumpMessage =>
-      'Второ потвърждение: това ще надуе курсовете, списъците, графиките и изчисленията и може да отнеме няколко секунди. Да генерирам ли сега?';
+  String get devToolsConfirmPumpMessage => 'Второ потвърждение: това ще надуе курсовете, списъците, графиките и изчисленията и може да отнеме няколко секунди. Да генерирам ли сега?';
 
   @override
   String get devToolsConfirmPumpTitle => 'Потвърди стрес-теста';
@@ -482,19 +462,16 @@ class AppLocalizationsBg extends AppLocalizations {
   String get devToolsExit => 'Излез от дев режима';
 
   @override
-  String get devToolsExitSubtitle =>
-      'Скрий дев инструментите на това устройство.';
+  String get devToolsExitSubtitle => 'Скрий дев инструментите на това устройство.';
 
   @override
   String get devToolsPumpData => 'Генерирай данни';
 
   @override
-  String get devToolsPumpMessage =>
-      'Това вмъква реалистичен генериран семестър (~10 курса, ~800 сесии за последните 12 седмици). Съществуващите ти данни се запазват. Да продължа ли?';
+  String get devToolsPumpMessage => 'Това вмъква реалистичен генериран семестър (~10 курса, ~800 сесии за последните 12 седмици). Съществуващите ти данни се запазват. Да продължа ли?';
 
   @override
-  String get devToolsPumpSubtitle =>
-      'Вмъкни генериран семестър (~10 курса, ~800 сесии, 12 седмици). Съществуващите данни се запазват.';
+  String get devToolsPumpSubtitle => 'Вмъкни генериран семестър (~10 курса, ~800 сесии, 12 седмици). Съществуващите данни се запазват.';
 
   @override
   String get devToolsPumpTile => 'Генерирай тестови данни';
@@ -514,12 +491,10 @@ class AppLocalizationsBg extends AppLocalizations {
   String get devToolsRemoveAll => 'Премахни всички данни';
 
   @override
-  String get devToolsRemoveAllMessage =>
-      'Дев пряк път: това трайно изтрива ВСИЧКИ курсове, сесии и настройки. Не може да се отмени.';
+  String get devToolsRemoveAllMessage => 'Дев пряк път: това трайно изтрива ВСИЧКИ курсове, сесии и настройки. Не може да се отмени.';
 
   @override
-  String get devToolsRemoveAllSubtitle =>
-      'Дев пряк път: изтрий ВСИЧКИ курсове, сесии и настройки.';
+  String get devToolsRemoveAllSubtitle => 'Дев пряк път: изтрий ВСИЧКИ курсове, сесии и настройки.';
 
   @override
   String get devToolsRemoveAllTitle => 'Да премахна ли всички данни?';
@@ -551,8 +526,7 @@ class AppLocalizationsBg extends AppLocalizations {
   }
 
   @override
-  String get sessionFormDurationError =>
-      'Продължителността трябва да е по-голяма от нула.';
+  String get sessionFormDurationError => 'Продължителността трябва да е по-голяма от нула.';
 
   @override
   String get sessionFormHoursLabel => 'Часове';
@@ -567,8 +541,7 @@ class AppLocalizationsBg extends AppLocalizations {
   String get sessionFormNoCourseError => 'Избери курс.';
 
   @override
-  String get sessionFormNoCoursesHint =>
-      'Първо добави курс, за да запишеш сесия.';
+  String get sessionFormNoCoursesHint => 'Първо добави курс, за да запишеш сесия.';
 
   @override
   String get sessionFormNotesLabel => 'Бележки (по избор)';
@@ -624,12 +597,10 @@ class AppLocalizationsBg extends AppLocalizations {
   String get settingsClearSample => 'Изчисти примерните данни';
 
   @override
-  String get settingsClearSampleMessage =>
-      'Това премахва примерните курсове и сесии. Добавените от теб курсове или сесии не се премахват.';
+  String get settingsClearSampleMessage => 'Това премахва примерните курсове и сесии. Добавените от теб курсове или сесии не се премахват.';
 
   @override
-  String get settingsClearSampleSubtitle =>
-      'Премахни вградените примерни курсове и сесии. Твоите данни се запазват.';
+  String get settingsClearSampleSubtitle => 'Премахни вградените примерни курсове и сесии. Твоите данни се запазват.';
 
   @override
   String get settingsClearSampleTitle => 'Да изчистя ли примерните данни?';
@@ -693,8 +664,7 @@ class AppLocalizationsBg extends AppLocalizations {
   String get settingsExportCopied => 'Експортът е копиран в клипборда.';
 
   @override
-  String get settingsExportSubtitle =>
-      'Копирай всички курсове, сесии и настройки като JSON.';
+  String get settingsExportSubtitle => 'Копирай всички курсове, сесии и настройки като JSON.';
 
   @override
   String settingsExportSummary(String courses, String sessions, String kb) {
@@ -710,8 +680,7 @@ class AppLocalizationsBg extends AppLocalizations {
   String get settingsFirstWeekday => 'Първи ден на седмицата';
 
   @override
-  String get settingsFirstWeekdayUpdated =>
-      'Първият ден на седмицата е обновен.';
+  String get settingsFirstWeekdayUpdated => 'Първият ден на седмицата е обновен.';
 
   @override
   String settingsHoldLabel(String label, String seconds) {
@@ -725,8 +694,7 @@ class AppLocalizationsBg extends AppLocalizations {
   String get settingsHoursError => 'Въведи число, по-голямо от нула.';
 
   @override
-  String get settingsHoursHelper =>
-      'По подразбиране 30. Промяната преизчислява нуждите; записите се запазват.';
+  String get settingsHoursHelper => 'По подразбиране 30. Промяната преизчислява нуждите; записите се запазват.';
 
   @override
   String get settingsHoursLabel => 'Часове за ECTS кредит';
@@ -757,8 +725,7 @@ class AppLocalizationsBg extends AppLocalizations {
   }
 
   @override
-  String get settingsImportInfo =>
-      'Добавянето прибавя копието към текущите данни (настройките се запазват). Замяната първо изтрива ВСИЧКИ курсове, сесии и настройки.';
+  String get settingsImportInfo => 'Добавянето прибавя копието към текущите данни (настройките се запазват). Замяната първо изтрива ВСИЧКИ курсове, сесии и настройки.';
 
   @override
   String get settingsImportLabel => 'Постави експортирания JSON';
@@ -792,8 +759,7 @@ class AppLocalizationsBg extends AppLocalizations {
   }
 
   @override
-  String get settingsImportSubtitle =>
-      'Замени всички данни от предишно експортирано JSON копие.';
+  String get settingsImportSubtitle => 'Замени всички данни от предишно експортирано JSON копие.';
 
   @override
   String settingsKeepHolding(String remaining) {
@@ -804,8 +770,7 @@ class AppLocalizationsBg extends AppLocalizations {
   String get settingsNoSample => 'Няма примерни данни';
 
   @override
-  String get settingsNoSampleSubtitle =>
-      'Вградените примерни данни вече са изчистени.';
+  String get settingsNoSampleSubtitle => 'Вградените примерни данни вече са изчистени.';
 
   @override
   String get settingsNoTarget => 'Няма зададена цел';
@@ -814,8 +779,7 @@ class AppLocalizationsBg extends AppLocalizations {
   String get settingsOverloadError => 'Въведи число 5–100 ч/седмица.';
 
   @override
-  String get settingsOverloadHelper =>
-      'Седмиците с предстоящо натоварване над това се маркират в червено. Редовното учене е ~35–40 ч/седмица.';
+  String get settingsOverloadHelper => 'Седмиците с предстоящо натоварване над това се маркират в червено. Редовното учене е ~35–40 ч/седмица.';
 
   @override
   String settingsOverloadHours(String value) {
@@ -849,12 +813,10 @@ class AppLocalizationsBg extends AppLocalizations {
   String get settingsResetAll => 'Нулирай всички данни';
 
   @override
-  String get settingsResetAllMessage =>
-      'Това трайно изтрива ВСИЧКИ курсове, сесии и настройки. Не може да се отмени. Първо експортирай копие, ако е нужно.';
+  String get settingsResetAllMessage => 'Това трайно изтрива ВСИЧКИ курсове, сесии и настройки. Не може да се отмени. Първо експортирай копие, ако е нужно.';
 
   @override
-  String get settingsResetAllSubtitle =>
-      'Изтрий всички курсове, сесии и настройки.';
+  String get settingsResetAllSubtitle => 'Изтрий всички курсове, сесии и настройки.';
 
   @override
   String get settingsResetAllTitle => 'Да нулирам ли всички данни?';
@@ -866,12 +828,10 @@ class AppLocalizationsBg extends AppLocalizations {
   String get settingsResetSettingsDone => 'Настройките са нулирани.';
 
   @override
-  String get settingsResetSettingsMessage =>
-      'Възстановява часове за ECTS (30), дневна цел (няма), първи делничен ден (понеделник), тема (системна), толеранс (5 дни), претоварване (35 ч/седмица), размер (удобен), цвят (шифер). Курсовете и сесиите се запазват.';
+  String get settingsResetSettingsMessage => 'Възстановява часове за ECTS (30), дневна цел (няма), първи делничен ден (понеделник), тема (системна), толеранс (5 дни), претоварване (35 ч/седмица), размер (удобен), цвят (шифер). Курсовете и сесиите се запазват.';
 
   @override
-  String get settingsResetSettingsSubtitle =>
-      'Възстанови стандартните: 30 ч/ECTS, без цел, понеделник, системна тема, 5 дни толеранс, 35 ч/седмица претоварване, удобен размер, шифер цвят.';
+  String get settingsResetSettingsSubtitle => 'Възстанови стандартните: 30 ч/ECTS, без цел, понеделник, системна тема, 5 дни толеранс, 35 ч/седмица претоварване, удобен размер, шифер цвят.';
 
   @override
   String get settingsResetSettingsTitle => 'Да нулирам ли настройките?';
@@ -911,8 +871,7 @@ class AppLocalizationsBg extends AppLocalizations {
   String get settingsToleranceError => 'Въведи число 0–30 дни.';
 
   @override
-  String get settingsToleranceHelper =>
-      'Напред изисква +N дни излишък, назад е −N дни. 5 = стабилно, 0 = чувствително.';
+  String get settingsToleranceHelper => 'Напред изисква +N дни излишък, назад е −N дни. 5 = стабилно, 0 = чувствително.';
 
   @override
   String get settingsToleranceLabel => 'Дни работа (0–30)';
@@ -970,8 +929,7 @@ class AppLocalizationsBg extends AppLocalizations {
   }
 
   @override
-  String get statsAddDeadlines =>
-      'Добави крайни срокове, за да се прогнозира натоварването.';
+  String get statsAddDeadlines => 'Добави крайни срокове, за да се прогнозира натоварването.';
 
   @override
   String get statsComingLoad => 'Предстоящо натоварване';
@@ -980,8 +938,7 @@ class AppLocalizationsBg extends AppLocalizations {
   String get statsConsistency => 'Постоянство';
 
   @override
-  String get statsConsistencyHint =>
-      'Учебни дни през последните 30 дни. Малките стъпки всеки ден побеждават зубренето.';
+  String get statsConsistencyHint => 'Учебни дни през последните 30 дни. Малките стъпки всеки ден побеждават зубренето.';
 
   @override
   String statsConsistencyScore(String percent) {
@@ -1046,8 +1003,7 @@ class AppLocalizationsBg extends AppLocalizations {
   String get statsOverview => 'Преглед';
 
   @override
-  String get statsPaceCovers =>
-      'Миналото темпо покрива нужното. Запази серията.';
+  String get statsPaceCovers => 'Миналото темпо покрива нужното. Запази серията.';
 
   @override
   String statsPaceShort(String gap) {
@@ -1105,15 +1061,13 @@ class AppLocalizationsBg extends AppLocalizations {
   String get statusOverdue => 'Просрочен';
 
   @override
-  String get studyLogDeleteBody =>
-      'Да изтрия ли тази учебна сесия? Това не може да се отмени.';
+  String get studyLogDeleteBody => 'Да изтрия ли тази учебна сесия? Това не може да се отмени.';
 
   @override
   String get studyLogDeleteTitle => 'Да изтрия ли сесията?';
 
   @override
-  String get studyLogEmptyHint =>
-      'Запиши сесия, за да следиш учебното си време.';
+  String get studyLogEmptyHint => 'Запиши сесия, за да следиш учебното си време.';
 
   @override
   String get studyLogEmptyTitle => 'Все още няма учебни сесии';
@@ -1149,8 +1103,53 @@ class AppLocalizationsBg extends AppLocalizations {
   }
 
   @override
-  String get validationCourseEctsPositive =>
-      'ECTS трябва да е по-голямо от нула';
+  String studyTimerActiveTitle(String course) {
+    return 'Timing $course';
+  }
+
+  @override
+  String get studyTimerAlreadyRunning => 'A timer is already running. Finish or discard it first.';
+
+  @override
+  String get studyTimerCourseLabel => 'Course';
+
+  @override
+  String get studyTimerDiscard => 'Discard';
+
+  @override
+  String get studyTimerDiscardBody => 'Throw away the current timer without logging? This cannot be undone.';
+
+  @override
+  String get studyTimerDiscardTitle => 'Discard timer?';
+
+  @override
+  String studyTimerFinishLog(String minutes) {
+    return 'Finish & log $minutes min';
+  }
+
+  @override
+  String get studyTimerNoCourseError => 'Select a course.';
+
+  @override
+  String get studyTimerNoCoursesHint => 'Add a course first to start a timer.';
+
+  @override
+  String get studyTimerPause => 'Pause';
+
+  @override
+  String get studyTimerResume => 'Resume';
+
+  @override
+  String get studyTimerStart => 'Start timer';
+
+  @override
+  String get studyTimerStartTitle => 'Start study timer';
+
+  @override
+  String get studyTimerTooShort => 'Timer has not run yet.';
+
+  @override
+  String get validationCourseEctsPositive => 'ECTS трябва да е по-голямо от нула';
 
   @override
   String get validationCourseEctsRequired => 'Въведи ECTS кредити';
@@ -1177,8 +1176,7 @@ class AppLocalizationsBg extends AppLocalizations {
   String get settingsLiquidGlass => 'Течно стъкло';
 
   @override
-  String get settingsLiquidGlassSubtitle =>
-      'Карти и ленти от матирано стъкло. Изкл. запазва класическия плътен вид.';
+  String get settingsLiquidGlassSubtitle => 'Карти и ленти от матирано стъкло. Изкл. запазва класическия плътен вид.';
 
   @override
   String get settingsLiquidGlassOn => 'Вкл.';
@@ -1193,8 +1191,7 @@ class AppLocalizationsBg extends AppLocalizations {
   String get devToolsReminderPreview => 'Преглед на напомнянията';
 
   @override
-  String get devToolsReminderPreviewSubtitle =>
-      'Виж какво би известило точно сега. Безопасен за Windows тестов поток.';
+  String get devToolsReminderPreviewSubtitle => 'Виж какво би известило точно сега. Безопасен за Windows тестов поток.';
 
   @override
   String get reminderPreviewTitle => 'Преглед на напомнянията';
@@ -1206,8 +1203,7 @@ class AppLocalizationsBg extends AppLocalizations {
   String get reminderPreviewReset => 'Сега';
 
   @override
-  String get reminderPreviewEmpty =>
-      'Тихо е — нищо не би известило в този момент.';
+  String get reminderPreviewEmpty => 'Тихо е — нищо не би известило в този момент.';
 
   @override
   String get reminderPreviewCustom => 'Персонализирани графици (demo)';
@@ -1243,8 +1239,7 @@ class AppLocalizationsBg extends AppLocalizations {
   String get settingsReminderTime => 'Време за напомняне';
 
   @override
-  String get settingsReminderDenied =>
-      'Известията са блокирани — разреши ги в системните настройки.';
+  String get settingsReminderDenied => 'Известията са блокирани — разреши ги в системните настройки.';
 
   @override
   String notifDurationHours(String value) {
@@ -1282,12 +1277,7 @@ class AppLocalizationsBg extends AppLocalizations {
   }
 
   @override
-  String notifBehindBodyPace(
-    String left,
-    String days,
-    String pace,
-    String catchUp,
-  ) {
+  String notifBehindBodyPace(String left, String days, String pace, String catchUp) {
     return 'Остават $left, остават $days дни — оттук $pace/ден. Запиши $catchUp, за да се върнеш в график.';
   }
 
@@ -1307,8 +1297,7 @@ class AppLocalizationsBg extends AppLocalizations {
   }
 
   @override
-  String get notifDeadlineTomorrowBody =>
-      'Всичко, което запишеш днес, се брои двойно.';
+  String get notifDeadlineTomorrowBody => 'Всичко, което запишеш днес, се брои двойно.';
 
   @override
   String notifDeadlineSoonTitle(String course, String days, String left) {
@@ -1321,8 +1310,7 @@ class AppLocalizationsBg extends AppLocalizations {
   }
 
   @override
-  String get notifDeadlineSoonBodyNoPace =>
-      'Всеки час, който запишеш сега, се брои.';
+  String get notifDeadlineSoonBodyNoPace => 'Всеки час, който запишеш сега, се брои.';
 
   @override
   String notifOverdueTitle(String course, String left) {
@@ -1330,8 +1318,7 @@ class AppLocalizationsBg extends AppLocalizations {
   }
 
   @override
-  String get notifOverdueBody =>
-      'Премести срока или завърши часовете — дотогава курсът остава в „изисква внимание“.';
+  String get notifOverdueBody => 'Премести срока или завърши часовете — дотогава курсът остава в „изисква внимание“.';
 
   @override
   String notifStreakTitle(String days, String week) {
@@ -1339,8 +1326,7 @@ class AppLocalizationsBg extends AppLocalizations {
   }
 
   @override
-  String get notifStreakBody =>
-      'Всички курсове са в график или напред. Чудесна серия.';
+  String get notifStreakBody => 'Всички курсове са в график или напред. Чудесна серия.';
 
   @override
   String notifCustomTitleAuto(String course) {

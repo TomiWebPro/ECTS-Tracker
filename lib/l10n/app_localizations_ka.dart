@@ -1,6 +1,5 @@
 // ignore: unused_import
 import 'package:intl/intl.dart' as intl;
-
 import 'app_localizations.dart';
 
 // ignore_for_file: type=lint
@@ -83,12 +82,10 @@ class AppLocalizationsKa extends AppLocalizations {
   }
 
   @override
-  String get courseFormStartEarlyOn =>
-      'ჩართულია: დრო იყოფა ამ დრომდე და ითვლება დღევანდელ ტემპში.';
+  String get courseFormStartEarlyOn => 'ჩართულია: დრო იყოფა ამ დრომდე და ითვლება დღევანდელ ტემპში.';
 
   @override
-  String get courseFormStartEarlyTitle =>
-      'ახლა დაწყება მომავალი დაწყების მიუხედავად';
+  String get courseFormStartEarlyTitle => 'ახლა დაწყება მომავალი დაწყების მიუხედავად';
 
   @override
   String get courseFormTitleAdd => 'კურსის დამატება';
@@ -113,8 +110,7 @@ class AppLocalizationsKa extends AppLocalizations {
   }
 
   @override
-  String get coursesEmptyHint =>
-      'შეეხეთ „ახალი კურსი“ პირველი კურსის შესაქმნელად.';
+  String get coursesEmptyHint => 'შეეხეთ „ახალი კურსი“ პირველი კურსის შესაქმნელად.';
 
   @override
   String get coursesEmptyTitle => 'კურსები ჯერ არ არის';
@@ -154,11 +150,7 @@ class AppLocalizationsKa extends AppLocalizations {
   }
 
   @override
-  String coursesProgressWithStatus(
-    String done,
-    String required,
-    String status,
-  ) {
+  String coursesProgressWithStatus(String done, String required, String status) {
     return '$done / $required სთ • $status';
   }
 
@@ -227,12 +219,10 @@ class AppLocalizationsKa extends AppLocalizations {
   }
 
   @override
-  String get dashboardEmptyHintAllDone =>
-      'ყველა კურსი დასრულებულია — სრული სია იხილეთ ჩანართში „კურსები“.';
+  String get dashboardEmptyHintAllDone => 'ყველა კურსი დასრულებულია — სრული სია იხილეთ ჩანართში „კურსები“.';
 
   @override
-  String get dashboardEmptyHintNoCourses =>
-      'დაამატეთ კურსი ECTS პროგრესის თვალყურისთვის.';
+  String get dashboardEmptyHintNoCourses => 'დაამატეთ კურსი ECTS პროგრესის თვალყურისთვის.';
 
   @override
   String dashboardExplainerBehind(String achieved, String need) {
@@ -245,12 +235,10 @@ class AppLocalizationsKa extends AppLocalizations {
   }
 
   @override
-  String get dashboardExplainerBehindNoPace =>
-      'ჩამორჩენა: ვერცერთი სასრული დღიური ტემპი ვერ ასწრებს დღევანდელ ვადას დარჩენილი საათებით';
+  String get dashboardExplainerBehindNoPace => 'ჩამორჩენა: ვერცერთი სასრული დღიური ტემპი ვერ ასწრებს დღევანდელ ვადას დარჩენილი საათებით';
 
   @override
-  String get dashboardExplainerOnTrackNoPace =>
-      'გრაფიკში ხართ: ტემპი ჯერ არ არის — დასადასტურებლად ჩაწერეთ პირველი სესია';
+  String get dashboardExplainerOnTrackNoPace => 'გრაფიკში ხართ: ტემპი ჯერ არ არის — დასადასტურებლად ჩაწერეთ პირველი სესია';
 
   @override
   String dashboardExplainerStartsIn(String days, String date) {
@@ -400,12 +388,10 @@ class AppLocalizationsKa extends AppLocalizations {
   String get dashboardStartsSoon => 'მალე იწყება';
 
   @override
-  String get dashboardTipEmpty =>
-      'დაამატეთ პირველი კურსი — დღიური ტემპი და პროგრესი აქ გამოჩნდება.';
+  String get dashboardTipEmpty => 'დაამატეთ პირველი კურსი — დღიური ტემპი და პროგრესი აქ გამოჩნდება.';
 
   @override
-  String get dashboardTipFirst =>
-      'პირველი 25 წუთი ყველაზე მნიშვნელოვანია — აირჩიეთ კურსი უახლოესი ვადით.';
+  String get dashboardTipFirst => 'პირველი 25 წუთი ყველაზე მნიშვნელოვანია — აირჩიეთ კურსი უახლოესი ვადით.';
 
   @override
   String get dashboardTodayBare => 'დღეს';
@@ -429,8 +415,7 @@ class AppLocalizationsKa extends AppLocalizations {
   }
 
   @override
-  String get dashboardUpcomingSubtitle =>
-      'მომავალი დაწყებები — დღეს ზეწოლა არ არის, გამორიცხულია დღევანდელი ტემპიდან.';
+  String get dashboardUpcomingSubtitle => 'მომავალი დაწყებები — დღეს ზეწოლა არ არის, გამორიცხულია დღევანდელი ტემპიდან.';
 
   @override
   String get dashboardUpcomingTitle => 'მომავალი';
@@ -439,8 +424,7 @@ class AppLocalizationsKa extends AppLocalizations {
   String get devToolsActivate => 'გააქტიურება';
 
   @override
-  String get devToolsActivateMessage =>
-      'ეს ხსნის ფარულ სტრეს-ტესტის ხელსაწყოებს (ქმნის მონაცემებს). მხოლოდ მოსამზადებლად.';
+  String get devToolsActivateMessage => 'ეს ხსნის ფარულ სტრეს-ტესტის ხელსაწყოებს (ქმნის მონაცემებს). მხოლოდ მოსამზადებლად.';
 
   @override
   String get devToolsActivateTitle => 'გააქტიურდეს მოსამზადებელი რეჟიმი?';
@@ -452,12 +436,10 @@ class AppLocalizationsKa extends AppLocalizations {
   String get devToolsClearPumped => 'შექმნილი მონაცემების გასუფთავება';
 
   @override
-  String get devToolsClearPumpedMessage =>
-      'შლის შექმნილ STRESS კურსებსა და სესიებს. თქვენი მონაცემები შენარჩუნდება.';
+  String get devToolsClearPumpedMessage => 'შლის შექმნილ STRESS კურსებსა და სესიებს. თქვენი მონაცემები შენარჩუნდება.';
 
   @override
-  String get devToolsClearPumpedSubtitle =>
-      'შექმნილი STRESS კურსებისა და სესიების წაშლა.';
+  String get devToolsClearPumpedSubtitle => 'შექმნილი STRESS კურსებისა და სესიების წაშლა.';
 
   @override
   String get devToolsClearPumpedTitle => 'გასუფთავდეს შექმნილი მონაცემები?';
@@ -468,8 +450,7 @@ class AppLocalizationsKa extends AppLocalizations {
   }
 
   @override
-  String get devToolsConfirmPumpMessage =>
-      'მეორე დადასტურება: ეს გაზრდის კურსებს, სიებს, დიაგრამებსა და ტემპის გამოთვლებს და შეიძლება რამდენიმე წამი გაგრძელდეს. შევქმნათ ახლა?';
+  String get devToolsConfirmPumpMessage => 'მეორე დადასტურება: ეს გაზრდის კურსებს, სიებს, დიაგრამებსა და ტემპის გამოთვლებს და შეიძლება რამდენიმე წამი გაგრძელდეს. შევქმნათ ახლა?';
 
   @override
   String get devToolsConfirmPumpTitle => 'სტრეს-ტესტის დადასტურება';
@@ -481,19 +462,16 @@ class AppLocalizationsKa extends AppLocalizations {
   String get devToolsExit => 'მოსამზადებელი რეჟიმიდან გასვლა';
 
   @override
-  String get devToolsExitSubtitle =>
-      'მოსამზადებელი ხელსაწყოების დამალვა ამ მოწყობილობაზე.';
+  String get devToolsExitSubtitle => 'მოსამზადებელი ხელსაწყოების დამალვა ამ მოწყობილობაზე.';
 
   @override
   String get devToolsPumpData => 'მონაცემების შექმნა';
 
   @override
-  String get devToolsPumpMessage =>
-      'ეს ჩასვამს რეალისტურ შექმნილ სემესტრს (~10 კურსი, ~800 სესია ბოლო 12 კვირაში). თქვენი არსებული მონაცემები შენარჩუნდება. გავაგრძელოთ?';
+  String get devToolsPumpMessage => 'ეს ჩასვამს რეალისტურ შექმნილ სემესტრს (~10 კურსი, ~800 სესია ბოლო 12 კვირაში). თქვენი არსებული მონაცემები შენარჩუნდება. გავაგრძელოთ?';
 
   @override
-  String get devToolsPumpSubtitle =>
-      'შექმნილი სემესტრის ჩასმა (~10 კურსი, ~800 სესია, 12 კვირა). არსებული მონაცემები შენარჩუნდება.';
+  String get devToolsPumpSubtitle => 'შექმნილი სემესტრის ჩასმა (~10 კურსი, ~800 სესია, 12 კვირა). არსებული მონაცემები შენარჩუნდება.';
 
   @override
   String get devToolsPumpTile => 'საცდელი მონაცემების შექმნა';
@@ -513,12 +491,10 @@ class AppLocalizationsKa extends AppLocalizations {
   String get devToolsRemoveAll => 'ყველა მონაცემის მოშორება';
 
   @override
-  String get devToolsRemoveAllMessage =>
-      'მოსამზადებელი მალსახმობი: ეს სამუდამოდ შლის ყველა კურსს, სესიასა და პარამეტრს. ამის გაუქმება შეუძლებელია.';
+  String get devToolsRemoveAllMessage => 'მოსამზადებელი მალსახმობი: ეს სამუდამოდ შლის ყველა კურსს, სესიასა და პარამეტრს. ამის გაუქმება შეუძლებელია.';
 
   @override
-  String get devToolsRemoveAllSubtitle =>
-      'მოსამზადებელი მალსახმობი: ყველა კურსის, სესიისა და პარამეტრის წაშლა.';
+  String get devToolsRemoveAllSubtitle => 'მოსამზადებელი მალსახმობი: ყველა კურსის, სესიისა და პარამეტრის წაშლა.';
 
   @override
   String get devToolsRemoveAllTitle => 'მოშორდეს ყველა მონაცემი?';
@@ -621,12 +597,10 @@ class AppLocalizationsKa extends AppLocalizations {
   String get settingsClearSample => 'საცდელი მონაცემების გასუფთავება';
 
   @override
-  String get settingsClearSampleMessage =>
-      'ეს შლის საცდელ კურსებსა და სესიებს. თქვენს მიერ დამატებული კურსები და სესიები არ იშლება.';
+  String get settingsClearSampleMessage => 'ეს შლის საცდელ კურსებსა და სესიებს. თქვენს მიერ დამატებული კურსები და სესიები არ იშლება.';
 
   @override
-  String get settingsClearSampleSubtitle =>
-      'ჩადებული საცდელი კურსებისა და სესიების მოშორება. თქვენი მონაცემები შენარჩუნდება.';
+  String get settingsClearSampleSubtitle => 'ჩადებული საცდელი კურსებისა და სესიების მოშორება. თქვენი მონაცემები შენარჩუნდება.';
 
   @override
   String get settingsClearSampleTitle => 'გასუფთავდეს საცდელი მონაცემები?';
@@ -690,8 +664,7 @@ class AppLocalizationsKa extends AppLocalizations {
   String get settingsExportCopied => 'ექსპორტი დაკოპირდა გაცვლის ბუფერში.';
 
   @override
-  String get settingsExportSubtitle =>
-      'ყველა კურსის, სესიისა და პარამეტრის კოპირება JSON-ად.';
+  String get settingsExportSubtitle => 'ყველა კურსის, სესიისა და პარამეტრის კოპირება JSON-ად.';
 
   @override
   String settingsExportSummary(String courses, String sessions, String kb) {
@@ -715,15 +688,13 @@ class AppLocalizationsKa extends AppLocalizations {
   }
 
   @override
-  String get settingsHoldToReplace =>
-      'ხანგრძლივად დააჭირეთ ყველაფრის ჩასანაცვლებლად';
+  String get settingsHoldToReplace => 'ხანგრძლივად დააჭირეთ ყველაფრის ჩასანაცვლებლად';
 
   @override
   String get settingsHoursError => 'შეიყვანეთ ნულზე მეტი რიცხვი.';
 
   @override
-  String get settingsHoursHelper =>
-      'სტანდარტია 30. ცვლილება ხელახლა ითვლის მოთხოვნებს; ჩანაწერები შენარჩუნდება.';
+  String get settingsHoursHelper => 'სტანდარტია 30. ცვლილება ხელახლა ითვლის მოთხოვნებს; ჩანაწერები შენარჩუნდება.';
 
   @override
   String get settingsHoursLabel => 'საათები ECTS კრედიტზე';
@@ -754,8 +725,7 @@ class AppLocalizationsKa extends AppLocalizations {
   }
 
   @override
-  String get settingsImportInfo =>
-      'დამატება ასლის თქვენს მიმდინარე მონაცემებს უმატებს (პარამეტრები შენარჩუნდება). ჩანაცვლება ჯერ შლის ყველა კურსს, სესიასა და პარამეტრს.';
+  String get settingsImportInfo => 'დამატება ასლის თქვენს მიმდინარე მონაცემებს უმატებს (პარამეტრები შენარჩუნდება). ჩანაცვლება ჯერ შლის ყველა კურსს, სესიასა და პარამეტრს.';
 
   @override
   String get settingsImportLabel => 'ჩასვით ექსპორტირებული JSON';
@@ -789,8 +759,7 @@ class AppLocalizationsKa extends AppLocalizations {
   }
 
   @override
-  String get settingsImportSubtitle =>
-      'ყველა მონაცემის ჩანაცვლება ადრე ექსპორტირებული JSON ასლით.';
+  String get settingsImportSubtitle => 'ყველა მონაცემის ჩანაცვლება ადრე ექსპორტირებული JSON ასლით.';
 
   @override
   String settingsKeepHolding(String remaining) {
@@ -801,8 +770,7 @@ class AppLocalizationsKa extends AppLocalizations {
   String get settingsNoSample => 'საცდელი მონაცემები არ არის';
 
   @override
-  String get settingsNoSampleSubtitle =>
-      'ჩადებული საცდელი მონაცემები უკვე გასუფთავებულია.';
+  String get settingsNoSampleSubtitle => 'ჩადებული საცდელი მონაცემები უკვე გასუფთავებულია.';
 
   @override
   String get settingsNoTarget => 'მიზანი მითითებული არ არის';
@@ -811,8 +779,7 @@ class AppLocalizationsKa extends AppLocalizations {
   String get settingsOverloadError => 'შეიყვანეთ რიცხვი 5–100 სთ/კვირაში.';
 
   @override
-  String get settingsOverloadHelper =>
-      'ამ ზღვარს ზემოთ მომავალი კვირები წითლად მოინიშნება. სრული განაკვეთი სწავლაა ~35–40 სთ/კვირაში.';
+  String get settingsOverloadHelper => 'ამ ზღვარს ზემოთ მომავალი კვირები წითლად მოინიშნება. სრული განაკვეთი სწავლაა ~35–40 სთ/კვირაში.';
 
   @override
   String settingsOverloadHours(String value) {
@@ -846,12 +813,10 @@ class AppLocalizationsKa extends AppLocalizations {
   String get settingsResetAll => 'ყველა მონაცემის გადატვირთვა';
 
   @override
-  String get settingsResetAllMessage =>
-      'ეს სამუდამოდ შლის ყველა კურსს, სესიასა და პარამეტრს. ამის გაუქმება შეუძლებელია. საჭიროებისას ჯერ გააკეთეთ ასლის ექსპორტი.';
+  String get settingsResetAllMessage => 'ეს სამუდამოდ შლის ყველა კურსს, სესიასა და პარამეტრს. ამის გაუქმება შეუძლებელია. საჭიროებისას ჯერ გააკეთეთ ასლის ექსპორტი.';
 
   @override
-  String get settingsResetAllSubtitle =>
-      'ყველა კურსის, სესიისა და პარამეტრის წაშლა.';
+  String get settingsResetAllSubtitle => 'ყველა კურსის, სესიისა და პარამეტრის წაშლა.';
 
   @override
   String get settingsResetAllTitle => 'გადაიტვირთოს ყველა მონაცემი?';
@@ -860,16 +825,13 @@ class AppLocalizationsKa extends AppLocalizations {
   String get settingsResetSettings => 'პარამეტრების გადატვირთვა';
 
   @override
-  String get settingsResetSettingsDone =>
-      'პარამეტრები სტანდარტულზე გადატვირთდა.';
+  String get settingsResetSettingsDone => 'პარამეტრები სტანდარტულზე გადატვირთდა.';
 
   @override
-  String get settingsResetSettingsMessage =>
-      'აღადგენს საათები/ECTS (30), დღიური მიზანი (არცერთი), კვირის პირველი დღე (ორშაბათი), თემა (სისტემური), ტოლერანტობა (5 დღე), გადატვირთვა (35 სთ/კვირაში), ზომა (კომფორტული), ფერი (ფიქალი). კურსები და სესიები შენარჩუნდება.';
+  String get settingsResetSettingsMessage => 'აღადგენს საათები/ECTS (30), დღიური მიზანი (არცერთი), კვირის პირველი დღე (ორშაბათი), თემა (სისტემური), ტოლერანტობა (5 დღე), გადატვირთვა (35 სთ/კვირაში), ზომა (კომფორტული), ფერი (ფიქალი). კურსები და სესიები შენარჩუნდება.';
 
   @override
-  String get settingsResetSettingsSubtitle =>
-      'სტანდარტის აღდგენა: 30 სთ/ECTS, მიზნის გარეშე, ორშაბათი, სისტემური თემა, 5-დღიანი ტოლერანტობა, 35 სთ/კვირაში გადატვირთვა, კომფორტული ზომა, ფიქალი ფერი.';
+  String get settingsResetSettingsSubtitle => 'სტანდარტის აღდგენა: 30 სთ/ECTS, მიზნის გარეშე, ორშაბათი, სისტემური თემა, 5-დღიანი ტოლერანტობა, 35 სთ/კვირაში გადატვირთვა, კომფორტული ზომა, ფიქალი ფერი.';
 
   @override
   String get settingsResetSettingsTitle => 'გადაიტვირთოს პარამეტრები?';
@@ -909,8 +871,7 @@ class AppLocalizationsKa extends AppLocalizations {
   String get settingsToleranceError => 'შეიყვანეთ რიცხვი 0–30 დღე.';
 
   @override
-  String get settingsToleranceHelper =>
-      'წინ ყოფნა მოითხოვს +N დღის მარაგს, ჩამორჩენა −N დღეს. 5 = სტაბილური, 0 = მგრძნობიარე.';
+  String get settingsToleranceHelper => 'წინ ყოფნა მოითხოვს +N დღის მარაგს, ჩამორჩენა −N დღეს. 5 = სტაბილური, 0 = მგრძნობიარე.';
 
   @override
   String get settingsToleranceLabel => 'მუშაობის დღეები (0–30)';
@@ -977,8 +938,7 @@ class AppLocalizationsKa extends AppLocalizations {
   String get statsConsistency => 'თანმიმდევრულობა';
 
   @override
-  String get statsConsistencyHint =>
-      'სასწავლო დღეები ბოლო 30 დღეში. ყოველდღიური პატარა ნაბიჯები სჯობს ბლოკად სწავლას.';
+  String get statsConsistencyHint => 'სასწავლო დღეები ბოლო 30 დღეში. ყოველდღიური პატარა ნაბიჯები სჯობს ბლოკად სწავლას.';
 
   @override
   String statsConsistencyScore(String percent) {
@@ -1043,8 +1003,7 @@ class AppLocalizationsKa extends AppLocalizations {
   String get statsOverview => 'მიმოხილვა';
 
   @override
-  String get statsPaceCovers =>
-      'წარსული ტემპი საჭირო ტემპს ფარავს. შეინარჩუნეთ რიტმი.';
+  String get statsPaceCovers => 'წარსული ტემპი საჭირო ტემპს ფარავს. შეინარჩუნეთ რიტმი.';
 
   @override
   String statsPaceShort(String gap) {
@@ -1102,15 +1061,13 @@ class AppLocalizationsKa extends AppLocalizations {
   String get statusOverdue => 'ვადაგადაცილებული';
 
   @override
-  String get studyLogDeleteBody =>
-      'წაიშალოს ეს სასწავლო სესია? ამის გაუქმება შეუძლებელია.';
+  String get studyLogDeleteBody => 'წაიშალოს ეს სასწავლო სესია? ამის გაუქმება შეუძლებელია.';
 
   @override
   String get studyLogDeleteTitle => 'წაიშალოს სესია?';
 
   @override
-  String get studyLogEmptyHint =>
-      'ჩაწერეთ სესია თქვენი სასწავლო დროის სათვალყურებლად.';
+  String get studyLogEmptyHint => 'ჩაწერეთ სესია თქვენი სასწავლო დროის სათვალყურებლად.';
 
   @override
   String get studyLogEmptyTitle => 'სასწავლო სესიები ჯერ არ არის';
@@ -1146,6 +1103,52 @@ class AppLocalizationsKa extends AppLocalizations {
   }
 
   @override
+  String studyTimerActiveTitle(String course) {
+    return 'Timing $course';
+  }
+
+  @override
+  String get studyTimerAlreadyRunning => 'A timer is already running. Finish or discard it first.';
+
+  @override
+  String get studyTimerCourseLabel => 'Course';
+
+  @override
+  String get studyTimerDiscard => 'Discard';
+
+  @override
+  String get studyTimerDiscardBody => 'Throw away the current timer without logging? This cannot be undone.';
+
+  @override
+  String get studyTimerDiscardTitle => 'Discard timer?';
+
+  @override
+  String studyTimerFinishLog(String minutes) {
+    return 'Finish & log $minutes min';
+  }
+
+  @override
+  String get studyTimerNoCourseError => 'Select a course.';
+
+  @override
+  String get studyTimerNoCoursesHint => 'Add a course first to start a timer.';
+
+  @override
+  String get studyTimerPause => 'Pause';
+
+  @override
+  String get studyTimerResume => 'Resume';
+
+  @override
+  String get studyTimerStart => 'Start timer';
+
+  @override
+  String get studyTimerStartTitle => 'Start study timer';
+
+  @override
+  String get studyTimerTooShort => 'Timer has not run yet.';
+
+  @override
   String get validationCourseEctsPositive => 'ECTS უნდა იყოს ნულზე მეტი';
 
   @override
@@ -1173,8 +1176,7 @@ class AppLocalizationsKa extends AppLocalizations {
   String get settingsLiquidGlass => 'თხევადი მინა';
 
   @override
-  String get settingsLiquidGlassSubtitle =>
-      'ბარათები და ზოლები მქრქალი მინით. გამორთული ტოვებს კლასიკურ მყარ იერსახეს.';
+  String get settingsLiquidGlassSubtitle => 'ბარათები და ზოლები მქრქალი მინით. გამორთული ტოვებს კლასიკურ მყარ იერსახეს.';
 
   @override
   String get settingsLiquidGlassOn => 'ჩართული';
@@ -1189,8 +1191,7 @@ class AppLocalizationsKa extends AppLocalizations {
   String get devToolsReminderPreview => 'შეხსენების წინასწარი ნახვა';
 
   @override
-  String get devToolsReminderPreviewSubtitle =>
-      'ნახეთ, რა გაფრთხილდებოდა ახლა. Windows-თვის უსაფრთხო სატესტო არხი.';
+  String get devToolsReminderPreviewSubtitle => 'ნახეთ, რა გაფრთხილდებოდა ახლა. Windows-თვის უსაფრთხო სატესტო არხი.';
 
   @override
   String get reminderPreviewTitle => 'შეხსენების წინასწარი ნახვა';
@@ -1202,8 +1203,7 @@ class AppLocalizationsKa extends AppLocalizations {
   String get reminderPreviewReset => 'ახლა';
 
   @override
-  String get reminderPreviewEmpty =>
-      'ყველაფერი წყნარადაა — ამ დროს არაფერი გაფრთხილდება.';
+  String get reminderPreviewEmpty => 'ყველაფერი წყნარადაა — ამ დროს არაფერი გაფრთხილდება.';
 
   @override
   String get reminderPreviewCustom => 'მორგებული განრიგები (დემო)';
@@ -1233,15 +1233,13 @@ class AppLocalizationsKa extends AppLocalizations {
   String get settingsReminders => 'სასწავლო შეხსენებები';
 
   @override
-  String get settingsRemindersOff =>
-      'გამორთულია — ჩართეთ ყოველდღიური შეხსენება.';
+  String get settingsRemindersOff => 'გამორთულია — ჩართეთ ყოველდღიური შეხსენება.';
 
   @override
   String get settingsReminderTime => 'შეხსენების დრო';
 
   @override
-  String get settingsReminderDenied =>
-      'შეტყობინებები დაბლოკილია — ჩართეთ სისტემის პარამეტრებში.';
+  String get settingsReminderDenied => 'შეტყობინებები დაბლოკილია — ჩართეთ სისტემის პარამეტრებში.';
 
   @override
   String notifDurationHours(String value) {
@@ -1279,12 +1277,7 @@ class AppLocalizationsKa extends AppLocalizations {
   }
 
   @override
-  String notifBehindBodyPace(
-    String left,
-    String days,
-    String pace,
-    String catchUp,
-  ) {
+  String notifBehindBodyPace(String left, String days, String pace, String catchUp) {
     return 'დარჩა $left, $days დღე — აქედან $pace/დღეში. ჩაწერეთ $catchUp, რომ გრაფიკს დაუბრუნდეთ.';
   }
 
@@ -1304,8 +1297,7 @@ class AppLocalizationsKa extends AppLocalizations {
   }
 
   @override
-  String get notifDeadlineTomorrowBody =>
-      'ყველაფერი, რასაც დღეს ჩაწერთ, ორმაგად ითვლება.';
+  String get notifDeadlineTomorrowBody => 'ყველაფერი, რასაც დღეს ჩაწერთ, ორმაგად ითვლება.';
 
   @override
   String notifDeadlineSoonTitle(String course, String days, String left) {
@@ -1318,8 +1310,7 @@ class AppLocalizationsKa extends AppLocalizations {
   }
 
   @override
-  String get notifDeadlineSoonBodyNoPace =>
-      'ყოველი საათი, რომელსაც ახლა ჩაწერთ, ითვლება.';
+  String get notifDeadlineSoonBodyNoPace => 'ყოველი საათი, რომელსაც ახლა ჩაწერთ, ითვლება.';
 
   @override
   String notifOverdueTitle(String course, String left) {
@@ -1327,8 +1318,7 @@ class AppLocalizationsKa extends AppLocalizations {
   }
 
   @override
-  String get notifOverdueBody =>
-      'გადადეთ ვადა ან დაასრულეთ საათები — კურსს დასრულებამდე ყურადღება სჭირდება.';
+  String get notifOverdueBody => 'გადადეთ ვადა ან დაასრულეთ საათები — კურსს დასრულებამდე ყურადღება სჭირდება.';
 
   @override
   String notifStreakTitle(String days, String week) {

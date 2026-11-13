@@ -1,6 +1,5 @@
 // ignore: unused_import
 import 'package:intl/intl.dart' as intl;
-
 import 'app_localizations.dart';
 
 // ignore_for_file: type=lint
@@ -83,12 +82,10 @@ class AppLocalizationsId extends AppLocalizations {
   }
 
   @override
-  String get courseFormStartEarlyOn =>
-      'Aktif: waktu dibagi hingga saat ini dan dihitung dalam kecepatan Hari Ini.';
+  String get courseFormStartEarlyOn => 'Aktif: waktu dibagi hingga saat ini dan dihitung dalam kecepatan Hari Ini.';
 
   @override
-  String get courseFormStartEarlyTitle =>
-      'Mulai sekarang walau tanggal mulai di masa depan';
+  String get courseFormStartEarlyTitle => 'Mulai sekarang walau tanggal mulai di masa depan';
 
   @override
   String get courseFormTitleAdd => 'Tambah kursus';
@@ -113,8 +110,7 @@ class AppLocalizationsId extends AppLocalizations {
   }
 
   @override
-  String get coursesEmptyHint =>
-      'Ketuk “Kursus baru” untuk membuat kursus pertama Anda.';
+  String get coursesEmptyHint => 'Ketuk “Kursus baru” untuk membuat kursus pertama Anda.';
 
   @override
   String get coursesEmptyTitle => 'Belum ada kursus';
@@ -123,8 +119,7 @@ class AppLocalizationsId extends AppLocalizations {
   String get coursesFilterAll => 'Semua status';
 
   @override
-  String get coursesFilterEmpty =>
-      'Tidak ada kursus yang cocok dengan filter ini';
+  String get coursesFilterEmpty => 'Tidak ada kursus yang cocok dengan filter ini';
 
   @override
   String get coursesNewCourse => 'Kursus baru';
@@ -155,11 +150,7 @@ class AppLocalizationsId extends AppLocalizations {
   }
 
   @override
-  String coursesProgressWithStatus(
-    String done,
-    String required,
-    String status,
-  ) {
+  String coursesProgressWithStatus(String done, String required, String status) {
     return '$done / $required jam • $status';
   }
 
@@ -228,12 +219,10 @@ class AppLocalizationsId extends AppLocalizations {
   }
 
   @override
-  String get dashboardEmptyHintAllDone =>
-      'Semua kursus selesai — lihat tab Kursus untuk daftar lengkap.';
+  String get dashboardEmptyHintAllDone => 'Semua kursus selesai — lihat tab Kursus untuk daftar lengkap.';
 
   @override
-  String get dashboardEmptyHintNoCourses =>
-      'Tambahkan kursus untuk mulai melacak progres ECTS Anda.';
+  String get dashboardEmptyHintNoCourses => 'Tambahkan kursus untuk mulai melacak progres ECTS Anda.';
 
   @override
   String dashboardExplainerBehind(String achieved, String need) {
@@ -246,12 +235,10 @@ class AppLocalizationsId extends AppLocalizations {
   }
 
   @override
-  String get dashboardExplainerBehindNoPace =>
-      'Tertinggal: tidak ada kecepatan terbatas yang bisa mengejar tenggat hari ini dengan sisa jam yang ada';
+  String get dashboardExplainerBehindNoPace => 'Tertinggal: tidak ada kecepatan terbatas yang bisa mengejar tenggat hari ini dengan sisa jam yang ada';
 
   @override
-  String get dashboardExplainerOnTrackNoPace =>
-      'Sesuai jalur: belum ada kecepatan — catat sesi pertama untuk memastikan';
+  String get dashboardExplainerOnTrackNoPace => 'Sesuai jalur: belum ada kecepatan — catat sesi pertama untuk memastikan';
 
   @override
   String dashboardExplainerStartsIn(String days, String date) {
@@ -372,8 +359,7 @@ class AppLocalizationsId extends AppLocalizations {
   String get dashboardProgramBare => 'PROGRAM';
 
   @override
-  String get dashboardProgramEmptyHint =>
-      'Tambahkan kursus untuk mulai melacak';
+  String get dashboardProgramEmptyHint => 'Tambahkan kursus untuk mulai melacak';
 
   @override
   String dashboardProgramHours(String done, String required) {
@@ -402,12 +388,10 @@ class AppLocalizationsId extends AppLocalizations {
   String get dashboardStartsSoon => 'Segera mulai';
 
   @override
-  String get dashboardTipEmpty =>
-      'Tambahkan kursus pertama Anda — kecepatan harian dan progres akan muncul di sini.';
+  String get dashboardTipEmpty => 'Tambahkan kursus pertama Anda — kecepatan harian dan progres akan muncul di sini.';
 
   @override
-  String get dashboardTipFirst =>
-      '25 menit pertama paling berarti — pilih kursus dengan tenggat terdekat.';
+  String get dashboardTipFirst => '25 menit pertama paling berarti — pilih kursus dengan tenggat terdekat.';
 
   @override
   String get dashboardTodayBare => 'HARI INI';
@@ -431,8 +415,7 @@ class AppLocalizationsId extends AppLocalizations {
   }
 
   @override
-  String get dashboardUpcomingSubtitle =>
-      'Mulai di masa depan — tanpa tekanan hari ini, dikecualikan dari kecepatan Hari Ini.';
+  String get dashboardUpcomingSubtitle => 'Mulai di masa depan — tanpa tekanan hari ini, dikecualikan dari kecepatan Hari Ini.';
 
   @override
   String get dashboardUpcomingTitle => 'Mendatang';
@@ -441,8 +424,7 @@ class AppLocalizationsId extends AppLocalizations {
   String get devToolsActivate => 'Aktifkan';
 
   @override
-  String get devToolsActivateMessage =>
-      'Ini membuka alat uji stres tersembunyi (menghasilkan data). Hanya untuk pengembangan.';
+  String get devToolsActivateMessage => 'Ini membuka alat uji stres tersembunyi (menghasilkan data). Hanya untuk pengembangan.';
 
   @override
   String get devToolsActivateTitle => 'Aktifkan mode dev?';
@@ -454,12 +436,10 @@ class AppLocalizationsId extends AppLocalizations {
   String get devToolsClearPumped => 'Hapus data hasil generate';
 
   @override
-  String get devToolsClearPumpedMessage =>
-      'Menghapus kursus STRESS yang dihasilkan beserta sesinya. Data Anda tetap disimpan.';
+  String get devToolsClearPumpedMessage => 'Menghapus kursus STRESS yang dihasilkan beserta sesinya. Data Anda tetap disimpan.';
 
   @override
-  String get devToolsClearPumpedSubtitle =>
-      'Hapus kursus STRESS dan sesi yang dihasilkan.';
+  String get devToolsClearPumpedSubtitle => 'Hapus kursus STRESS dan sesi yang dihasilkan.';
 
   @override
   String get devToolsClearPumpedTitle => 'Hapus data hasil generate?';
@@ -470,8 +450,7 @@ class AppLocalizationsId extends AppLocalizations {
   }
 
   @override
-  String get devToolsConfirmPumpMessage =>
-      'Konfirmasi kedua: ini akan memperbanyak kursus, daftar, grafik, dan perhitungan kecepatan, dan mungkin butuh beberapa detik. Buat sekarang?';
+  String get devToolsConfirmPumpMessage => 'Konfirmasi kedua: ini akan memperbanyak kursus, daftar, grafik, dan perhitungan kecepatan, dan mungkin butuh beberapa detik. Buat sekarang?';
 
   @override
   String get devToolsConfirmPumpTitle => 'Konfirmasi uji stres';
@@ -489,12 +468,10 @@ class AppLocalizationsId extends AppLocalizations {
   String get devToolsPumpData => 'Buat data';
 
   @override
-  String get devToolsPumpMessage =>
-      'Ini menyisipkan satu semester buatan yang realistis (~10 kursus, ~800 sesi selama 12 minggu terakhir). Data Anda tetap disimpan. Lanjutkan?';
+  String get devToolsPumpMessage => 'Ini menyisipkan satu semester buatan yang realistis (~10 kursus, ~800 sesi selama 12 minggu terakhir). Data Anda tetap disimpan. Lanjutkan?';
 
   @override
-  String get devToolsPumpSubtitle =>
-      'Sisipkan satu semester buatan (~10 kursus, ~800 sesi, 12 minggu). Data yang ada tetap disimpan.';
+  String get devToolsPumpSubtitle => 'Sisipkan satu semester buatan (~10 kursus, ~800 sesi, 12 minggu). Data yang ada tetap disimpan.';
 
   @override
   String get devToolsPumpTile => 'Buat data uji';
@@ -514,12 +491,10 @@ class AppLocalizationsId extends AppLocalizations {
   String get devToolsRemoveAll => 'Hapus semua data';
 
   @override
-  String get devToolsRemoveAllMessage =>
-      'Pintasan dev: menghapus permanen SEMUA kursus, sesi, dan pengaturan. Tidak dapat dibatalkan.';
+  String get devToolsRemoveAllMessage => 'Pintasan dev: menghapus permanen SEMUA kursus, sesi, dan pengaturan. Tidak dapat dibatalkan.';
 
   @override
-  String get devToolsRemoveAllSubtitle =>
-      'Pintasan dev: hapus SEMUA kursus, sesi, dan pengaturan.';
+  String get devToolsRemoveAllSubtitle => 'Pintasan dev: hapus SEMUA kursus, sesi, dan pengaturan.';
 
   @override
   String get devToolsRemoveAllTitle => 'Hapus semua data?';
@@ -566,8 +541,7 @@ class AppLocalizationsId extends AppLocalizations {
   String get sessionFormNoCourseError => 'Pilih kursus.';
 
   @override
-  String get sessionFormNoCoursesHint =>
-      'Tambahkan kursus dulu untuk mencatat sesi.';
+  String get sessionFormNoCoursesHint => 'Tambahkan kursus dulu untuk mencatat sesi.';
 
   @override
   String get sessionFormNotesLabel => 'Catatan (opsional)';
@@ -623,12 +597,10 @@ class AppLocalizationsId extends AppLocalizations {
   String get settingsClearSample => 'Hapus data contoh';
 
   @override
-  String get settingsClearSampleMessage =>
-      'Ini menghapus kursus dan sesi contoh. Kursus atau sesi yang Anda tambahkan tidak dihapus.';
+  String get settingsClearSampleMessage => 'Ini menghapus kursus dan sesi contoh. Kursus atau sesi yang Anda tambahkan tidak dihapus.';
 
   @override
-  String get settingsClearSampleSubtitle =>
-      'Hapus kursus dan sesi contoh bawaan. Data Anda tetap disimpan.';
+  String get settingsClearSampleSubtitle => 'Hapus kursus dan sesi contoh bawaan. Data Anda tetap disimpan.';
 
   @override
   String get settingsClearSampleTitle => 'Hapus data contoh?';
@@ -692,8 +664,7 @@ class AppLocalizationsId extends AppLocalizations {
   String get settingsExportCopied => 'Ekspor disalin ke papan klip.';
 
   @override
-  String get settingsExportSubtitle =>
-      'Salin semua kursus, sesi, dan pengaturan sebagai JSON.';
+  String get settingsExportSubtitle => 'Salin semua kursus, sesi, dan pengaturan sebagai JSON.';
 
   @override
   String settingsExportSummary(String courses, String sessions, String kb) {
@@ -723,8 +694,7 @@ class AppLocalizationsId extends AppLocalizations {
   String get settingsHoursError => 'Masukkan angka lebih dari nol.';
 
   @override
-  String get settingsHoursHelper =>
-      'Default 30. Perubahan menghitung ulang kebutuhan; catatan tetap disimpan.';
+  String get settingsHoursHelper => 'Default 30. Perubahan menghitung ulang kebutuhan; catatan tetap disimpan.';
 
   @override
   String get settingsHoursLabel => 'Jam per SKS ECTS';
@@ -755,8 +725,7 @@ class AppLocalizationsId extends AppLocalizations {
   }
 
   @override
-  String get settingsImportInfo =>
-      'Penambahan menaruh cadangan berdampingan dengan data saat ini (pengaturan tetap). Penggantian menghapus SEMUA kursus, sesi, dan pengaturan terlebih dahulu.';
+  String get settingsImportInfo => 'Penambahan menaruh cadangan berdampingan dengan data saat ini (pengaturan tetap). Penggantian menghapus SEMUA kursus, sesi, dan pengaturan terlebih dahulu.';
 
   @override
   String get settingsImportLabel => 'Tempel JSON hasil ekspor';
@@ -790,8 +759,7 @@ class AppLocalizationsId extends AppLocalizations {
   }
 
   @override
-  String get settingsImportSubtitle =>
-      'Ganti semua data dari cadangan JSON yang pernah diekspor.';
+  String get settingsImportSubtitle => 'Ganti semua data dari cadangan JSON yang pernah diekspor.';
 
   @override
   String settingsKeepHolding(String remaining) {
@@ -811,8 +779,7 @@ class AppLocalizationsId extends AppLocalizations {
   String get settingsOverloadError => 'Masukkan angka 5–100 jam/minggu.';
 
   @override
-  String get settingsOverloadHelper =>
-      'Minggu-minggu padat di atas ini ditandai merah. Studi penuh waktu ~35–40 jam/minggu.';
+  String get settingsOverloadHelper => 'Minggu-minggu padat di atas ini ditandai merah. Studi penuh waktu ~35–40 jam/minggu.';
 
   @override
   String settingsOverloadHours(String value) {
@@ -846,12 +813,10 @@ class AppLocalizationsId extends AppLocalizations {
   String get settingsResetAll => 'Atur ulang semua data';
 
   @override
-  String get settingsResetAllMessage =>
-      'Ini menghapus permanen SEMUA kursus, sesi, dan pengaturan. Tidak dapat dibatalkan. Ekspor cadangan dulu jika perlu.';
+  String get settingsResetAllMessage => 'Ini menghapus permanen SEMUA kursus, sesi, dan pengaturan. Tidak dapat dibatalkan. Ekspor cadangan dulu jika perlu.';
 
   @override
-  String get settingsResetAllSubtitle =>
-      'Hapus semua kursus, sesi, dan pengaturan.';
+  String get settingsResetAllSubtitle => 'Hapus semua kursus, sesi, dan pengaturan.';
 
   @override
   String get settingsResetAllTitle => 'Atur ulang semua data?';
@@ -863,12 +828,10 @@ class AppLocalizationsId extends AppLocalizations {
   String get settingsResetSettingsDone => 'Pengaturan dikembalikan ke default.';
 
   @override
-  String get settingsResetSettingsMessage =>
-      'Mengembalikan jam-per-ECTS (30), target harian (tidak ada), hari pertama minggu (Senin), tema (sistem), toleransi (5 hari), beban berlebih (35 jam/minggu), ukuran (nyaman), warna (batu tulis).';
+  String get settingsResetSettingsMessage => 'Mengembalikan jam-per-ECTS (30), target harian (tidak ada), hari pertama minggu (Senin), tema (sistem), toleransi (5 hari), beban berlebih (35 jam/minggu), ukuran (nyaman), warna (batu tulis).';
 
   @override
-  String get settingsResetSettingsSubtitle =>
-      'Kembalikan default: 30 jam/ECTS, tanpa target, Senin, tema sistem, toleransi 5 hari, beban berlebih 35 jam/minggu, ukuran nyaman, warna batu tulis.';
+  String get settingsResetSettingsSubtitle => 'Kembalikan default: 30 jam/ECTS, tanpa target, Senin, tema sistem, toleransi 5 hari, beban berlebih 35 jam/minggu, ukuran nyaman, warna batu tulis.';
 
   @override
   String get settingsResetSettingsTitle => 'Atur ulang pengaturan?';
@@ -908,8 +871,7 @@ class AppLocalizationsId extends AppLocalizations {
   String get settingsToleranceError => 'Masukkan angka 0–30 hari.';
 
   @override
-  String get settingsToleranceHelper =>
-      'Maju butuh surplus +N hari, tertinggal −N hari. 5 = stabil, 0 = sensitif.';
+  String get settingsToleranceHelper => 'Maju butuh surplus +N hari, tertinggal −N hari. 5 = stabil, 0 = sensitif.';
 
   @override
   String get settingsToleranceLabel => 'Hari kerja (0–30)';
@@ -967,8 +929,7 @@ class AppLocalizationsId extends AppLocalizations {
   }
 
   @override
-  String get statsAddDeadlines =>
-      'Tambahkan tenggat untuk memprakirakan beban.';
+  String get statsAddDeadlines => 'Tambahkan tenggat untuk memprakirakan beban.';
 
   @override
   String get statsComingLoad => 'Beban mendatang';
@@ -977,8 +938,7 @@ class AppLocalizationsId extends AppLocalizations {
   String get statsConsistency => 'Konsistensi';
 
   @override
-  String get statsConsistencyHint =>
-      'Hari belajar dalam 30 hari terakhir. Langkah kecil setiap hari mengalahkan kebut semalam.';
+  String get statsConsistencyHint => 'Hari belajar dalam 30 hari terakhir. Langkah kecil setiap hari mengalahkan kebut semalam.';
 
   @override
   String statsConsistencyScore(String percent) {
@@ -1043,8 +1003,7 @@ class AppLocalizationsId extends AppLocalizations {
   String get statsOverview => 'Ringkasan';
 
   @override
-  String get statsPaceCovers =>
-      'Kecepatan lalu menutupi yang dibutuhkan. Pertahankan rentetan.';
+  String get statsPaceCovers => 'Kecepatan lalu menutupi yang dibutuhkan. Pertahankan rentetan.';
 
   @override
   String statsPaceShort(String gap) {
@@ -1102,15 +1061,13 @@ class AppLocalizationsId extends AppLocalizations {
   String get statusOverdue => 'Terlambat';
 
   @override
-  String get studyLogDeleteBody =>
-      'Hapus sesi belajar ini? Tidak dapat dibatalkan.';
+  String get studyLogDeleteBody => 'Hapus sesi belajar ini? Tidak dapat dibatalkan.';
 
   @override
   String get studyLogDeleteTitle => 'Hapus sesi?';
 
   @override
-  String get studyLogEmptyHint =>
-      'Catat sesi untuk melacak waktu belajar Anda.';
+  String get studyLogEmptyHint => 'Catat sesi untuk melacak waktu belajar Anda.';
 
   @override
   String get studyLogEmptyTitle => 'Belum ada sesi belajar';
@@ -1146,6 +1103,52 @@ class AppLocalizationsId extends AppLocalizations {
   }
 
   @override
+  String studyTimerActiveTitle(String course) {
+    return 'Timing $course';
+  }
+
+  @override
+  String get studyTimerAlreadyRunning => 'A timer is already running. Finish or discard it first.';
+
+  @override
+  String get studyTimerCourseLabel => 'Course';
+
+  @override
+  String get studyTimerDiscard => 'Discard';
+
+  @override
+  String get studyTimerDiscardBody => 'Throw away the current timer without logging? This cannot be undone.';
+
+  @override
+  String get studyTimerDiscardTitle => 'Discard timer?';
+
+  @override
+  String studyTimerFinishLog(String minutes) {
+    return 'Finish & log $minutes min';
+  }
+
+  @override
+  String get studyTimerNoCourseError => 'Select a course.';
+
+  @override
+  String get studyTimerNoCoursesHint => 'Add a course first to start a timer.';
+
+  @override
+  String get studyTimerPause => 'Pause';
+
+  @override
+  String get studyTimerResume => 'Resume';
+
+  @override
+  String get studyTimerStart => 'Start timer';
+
+  @override
+  String get studyTimerStartTitle => 'Start study timer';
+
+  @override
+  String get studyTimerTooShort => 'Timer has not run yet.';
+
+  @override
   String get validationCourseEctsPositive => 'ECTS harus lebih dari nol';
 
   @override
@@ -1173,8 +1176,7 @@ class AppLocalizationsId extends AppLocalizations {
   String get settingsLiquidGlass => 'Kaca cair';
 
   @override
-  String get settingsLiquidGlassSubtitle =>
-      'Kartu dan bilah kaca buram. Mati mempertahankan tampilan solid klasik.';
+  String get settingsLiquidGlassSubtitle => 'Kartu dan bilah kaca buram. Mati mempertahankan tampilan solid klasik.';
 
   @override
   String get settingsLiquidGlassOn => 'Aktif';
@@ -1189,8 +1191,7 @@ class AppLocalizationsId extends AppLocalizations {
   String get devToolsReminderPreview => 'Pratinjau pengingat';
 
   @override
-  String get devToolsReminderPreviewSubtitle =>
-      'Lihat apa yang akan memberitahu saat ini. Umpan uji yang aman di Windows.';
+  String get devToolsReminderPreviewSubtitle => 'Lihat apa yang akan memberitahu saat ini. Umpan uji yang aman di Windows.';
 
   @override
   String get reminderPreviewTitle => 'Pratinjau pengingat';
@@ -1202,8 +1203,7 @@ class AppLocalizationsId extends AppLocalizations {
   String get reminderPreviewReset => 'Sekarang';
 
   @override
-  String get reminderPreviewEmpty =>
-      'Semua tenang — tidak ada yang akan memberitahu saat ini.';
+  String get reminderPreviewEmpty => 'Semua tenang — tidak ada yang akan memberitahu saat ini.';
 
   @override
   String get reminderPreviewCustom => 'Jadwal kustom (demo)';
@@ -1239,8 +1239,7 @@ class AppLocalizationsId extends AppLocalizations {
   String get settingsReminderTime => 'Waktu pengingat';
 
   @override
-  String get settingsReminderDenied =>
-      'Notifikasi diblokir — aktifkan di pengaturan sistem.';
+  String get settingsReminderDenied => 'Notifikasi diblokir — aktifkan di pengaturan sistem.';
 
   @override
   String notifDurationHours(String value) {
@@ -1278,12 +1277,7 @@ class AppLocalizationsId extends AppLocalizations {
   }
 
   @override
-  String notifBehindBodyPace(
-    String left,
-    String days,
-    String pace,
-    String catchUp,
-  ) {
+  String notifBehindBodyPace(String left, String days, String pace, String catchUp) {
     return '$left tersisa, $days hari lagi — $pace/hari dari sini. Catat $catchUp untuk kembali Sesuai jalur.';
   }
 
@@ -1303,8 +1297,7 @@ class AppLocalizationsId extends AppLocalizations {
   }
 
   @override
-  String get notifDeadlineTomorrowBody =>
-      'Semua yang Anda catat hari ini dihitung ganda.';
+  String get notifDeadlineTomorrowBody => 'Semua yang Anda catat hari ini dihitung ganda.';
 
   @override
   String notifDeadlineSoonTitle(String course, String days, String left) {
@@ -1317,8 +1310,7 @@ class AppLocalizationsId extends AppLocalizations {
   }
 
   @override
-  String get notifDeadlineSoonBodyNoPace =>
-      'Setiap jam yang Anda catat sekarang dihitung.';
+  String get notifDeadlineSoonBodyNoPace => 'Setiap jam yang Anda catat sekarang dihitung.';
 
   @override
   String notifOverdueTitle(String course, String left) {
@@ -1326,8 +1318,7 @@ class AppLocalizationsId extends AppLocalizations {
   }
 
   @override
-  String get notifOverdueBody =>
-      'Geser tenggatnya atau selesaikan jamnya — kursus tetap perlu perhatian sampai saat itu.';
+  String get notifOverdueBody => 'Geser tenggatnya atau selesaikan jamnya — kursus tetap perlu perhatian sampai saat itu.';
 
   @override
   String notifStreakTitle(String days, String week) {
@@ -1335,8 +1326,7 @@ class AppLocalizationsId extends AppLocalizations {
   }
 
   @override
-  String get notifStreakBody =>
-      'Semua kursus Sesuai jalur atau Maju. Rentetan yang bagus.';
+  String get notifStreakBody => 'Semua kursus Sesuai jalur atau Maju. Rentetan yang bagus.';
 
   @override
   String notifCustomTitleAuto(String course) {

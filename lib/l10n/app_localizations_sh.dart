@@ -1,6 +1,5 @@
 // ignore: unused_import
 import 'package:intl/intl.dart' as intl;
-
 import 'app_localizations.dart';
 
 // ignore_for_file: type=lint
@@ -83,8 +82,7 @@ class AppLocalizationsSh extends AppLocalizations {
   }
 
   @override
-  String get courseFormStartEarlyOn =>
-      'Uključeno: vrijeme se dijeli do sada i računa u današnji tempo.';
+  String get courseFormStartEarlyOn => 'Uključeno: vrijeme se dijeli do sada i računa u današnji tempo.';
 
   @override
   String get courseFormStartEarlyTitle => 'Počni sada uprkos budućem početku';
@@ -112,8 +110,7 @@ class AppLocalizationsSh extends AppLocalizations {
   }
 
   @override
-  String get coursesEmptyHint =>
-      'Dodirni «Novi predmet» da napraviš svoj prvi predmet.';
+  String get coursesEmptyHint => 'Dodirni «Novi predmet» da napraviš svoj prvi predmet.';
 
   @override
   String get coursesEmptyTitle => 'Još nema predmeta';
@@ -153,11 +150,7 @@ class AppLocalizationsSh extends AppLocalizations {
   }
 
   @override
-  String coursesProgressWithStatus(
-    String done,
-    String required,
-    String status,
-  ) {
+  String coursesProgressWithStatus(String done, String required, String status) {
     return '$done / $required h • $status';
   }
 
@@ -226,12 +219,10 @@ class AppLocalizationsSh extends AppLocalizations {
   }
 
   @override
-  String get dashboardEmptyHintAllDone =>
-      'Svaki predmet je završen — vidi karticu Predmeti za cijeli spisak.';
+  String get dashboardEmptyHintAllDone => 'Svaki predmet je završen — vidi karticu Predmeti za cijeli spisak.';
 
   @override
-  String get dashboardEmptyHintNoCourses =>
-      'Dodaj predmet da počneš pratiti ECTS napredak.';
+  String get dashboardEmptyHintNoCourses => 'Dodaj predmet da počneš pratiti ECTS napredak.';
 
   @override
   String dashboardExplainerBehind(String achieved, String need) {
@@ -244,12 +235,10 @@ class AppLocalizationsSh extends AppLocalizations {
   }
 
   @override
-  String get dashboardExplainerBehindNoPace =>
-      'Kasniš: nema konačnog tempa koji stiže današnji rok sa satima koji ostaju';
+  String get dashboardExplainerBehindNoPace => 'Kasniš: nema konačnog tempa koji stiže današnji rok sa satima koji ostaju';
 
   @override
-  String get dashboardExplainerOnTrackNoPace =>
-      'Na pravom putu: još nema tempa — upiši prvu sesiju za potvrdu';
+  String get dashboardExplainerOnTrackNoPace => 'Na pravom putu: još nema tempa — upiši prvu sesiju za potvrdu';
 
   @override
   String dashboardExplainerStartsIn(String days, String date) {
@@ -399,12 +388,10 @@ class AppLocalizationsSh extends AppLocalizations {
   String get dashboardStartsSoon => 'Počinje uskoro';
 
   @override
-  String get dashboardTipEmpty =>
-      'Dodaj svoj prvi predmet — dnevni tempo i napredak će se pojaviti ovdje.';
+  String get dashboardTipEmpty => 'Dodaj svoj prvi predmet — dnevni tempo i napredak će se pojaviti ovdje.';
 
   @override
-  String get dashboardTipFirst =>
-      'Prvih 25 minuta vrijedi najviše — izaberi predmet kojem je rok najbliži.';
+  String get dashboardTipFirst => 'Prvih 25 minuta vrijedi najviše — izaberi predmet kojem je rok najbliži.';
 
   @override
   String get dashboardTodayBare => 'DANAS';
@@ -428,8 +415,7 @@ class AppLocalizationsSh extends AppLocalizations {
   }
 
   @override
-  String get dashboardUpcomingSubtitle =>
-      'Budući počeci — danas nema pritiska, isključeno iz današnjeg tempa.';
+  String get dashboardUpcomingSubtitle => 'Budući počeci — danas nema pritiska, isključeno iz današnjeg tempa.';
 
   @override
   String get dashboardUpcomingTitle => 'Dolazi';
@@ -438,8 +424,7 @@ class AppLocalizationsSh extends AppLocalizations {
   String get devToolsActivate => 'Aktiviraj';
 
   @override
-  String get devToolsActivateMessage =>
-      'Ovo otključava skrivene alate za stres-test (generisane podatke). Samo za razvoj.';
+  String get devToolsActivateMessage => 'Ovo otključava skrivene alate za stres-test (generisane podatke). Samo za razvoj.';
 
   @override
   String get devToolsActivateTitle => 'Aktivirati dev način?';
@@ -451,12 +436,10 @@ class AppLocalizationsSh extends AppLocalizations {
   String get devToolsClearPumped => 'Obriši generisane podatke';
 
   @override
-  String get devToolsClearPumpedMessage =>
-      'Briše generisane STRESS predmete i njihove sesije. Tvoji podaci ostaju.';
+  String get devToolsClearPumpedMessage => 'Briše generisane STRESS predmete i njihove sesije. Tvoji podaci ostaju.';
 
   @override
-  String get devToolsClearPumpedSubtitle =>
-      'Obriši generisane STRESS predmete i sesije.';
+  String get devToolsClearPumpedSubtitle => 'Obriši generisane STRESS predmete i sesije.';
 
   @override
   String get devToolsClearPumpedTitle => 'Obrisati generisane podatke?';
@@ -467,8 +450,7 @@ class AppLocalizationsSh extends AppLocalizations {
   }
 
   @override
-  String get devToolsConfirmPumpMessage =>
-      'Druga potvrda: ovo će napuniti predmete, liste, grafikone i proračune tempa i može trajati nekoliko sekundi. Napuniti sada?';
+  String get devToolsConfirmPumpMessage => 'Druga potvrda: ovo će napuniti predmete, liste, grafikone i proračune tempa i može trajati nekoliko sekundi. Napuniti sada?';
 
   @override
   String get devToolsConfirmPumpTitle => 'Potvrdi stres-test';
@@ -486,12 +468,10 @@ class AppLocalizationsSh extends AppLocalizations {
   String get devToolsPumpData => 'Napuni podatke';
 
   @override
-  String get devToolsPumpMessage =>
-      'Ovo ubacuje realističan generisani semestar (oko 10 predmeta, oko 800 sesija u zadnjih 12 sedmica). Postojeći podaci ostaju. Nastaviti?';
+  String get devToolsPumpMessage => 'Ovo ubacuje realističan generisani semestar (oko 10 predmeta, oko 800 sesija u zadnjih 12 sedmica). Postojeći podaci ostaju. Nastaviti?';
 
   @override
-  String get devToolsPumpSubtitle =>
-      'Ubaci generisani semestar (oko 10 predmeta, oko 800 sesija, 12 sedmica). Postojeći podaci ostaju.';
+  String get devToolsPumpSubtitle => 'Ubaci generisani semestar (oko 10 predmeta, oko 800 sesija, 12 sedmica). Postojeći podaci ostaju.';
 
   @override
   String get devToolsPumpTile => 'Napuni test podatke';
@@ -511,12 +491,10 @@ class AppLocalizationsSh extends AppLocalizations {
   String get devToolsRemoveAll => 'Ukloni sve podatke';
 
   @override
-  String get devToolsRemoveAllMessage =>
-      'Dev prečica: ovo trajno briše SVE predmete, sesije i postavke. Ovo se ne može poništiti.';
+  String get devToolsRemoveAllMessage => 'Dev prečica: ovo trajno briše SVE predmete, sesije i postavke. Ovo se ne može poništiti.';
 
   @override
-  String get devToolsRemoveAllSubtitle =>
-      'Dev prečica: obriši SVE predmete, sesije i postavke.';
+  String get devToolsRemoveAllSubtitle => 'Dev prečica: obriši SVE predmete, sesije i postavke.';
 
   @override
   String get devToolsRemoveAllTitle => 'Ukloniti sve podatke?';
@@ -563,8 +541,7 @@ class AppLocalizationsSh extends AppLocalizations {
   String get sessionFormNoCourseError => 'Izaberi predmet.';
 
   @override
-  String get sessionFormNoCoursesHint =>
-      'Prvo dodaj predmet da bi upisao sesiju.';
+  String get sessionFormNoCoursesHint => 'Prvo dodaj predmet da bi upisao sesiju.';
 
   @override
   String get sessionFormNotesLabel => 'Bilješke (opcionalno)';
@@ -620,12 +597,10 @@ class AppLocalizationsSh extends AppLocalizations {
   String get settingsClearSample => 'Obriši primjere podataka';
 
   @override
-  String get settingsClearSampleMessage =>
-      'Ovo uklanja primjere predmeta i sesija. Predmete ili sesije koje si sam dodao ne uklanja.';
+  String get settingsClearSampleMessage => 'Ovo uklanja primjere predmeta i sesija. Predmete ili sesije koje si sam dodao ne uklanja.';
 
   @override
-  String get settingsClearSampleSubtitle =>
-      'Ukloni ubačene primjere predmeta i sesija. Tvoji podaci ostaju.';
+  String get settingsClearSampleSubtitle => 'Ukloni ubačene primjere predmeta i sesija. Tvoji podaci ostaju.';
 
   @override
   String get settingsClearSampleTitle => 'Obrisati primjere podataka?';
@@ -689,8 +664,7 @@ class AppLocalizationsSh extends AppLocalizations {
   String get settingsExportCopied => 'Izvoz kopiran u clipboard.';
 
   @override
-  String get settingsExportSubtitle =>
-      'Kopiraj sve predmete, sesije i postavke kao JSON.';
+  String get settingsExportSubtitle => 'Kopiraj sve predmete, sesije i postavke kao JSON.';
 
   @override
   String settingsExportSummary(String courses, String sessions, String kb) {
@@ -720,8 +694,7 @@ class AppLocalizationsSh extends AppLocalizations {
   String get settingsHoursError => 'Unesi broj veći od nule.';
 
   @override
-  String get settingsHoursHelper =>
-      'Standardno 30. Promjena preračunava zahtjeve; evidencija ostaje.';
+  String get settingsHoursHelper => 'Standardno 30. Promjena preračunava zahtjeve; evidencija ostaje.';
 
   @override
   String get settingsHoursLabel => 'Sati po ECTS bodu';
@@ -752,8 +725,7 @@ class AppLocalizationsSh extends AppLocalizations {
   }
 
   @override
-  String get settingsImportInfo =>
-      'Dodavanje dodaje rezervnu kopiju uz trenutne podatke (postavke ostaju). Zamjena prvo briše SVE predmete, sesije i postavke.';
+  String get settingsImportInfo => 'Dodavanje dodaje rezervnu kopiju uz trenutne podatke (postavke ostaju). Zamjena prvo briše SVE predmete, sesije i postavke.';
 
   @override
   String get settingsImportLabel => 'Zalijepi izvezeni JSON';
@@ -787,8 +759,7 @@ class AppLocalizationsSh extends AppLocalizations {
   }
 
   @override
-  String get settingsImportSubtitle =>
-      'Zamijeni sve podatke iz ranije izvezene JSON rezervne kopije.';
+  String get settingsImportSubtitle => 'Zamijeni sve podatke iz ranije izvezene JSON rezervne kopije.';
 
   @override
   String settingsKeepHolding(String remaining) {
@@ -799,8 +770,7 @@ class AppLocalizationsSh extends AppLocalizations {
   String get settingsNoSample => 'Nema primjera podataka';
 
   @override
-  String get settingsNoSampleSubtitle =>
-      'Ubačeni primjeri podataka su već obrisani.';
+  String get settingsNoSampleSubtitle => 'Ubačeni primjeri podataka su već obrisani.';
 
   @override
   String get settingsNoTarget => 'Nema postavljenog cilja';
@@ -809,8 +779,7 @@ class AppLocalizationsSh extends AppLocalizations {
   String get settingsOverloadError => 'Unesi broj 5–100 h/sedmično.';
 
   @override
-  String get settingsOverloadHelper =>
-      'Nadolazeće sedmice iznad ovoga označene su crveno. Redovan studij je oko 35–40 h/sedmično.';
+  String get settingsOverloadHelper => 'Nadolazeće sedmice iznad ovoga označene su crveno. Redovan studij je oko 35–40 h/sedmično.';
 
   @override
   String settingsOverloadHours(String value) {
@@ -844,12 +813,10 @@ class AppLocalizationsSh extends AppLocalizations {
   String get settingsResetAll => 'Resetuj sve podatke';
 
   @override
-  String get settingsResetAllMessage =>
-      'Ovo trajno briše SVE predmete, sesije i postavke. Ovo se ne može poništiti. Ako treba, prvo izvezi rezervnu kopiju.';
+  String get settingsResetAllMessage => 'Ovo trajno briše SVE predmete, sesije i postavke. Ovo se ne može poništiti. Ako treba, prvo izvezi rezervnu kopiju.';
 
   @override
-  String get settingsResetAllSubtitle =>
-      'Obriši sve predmete, sesije i postavke.';
+  String get settingsResetAllSubtitle => 'Obriši sve predmete, sesije i postavke.';
 
   @override
   String get settingsResetAllTitle => 'Resetovati sve podatke?';
@@ -861,12 +828,10 @@ class AppLocalizationsSh extends AppLocalizations {
   String get settingsResetSettingsDone => 'Postavke vraćene na standardne.';
 
   @override
-  String get settingsResetSettingsMessage =>
-      'Vraća sate po ECTS-u (30), dnevni cilj (ništa), prvi dan (ponedjeljak), temu (sistem), toleranciju (5 dana), preopterećenje (35 h/sedm.), veličinu (udobno), boju (škriljac). Predmeti i sesije ostaju.';
+  String get settingsResetSettingsMessage => 'Vraća sate po ECTS-u (30), dnevni cilj (ništa), prvi dan (ponedjeljak), temu (sistem), toleranciju (5 dana), preopterećenje (35 h/sedm.), veličinu (udobno), boju (škriljac). Predmeti i sesije ostaju.';
 
   @override
-  String get settingsResetSettingsSubtitle =>
-      'Vrati standardno: 30 h/ECTS, bez cilja, ponedjeljak, tema sistema, tolerancija 5 dana, preopterećenje 35 h/sedm., udobna veličina, škriljac boja.';
+  String get settingsResetSettingsSubtitle => 'Vrati standardno: 30 h/ECTS, bez cilja, ponedjeljak, tema sistema, tolerancija 5 dana, preopterećenje 35 h/sedm., udobna veličina, škriljac boja.';
 
   @override
   String get settingsResetSettingsTitle => 'Resetovati postavke?';
@@ -906,8 +871,7 @@ class AppLocalizationsSh extends AppLocalizations {
   String get settingsToleranceError => 'Unesi broj 0–30 dana.';
 
   @override
-  String get settingsToleranceHelper =>
-      'Ispred treba +N dana viška, iza −N dana. 5 = stabilno, 0 = osjetljivo.';
+  String get settingsToleranceHelper => 'Ispred treba +N dana viška, iza −N dana. 5 = stabilno, 0 = osjetljivo.';
 
   @override
   String get settingsToleranceLabel => 'Dana rada (0–30)';
@@ -974,8 +938,7 @@ class AppLocalizationsSh extends AppLocalizations {
   String get statsConsistency => 'Dosljednost';
 
   @override
-  String get statsConsistencyHint =>
-      'Dani učenja u zadnjih 30 dana. Mali koraci svaki dan pobjeđuju kampanjsko učenje.';
+  String get statsConsistencyHint => 'Dani učenja u zadnjih 30 dana. Mali koraci svaki dan pobjeđuju kampanjsko učenje.';
 
   @override
   String statsConsistencyScore(String percent) {
@@ -1040,8 +1003,7 @@ class AppLocalizationsSh extends AppLocalizations {
   String get statsOverview => 'Pregled';
 
   @override
-  String get statsPaceCovers =>
-      'Dosadašnji tempo pokriva ono što treba. Nastavi niz.';
+  String get statsPaceCovers => 'Dosadašnji tempo pokriva ono što treba. Nastavi niz.';
 
   @override
   String statsPaceShort(String gap) {
@@ -1099,8 +1061,7 @@ class AppLocalizationsSh extends AppLocalizations {
   String get statusOverdue => 'Prekoračeno';
 
   @override
-  String get studyLogDeleteBody =>
-      'Obrisati ovu sesiju učenja? Ovo se ne može poništiti.';
+  String get studyLogDeleteBody => 'Obrisati ovu sesiju učenja? Ovo se ne može poništiti.';
 
   @override
   String get studyLogDeleteTitle => 'Obrisati sesiju?';
@@ -1142,6 +1103,52 @@ class AppLocalizationsSh extends AppLocalizations {
   }
 
   @override
+  String studyTimerActiveTitle(String course) {
+    return 'Timing $course';
+  }
+
+  @override
+  String get studyTimerAlreadyRunning => 'A timer is already running. Finish or discard it first.';
+
+  @override
+  String get studyTimerCourseLabel => 'Course';
+
+  @override
+  String get studyTimerDiscard => 'Discard';
+
+  @override
+  String get studyTimerDiscardBody => 'Throw away the current timer without logging? This cannot be undone.';
+
+  @override
+  String get studyTimerDiscardTitle => 'Discard timer?';
+
+  @override
+  String studyTimerFinishLog(String minutes) {
+    return 'Finish & log $minutes min';
+  }
+
+  @override
+  String get studyTimerNoCourseError => 'Select a course.';
+
+  @override
+  String get studyTimerNoCoursesHint => 'Add a course first to start a timer.';
+
+  @override
+  String get studyTimerPause => 'Pause';
+
+  @override
+  String get studyTimerResume => 'Resume';
+
+  @override
+  String get studyTimerStart => 'Start timer';
+
+  @override
+  String get studyTimerStartTitle => 'Start study timer';
+
+  @override
+  String get studyTimerTooShort => 'Timer has not run yet.';
+
+  @override
   String get validationCourseEctsPositive => 'ECTS mora biti veći od nule';
 
   @override
@@ -1169,8 +1176,7 @@ class AppLocalizationsSh extends AppLocalizations {
   String get settingsLiquidGlass => 'Tečno staklo';
 
   @override
-  String get settingsLiquidGlassSubtitle =>
-      'Kartice i trake od mat stakla. Isključeno zadržava klasični puni izgled.';
+  String get settingsLiquidGlassSubtitle => 'Kartice i trake od mat stakla. Isključeno zadržava klasični puni izgled.';
 
   @override
   String get settingsLiquidGlassOn => 'Uključeno';
@@ -1185,8 +1191,7 @@ class AppLocalizationsSh extends AppLocalizations {
   String get devToolsReminderPreview => 'Pregled podsjetnika';
 
   @override
-  String get devToolsReminderPreviewSubtitle =>
-      'Vidi šta bi obavijestilo sada. Testni feed bezbjedan za Windows.';
+  String get devToolsReminderPreviewSubtitle => 'Vidi šta bi obavijestilo sada. Testni feed bezbjedan za Windows.';
 
   @override
   String get reminderPreviewTitle => 'Pregled podsjetnika';
@@ -1198,8 +1203,7 @@ class AppLocalizationsSh extends AppLocalizations {
   String get reminderPreviewReset => 'Sada';
 
   @override
-  String get reminderPreviewEmpty =>
-      'Sve mirno — ništa ne bi obavijestilo u ovo vrijeme.';
+  String get reminderPreviewEmpty => 'Sve mirno — ništa ne bi obavijestilo u ovo vrijeme.';
 
   @override
   String get reminderPreviewCustom => 'Prilagođeni rasporedi (demo)';
@@ -1229,15 +1233,13 @@ class AppLocalizationsSh extends AppLocalizations {
   String get settingsReminders => 'Podsjetnici za učenje';
 
   @override
-  String get settingsRemindersOff =>
-      'Isključeno — uključi za dnevni podsjetnik.';
+  String get settingsRemindersOff => 'Isključeno — uključi za dnevni podsjetnik.';
 
   @override
   String get settingsReminderTime => 'Vrijeme podsjetnika';
 
   @override
-  String get settingsReminderDenied =>
-      'Obavještenja su blokirana — omogući ih u postavkama sistema.';
+  String get settingsReminderDenied => 'Obavještenja su blokirana — omogući ih u postavkama sistema.';
 
   @override
   String notifDurationHours(String value) {
@@ -1275,12 +1277,7 @@ class AppLocalizationsSh extends AppLocalizations {
   }
 
   @override
-  String notifBehindBodyPace(
-    String left,
-    String days,
-    String pace,
-    String catchUp,
-  ) {
+  String notifBehindBodyPace(String left, String days, String pace, String catchUp) {
     return 'Ostalo je $left, još $days dana — $pace/dan od sada. Zabilježi $catchUp da ponovo budeš Na pravom putu.';
   }
 
@@ -1300,8 +1297,7 @@ class AppLocalizationsSh extends AppLocalizations {
   }
 
   @override
-  String get notifDeadlineTomorrowBody =>
-      'Sve što danas zabilježiš vrijedi dvostruko.';
+  String get notifDeadlineTomorrowBody => 'Sve što danas zabilježiš vrijedi dvostruko.';
 
   @override
   String notifDeadlineSoonTitle(String course, String days, String left) {
@@ -1314,8 +1310,7 @@ class AppLocalizationsSh extends AppLocalizations {
   }
 
   @override
-  String get notifDeadlineSoonBodyNoPace =>
-      'Svaki sat koji sada zabilježiš vrijedi.';
+  String get notifDeadlineSoonBodyNoPace => 'Svaki sat koji sada zabilježiš vrijedi.';
 
   @override
   String notifOverdueTitle(String course, String left) {
@@ -1323,8 +1318,7 @@ class AppLocalizationsSh extends AppLocalizations {
   }
 
   @override
-  String get notifOverdueBody =>
-      'Pomjeri rok ili završi sate — kurs ostaje u Treba pažnju do tada.';
+  String get notifOverdueBody => 'Pomjeri rok ili završi sate — kurs ostaje u Treba pažnju do tada.';
 
   @override
   String notifStreakTitle(String days, String week) {
@@ -1332,8 +1326,7 @@ class AppLocalizationsSh extends AppLocalizations {
   }
 
   @override
-  String get notifStreakBody =>
-      'Svi kursevi su Na pravom putu ili Ispred. Samo tako.';
+  String get notifStreakBody => 'Svi kursevi su Na pravom putu ili Ispred. Samo tako.';
 
   @override
   String notifCustomTitleAuto(String course) {

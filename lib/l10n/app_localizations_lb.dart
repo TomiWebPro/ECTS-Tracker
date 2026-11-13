@@ -1,6 +1,5 @@
 // ignore: unused_import
 import 'package:intl/intl.dart' as intl;
-
 import 'app_localizations.dart';
 
 // ignore_for_file: type=lint
@@ -83,12 +82,10 @@ class AppLocalizationsLb extends AppLocalizations {
   }
 
   @override
-  String get courseFormStartEarlyOn =>
-      'Un: d\'Zäit gëtt bis elo opgedeelt an zielt fir den Tempo vun Haut.';
+  String get courseFormStartEarlyOn => 'Un: d\'Zäit gëtt bis elo opgedeelt an zielt fir den Tempo vun Haut.';
 
   @override
-  String get courseFormStartEarlyTitle =>
-      'Elo ufänken trotz Startdatum an der Zukunft';
+  String get courseFormStartEarlyTitle => 'Elo ufänken trotz Startdatum an der Zukunft';
 
   @override
   String get courseFormTitleAdd => 'Cours derbäisetzen';
@@ -113,8 +110,7 @@ class AppLocalizationsLb extends AppLocalizations {
   }
 
   @override
-  String get coursesEmptyHint =>
-      'Tipp op „Neie Cours“ fir däin éischte Cours ze erstellen.';
+  String get coursesEmptyHint => 'Tipp op „Neie Cours“ fir däin éischte Cours ze erstellen.';
 
   @override
   String get coursesEmptyTitle => 'Nach keng Coursen';
@@ -154,11 +150,7 @@ class AppLocalizationsLb extends AppLocalizations {
   }
 
   @override
-  String coursesProgressWithStatus(
-    String done,
-    String required,
-    String status,
-  ) {
+  String coursesProgressWithStatus(String done, String required, String status) {
     return '$done / $required St • $status';
   }
 
@@ -227,12 +219,10 @@ class AppLocalizationsLb extends AppLocalizations {
   }
 
   @override
-  String get dashboardEmptyHintAllDone =>
-      'All Coursë sinn fäerdeg — kuck den Tab Coursen fir déi komplett Lëscht.';
+  String get dashboardEmptyHintAllDone => 'All Coursë sinn fäerdeg — kuck den Tab Coursen fir déi komplett Lëscht.';
 
   @override
-  String get dashboardEmptyHintNoCourses =>
-      'Setz e Cours derbäi fir däin ECTS-Fortschrëtt ze verfollegen.';
+  String get dashboardEmptyHintNoCourses => 'Setz e Cours derbäi fir däin ECTS-Fortschrëtt ze verfollegen.';
 
   @override
   String dashboardExplainerBehind(String achieved, String need) {
@@ -245,12 +235,10 @@ class AppLocalizationsLb extends AppLocalizations {
   }
 
   @override
-  String get dashboardExplainerBehindNoPace =>
-      'Hannerier: keen endlechen Tempo erreecht eng Deadline haut mat Stonne Rescht';
+  String get dashboardExplainerBehindNoPace => 'Hannerier: keen endlechen Tempo erreecht eng Deadline haut mat Stonne Rescht';
 
   @override
-  String get dashboardExplainerOnTrackNoPace =>
-      'Um Wee: nach keen Tempo — logg déi éischt Sëtzung fir ze bestätegen';
+  String get dashboardExplainerOnTrackNoPace => 'Um Wee: nach keen Tempo — logg déi éischt Sëtzung fir ze bestätegen';
 
   @override
   String dashboardExplainerStartsIn(String days, String date) {
@@ -400,12 +388,10 @@ class AppLocalizationsLb extends AppLocalizations {
   String get dashboardStartsSoon => 'Fänkt geschwën un';
 
   @override
-  String get dashboardTipEmpty =>
-      'Setz däin éischte Cours derbäi — däin Tempo pro Dag a Fortschrëtt erschéngen hei.';
+  String get dashboardTipEmpty => 'Setz däin éischte Cours derbäi — däin Tempo pro Dag a Fortschrëtt erschéngen hei.';
 
   @override
-  String get dashboardTipFirst =>
-      'Déi éischt 25 Minutte zielen am meeschten — wiel de Cours mat der éischter Deadline.';
+  String get dashboardTipFirst => 'Déi éischt 25 Minutte zielen am meeschten — wiel de Cours mat der éischter Deadline.';
 
   @override
   String get dashboardTodayBare => 'HAUT';
@@ -429,8 +415,7 @@ class AppLocalizationsLb extends AppLocalizations {
   }
 
   @override
-  String get dashboardUpcomingSubtitle =>
-      'Spéider Ufänk — haut keen Drock, ausgeschloss vum Tempo vun Haut.';
+  String get dashboardUpcomingSubtitle => 'Spéider Ufänk — haut keen Drock, ausgeschloss vum Tempo vun Haut.';
 
   @override
   String get dashboardUpcomingTitle => 'Spéider';
@@ -439,8 +424,7 @@ class AppLocalizationsLb extends AppLocalizations {
   String get devToolsActivate => 'Aktivéieren';
 
   @override
-  String get devToolsActivateMessage =>
-      'Dëst spärt verstoppt Stress-Test-Tools op (generéiert Donnéeën). Nëmme fir Entwécklung.';
+  String get devToolsActivateMessage => 'Dëst spärt verstoppt Stress-Test-Tools op (generéiert Donnéeën). Nëmme fir Entwécklung.';
 
   @override
   String get devToolsActivateTitle => 'Entwécklermodus aktivéieren?';
@@ -452,12 +436,10 @@ class AppLocalizationsLb extends AppLocalizations {
   String get devToolsClearPumped => 'Gepompte Donnéeën läschen';
 
   @override
-  String get devToolsClearPumpedMessage =>
-      'Läscht déi generéiert STRESS-Coursen an hir Sëtzungen. Deng eegen Donnéeën bleiwen erhalen.';
+  String get devToolsClearPumpedMessage => 'Läscht déi generéiert STRESS-Coursen an hir Sëtzungen. Deng eegen Donnéeën bleiwen erhalen.';
 
   @override
-  String get devToolsClearPumpedSubtitle =>
-      'Generéiert STRESS-Coursen a Sëtzunge läschen.';
+  String get devToolsClearPumpedSubtitle => 'Generéiert STRESS-Coursen a Sëtzunge läschen.';
 
   @override
   String get devToolsClearPumpedTitle => 'Gepompte Donnéeën läschen?';
@@ -468,8 +450,7 @@ class AppLocalizationsLb extends AppLocalizations {
   }
 
   @override
-  String get devToolsConfirmPumpMessage =>
-      'Zweet Bestätegung: dëst wäert Coursen, Lëschten, Diagrammer an Tempo-Berechnungen opblosen an e puer Sekonne daueren. Elo pompen?';
+  String get devToolsConfirmPumpMessage => 'Zweet Bestätegung: dëst wäert Coursen, Lëschten, Diagrammer an Tempo-Berechnungen opblosen an e puer Sekonne daueren. Elo pompen?';
 
   @override
   String get devToolsConfirmPumpTitle => 'Stress-Pomp bestätegen';
@@ -481,19 +462,16 @@ class AppLocalizationsLb extends AppLocalizations {
   String get devToolsExit => 'Entwécklermodus verloossen';
 
   @override
-  String get devToolsExitSubtitle =>
-      'Entwéckler-Tools op dësem Apparat verstoppen.';
+  String get devToolsExitSubtitle => 'Entwéckler-Tools op dësem Apparat verstoppen.';
 
   @override
   String get devToolsPumpData => 'Donnéeën pompen';
 
   @override
-  String get devToolsPumpMessage =>
-      'Dëst setzt e realistescht generéiert Semester an (~10 Coursen, ~800 Sëtzungen iwwer déi lescht 12 Wochen). Deng Donnéeën bleiwen erhalen. Weider?';
+  String get devToolsPumpMessage => 'Dëst setzt e realistescht generéiert Semester an (~10 Coursen, ~800 Sëtzungen iwwer déi lescht 12 Wochen). Deng Donnéeën bleiwen erhalen. Weider?';
 
   @override
-  String get devToolsPumpSubtitle =>
-      'E generéiert Semester asetzen (~10 Coursen, ~800 Sëtzungen, 12 Wochen). Donnéeën bleiwen erhalen.';
+  String get devToolsPumpSubtitle => 'E generéiert Semester asetzen (~10 Coursen, ~800 Sëtzungen, 12 Wochen). Donnéeën bleiwen erhalen.';
 
   @override
   String get devToolsPumpTile => 'Testdaten pompen';
@@ -513,12 +491,10 @@ class AppLocalizationsLb extends AppLocalizations {
   String get devToolsRemoveAll => 'All Donnéeën ewechhuelen';
 
   @override
-  String get devToolsRemoveAllMessage =>
-      'Entwéckler-Ofkierzung: dëst läscht permanent ALL Coursen, Sëtzungen an Astellungen. Dëst kann net réckgängeg gemaach ginn.';
+  String get devToolsRemoveAllMessage => 'Entwéckler-Ofkierzung: dëst läscht permanent ALL Coursen, Sëtzungen an Astellungen. Dëst kann net réckgängeg gemaach ginn.';
 
   @override
-  String get devToolsRemoveAllSubtitle =>
-      'Entwéckler-Ofkierzung: ALL Coursen, Sëtzungen an Astellungen läschen.';
+  String get devToolsRemoveAllSubtitle => 'Entwéckler-Ofkierzung: ALL Coursen, Sëtzungen an Astellungen läschen.';
 
   @override
   String get devToolsRemoveAllTitle => 'All Donnéeën ewechhuelen?';
@@ -565,8 +541,7 @@ class AppLocalizationsLb extends AppLocalizations {
   String get sessionFormNoCourseError => 'Wiel e Cours.';
 
   @override
-  String get sessionFormNoCoursesHint =>
-      'Setz éischt e Cours derbäi fir eng Sëtzung ze loggen.';
+  String get sessionFormNoCoursesHint => 'Setz éischt e Cours derbäi fir eng Sëtzung ze loggen.';
 
   @override
   String get sessionFormNotesLabel => 'Notizen (optional)';
@@ -622,12 +597,10 @@ class AppLocalizationsLb extends AppLocalizations {
   String get settingsClearSample => 'Beispilldonnéeën läschen';
 
   @override
-  String get settingsClearSampleMessage =>
-      'Dëst läscht d\'Beispillcoursen a Sëtzungen. Coursen oder Sëtzungen déi s du selwer derbäigesat hues ginn net geläscht.';
+  String get settingsClearSampleMessage => 'Dëst läscht d\'Beispillcoursen a Sëtzungen. Coursen oder Sëtzungen déi s du selwer derbäigesat hues ginn net geläscht.';
 
   @override
-  String get settingsClearSampleSubtitle =>
-      'Déi geséit Beispillcoursen a Sëtzunge läschen. Deng Donnéeën bleiwen erhalen.';
+  String get settingsClearSampleSubtitle => 'Déi geséit Beispillcoursen a Sëtzunge läschen. Deng Donnéeën bleiwen erhalen.';
 
   @override
   String get settingsClearSampleTitle => 'Beispilldonnéeën läschen?';
@@ -636,8 +609,7 @@ class AppLocalizationsLb extends AppLocalizations {
   String get settingsCopy => 'Kopéieren';
 
   @override
-  String get settingsDailyError =>
-      'Gëff 0 oder eng positiv Zuel vu Minutten an.';
+  String get settingsDailyError => 'Gëff 0 oder eng positiv Zuel vu Minutten an.';
 
   @override
   String get settingsDailyLabel => 'Minutten pro Dag (0 = keen Zil)';
@@ -692,8 +664,7 @@ class AppLocalizationsLb extends AppLocalizations {
   String get settingsExportCopied => 'Export an d\'Zwëschenlag kopéiert.';
 
   @override
-  String get settingsExportSubtitle =>
-      'Kopéiert all Coursen, Sëtzungen an Astellungen als JSON.';
+  String get settingsExportSubtitle => 'Kopéiert all Coursen, Sëtzungen an Astellungen als JSON.';
 
   @override
   String settingsExportSummary(String courses, String sessions, String kb) {
@@ -709,8 +680,7 @@ class AppLocalizationsLb extends AppLocalizations {
   String get settingsFirstWeekday => 'Éischten Dag vun der Woch';
 
   @override
-  String get settingsFirstWeekdayUpdated =>
-      'Éischten Dag vun der Woch aktualiséiert.';
+  String get settingsFirstWeekdayUpdated => 'Éischten Dag vun der Woch aktualiséiert.';
 
   @override
   String settingsHoldLabel(String label, String seconds) {
@@ -724,8 +694,7 @@ class AppLocalizationsLb extends AppLocalizations {
   String get settingsHoursError => 'Gëff eng Zuel méi wéi null an.';
 
   @override
-  String get settingsHoursHelper =>
-      'Standard 30. Änneren berechent d\'Ufuerderungen nei; Logge bleiwen erhalen.';
+  String get settingsHoursHelper => 'Standard 30. Änneren berechent d\'Ufuerderungen nei; Logge bleiwen erhalen.';
 
   @override
   String get settingsHoursLabel => 'Stonne pro ECTS-Credit';
@@ -756,8 +725,7 @@ class AppLocalizationsLb extends AppLocalizations {
   }
 
   @override
-  String get settingsImportInfo =>
-      'Derbäisetze setzt de Backup nieft deng aktuell Donnéeën (Astellunge bleiwen). Ersetze läscht éischt ALL Coursen, Sëtzungen an Astellungen.';
+  String get settingsImportInfo => 'Derbäisetze setzt de Backup nieft deng aktuell Donnéeën (Astellunge bleiwen). Ersetze läscht éischt ALL Coursen, Sëtzungen an Astellungen.';
 
   @override
   String get settingsImportLabel => 'Exportéiert JSON afeien';
@@ -791,8 +759,7 @@ class AppLocalizationsLb extends AppLocalizations {
   }
 
   @override
-  String get settingsImportSubtitle =>
-      'All Donnéeën aus engem virdrun exportéierte JSON-Backup ersetzen.';
+  String get settingsImportSubtitle => 'All Donnéeën aus engem virdrun exportéierte JSON-Backup ersetzen.';
 
   @override
   String settingsKeepHolding(String remaining) {
@@ -803,8 +770,7 @@ class AppLocalizationsLb extends AppLocalizations {
   String get settingsNoSample => 'Keng Beispilldonnéeën';
 
   @override
-  String get settingsNoSampleSubtitle =>
-      'Déi geséit Beispilldonnéeë si scho geläscht.';
+  String get settingsNoSampleSubtitle => 'Déi geséit Beispilldonnéeë si scho geläscht.';
 
   @override
   String get settingsNoTarget => 'Kee Zil gesat';
@@ -813,8 +779,7 @@ class AppLocalizationsLb extends AppLocalizations {
   String get settingsOverloadError => 'Gëff eng Zuel 5–100 St/Woch an.';
 
   @override
-  String get settingsOverloadHelper =>
-      'Woche mat kommender Laascht driwwer gi rout markéiert. Vollzäitléiere sinn ~35–40 St/Woch.';
+  String get settingsOverloadHelper => 'Woche mat kommender Laascht driwwer gi rout markéiert. Vollzäitléiere sinn ~35–40 St/Woch.';
 
   @override
   String settingsOverloadHours(String value) {
@@ -848,12 +813,10 @@ class AppLocalizationsLb extends AppLocalizations {
   String get settingsResetAll => 'All Donnéeën zrécksetzen';
 
   @override
-  String get settingsResetAllMessage =>
-      'Dëst läscht permanent ALL Coursen, Sëtzungen an Astellungen. Dëst kann net réckgängeg gemaach ginn. Exportéier éischt e Backup wann néideg.';
+  String get settingsResetAllMessage => 'Dëst läscht permanent ALL Coursen, Sëtzungen an Astellungen. Dëst kann net réckgängeg gemaach ginn. Exportéier éischt e Backup wann néideg.';
 
   @override
-  String get settingsResetAllSubtitle =>
-      'All Coursen, Sëtzungen an Astellungen läschen.';
+  String get settingsResetAllSubtitle => 'All Coursen, Sëtzungen an Astellungen läschen.';
 
   @override
   String get settingsResetAllTitle => 'All Donnéeën zrécksetzen?';
@@ -865,12 +828,10 @@ class AppLocalizationsLb extends AppLocalizations {
   String get settingsResetSettingsDone => 'Astellungen op Standard zréckgesat.';
 
   @override
-  String get settingsResetSettingsMessage =>
-      'Stellt Stonne-pro-ECTS (30), deeglecht Zil (keng), éischte Wochendag (Méindeg), Theme (System), Toleranz (5 Deeg), Iwwerlaascht (35 St/Woch), Gréisst (confortabel), Faarf (Schifer) erëm hier. Coursen a Sëtzunge bleiwen erhalen.';
+  String get settingsResetSettingsMessage => 'Stellt Stonne-pro-ECTS (30), deeglecht Zil (keng), éischte Wochendag (Méindeg), Theme (System), Toleranz (5 Deeg), Iwwerlaascht (35 St/Woch), Gréisst (confortabel), Faarf (Schifer) erëm hier. Coursen a Sëtzunge bleiwen erhalen.';
 
   @override
-  String get settingsResetSettingsSubtitle =>
-      'Standard erëm hierstellen: 30 St/ECTS, kee Zil, Méindeg, System-Theme, 5-Deeg-Toleranz, 35 St/Woch Iwwerlaascht, confortabel Gréisst, Schifer-Faarf.';
+  String get settingsResetSettingsSubtitle => 'Standard erëm hierstellen: 30 St/ECTS, kee Zil, Méindeg, System-Theme, 5-Deeg-Toleranz, 35 St/Woch Iwwerlaascht, confortabel Gréisst, Schifer-Faarf.';
 
   @override
   String get settingsResetSettingsTitle => 'Astellungen zrécksetzen?';
@@ -910,8 +871,7 @@ class AppLocalizationsLb extends AppLocalizations {
   String get settingsToleranceError => 'Gëff eng Zuel 0–30 Deeg an.';
 
   @override
-  String get settingsToleranceHelper =>
-      'Vir brauch +N Deeg Iwwerschoss, hanner −N Deeg. 5 = stabil, 0 = sensibel.';
+  String get settingsToleranceHelper => 'Vir brauch +N Deeg Iwwerschoss, hanner −N Deeg. 5 = stabil, 0 = sensibel.';
 
   @override
   String get settingsToleranceLabel => 'Deeg Aarbecht (0–30)';
@@ -969,8 +929,7 @@ class AppLocalizationsLb extends AppLocalizations {
   }
 
   @override
-  String get statsAddDeadlines =>
-      'Setz Deadlines derbäi fir d\'Laascht virauszesoen.';
+  String get statsAddDeadlines => 'Setz Deadlines derbäi fir d\'Laascht virauszesoen.';
 
   @override
   String get statsComingLoad => 'Kommend Laascht';
@@ -979,8 +938,7 @@ class AppLocalizationsLb extends AppLocalizations {
   String get statsConsistency => 'Konsequenz';
 
   @override
-  String get statsConsistencyHint =>
-      'Léierdeeg an de leschten 30 Deeg. Kleng Schrëtt all Dag schloe Cramming.';
+  String get statsConsistencyHint => 'Léierdeeg an de leschten 30 Deeg. Kleng Schrëtt all Dag schloe Cramming.';
 
   @override
   String statsConsistencyScore(String percent) {
@@ -1045,8 +1003,7 @@ class AppLocalizationsLb extends AppLocalizations {
   String get statsOverview => 'Iwwersiicht';
 
   @override
-  String get statsPaceCovers =>
-      'De vergaangene Tempo deckt wat néideg ass. Bleif drun.';
+  String get statsPaceCovers => 'De vergaangene Tempo deckt wat néideg ass. Bleif drun.';
 
   @override
   String statsPaceShort(String gap) {
@@ -1104,15 +1061,13 @@ class AppLocalizationsLb extends AppLocalizations {
   String get statusOverdue => 'Iwwerfälleg';
 
   @override
-  String get studyLogDeleteBody =>
-      'Dës Léiersëtzung läschen? Dëst kann net réckgängeg gemaach ginn.';
+  String get studyLogDeleteBody => 'Dës Léiersëtzung läschen? Dëst kann net réckgängeg gemaach ginn.';
 
   @override
   String get studyLogDeleteTitle => 'Sëtzung läschen?';
 
   @override
-  String get studyLogEmptyHint =>
-      'Logg eng Sëtzung fir deng Léierzäit ze verfollegen.';
+  String get studyLogEmptyHint => 'Logg eng Sëtzung fir deng Léierzäit ze verfollegen.';
 
   @override
   String get studyLogEmptyTitle => 'Nach keng Léiersëtzungen';
@@ -1148,6 +1103,52 @@ class AppLocalizationsLb extends AppLocalizations {
   }
 
   @override
+  String studyTimerActiveTitle(String course) {
+    return 'Timing $course';
+  }
+
+  @override
+  String get studyTimerAlreadyRunning => 'A timer is already running. Finish or discard it first.';
+
+  @override
+  String get studyTimerCourseLabel => 'Course';
+
+  @override
+  String get studyTimerDiscard => 'Discard';
+
+  @override
+  String get studyTimerDiscardBody => 'Throw away the current timer without logging? This cannot be undone.';
+
+  @override
+  String get studyTimerDiscardTitle => 'Discard timer?';
+
+  @override
+  String studyTimerFinishLog(String minutes) {
+    return 'Finish & log $minutes min';
+  }
+
+  @override
+  String get studyTimerNoCourseError => 'Select a course.';
+
+  @override
+  String get studyTimerNoCoursesHint => 'Add a course first to start a timer.';
+
+  @override
+  String get studyTimerPause => 'Pause';
+
+  @override
+  String get studyTimerResume => 'Resume';
+
+  @override
+  String get studyTimerStart => 'Start timer';
+
+  @override
+  String get studyTimerStartTitle => 'Start study timer';
+
+  @override
+  String get studyTimerTooShort => 'Timer has not run yet.';
+
+  @override
   String get validationCourseEctsPositive => 'ECTS muss méi wéi null sinn';
 
   @override
@@ -1175,8 +1176,7 @@ class AppLocalizationsLb extends AppLocalizations {
   String get settingsLiquidGlass => 'Flëssegt Glas';
 
   @override
-  String get settingsLiquidGlassSubtitle =>
-      'Kaarten a Barre vu Mëllechglas. Aus behält de klassesche massiven Look.';
+  String get settingsLiquidGlassSubtitle => 'Kaarten a Barre vu Mëllechglas. Aus behält de klassesche massiven Look.';
 
   @override
   String get settingsLiquidGlassOn => 'Un';
@@ -1191,8 +1191,7 @@ class AppLocalizationsLb extends AppLocalizations {
   String get devToolsReminderPreview => 'Erënnerungsvirschau';
 
   @override
-  String get devToolsReminderPreviewSubtitle =>
-      'Kuck wat elo mellen géif. Séchere Testfeed fir Windows.';
+  String get devToolsReminderPreviewSubtitle => 'Kuck wat elo mellen géif. Séchere Testfeed fir Windows.';
 
   @override
   String get reminderPreviewTitle => 'Erënnerungsvirschau';
@@ -1204,8 +1203,7 @@ class AppLocalizationsLb extends AppLocalizations {
   String get reminderPreviewReset => 'Elo';
 
   @override
-  String get reminderPreviewEmpty =>
-      'Alles roueg — keng Notifikatioun zu dëser Zäit.';
+  String get reminderPreviewEmpty => 'Alles roueg — keng Notifikatioun zu dëser Zäit.';
 
   @override
   String get reminderPreviewCustom => 'Eegen Zäitpläng (Demo)';
@@ -1241,8 +1239,7 @@ class AppLocalizationsLb extends AppLocalizations {
   String get settingsReminderTime => 'Erënnerungszäit';
 
   @override
-  String get settingsReminderDenied =>
-      'Notifikatioune si blockéiert — aktivéier se an den Systemastellungen.';
+  String get settingsReminderDenied => 'Notifikatioune si blockéiert — aktivéier se an den Systemastellungen.';
 
   @override
   String notifDurationHours(String value) {
@@ -1280,12 +1277,7 @@ class AppLocalizationsLb extends AppLocalizations {
   }
 
   @override
-  String notifBehindBodyPace(
-    String left,
-    String days,
-    String pace,
-    String catchUp,
-  ) {
+  String notifBehindBodyPace(String left, String days, String pace, String catchUp) {
     return '$left Rescht, $days Deeg Rescht — $pace/Dag vun hei un. Logg $catchUp fir erëm um Wee ze kommen.';
   }
 
@@ -1305,8 +1297,7 @@ class AppLocalizationsLb extends AppLocalizations {
   }
 
   @override
-  String get notifDeadlineTomorrowBody =>
-      'Alles wat s de haut loggs zielt duebel.';
+  String get notifDeadlineTomorrowBody => 'Alles wat s de haut loggs zielt duebel.';
 
   @override
   String notifDeadlineSoonTitle(String course, String days, String left) {
@@ -1319,8 +1310,7 @@ class AppLocalizationsLb extends AppLocalizations {
   }
 
   @override
-  String get notifDeadlineSoonBodyNoPace =>
-      'All Stonn déi s de elo loggs zielt.';
+  String get notifDeadlineSoonBodyNoPace => 'All Stonn déi s de elo loggs zielt.';
 
   @override
   String notifOverdueTitle(String course, String left) {
@@ -1328,8 +1318,7 @@ class AppLocalizationsLb extends AppLocalizations {
   }
 
   @override
-  String get notifOverdueBody =>
-      'Verréckel dDeadline oder maach dStonnen fäerdeg — de Cours brauch bis dohin Opmierksamkeet.';
+  String get notifOverdueBody => 'Verréckel dDeadline oder maach dStonnen fäerdeg — de Cours brauch bis dohin Opmierksamkeet.';
 
   @override
   String notifStreakTitle(String days, String week) {

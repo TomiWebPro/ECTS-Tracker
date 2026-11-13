@@ -1,6 +1,5 @@
 // ignore: unused_import
 import 'package:intl/intl.dart' as intl;
-
 import 'app_localizations.dart';
 
 // ignore_for_file: type=lint
@@ -83,8 +82,7 @@ class AppLocalizationsDa extends AppLocalizations {
   }
 
   @override
-  String get courseFormStartEarlyOn =>
-      'Til: tiden fordeles indtil nu og tæller med i Dagens tempo.';
+  String get courseFormStartEarlyOn => 'Til: tiden fordeles indtil nu og tæller med i Dagens tempo.';
 
   @override
   String get courseFormStartEarlyTitle => 'Start nu trods fremtidig start';
@@ -112,8 +110,7 @@ class AppLocalizationsDa extends AppLocalizations {
   }
 
   @override
-  String get coursesEmptyHint =>
-      'Tryk på \"Nyt fag\" for at oprette dit første fag.';
+  String get coursesEmptyHint => 'Tryk på \"Nyt fag\" for at oprette dit første fag.';
 
   @override
   String get coursesEmptyTitle => 'Ingen fag endnu';
@@ -153,11 +150,7 @@ class AppLocalizationsDa extends AppLocalizations {
   }
 
   @override
-  String coursesProgressWithStatus(
-    String done,
-    String required,
-    String status,
-  ) {
+  String coursesProgressWithStatus(String done, String required, String status) {
     return '$done / $required t • $status';
   }
 
@@ -226,12 +219,10 @@ class AppLocalizationsDa extends AppLocalizations {
   }
 
   @override
-  String get dashboardEmptyHintAllDone =>
-      'Alle fag er gennemført — se hele listen under fanen Fag.';
+  String get dashboardEmptyHintAllDone => 'Alle fag er gennemført — se hele listen under fanen Fag.';
 
   @override
-  String get dashboardEmptyHintNoCourses =>
-      'Tilføj et fag for at begynde at følge dine ECTS-fremskridt.';
+  String get dashboardEmptyHintNoCourses => 'Tilføj et fag for at begynde at følge dine ECTS-fremskridt.';
 
   @override
   String dashboardExplainerBehind(String achieved, String need) {
@@ -244,12 +235,10 @@ class AppLocalizationsDa extends AppLocalizations {
   }
 
   @override
-  String get dashboardExplainerBehindNoPace =>
-      'Bagud: intet endeligt tempo når en deadline i dag med timer tilbage';
+  String get dashboardExplainerBehindNoPace => 'Bagud: intet endeligt tempo når en deadline i dag med timer tilbage';
 
   @override
-  String get dashboardExplainerOnTrackNoPace =>
-      'På rette spor: intet tempo endnu — log første session for at bekræfte';
+  String get dashboardExplainerOnTrackNoPace => 'På rette spor: intet tempo endnu — log første session for at bekræfte';
 
   @override
   String dashboardExplainerStartsIn(String days, String date) {
@@ -370,8 +359,7 @@ class AppLocalizationsDa extends AppLocalizations {
   String get dashboardProgramBare => 'PROGRAM';
 
   @override
-  String get dashboardProgramEmptyHint =>
-      'Tilføj et fag for at begynde at følge';
+  String get dashboardProgramEmptyHint => 'Tilføj et fag for at begynde at følge';
 
   @override
   String dashboardProgramHours(String done, String required) {
@@ -400,12 +388,10 @@ class AppLocalizationsDa extends AppLocalizations {
   String get dashboardStartsSoon => 'Starter snart';
 
   @override
-  String get dashboardTipEmpty =>
-      'Tilføj dit første fag — dit daglige tempo og dine fremskridt vises her.';
+  String get dashboardTipEmpty => 'Tilføj dit første fag — dit daglige tempo og dine fremskridt vises her.';
 
   @override
-  String get dashboardTipFirst =>
-      'De første 25 minutter tæller mest — vælg faget med den tidligste deadline.';
+  String get dashboardTipFirst => 'De første 25 minutter tæller mest — vælg faget med den tidligste deadline.';
 
   @override
   String get dashboardTodayBare => 'I DAG';
@@ -429,8 +415,7 @@ class AppLocalizationsDa extends AppLocalizations {
   }
 
   @override
-  String get dashboardUpcomingSubtitle =>
-      'Fremtidige starter — intet pres i dag, udelukket fra Dagens tempo.';
+  String get dashboardUpcomingSubtitle => 'Fremtidige starter — intet pres i dag, udelukket fra Dagens tempo.';
 
   @override
   String get dashboardUpcomingTitle => 'Kommende';
@@ -439,8 +424,7 @@ class AppLocalizationsDa extends AppLocalizations {
   String get devToolsActivate => 'Aktivér';
 
   @override
-  String get devToolsActivateMessage =>
-      'Dette låser op for skjulte stresstest-værktøjer (pump genererede data). Kun til udvikling.';
+  String get devToolsActivateMessage => 'Dette låser op for skjulte stresstest-værktøjer (pump genererede data). Kun til udvikling.';
 
   @override
   String get devToolsActivateTitle => 'Aktivér udviklertilstand?';
@@ -452,12 +436,10 @@ class AppLocalizationsDa extends AppLocalizations {
   String get devToolsClearPumped => 'Ryd pumpede data';
 
   @override
-  String get devToolsClearPumpedMessage =>
-      'Sletter de genererede STRESS-fag og deres sessioner. Dine egne data bevares.';
+  String get devToolsClearPumpedMessage => 'Sletter de genererede STRESS-fag og deres sessioner. Dine egne data bevares.';
 
   @override
-  String get devToolsClearPumpedSubtitle =>
-      'Slet genererede STRESS-fag og sessioner.';
+  String get devToolsClearPumpedSubtitle => 'Slet genererede STRESS-fag og sessioner.';
 
   @override
   String get devToolsClearPumpedTitle => 'Ryd pumpede data?';
@@ -468,8 +450,7 @@ class AppLocalizationsDa extends AppLocalizations {
   }
 
   @override
-  String get devToolsConfirmPumpMessage =>
-      'Anden bekræftelse: dette vil oppuste fag, lister, diagrammer og tempoberegninger og kan tage et par sekunder. Pump nu?';
+  String get devToolsConfirmPumpMessage => 'Anden bekræftelse: dette vil oppuste fag, lister, diagrammer og tempoberegninger og kan tage et par sekunder. Pump nu?';
 
   @override
   String get devToolsConfirmPumpTitle => 'Bekræft stresspump';
@@ -487,12 +468,10 @@ class AppLocalizationsDa extends AppLocalizations {
   String get devToolsPumpData => 'Pump data';
 
   @override
-  String get devToolsPumpMessage =>
-      'Dette indsætter et realistisk genereret semester (~10 fag, ~800 sessioner over de sidste 12 uger). Dine eksisterende data bevares. Fortsæt?';
+  String get devToolsPumpMessage => 'Dette indsætter et realistisk genereret semester (~10 fag, ~800 sessioner over de sidste 12 uger). Dine eksisterende data bevares. Fortsæt?';
 
   @override
-  String get devToolsPumpSubtitle =>
-      'Indsæt et genereret semester (~10 fag, ~800 sessioner, 12 uger). Eksisterende data bevares.';
+  String get devToolsPumpSubtitle => 'Indsæt et genereret semester (~10 fag, ~800 sessioner, 12 uger). Eksisterende data bevares.';
 
   @override
   String get devToolsPumpTile => 'Pump testdata';
@@ -512,12 +491,10 @@ class AppLocalizationsDa extends AppLocalizations {
   String get devToolsRemoveAll => 'Fjern alle data';
 
   @override
-  String get devToolsRemoveAllMessage =>
-      'Udviklergenvej: dette sletter permanent ALLE fag, sessioner og indstillinger. Dette kan ikke fortrydes.';
+  String get devToolsRemoveAllMessage => 'Udviklergenvej: dette sletter permanent ALLE fag, sessioner og indstillinger. Dette kan ikke fortrydes.';
 
   @override
-  String get devToolsRemoveAllSubtitle =>
-      'Udviklergenvej: slet ALLE fag, sessioner og indstillinger.';
+  String get devToolsRemoveAllSubtitle => 'Udviklergenvej: slet ALLE fag, sessioner og indstillinger.';
 
   @override
   String get devToolsRemoveAllTitle => 'Fjern alle data?';
@@ -564,8 +541,7 @@ class AppLocalizationsDa extends AppLocalizations {
   String get sessionFormNoCourseError => 'Vælg et fag.';
 
   @override
-  String get sessionFormNoCoursesHint =>
-      'Tilføj først et fag for at logge en session.';
+  String get sessionFormNoCoursesHint => 'Tilføj først et fag for at logge en session.';
 
   @override
   String get sessionFormNotesLabel => 'Noter (valgfrit)';
@@ -621,12 +597,10 @@ class AppLocalizationsDa extends AppLocalizations {
   String get settingsClearSample => 'Ryd eksempeldata';
 
   @override
-  String get settingsClearSampleMessage =>
-      'Dette fjerner eksempelfagene og -sessionerne. Fag eller sessioner, du selv har tilføjet, fjernes ikke.';
+  String get settingsClearSampleMessage => 'Dette fjerner eksempelfagene og -sessionerne. Fag eller sessioner, du selv har tilføjet, fjernes ikke.';
 
   @override
-  String get settingsClearSampleSubtitle =>
-      'Fjern de forudfyldte eksempelfag og -sessioner. Dine egne data bevares.';
+  String get settingsClearSampleSubtitle => 'Fjern de forudfyldte eksempelfag og -sessioner. Dine egne data bevares.';
 
   @override
   String get settingsClearSampleTitle => 'Ryd eksempeldata?';
@@ -635,8 +609,7 @@ class AppLocalizationsDa extends AppLocalizations {
   String get settingsCopy => 'Kopiér';
 
   @override
-  String get settingsDailyError =>
-      'Indtast 0 eller et positivt antal minutter.';
+  String get settingsDailyError => 'Indtast 0 eller et positivt antal minutter.';
 
   @override
   String get settingsDailyLabel => 'Minutter pr. dag (0 = intet mål)';
@@ -691,8 +664,7 @@ class AppLocalizationsDa extends AppLocalizations {
   String get settingsExportCopied => 'Eksport kopieret til udklipsholderen.';
 
   @override
-  String get settingsExportSubtitle =>
-      'Kopiér alle fag, sessioner og indstillinger som JSON.';
+  String get settingsExportSubtitle => 'Kopiér alle fag, sessioner og indstillinger som JSON.';
 
   @override
   String settingsExportSummary(String courses, String sessions, String kb) {
@@ -722,8 +694,7 @@ class AppLocalizationsDa extends AppLocalizations {
   String get settingsHoursError => 'Indtast et tal større end nul.';
 
   @override
-  String get settingsHoursHelper =>
-      'Standard 30. Ændring genberegner kravene; logfiler bevares.';
+  String get settingsHoursHelper => 'Standard 30. Ændring genberegner kravene; logfiler bevares.';
 
   @override
   String get settingsHoursLabel => 'Timer pr. ECTS-point';
@@ -754,8 +725,7 @@ class AppLocalizationsDa extends AppLocalizations {
   }
 
   @override
-  String get settingsImportInfo =>
-      'Tilføj lægger sikkerhedskopien oven i dine aktuelle data (indstillinger bevares). Erstat sletter først ALLE fag, sessioner og indstillinger.';
+  String get settingsImportInfo => 'Tilføj lægger sikkerhedskopien oven i dine aktuelle data (indstillinger bevares). Erstat sletter først ALLE fag, sessioner og indstillinger.';
 
   @override
   String get settingsImportLabel => 'Indsæt eksporteret JSON';
@@ -789,8 +759,7 @@ class AppLocalizationsDa extends AppLocalizations {
   }
 
   @override
-  String get settingsImportSubtitle =>
-      'Erstat alle data fra en tidligere eksporteret JSON-sikkerhedskopi.';
+  String get settingsImportSubtitle => 'Erstat alle data fra en tidligere eksporteret JSON-sikkerhedskopi.';
 
   @override
   String settingsKeepHolding(String remaining) {
@@ -801,8 +770,7 @@ class AppLocalizationsDa extends AppLocalizations {
   String get settingsNoSample => 'Ingen eksempeldata';
 
   @override
-  String get settingsNoSampleSubtitle =>
-      'De forudfyldte eksempeldata er allerede ryddet.';
+  String get settingsNoSampleSubtitle => 'De forudfyldte eksempeldata er allerede ryddet.';
 
   @override
   String get settingsNoTarget => 'Intet mål angivet';
@@ -811,8 +779,7 @@ class AppLocalizationsDa extends AppLocalizations {
   String get settingsOverloadError => 'Indtast et tal 5–100 t/uge.';
 
   @override
-  String get settingsOverloadHelper =>
-      'Kommende belastningsuger over dette markeres med rødt. Fuldtidsstudier er ~35–40 t/uge.';
+  String get settingsOverloadHelper => 'Kommende belastningsuger over dette markeres med rødt. Fuldtidsstudier er ~35–40 t/uge.';
 
   @override
   String settingsOverloadHours(String value) {
@@ -837,8 +804,7 @@ class AppLocalizationsDa extends AppLocalizations {
   String get settingsPaceTolerance => 'Foran/bagud-tolerance';
 
   @override
-  String get settingsPasteValidBackup =>
-      'Indsæt først en gyldig sikkerhedskopi';
+  String get settingsPasteValidBackup => 'Indsæt først en gyldig sikkerhedskopi';
 
   @override
   String get settingsReset => 'Nulstil';
@@ -847,12 +813,10 @@ class AppLocalizationsDa extends AppLocalizations {
   String get settingsResetAll => 'Nulstil alle data';
 
   @override
-  String get settingsResetAllMessage =>
-      'Dette sletter permanent ALLE fag, sessioner og indstillinger. Dette kan ikke fortrydes. Eksportér først en sikkerhedskopi, hvis nødvendigt.';
+  String get settingsResetAllMessage => 'Dette sletter permanent ALLE fag, sessioner og indstillinger. Dette kan ikke fortrydes. Eksportér først en sikkerhedskopi, hvis nødvendigt.';
 
   @override
-  String get settingsResetAllSubtitle =>
-      'Slet alle fag, sessioner og indstillinger.';
+  String get settingsResetAllSubtitle => 'Slet alle fag, sessioner og indstillinger.';
 
   @override
   String get settingsResetAllTitle => 'Nulstil alle data?';
@@ -861,16 +825,13 @@ class AppLocalizationsDa extends AppLocalizations {
   String get settingsResetSettings => 'Nulstil indstillinger';
 
   @override
-  String get settingsResetSettingsDone =>
-      'Indstillinger nulstillet til standard.';
+  String get settingsResetSettingsDone => 'Indstillinger nulstillet til standard.';
 
   @override
-  String get settingsResetSettingsMessage =>
-      'Gendanner timer pr. ECTS (30), dagligt mål (ingen), første ugedag (mandag), tema (system), tolerance (5 dage), overbelastning (35 t/uge), størrelse (komfortabel), farve (skifer). Fag og sessioner bevares.';
+  String get settingsResetSettingsMessage => 'Gendanner timer pr. ECTS (30), dagligt mål (ingen), første ugedag (mandag), tema (system), tolerance (5 dage), overbelastning (35 t/uge), størrelse (komfortabel), farve (skifer). Fag og sessioner bevares.';
 
   @override
-  String get settingsResetSettingsSubtitle =>
-      'Gendan standarder: 30 t/ECTS, intet mål, mandag, systemtema, 5 dages tolerance, 35 t/uge overbelastning, komfortabel størrelse, skifer farve.';
+  String get settingsResetSettingsSubtitle => 'Gendan standarder: 30 t/ECTS, intet mål, mandag, systemtema, 5 dages tolerance, 35 t/uge overbelastning, komfortabel størrelse, skifer farve.';
 
   @override
   String get settingsResetSettingsTitle => 'Nulstil indstillinger?';
@@ -910,8 +871,7 @@ class AppLocalizationsDa extends AppLocalizations {
   String get settingsToleranceError => 'Indtast et tal 0–30 dage.';
 
   @override
-  String get settingsToleranceHelper =>
-      'Foran kræver +N dages overskud, bagud −N dage. 5 = stabil, 0 = følsom.';
+  String get settingsToleranceHelper => 'Foran kræver +N dages overskud, bagud −N dage. 5 = stabil, 0 = følsom.';
 
   @override
   String get settingsToleranceLabel => 'Dages arbejde (0–30)';
@@ -969,8 +929,7 @@ class AppLocalizationsDa extends AppLocalizations {
   }
 
   @override
-  String get statsAddDeadlines =>
-      'Tilføj deadlines for at forudsige belastningen.';
+  String get statsAddDeadlines => 'Tilføj deadlines for at forudsige belastningen.';
 
   @override
   String get statsComingLoad => 'Kommende belastning';
@@ -979,8 +938,7 @@ class AppLocalizationsDa extends AppLocalizations {
   String get statsConsistency => 'Konsistens';
 
   @override
-  String get statsConsistencyHint =>
-      'Studiedage i de sidste 30 dage. Små skridt hver dag slår intensiv læsning.';
+  String get statsConsistencyHint => 'Studiedage i de sidste 30 dage. Små skridt hver dag slår intensiv læsning.';
 
   @override
   String statsConsistencyScore(String percent) {
@@ -1045,8 +1003,7 @@ class AppLocalizationsDa extends AppLocalizations {
   String get statsOverview => 'Overblik';
 
   @override
-  String get statsPaceCovers =>
-      'Det hidtidige tempo dækker behovet. Hold stimen.';
+  String get statsPaceCovers => 'Det hidtidige tempo dækker behovet. Hold stimen.';
 
   @override
   String statsPaceShort(String gap) {
@@ -1104,8 +1061,7 @@ class AppLocalizationsDa extends AppLocalizations {
   String get statusOverdue => 'Overskredet';
 
   @override
-  String get studyLogDeleteBody =>
-      'Slet denne studiesession? Dette kan ikke fortrydes.';
+  String get studyLogDeleteBody => 'Slet denne studiesession? Dette kan ikke fortrydes.';
 
   @override
   String get studyLogDeleteTitle => 'Slet session?';
@@ -1147,6 +1103,52 @@ class AppLocalizationsDa extends AppLocalizations {
   }
 
   @override
+  String studyTimerActiveTitle(String course) {
+    return 'Timing $course';
+  }
+
+  @override
+  String get studyTimerAlreadyRunning => 'A timer is already running. Finish or discard it first.';
+
+  @override
+  String get studyTimerCourseLabel => 'Course';
+
+  @override
+  String get studyTimerDiscard => 'Discard';
+
+  @override
+  String get studyTimerDiscardBody => 'Throw away the current timer without logging? This cannot be undone.';
+
+  @override
+  String get studyTimerDiscardTitle => 'Discard timer?';
+
+  @override
+  String studyTimerFinishLog(String minutes) {
+    return 'Finish & log $minutes min';
+  }
+
+  @override
+  String get studyTimerNoCourseError => 'Select a course.';
+
+  @override
+  String get studyTimerNoCoursesHint => 'Add a course first to start a timer.';
+
+  @override
+  String get studyTimerPause => 'Pause';
+
+  @override
+  String get studyTimerResume => 'Resume';
+
+  @override
+  String get studyTimerStart => 'Start timer';
+
+  @override
+  String get studyTimerStartTitle => 'Start study timer';
+
+  @override
+  String get studyTimerTooShort => 'Timer has not run yet.';
+
+  @override
   String get validationCourseEctsPositive => 'ECTS skal være større end nul';
 
   @override
@@ -1174,8 +1176,7 @@ class AppLocalizationsDa extends AppLocalizations {
   String get settingsLiquidGlass => 'Flydende glas';
 
   @override
-  String get settingsLiquidGlassSubtitle =>
-      'Kort og bjælker i matteret glas. Fra bevarer det klassiske solide udseende.';
+  String get settingsLiquidGlassSubtitle => 'Kort og bjælker i matteret glas. Fra bevarer det klassiske solide udseende.';
 
   @override
   String get settingsLiquidGlassOn => 'Til';
@@ -1190,8 +1191,7 @@ class AppLocalizationsDa extends AppLocalizations {
   String get devToolsReminderPreview => 'Påmindelsesvisning';
 
   @override
-  String get devToolsReminderPreviewSubtitle =>
-      'Se, hvad der ville give besked lige nu. Windows-sikkert testfeed.';
+  String get devToolsReminderPreviewSubtitle => 'Se, hvad der ville give besked lige nu. Windows-sikkert testfeed.';
 
   @override
   String get reminderPreviewTitle => 'Påmindelsesvisning';
@@ -1203,8 +1203,7 @@ class AppLocalizationsDa extends AppLocalizations {
   String get reminderPreviewReset => 'Nu';
 
   @override
-  String get reminderPreviewEmpty =>
-      'Helt stille — intet ville give besked på dette tidspunkt.';
+  String get reminderPreviewEmpty => 'Helt stille — intet ville give besked på dette tidspunkt.';
 
   @override
   String get reminderPreviewCustom => 'Brugerdefinerede tidsplaner (demo)';
@@ -1240,8 +1239,7 @@ class AppLocalizationsDa extends AppLocalizations {
   String get settingsReminderTime => 'Påmindelsestidspunkt';
 
   @override
-  String get settingsReminderDenied =>
-      'Notifikationer er blokeret — aktivér dem i systemindstillingerne.';
+  String get settingsReminderDenied => 'Notifikationer er blokeret — aktivér dem i systemindstillingerne.';
 
   @override
   String notifDurationHours(String value) {
@@ -1279,12 +1277,7 @@ class AppLocalizationsDa extends AppLocalizations {
   }
 
   @override
-  String notifBehindBodyPace(
-    String left,
-    String days,
-    String pace,
-    String catchUp,
-  ) {
+  String notifBehindBodyPace(String left, String days, String pace, String catchUp) {
     return '$left tilbage, $days dage igen — $pace/dag herfra. Log $catchUp for at komme på rette spor igen.';
   }
 
@@ -1304,8 +1297,7 @@ class AppLocalizationsDa extends AppLocalizations {
   }
 
   @override
-  String get notifDeadlineTomorrowBody =>
-      'Alt, hvad du logger i dag, tæller dobbelt.';
+  String get notifDeadlineTomorrowBody => 'Alt, hvad du logger i dag, tæller dobbelt.';
 
   @override
   String notifDeadlineSoonTitle(String course, String days, String left) {
@@ -1326,8 +1318,7 @@ class AppLocalizationsDa extends AppLocalizations {
   }
 
   @override
-  String get notifOverdueBody =>
-      'Flyt deadlinen, eller gør timerne færdige — indtil da bliver faget i «kræver opmærksomhed».';
+  String get notifOverdueBody => 'Flyt deadlinen, eller gør timerne færdige — indtil da bliver faget i «kræver opmærksomhed».';
 
   @override
   String notifStreakTitle(String days, String week) {
@@ -1335,8 +1326,7 @@ class AppLocalizationsDa extends AppLocalizations {
   }
 
   @override
-  String get notifStreakBody =>
-      'Alle fag på rette spor eller foran. Flot stime.';
+  String get notifStreakBody => 'Alle fag på rette spor eller foran. Flot stime.';
 
   @override
   String notifCustomTitleAuto(String course) {

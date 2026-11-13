@@ -526,11 +526,24 @@ class _CoursesPageState extends ConsumerState<_CoursesPage> {
                                   ),
                             color: menuColor,
                             elevation: menuElevationDouble,
-                            onSelected: (value) {
+                            onSelected: (value) async {
                               if (value == 'edit') {
                                 showCourseFormDialog(context, existing: course);
                               } else if (value == 'delete') {
                                 _confirmDelete(course);
+                              } else if (value == 'timer') {
+                                final active =
+                                    ref.read(studyTimerProvider);
+                                if (active != null) {
+                                  showStudyTimerActiveSheet(context);
+                                } else {
+                                  await ref
+                                      .read(studyTimerProvider.notifier)
+                                      .startReplacing(course.id);
+                                  if (context.mounted) {
+                                    showStudyTimerActiveSheet(context);
+                                  }
+                                }
                               }
                             },
                             itemBuilder: (context) {
@@ -538,6 +551,10 @@ class _CoursesPageState extends ConsumerState<_CoursesPage> {
                                   AppLocalizations.of(context)!;
                               if (!glass) {
                                 return [
+                                  PopupMenuItem(
+                                      value: 'timer',
+                                      child:
+                                          Text(menuL10n.studyTimerStart)),
                                   PopupMenuItem(
                                       value: 'edit',
                                       child: Text(menuL10n.commonEdit)),
@@ -549,6 +566,25 @@ class _CoursesPageState extends ConsumerState<_CoursesPage> {
                               // Apple-style glass menu (ECTS-074): rounded
                               // frosted surface, icon rows, red delete.
                               return [
+                                PopupMenuItem(
+                                  value: 'timer',
+                                  child: GlassMenuRow(
+                                    selected: false,
+                                    child: Row(
+                                      mainAxisSize: MainAxisSize.min,
+                                      children: [
+                                        const Icon(Icons.play_arrow_outlined,
+                                            size: 18),
+                                        const SizedBox(width: 10),
+                                        Flexible(
+                                          fit: FlexFit.loose,
+                                          child: Text(
+                                              menuL10n.studyTimerStart),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
                                 PopupMenuItem(
                                   value: 'edit',
                                   child: GlassMenuRow(

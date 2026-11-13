@@ -1,6 +1,5 @@
 // ignore: unused_import
 import 'package:intl/intl.dart' as intl;
-
 import 'app_localizations.dart';
 
 // ignore_for_file: type=lint
@@ -83,12 +82,10 @@ class AppLocalizationsIs extends AppLocalizations {
   }
 
   @override
-  String get courseFormStartEarlyOn =>
-      'Kveikt: tímanum er skipt fram til nú og hann telst með hraða dagsins.';
+  String get courseFormStartEarlyOn => 'Kveikt: tímanum er skipt fram til nú og hann telst með hraða dagsins.';
 
   @override
-  String get courseFormStartEarlyTitle =>
-      'Byrja nú þrátt fyrir síðari upphafsdag';
+  String get courseFormStartEarlyTitle => 'Byrja nú þrátt fyrir síðari upphafsdag';
 
   @override
   String get courseFormTitleAdd => 'Bæta við áfanga';
@@ -113,8 +110,7 @@ class AppLocalizationsIs extends AppLocalizations {
   }
 
   @override
-  String get coursesEmptyHint =>
-      'Smelltu á „Nýr áfangi“ til að búa til fyrsta áfangann.';
+  String get coursesEmptyHint => 'Smelltu á „Nýr áfangi“ til að búa til fyrsta áfangann.';
 
   @override
   String get coursesEmptyTitle => 'Engir áfangar ennþá';
@@ -154,11 +150,7 @@ class AppLocalizationsIs extends AppLocalizations {
   }
 
   @override
-  String coursesProgressWithStatus(
-    String done,
-    String required,
-    String status,
-  ) {
+  String coursesProgressWithStatus(String done, String required, String status) {
     return '$done / $required klst • $status';
   }
 
@@ -227,12 +219,10 @@ class AppLocalizationsIs extends AppLocalizations {
   }
 
   @override
-  String get dashboardEmptyHintAllDone =>
-      'Allir áfangar lokið — sjá flipann Áfangar fyrir fullan lista.';
+  String get dashboardEmptyHintAllDone => 'Allir áfangar lokið — sjá flipann Áfangar fyrir fullan lista.';
 
   @override
-  String get dashboardEmptyHintNoCourses =>
-      'Bættu við áfanga til að fylgjast með ECTS-framvindu.';
+  String get dashboardEmptyHintNoCourses => 'Bættu við áfanga til að fylgjast með ECTS-framvindu.';
 
   @override
   String dashboardExplainerBehind(String achieved, String need) {
@@ -245,12 +235,10 @@ class AppLocalizationsIs extends AppLocalizations {
   }
 
   @override
-  String get dashboardExplainerBehindNoPace =>
-      'Eftir á: enginn endanlegur hraði nær skiladegi dagsins með klukkutíma eftir';
+  String get dashboardExplainerBehindNoPace => 'Eftir á: enginn endanlegur hraði nær skiladegi dagsins með klukkutíma eftir';
 
   @override
-  String get dashboardExplainerOnTrackNoPace =>
-      'Á réttri leið: enginn hraði enn — skráðu fyrstu lotu til að staðfesta';
+  String get dashboardExplainerOnTrackNoPace => 'Á réttri leið: enginn hraði enn — skráðu fyrstu lotu til að staðfesta';
 
   @override
   String dashboardExplainerStartsIn(String days, String date) {
@@ -371,8 +359,7 @@ class AppLocalizationsIs extends AppLocalizations {
   String get dashboardProgramBare => 'NÁM';
 
   @override
-  String get dashboardProgramEmptyHint =>
-      'Bættu við áfanga til að byrja að fylgjast';
+  String get dashboardProgramEmptyHint => 'Bættu við áfanga til að byrja að fylgjast';
 
   @override
   String dashboardProgramHours(String done, String required) {
@@ -401,12 +388,10 @@ class AppLocalizationsIs extends AppLocalizations {
   String get dashboardStartsSoon => 'Byrjar bráðum';
 
   @override
-  String get dashboardTipEmpty =>
-      'Bættu við fyrsta áfanganum — daglegur hraði og framvinda birtast hér.';
+  String get dashboardTipEmpty => 'Bættu við fyrsta áfanganum — daglegur hraði og framvinda birtast hér.';
 
   @override
-  String get dashboardTipFirst =>
-      'Fyrstu 25 mínúturnar skipta mestu — veldu áfangann sem fyrst er á döfinni.';
+  String get dashboardTipFirst => 'Fyrstu 25 mínúturnar skipta mestu — veldu áfangann sem fyrst er á döfinni.';
 
   @override
   String get dashboardTodayBare => 'Í DAG';
@@ -430,8 +415,7 @@ class AppLocalizationsIs extends AppLocalizations {
   }
 
   @override
-  String get dashboardUpcomingSubtitle =>
-      'Síðari upphafsdagar — engin pressa í dag, undanskilið frá hraða dagsins.';
+  String get dashboardUpcomingSubtitle => 'Síðari upphafsdagar — engin pressa í dag, undanskilið frá hraða dagsins.';
 
   @override
   String get dashboardUpcomingTitle => 'Væntanlegt';
@@ -440,8 +424,7 @@ class AppLocalizationsIs extends AppLocalizations {
   String get devToolsActivate => 'Virkja';
 
   @override
-  String get devToolsActivateMessage =>
-      'Þetta opnar falin álagsprófunartól (býr til gögn). Aðeins til þróunar.';
+  String get devToolsActivateMessage => 'Þetta opnar falin álagsprófunartól (býr til gögn). Aðeins til þróunar.';
 
   @override
   String get devToolsActivateTitle => 'Virkja þróunarham?';
@@ -453,12 +436,10 @@ class AppLocalizationsIs extends AppLocalizations {
   String get devToolsClearPumped => 'Hreinsa búin gögn';
 
   @override
-  String get devToolsClearPumpedMessage =>
-      'Eyðir búnum STRESS-áföngum og lotum þeirra. Þín eigin gögn haldast.';
+  String get devToolsClearPumpedMessage => 'Eyðir búnum STRESS-áföngum og lotum þeirra. Þín eigin gögn haldast.';
 
   @override
-  String get devToolsClearPumpedSubtitle =>
-      'Eyða búnum STRESS-áföngum og lotum.';
+  String get devToolsClearPumpedSubtitle => 'Eyða búnum STRESS-áföngum og lotum.';
 
   @override
   String get devToolsClearPumpedTitle => 'Hreinsa búin gögn?';
@@ -469,8 +450,7 @@ class AppLocalizationsIs extends AppLocalizations {
   }
 
   @override
-  String get devToolsConfirmPumpMessage =>
-      'Önnur staðfesting: þetta blæs upp áfanga, lista, gröf og hraðaútreikninga og getur tekið nokkrar sekúndur. Keyra núna?';
+  String get devToolsConfirmPumpMessage => 'Önnur staðfesting: þetta blæs upp áfanga, lista, gröf og hraðaútreikninga og getur tekið nokkrar sekúndur. Keyra núna?';
 
   @override
   String get devToolsConfirmPumpTitle => 'Staðfesta álagskeyrslu';
@@ -488,12 +468,10 @@ class AppLocalizationsIs extends AppLocalizations {
   String get devToolsPumpData => 'Keyra gögn';
 
   @override
-  String get devToolsPumpMessage =>
-      'Þetta setur inn raunhæfa búna önn (~10 áfangar, ~800 lotur síðustu 12 vikur). Núverandi gögn haldast. Halda áfram?';
+  String get devToolsPumpMessage => 'Þetta setur inn raunhæfa búna önn (~10 áfangar, ~800 lotur síðustu 12 vikur). Núverandi gögn haldast. Halda áfram?';
 
   @override
-  String get devToolsPumpSubtitle =>
-      'Setja inn búna önn (~10 áfangar, ~800 lotur, 12 vikur). Núverandi gögn haldast.';
+  String get devToolsPumpSubtitle => 'Setja inn búna önn (~10 áfangar, ~800 lotur, 12 vikur). Núverandi gögn haldast.';
 
   @override
   String get devToolsPumpTile => 'Keyra prófunargögn';
@@ -513,12 +491,10 @@ class AppLocalizationsIs extends AppLocalizations {
   String get devToolsRemoveAll => 'Fjarlægja öll gögn';
 
   @override
-  String get devToolsRemoveAllMessage =>
-      'Þróunarflýtileið: þetta eyðir VARANLEGA ÖLLUM áföngum, lotum og stillingum. Þetta er óafturkræft.';
+  String get devToolsRemoveAllMessage => 'Þróunarflýtileið: þetta eyðir VARANLEGA ÖLLUM áföngum, lotum og stillingum. Þetta er óafturkræft.';
 
   @override
-  String get devToolsRemoveAllSubtitle =>
-      'Þróunarflýtileið: eyða ÖLLUM áföngum, lotum og stillingum.';
+  String get devToolsRemoveAllSubtitle => 'Þróunarflýtileið: eyða ÖLLUM áföngum, lotum og stillingum.';
 
   @override
   String get devToolsRemoveAllTitle => 'Fjarlægja öll gögn?';
@@ -565,8 +541,7 @@ class AppLocalizationsIs extends AppLocalizations {
   String get sessionFormNoCourseError => 'Veldu áfanga.';
 
   @override
-  String get sessionFormNoCoursesHint =>
-      'Bættu fyrst við áfanga til að skrá lotu.';
+  String get sessionFormNoCoursesHint => 'Bættu fyrst við áfanga til að skrá lotu.';
 
   @override
   String get sessionFormNotesLabel => 'Glósur (valfrjálst)';
@@ -622,12 +597,10 @@ class AppLocalizationsIs extends AppLocalizations {
   String get settingsClearSample => 'Hreinsa sýnidægögn';
 
   @override
-  String get settingsClearSampleMessage =>
-      'Þetta fjarlægir dæmaáfanga og lotur. Áfanga eða lotur sem þú bjóst til sjálfur eru ekki fjarlægðar.';
+  String get settingsClearSampleMessage => 'Þetta fjarlægir dæmaáfanga og lotur. Áfanga eða lotur sem þú bjóst til sjálfur eru ekki fjarlægðar.';
 
   @override
-  String get settingsClearSampleSubtitle =>
-      'Fjarlægja innbyggða dæmaáfanga og lotur. Þín eigin gögn haldast.';
+  String get settingsClearSampleSubtitle => 'Fjarlægja innbyggða dæmaáfanga og lotur. Þín eigin gögn haldast.';
 
   @override
   String get settingsClearSampleTitle => 'Hreinsa sýnidægögn?';
@@ -691,8 +664,7 @@ class AppLocalizationsIs extends AppLocalizations {
   String get settingsExportCopied => 'Útflutningur afritaður á klippiborð.';
 
   @override
-  String get settingsExportSubtitle =>
-      'Afrita alla áfanga, lotur og stillingar sem JSON.';
+  String get settingsExportSubtitle => 'Afrita alla áfanga, lotur og stillingar sem JSON.';
 
   @override
   String settingsExportSummary(String courses, String sessions, String kb) {
@@ -722,8 +694,7 @@ class AppLocalizationsIs extends AppLocalizations {
   String get settingsHoursError => 'Sláðu inn tölu stærri en núll.';
 
   @override
-  String get settingsHoursHelper =>
-      'Sjálfgefið 30. Breyting endurreiknar kröfur; skráningar haldast.';
+  String get settingsHoursHelper => 'Sjálfgefið 30. Breyting endurreiknar kröfur; skráningar haldast.';
 
   @override
   String get settingsHoursLabel => 'Klukkutímar á ECTS-einingu';
@@ -754,8 +725,7 @@ class AppLocalizationsIs extends AppLocalizations {
   }
 
   @override
-  String get settingsImportInfo =>
-      'Viðbót bætir afritinu við núverandi gögn (stillingar haldast). Skipti eyðir ÖLLUM áföngum, lotum og stillingum fyrst.';
+  String get settingsImportInfo => 'Viðbót bætir afritinu við núverandi gögn (stillingar haldast). Skipti eyðir ÖLLUM áföngum, lotum og stillingum fyrst.';
 
   @override
   String get settingsImportLabel => 'Líma útflutt JSON';
@@ -789,8 +759,7 @@ class AppLocalizationsIs extends AppLocalizations {
   }
 
   @override
-  String get settingsImportSubtitle =>
-      'Skipta öllum gögnum út frá áður útfluttu JSON-afriti.';
+  String get settingsImportSubtitle => 'Skipta öllum gögnum út frá áður útfluttu JSON-afriti.';
 
   @override
   String settingsKeepHolding(String remaining) {
@@ -801,8 +770,7 @@ class AppLocalizationsIs extends AppLocalizations {
   String get settingsNoSample => 'Engin sýnidægögn';
 
   @override
-  String get settingsNoSampleSubtitle =>
-      'Innbyggð sýnidægögn hafa þegar verið hreinsuð.';
+  String get settingsNoSampleSubtitle => 'Innbyggð sýnidægögn hafa þegar verið hreinsuð.';
 
   @override
   String get settingsNoTarget => 'Ekkert markmið stillt';
@@ -811,8 +779,7 @@ class AppLocalizationsIs extends AppLocalizations {
   String get settingsOverloadError => 'Sláðu inn tölu 5–100 klst/viku.';
 
   @override
-  String get settingsOverloadHelper =>
-      'Vikur með álag yfir þessu eru merktar rauðar. Fullt nám er ~35–40 klst/viku.';
+  String get settingsOverloadHelper => 'Vikur með álag yfir þessu eru merktar rauðar. Fullt nám er ~35–40 klst/viku.';
 
   @override
   String settingsOverloadHours(String value) {
@@ -846,12 +813,10 @@ class AppLocalizationsIs extends AppLocalizations {
   String get settingsResetAll => 'Endurstilla öll gögn';
 
   @override
-  String get settingsResetAllMessage =>
-      'Þetta eyðir VARANLEGA ÖLLUM áföngum, lotum og stillingum. Þetta er óafturkræft. Flyttu fyrst út afrit ef þarf.';
+  String get settingsResetAllMessage => 'Þetta eyðir VARANLEGA ÖLLUM áföngum, lotum og stillingum. Þetta er óafturkræft. Flyttu fyrst út afrit ef þarf.';
 
   @override
-  String get settingsResetAllSubtitle =>
-      'Eyða öllum áföngum, lotum og stillingum.';
+  String get settingsResetAllSubtitle => 'Eyða öllum áföngum, lotum og stillingum.';
 
   @override
   String get settingsResetAllTitle => 'Endurstilla öll gögn?';
@@ -860,16 +825,13 @@ class AppLocalizationsIs extends AppLocalizations {
   String get settingsResetSettings => 'Endurstilla stillingar';
 
   @override
-  String get settingsResetSettingsDone =>
-      'Stillingar endurstilltar á sjálfgefið.';
+  String get settingsResetSettingsDone => 'Stillingar endurstilltar á sjálfgefið.';
 
   @override
-  String get settingsResetSettingsMessage =>
-      'Endurheimtir klukkutíma á ECTS (30), daglegt markmið (ekkert), fyrsta virkan dag (mánudag), þema (kerfi), vikmörk (5 dagar), ofálag (35 klst/viku), stærð (þægilegt), lit (skífu). Áfangar og lotur haldast.';
+  String get settingsResetSettingsMessage => 'Endurheimtir klukkutíma á ECTS (30), daglegt markmið (ekkert), fyrsta virkan dag (mánudag), þema (kerfi), vikmörk (5 dagar), ofálag (35 klst/viku), stærð (þægilegt), lit (skífu). Áfangar og lotur haldast.';
 
   @override
-  String get settingsResetSettingsSubtitle =>
-      'Endurheimta sjálfgefið: 30 klst/ECTS, ekkert markmið, mánudagur, kerfisþema, 5 daga vikmörk, 35 klst/viku ofálag, þægileg stærð, skífa litur.';
+  String get settingsResetSettingsSubtitle => 'Endurheimta sjálfgefið: 30 klst/ECTS, ekkert markmið, mánudagur, kerfisþema, 5 daga vikmörk, 35 klst/viku ofálag, þægileg stærð, skífa litur.';
 
   @override
   String get settingsResetSettingsTitle => 'Endurstilla stillingar?';
@@ -909,8 +871,7 @@ class AppLocalizationsIs extends AppLocalizations {
   String get settingsToleranceError => 'Sláðu inn tölu 0–30 daga.';
 
   @override
-  String get settingsToleranceHelper =>
-      'Fram þarf +N daga umfram, eftir −N daga. 5 = stöðugt, 0 = viðkvæmt.';
+  String get settingsToleranceHelper => 'Fram þarf +N daga umfram, eftir −N daga. 5 = stöðugt, 0 = viðkvæmt.';
 
   @override
   String get settingsToleranceLabel => 'Dagar vinnu (0–30)';
@@ -968,8 +929,7 @@ class AppLocalizationsIs extends AppLocalizations {
   }
 
   @override
-  String get statsAddDeadlines =>
-      'Bættu við skiladögum til að spá fyrir um álag.';
+  String get statsAddDeadlines => 'Bættu við skiladögum til að spá fyrir um álag.';
 
   @override
   String get statsComingLoad => 'Væntanlegt álag';
@@ -978,8 +938,7 @@ class AppLocalizationsIs extends AppLocalizations {
   String get statsConsistency => 'Samkvæmni';
 
   @override
-  String get statsConsistencyHint =>
-      'Námsdagar síðustu 30 daga. Lítil skref á hverjum degi vinna gegn troðningi.';
+  String get statsConsistencyHint => 'Námsdagar síðustu 30 daga. Lítil skref á hverjum degi vinna gegn troðningi.';
 
   @override
   String statsConsistencyScore(String percent) {
@@ -1102,8 +1061,7 @@ class AppLocalizationsIs extends AppLocalizations {
   String get statusOverdue => 'Of seint';
 
   @override
-  String get studyLogDeleteBody =>
-      'Eyða þessari námslotu? Þetta er óafturkræft.';
+  String get studyLogDeleteBody => 'Eyða þessari námslotu? Þetta er óafturkræft.';
 
   @override
   String get studyLogDeleteTitle => 'Eyða lotu?';
@@ -1145,8 +1103,53 @@ class AppLocalizationsIs extends AppLocalizations {
   }
 
   @override
-  String get validationCourseEctsPositive =>
-      'ECTS verður að vera meira en núll';
+  String studyTimerActiveTitle(String course) {
+    return 'Timing $course';
+  }
+
+  @override
+  String get studyTimerAlreadyRunning => 'A timer is already running. Finish or discard it first.';
+
+  @override
+  String get studyTimerCourseLabel => 'Course';
+
+  @override
+  String get studyTimerDiscard => 'Discard';
+
+  @override
+  String get studyTimerDiscardBody => 'Throw away the current timer without logging? This cannot be undone.';
+
+  @override
+  String get studyTimerDiscardTitle => 'Discard timer?';
+
+  @override
+  String studyTimerFinishLog(String minutes) {
+    return 'Finish & log $minutes min';
+  }
+
+  @override
+  String get studyTimerNoCourseError => 'Select a course.';
+
+  @override
+  String get studyTimerNoCoursesHint => 'Add a course first to start a timer.';
+
+  @override
+  String get studyTimerPause => 'Pause';
+
+  @override
+  String get studyTimerResume => 'Resume';
+
+  @override
+  String get studyTimerStart => 'Start timer';
+
+  @override
+  String get studyTimerStartTitle => 'Start study timer';
+
+  @override
+  String get studyTimerTooShort => 'Timer has not run yet.';
+
+  @override
+  String get validationCourseEctsPositive => 'ECTS verður að vera meira en núll';
 
   @override
   String get validationCourseEctsRequired => 'Sláðu inn ECTS-einingar';
@@ -1173,8 +1176,7 @@ class AppLocalizationsIs extends AppLocalizations {
   String get settingsLiquidGlass => 'Fljótandi gler';
 
   @override
-  String get settingsLiquidGlassSubtitle =>
-      'Spjöld og stikur úr mattgleri. Slökkt heldur klassíska heila útlitinu.';
+  String get settingsLiquidGlassSubtitle => 'Spjöld og stikur úr mattgleri. Slökkt heldur klassíska heila útlitinu.';
 
   @override
   String get settingsLiquidGlassOn => 'Kveikt';
@@ -1189,8 +1191,7 @@ class AppLocalizationsIs extends AppLocalizations {
   String get devToolsReminderPreview => 'Forskoðun áminningar';
 
   @override
-  String get devToolsReminderPreviewSubtitle =>
-      'Sjá hvað myndi tilkynna núna. Öruggur prófunarstraumur fyrir Windows.';
+  String get devToolsReminderPreviewSubtitle => 'Sjá hvað myndi tilkynna núna. Öruggur prófunarstraumur fyrir Windows.';
 
   @override
   String get reminderPreviewTitle => 'Forskoðun áminningar';
@@ -1202,8 +1203,7 @@ class AppLocalizationsIs extends AppLocalizations {
   String get reminderPreviewReset => 'Núna';
 
   @override
-  String get reminderPreviewEmpty =>
-      'Allt hljótt — ekkert myndi tilkynna á þessum tíma.';
+  String get reminderPreviewEmpty => 'Allt hljótt — ekkert myndi tilkynna á þessum tíma.';
 
   @override
   String get reminderPreviewCustom => 'Sérsniðnar áætlanir (sýnidæmi)';
@@ -1239,8 +1239,7 @@ class AppLocalizationsIs extends AppLocalizations {
   String get settingsReminderTime => 'Tími áminningar';
 
   @override
-  String get settingsReminderDenied =>
-      'Tilkynningar eru læstar — kveiktu á þeim í kerfisstillingum.';
+  String get settingsReminderDenied => 'Tilkynningar eru læstar — kveiktu á þeim í kerfisstillingum.';
 
   @override
   String notifDurationHours(String value) {
@@ -1278,12 +1277,7 @@ class AppLocalizationsIs extends AppLocalizations {
   }
 
   @override
-  String notifBehindBodyPace(
-    String left,
-    String days,
-    String pace,
-    String catchUp,
-  ) {
+  String notifBehindBodyPace(String left, String days, String pace, String catchUp) {
     return '$left eftir, $days dagar eftir — $pace/dag héðan. Skráðu $catchUp til að komast aftur á rétta leið.';
   }
 
@@ -1303,8 +1297,7 @@ class AppLocalizationsIs extends AppLocalizations {
   }
 
   @override
-  String get notifDeadlineTomorrowBody =>
-      'Allt sem þú skráir í dag gildir tvöfalt.';
+  String get notifDeadlineTomorrowBody => 'Allt sem þú skráir í dag gildir tvöfalt.';
 
   @override
   String notifDeadlineSoonTitle(String course, String days, String left) {
@@ -1317,8 +1310,7 @@ class AppLocalizationsIs extends AppLocalizations {
   }
 
   @override
-  String get notifDeadlineSoonBodyNoPace =>
-      'Sérhver klukkutími sem þú skráir núna gildir.';
+  String get notifDeadlineSoonBodyNoPace => 'Sérhver klukkutími sem þú skráir núna gildir.';
 
   @override
   String notifOverdueTitle(String course, String left) {
@@ -1326,8 +1318,7 @@ class AppLocalizationsIs extends AppLocalizations {
   }
 
   @override
-  String get notifOverdueBody =>
-      'Færðu skiladaginn eða kláraðu tímana — áfanginn þarfnast athygli þangað til.';
+  String get notifOverdueBody => 'Færðu skiladaginn eða kláraðu tímana — áfanginn þarfnast athygli þangað til.';
 
   @override
   String notifStreakTitle(String days, String week) {
@@ -1335,8 +1326,7 @@ class AppLocalizationsIs extends AppLocalizations {
   }
 
   @override
-  String get notifStreakBody =>
-      'Allir áfangar á réttri leið eða á undan. Vel gert.';
+  String get notifStreakBody => 'Allir áfangar á réttri leið eða á undan. Vel gert.';
 
   @override
   String notifCustomTitleAuto(String course) {

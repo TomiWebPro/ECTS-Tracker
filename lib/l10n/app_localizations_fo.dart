@@ -1,6 +1,5 @@
 // ignore: unused_import
 import 'package:intl/intl.dart' as intl;
-
 import 'app_localizations.dart';
 
 // ignore_for_file: type=lint
@@ -83,8 +82,7 @@ class AppLocalizationsFo extends AppLocalizations {
   }
 
   @override
-  String get courseFormStartEarlyOn =>
-      'Kveikt: tíðin verður býtt til nú og telur við í tempo dagsins.';
+  String get courseFormStartEarlyOn => 'Kveikt: tíðin verður býtt til nú og telur við í tempo dagsins.';
 
   @override
   String get courseFormStartEarlyTitle => 'Byrja nú hóast komandi byrjan';
@@ -112,8 +110,7 @@ class AppLocalizationsFo extends AppLocalizations {
   }
 
   @override
-  String get coursesEmptyHint =>
-      'Trýst á \"Nýtt skeið\" fyri at stovna títt fyrsta skeið.';
+  String get coursesEmptyHint => 'Trýst á \"Nýtt skeið\" fyri at stovna títt fyrsta skeið.';
 
   @override
   String get coursesEmptyTitle => 'Onki skeið enn';
@@ -153,11 +150,7 @@ class AppLocalizationsFo extends AppLocalizations {
   }
 
   @override
-  String coursesProgressWithStatus(
-    String done,
-    String required,
-    String status,
-  ) {
+  String coursesProgressWithStatus(String done, String required, String status) {
     return '$done / $required t • $status';
   }
 
@@ -226,12 +219,10 @@ class AppLocalizationsFo extends AppLocalizations {
   }
 
   @override
-  String get dashboardEmptyHintAllDone =>
-      'Øll skeið eru liðug — síggj øll listan undir Skeið.';
+  String get dashboardEmptyHintAllDone => 'Øll skeið eru liðug — síggj øll listan undir Skeið.';
 
   @override
-  String get dashboardEmptyHintNoCourses =>
-      'Legg eitt skeið afturat fyri at byrja at fylgja ECTS-framgongd tína.';
+  String get dashboardEmptyHintNoCourses => 'Legg eitt skeið afturat fyri at byrja at fylgja ECTS-framgongd tína.';
 
   @override
   String dashboardExplainerBehind(String achieved, String need) {
@@ -244,12 +235,10 @@ class AppLocalizationsFo extends AppLocalizations {
   }
 
   @override
-  String get dashboardExplainerBehindNoPace =>
-      'Aftaná: einki endaligt tempo røkkur freist í dag við tímum eftir';
+  String get dashboardExplainerBehindNoPace => 'Aftaná: einki endaligt tempo røkkur freist í dag við tímum eftir';
 
   @override
-  String get dashboardExplainerOnTrackNoPace =>
-      'Á veg: einki tempo enn — skráset fyrstu løtu fyri at vátta';
+  String get dashboardExplainerOnTrackNoPace => 'Á veg: einki tempo enn — skráset fyrstu løtu fyri at vátta';
 
   @override
   String dashboardExplainerStartsIn(String days, String date) {
@@ -370,8 +359,7 @@ class AppLocalizationsFo extends AppLocalizations {
   String get dashboardProgramBare => 'SKRÁ';
 
   @override
-  String get dashboardProgramEmptyHint =>
-      'Legg eitt skeið afturat fyri at byrja at fylgja';
+  String get dashboardProgramEmptyHint => 'Legg eitt skeið afturat fyri at byrja at fylgja';
 
   @override
   String dashboardProgramHours(String done, String required) {
@@ -400,12 +388,10 @@ class AppLocalizationsFo extends AppLocalizations {
   String get dashboardStartsSoon => 'Byrjar skjótt';
 
   @override
-  String get dashboardTipEmpty =>
-      'Legg títt fyrsta skeið afturat — dagligt tempo og framgongd koma fram her.';
+  String get dashboardTipEmpty => 'Legg títt fyrsta skeið afturat — dagligt tempo og framgongd koma fram her.';
 
   @override
-  String get dashboardTipFirst =>
-      'Fyrstu 25 minuttini telja mest — vel skeiðið sum hevur fyrstu freist.';
+  String get dashboardTipFirst => 'Fyrstu 25 minuttini telja mest — vel skeiðið sum hevur fyrstu freist.';
 
   @override
   String get dashboardTodayBare => 'Í DAG';
@@ -429,8 +415,7 @@ class AppLocalizationsFo extends AppLocalizations {
   }
 
   @override
-  String get dashboardUpcomingSubtitle =>
-      'Komandi byrjanir — einki trýst í dag, undantikið tempo dagsins.';
+  String get dashboardUpcomingSubtitle => 'Komandi byrjanir — einki trýst í dag, undantikið tempo dagsins.';
 
   @override
   String get dashboardUpcomingTitle => 'Komandi';
@@ -439,8 +424,7 @@ class AppLocalizationsFo extends AppLocalizations {
   String get devToolsActivate => 'Kveik';
 
   @override
-  String get devToolsActivateMessage =>
-      'Hetta letur upp fjalda trýstroyndar-amboð (skapar royndargögn). Bert til menning.';
+  String get devToolsActivateMessage => 'Hetta letur upp fjalda trýstroyndar-amboð (skapar royndargögn). Bert til menning.';
 
   @override
   String get devToolsActivateTitle => 'Kveikja menningarham?';
@@ -452,12 +436,10 @@ class AppLocalizationsFo extends AppLocalizations {
   String get devToolsClearPumped => 'Strika innpumpað gögn';
 
   @override
-  String get devToolsClearPumpedMessage =>
-      'Strikar tey skaptu STRESS-skeiðini og løturnar. Tína egnu gögn verða varðveitt.';
+  String get devToolsClearPumpedMessage => 'Strikar tey skaptu STRESS-skeiðini og løturnar. Tína egnu gögn verða varðveitt.';
 
   @override
-  String get devToolsClearPumpedSubtitle =>
-      'Strika skapt STRESS-skeið og løtur.';
+  String get devToolsClearPumpedSubtitle => 'Strika skapt STRESS-skeið og løtur.';
 
   @override
   String get devToolsClearPumpedTitle => 'Strika innpumpað gögn?';
@@ -468,8 +450,7 @@ class AppLocalizationsFo extends AppLocalizations {
   }
 
   @override
-  String get devToolsConfirmPumpMessage =>
-      'Onnur váttan: hetta blæsir upp skeið, listar, talvur og tempoútrokningar og kann taka nakrar sekund. Pumpa nú?';
+  String get devToolsConfirmPumpMessage => 'Onnur váttan: hetta blæsir upp skeið, listar, talvur og tempoútrokningar og kann taka nakrar sekund. Pumpa nú?';
 
   @override
   String get devToolsConfirmPumpTitle => 'Vátta trýstroynd';
@@ -487,12 +468,10 @@ class AppLocalizationsFo extends AppLocalizations {
   String get devToolsPumpData => 'Pumpa gögn';
 
   @override
-  String get devToolsPumpMessage =>
-      'Hetta leggur inn eitt skapiligt lestrarhálvár (~10 skeið, ~800 løtur seinastu 12 vikurnar). Tíni verandi gögn verða varðveitt. Halda fram?';
+  String get devToolsPumpMessage => 'Hetta leggur inn eitt skapiligt lestrarhálvár (~10 skeið, ~800 løtur seinastu 12 vikurnar). Tíni verandi gögn verða varðveitt. Halda fram?';
 
   @override
-  String get devToolsPumpSubtitle =>
-      'Legg inn skapiligt hálvár (~10 skeið, ~800 løtur, 12 vikur). Verandi gögn varðveitt.';
+  String get devToolsPumpSubtitle => 'Legg inn skapiligt hálvár (~10 skeið, ~800 løtur, 12 vikur). Verandi gögn varðveitt.';
 
   @override
   String get devToolsPumpTile => 'Pumpa royndargögn';
@@ -512,12 +491,10 @@ class AppLocalizationsFo extends AppLocalizations {
   String get devToolsRemoveAll => 'Strika øll gögn';
 
   @override
-  String get devToolsRemoveAllMessage =>
-      'Menningarsnarvegur: hetta strikar varandi ØLL skeið, løtur og innstillingar. Hetta kann ikki angrast.';
+  String get devToolsRemoveAllMessage => 'Menningarsnarvegur: hetta strikar varandi ØLL skeið, løtur og innstillingar. Hetta kann ikki angrast.';
 
   @override
-  String get devToolsRemoveAllSubtitle =>
-      'Menningarsnarvegur: strika ØLL skeið, løtur og innstillingar.';
+  String get devToolsRemoveAllSubtitle => 'Menningarsnarvegur: strika ØLL skeið, løtur og innstillingar.';
 
   @override
   String get devToolsRemoveAllTitle => 'Strika øll gögn?';
@@ -564,8 +541,7 @@ class AppLocalizationsFo extends AppLocalizations {
   String get sessionFormNoCourseError => 'Vel eitt skeið.';
 
   @override
-  String get sessionFormNoCoursesHint =>
-      'Legg fyrst eitt skeið afturat fyri at skráseta eina løtu.';
+  String get sessionFormNoCoursesHint => 'Legg fyrst eitt skeið afturat fyri at skráseta eina løtu.';
 
   @override
   String get sessionFormNotesLabel => 'Notur (valfrítt)';
@@ -621,12 +597,10 @@ class AppLocalizationsFo extends AppLocalizations {
   String get settingsClearSample => 'Strika royndargögn';
 
   @override
-  String get settingsClearSampleMessage =>
-      'Hetta strikar dømisskeiðini og løturnar. Skeið ella løtur, sum tú sjálvur hevur lagt afturat, verða ikki strikað.';
+  String get settingsClearSampleMessage => 'Hetta strikar dømisskeiðini og løturnar. Skeið ella løtur, sum tú sjálvur hevur lagt afturat, verða ikki strikað.';
 
   @override
-  String get settingsClearSampleSubtitle =>
-      'Strika tey íbornu dømisskeiðini og løturnar. Tíni egnu gögn verða varðveitt.';
+  String get settingsClearSampleSubtitle => 'Strika tey íbornu dømisskeiðini og løturnar. Tíni egnu gögn verða varðveitt.';
 
   @override
   String get settingsClearSampleTitle => 'Strika royndargögn?';
@@ -635,8 +609,7 @@ class AppLocalizationsFo extends AppLocalizations {
   String get settingsCopy => 'Avrita';
 
   @override
-  String get settingsDailyError =>
-      'Skriva 0 ella eitt positivt tal av minuttum.';
+  String get settingsDailyError => 'Skriva 0 ella eitt positivt tal av minuttum.';
 
   @override
   String get settingsDailyLabel => 'Minuttir um dagin (0 = einki mál)';
@@ -691,8 +664,7 @@ class AppLocalizationsFo extends AppLocalizations {
   String get settingsExportCopied => 'Útflutningur avritaður til klemmuborð.';
 
   @override
-  String get settingsExportSubtitle =>
-      'Avrita øll skeið, løtur og innstillingar sum JSON.';
+  String get settingsExportSubtitle => 'Avrita øll skeið, løtur og innstillingar sum JSON.';
 
   @override
   String settingsExportSummary(String courses, String sessions, String kb) {
@@ -722,8 +694,7 @@ class AppLocalizationsFo extends AppLocalizations {
   String get settingsHoursError => 'Skriva eitt tal størri enn null.';
 
   @override
-  String get settingsHoursHelper =>
-      'Vanliga 30. Broyting endurrokna krav; skrásetingar varðveittar.';
+  String get settingsHoursHelper => 'Vanliga 30. Broyting endurrokna krav; skrásetingar varðveittar.';
 
   @override
   String get settingsHoursLabel => 'Tímar pr. ECTS-stig';
@@ -754,8 +725,7 @@ class AppLocalizationsFo extends AppLocalizations {
   }
 
   @override
-  String get settingsImportInfo =>
-      'Legg afturat leggur trygdaravritið afturat tínum verandi gögnum (innstillingar varðveittar). Skift út strikar fyrst ØLL skeið, løtur og innstillingar.';
+  String get settingsImportInfo => 'Legg afturat leggur trygdaravritið afturat tínum verandi gögnum (innstillingar varðveittar). Skift út strikar fyrst ØLL skeið, løtur og innstillingar.';
 
   @override
   String get settingsImportLabel => 'Líma útflutt JSON inn';
@@ -789,8 +759,7 @@ class AppLocalizationsFo extends AppLocalizations {
   }
 
   @override
-  String get settingsImportSubtitle =>
-      'Skift øll gögn út við eitt áður útflutt JSON-trygdaravrit.';
+  String get settingsImportSubtitle => 'Skift øll gögn út við eitt áður útflutt JSON-trygdaravrit.';
 
   @override
   String settingsKeepHolding(String remaining) {
@@ -801,8 +770,7 @@ class AppLocalizationsFo extends AppLocalizations {
   String get settingsNoSample => 'Ongi royndargögn';
 
   @override
-  String get settingsNoSampleSubtitle =>
-      'Tey íbornu dømisgögnini eru longu strikað.';
+  String get settingsNoSampleSubtitle => 'Tey íbornu dømisgögnini eru longu strikað.';
 
   @override
   String get settingsNoTarget => 'Einki mál ásett';
@@ -811,8 +779,7 @@ class AppLocalizationsFo extends AppLocalizations {
   String get settingsOverloadError => 'Skriva eitt tal 5–100 t/viku.';
 
   @override
-  String get settingsOverloadHelper =>
-      'Komandi vikur yvir hesum verða merktar reyðar. Fulltíðarlestur er ~35–40 t/viku.';
+  String get settingsOverloadHelper => 'Komandi vikur yvir hesum verða merktar reyðar. Fulltíðarlestur er ~35–40 t/viku.';
 
   @override
   String settingsOverloadHours(String value) {
@@ -837,8 +804,7 @@ class AppLocalizationsFo extends AppLocalizations {
   String get settingsPaceTolerance => 'Undan-/aftaná-tol';
 
   @override
-  String get settingsPasteValidBackup =>
-      'Líma fyrst inn eitt gildugt trygdaravrit';
+  String get settingsPasteValidBackup => 'Líma fyrst inn eitt gildugt trygdaravrit';
 
   @override
   String get settingsReset => 'Nullstilla';
@@ -847,12 +813,10 @@ class AppLocalizationsFo extends AppLocalizations {
   String get settingsResetAll => 'Nullstilla øll gögn';
 
   @override
-  String get settingsResetAllMessage =>
-      'Hetta strikar varandi ØLL skeið, løtur og innstillingar. Hetta kann ikki angrast. Útflyt fyrst eitt trygdaravrit um neyðugt.';
+  String get settingsResetAllMessage => 'Hetta strikar varandi ØLL skeið, løtur og innstillingar. Hetta kann ikki angrast. Útflyt fyrst eitt trygdaravrit um neyðugt.';
 
   @override
-  String get settingsResetAllSubtitle =>
-      'Strika øll skeið, løtur og innstillingar.';
+  String get settingsResetAllSubtitle => 'Strika øll skeið, løtur og innstillingar.';
 
   @override
   String get settingsResetAllTitle => 'Nullstilla øll gögn?';
@@ -861,16 +825,13 @@ class AppLocalizationsFo extends AppLocalizations {
   String get settingsResetSettings => 'Nullstilla innstillingar';
 
   @override
-  String get settingsResetSettingsDone =>
-      'Innstillingar nullstillaðar til standard.';
+  String get settingsResetSettingsDone => 'Innstillingar nullstillaðar til standard.';
 
   @override
-  String get settingsResetSettingsMessage =>
-      'Endurstovnar tímar-pr-ECTS (30), dagligt mál (einki), fyrsta vikudag (mánadag), evni (skipan), tol (5 dagar), yvirlast (35 t/viku), stødd (hugnaligt), lit (skifer). Skeið og løtur verða varðveitt.';
+  String get settingsResetSettingsMessage => 'Endurstovnar tímar-pr-ECTS (30), dagligt mál (einki), fyrsta vikudag (mánadag), evni (skipan), tol (5 dagar), yvirlast (35 t/viku), stødd (hugnaligt), lit (skifer). Skeið og løtur verða varðveitt.';
 
   @override
-  String get settingsResetSettingsSubtitle =>
-      'Endurstovna standard: 30 t/ECTS, einki mál, mánadagur, skipanarevni, 5-daga tol, 35 t/viku yvirlast, hugnalig stødd, skifer litur.';
+  String get settingsResetSettingsSubtitle => 'Endurstovna standard: 30 t/ECTS, einki mál, mánadagur, skipanarevni, 5-daga tol, 35 t/viku yvirlast, hugnalig stødd, skifer litur.';
 
   @override
   String get settingsResetSettingsTitle => 'Nullstilla innstillingar?';
@@ -910,8 +871,7 @@ class AppLocalizationsFo extends AppLocalizations {
   String get settingsToleranceError => 'Skriva eitt tal 0–30 dagar.';
 
   @override
-  String get settingsToleranceHelper =>
-      'Undan krevur +N daga avskot, aftaná −N dagar. 5 = støðugt, 0 = viðkvæmt.';
+  String get settingsToleranceHelper => 'Undan krevur +N daga avskot, aftaná −N dagar. 5 = støðugt, 0 = viðkvæmt.';
 
   @override
   String get settingsToleranceLabel => 'Dagar av arbeiði (0–30)';
@@ -969,8 +929,7 @@ class AppLocalizationsFo extends AppLocalizations {
   }
 
   @override
-  String get statsAddDeadlines =>
-      'Legg freistir afturat fyri at spáa um byrðu.';
+  String get statsAddDeadlines => 'Legg freistir afturat fyri at spáa um byrðu.';
 
   @override
   String get statsComingLoad => 'Komandi byrða';
@@ -979,8 +938,7 @@ class AppLocalizationsFo extends AppLocalizations {
   String get statsConsistency => 'Støðufesti';
 
   @override
-  String get statsConsistencyHint =>
-      'Lestrardagar seinastu 30 dagarnar. Smá stig hvønn dag vinna á at kroppa.';
+  String get statsConsistencyHint => 'Lestrardagar seinastu 30 dagarnar. Smá stig hvønn dag vinna á at kroppa.';
 
   @override
   String statsConsistencyScore(String percent) {
@@ -1045,8 +1003,7 @@ class AppLocalizationsFo extends AppLocalizations {
   String get statsOverview => 'Yvirlit';
 
   @override
-  String get statsPaceCovers =>
-      'Undanfarna tempo røkkur tað sum krevst. Halt dampin.';
+  String get statsPaceCovers => 'Undanfarna tempo røkkur tað sum krevst. Halt dampin.';
 
   @override
   String statsPaceShort(String gap) {
@@ -1104,8 +1061,7 @@ class AppLocalizationsFo extends AppLocalizations {
   String get statusOverdue => 'Yvirgongd';
 
   @override
-  String get studyLogDeleteBody =>
-      'Strika hesa lestrarløtuna? Hetta kann ikki angrast.';
+  String get studyLogDeleteBody => 'Strika hesa lestrarløtuna? Hetta kann ikki angrast.';
 
   @override
   String get studyLogDeleteTitle => 'Strika løtu?';
@@ -1147,6 +1103,52 @@ class AppLocalizationsFo extends AppLocalizations {
   }
 
   @override
+  String studyTimerActiveTitle(String course) {
+    return 'Timing $course';
+  }
+
+  @override
+  String get studyTimerAlreadyRunning => 'A timer is already running. Finish or discard it first.';
+
+  @override
+  String get studyTimerCourseLabel => 'Course';
+
+  @override
+  String get studyTimerDiscard => 'Discard';
+
+  @override
+  String get studyTimerDiscardBody => 'Throw away the current timer without logging? This cannot be undone.';
+
+  @override
+  String get studyTimerDiscardTitle => 'Discard timer?';
+
+  @override
+  String studyTimerFinishLog(String minutes) {
+    return 'Finish & log $minutes min';
+  }
+
+  @override
+  String get studyTimerNoCourseError => 'Select a course.';
+
+  @override
+  String get studyTimerNoCoursesHint => 'Add a course first to start a timer.';
+
+  @override
+  String get studyTimerPause => 'Pause';
+
+  @override
+  String get studyTimerResume => 'Resume';
+
+  @override
+  String get studyTimerStart => 'Start timer';
+
+  @override
+  String get studyTimerStartTitle => 'Start study timer';
+
+  @override
+  String get studyTimerTooShort => 'Timer has not run yet.';
+
+  @override
   String get validationCourseEctsPositive => 'ECTS má vera størri enn null';
 
   @override
@@ -1174,8 +1176,7 @@ class AppLocalizationsFo extends AppLocalizations {
   String get settingsLiquidGlass => 'Flótglas';
 
   @override
-  String get settingsLiquidGlassSubtitle =>
-      'Frostglas-kort og strikur. Sløkt varðveitir tað klassiska einfalda útsjóndina.';
+  String get settingsLiquidGlassSubtitle => 'Frostglas-kort og strikur. Sløkt varðveitir tað klassiska einfalda útsjóndina.';
 
   @override
   String get settingsLiquidGlassOn => 'Kveikt';
@@ -1190,8 +1191,7 @@ class AppLocalizationsFo extends AppLocalizations {
   String get devToolsReminderPreview => 'Áminningarforhondskoðan';
 
   @override
-  String get devToolsReminderPreviewSubtitle =>
-      'Sígg, hvat hevði boðað frá beint nú. Windows-trygg royndarveiting.';
+  String get devToolsReminderPreviewSubtitle => 'Sígg, hvat hevði boðað frá beint nú. Windows-trygg royndarveiting.';
 
   @override
   String get reminderPreviewTitle => 'Áminningarforhondskoðan';
@@ -1203,8 +1203,7 @@ class AppLocalizationsFo extends AppLocalizations {
   String get reminderPreviewReset => 'Nú';
 
   @override
-  String get reminderPreviewEmpty =>
-      'Alt friðaligt — einki hevði boðað frá á hesum tíðarpunkti.';
+  String get reminderPreviewEmpty => 'Alt friðaligt — einki hevði boðað frá á hesum tíðarpunkti.';
 
   @override
   String get reminderPreviewCustom => 'Sergjørdar ætlanir (demo)';
@@ -1234,15 +1233,13 @@ class AppLocalizationsFo extends AppLocalizations {
   String get settingsReminders => 'Lestraráminningar';
 
   @override
-  String get settingsRemindersOff =>
-      'Sløkt — tend fyri at fáa dagliga áminning.';
+  String get settingsRemindersOff => 'Sløkt — tend fyri at fáa dagliga áminning.';
 
   @override
   String get settingsReminderTime => 'Áminningartíð';
 
   @override
-  String get settingsReminderDenied =>
-      'Tilkynningar eru forðaðar — loyvið teimum í skipanarinnstillingunum.';
+  String get settingsReminderDenied => 'Tilkynningar eru forðaðar — loyvið teimum í skipanarinnstillingunum.';
 
   @override
   String notifDurationHours(String value) {
@@ -1280,12 +1277,7 @@ class AppLocalizationsFo extends AppLocalizations {
   }
 
   @override
-  String notifBehindBodyPace(
-    String left,
-    String days,
-    String pace,
-    String catchUp,
-  ) {
+  String notifBehindBodyPace(String left, String days, String pace, String catchUp) {
     return '$left eftir, $days dagar eftir — $pace/dag herfrá. Skráset $catchUp fyri at verða Á veg aftur.';
   }
 
@@ -1305,8 +1297,7 @@ class AppLocalizationsFo extends AppLocalizations {
   }
 
   @override
-  String get notifDeadlineTomorrowBody =>
-      'Alt tú skrásetar í dag telur tvífalt.';
+  String get notifDeadlineTomorrowBody => 'Alt tú skrásetar í dag telur tvífalt.';
 
   @override
   String notifDeadlineSoonTitle(String course, String days, String left) {
@@ -1327,8 +1318,7 @@ class AppLocalizationsFo extends AppLocalizations {
   }
 
   @override
-  String get notifOverdueBody =>
-      'Flyt freistina ella ger tímanar liðugt — skeiðið krevur ans, til tað er gjørt.';
+  String get notifOverdueBody => 'Flyt freistina ella ger tímanar liðugt — skeiðið krevur ans, til tað er gjørt.';
 
   @override
   String notifStreakTitle(String days, String week) {

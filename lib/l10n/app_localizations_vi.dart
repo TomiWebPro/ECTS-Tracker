@@ -1,6 +1,5 @@
 // ignore: unused_import
 import 'package:intl/intl.dart' as intl;
-
 import 'app_localizations.dart';
 
 // ignore_for_file: type=lint
@@ -83,12 +82,10 @@ class AppLocalizationsVi extends AppLocalizations {
   }
 
   @override
-  String get courseFormStartEarlyOn =>
-      'Bật: chia thời gian đến nay và tính vào nhịp Hôm nay.';
+  String get courseFormStartEarlyOn => 'Bật: chia thời gian đến nay và tính vào nhịp Hôm nay.';
 
   @override
-  String get courseFormStartEarlyTitle =>
-      'Bắt đầu ngay dù ngày bắt đầu ở tương lai';
+  String get courseFormStartEarlyTitle => 'Bắt đầu ngay dù ngày bắt đầu ở tương lai';
 
   @override
   String get courseFormTitleAdd => 'Thêm môn học';
@@ -153,11 +150,7 @@ class AppLocalizationsVi extends AppLocalizations {
   }
 
   @override
-  String coursesProgressWithStatus(
-    String done,
-    String required,
-    String status,
-  ) {
+  String coursesProgressWithStatus(String done, String required, String status) {
     return '$done / $required giờ • $status';
   }
 
@@ -226,12 +219,10 @@ class AppLocalizationsVi extends AppLocalizations {
   }
 
   @override
-  String get dashboardEmptyHintAllDone =>
-      'Mọi môn đều hoàn thành — xem danh sách đầy đủ ở tab Môn học.';
+  String get dashboardEmptyHintAllDone => 'Mọi môn đều hoàn thành — xem danh sách đầy đủ ở tab Môn học.';
 
   @override
-  String get dashboardEmptyHintNoCourses =>
-      'Thêm môn học để bắt đầu theo dõi tiến độ ECTS.';
+  String get dashboardEmptyHintNoCourses => 'Thêm môn học để bắt đầu theo dõi tiến độ ECTS.';
 
   @override
   String dashboardExplainerBehind(String achieved, String need) {
@@ -244,12 +235,10 @@ class AppLocalizationsVi extends AppLocalizations {
   }
 
   @override
-  String get dashboardExplainerBehindNoPace =>
-      'Trễ: không có nhịp hữu hạn mà hạn là hôm nay và còn giờ';
+  String get dashboardExplainerBehindNoPace => 'Trễ: không có nhịp hữu hạn mà hạn là hôm nay và còn giờ';
 
   @override
-  String get dashboardExplainerOnTrackNoPace =>
-      'Đúng tiến độ: chưa có nhịp — ghi buổi đầu để xác nhận';
+  String get dashboardExplainerOnTrackNoPace => 'Đúng tiến độ: chưa có nhịp — ghi buổi đầu để xác nhận';
 
   @override
   String dashboardExplainerStartsIn(String days, String date) {
@@ -399,12 +388,10 @@ class AppLocalizationsVi extends AppLocalizations {
   String get dashboardStartsSoon => 'Sắp bắt đầu';
 
   @override
-  String get dashboardTipEmpty =>
-      'Thêm môn đầu tiên — nhịp hằng ngày và tiến độ sẽ hiện ở đây.';
+  String get dashboardTipEmpty => 'Thêm môn đầu tiên — nhịp hằng ngày và tiến độ sẽ hiện ở đây.';
 
   @override
-  String get dashboardTipFirst =>
-      '25 phút đầu quan trọng nhất — hãy chọn môn đến hạn trước.';
+  String get dashboardTipFirst => '25 phút đầu quan trọng nhất — hãy chọn môn đến hạn trước.';
 
   @override
   String get dashboardTodayBare => 'HÔM NAY';
@@ -428,8 +415,7 @@ class AppLocalizationsVi extends AppLocalizations {
   }
 
   @override
-  String get dashboardUpcomingSubtitle =>
-      'Các môn bắt đầu sau — hôm nay không áp lực, loại khỏi nhịp Hôm nay.';
+  String get dashboardUpcomingSubtitle => 'Các môn bắt đầu sau — hôm nay không áp lực, loại khỏi nhịp Hôm nay.';
 
   @override
   String get dashboardUpcomingTitle => 'Sắp tới';
@@ -438,8 +424,7 @@ class AppLocalizationsVi extends AppLocalizations {
   String get devToolsActivate => 'Kích hoạt';
 
   @override
-  String get devToolsActivateMessage =>
-      'Mở công cụ kiểm tra tải ẩn (nạp dữ liệu tạo sẵn). Chỉ dành cho phát triển.';
+  String get devToolsActivateMessage => 'Mở công cụ kiểm tra tải ẩn (nạp dữ liệu tạo sẵn). Chỉ dành cho phát triển.';
 
   @override
   String get devToolsActivateTitle => 'Kích hoạt chế độ dev?';
@@ -451,12 +436,10 @@ class AppLocalizationsVi extends AppLocalizations {
   String get devToolsClearPumped => 'Xóa dữ liệu đã nạp';
 
   @override
-  String get devToolsClearPumpedMessage =>
-      'Xóa các môn STRESS được tạo và buổi học của chúng. Dữ liệu của bạn được giữ lại.';
+  String get devToolsClearPumpedMessage => 'Xóa các môn STRESS được tạo và buổi học của chúng. Dữ liệu của bạn được giữ lại.';
 
   @override
-  String get devToolsClearPumpedSubtitle =>
-      'Xóa các môn STRESS và buổi học được tạo.';
+  String get devToolsClearPumpedSubtitle => 'Xóa các môn STRESS và buổi học được tạo.';
 
   @override
   String get devToolsClearPumpedTitle => 'Xóa dữ liệu đã nạp?';
@@ -467,8 +450,7 @@ class AppLocalizationsVi extends AppLocalizations {
   }
 
   @override
-  String get devToolsConfirmPumpMessage =>
-      'Xác nhận lần hai: thao tác sẽ phình môn học, danh sách, biểu đồ và tính nhịp, có thể mất vài giây. Nạp ngay?';
+  String get devToolsConfirmPumpMessage => 'Xác nhận lần hai: thao tác sẽ phình môn học, danh sách, biểu đồ và tính nhịp, có thể mất vài giây. Nạp ngay?';
 
   @override
   String get devToolsConfirmPumpTitle => 'Xác nhận nạp kiểm tra tải';
@@ -486,12 +468,10 @@ class AppLocalizationsVi extends AppLocalizations {
   String get devToolsPumpData => 'Nạp dữ liệu';
 
   @override
-  String get devToolsPumpMessage =>
-      'Chèn một học kỳ tạo sẵn thực tế (~10 môn, ~800 buổi trong 12 tuần qua). Dữ liệu hiện có được giữ lại. Tiếp tục?';
+  String get devToolsPumpMessage => 'Chèn một học kỳ tạo sẵn thực tế (~10 môn, ~800 buổi trong 12 tuần qua). Dữ liệu hiện có được giữ lại. Tiếp tục?';
 
   @override
-  String get devToolsPumpSubtitle =>
-      'Chèn học kỳ tạo sẵn (~10 môn, ~800 buổi, 12 tuần). Giữ dữ liệu hiện có.';
+  String get devToolsPumpSubtitle => 'Chèn học kỳ tạo sẵn (~10 môn, ~800 buổi, 12 tuần). Giữ dữ liệu hiện có.';
 
   @override
   String get devToolsPumpTile => 'Nạp dữ liệu kiểm tra';
@@ -511,12 +491,10 @@ class AppLocalizationsVi extends AppLocalizations {
   String get devToolsRemoveAll => 'Xóa mọi dữ liệu';
 
   @override
-  String get devToolsRemoveAllMessage =>
-      'Phím tắt dev: xóa vĩnh viễn MỌI môn học, buổi học và cài đặt. Không thể hoàn tác.';
+  String get devToolsRemoveAllMessage => 'Phím tắt dev: xóa vĩnh viễn MỌI môn học, buổi học và cài đặt. Không thể hoàn tác.';
 
   @override
-  String get devToolsRemoveAllSubtitle =>
-      'Phím tắt dev: xóa MỌI môn học, buổi học và cài đặt.';
+  String get devToolsRemoveAllSubtitle => 'Phím tắt dev: xóa MỌI môn học, buổi học và cài đặt.';
 
   @override
   String get devToolsRemoveAllTitle => 'Xóa mọi dữ liệu?';
@@ -563,8 +541,7 @@ class AppLocalizationsVi extends AppLocalizations {
   String get sessionFormNoCourseError => 'Hãy chọn môn học.';
 
   @override
-  String get sessionFormNoCoursesHint =>
-      'Hãy thêm môn học trước để ghi buổi học.';
+  String get sessionFormNoCoursesHint => 'Hãy thêm môn học trước để ghi buổi học.';
 
   @override
   String get sessionFormNotesLabel => 'Ghi chú (tùy chọn)';
@@ -620,12 +597,10 @@ class AppLocalizationsVi extends AppLocalizations {
   String get settingsClearSample => 'Xóa dữ liệu mẫu';
 
   @override
-  String get settingsClearSampleMessage =>
-      'Xóa các môn và buổi học ví dụ. Các môn hoặc buổi bạn tự thêm sẽ không bị xóa.';
+  String get settingsClearSampleMessage => 'Xóa các môn và buổi học ví dụ. Các môn hoặc buổi bạn tự thêm sẽ không bị xóa.';
 
   @override
-  String get settingsClearSampleSubtitle =>
-      'Xóa các môn và buổi học ví dụ. Dữ liệu của bạn được giữ lại.';
+  String get settingsClearSampleSubtitle => 'Xóa các môn và buổi học ví dụ. Dữ liệu của bạn được giữ lại.';
 
   @override
   String get settingsClearSampleTitle => 'Xóa dữ liệu mẫu?';
@@ -689,8 +664,7 @@ class AppLocalizationsVi extends AppLocalizations {
   String get settingsExportCopied => 'Đã sao chép bản xuất vào clipboard.';
 
   @override
-  String get settingsExportSubtitle =>
-      'Sao chép mọi môn học, buổi học và cài đặt dưới dạng JSON.';
+  String get settingsExportSubtitle => 'Sao chép mọi môn học, buổi học và cài đặt dưới dạng JSON.';
 
   @override
   String settingsExportSummary(String courses, String sessions, String kb) {
@@ -720,8 +694,7 @@ class AppLocalizationsVi extends AppLocalizations {
   String get settingsHoursError => 'Nhập số lớn hơn 0.';
 
   @override
-  String get settingsHoursHelper =>
-      'Mặc định 30. Thay đổi sẽ tính lại yêu cầu; nhật ký được giữ.';
+  String get settingsHoursHelper => 'Mặc định 30. Thay đổi sẽ tính lại yêu cầu; nhật ký được giữ.';
 
   @override
   String get settingsHoursLabel => 'Số giờ mỗi tín chỉ ECTS';
@@ -752,8 +725,7 @@ class AppLocalizationsVi extends AppLocalizations {
   }
 
   @override
-  String get settingsImportInfo =>
-      'Thêm vào sẽ cộng bản sao lưu vào dữ liệu hiện tại (giữ cài đặt). Thay thế sẽ xóa MỌI môn học, buổi học và cài đặt trước.';
+  String get settingsImportInfo => 'Thêm vào sẽ cộng bản sao lưu vào dữ liệu hiện tại (giữ cài đặt). Thay thế sẽ xóa MỌI môn học, buổi học và cài đặt trước.';
 
   @override
   String get settingsImportLabel => 'Dán JSON đã xuất';
@@ -787,8 +759,7 @@ class AppLocalizationsVi extends AppLocalizations {
   }
 
   @override
-  String get settingsImportSubtitle =>
-      'Thay thế toàn bộ dữ liệu từ bản sao lưu JSON đã xuất trước đó.';
+  String get settingsImportSubtitle => 'Thay thế toàn bộ dữ liệu từ bản sao lưu JSON đã xuất trước đó.';
 
   @override
   String settingsKeepHolding(String remaining) {
@@ -808,8 +779,7 @@ class AppLocalizationsVi extends AppLocalizations {
   String get settingsOverloadError => 'Nhập số 5–100 giờ/tuần.';
 
   @override
-  String get settingsOverloadHelper =>
-      'Các tuần vượt mức này sẽ bị đánh dấu đỏ. Học toàn thời gian khoảng 35–40 giờ/tuần.';
+  String get settingsOverloadHelper => 'Các tuần vượt mức này sẽ bị đánh dấu đỏ. Học toàn thời gian khoảng 35–40 giờ/tuần.';
 
   @override
   String settingsOverloadHours(String value) {
@@ -843,12 +813,10 @@ class AppLocalizationsVi extends AppLocalizations {
   String get settingsResetAll => 'Đặt lại mọi dữ liệu';
 
   @override
-  String get settingsResetAllMessage =>
-      'Xóa vĩnh viễn MỌI môn học, buổi học và cài đặt. Không thể hoàn tác. Hãy xuất bản sao lưu trước nếu cần.';
+  String get settingsResetAllMessage => 'Xóa vĩnh viễn MỌI môn học, buổi học và cài đặt. Không thể hoàn tác. Hãy xuất bản sao lưu trước nếu cần.';
 
   @override
-  String get settingsResetAllSubtitle =>
-      'Xóa mọi môn học, buổi học và cài đặt.';
+  String get settingsResetAllSubtitle => 'Xóa mọi môn học, buổi học và cài đặt.';
 
   @override
   String get settingsResetAllTitle => 'Đặt lại mọi dữ liệu?';
@@ -860,12 +828,10 @@ class AppLocalizationsVi extends AppLocalizations {
   String get settingsResetSettingsDone => 'Đã đặt lại cài đặt về mặc định.';
 
   @override
-  String get settingsResetSettingsMessage =>
-      'Khôi phục giờ mỗi ECTS (30), mục tiêu ngày (không), ngày đầu tuần (Thứ Hai), giao diện (hệ thống), dung sai (5 ngày), quá tải (35 giờ/tuần), cỡ (thoải mái), màu (đá phiến). Môn học và buổi học được giữ lại.';
+  String get settingsResetSettingsMessage => 'Khôi phục giờ mỗi ECTS (30), mục tiêu ngày (không), ngày đầu tuần (Thứ Hai), giao diện (hệ thống), dung sai (5 ngày), quá tải (35 giờ/tuần), cỡ (thoải mái), màu (đá phiến). Môn học và buổi học được giữ lại.';
 
   @override
-  String get settingsResetSettingsSubtitle =>
-      'Khôi phục mặc định: 30 giờ/ECTS, không mục tiêu, Thứ Hai, giao diện hệ thống, dung sai 5 ngày, quá tải 35 giờ/tuần, cỡ thoải mái, màu đá phiến.';
+  String get settingsResetSettingsSubtitle => 'Khôi phục mặc định: 30 giờ/ECTS, không mục tiêu, Thứ Hai, giao diện hệ thống, dung sai 5 ngày, quá tải 35 giờ/tuần, cỡ thoải mái, màu đá phiến.';
 
   @override
   String get settingsResetSettingsTitle => 'Đặt lại cài đặt?';
@@ -905,8 +871,7 @@ class AppLocalizationsVi extends AppLocalizations {
   String get settingsToleranceError => 'Nhập số 0–30 ngày.';
 
   @override
-  String get settingsToleranceHelper =>
-      'Nhanh cần dư +N ngày, trễ −N ngày. 5 = ổn định, 0 = nhạy.';
+  String get settingsToleranceHelper => 'Nhanh cần dư +N ngày, trễ −N ngày. 5 = ổn định, 0 = nhạy.';
 
   @override
   String get settingsToleranceLabel => 'Số ngày công (0–30)';
@@ -973,8 +938,7 @@ class AppLocalizationsVi extends AppLocalizations {
   String get statsConsistency => 'Đều đặn';
 
   @override
-  String get statsConsistencyHint =>
-      'Số ngày học trong 30 ngày qua. Mỗi ngày một ít tốt hơn nhồi nhét.';
+  String get statsConsistencyHint => 'Số ngày học trong 30 ngày qua. Mỗi ngày một ít tốt hơn nhồi nhét.';
 
   @override
   String statsConsistencyScore(String percent) {
@@ -1139,6 +1103,52 @@ class AppLocalizationsVi extends AppLocalizations {
   }
 
   @override
+  String studyTimerActiveTitle(String course) {
+    return 'Timing $course';
+  }
+
+  @override
+  String get studyTimerAlreadyRunning => 'A timer is already running. Finish or discard it first.';
+
+  @override
+  String get studyTimerCourseLabel => 'Course';
+
+  @override
+  String get studyTimerDiscard => 'Discard';
+
+  @override
+  String get studyTimerDiscardBody => 'Throw away the current timer without logging? This cannot be undone.';
+
+  @override
+  String get studyTimerDiscardTitle => 'Discard timer?';
+
+  @override
+  String studyTimerFinishLog(String minutes) {
+    return 'Finish & log $minutes min';
+  }
+
+  @override
+  String get studyTimerNoCourseError => 'Select a course.';
+
+  @override
+  String get studyTimerNoCoursesHint => 'Add a course first to start a timer.';
+
+  @override
+  String get studyTimerPause => 'Pause';
+
+  @override
+  String get studyTimerResume => 'Resume';
+
+  @override
+  String get studyTimerStart => 'Start timer';
+
+  @override
+  String get studyTimerStartTitle => 'Start study timer';
+
+  @override
+  String get studyTimerTooShort => 'Timer has not run yet.';
+
+  @override
   String get validationCourseEctsPositive => 'ECTS phải lớn hơn 0';
 
   @override
@@ -1166,8 +1176,7 @@ class AppLocalizationsVi extends AppLocalizations {
   String get settingsLiquidGlass => 'Kính lỏng';
 
   @override
-  String get settingsLiquidGlassSubtitle =>
-      'Thẻ và thanh kính mờ. Tắt giữ giao diện cổ điển.';
+  String get settingsLiquidGlassSubtitle => 'Thẻ và thanh kính mờ. Tắt giữ giao diện cổ điển.';
 
   @override
   String get settingsLiquidGlassOn => 'Bật';
@@ -1182,8 +1191,7 @@ class AppLocalizationsVi extends AppLocalizations {
   String get devToolsReminderPreview => 'Xem trước nhắc nhở';
 
   @override
-  String get devToolsReminderPreviewSubtitle =>
-      'Xem nội dung sẽ thông báo ngay lúc này. Nguồn thử nghiệm an toàn cho Windows.';
+  String get devToolsReminderPreviewSubtitle => 'Xem nội dung sẽ thông báo ngay lúc này. Nguồn thử nghiệm an toàn cho Windows.';
 
   @override
   String get reminderPreviewTitle => 'Xem trước nhắc nhở';
@@ -1195,8 +1203,7 @@ class AppLocalizationsVi extends AppLocalizations {
   String get reminderPreviewReset => 'Bây giờ';
 
   @override
-  String get reminderPreviewEmpty =>
-      'Yên tĩnh — không có gì sẽ thông báo vào lúc này.';
+  String get reminderPreviewEmpty => 'Yên tĩnh — không có gì sẽ thông báo vào lúc này.';
 
   @override
   String get reminderPreviewCustom => 'Lịch tùy chỉnh (demo)';
@@ -1232,8 +1239,7 @@ class AppLocalizationsVi extends AppLocalizations {
   String get settingsReminderTime => 'Giờ nhắc nhở';
 
   @override
-  String get settingsReminderDenied =>
-      'Thông báo bị chặn — hãy bật chúng trong cài đặt hệ thống.';
+  String get settingsReminderDenied => 'Thông báo bị chặn — hãy bật chúng trong cài đặt hệ thống.';
 
   @override
   String notifDurationHours(String value) {
@@ -1271,12 +1277,7 @@ class AppLocalizationsVi extends AppLocalizations {
   }
 
   @override
-  String notifBehindBodyPace(
-    String left,
-    String days,
-    String pace,
-    String catchUp,
-  ) {
+  String notifBehindBodyPace(String left, String days, String pace, String catchUp) {
     return 'Còn $left, còn $days ngày — từ đây $pace/ngày. Ghi $catchUp để trở lại đúng tiến độ.';
   }
 
@@ -1296,8 +1297,7 @@ class AppLocalizationsVi extends AppLocalizations {
   }
 
   @override
-  String get notifDeadlineTomorrowBody =>
-      'Mọi buổi bạn ghi hôm nay đều tính gấp đôi.';
+  String get notifDeadlineTomorrowBody => 'Mọi buổi bạn ghi hôm nay đều tính gấp đôi.';
 
   @override
   String notifDeadlineSoonTitle(String course, String days, String left) {
@@ -1310,8 +1310,7 @@ class AppLocalizationsVi extends AppLocalizations {
   }
 
   @override
-  String get notifDeadlineSoonBodyNoPace =>
-      'Mỗi giờ bạn ghi lúc này đều được tính.';
+  String get notifDeadlineSoonBodyNoPace => 'Mỗi giờ bạn ghi lúc này đều được tính.';
 
   @override
   String notifOverdueTitle(String course, String left) {
@@ -1319,8 +1318,7 @@ class AppLocalizationsVi extends AppLocalizations {
   }
 
   @override
-  String get notifOverdueBody =>
-      'Hãy dời hạn hoặc hoàn thành số giờ — đến lúc đó môn học vẫn ở trạng thái Cần chú ý.';
+  String get notifOverdueBody => 'Hãy dời hạn hoặc hoàn thành số giờ — đến lúc đó môn học vẫn ở trạng thái Cần chú ý.';
 
   @override
   String notifStreakTitle(String days, String week) {
@@ -1328,8 +1326,7 @@ class AppLocalizationsVi extends AppLocalizations {
   }
 
   @override
-  String get notifStreakBody =>
-      'Mọi môn đều đúng tiến độ hoặc vượt tiến độ. Tuyệt vời.';
+  String get notifStreakBody => 'Mọi môn đều đúng tiến độ hoặc vượt tiến độ. Tuyệt vời.';
 
   @override
   String notifCustomTitleAuto(String course) {

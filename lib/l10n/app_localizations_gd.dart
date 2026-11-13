@@ -1,6 +1,5 @@
 // ignore: unused_import
 import 'package:intl/intl.dart' as intl;
-
 import 'app_localizations.dart';
 
 // ignore_for_file: type=lint
@@ -83,12 +82,10 @@ class AppLocalizationsGd extends AppLocalizations {
   }
 
   @override
-  String get courseFormStartEarlyOn =>
-      'Air: tha an ùine air a roinn gu ruige seo agus a’ cunntadh gu astar An-diugh.';
+  String get courseFormStartEarlyOn => 'Air: tha an ùine air a roinn gu ruige seo agus a’ cunntadh gu astar An-diugh.';
 
   @override
-  String get courseFormStartEarlyTitle =>
-      'Tòisich a-nis a dh’aindeoin toiseach san àm ri teachd';
+  String get courseFormStartEarlyTitle => 'Tòisich a-nis a dh’aindeoin toiseach san àm ri teachd';
 
   @override
   String get courseFormTitleAdd => 'Cuir cùrsa ris';
@@ -113,8 +110,7 @@ class AppLocalizationsGd extends AppLocalizations {
   }
 
   @override
-  String get coursesEmptyHint =>
-      'Brùth “Cùrsa ùr” gus a’ chiad chùrsa agad a chruthachadh.';
+  String get coursesEmptyHint => 'Brùth “Cùrsa ùr” gus a’ chiad chùrsa agad a chruthachadh.';
 
   @override
   String get coursesEmptyTitle => 'Gun chùrsaichean fhathast';
@@ -123,8 +119,7 @@ class AppLocalizationsGd extends AppLocalizations {
   String get coursesFilterAll => 'A h-uile inbhe';
 
   @override
-  String get coursesFilterEmpty =>
-      'Cha fhreagair cùrsaichean ris a’ chriathar seo';
+  String get coursesFilterEmpty => 'Cha fhreagair cùrsaichean ris a’ chriathar seo';
 
   @override
   String get coursesNewCourse => 'Cùrsa ùr';
@@ -155,11 +150,7 @@ class AppLocalizationsGd extends AppLocalizations {
   }
 
   @override
-  String coursesProgressWithStatus(
-    String done,
-    String required,
-    String status,
-  ) {
+  String coursesProgressWithStatus(String done, String required, String status) {
     return '$done / $required u • $status';
   }
 
@@ -228,12 +219,10 @@ class AppLocalizationsGd extends AppLocalizations {
   }
 
   @override
-  String get dashboardEmptyHintAllDone =>
-      'Tha gach cùrsa deiseil — faic taba nan Cùrsaichean airson na liosta slàn.';
+  String get dashboardEmptyHintAllDone => 'Tha gach cùrsa deiseil — faic taba nan Cùrsaichean airson na liosta slàn.';
 
   @override
-  String get dashboardEmptyHintNoCourses =>
-      'Cuir cùrsa ris gus sùil a chumail air an adhartas ECTS agad.';
+  String get dashboardEmptyHintNoCourses => 'Cuir cùrsa ris gus sùil a chumail air an adhartas ECTS agad.';
 
   @override
   String dashboardExplainerBehind(String achieved, String need) {
@@ -246,12 +235,10 @@ class AppLocalizationsGd extends AppLocalizations {
   }
 
   @override
-  String get dashboardExplainerBehindNoPace =>
-      'Air dheireadh: chan eil astar chrìochnaichte a’ ruighinn ceann-latha an-diugh le uairean air fhàgail';
+  String get dashboardExplainerBehindNoPace => 'Air dheireadh: chan eil astar chrìochnaichte a’ ruighinn ceann-latha an-diugh le uairean air fhàgail';
 
   @override
-  String get dashboardExplainerOnTrackNoPace =>
-      'Air an t-slighe: gun astar fhathast — log a’ chiad sheisean gus dearbhadh';
+  String get dashboardExplainerOnTrackNoPace => 'Air an t-slighe: gun astar fhathast — log a’ chiad sheisean gus dearbhadh';
 
   @override
   String dashboardExplainerStartsIn(String days, String date) {
@@ -372,8 +359,7 @@ class AppLocalizationsGd extends AppLocalizations {
   String get dashboardProgramBare => 'PRÒGRAM';
 
   @override
-  String get dashboardProgramEmptyHint =>
-      'Cuir cùrsa ris gus tòiseachadh air lorg';
+  String get dashboardProgramEmptyHint => 'Cuir cùrsa ris gus tòiseachadh air lorg';
 
   @override
   String dashboardProgramHours(String done, String required) {
@@ -402,12 +388,10 @@ class AppLocalizationsGd extends AppLocalizations {
   String get dashboardStartsSoon => 'A’ tòiseachadh a dh’aithghearr';
 
   @override
-  String get dashboardTipEmpty =>
-      'Cuir a’ chiad chùrsa agad ris — nochdaidh d’ astar làitheil agus adhartas an seo.';
+  String get dashboardTipEmpty => 'Cuir a’ chiad chùrsa agad ris — nochdaidh d’ astar làitheil agus adhartas an seo.';
 
   @override
-  String get dashboardTipFirst =>
-      'Is e a’ chiad 25 mion as cudromaiche — tagh an cùrsa as fhaisge air ceann-latha.';
+  String get dashboardTipFirst => 'Is e a’ chiad 25 mion as cudromaiche — tagh an cùrsa as fhaisge air ceann-latha.';
 
   @override
   String get dashboardTodayBare => 'AN-DIUGH';
@@ -431,8 +415,7 @@ class AppLocalizationsGd extends AppLocalizations {
   }
 
   @override
-  String get dashboardUpcomingSubtitle =>
-      'Toiseachaidhean san àm ri teachd — gun chuideam an-diugh, air an dùnadh a-mach à astar An-diugh.';
+  String get dashboardUpcomingSubtitle => 'Toiseachaidhean san àm ri teachd — gun chuideam an-diugh, air an dùnadh a-mach à astar An-diugh.';
 
   @override
   String get dashboardUpcomingTitle => 'Ri thighinn';
@@ -441,8 +424,7 @@ class AppLocalizationsGd extends AppLocalizations {
   String get devToolsActivate => 'Cuir an gnìomh';
 
   @override
-  String get devToolsActivateMessage =>
-      'Tha seo a’ fosgladh innealan falaichte airson deuchainn-cuideam (dàta ginealaichte). Airson leasachadh a-mhàin.';
+  String get devToolsActivateMessage => 'Tha seo a’ fosgladh innealan falaichte airson deuchainn-cuideam (dàta ginealaichte). Airson leasachadh a-mhàin.';
 
   @override
   String get devToolsActivateTitle => 'An cuir thu modh leasachaidh an gnìomh?';
@@ -454,12 +436,10 @@ class AppLocalizationsGd extends AppLocalizations {
   String get devToolsClearPumped => 'Glan dàta pumpaichte';
 
   @override
-  String get devToolsClearPumpedMessage =>
-      'A’ sguabadh às na cùrsaichean STRESS ginealaichte agus na seiseanan aca. Tha an dàta agad fhèin air a ghleidheadh.';
+  String get devToolsClearPumpedMessage => 'A’ sguabadh às na cùrsaichean STRESS ginealaichte agus na seiseanan aca. Tha an dàta agad fhèin air a ghleidheadh.';
 
   @override
-  String get devToolsClearPumpedSubtitle =>
-      'Sguab às cùrsaichean is seiseanan STRESS ginealaichte.';
+  String get devToolsClearPumpedSubtitle => 'Sguab às cùrsaichean is seiseanan STRESS ginealaichte.';
 
   @override
   String get devToolsClearPumpedTitle => 'An glan thu dàta pumpaichte?';
@@ -470,8 +450,7 @@ class AppLocalizationsGd extends AppLocalizations {
   }
 
   @override
-  String get devToolsConfirmPumpMessage =>
-      'Dàrna dearbhadh: lìonaidh seo cùrsaichean, liostaichean, clàran is àireamhachadh astair, agus faodaidh e beagan dhiog a thoirt. Pump a-nis?';
+  String get devToolsConfirmPumpMessage => 'Dàrna dearbhadh: lìonaidh seo cùrsaichean, liostaichean, clàran is àireamhachadh astair, agus faodaidh e beagan dhiog a thoirt. Pump a-nis?';
 
   @override
   String get devToolsConfirmPumpTitle => 'Dearbhaich am pump cuideam';
@@ -483,19 +462,16 @@ class AppLocalizationsGd extends AppLocalizations {
   String get devToolsExit => 'Fàg modh leasachaidh';
 
   @override
-  String get devToolsExitSubtitle =>
-      'Falaich innealan leasachaidh air an inneal seo.';
+  String get devToolsExitSubtitle => 'Falaich innealan leasachaidh air an inneal seo.';
 
   @override
   String get devToolsPumpData => 'Pump dàta';
 
   @override
-  String get devToolsPumpMessage =>
-      'Tha seo a’ cur a-steach semeastar ginealaichte reusanta (~10 cùrsaichean, ~800 seisean thairis air 12 seachdainean). Tha an dàta a th’ agad air a ghleidheadh. Lean air adhart?';
+  String get devToolsPumpMessage => 'Tha seo a’ cur a-steach semeastar ginealaichte reusanta (~10 cùrsaichean, ~800 seisean thairis air 12 seachdainean). Tha an dàta a th’ agad air a ghleidheadh. Lean air adhart?';
 
   @override
-  String get devToolsPumpSubtitle =>
-      'Cuir a-steach semeastar ginealaichte (~10 cùrsaichean, ~800 seisean, 12 seachdainean). Dàta a th’ ann air a ghleidheadh.';
+  String get devToolsPumpSubtitle => 'Cuir a-steach semeastar ginealaichte (~10 cùrsaichean, ~800 seisean, 12 seachdainean). Dàta a th’ ann air a ghleidheadh.';
 
   @override
   String get devToolsPumpTile => 'Pump dàta deuchainn';
@@ -515,12 +491,10 @@ class AppLocalizationsGd extends AppLocalizations {
   String get devToolsRemoveAll => 'Thoir air falbh a h-uile dàta';
 
   @override
-  String get devToolsRemoveAllMessage =>
-      'Ath-ghoirid leasachaidh: sguabaidh seo às gu buan A H-UILE cùrsa, seisean is suidheachadh. Cha ghabh seo a thilleadh.';
+  String get devToolsRemoveAllMessage => 'Ath-ghoirid leasachaidh: sguabaidh seo às gu buan A H-UILE cùrsa, seisean is suidheachadh. Cha ghabh seo a thilleadh.';
 
   @override
-  String get devToolsRemoveAllSubtitle =>
-      'Ath-ghoirid leasachaidh: sguab às A H-UILE cùrsa, seisean is suidheachadh.';
+  String get devToolsRemoveAllSubtitle => 'Ath-ghoirid leasachaidh: sguab às A H-UILE cùrsa, seisean is suidheachadh.';
 
   @override
   String get devToolsRemoveAllTitle => 'An toir thu air falbh a h-uile dàta?';
@@ -552,8 +526,7 @@ class AppLocalizationsGd extends AppLocalizations {
   }
 
   @override
-  String get sessionFormDurationError =>
-      'Feumaidh an fhaid a bhith nas motha na neoni.';
+  String get sessionFormDurationError => 'Feumaidh an fhaid a bhith nas motha na neoni.';
 
   @override
   String get sessionFormHoursLabel => 'Uairean';
@@ -568,8 +541,7 @@ class AppLocalizationsGd extends AppLocalizations {
   String get sessionFormNoCourseError => 'Tagh cùrsa.';
 
   @override
-  String get sessionFormNoCoursesHint =>
-      'Cuir cùrsa ris an toiseach gus seisean a logadh.';
+  String get sessionFormNoCoursesHint => 'Cuir cùrsa ris an toiseach gus seisean a logadh.';
 
   @override
   String get sessionFormNotesLabel => 'Notaichean (roghainneil)';
@@ -625,12 +597,10 @@ class AppLocalizationsGd extends AppLocalizations {
   String get settingsClearSample => 'Glan dàta sampall';
 
   @override
-  String get settingsClearSampleMessage =>
-      'Tha seo a’ toirt air falbh nan cùrsaichean is seiseanan eisimpleir. Cha tèid cùrsaichean no seiseanan a chuir thu fhèin ris a thoirt air falbh.';
+  String get settingsClearSampleMessage => 'Tha seo a’ toirt air falbh nan cùrsaichean is seiseanan eisimpleir. Cha tèid cùrsaichean no seiseanan a chuir thu fhèin ris a thoirt air falbh.';
 
   @override
-  String get settingsClearSampleSubtitle =>
-      'Thoir air falbh na cùrsaichean is seiseanan eisimpleir. Tha an dàta agad fhèin air a ghleidheadh.';
+  String get settingsClearSampleSubtitle => 'Thoir air falbh na cùrsaichean is seiseanan eisimpleir. Tha an dàta agad fhèin air a ghleidheadh.';
 
   @override
   String get settingsClearSampleTitle => 'An glan thu dàta sampall?';
@@ -639,8 +609,7 @@ class AppLocalizationsGd extends AppLocalizations {
   String get settingsCopy => 'Dèan lethbhreac';
 
   @override
-  String get settingsDailyError =>
-      'Cuir a-steach 0 no àireamh dheimhinneach de mhionaidean.';
+  String get settingsDailyError => 'Cuir a-steach 0 no àireamh dheimhinneach de mhionaidean.';
 
   @override
   String get settingsDailyLabel => 'Mionaidean gach latha (0 = gun targaid)';
@@ -692,12 +661,10 @@ class AppLocalizationsGd extends AppLocalizations {
   String get settingsExport => 'Às-phortaich dàta';
 
   @override
-  String get settingsExportCopied =>
-      'Chaidh an às-phortadh a chopaigeadh dhan chlàr-bhòrd.';
+  String get settingsExportCopied => 'Chaidh an às-phortadh a chopaigeadh dhan chlàr-bhòrd.';
 
   @override
-  String get settingsExportSubtitle =>
-      'Dèan lethbhreac de gach cùrsa, seisean is suidheachadh mar JSON.';
+  String get settingsExportSubtitle => 'Dèan lethbhreac de gach cùrsa, seisean is suidheachadh mar JSON.';
 
   @override
   String settingsExportSummary(String courses, String sessions, String kb) {
@@ -713,8 +680,7 @@ class AppLocalizationsGd extends AppLocalizations {
   String get settingsFirstWeekday => 'A’ chiad latha den t-seachdain';
 
   @override
-  String get settingsFirstWeekdayUpdated =>
-      'A’ chiad latha den t-seachdain air ùrachadh.';
+  String get settingsFirstWeekdayUpdated => 'A’ chiad latha den t-seachdain air ùrachadh.';
 
   @override
   String settingsHoldLabel(String label, String seconds) {
@@ -728,8 +694,7 @@ class AppLocalizationsGd extends AppLocalizations {
   String get settingsHoursError => 'Cuir a-steach àireamh nas motha na neoni.';
 
   @override
-  String get settingsHoursHelper =>
-      'Bun-roghainn 30. Bidh atharrachadh ag ath-àireamhachadh riatanasan; tha logaichean air an gleidheadh.';
+  String get settingsHoursHelper => 'Bun-roghainn 30. Bidh atharrachadh ag ath-àireamhachadh riatanasan; tha logaichean air an gleidheadh.';
 
   @override
   String get settingsHoursLabel => 'Uairean gach creideas ECTS';
@@ -760,8 +725,7 @@ class AppLocalizationsGd extends AppLocalizations {
   }
 
   @override
-  String get settingsImportInfo =>
-      'Tha Cuir ris a’ cur a’ chùl-taic ri taobh an dàta làithreach agad (suidheachaidhean air an gleidheadh). Tha Cuir na àite a’ sguabadh às A H-UILE cùrsa, seisean is suidheachadh an toiseach.';
+  String get settingsImportInfo => 'Tha Cuir ris a’ cur a’ chùl-taic ri taobh an dàta làithreach agad (suidheachaidhean air an gleidheadh). Tha Cuir na àite a’ sguabadh às A H-UILE cùrsa, seisean is suidheachadh an toiseach.';
 
   @override
   String get settingsImportLabel => 'Cuir a-steach an JSON às-phortaichte';
@@ -795,8 +759,7 @@ class AppLocalizationsGd extends AppLocalizations {
   }
 
   @override
-  String get settingsImportSubtitle =>
-      'Cuir a h-uile dàta na àite bho chùl-taic JSON a chaidh às-phortadh roimhe.';
+  String get settingsImportSubtitle => 'Cuir a h-uile dàta na àite bho chùl-taic JSON a chaidh às-phortadh roimhe.';
 
   @override
   String settingsKeepHolding(String remaining) {
@@ -807,19 +770,16 @@ class AppLocalizationsGd extends AppLocalizations {
   String get settingsNoSample => 'Gun dàta sampall';
 
   @override
-  String get settingsNoSampleSubtitle =>
-      'Tha an dàta eisimpleir air a ghlanadh mu thràth.';
+  String get settingsNoSampleSubtitle => 'Tha an dàta eisimpleir air a ghlanadh mu thràth.';
 
   @override
   String get settingsNoTarget => 'Gun targaid suidhichte';
 
   @override
-  String get settingsOverloadError =>
-      'Cuir a-steach àireamh 5–100 u/seachdain.';
+  String get settingsOverloadError => 'Cuir a-steach àireamh 5–100 u/seachdain.';
 
   @override
-  String get settingsOverloadHelper =>
-      'Tha seachdainean luchd ri thighinn os cionn seo air an comharrachadh dearg. Tha làn-ùine ionnsachaidh ~35–40 u/seachdain.';
+  String get settingsOverloadHelper => 'Tha seachdainean luchd ri thighinn os cionn seo air an comharrachadh dearg. Tha làn-ùine ionnsachaidh ~35–40 u/seachdain.';
 
   @override
   String settingsOverloadHours(String value) {
@@ -844,8 +804,7 @@ class AppLocalizationsGd extends AppLocalizations {
   String get settingsPaceTolerance => 'Fulangas air thoiseach / air dheireadh';
 
   @override
-  String get settingsPasteValidBackup =>
-      'Cuir a-steach cùl-taic dligheach an toiseach';
+  String get settingsPasteValidBackup => 'Cuir a-steach cùl-taic dligheach an toiseach';
 
   @override
   String get settingsReset => 'Ath-shuidhich';
@@ -854,12 +813,10 @@ class AppLocalizationsGd extends AppLocalizations {
   String get settingsResetAll => 'Ath-shuidhich a h-uile dàta';
 
   @override
-  String get settingsResetAllMessage =>
-      'Sguabaidh seo às gu buan A H-UILE cùrsa, seisean is suidheachadh. Cha ghabh seo a thilleadh. Às-phortaich cùl-taic an toiseach ma dh’fheumas tu.';
+  String get settingsResetAllMessage => 'Sguabaidh seo às gu buan A H-UILE cùrsa, seisean is suidheachadh. Cha ghabh seo a thilleadh. Às-phortaich cùl-taic an toiseach ma dh’fheumas tu.';
 
   @override
-  String get settingsResetAllSubtitle =>
-      'Sguab às a h-uile cùrsa, seisean is suidheachadh.';
+  String get settingsResetAllSubtitle => 'Sguab às a h-uile cùrsa, seisean is suidheachadh.';
 
   @override
   String get settingsResetAllTitle => 'An ath-shuidhich thu a h-uile dàta?';
@@ -868,20 +825,16 @@ class AppLocalizationsGd extends AppLocalizations {
   String get settingsResetSettings => 'Ath-shuidhich na suidheachaidhean';
 
   @override
-  String get settingsResetSettingsDone =>
-      'Chaidh na suidheachaidhean ath-shuidheachadh gu na bun-roghainnean.';
+  String get settingsResetSettingsDone => 'Chaidh na suidheachaidhean ath-shuidheachadh gu na bun-roghainnean.';
 
   @override
-  String get settingsResetSettingsMessage =>
-      'Ag ath-nuadhachadh uairean-gach-ECTS (30), targaid làitheil (gun dad), ciad latha-seachdain (Diluain), ùrlar (siostam), fulangas (5 latha), ro-luchd (35 u/seachdain), meud (cofhurtail), dath (sglèat). Tha cùrsaichean is seiseanan air an gleidheadh.';
+  String get settingsResetSettingsMessage => 'Ag ath-nuadhachadh uairean-gach-ECTS (30), targaid làitheil (gun dad), ciad latha-seachdain (Diluain), ùrlar (siostam), fulangas (5 latha), ro-luchd (35 u/seachdain), meud (cofhurtail), dath (sglèat). Tha cùrsaichean is seiseanan air an gleidheadh.';
 
   @override
-  String get settingsResetSettingsSubtitle =>
-      'Thoir air ais na bun-roghainnean: 30 u/ECTS, gun targaid, Diluain, ùrlar siostaim, fulangas 5-latha, ro-luchd 35 u/seachdain, meud cofhurtail, dath sglèat.';
+  String get settingsResetSettingsSubtitle => 'Thoir air ais na bun-roghainnean: 30 u/ECTS, gun targaid, Diluain, ùrlar siostaim, fulangas 5-latha, ro-luchd 35 u/seachdain, meud cofhurtail, dath sglèat.';
 
   @override
-  String get settingsResetSettingsTitle =>
-      'An ath-shuidhich thu na suidheachaidhean?';
+  String get settingsResetSettingsTitle => 'An ath-shuidhich thu na suidheachaidhean?';
 
   @override
   String get settingsSampleData => 'Dàta sampall';
@@ -918,8 +871,7 @@ class AppLocalizationsGd extends AppLocalizations {
   String get settingsToleranceError => 'Cuir a-steach àireamh 0–30 latha.';
 
   @override
-  String get settingsToleranceHelper =>
-      'Feumaidh air thoiseach còrr +N latha, air dheireadh −N latha. 5 = seasmhach, 0 = mothachail.';
+  String get settingsToleranceHelper => 'Feumaidh air thoiseach còrr +N latha, air dheireadh −N latha. 5 = seasmhach, 0 = mothachail.';
 
   @override
   String get settingsToleranceLabel => 'Làithean obrach (0–30)';
@@ -977,8 +929,7 @@ class AppLocalizationsGd extends AppLocalizations {
   }
 
   @override
-  String get statsAddDeadlines =>
-      'Cuir cinn-latha ris gus an luchd a ro-innse.';
+  String get statsAddDeadlines => 'Cuir cinn-latha ris gus an luchd a ro-innse.';
 
   @override
   String get statsComingLoad => 'Luchd ri thighinn';
@@ -987,8 +938,7 @@ class AppLocalizationsGd extends AppLocalizations {
   String get statsConsistency => 'Cunbhalachd';
 
   @override
-  String get statsConsistencyHint =>
-      'Làithean ionnsachaidh anns na 30 latha mu dheireadh. Bidh ceumannan beaga gach latha a’ buannachadh air cramadh.';
+  String get statsConsistencyHint => 'Làithean ionnsachaidh anns na 30 latha mu dheireadh. Bidh ceumannan beaga gach latha a’ buannachadh air cramadh.';
 
   @override
   String statsConsistencyScore(String percent) {
@@ -1053,8 +1003,7 @@ class AppLocalizationsGd extends AppLocalizations {
   String get statsOverview => 'Sealladh farsaing';
 
   @override
-  String get statsPaceCovers =>
-      'Tha astar a dh’fhalbh a’ còmhdach na tha a dhìth. Cum an t-sreath.';
+  String get statsPaceCovers => 'Tha astar a dh’fhalbh a’ còmhdach na tha a dhìth. Cum an t-sreath.';
 
   @override
   String statsPaceShort(String gap) {
@@ -1112,15 +1061,13 @@ class AppLocalizationsGd extends AppLocalizations {
   String get statusOverdue => 'Fadalach';
 
   @override
-  String get studyLogDeleteBody =>
-      'An sguab thu às an seisean ionnsachaidh seo? Cha ghabh seo a thilleadh.';
+  String get studyLogDeleteBody => 'An sguab thu às an seisean ionnsachaidh seo? Cha ghabh seo a thilleadh.';
 
   @override
   String get studyLogDeleteTitle => 'An sguab thu às an seisean?';
 
   @override
-  String get studyLogEmptyHint =>
-      'Log seisean gus sùil a chumail air an ùine ionnsachaidh agad.';
+  String get studyLogEmptyHint => 'Log seisean gus sùil a chumail air an ùine ionnsachaidh agad.';
 
   @override
   String get studyLogEmptyTitle => 'Gun seiseanan ionnsachaidh fhathast';
@@ -1137,8 +1084,7 @@ class AppLocalizationsGd extends AppLocalizations {
   }
 
   @override
-  String get studyLogRemoveSampleTooltip =>
-      'Thoir air falbh an seisean sampall';
+  String get studyLogRemoveSampleTooltip => 'Thoir air falbh an seisean sampall';
 
   @override
   String get studyLogThisWeek => 'An t-seachdain seo';
@@ -1157,8 +1103,53 @@ class AppLocalizationsGd extends AppLocalizations {
   }
 
   @override
-  String get validationCourseEctsPositive =>
-      'Feumaidh ECTS a bhith nas motha na neoni';
+  String studyTimerActiveTitle(String course) {
+    return 'Timing $course';
+  }
+
+  @override
+  String get studyTimerAlreadyRunning => 'A timer is already running. Finish or discard it first.';
+
+  @override
+  String get studyTimerCourseLabel => 'Course';
+
+  @override
+  String get studyTimerDiscard => 'Discard';
+
+  @override
+  String get studyTimerDiscardBody => 'Throw away the current timer without logging? This cannot be undone.';
+
+  @override
+  String get studyTimerDiscardTitle => 'Discard timer?';
+
+  @override
+  String studyTimerFinishLog(String minutes) {
+    return 'Finish & log $minutes min';
+  }
+
+  @override
+  String get studyTimerNoCourseError => 'Select a course.';
+
+  @override
+  String get studyTimerNoCoursesHint => 'Add a course first to start a timer.';
+
+  @override
+  String get studyTimerPause => 'Pause';
+
+  @override
+  String get studyTimerResume => 'Resume';
+
+  @override
+  String get studyTimerStart => 'Start timer';
+
+  @override
+  String get studyTimerStartTitle => 'Start study timer';
+
+  @override
+  String get studyTimerTooShort => 'Timer has not run yet.';
+
+  @override
+  String get validationCourseEctsPositive => 'Feumaidh ECTS a bhith nas motha na neoni';
 
   @override
   String get validationCourseEctsRequired => 'Cuir a-steach creideasan ECTS';
@@ -1185,8 +1176,7 @@ class AppLocalizationsGd extends AppLocalizations {
   String get settingsLiquidGlass => 'Glainne leaghte';
 
   @override
-  String get settingsLiquidGlassSubtitle =>
-      'Cairtean is bàraichean glainne reòdte. Glèidhidh Dheth an sealladh cruaidh clasaigeach.';
+  String get settingsLiquidGlassSubtitle => 'Cairtean is bàraichean glainne reòdte. Glèidhidh Dheth an sealladh cruaidh clasaigeach.';
 
   @override
   String get settingsLiquidGlassOn => 'Air';
@@ -1201,8 +1191,7 @@ class AppLocalizationsGd extends AppLocalizations {
   String get devToolsReminderPreview => 'Ro-shealladh cuimhneachain';
 
   @override
-  String get devToolsReminderPreviewSubtitle =>
-      'Faic dè chuireadh fios an-dràsta. Biadhadh deuchainn sàbhailte air Windows.';
+  String get devToolsReminderPreviewSubtitle => 'Faic dè chuireadh fios an-dràsta. Biadhadh deuchainn sàbhailte air Windows.';
 
   @override
   String get reminderPreviewTitle => 'Ro-shealladh cuimhneachain';
@@ -1214,8 +1203,7 @@ class AppLocalizationsGd extends AppLocalizations {
   String get reminderPreviewReset => 'An-dràsta';
 
   @override
-  String get reminderPreviewEmpty =>
-      'A h-uile càil sàmhach — cha chuireadh dad fios aig an àm seo.';
+  String get reminderPreviewEmpty => 'A h-uile càil sàmhach — cha chuireadh dad fios aig an àm seo.';
 
   @override
   String get reminderPreviewCustom => 'Clàran gnàthaichte (demo)';
@@ -1245,15 +1233,13 @@ class AppLocalizationsGd extends AppLocalizations {
   String get settingsReminders => 'Cuimhneachain ionnsachaidh';
 
   @override
-  String get settingsRemindersOff =>
-      'Dheth — cuir air airson cuimhneachan làitheil.';
+  String get settingsRemindersOff => 'Dheth — cuir air airson cuimhneachan làitheil.';
 
   @override
   String get settingsReminderTime => 'Àm cuimhneachain';
 
   @override
-  String get settingsReminderDenied =>
-      'Tha brathan air am bacadh — cuir an comas iad ann an suidheachaidhean an t-siostaim.';
+  String get settingsReminderDenied => 'Tha brathan air am bacadh — cuir an comas iad ann an suidheachaidhean an t-siostaim.';
 
   @override
   String notifDurationHours(String value) {
@@ -1291,12 +1277,7 @@ class AppLocalizationsGd extends AppLocalizations {
   }
 
   @override
-  String notifBehindBodyPace(
-    String left,
-    String days,
-    String pace,
-    String catchUp,
-  ) {
+  String notifBehindBodyPace(String left, String days, String pace, String catchUp) {
     return '$left air fhàgail, $days latha air fhàgail — $pace/latha bho seo. Log $catchUp gus faighinn air ais Air an t-slighe.';
   }
 
@@ -1316,8 +1297,7 @@ class AppLocalizationsGd extends AppLocalizations {
   }
 
   @override
-  String get notifDeadlineTomorrowBody =>
-      'Tha a h-uile rud a logas tu an-diugh a’ cunntadh dùbailte.';
+  String get notifDeadlineTomorrowBody => 'Tha a h-uile rud a logas tu an-diugh a’ cunntadh dùbailte.';
 
   @override
   String notifDeadlineSoonTitle(String course, String days, String left) {
@@ -1330,8 +1310,7 @@ class AppLocalizationsGd extends AppLocalizations {
   }
 
   @override
-  String get notifDeadlineSoonBodyNoPace =>
-      'Tha gach uair a logas tu a-nis a’ cunntadh.';
+  String get notifDeadlineSoonBodyNoPace => 'Tha gach uair a logas tu a-nis a’ cunntadh.';
 
   @override
   String notifOverdueTitle(String course, String left) {
@@ -1339,8 +1318,7 @@ class AppLocalizationsGd extends AppLocalizations {
   }
 
   @override
-  String get notifOverdueBody =>
-      'Gluais an ceann-latha no cuir crìoch air na h-uairean — bidh an cùrsa a’ feumachdainn aire gus an uair sin.';
+  String get notifOverdueBody => 'Gluais an ceann-latha no cuir crìoch air na h-uairean — bidh an cùrsa a’ feumachdainn aire gus an uair sin.';
 
   @override
   String notifStreakTitle(String days, String week) {
@@ -1348,8 +1326,7 @@ class AppLocalizationsGd extends AppLocalizations {
   }
 
   @override
-  String get notifStreakBody =>
-      'Tha a h-uile cùrsa Air an t-slighe no Air thoiseach. Sreath mhath.';
+  String get notifStreakBody => 'Tha a h-uile cùrsa Air an t-slighe no Air thoiseach. Sreath mhath.';
 
   @override
   String notifCustomTitleAuto(String course) {
