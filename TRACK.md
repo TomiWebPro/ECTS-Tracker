@@ -116,6 +116,7 @@ Conventions: `AGENTS.md` (binding, incl. new-locale policy §6) · `README.md` (
 | ECTS-091 | M11 | Study timer: manual stays, add course-picked start/pause/resume/finish, restart-proof | done | analyze clean; full 358/358 (15 new timer tests); commit 0c500dd; 2026-11-13 |
 | ECTS-092 | M11 | Fold timer into Log-session dialog (Manual/Timer switch), remove outside pills | done | analyze clean; full 376/376 (3 dialog tab tests); notifier once-restore fixes rebuild loop; commit 492c11f; 2026-11-13 |
 | ECTS-093 | M11 | Phone notification: ongoing timer w/ pause-resume-finish-discard actions (Android live, iOS categories; Dynamic Island doc) | done | analyze clean; full 376/376 (12 alerts + 3 notifier-alert tests); commit 492c11f; 2026-11-13 |
+| ECTS-094 | M11 | Fix Windows startup crash: notification init lacked Windows settings + unguarded create() | done | analyze clean; notif+startup 22/22; `flutter build windows` ok; commit (this run); 2026-11-13 |
 
 Note: ECTS-033/034 were announced in a 2026-11-05 log but never got rows; IDs skipped, do NOT renumber.
 
@@ -134,6 +135,8 @@ trims (different semantics per surface); hold-to-confirm timer test
 (private widget, covered indirectly by settings pumps).
 
 ## Progress log (newest on top)
+
+- 2026-11-13: ECTS-094 done (Windows startup crash: unified plugin throws without platform settings — added Windows/Linux/macOS blocks everywhere + try/catch backend creation with null fallback; `flutter build windows` ok).
 
 - 2026-11-13: ECTS-092 done (timer folded into Log-session dialog Manual/Timer switch; outside pills/FABs removed; banner in-flow + 760px cap; dialog overflow fixed; rebuild-loop fix via once-restore; widget tests use ProviderScope+mem fake).
 - 2026-11-13: ECTS-093 done (ongoing phone notification w/ pause/resume/finish/discard; Android chronometer + background handler prefs-only; iOS categories localized; finish opens app; Dynamic Island scoped in docs/live-activity.md for macOS).
