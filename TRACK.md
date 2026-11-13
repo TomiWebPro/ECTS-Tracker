@@ -109,6 +109,9 @@ Conventions: `AGENTS.md` (binding, incl. new-locale policy §6) · `README.md` (
 | ECTS-085 | M8 | Liquid-glass bottom nav flow-through (content scrolls under tab bar, no white block) | done | analyze clean; glass chrome/cards/dialogs 25/25 green, full suite 306+ no failures at timeout (slow UI); commit 502c65c; 2026-11-12 |
 | ECTS-086 | M7 | Bulk locale pass: translate missing 26 keys + units audit for all 53 non-EN ARBs | done | analyze clean; gen-l10n ok; full 335/335; 5-way subagent split (A-E) |
 | ECTS-087 | M9 | Localize reminder notification copy (preview + OS share one path) | done | analyze clean; gen-l10n ok; full 341/341; code 75a83f2 + bulk 21e0cb6 + gen 5014202 |
+| ECTS-088 | M9 | Dev-mode "Remove all data" tile: keep, make visually consistent | done | analyze clean; widgets+dialogs 9/9; divider restored (1-line) |
+| ECTS-089 | M8 | Fix reset-all → liquid-glass flips accent slate→teal (keep slate) | open |  |
+| ECTS-090 | M9 | Behind-title ⚠️ renders as text glyph, misaligned — swap to color-emoji mark | open |  |
 
 Note: ECTS-033/034 were announced in a 2026-11-05 log but never got rows; IDs skipped, do NOT renumber.
 

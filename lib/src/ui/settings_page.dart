@@ -524,7 +524,6 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
                     title: l10n.devToolsRemoveAll,
                     subtitle: Text(l10n.devToolsRemoveAllSubtitle),
                     onTap: _confirmRemoveAllDev,
-                    showDivider: false,
                   ),
                   _SettingsTile(
                     tileKey: const Key('exitDevModeTile'),
