@@ -2007,5 +2007,285 @@
   "settingsReminderDenied": "Le notifiche sono bloccate — abilitale nelle impostazioni di sistema.",
   "@settingsReminderDenied": {
     "description": "SnackBar when the OS notification permission is denied."
+  },
+  "notifDurationHours": "{value} o",
+  "@notifDurationHours": {
+    "description": "Notification duration unit (hours, >= 1 h). {value} is whole or one-decimal, e.g. '27' or '2.9'. Localize the unit; keep the placeholder.",
+    "placeholders": {
+      "value": {
+        "type": "String",
+        "example": "2.9"
+      }
+    }
+  },
+  "notifDurationMinutes": "{value} min",
+  "@notifDurationMinutes": {
+    "description": "Notification duration unit (sub-hour). {value} is whole minutes, e.g. '36'. Localize the unit; keep the placeholder.",
+    "placeholders": {
+      "value": {
+        "type": "String",
+        "example": "36"
+      }
+    }
+  },
+  "notifDailyTitle": "📚 Stasera: {duration} per restare in linea",
+  "@notifDailyTitle": {
+    "description": "Daily-plan notification title. {duration} is a localized duration like '2.9 h' or '36 min'.",
+    "placeholders": {
+      "duration": {
+        "type": "String",
+        "example": "2.9 h"
+      }
+    }
+  },
+  "notifDailyCourseNeed": "{course} {duration} rimasti oggi",
+  "@notifDailyCourseNeed": {
+    "description": "Per-course fragment inside the daily-plan body. {course} is the course name, {duration} a localized duration.",
+    "placeholders": {
+      "course": {
+        "type": "String",
+        "example": "Linear Algebra"
+      },
+      "duration": {
+        "type": "String",
+        "example": "48 min"
+      }
+    }
+  },
+  "notifDailyMore": "(+{count} altri)",
+  "@notifDailyMore": {
+    "description": "Folded-course suffix in the daily-plan body when more than 2 courses are due. {count} is the hidden-course count.",
+    "placeholders": {
+      "count": {
+        "type": "String",
+        "example": "5"
+      }
+    }
+  },
+  "notifDailyBody": "{detail}. Registra una sessione per chiudere la giornata.",
+  "@notifDailyBody": {
+    "description": "Daily-plan notification body. {detail} is the joined per-course list with optional folded suffix.",
+    "placeholders": {
+      "detail": {
+        "type": "String",
+        "example": "Linear Algebra 48 min left today"
+      }
+    }
+  },
+  "notifBehindTitle": "⚠️ {course}: stato Indietro",
+  "@notifBehindTitle": {
+    "description": "Behind-nudge notification title. {course} is the course name.",
+    "placeholders": {
+      "course": {
+        "type": "String",
+        "example": "Linear Algebra"
+      }
+    }
+  },
+  "notifBehindBodyPace": "{left} rimasti, ancora {days} giorni — {pace}/giorno da qui. Registra {catchUp} per tornare in linea.",
+  "@notifBehindBodyPace": {
+    "description": "Behind-nudge body when a finite pace exists and partial catch-up clears it. Durations are localized ('2.9 h', '36 min'); {days} is a plain count.",
+    "placeholders": {
+      "left": {
+        "type": "String",
+        "example": "30.9 h"
+      },
+      "days": {
+        "type": "String",
+        "example": "68"
+      },
+      "pace": {
+        "type": "String",
+        "example": "27 min"
+      },
+      "catchUp": {
+        "type": "String",
+        "example": "1.2 h"
+      }
+    }
+  },
+  "notifBehindBodyFull": "{left} rimasti, ancora {days} giorni — {pace}/giorno da qui. Solo finire tutto il {left} risolve la situazione — comincia stasera.",
+  "@notifBehindBodyFull": {
+    "description": "Behind-nudge body when only finishing the course clears it. Same placeholders as notifBehindBodyPace minus catchUp.",
+    "placeholders": {
+      "left": {
+        "type": "String",
+        "example": "30.9 h"
+      },
+      "days": {
+        "type": "String",
+        "example": "68"
+      },
+      "pace": {
+        "type": "String",
+        "example": "27 min"
+      }
+    }
+  },
+  "notifBehindBodyDeadlineDay": "{left} ancora aperti e la scadenza è oggi. Tutto ciò che registri ora conta.",
+  "@notifBehindBodyDeadlineDay": {
+    "description": "Behind-nudge body on deadline day (no finite pace exists). {left} is a localized duration.",
+    "placeholders": {
+      "left": {
+        "type": "String",
+        "example": "2 h"
+      }
+    }
+  },
+  "notifDeadlineTomorrowTitle": "🚨 {course} scade domani e ha ancora {left} aperti",
+  "@notifDeadlineTomorrowTitle": {
+    "description": "Deadline-countdown title for a course due tomorrow. {left} is a localized duration.",
+    "placeholders": {
+      "course": {
+        "type": "String",
+        "example": "Physics I"
+      },
+      "left": {
+        "type": "String",
+        "example": "4.1 h"
+      }
+    }
+  },
+  "notifDeadlineTomorrowBody": "Tutto ciò che registri oggi vale doppio.",
+  "@notifDeadlineTomorrowBody": {
+    "description": "Deadline-countdown body for a course due tomorrow."
+  },
+  "notifDeadlineSoonTitle": "⏳ Esame di {course} tra {days} giorni — {left} rimasti",
+  "@notifDeadlineSoonTitle": {
+    "description": "Deadline-countdown title for a course due in 2+ days. {days} is a plain count, {left} a localized duration.",
+    "placeholders": {
+      "course": {
+        "type": "String",
+        "example": "Physics I"
+      },
+      "days": {
+        "type": "String",
+        "example": "3"
+      },
+      "left": {
+        "type": "String",
+        "example": "4.1 h"
+      }
+    }
+  },
+  "notifDeadlineSoonBody": "Sono {pace}/giorno. Dividili: 2 sessioni al giorno battono una maratona.",
+  "@notifDeadlineSoonBody": {
+    "description": "Deadline-countdown body when a finite pace exists. {pace} is a localized duration.",
+    "placeholders": {
+      "pace": {
+        "type": "String",
+        "example": "1.4 h"
+      }
+    }
+  },
+  "notifDeadlineSoonBodyNoPace": "Ogni ora che registri ora conta.",
+  "@notifDeadlineSoonBodyNoPace": {
+    "description": "Deadline-countdown body when no finite pace exists."
+  },
+  "notifOverdueTitle": "❌ {course} ha superato la scadenza con {left} aperti",
+  "@notifOverdueTitle": {
+    "description": "Overdue-escalation title. {left} is a localized duration.",
+    "placeholders": {
+      "course": {
+        "type": "String",
+        "example": "Software Engineering Project"
+      },
+      "left": {
+        "type": "String",
+        "example": "53.1 h"
+      }
+    }
+  },
+  "notifOverdueBody": "Sposta la scadenza o finisci le ore — il corso resta in Richiede attenzione fino ad allora.",
+  "@notifOverdueBody": {
+    "description": "Overdue-escalation body."
+  },
+  "notifStreakTitle": "🔥 Serie di {days} giorni — {week} questa settimana",
+  "@notifStreakTitle": {
+    "description": "Weekly streak-celebration title. {days} is the streak length, {week} a localized duration of hours logged in the last 7 days.",
+    "placeholders": {
+      "days": {
+        "type": "String",
+        "example": "4"
+      },
+      "week": {
+        "type": "String",
+        "example": "6.5 h"
+      }
+    }
+  },
+  "notifStreakBody": "Tutti i corsi in linea o avanti. Ottimo lavoro.",
+  "@notifStreakBody": {
+    "description": "Weekly streak-celebration body."
+  },
+  "notifCustomTitleAuto": "📚 Check-in di studio: {course}",
+  "@notifCustomTitleAuto": {
+    "description": "Custom-schedule title when the automatic topic is used. {course} is the course name.",
+    "placeholders": {
+      "course": {
+        "type": "String",
+        "example": "Linear Algebra"
+      }
+    }
+  },
+  "notifCustomTitleCourse": "📚 È ora di aggiornare: {course}",
+  "@notifCustomTitleCourse": {
+    "description": "Custom-schedule title when pinned to a specific course. {course} is the course name.",
+    "placeholders": {
+      "course": {
+        "type": "String",
+        "example": "Linear Algebra"
+      }
+    }
+  },
+  "notifCustomBodyPace": "{left} aperti · {pace}/giorno per finire in tempo. Registra una sessione per aggiornare i progressi.",
+  "@notifCustomBodyPace": {
+    "description": "Custom-schedule body when a finite pace exists. Durations are localized.",
+    "placeholders": {
+      "left": {
+        "type": "String",
+        "example": "30.9 h"
+      },
+      "pace": {
+        "type": "String",
+        "example": "27 min"
+      }
+    }
+  },
+  "notifCustomBodyNoPace": "{left} ancora aperti — tutto ciò che registri ora conta.",
+  "@notifCustomBodyNoPace": {
+    "description": "Custom-schedule body when no finite pace exists. {left} is a localized duration.",
+    "placeholders": {
+      "left": {
+        "type": "String",
+        "example": "2 h"
+      }
+    }
+  },
+  "reminderPreviewNext": "Prossimo: {time}",
+  "@reminderPreviewNext": {
+    "description": "Custom-schedule demo row header with the next fire time. {time} is a yyyy-MM-dd HH:mm timestamp (not localized).",
+    "placeholders": {
+      "time": {
+        "type": "String",
+        "example": "2026-11-13 13:36"
+      }
+    }
+  },
+  "reminderPreviewBackDay": "-1g",
+  "@reminderPreviewBackDay": {
+    "description": "Preview step-back button: one day earlier. Localize the day abbreviation, keep the -1 prefix."
+  },
+  "reminderPreviewFwdDay": "+1g",
+  "@reminderPreviewFwdDay": {
+    "description": "Preview step-forward button: one day later. Localize the day abbreviation, keep the +1 prefix."
+  },
+  "reminderPreviewFake": "(finto)",
+  "@reminderPreviewFake": {
+    "description": "Tag after the preview time when a fake clock override is active."
+  },
+  "reminderPreviewDemoLabel": "Check-in demo",
+  "@reminderPreviewDemoLabel": {
+    "description": "Label of the demo one-off custom schedule on the reminder preview page."
   }
 }

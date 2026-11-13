@@ -2007,5 +2007,285 @@
   "settingsReminderDenied": "सूचना अवरोधित आहेत — सिस्टम सेटिंग्जमध्ये सक्षम करा.",
   "@settingsReminderDenied": {
     "description": "SnackBar when the OS notification permission is denied."
+  },
+  "notifDurationHours": "{value} ता",
+  "@notifDurationHours": {
+    "description": "Notification duration unit (hours, >= 1 h). {value} is whole or one-decimal, e.g. '27' or '2.9'. Localize the unit; keep the placeholder.",
+    "placeholders": {
+      "value": {
+        "type": "String",
+        "example": "2.9"
+      }
+    }
+  },
+  "notifDurationMinutes": "{value} मि",
+  "@notifDurationMinutes": {
+    "description": "Notification duration unit (sub-hour). {value} is whole minutes, e.g. '36'. Localize the unit; keep the placeholder.",
+    "placeholders": {
+      "value": {
+        "type": "String",
+        "example": "36"
+      }
+    }
+  },
+  "notifDailyTitle": "📚 आज रात्री: योग्य मार्गावर राहण्यासाठी {duration}",
+  "@notifDailyTitle": {
+    "description": "Daily-plan notification title. {duration} is a localized duration like '2.9 h' or '36 min'.",
+    "placeholders": {
+      "duration": {
+        "type": "String",
+        "example": "2.9 h"
+      }
+    }
+  },
+  "notifDailyCourseNeed": "{course} आज {duration} बाकी",
+  "@notifDailyCourseNeed": {
+    "description": "Per-course fragment inside the daily-plan body. {course} is the course name, {duration} a localized duration.",
+    "placeholders": {
+      "course": {
+        "type": "String",
+        "example": "Linear Algebra"
+      },
+      "duration": {
+        "type": "String",
+        "example": "48 min"
+      }
+    }
+  },
+  "notifDailyMore": "(+{count} आणखी)",
+  "@notifDailyMore": {
+    "description": "Folded-course suffix in the daily-plan body when more than 2 courses are due. {count} is the hidden-course count.",
+    "placeholders": {
+      "count": {
+        "type": "String",
+        "example": "5"
+      }
+    }
+  },
+  "notifDailyBody": "{detail}. आजचे पूर्ण करण्यासाठी सत्र नोंदवा.",
+  "@notifDailyBody": {
+    "description": "Daily-plan notification body. {detail} is the joined per-course list with optional folded suffix.",
+    "placeholders": {
+      "detail": {
+        "type": "String",
+        "example": "Linear Algebra 48 min left today"
+      }
+    }
+  },
+  "notifBehindTitle": "⚠️ {course} मागे पडला आहे",
+  "@notifBehindTitle": {
+    "description": "Behind-nudge notification title. {course} is the course name.",
+    "placeholders": {
+      "course": {
+        "type": "String",
+        "example": "Linear Algebra"
+      }
+    }
+  },
+  "notifBehindBodyPace": "{left} बाकी, {days} दिवस बाकी — येथून {pace}/दिवस. योग्य मार्गावर परतण्यासाठी {catchUp} नोंदवा.",
+  "@notifBehindBodyPace": {
+    "description": "Behind-nudge body when a finite pace exists and partial catch-up clears it. Durations are localized ('2.9 h', '36 min'); {days} is a plain count.",
+    "placeholders": {
+      "left": {
+        "type": "String",
+        "example": "30.9 h"
+      },
+      "days": {
+        "type": "String",
+        "example": "68"
+      },
+      "pace": {
+        "type": "String",
+        "example": "27 min"
+      },
+      "catchUp": {
+        "type": "String",
+        "example": "1.2 h"
+      }
+    }
+  },
+  "notifBehindBodyFull": "{left} बाकी, {days} दिवस बाकी — येथून {pace}/दिवस. पूर्ण {left} संपवल्यानेच हे सुटेल — आज रात्रीपासून सुरू करा.",
+  "@notifBehindBodyFull": {
+    "description": "Behind-nudge body when only finishing the course clears it. Same placeholders as notifBehindBodyPace minus catchUp.",
+    "placeholders": {
+      "left": {
+        "type": "String",
+        "example": "30.9 h"
+      },
+      "days": {
+        "type": "String",
+        "example": "68"
+      },
+      "pace": {
+        "type": "String",
+        "example": "27 min"
+      }
+    }
+  },
+  "notifBehindBodyDeadlineDay": "{left} अजूनही शिल्लक आणि अंतिम तारीख आजच आहे. तुम्ही आत्ता जे नोंदवाल ते मोजले जाईल.",
+  "@notifBehindBodyDeadlineDay": {
+    "description": "Behind-nudge body on deadline day (no finite pace exists). {left} is a localized duration.",
+    "placeholders": {
+      "left": {
+        "type": "String",
+        "example": "2 h"
+      }
+    }
+  },
+  "notifDeadlineTomorrowTitle": "🚨 {course} उद्या देय आहे आणि अजूनही {left} शिल्लक आहे",
+  "@notifDeadlineTomorrowTitle": {
+    "description": "Deadline-countdown title for a course due tomorrow. {left} is a localized duration.",
+    "placeholders": {
+      "course": {
+        "type": "String",
+        "example": "Physics I"
+      },
+      "left": {
+        "type": "String",
+        "example": "4.1 h"
+      }
+    }
+  },
+  "notifDeadlineTomorrowBody": "तुम्ही आज जे नोंदवाल ते दुप्पट मोजले जाईल.",
+  "@notifDeadlineTomorrowBody": {
+    "description": "Deadline-countdown body for a course due tomorrow."
+  },
+  "notifDeadlineSoonTitle": "⏳ {days} दिवसांत {course} परीक्षा — {left} बाकी",
+  "@notifDeadlineSoonTitle": {
+    "description": "Deadline-countdown title for a course due in 2+ days. {days} is a plain count, {left} a localized duration.",
+    "placeholders": {
+      "course": {
+        "type": "String",
+        "example": "Physics I"
+      },
+      "days": {
+        "type": "String",
+        "example": "3"
+      },
+      "left": {
+        "type": "String",
+        "example": "4.1 h"
+      }
+    }
+  },
+  "notifDeadlineSoonBody": "ते {pace}/दिवस आहे. विभागा: दिवसातून 2 सत्रे एका मॅरेथॉनपेक्षा चांगली.",
+  "@notifDeadlineSoonBody": {
+    "description": "Deadline-countdown body when a finite pace exists. {pace} is a localized duration.",
+    "placeholders": {
+      "pace": {
+        "type": "String",
+        "example": "1.4 h"
+      }
+    }
+  },
+  "notifDeadlineSoonBodyNoPace": "तुम्ही आत्ता नोंदवलेला प्रत्येक तास मोजला जाईल.",
+  "@notifDeadlineSoonBodyNoPace": {
+    "description": "Deadline-countdown body when no finite pace exists."
+  },
+  "notifOverdueTitle": "❌ {course} ची अंतिम तारीख {left} शिल्लक असताना निघून गेली",
+  "@notifOverdueTitle": {
+    "description": "Overdue-escalation title. {left} is a localized duration.",
+    "placeholders": {
+      "course": {
+        "type": "String",
+        "example": "Software Engineering Project"
+      },
+      "left": {
+        "type": "String",
+        "example": "53.1 h"
+      }
+    }
+  },
+  "notifOverdueBody": "अंतिम तारीख पुढे ढकला किंवा तास पूर्ण करा — तोपर्यंत अभ्यासक्रम लक्ष आवश्यक मध्येच राहील.",
+  "@notifOverdueBody": {
+    "description": "Overdue-escalation body."
+  },
+  "notifStreakTitle": "🔥 {days} दिवसांची सलग — ह्या आठवड्यात {week}",
+  "@notifStreakTitle": {
+    "description": "Weekly streak-celebration title. {days} is the streak length, {week} a localized duration of hours logged in the last 7 days.",
+    "placeholders": {
+      "days": {
+        "type": "String",
+        "example": "4"
+      },
+      "week": {
+        "type": "String",
+        "example": "6.5 h"
+      }
+    }
+  },
+  "notifStreakBody": "सर्व अभ्यासक्रम योग्य मार्गावर किंवा पुढे आहेत. छान चाललंय.",
+  "@notifStreakBody": {
+    "description": "Weekly streak-celebration body."
+  },
+  "notifCustomTitleAuto": "📚 अभ्यास तपासणी: {course}",
+  "@notifCustomTitleAuto": {
+    "description": "Custom-schedule title when the automatic topic is used. {course} is the course name.",
+    "placeholders": {
+      "course": {
+        "type": "String",
+        "example": "Linear Algebra"
+      }
+    }
+  },
+  "notifCustomTitleCourse": "📚 अद्ययावत करण्याची वेळ: {course}",
+  "@notifCustomTitleCourse": {
+    "description": "Custom-schedule title when pinned to a specific course. {course} is the course name.",
+    "placeholders": {
+      "course": {
+        "type": "String",
+        "example": "Linear Algebra"
+      }
+    }
+  },
+  "notifCustomBodyPace": "{left} शिल्लक · वेळेत पूर्ण करण्यासाठी {pace}/दिवस. प्रगती अद्ययावत करण्यासाठी सत्र नोंदवा.",
+  "@notifCustomBodyPace": {
+    "description": "Custom-schedule body when a finite pace exists. Durations are localized.",
+    "placeholders": {
+      "left": {
+        "type": "String",
+        "example": "30.9 h"
+      },
+      "pace": {
+        "type": "String",
+        "example": "27 min"
+      }
+    }
+  },
+  "notifCustomBodyNoPace": "{left} अजूनही शिल्लक — तुम्ही आत्ता जे नोंदवाल ते मोजले जाईल.",
+  "@notifCustomBodyNoPace": {
+    "description": "Custom-schedule body when no finite pace exists. {left} is a localized duration.",
+    "placeholders": {
+      "left": {
+        "type": "String",
+        "example": "2 h"
+      }
+    }
+  },
+  "reminderPreviewNext": "पुढील: {time}",
+  "@reminderPreviewNext": {
+    "description": "Custom-schedule demo row header with the next fire time. {time} is a yyyy-MM-dd HH:mm timestamp (not localized).",
+    "placeholders": {
+      "time": {
+        "type": "String",
+        "example": "2026-11-13 13:36"
+      }
+    }
+  },
+  "reminderPreviewBackDay": "-1दि",
+  "@reminderPreviewBackDay": {
+    "description": "Preview step-back button: one day earlier. Localize the day abbreviation, keep the -1 prefix."
+  },
+  "reminderPreviewFwdDay": "+1दि",
+  "@reminderPreviewFwdDay": {
+    "description": "Preview step-forward button: one day later. Localize the day abbreviation, keep the +1 prefix."
+  },
+  "reminderPreviewFake": "(बनावट)",
+  "@reminderPreviewFake": {
+    "description": "Tag after the preview time when a fake clock override is active."
+  },
+  "reminderPreviewDemoLabel": "डेमो तपासणी",
+  "@reminderPreviewDemoLabel": {
+    "description": "Label of the demo one-off custom schedule on the reminder preview page."
   }
 }

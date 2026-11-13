@@ -2007,5 +2007,285 @@
   "settingsReminderDenied": "Jakinarazpenak blokeatuta daude — gaitu itzazu sistemaren ezarpenetan.",
   "@settingsReminderDenied": {
     "description": "SnackBar when the OS notification permission is denied."
+  },
+  "notifDurationHours": "{value} h",
+  "@notifDurationHours": {
+    "description": "Notification duration unit (hours, >= 1 h). {value} is whole or one-decimal, e.g. '27' or '2.9'. Localize the unit; keep the placeholder.",
+    "placeholders": {
+      "value": {
+        "type": "String",
+        "example": "2.9"
+      }
+    }
+  },
+  "notifDurationMinutes": "{value} min",
+  "@notifDurationMinutes": {
+    "description": "Notification duration unit (sub-hour). {value} is whole minutes, e.g. '36'. Localize the unit; keep the placeholder.",
+    "placeholders": {
+      "value": {
+        "type": "String",
+        "example": "36"
+      }
+    }
+  },
+  "notifDailyTitle": "📚 Gauean: {duration} Ondo bidean jarraitzeko",
+  "@notifDailyTitle": {
+    "description": "Daily-plan notification title. {duration} is a localized duration like '2.9 h' or '36 min'.",
+    "placeholders": {
+      "duration": {
+        "type": "String",
+        "example": "2.9 h"
+      }
+    }
+  },
+  "notifDailyCourseNeed": "{course}: {duration} falta gaur",
+  "@notifDailyCourseNeed": {
+    "description": "Per-course fragment inside the daily-plan body. {course} is the course name, {duration} a localized duration.",
+    "placeholders": {
+      "course": {
+        "type": "String",
+        "example": "Linear Algebra"
+      },
+      "duration": {
+        "type": "String",
+        "example": "48 min"
+      }
+    }
+  },
+  "notifDailyMore": "(+{count} gehiago)",
+  "@notifDailyMore": {
+    "description": "Folded-course suffix in the daily-plan body when more than 2 courses are due. {count} is the hidden-course count.",
+    "placeholders": {
+      "count": {
+        "type": "String",
+        "example": "5"
+      }
+    }
+  },
+  "notifDailyBody": "{detail}. Erregistratu saio bat gaurkoa garbitzeko.",
+  "@notifDailyBody": {
+    "description": "Daily-plan notification body. {detail} is the joined per-course list with optional folded suffix.",
+    "placeholders": {
+      "detail": {
+        "type": "String",
+        "example": "Linear Algebra 48 min left today"
+      }
+    }
+  },
+  "notifBehindTitle": "⚠️ {course} Atzeratuta izatera igaro da",
+  "@notifBehindTitle": {
+    "description": "Behind-nudge notification title. {course} is the course name.",
+    "placeholders": {
+      "course": {
+        "type": "String",
+        "example": "Linear Algebra"
+      }
+    }
+  },
+  "notifBehindBodyPace": "{left} falta, {days} egun geratzen dira — hemendik aurrera {pace}/egun. Erregistratu {catchUp} Ondo bidean itzultzeko.",
+  "@notifBehindBodyPace": {
+    "description": "Behind-nudge body when a finite pace exists and partial catch-up clears it. Durations are localized ('2.9 h', '36 min'); {days} is a plain count.",
+    "placeholders": {
+      "left": {
+        "type": "String",
+        "example": "30.9 h"
+      },
+      "days": {
+        "type": "String",
+        "example": "68"
+      },
+      "pace": {
+        "type": "String",
+        "example": "27 min"
+      },
+      "catchUp": {
+        "type": "String",
+        "example": "1.2 h"
+      }
+    }
+  },
+  "notifBehindBodyFull": "{left} falta, {days} egun geratzen dira — hemendik aurrera {pace}/egun. Soilik {left} osoa amaitzeak garbitzen du hau — hasi gaur gauean.",
+  "@notifBehindBodyFull": {
+    "description": "Behind-nudge body when only finishing the course clears it. Same placeholders as notifBehindBodyPace minus catchUp.",
+    "placeholders": {
+      "left": {
+        "type": "String",
+        "example": "30.9 h"
+      },
+      "days": {
+        "type": "String",
+        "example": "68"
+      },
+      "pace": {
+        "type": "String",
+        "example": "27 min"
+      }
+    }
+  },
+  "notifBehindBodyDeadlineDay": "{left} zabalik dago oraindik eta epemuga iritsi da. Orain erregistratzen duzun guztiak balio du.",
+  "@notifBehindBodyDeadlineDay": {
+    "description": "Behind-nudge body on deadline day (no finite pace exists). {left} is a localized duration.",
+    "placeholders": {
+      "left": {
+        "type": "String",
+        "example": "2 h"
+      }
+    }
+  },
+  "notifDeadlineTomorrowTitle": "🚨 {course} bihar muga da eta {left} zabalik dago oraindik",
+  "@notifDeadlineTomorrowTitle": {
+    "description": "Deadline-countdown title for a course due tomorrow. {left} is a localized duration.",
+    "placeholders": {
+      "course": {
+        "type": "String",
+        "example": "Physics I"
+      },
+      "left": {
+        "type": "String",
+        "example": "4.1 h"
+      }
+    }
+  },
+  "notifDeadlineTomorrowBody": "Gaur erregistratzen duzun guztiak bikoitz balio du.",
+  "@notifDeadlineTomorrowBody": {
+    "description": "Deadline-countdown body for a course due tomorrow."
+  },
+  "notifDeadlineSoonTitle": "⏳ {course} azterketa {days} egun barru — {left} falta",
+  "@notifDeadlineSoonTitle": {
+    "description": "Deadline-countdown title for a course due in 2+ days. {days} is a plain count, {left} a localized duration.",
+    "placeholders": {
+      "course": {
+        "type": "String",
+        "example": "Physics I"
+      },
+      "days": {
+        "type": "String",
+        "example": "3"
+      },
+      "left": {
+        "type": "String",
+        "example": "4.1 h"
+      }
+    }
+  },
+  "notifDeadlineSoonBody": "Hori {pace}/egun da. Zatitu: eguneko 2 saiok maratoi bat garaitzen dute.",
+  "@notifDeadlineSoonBody": {
+    "description": "Deadline-countdown body when a finite pace exists. {pace} is a localized duration.",
+    "placeholders": {
+      "pace": {
+        "type": "String",
+        "example": "1.4 h"
+      }
+    }
+  },
+  "notifDeadlineSoonBodyNoPace": "Orain erregistratzen duzun ordu bakoitzak balio du.",
+  "@notifDeadlineSoonBodyNoPace": {
+    "description": "Deadline-countdown body when no finite pace exists."
+  },
+  "notifOverdueTitle": "❌ {course} epemuga igaro du {left} zabalik duela",
+  "@notifOverdueTitle": {
+    "description": "Overdue-escalation title. {left} is a localized duration.",
+    "placeholders": {
+      "course": {
+        "type": "String",
+        "example": "Software Engineering Project"
+      },
+      "left": {
+        "type": "String",
+        "example": "53.1 h"
+      }
+    }
+  },
+  "notifOverdueBody": "Mugitu epemuga edo amaitu orduak — bitartean ikasgaiak arreta behar du.",
+  "@notifOverdueBody": {
+    "description": "Overdue-escalation body."
+  },
+  "notifStreakTitle": "🔥 {days} eguneko bolada — {week} aste honetan",
+  "@notifStreakTitle": {
+    "description": "Weekly streak-celebration title. {days} is the streak length, {week} a localized duration of hours logged in the last 7 days.",
+    "placeholders": {
+      "days": {
+        "type": "String",
+        "example": "4"
+      },
+      "week": {
+        "type": "String",
+        "example": "6.5 h"
+      }
+    }
+  },
+  "notifStreakBody": "Ikasgai guztiak Ondo bidean edo Aurreratuta. Bolada bikaina.",
+  "@notifStreakBody": {
+    "description": "Weekly streak-celebration body."
+  },
+  "notifCustomTitleAuto": "📚 Ikasketa-egiaztapena: {course}",
+  "@notifCustomTitleAuto": {
+    "description": "Custom-schedule title when the automatic topic is used. {course} is the course name.",
+    "placeholders": {
+      "course": {
+        "type": "String",
+        "example": "Linear Algebra"
+      }
+    }
+  },
+  "notifCustomTitleCourse": "📚 Eguneratzeko ordua: {course}",
+  "@notifCustomTitleCourse": {
+    "description": "Custom-schedule title when pinned to a specific course. {course} is the course name.",
+    "placeholders": {
+      "course": {
+        "type": "String",
+        "example": "Linear Algebra"
+      }
+    }
+  },
+  "notifCustomBodyPace": "{left} zabalik · {pace}/egun garaiz amaitzeko. Erregistratu saio bat aurrerapena eguneratzeko.",
+  "@notifCustomBodyPace": {
+    "description": "Custom-schedule body when a finite pace exists. Durations are localized.",
+    "placeholders": {
+      "left": {
+        "type": "String",
+        "example": "30.9 h"
+      },
+      "pace": {
+        "type": "String",
+        "example": "27 min"
+      }
+    }
+  },
+  "notifCustomBodyNoPace": "{left} zabalik dago oraindik — orain erregistratzen duzun guztiak balio du.",
+  "@notifCustomBodyNoPace": {
+    "description": "Custom-schedule body when no finite pace exists. {left} is a localized duration.",
+    "placeholders": {
+      "left": {
+        "type": "String",
+        "example": "2 h"
+      }
+    }
+  },
+  "reminderPreviewNext": "Hurrengoa: {time}",
+  "@reminderPreviewNext": {
+    "description": "Custom-schedule demo row header with the next fire time. {time} is a yyyy-MM-dd HH:mm timestamp (not localized).",
+    "placeholders": {
+      "time": {
+        "type": "String",
+        "example": "2026-11-13 13:36"
+      }
+    }
+  },
+  "reminderPreviewBackDay": "-1e",
+  "@reminderPreviewBackDay": {
+    "description": "Preview step-back button: one day earlier. Localize the day abbreviation, keep the -1 prefix."
+  },
+  "reminderPreviewFwdDay": "+1e",
+  "@reminderPreviewFwdDay": {
+    "description": "Preview step-forward button: one day later. Localize the day abbreviation, keep the +1 prefix."
+  },
+  "reminderPreviewFake": "(faltsua)",
+  "@reminderPreviewFake": {
+    "description": "Tag after the preview time when a fake clock override is active."
+  },
+  "reminderPreviewDemoLabel": "Demo egiaztapena",
+  "@reminderPreviewDemoLabel": {
+    "description": "Label of the demo one-off custom schedule on the reminder preview page."
   }
 }

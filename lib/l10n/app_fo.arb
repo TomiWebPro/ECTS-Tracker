@@ -2007,5 +2007,285 @@
   "settingsReminderDenied": "Tilkynningar eru forðaðar — loyvið teimum í skipanarinnstillingunum.",
   "@settingsReminderDenied": {
     "description": "SnackBar when the OS notification permission is denied."
+  },
+  "notifDurationHours": "{value} t",
+  "@notifDurationHours": {
+    "description": "Notification duration unit (hours, >= 1 h). {value} is whole or one-decimal, e.g. '27' or '2.9'. Localize the unit; keep the placeholder.",
+    "placeholders": {
+      "value": {
+        "type": "String",
+        "example": "2.9"
+      }
+    }
+  },
+  "notifDurationMinutes": "{value} min",
+  "@notifDurationMinutes": {
+    "description": "Notification duration unit (sub-hour). {value} is whole minutes, e.g. '36'. Localize the unit; keep the placeholder.",
+    "placeholders": {
+      "value": {
+        "type": "String",
+        "example": "36"
+      }
+    }
+  },
+  "notifDailyTitle": "📚 Í kvøld: {duration} fyri at halda Á veg",
+  "@notifDailyTitle": {
+    "description": "Daily-plan notification title. {duration} is a localized duration like '2.9 h' or '36 min'.",
+    "placeholders": {
+      "duration": {
+        "type": "String",
+        "example": "2.9 h"
+      }
+    }
+  },
+  "notifDailyCourseNeed": "{course}: {duration} eftir í dag",
+  "@notifDailyCourseNeed": {
+    "description": "Per-course fragment inside the daily-plan body. {course} is the course name, {duration} a localized duration.",
+    "placeholders": {
+      "course": {
+        "type": "String",
+        "example": "Linear Algebra"
+      },
+      "duration": {
+        "type": "String",
+        "example": "48 min"
+      }
+    }
+  },
+  "notifDailyMore": "(+{count} aftrat)",
+  "@notifDailyMore": {
+    "description": "Folded-course suffix in the daily-plan body when more than 2 courses are due. {count} is the hidden-course count.",
+    "placeholders": {
+      "count": {
+        "type": "String",
+        "example": "5"
+      }
+    }
+  },
+  "notifDailyBody": "{detail}. Skráset eina løtu fyri at klára dagin.",
+  "@notifDailyBody": {
+    "description": "Daily-plan notification body. {detail} is the joined per-course list with optional folded suffix.",
+    "placeholders": {
+      "detail": {
+        "type": "String",
+        "example": "Linear Algebra 48 min left today"
+      }
+    }
+  },
+  "notifBehindTitle": "⚠️ {course} er dottið Aftaná",
+  "@notifBehindTitle": {
+    "description": "Behind-nudge notification title. {course} is the course name.",
+    "placeholders": {
+      "course": {
+        "type": "String",
+        "example": "Linear Algebra"
+      }
+    }
+  },
+  "notifBehindBodyPace": "{left} eftir, {days} dagar eftir — {pace}/dag herfrá. Skráset {catchUp} fyri at verða Á veg aftur.",
+  "@notifBehindBodyPace": {
+    "description": "Behind-nudge body when a finite pace exists and partial catch-up clears it. Durations are localized ('2.9 h', '36 min'); {days} is a plain count.",
+    "placeholders": {
+      "left": {
+        "type": "String",
+        "example": "30.9 h"
+      },
+      "days": {
+        "type": "String",
+        "example": "68"
+      },
+      "pace": {
+        "type": "String",
+        "example": "27 min"
+      },
+      "catchUp": {
+        "type": "String",
+        "example": "1.2 h"
+      }
+    }
+  },
+  "notifBehindBodyFull": "{left} eftir, {days} dagar eftir — {pace}/dag herfrá. Bert fulla {left} liðugt tekur hetta burt — byrja í kvøld.",
+  "@notifBehindBodyFull": {
+    "description": "Behind-nudge body when only finishing the course clears it. Same placeholders as notifBehindBodyPace minus catchUp.",
+    "placeholders": {
+      "left": {
+        "type": "String",
+        "example": "30.9 h"
+      },
+      "days": {
+        "type": "String",
+        "example": "68"
+      },
+      "pace": {
+        "type": "String",
+        "example": "27 min"
+      }
+    }
+  },
+  "notifBehindBodyDeadlineDay": "{left} er enn opið og freistin er her. Alt tú skrásetar nú telur.",
+  "@notifBehindBodyDeadlineDay": {
+    "description": "Behind-nudge body on deadline day (no finite pace exists). {left} is a localized duration.",
+    "placeholders": {
+      "left": {
+        "type": "String",
+        "example": "2 h"
+      }
+    }
+  },
+  "notifDeadlineTomorrowTitle": "🚨 {course} skal gerast í morgin og {left} er enn opið",
+  "@notifDeadlineTomorrowTitle": {
+    "description": "Deadline-countdown title for a course due tomorrow. {left} is a localized duration.",
+    "placeholders": {
+      "course": {
+        "type": "String",
+        "example": "Physics I"
+      },
+      "left": {
+        "type": "String",
+        "example": "4.1 h"
+      }
+    }
+  },
+  "notifDeadlineTomorrowBody": "Alt tú skrásetar í dag telur tvífalt.",
+  "@notifDeadlineTomorrowBody": {
+    "description": "Deadline-countdown body for a course due tomorrow."
+  },
+  "notifDeadlineSoonTitle": "⏳ {course} próvtøka um {days} dagar — {left} eftir",
+  "@notifDeadlineSoonTitle": {
+    "description": "Deadline-countdown title for a course due in 2+ days. {days} is a plain count, {left} a localized duration.",
+    "placeholders": {
+      "course": {
+        "type": "String",
+        "example": "Physics I"
+      },
+      "days": {
+        "type": "String",
+        "example": "3"
+      },
+      "left": {
+        "type": "String",
+        "example": "4.1 h"
+      }
+    }
+  },
+  "notifDeadlineSoonBody": "Tað er {pace}/dag. Být tað sundur: 2 løtur um dagin vinna einum maraton.",
+  "@notifDeadlineSoonBody": {
+    "description": "Deadline-countdown body when a finite pace exists. {pace} is a localized duration.",
+    "placeholders": {
+      "pace": {
+        "type": "String",
+        "example": "1.4 h"
+      }
+    }
+  },
+  "notifDeadlineSoonBodyNoPace": "Hvør tími tú skrásetar nú telur.",
+  "@notifDeadlineSoonBodyNoPace": {
+    "description": "Deadline-countdown body when no finite pace exists."
+  },
+  "notifOverdueTitle": "❌ {course} hevur gloymt freistina við {left} opið",
+  "@notifOverdueTitle": {
+    "description": "Overdue-escalation title. {left} is a localized duration.",
+    "placeholders": {
+      "course": {
+        "type": "String",
+        "example": "Software Engineering Project"
+      },
+      "left": {
+        "type": "String",
+        "example": "53.1 h"
+      }
+    }
+  },
+  "notifOverdueBody": "Flyt freistina ella ger tímanar liðugt — skeiðið krevur ans, til tað er gjørt.",
+  "@notifOverdueBody": {
+    "description": "Overdue-escalation body."
+  },
+  "notifStreakTitle": "🔥 {days}-daga røð — {week} hesa viku",
+  "@notifStreakTitle": {
+    "description": "Weekly streak-celebration title. {days} is the streak length, {week} a localized duration of hours logged in the last 7 days.",
+    "placeholders": {
+      "days": {
+        "type": "String",
+        "example": "4"
+      },
+      "week": {
+        "type": "String",
+        "example": "6.5 h"
+      }
+    }
+  },
+  "notifStreakBody": "Øll skeiðini eru Á veg ella Undan. Væl gjørt.",
+  "@notifStreakBody": {
+    "description": "Weekly streak-celebration body."
+  },
+  "notifCustomTitleAuto": "📚 Lestrarhugni: {course}",
+  "@notifCustomTitleAuto": {
+    "description": "Custom-schedule title when the automatic topic is used. {course} is the course name.",
+    "placeholders": {
+      "course": {
+        "type": "String",
+        "example": "Linear Algebra"
+      }
+    }
+  },
+  "notifCustomTitleCourse": "📚 Tíð at dagføra: {course}",
+  "@notifCustomTitleCourse": {
+    "description": "Custom-schedule title when pinned to a specific course. {course} is the course name.",
+    "placeholders": {
+      "course": {
+        "type": "String",
+        "example": "Linear Algebra"
+      }
+    }
+  },
+  "notifCustomBodyPace": "{left} opið · {pace}/dag fyri at verða liðug í tíð. Skráset eina løtu fyri at dagføra framgongdina.",
+  "@notifCustomBodyPace": {
+    "description": "Custom-schedule body when a finite pace exists. Durations are localized.",
+    "placeholders": {
+      "left": {
+        "type": "String",
+        "example": "30.9 h"
+      },
+      "pace": {
+        "type": "String",
+        "example": "27 min"
+      }
+    }
+  },
+  "notifCustomBodyNoPace": "{left} er enn opið — alt tú skrásetar nú telur.",
+  "@notifCustomBodyNoPace": {
+    "description": "Custom-schedule body when no finite pace exists. {left} is a localized duration.",
+    "placeholders": {
+      "left": {
+        "type": "String",
+        "example": "2 h"
+      }
+    }
+  },
+  "reminderPreviewNext": "Næst: {time}",
+  "@reminderPreviewNext": {
+    "description": "Custom-schedule demo row header with the next fire time. {time} is a yyyy-MM-dd HH:mm timestamp (not localized).",
+    "placeholders": {
+      "time": {
+        "type": "String",
+        "example": "2026-11-13 13:36"
+      }
+    }
+  },
+  "reminderPreviewBackDay": "-1d",
+  "@reminderPreviewBackDay": {
+    "description": "Preview step-back button: one day earlier. Localize the day abbreviation, keep the -1 prefix."
+  },
+  "reminderPreviewFwdDay": "+1d",
+  "@reminderPreviewFwdDay": {
+    "description": "Preview step-forward button: one day later. Localize the day abbreviation, keep the +1 prefix."
+  },
+  "reminderPreviewFake": "(falskt)",
+  "@reminderPreviewFake": {
+    "description": "Tag after the preview time when a fake clock override is active."
+  },
+  "reminderPreviewDemoLabel": "Demo-hugni",
+  "@reminderPreviewDemoLabel": {
+    "description": "Label of the demo one-off custom schedule on the reminder preview page."
   }
 }

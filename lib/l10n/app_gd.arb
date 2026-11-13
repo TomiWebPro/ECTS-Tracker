@@ -2007,5 +2007,285 @@
   "settingsReminderDenied": "Tha brathan air am bacadh — cuir an comas iad ann an suidheachaidhean an t-siostaim.",
   "@settingsReminderDenied": {
     "description": "SnackBar when the OS notification permission is denied."
+  },
+  "notifDurationHours": "{value} u",
+  "@notifDurationHours": {
+    "description": "Notification duration unit (hours, >= 1 h). {value} is whole or one-decimal, e.g. '27' or '2.9'. Localize the unit; keep the placeholder.",
+    "placeholders": {
+      "value": {
+        "type": "String",
+        "example": "2.9"
+      }
+    }
+  },
+  "notifDurationMinutes": "{value} mion",
+  "@notifDurationMinutes": {
+    "description": "Notification duration unit (sub-hour). {value} is whole minutes, e.g. '36'. Localize the unit; keep the placeholder.",
+    "placeholders": {
+      "value": {
+        "type": "String",
+        "example": "36"
+      }
+    }
+  },
+  "notifDailyTitle": "📚 A-nochd: {duration} gus fuireach air an t-slighe",
+  "@notifDailyTitle": {
+    "description": "Daily-plan notification title. {duration} is a localized duration like '2.9 h' or '36 min'.",
+    "placeholders": {
+      "duration": {
+        "type": "String",
+        "example": "2.9 h"
+      }
+    }
+  },
+  "notifDailyCourseNeed": "{course}: {duration} air fhàgail an-diugh",
+  "@notifDailyCourseNeed": {
+    "description": "Per-course fragment inside the daily-plan body. {course} is the course name, {duration} a localized duration.",
+    "placeholders": {
+      "course": {
+        "type": "String",
+        "example": "Linear Algebra"
+      },
+      "duration": {
+        "type": "String",
+        "example": "48 min"
+      }
+    }
+  },
+  "notifDailyMore": "(+{count} eile)",
+  "@notifDailyMore": {
+    "description": "Folded-course suffix in the daily-plan body when more than 2 courses are due. {count} is the hidden-course count.",
+    "placeholders": {
+      "count": {
+        "type": "String",
+        "example": "5"
+      }
+    }
+  },
+  "notifDailyBody": "{detail}. Log seisean gus an-diugh a ghlanadh.",
+  "@notifDailyBody": {
+    "description": "Daily-plan notification body. {detail} is the joined per-course list with optional folded suffix.",
+    "placeholders": {
+      "detail": {
+        "type": "String",
+        "example": "Linear Algebra 48 min left today"
+      }
+    }
+  },
+  "notifBehindTitle": "⚠️ Tha {course} air tuiteam Air dheireadh",
+  "@notifBehindTitle": {
+    "description": "Behind-nudge notification title. {course} is the course name.",
+    "placeholders": {
+      "course": {
+        "type": "String",
+        "example": "Linear Algebra"
+      }
+    }
+  },
+  "notifBehindBodyPace": "{left} air fhàgail, {days} latha air fhàgail — {pace}/latha bho seo. Log {catchUp} gus faighinn air ais Air an t-slighe.",
+  "@notifBehindBodyPace": {
+    "description": "Behind-nudge body when a finite pace exists and partial catch-up clears it. Durations are localized ('2.9 h', '36 min'); {days} is a plain count.",
+    "placeholders": {
+      "left": {
+        "type": "String",
+        "example": "30.9 h"
+      },
+      "days": {
+        "type": "String",
+        "example": "68"
+      },
+      "pace": {
+        "type": "String",
+        "example": "27 min"
+      },
+      "catchUp": {
+        "type": "String",
+        "example": "1.2 h"
+      }
+    }
+  },
+  "notifBehindBodyFull": "{left} air fhàgail, {days} latha air fhàgail — {pace}/latha bho seo. Chan eil ach an {left} slàn a’ glanadh seo — tòisich a-nochd.",
+  "@notifBehindBodyFull": {
+    "description": "Behind-nudge body when only finishing the course clears it. Same placeholders as notifBehindBodyPace minus catchUp.",
+    "placeholders": {
+      "left": {
+        "type": "String",
+        "example": "30.9 h"
+      },
+      "days": {
+        "type": "String",
+        "example": "68"
+      },
+      "pace": {
+        "type": "String",
+        "example": "27 min"
+      }
+    }
+  },
+  "notifBehindBodyDeadlineDay": "Tha {left} fosgailte fhathast agus tha an ceann-latha an seo. Tha a h-uile rud a logas tu a-nis a’ cunntadh.",
+  "@notifBehindBodyDeadlineDay": {
+    "description": "Behind-nudge body on deadline day (no finite pace exists). {left} is a localized duration.",
+    "placeholders": {
+      "left": {
+        "type": "String",
+        "example": "2 h"
+      }
+    }
+  },
+  "notifDeadlineTomorrowTitle": "🚨 Tha {course} ri phàigheadh a-màireach agus tha {left} fosgailte fhathast",
+  "@notifDeadlineTomorrowTitle": {
+    "description": "Deadline-countdown title for a course due tomorrow. {left} is a localized duration.",
+    "placeholders": {
+      "course": {
+        "type": "String",
+        "example": "Physics I"
+      },
+      "left": {
+        "type": "String",
+        "example": "4.1 h"
+      }
+    }
+  },
+  "notifDeadlineTomorrowBody": "Tha a h-uile rud a logas tu an-diugh a’ cunntadh dùbailte.",
+  "@notifDeadlineTomorrowBody": {
+    "description": "Deadline-countdown body for a course due tomorrow."
+  },
+  "notifDeadlineSoonTitle": "⏳ Deuchainn {course} ann an {days} latha — {left} air fhàgail",
+  "@notifDeadlineSoonTitle": {
+    "description": "Deadline-countdown title for a course due in 2+ days. {days} is a plain count, {left} a localized duration.",
+    "placeholders": {
+      "course": {
+        "type": "String",
+        "example": "Physics I"
+      },
+      "days": {
+        "type": "String",
+        "example": "3"
+      },
+      "left": {
+        "type": "String",
+        "example": "4.1 h"
+      }
+    }
+  },
+  "notifDeadlineSoonBody": "Sin {pace}/latha. Roinn e: tha 2 sheisean san latha a’ dèanamh a’ chùis air aon mharaton.",
+  "@notifDeadlineSoonBody": {
+    "description": "Deadline-countdown body when a finite pace exists. {pace} is a localized duration.",
+    "placeholders": {
+      "pace": {
+        "type": "String",
+        "example": "1.4 h"
+      }
+    }
+  },
+  "notifDeadlineSoonBodyNoPace": "Tha gach uair a logas tu a-nis a’ cunntadh.",
+  "@notifDeadlineSoonBodyNoPace": {
+    "description": "Deadline-countdown body when no finite pace exists."
+  },
+  "notifOverdueTitle": "❌ Tha {course} air a dhol seachad air a cheann-latha le {left} fosgailte",
+  "@notifOverdueTitle": {
+    "description": "Overdue-escalation title. {left} is a localized duration.",
+    "placeholders": {
+      "course": {
+        "type": "String",
+        "example": "Software Engineering Project"
+      },
+      "left": {
+        "type": "String",
+        "example": "53.1 h"
+      }
+    }
+  },
+  "notifOverdueBody": "Gluais an ceann-latha no cuir crìoch air na h-uairean — bidh an cùrsa a’ feumachdainn aire gus an uair sin.",
+  "@notifOverdueBody": {
+    "description": "Overdue-escalation body."
+  },
+  "notifStreakTitle": "🔥 Sreath {days}-latha — {week} an t-seachdain seo",
+  "@notifStreakTitle": {
+    "description": "Weekly streak-celebration title. {days} is the streak length, {week} a localized duration of hours logged in the last 7 days.",
+    "placeholders": {
+      "days": {
+        "type": "String",
+        "example": "4"
+      },
+      "week": {
+        "type": "String",
+        "example": "6.5 h"
+      }
+    }
+  },
+  "notifStreakBody": "Tha a h-uile cùrsa Air an t-slighe no Air thoiseach. Sreath mhath.",
+  "@notifStreakBody": {
+    "description": "Weekly streak-celebration body."
+  },
+  "notifCustomTitleAuto": "📚 Sgrùdadh ionnsachaidh: {course}",
+  "@notifCustomTitleAuto": {
+    "description": "Custom-schedule title when the automatic topic is used. {course} is the course name.",
+    "placeholders": {
+      "course": {
+        "type": "String",
+        "example": "Linear Algebra"
+      }
+    }
+  },
+  "notifCustomTitleCourse": "📚 Àm airson ùrachadh: {course}",
+  "@notifCustomTitleCourse": {
+    "description": "Custom-schedule title when pinned to a specific course. {course} is the course name.",
+    "placeholders": {
+      "course": {
+        "type": "String",
+        "example": "Linear Algebra"
+      }
+    }
+  },
+  "notifCustomBodyPace": "{left} fosgailte · {pace}/latha gus crìochnachadh ann an àm. Log seisean gus an t-adhartas ùrachadh.",
+  "@notifCustomBodyPace": {
+    "description": "Custom-schedule body when a finite pace exists. Durations are localized.",
+    "placeholders": {
+      "left": {
+        "type": "String",
+        "example": "30.9 h"
+      },
+      "pace": {
+        "type": "String",
+        "example": "27 min"
+      }
+    }
+  },
+  "notifCustomBodyNoPace": "Tha {left} fosgailte fhathast — tha a h-uile rud a logas tu a-nis a’ cunntadh.",
+  "@notifCustomBodyNoPace": {
+    "description": "Custom-schedule body when no finite pace exists. {left} is a localized duration.",
+    "placeholders": {
+      "left": {
+        "type": "String",
+        "example": "2 h"
+      }
+    }
+  },
+  "reminderPreviewNext": "Air adhart: {time}",
+  "@reminderPreviewNext": {
+    "description": "Custom-schedule demo row header with the next fire time. {time} is a yyyy-MM-dd HH:mm timestamp (not localized).",
+    "placeholders": {
+      "time": {
+        "type": "String",
+        "example": "2026-11-13 13:36"
+      }
+    }
+  },
+  "reminderPreviewBackDay": "-1l",
+  "@reminderPreviewBackDay": {
+    "description": "Preview step-back button: one day earlier. Localize the day abbreviation, keep the -1 prefix."
+  },
+  "reminderPreviewFwdDay": "+1l",
+  "@reminderPreviewFwdDay": {
+    "description": "Preview step-forward button: one day later. Localize the day abbreviation, keep the +1 prefix."
+  },
+  "reminderPreviewFake": "(brèige)",
+  "@reminderPreviewFake": {
+    "description": "Tag after the preview time when a fake clock override is active."
+  },
+  "reminderPreviewDemoLabel": "Sgrùdadh taisbeanaidh",
+  "@reminderPreviewDemoLabel": {
+    "description": "Label of the demo one-off custom schedule on the reminder preview page."
   }
 }
