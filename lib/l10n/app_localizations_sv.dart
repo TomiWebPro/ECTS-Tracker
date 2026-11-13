@@ -1275,7 +1275,7 @@ class AppLocalizationsSv extends AppLocalizations {
 
   @override
   String notifBehindTitle(String course) {
-    return '⚠️ $course har halkat efter';
+    return '🔻 $course har halkat efter';
   }
 
   @override

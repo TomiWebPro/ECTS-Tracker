@@ -1271,7 +1271,7 @@ class AppLocalizationsMr extends AppLocalizations {
 
   @override
   String notifBehindTitle(String course) {
-    return '⚠️ $course मागे पडला आहे';
+    return '🔻 $course मागे पडला आहे';
   }
 
   @override

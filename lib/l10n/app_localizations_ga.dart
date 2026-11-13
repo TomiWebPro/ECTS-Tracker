@@ -1282,7 +1282,7 @@ class AppLocalizationsGa extends AppLocalizations {
 
   @override
   String notifBehindTitle(String course) {
-    return '⚠️ Tá $course tite Ar gcúl';
+    return '🔻 Tá $course tite Ar gcúl';
   }
 
   @override

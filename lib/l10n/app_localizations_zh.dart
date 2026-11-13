@@ -1237,7 +1237,7 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String notifBehindTitle(String course) {
-    return '⚠️ $course 已落后';
+    return '🔻 $course 已落后';
   }
 
   @override
@@ -2567,7 +2567,7 @@ class AppLocalizationsZhHans extends AppLocalizationsZh {
 
   @override
   String notifBehindTitle(String course) {
-    return '⚠️ $course 已落后';
+    return '🔻 $course 已落后';
   }
 
   @override
@@ -3897,7 +3897,7 @@ class AppLocalizationsZhHant extends AppLocalizationsZh {
 
   @override
   String notifBehindTitle(String course) {
-    return '⚠️ $course 已落後';
+    return '🔻 $course 已落後';
   }
 
   @override

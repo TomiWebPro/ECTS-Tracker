@@ -2261,7 +2261,7 @@ abstract class AppLocalizations {
   /// Behind-nudge notification title. {course} is the course name.
   ///
   /// In en, this message translates to:
-  /// **'⚠️ {course} slipped to Behind'**
+  /// **'🔻 {course} slipped to Behind'**
   String notifBehindTitle(String course);
 
   /// Behind-nudge body when a finite pace exists and partial catch-up clears it. Durations are localized ('2.9 h', '36 min'); {days} is a plain count.

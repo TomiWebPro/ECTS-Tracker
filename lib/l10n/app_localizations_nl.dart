@@ -1277,7 +1277,7 @@ class AppLocalizationsNl extends AppLocalizations {
 
   @override
   String notifBehindTitle(String course) {
-    return '⚠️ $course is teruggevallen naar Achter';
+    return '🔻 $course is teruggevallen naar Achter';
   }
 
   @override

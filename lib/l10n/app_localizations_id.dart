@@ -1274,7 +1274,7 @@ class AppLocalizationsId extends AppLocalizations {
 
   @override
   String notifBehindTitle(String course) {
-    return '⚠️ $course merosot ke Tertinggal';
+    return '🔻 $course merosot ke Tertinggal';
   }
 
   @override

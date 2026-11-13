@@ -1282,7 +1282,7 @@ class AppLocalizationsCa extends AppLocalizations {
 
   @override
   String notifBehindTitle(String course) {
-    return '⚠️ $course s’ha endarrerit';
+    return '🔻 $course s’ha endarrerit';
   }
 
   @override

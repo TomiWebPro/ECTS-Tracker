@@ -1271,7 +1271,7 @@ class AppLocalizationsSh extends AppLocalizations {
 
   @override
   String notifBehindTitle(String course) {
-    return '⚠️ $course je skliznuo u Kasni';
+    return '🔻 $course je skliznuo u Kasni';
   }
 
   @override

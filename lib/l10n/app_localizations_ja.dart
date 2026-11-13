@@ -1244,7 +1244,7 @@ class AppLocalizationsJa extends AppLocalizations {
 
   @override
   String notifBehindTitle(String course) {
-    return '⚠️ $courseが遅れになりました';
+    return '🔻 $courseが遅れになりました';
   }
 
   @override

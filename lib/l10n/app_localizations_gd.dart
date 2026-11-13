@@ -1287,7 +1287,7 @@ class AppLocalizationsGd extends AppLocalizations {
 
   @override
   String notifBehindTitle(String course) {
-    return '⚠️ Tha $course air tuiteam Air dheireadh';
+    return '🔻 Tha $course air tuiteam Air dheireadh';
   }
 
   @override

@@ -1276,7 +1276,7 @@ class AppLocalizationsFo extends AppLocalizations {
 
   @override
   String notifBehindTitle(String course) {
-    return '⚠️ $course er dottið Aftaná';
+    return '🔻 $course er dottið Aftaná';
   }
 
   @override

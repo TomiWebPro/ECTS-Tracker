@@ -1270,7 +1270,7 @@ class AppLocalizationsBn extends AppLocalizations {
 
   @override
   String notifBehindTitle(String course) {
-    return '⚠️ $course পিছিয়ে পড়েছে';
+    return '🔻 $course পিছিয়ে পড়েছে';
   }
 
   @override

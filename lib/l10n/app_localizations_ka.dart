@@ -1275,7 +1275,7 @@ class AppLocalizationsKa extends AppLocalizations {
 
   @override
   String notifBehindTitle(String course) {
-    return '⚠️ $course ჩამორჩენილებში გადავიდა';
+    return '🔻 $course ჩამორჩენილებში გადავიდა';
   }
 
   @override

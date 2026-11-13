@@ -1280,7 +1280,7 @@ class AppLocalizationsIt extends AppLocalizations {
 
   @override
   String notifBehindTitle(String course) {
-    return '⚠️ $course: stato Indietro';
+    return '🔻 $course: stato Indietro';
   }
 
   @override

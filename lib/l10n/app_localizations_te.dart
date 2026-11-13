@@ -1275,7 +1275,7 @@ class AppLocalizationsTe extends AppLocalizations {
 
   @override
   String notifBehindTitle(String course) {
-    return '⚠️ $course వెనుకబడింది';
+    return '🔻 $course వెనుకబడింది';
   }
 
   @override

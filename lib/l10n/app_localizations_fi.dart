@@ -1277,7 +1277,7 @@ class AppLocalizationsFi extends AppLocalizations {
 
   @override
   String notifBehindTitle(String course) {
-    return '⚠️ $course putosi tilaan Jäljessä';
+    return '🔻 $course putosi tilaan Jäljessä';
   }
 
   @override

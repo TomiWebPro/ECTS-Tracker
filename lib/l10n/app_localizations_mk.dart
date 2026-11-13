@@ -1280,7 +1280,7 @@ class AppLocalizationsMk extends AppLocalizations {
 
   @override
   String notifBehindTitle(String course) {
-    return '⚠️ $course се лизна во Задоцнува';
+    return '🔻 $course се лизна во Задоцнува';
   }
 
   @override

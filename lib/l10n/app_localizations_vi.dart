@@ -1267,7 +1267,7 @@ class AppLocalizationsVi extends AppLocalizations {
 
   @override
   String notifBehindTitle(String course) {
-    return '⚠️ $course đã bị trễ';
+    return '🔻 $course đã bị trễ';
   }
 
   @override

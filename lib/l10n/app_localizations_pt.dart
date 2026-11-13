@@ -1279,7 +1279,7 @@ class AppLocalizationsPt extends AppLocalizations {
 
   @override
   String notifBehindTitle(String course) {
-    return '⚠️ $course passou a Atrasado';
+    return '🔻 $course passou a Atrasado';
   }
 
   @override

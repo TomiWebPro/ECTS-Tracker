@@ -1272,7 +1272,7 @@ class AppLocalizationsEt extends AppLocalizations {
 
   @override
   String notifBehindTitle(String course) {
-    return '⚠️ $course on nüüd Mahajäänud';
+    return '🔻 $course on nüüd Mahajäänud';
   }
 
   @override

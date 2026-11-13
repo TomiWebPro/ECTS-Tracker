@@ -1278,7 +1278,7 @@ class AppLocalizationsBg extends AppLocalizations {
 
   @override
   String notifBehindTitle(String course) {
-    return '⚠️ $course изостава';
+    return '🔻 $course изостава';
   }
 
   @override

@@ -1278,7 +1278,7 @@ class AppLocalizationsCy extends AppLocalizations {
 
   @override
   String notifBehindTitle(String course) {
-    return '⚠️ Mae $course ar ei hôl hi';
+    return '🔻 Mae $course ar ei hôl hi';
   }
 
   @override

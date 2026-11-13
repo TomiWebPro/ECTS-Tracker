@@ -1276,7 +1276,7 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String notifBehindTitle(String course) {
-    return '⚠️ $course ist in Rückstand geraten';
+    return '🔻 $course ist in Rückstand geraten';
   }
 
   @override

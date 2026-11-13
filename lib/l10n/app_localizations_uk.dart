@@ -1275,7 +1275,7 @@ class AppLocalizationsUk extends AppLocalizations {
 
   @override
   String notifBehindTitle(String course) {
-    return '⚠️ $course перейшов у відставання';
+    return '🔻 $course перейшов у відставання';
   }
 
   @override

@@ -1278,7 +1278,7 @@ class AppLocalizationsSq extends AppLocalizations {
 
   @override
   String notifBehindTitle(String course) {
-    return '⚠️ $course ra prapa';
+    return '🔻 $course ra prapa';
   }
 
   @override

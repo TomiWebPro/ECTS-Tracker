@@ -1270,7 +1270,7 @@ class AppLocalizationsPcm extends AppLocalizations {
 
   @override
   String notifBehindTitle(String course) {
-    return '⚠️ $course don slip go Behind';
+    return '🔻 $course don slip go Behind';
   }
 
   @override

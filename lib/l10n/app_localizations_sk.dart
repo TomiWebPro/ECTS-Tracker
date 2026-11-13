@@ -1270,7 +1270,7 @@ class AppLocalizationsSk extends AppLocalizations {
 
   @override
   String notifBehindTitle(String course) {
-    return '⚠️ $course skĺzol do meškania';
+    return '🔻 $course skĺzol do meškania';
   }
 
   @override

@@ -1249,7 +1249,7 @@ class AppLocalizationsKo extends AppLocalizations {
 
   @override
   String notifBehindTitle(String course) {
-    return '⚠️ $course이(가) 지연 상태가 되었습니다';
+    return '🔻 $course이(가) 지연 상태가 되었습니다';
   }
 
   @override

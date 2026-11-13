@@ -1271,7 +1271,7 @@ class AppLocalizationsHi extends AppLocalizations {
 
   @override
   String notifBehindTitle(String course) {
-    return '⚠️ $course अब पीछे है';
+    return '🔻 $course अब पीछे है';
   }
 
   @override

@@ -1284,7 +1284,7 @@ class AppLocalizationsEl extends AppLocalizations {
 
   @override
   String notifBehindTitle(String course) {
-    return '⚠️ Το $course έμεινε πίσω';
+    return '🔻 Το $course έμεινε πίσω';
   }
 
   @override

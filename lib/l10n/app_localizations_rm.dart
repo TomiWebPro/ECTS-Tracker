@@ -1277,7 +1277,7 @@ class AppLocalizationsRm extends AppLocalizations {
 
   @override
   String notifBehindTitle(String course) {
-    return '⚠️ $course è crudà Enavos';
+    return '🔻 $course è crudà Enavos';
   }
 
   @override

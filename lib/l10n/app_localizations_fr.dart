@@ -1278,7 +1278,7 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String notifBehindTitle(String course) {
-    return '⚠️ $course est passé En retard';
+    return '🔻 $course est passé En retard';
   }
 
   @override

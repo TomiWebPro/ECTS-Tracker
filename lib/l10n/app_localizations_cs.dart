@@ -1272,7 +1272,7 @@ class AppLocalizationsCs extends AppLocalizations {
 
   @override
   String notifBehindTitle(String course) {
-    return '⚠️ $course se dostal do zpoždění';
+    return '🔻 $course se dostal do zpoždění';
   }
 
   @override

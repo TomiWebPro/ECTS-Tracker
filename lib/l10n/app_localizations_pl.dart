@@ -1277,7 +1277,7 @@ class AppLocalizationsPl extends AppLocalizations {
 
   @override
   String notifBehindTitle(String course) {
-    return '⚠️ $course jest teraz Opóźniony';
+    return '🔻 $course jest teraz Opóźniony';
   }
 
   @override

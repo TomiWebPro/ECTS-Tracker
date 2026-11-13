@@ -1269,7 +1269,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String notifBehindTitle(String course) {
-    return '⚠️ $course slipped to Behind';
+    return '🔻 $course slipped to Behind';
   }
 
   @override

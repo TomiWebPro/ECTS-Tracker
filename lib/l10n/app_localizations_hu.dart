@@ -1279,7 +1279,7 @@ class AppLocalizationsHu extends AppLocalizations {
 
   @override
   String notifBehindTitle(String course) {
-    return '⚠️ $course átcsúszott ebbe: Lemaradva';
+    return '🔻 $course átcsúszott ebbe: Lemaradva';
   }
 
   @override

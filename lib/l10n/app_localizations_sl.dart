@@ -1274,7 +1274,7 @@ class AppLocalizationsSl extends AppLocalizations {
 
   @override
   String notifBehindTitle(String course) {
-    return '⚠️ $course je zdrsnil v zaostanek';
+    return '🔻 $course je zdrsnil v zaostanek';
   }
 
   @override

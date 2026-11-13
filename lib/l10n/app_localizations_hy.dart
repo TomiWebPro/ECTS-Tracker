@@ -1276,7 +1276,7 @@ class AppLocalizationsHy extends AppLocalizations {
 
   @override
   String notifBehindTitle(String course) {
-    return '⚠️ $course-ը հետ է մնացել';
+    return '🔻 $course-ը հետ է մնացել';
   }
 
   @override

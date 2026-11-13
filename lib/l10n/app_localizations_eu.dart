@@ -1280,7 +1280,7 @@ class AppLocalizationsEu extends AppLocalizations {
 
   @override
   String notifBehindTitle(String course) {
-    return '⚠️ $course Atzeratuta izatera igaro da';
+    return '🔻 $course Atzeratuta izatera igaro da';
   }
 
   @override

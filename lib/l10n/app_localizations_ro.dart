@@ -1280,7 +1280,7 @@ class AppLocalizationsRo extends AppLocalizations {
 
   @override
   String notifBehindTitle(String course) {
-    return '⚠️ $course a ajuns În urmă';
+    return '🔻 $course a ajuns În urmă';
   }
 
   @override

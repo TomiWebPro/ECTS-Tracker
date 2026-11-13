@@ -1279,7 +1279,7 @@ class AppLocalizationsMt extends AppLocalizations {
 
   @override
   String notifBehindTitle(String course) {
-    return '⚠️ $course waqaʼ Lura';
+    return '🔻 $course waqaʼ Lura';
   }
 
   @override

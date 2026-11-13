@@ -1276,7 +1276,7 @@ class AppLocalizationsLb extends AppLocalizations {
 
   @override
   String notifBehindTitle(String course) {
-    return '⚠️ $course ass hannerier geroden';
+    return '🔻 $course ass hannerier geroden';
   }
 
   @override
