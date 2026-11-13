@@ -538,6 +538,12 @@ class AppLocalizationsZh extends AppLocalizations {
   String get sessionFormMinutesLabel => '分钟';
 
   @override
+  String get sessionFormModeManual => 'Manual';
+
+  @override
+  String get sessionFormModeTimer => 'Timer';
+
+  @override
   String get sessionFormNoCourseError => '请选择课程。';
 
   @override
@@ -1132,6 +1138,14 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get studyTimerNoCoursesHint => 'Add a course first to start a timer.';
+
+  @override
+  String studyTimerNotifPaused(String elapsed) {
+    return 'Paused · $elapsed';
+  }
+
+  @override
+  String get studyTimerNotifRunning => 'Tap to open the timer';
 
   @override
   String get studyTimerPause => 'Pause';

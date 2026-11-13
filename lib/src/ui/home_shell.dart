@@ -40,7 +40,8 @@ double glassTabBarWidthFor(double maxWidth) =>
     (maxWidth - AppSizes.pageHPad * 2).clamp(0.0, AppSizes.glassTabWidth);
 
 /// Root scaffold: bottom nav across the five app areas (AGENTS.md §3).
-class HomeShell extends StatefulWidget {  const HomeShell({super.key, this.now});
+class HomeShell extends StatefulWidget {
+  const HomeShell({super.key, this.now});
 
   /// Reference time for derived progress/status (injectable for tests).
   final DateTime? now;
@@ -75,7 +76,8 @@ class _HomeShellState extends State<HomeShell> {
           alignment: Alignment.topCenter,
           child: ConstrainedBox(
             constraints: const BoxConstraints(
-                maxWidth: AppSizes.maxContentWidth),
+              maxWidth: AppSizes.maxContentWidth,
+            ),
             child: AnimatedSwitcher(
               duration: const Duration(milliseconds: 180),
               child: KeyedSubtree(
@@ -104,26 +106,25 @@ class _HomeShellState extends State<HomeShell> {
                   ),
                 ),
               ),
-              title: Text(
-                titles[_index],
-                style: const TextStyle(fontSize: 26),
-              ),
+              title: Text(titles[_index], style: const TextStyle(fontSize: 26)),
               actions: [
                 if (_index == 0)
                   IconButton(
                     tooltip: l10n.dashboardLogSessionTooltip,
                     onPressed: () => showSessionFormDialog(context),
                     icon: Container(
-                      padding:
-                          const EdgeInsets.all(AppSizes.appBarActionPad),
+                      padding: const EdgeInsets.all(AppSizes.appBarActionPad),
                       decoration: BoxDecoration(
                         color: scheme.primaryContainer,
-                        borderRadius:
-                            BorderRadius.circular(AppSizes.appBarActionRadius),
+                        borderRadius: BorderRadius.circular(
+                          AppSizes.appBarActionRadius,
+                        ),
                       ),
-                      child: Icon(Icons.add,
-                          size: AppSizes.appBarActionIcon,
-                          color: scheme.onPrimaryContainer),
+                      child: Icon(
+                        Icons.add,
+                        size: AppSizes.appBarActionIcon,
+                        color: scheme.onPrimaryContainer,
+                      ),
                     ),
                   ),
                 const SizedBox(width: AppSizes.dashboardSmallGap),
@@ -137,43 +138,19 @@ class _HomeShellState extends State<HomeShell> {
             ),
             floatingActionButton: switch (_index) {
               1 => FloatingActionButton.extended(
-                  key: const Key('addCourseFab'),
-                  onPressed: () => showCourseFormDialog(context),
-                  tooltip: l10n.coursesAddTooltip,
-                  icon: const Icon(Icons.add),
-                  label: Text(l10n.coursesNewCourse),
-                ),
-              2 => Column(
-                  mainAxisSize: MainAxisSize.min,
-                  crossAxisAlignment: CrossAxisAlignment.end,
-                  children: [
-                    FloatingActionButton.extended(
-                      key: const Key('studyTimerFab'),
-                      heroTag: 'studyTimerFab',
-                      onPressed: () {
-                        final active =
-                            ref.read(studyTimerProvider);
-                        if (active != null) {
-                          showStudyTimerActiveSheet(context);
-                        } else {
-                          showStudyTimerStartSheet(context);
-                        }
-                      },
-                      tooltip: l10n.studyTimerStart,
-                      icon: const Icon(Icons.play_arrow),
-                      label: Text(l10n.studyTimerStart),
-                    ),
-                    const SizedBox(height: 8),
-                    FloatingActionButton.extended(
-                      key: const Key('logSessionFab'),
-                      heroTag: 'logSessionFab',
-                      onPressed: () => showSessionFormDialog(context),
-                      tooltip: l10n.studyLogFabTooltip,
-                      icon: const Icon(Icons.timer),
-                      label: Text(l10n.studyLogFabLabel),
-                    ),
-                  ],
-                ),
+                key: const Key('addCourseFab'),
+                onPressed: () => showCourseFormDialog(context),
+                tooltip: l10n.coursesAddTooltip,
+                icon: const Icon(Icons.add),
+                label: Text(l10n.coursesNewCourse),
+              ),
+              2 => FloatingActionButton.extended(
+                key: const Key('logSessionFab'),
+                onPressed: () => showSessionFormDialog(context),
+                tooltip: l10n.studyLogFabTooltip,
+                icon: const Icon(Icons.timer),
+                label: Text(l10n.studyLogFabLabel),
+              ),
               _ => null,
             },
             bottomNavigationBar: NavigationBar(
@@ -181,18 +158,25 @@ class _HomeShellState extends State<HomeShell> {
               onDestinationSelected: (i) => setState(() => _index = i),
               destinations: [
                 NavigationDestination(
-                    icon: const Icon(Icons.dashboard),
-                    label: l10n.navDashboard),
+                  icon: const Icon(Icons.dashboard),
+                  label: l10n.navDashboard,
+                ),
                 NavigationDestination(
-                    icon: const Icon(Icons.book), label: l10n.navCourses),
+                  icon: const Icon(Icons.book),
+                  label: l10n.navCourses,
+                ),
                 NavigationDestination(
-                    icon: const Icon(Icons.timer), label: l10n.navStudyLog),
+                  icon: const Icon(Icons.timer),
+                  label: l10n.navStudyLog,
+                ),
                 NavigationDestination(
-                    icon: const Icon(Icons.bar_chart),
-                    label: l10n.navStatistics),
+                  icon: const Icon(Icons.bar_chart),
+                  label: l10n.navStatistics,
+                ),
                 NavigationDestination(
-                    icon: const Icon(Icons.settings),
-                    label: l10n.navSettings),
+                  icon: const Icon(Icons.settings),
+                  label: l10n.navSettings,
+                ),
               ],
             ),
           );
@@ -221,7 +205,15 @@ class _HomeShellState extends State<HomeShell> {
                       padding: const EdgeInsets.only(
                         top: AppSizes.glassPageTopInset,
                       ),
-                      child: page,
+                      child: Column(
+                        children: [
+                          // In-flow (never overlapping): when no timer runs
+                          // this is a zero-size box; while timing it pushes
+                          // the page down below the floating app bar.
+                          const StudyTimerBanner(),
+                          Expanded(child: page),
+                        ],
+                      ),
                     ),
                   ),
                   Positioned(
@@ -265,8 +257,9 @@ class _HomeShellState extends State<HomeShell> {
                           label: l10n.coursesNewCourse,
                           foregroundColor: scheme.onPrimaryContainer,
                           style: LiquidGlassButton.defaultStyle.copyWith(
-                            color: scheme.primaryContainer
-                                .withValues(alpha: 0.35),
+                            color: scheme.primaryContainer.withValues(
+                              alpha: 0.35,
+                            ),
                             // Shared card shadow (ECTS-066) — one depth
                             // language everywhere.
                             shadow: glassCardShadow,
@@ -285,70 +278,30 @@ class _HomeShellState extends State<HomeShell> {
                     Positioned(
                       right: AppSizes.pageHPad,
                       bottom: AppSizes.glassFabLift,
-                      child: Column(
-                        mainAxisSize: MainAxisSize.min,
-                        crossAxisAlignment: CrossAxisAlignment.end,
-                        children: [
-                          Tooltip(
-                            message: l10n.studyTimerStart,
-                            child: LiquidGlassButton(
-                              key: const Key('studyTimerFab'),
-                              onPressed: () {
-                                final active = ref
-                                    .read(studyTimerProvider);
-                                if (active != null) {
-                                  showStudyTimerActiveSheet(context);
-                                } else {
-                                  showStudyTimerStartSheet(context);
-                                }
-                              },
-                              icon: Icons.play_arrow,
-                              label: l10n.studyTimerStart,
-                              foregroundColor:
-                                  scheme.onPrimaryContainer,
-                              style: LiquidGlassButton.defaultStyle.copyWith(
-                                color: scheme.primaryContainer
-                                    .withValues(alpha: 0.35),
-                                shadow: glassCardShadow,
-                              ),
-                              touch: const LiquidGlassTouch.flexing(
-                                LiquidGlassFlex.subtle(),
-                              ),
-                              padding: const EdgeInsets.symmetric(
-                                horizontal: AppSizes.fabHPad,
-                                vertical: AppSizes.fabVPad,
-                              ),
+                      child: Tooltip(
+                        message: l10n.studyLogFabTooltip,
+                        child: LiquidGlassButton(
+                          key: const Key('logSessionFab'),
+                          onPressed: () => showSessionFormDialog(context),
+                          icon: Icons.timer,
+                          label: l10n.studyLogFabLabel,
+                          foregroundColor: scheme.onPrimaryContainer,
+                          style: LiquidGlassButton.defaultStyle.copyWith(
+                            color: scheme.primaryContainer.withValues(
+                              alpha: 0.35,
                             ),
+                            // Shared card shadow (ECTS-066) — one depth
+                            // language everywhere.
+                            shadow: glassCardShadow,
                           ),
-                          const SizedBox(height: 8),
-                          Tooltip(
-                            message: l10n.studyLogFabTooltip,
-                            child: LiquidGlassButton(
-                              key: const Key('logSessionFab'),
-                              onPressed: () =>
-                                  showSessionFormDialog(context),
-                              icon: Icons.timer,
-                              label: l10n.studyLogFabLabel,
-                              foregroundColor:
-                                  scheme.onPrimaryContainer,
-                              style:
-                                  LiquidGlassButton.defaultStyle.copyWith(
-                                color: scheme.primaryContainer
-                                    .withValues(alpha: 0.35),
-                                // Shared card shadow (ECTS-066) — one depth
-                                // language everywhere.
-                                shadow: glassCardShadow,
-                              ),
-                              touch: const LiquidGlassTouch.flexing(
-                                LiquidGlassFlex.subtle(),
-                              ),
-                              padding: const EdgeInsets.symmetric(
-                                horizontal: AppSizes.fabHPad,
-                                vertical: AppSizes.fabVPad,
-                              ),
-                            ),
+                          touch: const LiquidGlassTouch.flexing(
+                            LiquidGlassFlex.subtle(),
                           ),
-                        ],
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: AppSizes.fabHPad,
+                            vertical: AppSizes.fabVPad,
+                          ),
+                        ),
                       ),
                     ),
                   LayoutBuilder(
@@ -356,17 +309,25 @@ class _HomeShellState extends State<HomeShell> {
                       return LiquidGlassTabBar(
                         items: [
                           LiquidGlassTabBarItem(
-                              icon: Icons.dashboard,
-                              label: l10n.navDashboard),
+                            icon: Icons.dashboard,
+                            label: l10n.navDashboard,
+                          ),
                           LiquidGlassTabBarItem(
-                              icon: Icons.book, label: l10n.navCourses),
+                            icon: Icons.book,
+                            label: l10n.navCourses,
+                          ),
                           LiquidGlassTabBarItem(
-                              icon: Icons.timer, label: l10n.navStudyLog),
+                            icon: Icons.timer,
+                            label: l10n.navStudyLog,
+                          ),
                           LiquidGlassTabBarItem(
-                              icon: Icons.bar_chart,
-                              label: l10n.navStatistics),
+                            icon: Icons.bar_chart,
+                            label: l10n.navStatistics,
+                          ),
                           LiquidGlassTabBarItem(
-                              icon: Icons.settings, label: l10n.navSettings),
+                            icon: Icons.settings,
+                            label: l10n.navSettings,
+                          ),
                         ],
                         selectedIndex: _index,
                         onChanged: (i) => setState(() => _index = i),
@@ -408,8 +369,7 @@ class _HomeShellState extends State<HomeShell> {
     ColorScheme scheme,
     AppLocalizations l10n,
   ) {
-    final barWidth = (MediaQuery.sizeOf(context).width -
-            AppSizes.pageHPad * 2)
+    final barWidth = (MediaQuery.sizeOf(context).width - AppSizes.pageHPad * 2)
         .clamp(AppSizes.glassBarMinWidth, AppSizes.glassBarMaxWidth)
         .toDouble();
     return LiquidGlassAppBar(
@@ -453,12 +413,15 @@ class _HomeShellState extends State<HomeShell> {
                 // it separates as its own layer — the pale container melted
                 // in. Legacy branch keeps the light container.
                 color: scheme.primary,
-                borderRadius:
-                    BorderRadius.circular(AppSizes.appBarActionRadius),
+                borderRadius: BorderRadius.circular(
+                  AppSizes.appBarActionRadius,
+                ),
               ),
-              child: Icon(Icons.add,
-                  size: AppSizes.appBarActionIcon,
-                  color: scheme.onPrimary),
+              child: Icon(
+                Icons.add,
+                size: AppSizes.appBarActionIcon,
+                color: scheme.onPrimary,
+              ),
             ),
           ),
         const SizedBox(width: AppSizes.dashboardSmallGap),

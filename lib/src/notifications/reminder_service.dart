@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:ects_tracker/l10n/app_localizations.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:flutter_timezone/flutter_timezone.dart';
@@ -9,6 +11,7 @@ import '../logic/reminders.dart';
 import '../models/models.dart';
 import 'reminder_prefs.dart';
 import 'reminder_text.dart';
+import 'study_timer_alerts.dart';
 
 /// Transport abstraction so the scheduler is unit-testable with a fake
 /// (M9, ECTS-072). Times are local wall-clock on both sides.
@@ -40,10 +43,20 @@ abstract class NotificationBackend {
 
 /// Real transport over `flutter_local_notifications` + `timezone`.
 /// Create via [RealNotificationBackend.create] (tz init is async).
-class RealNotificationBackend implements NotificationBackend {
+/// Also serves timer alerts ([TimerAlertBackend]): the single timer action
+/// stream feeds the study-timer notifier through `timerActionEventsProvider`.
+class RealNotificationBackend
+    implements NotificationBackend, TimerAlertBackend {
   RealNotificationBackend._(this._plugin);
 
   final FlutterLocalNotificationsPlugin _plugin;
+
+  /// Foreground timer-action taps (`timer_*`). The plugin delivers response
+  /// callbacks here; the app routes them to the timer notifier.
+  final _timerActions = StreamController<String>.broadcast();
+
+  @override
+  Stream<String> get actionEvents => _timerActions.stream;
 
   static const AndroidNotificationChannel _dailyChannel =
       AndroidNotificationChannel(
@@ -59,6 +72,57 @@ class RealNotificationBackend implements NotificationBackend {
     description: 'Deadline countdowns and overdue escalations.',
     importance: Importance.high,
   );
+
+  /// Ongoing timer channel (silent, shade-only; the in-app banner covers
+  /// the foreground case). First show peeks via default importance.
+  static const AndroidNotificationChannel _timerChannel =
+      AndroidNotificationChannel(
+    'study_timer',
+    'Study timer',
+    description: 'The running study timer with pause/finish actions.',
+    importance: Importance.defaultImportance,
+  );
+
+  /// iOS timer categories, rebuilt per show so action labels follow the app
+  /// language (categories are fixed at registration time).
+  static List<DarwinNotificationCategory> _timerCategories(
+    TimerAlertVisuals v,
+  ) => [
+        DarwinNotificationCategory(
+          'study_timer_running',
+          actions: [
+            DarwinNotificationAction.plain(
+                studyTimerActionPause, v.pauseLabel),
+            DarwinNotificationAction.plain(
+              studyTimerActionFinish,
+              v.finishLabel,
+              options: {DarwinNotificationActionOption.foreground},
+            ),
+            DarwinNotificationAction.plain(
+              studyTimerActionDiscard,
+              v.discardLabel,
+              options: {DarwinNotificationActionOption.destructive},
+            ),
+          ],
+        ),
+        DarwinNotificationCategory(
+          'study_timer_paused',
+          actions: [
+            DarwinNotificationAction.plain(
+                studyTimerActionResume, v.resumeLabel),
+            DarwinNotificationAction.plain(
+              studyTimerActionFinish,
+              v.finishLabel,
+              options: {DarwinNotificationActionOption.foreground},
+            ),
+            DarwinNotificationAction.plain(
+              studyTimerActionDiscard,
+              v.discardLabel,
+              options: {DarwinNotificationActionOption.destructive},
+            ),
+          ],
+        ),
+      ];
 
   static NotificationDetails _details(AndroidNotificationChannel channel,
           {bool silent = false}) =>
@@ -88,17 +152,46 @@ class RealNotificationBackend implements NotificationBackend {
       tz.setLocalLocation(tz.UTC);
     }
     final plugin = FlutterLocalNotificationsPlugin();
-    await plugin.initialize(
-      settings: const InitializationSettings(
-        android: AndroidInitializationSettings('@mipmap/ic_launcher'),
-        iOS: DarwinInitializationSettings(),
-      ),
-    );
+    final backend = RealNotificationBackend._(plugin);
+    await backend._initializeTimerCategories(null);
     final android =
         plugin.resolvePlatformSpecificImplementation<AndroidFlutterLocalNotificationsPlugin>();
     await android?.createNotificationChannel(_dailyChannel);
     await android?.createNotificationChannel(_courseChannel);
-    return RealNotificationBackend._(plugin);
+    await android?.createNotificationChannel(_timerChannel);
+    return backend;
+  }
+
+  /// (Re-)initializes the plugin: response routing plus localized iOS timer
+  /// categories (`visuals` null keeps the last/default English labels).
+  Future<void> _initializeTimerCategories(TimerAlertVisuals? visuals) {
+    final categories = visuals == null
+        ? _timerCategories(const TimerAlertVisuals(
+            title: '',
+            body: '',
+            running: true,
+            pauseLabel: 'Pause',
+            resumeLabel: 'Resume',
+            finishLabel: 'Finish',
+            discardLabel: 'Discard',
+          ))
+        : _timerCategories(visuals);
+    return _plugin.initialize(
+      settings: InitializationSettings(
+        android: const AndroidInitializationSettings('@mipmap/ic_launcher'),
+        iOS: DarwinInitializationSettings(
+          notificationCategories: categories,
+        ),
+      ),
+      onDidReceiveNotificationResponse: (response) {
+        final action = response.actionId;
+        if (action != null && action.startsWith('timer_')) {
+          _timerActions.add(action);
+        }
+      },
+      onDidReceiveBackgroundNotificationResponse:
+          handleTimerActionBackground,
+    );
   }
 
   @override
@@ -188,6 +281,30 @@ class RealNotificationBackend implements NotificationBackend {
 
   @override
   Future<void> cancelAll() => _plugin.cancelAll();
+
+  @override
+  Future<void> showTimer(TimerAlertVisuals visuals) async {
+    // Refresh categories so iOS action labels match the app language.
+    await _initializeTimerCategories(visuals);
+    await _plugin.show(
+      id: studyTimerNotificationId,
+      title: visuals.title,
+      body: visuals.body,
+      notificationDetails: timerAlertDetails(
+        running: visuals.running,
+        chronometerBaseMs: visuals.chronometerBaseMs,
+        pauseLabel: visuals.pauseLabel,
+        resumeLabel: visuals.resumeLabel,
+        finishLabel: visuals.finishLabel,
+        discardLabel: visuals.discardLabel,
+      ),
+      payload: studyTimerPayload,
+    );
+  }
+
+  @override
+  Future<void> cancelTimer() =>
+      _plugin.cancel(id: studyTimerNotificationId);
 }
 
 /// Recomputes the full notification set from live data and pushes it to

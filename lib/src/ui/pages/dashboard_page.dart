@@ -182,62 +182,6 @@ class _OverviewPage extends ConsumerWidget {
                   ),
                 ),
         ),
-        SizedBox(
-          width: double.infinity,
-          child: glass
-              ? LiquidGlassButton(
-                  key: const Key('dashboardStartTimerAction'),
-                  onPressed: () {
-                    final active = ref.read(studyTimerProvider);
-                    if (active != null) {
-                      showStudyTimerActiveSheet(context);
-                    } else {
-                      showStudyTimerStartSheet(context);
-                    }
-                  },
-                  icon: Icons.play_arrow,
-                  label: l10n.studyTimerStart,
-                  foregroundColor: scheme.onPrimaryContainer,
-                  style: LiquidGlassButton.defaultStyle.copyWith(
-                    color: scheme.primaryContainer.withValues(alpha: 0.35),
-                    shadow: glassCardShadow,
-                  ),
-                  touch: const LiquidGlassTouch.flexing(
-                    LiquidGlassFlex.subtle(),
-                  ),
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: AppSizes.fabHPad,
-                    vertical: AppSizes.fabVPad,
-                  ),
-                )
-              : OutlinedButton.icon(
-                  key: const Key('dashboardStartTimerAction'),
-                  onPressed: () {
-                    final active = ref.read(studyTimerProvider);
-                    if (active != null) {
-                      showStudyTimerActiveSheet(context);
-                    } else {
-                      showStudyTimerStartSheet(context);
-                    }
-                  },
-                  icon: const Icon(
-                    Icons.play_arrow,
-                    size: AppSizes.statIcon,
-                  ),
-                  label: Text(l10n.studyTimerStart),
-                  style: OutlinedButton.styleFrom(
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: AppSizes.fabHPad,
-                      vertical: AppSizes.fabVPad,
-                    ),
-                    shape: RoundedRectangleBorder(
-                      borderRadius:
-                          BorderRadius.circular(AppSizes.cardRadius),
-                    ),
-                  ),
-                ),
-        ),
-        SizedBox(height: innerGap),
         SizedBox(height: sectionGap),
         SectionHeader(
           title: l10n.dashboardCoursesTitle,

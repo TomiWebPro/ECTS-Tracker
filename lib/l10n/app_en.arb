@@ -141,6 +141,8 @@
   "sessionFormHoursLabel": "Hours",
   "sessionFormLogAction": "Log session",
   "sessionFormMinutesLabel": "Minutes",
+  "sessionFormModeManual": "Manual",
+  "sessionFormModeTimer": "Timer",
   "sessionFormNoCourseError": "Select a course.",
   "sessionFormNoCoursesHint": "Add a course first to log a session.",
   "sessionFormNotesLabel": "Notes (optional)",
@@ -315,6 +317,8 @@
   "studyTimerFinishLog": "Finish & log {minutes} min",
   "studyTimerNoCourseError": "Select a course.",
   "studyTimerNoCoursesHint": "Add a course first to start a timer.",
+  "studyTimerNotifPaused": "Paused · {elapsed}",
+  "studyTimerNotifRunning": "Tap to open the timer",
   "studyTimerPause": "Pause",
   "studyTimerResume": "Resume",
   "studyTimerStart": "Start timer",
@@ -1160,6 +1164,12 @@
   "@sessionFormMinutesLabel": {
     "description": "Label of the session minutes field."
   },
+  "@sessionFormModeManual": {
+    "description": "Manual-entry segment of the log-session mode switch."
+  },
+  "@sessionFormModeTimer": {
+    "description": "Timer segment of the log-session mode switch."
+  },
   "@sessionFormNoCourseError": {
     "description": "Form error when saving a session without picking a course (with period; the inline dropdown validator without period is validationSessionCourseRequired)."
   },
@@ -1943,6 +1953,18 @@
   },
   "@studyTimerNoCoursesHint": {
     "description": "Hint shown when no courses exist yet and no timer can start."
+  },
+  "@studyTimerNotifPaused": {
+    "description": "Timer notification body while paused. {elapsed} is H:MM:SS.",
+    "placeholders": {
+      "elapsed": {
+        "type": "String",
+        "example": "0:05:12"
+      }
+    }
+  },
+  "@studyTimerNotifRunning": {
+    "description": "Timer notification body while running (chronometer shows the time)."
   },
   "@studyTimerPause": {
     "description": "Pause action on the active timer."

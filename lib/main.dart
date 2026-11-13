@@ -14,8 +14,10 @@ import 'src/i18n/app_locales.dart';
 import 'src/models/models.dart';
 import 'src/notifications/reminder_prefs.dart';
 import 'src/notifications/reminder_service.dart';
+import 'src/notifications/study_timer_alerts.dart';
 import 'src/startup.dart';
 import 'src/state/providers.dart';
+import 'src/state/study_timer_provider.dart';
 import 'src/ui/app_fonts.dart';
 import 'src/ui/app_sizes.dart';
 import 'src/ui/home_shell.dart';
@@ -29,18 +31,24 @@ Future<void> main() async {
   LiquidGlassEngine.liteGlassOnSkia = true;
   final startup = await initializeApp(openConnection());
   if (startup case StartupReady(:final db)) {
+    // Single notification backend for reminders + the study-timer alert.
+    final backend = await RealNotificationBackend.create();
     // Best-effort: never blocks or breaks launch (M9, ECTS-072).
-    unawaited(_rescheduleReminders(db));
+    unawaited(_rescheduleReminders(db, backend));
+    runApp(EctsTrackerApp(startup: startup, notificationBackend: backend));
+  } else {
+    runApp(EctsTrackerApp(startup: startup));
   }
-  runApp(EctsTrackerApp(startup: startup));
 }
 
 /// Recomputes scheduled nudges from live data on every launch. Disabled
 /// reminders cancel everything; any failure is swallowed (alarms are
 /// best-effort, the in-app feed in dev mode always works).
-Future<void> _rescheduleReminders(AppDatabase db) async {
+Future<void> _rescheduleReminders(
+  AppDatabase db,
+  RealNotificationBackend backend,
+) async {
   try {
-    final backend = await RealNotificationBackend.create();
     final courses = await CourseRepository(db).getAll();
     final sessions = await SessionRepository(db).getAll();
     final settings = await SettingsRepository(db).get();
@@ -80,9 +88,12 @@ AppLocalizations _reminderLocale(String? localeCode) {
 }
 
 class EctsTrackerApp extends StatelessWidget {
-  const EctsTrackerApp({super.key, required this.startup});
+  const EctsTrackerApp({super.key, required this.startup, this.notificationBackend});
 
   final StartupState startup;
+
+  /// Shared notification backend (reminders + timer alert). Null in tests.
+  final RealNotificationBackend? notificationBackend;
 
   static ThemeData buildLightTheme({
     Color seed = const Color(0xFF51606E),
@@ -240,6 +251,9 @@ class EctsTrackerApp extends StatelessWidget {
               });
               return db;
             }),
+            if (notificationBackend != null)
+              timerAlertBackendProvider
+                  .overrideWithValue(notificationBackend!),
           ],
           child: const _ThemedApp(),
         ),
@@ -252,6 +266,24 @@ class _ThemedApp extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    // Phone notification actions (M11, ECTS-093): Pause/Resume/Discard
+    // apply headlessly; Finish opens the app and completes here with full
+    // validation. The notifier refreshes the alert after every transition.
+    ref.listen<AsyncValue<String>>(timerActionEventsProvider, (_, next) {
+      next.whenData((action) {
+        final notifier = ref.read(studyTimerProvider.notifier);
+        switch (action) {
+          case studyTimerActionPause:
+            notifier.pause();
+          case studyTimerActionResume:
+            notifier.resume();
+          case studyTimerActionDiscard:
+            notifier.discard();
+          case studyTimerActionFinish:
+            notifier.finishAndLog();
+        }
+      });
+    });
     // Scoped watches: a settings write (e.g. daily target) rebuilds only
     // what its own field feeds, not the whole MaterialApp.
     final accent = ref.watch(settingsProvider

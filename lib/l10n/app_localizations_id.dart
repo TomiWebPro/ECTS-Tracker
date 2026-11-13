@@ -538,6 +538,12 @@ class AppLocalizationsId extends AppLocalizations {
   String get sessionFormMinutesLabel => 'Menit';
 
   @override
+  String get sessionFormModeManual => 'Manual';
+
+  @override
+  String get sessionFormModeTimer => 'Timer';
+
+  @override
   String get sessionFormNoCourseError => 'Pilih kursus.';
 
   @override
@@ -1132,6 +1138,14 @@ class AppLocalizationsId extends AppLocalizations {
 
   @override
   String get studyTimerNoCoursesHint => 'Add a course first to start a timer.';
+
+  @override
+  String studyTimerNotifPaused(String elapsed) {
+    return 'Paused · $elapsed';
+  }
+
+  @override
+  String get studyTimerNotifRunning => 'Tap to open the timer';
 
   @override
   String get studyTimerPause => 'Pause';

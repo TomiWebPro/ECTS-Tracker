@@ -16,6 +16,7 @@ class StudyTimerState {
     this.accumulatedSec = 0,
     this.runningSinceMs,
     this.notes,
+    this.courseName,
   });
 
   final int courseId;
@@ -30,6 +31,11 @@ class StudyTimerState {
   final int? runningSinceMs;
 
   final String? notes;
+
+  /// Course name snapshot taken at start: notification surfaces (including
+  /// the background handler, which has no database access) display this.
+  /// In-app UI always resolves the live course and falls back without it.
+  final String? courseName;
 
   bool get isRunning => runningSinceMs != null;
 
@@ -53,6 +59,7 @@ class StudyTimerState {
     int? accumulatedSec,
     int? Function()? runningSinceMs,
     String? Function()? notes,
+    String? Function()? courseName,
   }) {
     return StudyTimerState(
       courseId: courseId ?? this.courseId,
@@ -61,6 +68,7 @@ class StudyTimerState {
       runningSinceMs:
           runningSinceMs != null ? runningSinceMs() : this.runningSinceMs,
       notes: notes != null ? notes() : this.notes,
+      courseName: courseName != null ? courseName() : this.courseName,
     );
   }
 
@@ -86,6 +94,7 @@ class StudyTimerState {
         'accumulatedSec': accumulatedSec,
         'runningSinceMs': runningSinceMs,
         'notes': notes,
+        'courseName': courseName,
       };
 
   /// Lenient parse: corrupt / wrong-typed blobs return null (no timer).
@@ -98,9 +107,11 @@ class StudyTimerState {
       final accumulated = json['accumulatedSec'];
       final running = json['runningSinceMs'];
       final notes = json['notes'];
+      final courseName = json['courseName'];
       if (accumulated != null && accumulated is! int) return null;
       if (running != null && running is! int) return null;
       if (notes != null && notes is! String) return null;
+      if (courseName != null && courseName is! String) return null;
       final acc = (accumulated as int?) ?? 0;
       if (acc < 0) return null;
       return StudyTimerState(
@@ -109,6 +120,7 @@ class StudyTimerState {
         accumulatedSec: acc,
         runningSinceMs: running as int?,
         notes: notes as String?,
+        courseName: courseName as String?,
       );
     } catch (_) {
       return null;

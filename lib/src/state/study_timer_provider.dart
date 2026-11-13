@@ -4,11 +4,24 @@ import '../data/repositories.dart';
 import '../data/study_timer_prefs.dart';
 import '../logic/date_utils.dart';
 import '../logic/study_timer.dart';
+import '../notifications/study_timer_alerts.dart';
 import 'providers.dart';
 
 /// Shared prefs handle for the timer blob (single home, like reminder prefs).
 final studyTimerPrefsProvider = Provider<StudyTimerPrefsRepository>(
   (ref) => StudyTimerPrefsRepository(),
+);
+
+/// Phone notification surface for the timer. No-op by default (tests,
+/// headless); main overrides with the real backend.
+final timerAlertBackendProvider = Provider<TimerAlertBackend>(
+  (ref) => const NoopTimerAlertBackend(),
+);
+
+/// Foreground timer-action taps from the phone notification (`timer_*`).
+/// The app routes them to the notifier (see `_ThemedApp`).
+final timerActionEventsProvider = StreamProvider<String>(
+  (ref) => ref.watch(timerAlertBackendProvider).actionEvents,
 );
 
 /// The single active study timer, restored from disk on first build.
@@ -17,9 +30,18 @@ final studyTimerPrefsProvider = Provider<StudyTimerPrefsRepository>(
 /// its own 1s `Timer` for display only. Survives app kill + system restart
 /// because every transition persists before updating state.
 class StudyTimerNotifier extends Notifier<StudyTimerState?> {
+  bool _restored = false;
+
   @override
   StudyTimerState? build() {
-    _restore();
+    // Restore once: build reruns on every notify, so an unconditional
+    // restore-then-assign here would ping-pong forever (each assignment
+    // notifies, each notify rebuilds). That loop also starves
+    // pumpAndSettle in widget tests.
+    if (!_restored) {
+      _restored = true;
+      _restore();
+    }
     return null;
   }
 
@@ -28,8 +50,7 @@ class StudyTimerNotifier extends Notifier<StudyTimerState?> {
     ref.onDispose(() => alive = false);
     final loaded = await ref.read(studyTimerPrefsProvider).load();
     if (!alive) return;
-    // Drop timers whose course is gone is handled lazily at finish time
-    // (banner shows the fallback name); restoring is never fatal.
+    // Runs once (see build), so this single assignment always settles.
     state = loaded;
   }
 
@@ -45,10 +66,12 @@ class StudyTimerNotifier extends Notifier<StudyTimerState?> {
       initialStartedAtMs: nowMs,
       runningSinceMs: nowMs,
       notes: notes?.trim().isEmpty ?? true ? null : notes!.trim(),
+      courseName: await _resolveCourseName(courseId),
     );
     final saved = await ref.read(studyTimerPrefsProvider).save(timer);
     if (saved is Err<void>) return saved;
     state = timer;
+    await _syncAlert();
     return const Ok(null);
   }
 
@@ -60,10 +83,12 @@ class StudyTimerNotifier extends Notifier<StudyTimerState?> {
       courseId: courseId,
       initialStartedAtMs: nowMs,
       runningSinceMs: nowMs,
+      courseName: await _resolveCourseName(courseId),
     );
     final saved = await ref.read(studyTimerPrefsProvider).save(timer);
     if (saved is Err<void>) return saved;
     state = timer;
+    await _syncAlert();
     return const Ok(null);
   }
 
@@ -76,6 +101,7 @@ class StudyTimerNotifier extends Notifier<StudyTimerState?> {
     final saved = await ref.read(studyTimerPrefsProvider).save(paused);
     if (saved is Err<void>) return saved;
     state = paused;
+    await _syncAlert();
     return const Ok(null);
   }
 
@@ -88,6 +114,7 @@ class StudyTimerNotifier extends Notifier<StudyTimerState?> {
     final saved = await ref.read(studyTimerPrefsProvider).save(resumed);
     if (saved is Err<void>) return saved;
     state = resumed;
+    await _syncAlert();
     return const Ok(null);
   }
 
@@ -108,6 +135,7 @@ class StudyTimerNotifier extends Notifier<StudyTimerState?> {
     final cleared = await ref.read(studyTimerPrefsProvider).clear();
     if (cleared is Err<void>) return cleared;
     state = null;
+    await _syncAlert();
     return const Ok(null);
   }
 
@@ -133,9 +161,68 @@ class StudyTimerNotifier extends Notifier<StudyTimerState?> {
       case Ok<int>(:final value):
         await ref.read(studyTimerPrefsProvider).clear();
         state = null;
+        await _syncAlert();
         return Ok(value);
       case Err<int>(:final message):
         return Err(message);
+    }
+  }
+
+  /// Best-effort display-name snapshot for notification surfaces (the
+  /// background handler has no database access, so it reuses this).
+  Future<String?> _resolveCourseName(int courseId) async {
+    try {
+      final courses = await ref.read(courseRepositoryProvider).getAll();
+      for (final c in courses) {
+        if (c.id == courseId) return c.name;
+      }
+    } catch (_) {
+      // Falls through to null; alerts fall back to the C{id} label.
+    }
+    return null;
+  }
+
+  /// Pushes the current timer frame to the phone notification (or clears
+  /// it). Alerts never break timer ops: every failure is swallowed.
+  Future<void> _syncAlert() async {
+    try {
+      final backend = ref.read(timerAlertBackendProvider);
+      final timer = state;
+      if (timer == null) {
+        await backend.cancelTimer();
+        return;
+      }
+      await backend.requestPermissions();
+      final settings = await ref.read(settingsRepositoryProvider).get();
+      final l10n = timerAlertL10n(settings.localeCode);
+      String name = timer.courseName ??
+          l10n.studyLogUnknownCourse('${timer.courseId}');
+      if (timer.courseName == null) {
+        name = await _resolveCourseName(timer.courseId) ?? name;
+      }
+      final now = DateTime.now();
+      final content = buildTimerAlertContent(
+        courseName: name,
+        timer: timer,
+        l10n: l10n,
+        now: now,
+      );
+      await backend.showTimer(
+        TimerAlertVisuals(
+          title: content.title,
+          body: content.body,
+          running: content.useChronometer,
+          chronometerBaseMs: content.chronometerBaseMs,
+          pauseLabel: l10n.studyTimerPause,
+          resumeLabel: l10n.studyTimerResume,
+          finishLabel: l10n.studyTimerFinishLog(
+            '${studyTimerLogMinutes(timer.elapsedSec(now))}',
+          ),
+          discardLabel: l10n.studyTimerDiscard,
+        ),
+      );
+    } catch (_) {
+      // Best-effort.
     }
   }
 }

@@ -1043,6 +1043,18 @@ abstract class AppLocalizations {
   /// **'Minutes'**
   String get sessionFormMinutesLabel;
 
+  /// Manual-entry segment of the log-session mode switch.
+  ///
+  /// In en, this message translates to:
+  /// **'Manual'**
+  String get sessionFormModeManual;
+
+  /// Timer segment of the log-session mode switch.
+  ///
+  /// In en, this message translates to:
+  /// **'Timer'**
+  String get sessionFormModeTimer;
+
   /// Form error when saving a session without picking a course (with period; the inline dropdown validator without period is validationSessionCourseRequired).
   ///
   /// In en, this message translates to:
@@ -2086,6 +2098,18 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Add a course first to start a timer.'**
   String get studyTimerNoCoursesHint;
+
+  /// Timer notification body while paused. {elapsed} is H:MM:SS.
+  ///
+  /// In en, this message translates to:
+  /// **'Paused · {elapsed}'**
+  String studyTimerNotifPaused(String elapsed);
+
+  /// Timer notification body while running (chronometer shows the time).
+  ///
+  /// In en, this message translates to:
+  /// **'Tap to open the timer'**
+  String get studyTimerNotifRunning;
 
   /// Pause action on the active timer.
   ///
