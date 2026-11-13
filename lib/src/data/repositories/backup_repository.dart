@@ -412,14 +412,22 @@ class BackupRepository {
     ));
   }
 
-  /// Deletes all courses, sessions, and settings (full reset). Re-seeding is not
-  /// performed automatically; the app will show a clean empty state.
+  /// Deletes all courses, sessions, and settings (full reset), then
+  /// re-seeds the explicit default settings row. The reseed matters:
+  /// DBs created before the slate accent default keep a baked-in
+  /// `accent DEFAULT 0` (teal), so a later partial write (e.g. the
+  /// liquid-glass toggle) on a missing row would re-insert teal
+  /// (ECTS-089). With the row present, partial writes only touch their
+  /// own column. The app still shows a clean empty state (no courses).
   Future<Result<void>> resetAllData() async {
     try {
       await _db.transaction(() async {
         await _db.delete(_db.studySessions).go();
         await _db.delete(_db.courses).go();
         await _db.delete(_db.settings).go();
+        await _db
+            .into(_db.settings)
+            .insert(defaultSettingsCompanion());
       });
       return const Ok(null);
     } catch (e) {

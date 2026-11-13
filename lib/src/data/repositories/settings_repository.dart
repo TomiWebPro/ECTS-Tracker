@@ -217,24 +217,9 @@ class SettingsRepository {
   /// Resets settings to defaults (keeps courses/sessions).
   Future<Result<void>> resetToDefaults() async {
     try {
-      await _db.into(_db.settings).insertOnConflictUpdate(
-            SettingsCompanion.insert(
-              id: const Value(1),
-              hoursPerEcts: const Value(AppSettings.defaultHoursPerEcts),
-              dailyTargetMinutes: const Value(0),
-              firstWeekday: const Value(DateTime.monday),
-              themeMode: Value(themeModeToInt(AppThemeMode.system)),
-              paceToleranceDays:
-                  const Value(AppSettings.defaultPaceToleranceDays),
-              weeklyOverloadHours:
-                  const Value(AppSettings.defaultWeeklyOverloadHours),
-              displaySize:
-                  Value(displaySizeToInt(AppDisplaySize.comfortable)),
-              accent: Value(accentToInt(AppAccent.slate)),
-              localeCode: const Value(null),
-              liquidGlass: const Value(false),
-            ),
-          );
+      await _db
+          .into(_db.settings)
+          .insertOnConflictUpdate(defaultSettingsCompanion());
       return const Ok(null);
     } catch (e) {
       return Err('Failed to reset settings: $e');

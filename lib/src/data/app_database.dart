@@ -1,5 +1,7 @@
 import 'package:drift/drift.dart';
 
+import '../models/models.dart';
+
 part 'app_database.g.dart';
 
 /// Persistent tables for the ECTS tracker.
@@ -66,12 +68,34 @@ class Settings extends Table {
   Set<Column> get primaryKey => {id};
 }
 
+/// Explicit default settings row (single home for every default-row
+/// write). Used by [SettingsRepository.resetToDefaults], the
+/// [BackupRepository] post-wipe reseed, and the v9 startup repair:
+/// every column is explicit so a stale baked-in table default (e.g.
+/// `accent DEFAULT 0`/teal on DBs created before the slate default) can
+/// never leak in through a partial write (ECTS-089).
+SettingsCompanion defaultSettingsCompanion() => SettingsCompanion.insert(
+      id: const Value(1),
+      hoursPerEcts: const Value(AppSettings.defaultHoursPerEcts),
+      dailyTargetMinutes: const Value(0),
+      firstWeekday: const Value(DateTime.monday),
+      themeMode: Value(themeModeToInt(AppThemeMode.system)),
+      paceToleranceDays:
+          const Value(AppSettings.defaultPaceToleranceDays),
+      weeklyOverloadHours:
+          const Value(AppSettings.defaultWeeklyOverloadHours),
+      displaySize: Value(displaySizeToInt(AppDisplaySize.comfortable)),
+      accent: Value(accentToInt(AppAccent.slate)),
+      localeCode: const Value(null),
+      liquidGlass: const Value(false),
+    );
+
 @DriftDatabase(tables: [Courses, StudySessions, Settings])
 class AppDatabase extends _$AppDatabase {
   AppDatabase(super.e);
 
   @override
-  int get schemaVersion => 8;
+  int get schemaVersion => 9;
 
   /// SQLite does not enforce foreign keys (and thus ON DELETE CASCADE) unless
   /// explicitly asked, on every connection.
@@ -103,6 +127,19 @@ class AppDatabase extends _$AppDatabase {
           }
           if (from < 8) {
             await m.addColumn(settings, settings.liquidGlass);
+          }
+          if (from < 9) {
+            // ECTS-089: DBs created before the slate accent default keep a
+            // baked-in `accent DEFAULT 0` (teal). A missing settings row +
+            // a partial write (e.g. the liquid-glass toggle) would then
+            // re-insert teal. Seed the explicit default row when absent;
+            // existing rows (including deliberate teal) are untouched.
+            // (insertOrIgnore: no-op when the row already exists.)
+            final database = m.database as AppDatabase;
+            await database.into(database.settings).insert(
+                  defaultSettingsCompanion(),
+                  mode: InsertMode.insertOrIgnore,
+                );
           }
         },
         beforeOpen: (details) async {

@@ -622,6 +622,19 @@ void main() {
       expect(fromGet.hoursPerEcts, fromWatch.hoursPerEcts);
       expect(fromGet.dailyTargetMinutes, fromWatch.dailyTargetMinutes);
     });
+
+    test('glass toggle after settings wipe keeps slate accent (ECTS-089)',
+        () async {
+      // resetAllData() deletes the settings row; the next partial write
+      // must re-insert with table defaults (accent slate), not teal.
+      await db.delete(db.settings).go();
+      expect(await settings.get(), isA<AppSettings>());
+      expect((await settings.get()).accent, AppAccent.slate);
+      await settings.setLiquidGlass(true);
+      final s = await settings.get();
+      expect(s.liquidGlass, isTrue);
+      expect(s.accent, AppAccent.slate);
+    });
   });
 
   group('sample-data scoped queries and delete (ECTS-027)', () {
@@ -1324,6 +1337,19 @@ void main() {
       expect(await courses.watchAll().first, isEmpty);
       expect(await sessions.watchAll().first, isEmpty);
       expect((await settings.get()).hoursPerEcts, AppSettings.defaultHoursPerEcts);
+    });
+
+    test('resetAllData reseeds an explicit slate-default row (ECTS-089)',
+        () async {
+      await settings.setAccent(AppAccent.teal);
+      await settings.setLiquidGlass(true);
+      expect(await backup.resetAllData(), isA<Ok<void>>());
+      // The row must really exist: a missing row + a partial write would
+      // re-insert with the baked-in table default (teal on old DBs).
+      expect(await db.select(db.settings).get(), hasLength(1));
+      final s = await settings.get();
+      expect(s.accent, AppAccent.slate);
+      expect(s.liquidGlass, isFalse);
     });
   });
 
