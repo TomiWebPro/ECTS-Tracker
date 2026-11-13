@@ -118,6 +118,7 @@ Conventions: `AGENTS.md` (binding, incl. new-locale policy §6) · `README.md` (
 | ECTS-093 | M11 | Phone notification: ongoing timer w/ pause-resume-finish-discard actions (Android live, iOS categories; Dynamic Island doc) | done | analyze clean; full 376/376 (12 alerts + 3 notifier-alert tests); commit 492c11f; 2026-11-13 |
 | ECTS-094 | M11 | Fix Windows startup crash: notification init lacked Windows settings + unguarded create() | done | analyze clean; notif+startup 22/22; `flutter build windows` ok; commit (this run); 2026-11-13 |
 | ECTS-095 | M7 | Bulk locale pass: 18 timer keys (ECTS-091/092/093) to 53 non-EN ARBs | done | analyze clean; gen-l10n ok (untranslated {}); full 376/376; 5-way subagent split (A-E); 2026-11-13 |
+| ECTS-096 | M12 | Audit must-fix batch (channels l10n, bg locale, silent-fault logs, err l10n mapping, stable notif IDs) | done | analyze clean; full 376/376; 2026-11-14 |
 
 Note: ECTS-033/034 were announced in a 2026-11-05 log but never got rows; IDs skipped, do NOT renumber.
 
@@ -137,6 +138,7 @@ trims (different semantics per surface); hold-to-confirm timer test
 
 ## Progress log (newest on top)
 
+- 2026-11-14: ECTS-096 done (audit must-fix batch: 7 channel + 16 error ARB keys EN-only; localized channels/fallbacks/Linux-Open; bg locale snapshot via studyTimer.localeCode; kDebugMode logs on silent faults; err_text.dart UI mapping, repo contracts unchanged; notificationId() 31-bit mix, tests updated; pcm kept as EN-fallback, intentional; analyze clean; full 376/376).
 - 2026-11-13: ECTS-095 done (bulk pass: 18 timer keys to 53 non-EN ARBs + regen, 5-way subagent split; untranslated report now {}; analyze clean; full 376/376).
 - 2026-11-13: ECTS-094 done (Windows startup crash: unified plugin throws without platform settings — added Windows/Linux/macOS blocks everywhere + try/catch backend creation with null fallback; `flutter build windows` ok).
 
