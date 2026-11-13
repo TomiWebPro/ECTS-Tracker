@@ -1,3 +1,4 @@
+import 'package:ects_tracker/l10n/app_localizations.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:flutter_timezone/flutter_timezone.dart';
 import 'package:timezone/data/latest_all.dart' as tzdata;
@@ -7,6 +8,7 @@ import '../logic/custom_reminders.dart';
 import '../logic/reminders.dart';
 import '../models/models.dart';
 import 'reminder_prefs.dart';
+import 'reminder_text.dart';
 
 /// Transport abstraction so the scheduler is unit-testable with a fake
 /// (M9, ECTS-072). Times are local wall-clock on both sides.
@@ -207,6 +209,7 @@ class ReminderService {
     required double hoursPerEcts,
     required double toleranceDays,
     required DateTime now,
+    required AppLocalizations l10n,
   }) async {
     final settings = await _prefs.load();
     if (!settings.enabled) {
@@ -222,10 +225,11 @@ class ReminderService {
       toleranceDays: toleranceDays,
     );
     if (daily != null) {
+      final text = localizeReminder(l10n, daily);
       await _backend.scheduleDaily(
         id: dailyReminderId,
-        title: daily.title,
-        body: daily.body,
+        title: text.title,
+        body: text.body,
         timeMinutes: settings.timeMinutes,
       );
     } else {
@@ -245,10 +249,11 @@ class ReminderService {
         toleranceDays: toleranceDays,
         warnDays: settings.warnDays,
       )) {
+        final text = localizeReminder(l10n, countdown);
         await _backend.scheduleOnce(
           id: deadlineReminderIdBase + (countdown.courseId! % 100000),
-          title: countdown.title,
-          body: countdown.body,
+          title: text.title,
+          body: text.body,
           fireAt: todayFire,
         );
       }
@@ -266,10 +271,11 @@ class ReminderService {
           courses.firstWhere((c) => c.id == overdue.courseId);
       final key = '${course.id}_${course.deadline!.millisecondsSinceEpoch}';
       if (await _prefs.overdueCount(key) >= 2) continue;
+      final text = localizeReminder(l10n, overdue);
       await _backend.showNow(
         id: overdueReminderIdBase + (overdue.courseId! % 100000),
-        title: overdue.title,
-        body: overdue.body,
+        title: text.title,
+        body: text.body,
       );
       await _prefs.recordOverdueFire(key);
     }
@@ -286,10 +292,11 @@ class ReminderService {
         toleranceDays: toleranceDays,
       );
       if (content == null) continue;
+      final text = localizeReminder(l10n, content);
       await _backend.scheduleOnce(
         id: customReminderIdBase + (schedule.id % 100000),
-        title: content.title,
-        body: content.body,
+        title: text.title,
+        body: text.body,
         fireAt: fire,
       );
     }

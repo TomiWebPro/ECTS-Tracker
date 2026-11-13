@@ -50,11 +50,33 @@ Future<void> _rescheduleReminders(AppDatabase db) async {
       hoursPerEcts: settings.hoursPerEcts,
       toleranceDays: settings.paceToleranceDays,
       now: DateTime.now(),
+      l10n: _reminderLocale(settings.localeCode),
     );
   } catch (e) {
     // Launch-time reschedule is best-effort (alarms only); log in debug.
     if (kDebugMode) debugPrint('launch reschedule failed: $e');
   }
+}
+
+/// Locale for headless (no-BuildContext) scheduling: the user's chosen app
+/// language, else the OS locale, else English. Unsupported locales fall back
+/// to English rather than throwing (gen-l10n lookup is strict).
+AppLocalizations _reminderLocale(String? localeCode) {
+  final candidates = [
+    appLocaleFromCode(localeCode),
+    WidgetsBinding.instance.platformDispatcher.locale,
+    const Locale('en'),
+  ];
+  for (final locale in candidates) {
+    if (locale == null) continue;
+    try {
+      return lookupAppLocalizations(locale);
+    } catch (_) {
+      // Try the next candidate; 'en' always resolves.
+    }
+  }
+  // Unreachable: the 'en' candidate above always resolves.
+  return lookupAppLocalizations(const Locale('en'));
 }
 
 class EctsTrackerApp extends StatelessWidget {

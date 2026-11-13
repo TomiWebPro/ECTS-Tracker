@@ -6,7 +6,7 @@ Goal: nudge the student back to studying. Max 1 ping a day plus a
 deadline countdown when close. Never nag. Phone and tablet identical
 (local notifications, no server, no FCM).
 
-## Message types (English v1; other locales later per M7 precedent)
+## Message types (copy templates in `app_en.arb`, localized per M7 precedent via ECTS-087)
 
 1. **Daily plan** (19:00 default, user-settable later): per course, today's
    target is the start-of-day pace (remaining as if nothing logged today);

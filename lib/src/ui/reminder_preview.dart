@@ -3,6 +3,7 @@ import 'package:ects_tracker/src/logic/custom_reminders.dart';
 import 'package:ects_tracker/src/logic/date_utils.dart';
 import 'package:ects_tracker/src/logic/reminders.dart';
 import 'package:ects_tracker/src/models/models.dart';
+import 'package:ects_tracker/src/notifications/reminder_text.dart';
 import 'package:ects_tracker/src/state/providers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -124,7 +125,7 @@ class _NowBar extends ConsumerWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              '${l10n.reminderPreviewNow}: ${_fmtTime(now)}${hasOverride ? ' (fake)' : ''}',
+              '${l10n.reminderPreviewNow}: ${_fmtTime(now)}${hasOverride ? ' ${l10n.reminderPreviewFake}' : ''}',
               key: const Key('previewNowLabel'),
               style: Theme.of(context).textTheme.titleSmall,
             ),
@@ -136,13 +137,13 @@ class _NowBar extends ConsumerWidget {
                   key: const Key('previewBackDay'),
                   onPressed: () => notifier.state =
                       now.subtract(const Duration(days: 1)),
-                  child: const Text('-1d'),
+                  child: Text(l10n.reminderPreviewBackDay),
                 ),
                 OutlinedButton(
                   key: const Key('previewFwdDay'),
                   onPressed: () =>
                       notifier.state = now.add(const Duration(days: 1)),
-                  child: const Text('+1d'),
+                  child: Text(l10n.reminderPreviewFwdDay),
                 ),
                 FilledButton(
                   key: const Key('previewResetNow'),
@@ -183,7 +184,7 @@ class _Feed extends StatelessWidget {
       hoursPerEcts: settings.hoursPerEcts,
       now: now,
       toleranceDays: settings.paceToleranceDays,
-    );
+    ).map((item) => localizeReminder(l10n, item)).toList();
     if (items.isEmpty) {
       return GlassCard(
         child: Padding(
@@ -273,7 +274,7 @@ class _CustomDemo extends StatelessWidget {
       CustomSchedule.once(
         id: 903,
         fireAt: now.add(const Duration(hours: 2)),
-        label: 'Demo check-in',
+        label: l10n.reminderPreviewDemoLabel,
       ),
     ];
     return Column(
@@ -325,7 +326,7 @@ class _DemoRow extends StatelessWidget {
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context)!;
     final fire = nextFireAt(schedule, now);
-    final content = composeCustomContent(
+    final raw = composeCustomContent(
       schedule: schedule,
       courses: courses,
       sessions: sessions,
@@ -333,6 +334,7 @@ class _DemoRow extends StatelessWidget {
       now: now,
       toleranceDays: settings.paceToleranceDays,
     );
+    final content = raw == null ? null : localizeReminder(l10n, raw);
     final scheme = Theme.of(context).colorScheme;
     return GlassCard(
       key: key,
@@ -344,7 +346,7 @@ class _DemoRow extends StatelessWidget {
             Text(
               fire == null
                   ? l10n.reminderPreviewNoFire
-                  : 'Next: ${_fmtTime(fire)}',
+                  : l10n.reminderPreviewNext(_fmtTime(fire)),
               style: Theme.of(context).textTheme.titleSmall?.copyWith(
                     fontWeight: FontWeight.w700,
                   ),

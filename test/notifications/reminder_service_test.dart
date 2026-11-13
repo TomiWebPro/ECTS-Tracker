@@ -1,12 +1,18 @@
+import 'package:ects_tracker/l10n/app_localizations.dart';
 import 'package:ects_tracker/src/data/repositories.dart';
 import 'package:ects_tracker/src/logic/custom_reminders.dart';
 import 'package:ects_tracker/src/models/models.dart';
 import 'package:ects_tracker/src/notifications/reminder_prefs.dart';
 import 'package:ects_tracker/src/notifications/reminder_service.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 final DateTime now = DateTime(2026, 11, 11, 19, 0);
+
+/// English copy for scheduler assertions (logic pins English; localized
+/// rendering is covered by reminder_text_test.dart).
+AppLocalizations get en => lookupAppLocalizations(const Locale('en'));
 
 Course course({
   required int id,
@@ -91,8 +97,9 @@ void main() {
         courses: const [],
         sessions: const [],
         hoursPerEcts: 30,
-        toleranceDays: 5,
+                toleranceDays: 5,
         now: now,
+        l10n: en,
       );
       expect(backend.cancelAllCount, 1);
       expect(backend.scheduled, isEmpty);
@@ -105,8 +112,9 @@ void main() {
         courses: [course(id: 1, name: 'Linear Algebra', ects: 5, deadline: DateTime(2026, 11, 21, 19))],
         sessions: const [],
         hoursPerEcts: 30,
-        toleranceDays: 5,
+                toleranceDays: 5,
         now: now,
+        l10n: en,
       );
       final daily = backend.calls.where((c) => c.kind == 'daily').toList();
       expect(daily, hasLength(1));
@@ -122,8 +130,9 @@ void main() {
         courses: [course(id: 1, name: 'Done', ects: 1, deadline: DateTime(2026, 11, 21, 19))],
         sessions: [session(courseId: 1, minutes: 30 * 60, date: DateTime(2026, 11, 10, 10))],
         hoursPerEcts: 30,
-        toleranceDays: 5,
+                toleranceDays: 5,
         now: now,
+        l10n: en,
       );
       expect(backend.calls.where((c) => c.kind == 'daily'), isEmpty);
       expect(backend.calls.any((c) => c.kind == 'cancel' && c.id == 1000), isTrue);
@@ -137,8 +146,9 @@ void main() {
             courses: courses,
             sessions: const [],
             hoursPerEcts: 30,
-            toleranceDays: 5,
+                        toleranceDays: 5,
             now: now,
+            l10n: en,
           );
       await run();
       await run();
@@ -157,6 +167,7 @@ void main() {
         hoursPerEcts: 30,
         toleranceDays: 5,
         now: DateTime(2026, 11, 11, 18, 0),
+        l10n: en,
       );
       final once = backend.calls.where((c) => c.kind == 'once').toList();
       expect(once, hasLength(1));
@@ -175,8 +186,9 @@ void main() {
         courses: [course(id: 1, name: 'Steady', ects: 1)],
         sessions: const [],
         hoursPerEcts: 30,
-        toleranceDays: 5,
+                toleranceDays: 5,
         now: now,
+        l10n: en,
       );
       final once = backend.calls.where((c) => c.kind == 'once').toList();
       expect(once, hasLength(1));
@@ -194,8 +206,9 @@ void main() {
         courses: [course(id: 1, name: 'Steady', ects: 1)],
         sessions: const [],
         hoursPerEcts: 30,
-        toleranceDays: 5,
+                toleranceDays: 5,
         now: now,
+        l10n: en,
       );
       final once = backend.calls.where((c) => c.kind == 'once').toList();
       expect(once, hasLength(1));
@@ -229,3 +242,6 @@ void main() {
     });
   });
 }
+
+
+

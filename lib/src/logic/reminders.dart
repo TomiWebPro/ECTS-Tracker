@@ -38,18 +38,30 @@ enum ReminderKind { daily, behind, deadline, overdue, streak, custom }
 
 /// One nudge the app may show. [courseId] set for per-course messages so a
 /// tap can deep-link to the course; null for aggregate (daily/streak).
+///
+/// [messageId]/[args] carry the same content in structured form so the
+/// presentation layer can localize it (`reminder_text.dart`):
+/// `title`/`body` stay English v1 (pinned by logic tests) while the preview
+/// feed and the OS scheduler render the localized variant. Numbers in
+/// [args] are raw (`double` hours, `int` counts/days); names are [String];
+/// the daily per-course breakdown is parallel `names`/`durations` lists plus
+/// a folded `rest` count.
 class ReminderContent {
   const ReminderContent({
     required this.kind,
     required this.title,
     required this.body,
     this.courseId,
+    required this.messageId,
+    this.args = const {},
   });
 
   final ReminderKind kind;
   final String title;
   final String body;
   final int? courseId;
+  final String messageId;
+  final Map<String, Object> args;
 }
 
 /// Consecutive-day logging streak + hours logged in the last 7 calendar
@@ -138,6 +150,13 @@ ReminderContent? computeDailyPlan({
     kind: ReminderKind.daily,
     title: '📚 Tonight: ${formatDuration(total)} to stay on track',
     body: '$detail. Log a session to clear today.',
+    messageId: 'daily',
+    args: {
+      'total': total,
+      'names': [for (final n in named) n.course.name],
+      'durations': [for (final n in named) n.pace],
+      'rest': rest,
+    },
   );
 }
 
@@ -182,11 +201,21 @@ List<ReminderContent> computeBehindNudges({
     final pace = progress.requiredDailyHours;
     final sessions = byCourse[course.id] ?? const <StudySession>[];
     String body;
+    String messageId;
+    // Behind implies a deadline (ects.dart `_status`: no deadline is
+    // onTrack, past deadline is overdue), so days is non-null here.
+    final dayCount = days!;
+    final Map<String, Object> args = {
+      'course': course.name,
+      'left': left,
+      'days': dayCount,
+    };
     if (pace == null) {
       // Deadline-day (or past) with hours outstanding: no finite pace
       // exists, so report action instead of a number (ects.dart rule).
       body =
           '${formatDuration(left)} still open and the deadline is here. Anything you log now counts.';
+      messageId = 'behindDeadlineDay';
     } else {
       // Honest catch-up: the hours that provably flip status back out of
       // behind (ECTS-075 — never a hardcoded session size).
@@ -197,14 +226,18 @@ List<ReminderContent> computeBehindNudges({
         now: now,
         toleranceDays: toleranceDays,
       );
+      args['pace'] = pace;
       if (catchUp >= left - 1e-9) {
         body =
             '${formatDuration(left)} left, $days days to go — ${formatDuration(pace)}/day from here. Only finishing the full ${formatDuration(left)} clears this — start tonight.';
+        messageId = 'behindFull';
       } else {
         // Round UP so the promise holds (hi sits on the flip boundary).
         final display = (catchUp * 10).ceil() / 10;
         body =
             '${formatDuration(left)} left, $days days to go — ${formatDuration(pace)}/day from here. Log ${formatDuration(display)} to get back On track.';
+        messageId = 'behindPace';
+        args['catchUp'] = display;
       }
     }
     out.add(ReminderContent(
@@ -212,6 +245,8 @@ List<ReminderContent> computeBehindNudges({
       title: '⚠️ ${course.name} slipped to Behind',
       body: body,
       courseId: course.id,
+      messageId: messageId,
+      args: args,
     ));
   }
   return out;
@@ -321,8 +356,17 @@ List<ReminderContent> computeDeadlineCountdowns({
         title: '🚨 ${course.name} is due tomorrow and still has ${formatDuration(left)} open',
         body: 'Anything you log today counts double.',
         courseId: course.id,
+        messageId: 'deadlineTomorrow',
+        args: {'course': course.name, 'left': left},
       ));
     } else {
+      final Map<String, Object> countdownArgs = {
+        'course': course.name,
+        'days': days,
+        'left': left,
+      };
+      final countdownPace = pace;
+      if (countdownPace != null) countdownArgs['pace'] = countdownPace;
       out.add(ReminderContent(
         kind: ReminderKind.deadline,
         title: '⏳ ${course.name} exam in $days days — ${formatDuration(left)} left',
@@ -330,6 +374,8 @@ List<ReminderContent> computeDeadlineCountdowns({
             ? 'Every hour you log now counts.'
             : "That's ${formatDuration(pace)}/day. Split it: 2 sessions a day beats one marathon.",
         courseId: course.id,
+        messageId: pace == null ? 'deadlineSoonNoPace' : 'deadlineSoon',
+        args: countdownArgs,
       ));
     }
   }
@@ -376,6 +422,11 @@ List<ReminderContent> computeOverdue({
             '❌ ${course.name} passed its deadline with ${formatDuration(late[course]!.remainingHours)} open',
         body: 'Move the deadline or finish the hours — the course stays in Needs attention until then.',
         courseId: course.id,
+        messageId: 'overdue',
+        args: {
+          'course': course.name,
+          'left': late[course]!.remainingHours,
+        },
       ),
   ];
 }
@@ -439,6 +490,8 @@ ReminderContent? computeStreakNudge({
     title:
         '🔥 ${streak.days}-day streak — ${formatDuration(streak.weekHours)} this week',
     body: 'All courses On track or Ahead. Nice run.',
+    messageId: 'streak',
+    args: {'days': streak.days, 'week': streak.weekHours},
   );
 }
 

@@ -66,7 +66,7 @@ class _ReminderTiles extends ConsumerWidget {
     ref.invalidate(reminderSettingsProvider);
     if (!context.mounted) return;
     _showResultStatic(context, result);
-    await _rescheduleNow(ref);
+    await _rescheduleNow(context, ref);
   }
 
   Future<void> _editTime(BuildContext context, WidgetRef ref) async {
@@ -84,18 +84,19 @@ class _ReminderTiles extends ConsumerWidget {
     ref.invalidate(reminderSettingsProvider);
     if (!context.mounted) return;
     _showResultStatic(context, result);
-    await _rescheduleNow(ref);
+    await _rescheduleNow(context, ref);
   }
 
   /// Recomputes the OS schedule from live data. Best-effort: failures are
   /// swallowed so Settings never breaks (the dev preview always works).
-  Future<void> _rescheduleNow(WidgetRef ref) async {
+  Future<void> _rescheduleNow(BuildContext context, WidgetRef ref) async {
     try {
       final backend = await ref.read(notificationBackendProvider.future);
       final courses = await ref.read(coursesProvider.future);
       final sessions = await ref.read(sessionsProvider.future);
       final s =
           ref.read(settingsProvider).valueOrNull ?? const AppSettings();
+      if (!context.mounted) return;
       await ReminderService(backend, ref.read(reminderPrefsProvider))
           .reschedule(
         courses: courses,
@@ -103,6 +104,7 @@ class _ReminderTiles extends ConsumerWidget {
         hoursPerEcts: s.hoursPerEcts,
         toleranceDays: s.paceToleranceDays,
         now: DateTime.now(),
+        l10n: AppLocalizations.of(context)!,
       );
     } catch (e) {
       // Best-effort reschedule (doc above); log in debug.

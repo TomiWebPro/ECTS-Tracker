@@ -292,10 +292,27 @@ ReminderContent? composeCustomContent({
       (schedule.courseId == null
           ? '📚 Study check-in: ${target.name}'
           : '📚 Time to update: ${target.name}');
+  // A user-typed label is user content, never translated: only the body is
+  // localized then. Otherwise the title picks the auto/course template.
+  final messageId = schedule.label != null
+      ? (pace == null ? 'customLabelNoPace' : 'customLabelPace')
+      : pace == null
+          ? 'customNoPace'
+          : 'customPace';
+  final Map<String, Object> args = {
+    'course': target.name,
+    'automatic': schedule.courseId == null,
+    'left': left,
+  };
+  final customLabel = schedule.label;
+  if (customLabel != null) args['label'] = customLabel;
+  if (pace != null) args['pace'] = pace;
   return ReminderContent(
     kind: ReminderKind.custom,
     title: title,
     body: body,
     courseId: target.id,
+    messageId: messageId,
+    args: args,
   );
 }
