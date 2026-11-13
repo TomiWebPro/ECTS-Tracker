@@ -19,7 +19,7 @@ Conventions: `AGENTS.md` (binding, incl. new-locale policy §6) · `README.md` (
 | M8 | Liquid-glass chrome (gated opt-in) | done (060-065/068/073/074; 066/067 done-unverified per screenshot review; 069 not reproducible — mapping correct, test-pinned) |
 | M9 | Study reminders (Windows-testable dev preview + platform wiring) | done (070-078 per docs/reminders-spec.md) |
 | M10 | Docs hygiene + structural refactors | done (079 TRACK compaction + AGENTS.md §6 locale policy + docs cleanup/index/ARCHITECTURE.md; 080 date_utils/result split; 081 part-file splits; 082 correctness pass; 083 coverage + config + 069 closure) |
-| M11 | Study timer (start/pause/resume/finish, restart-proof) | done (ECTS-091) |
+| M11 | Study timer (start/pause/resume/finish, restart-proof) | done (ECTS-091/092/093) |
 
 ## Open tasks (claim ONE per build run)
 
@@ -114,6 +114,8 @@ Conventions: `AGENTS.md` (binding, incl. new-locale policy §6) · `README.md` (
 | ECTS-089 | M8 | Fix reset-all → liquid-glass flips accent slate→teal (keep slate) | done | analyze clean; full 343/343; reseed + v9 repair + 2 regression tests |
 | ECTS-090 | M9 | Behind-title ⚠️ renders as text glyph, misaligned — swap to color-emoji mark | done | analyze clean; full 343/343; U+26A0→🔻 in logic + 54 ARBs + regen, spec + test updated |
 | ECTS-091 | M11 | Study timer: manual stays, add course-picked start/pause/resume/finish, restart-proof | done | analyze clean; full 358/358 (15 new timer tests); commit 0c500dd; 2026-11-13 |
+| ECTS-092 | M11 | Fold timer into Log-session dialog (Manual/Timer switch), remove outside pills | done | analyze clean; full 376/376 (3 dialog tab tests); notifier once-restore fixes rebuild loop; commit 492c11f; 2026-11-13 |
+| ECTS-093 | M11 | Phone notification: ongoing timer w/ pause-resume-finish-discard actions (Android live, iOS categories; Dynamic Island doc) | done | analyze clean; full 376/376 (12 alerts + 3 notifier-alert tests); commit 492c11f; 2026-11-13 |
 
 Note: ECTS-033/034 were announced in a 2026-11-05 log but never got rows; IDs skipped, do NOT renumber.
 
@@ -132,6 +134,9 @@ trims (different semantics per surface); hold-to-confirm timer test
 (private widget, covered indirectly by settings pumps).
 
 ## Progress log (newest on top)
+
+- 2026-11-13: ECTS-092 done (timer folded into Log-session dialog Manual/Timer switch; outside pills/FABs removed; banner in-flow + 760px cap; dialog overflow fixed; rebuild-loop fix via once-restore; widget tests use ProviderScope+mem fake).
+- 2026-11-13: ECTS-093 done (ongoing phone notification w/ pause/resume/finish/discard; Android chronometer + background handler prefs-only; iOS categories localized; finish opens app; Dynamic Island scoped in docs/live-activity.md for macOS).
 
 - 2026-11-12: ECTS-084 done (preview columns stretch to full-bleed equal insets; formatDuration <1 h → min in daily/behind/deadline/overdue/streak/custom; full 335/335).
 

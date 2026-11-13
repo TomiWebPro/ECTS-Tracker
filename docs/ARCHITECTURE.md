@@ -10,11 +10,11 @@ Agent workflow: `../AGENTS.md`. Task state: `../TRACK.md`.
 | Path | Owns | Rules |
 |------|------|-------|
 | `lib/src/models/` | `Course`, `StudySession`, `AppSettings` — plain Dart, raw rows only | Derived values are computed, never stored |
-| `lib/src/logic/` | All formulas: `ects.dart` (required/completed/remaining/progress/pace/status), `statistics.dart` (+ `buildStatisticsView`), `session_totals.dart` (+ `groupSessionsByCourse`), `reminders.dart`, `custom_reminders.dart`, `course_list.dart`, `pace_format.dart`, `date_utils.dart` | Pure Dart, no Flutter imports (UI labels live in `ui/course_labels.dart`); repositories return errors as values, never throw (except documented programming-error `ArgumentError`s) |
-| `lib/src/data/` | Drift tables (`app_database.dart`), repositories (`repositories/` parts), bootstrap/seed (`bootstrap.dart`), `Result` (`result.dart`) | One-shot `getAll()` for snapshot uses; `watch*()` streams for UI |
-| `lib/src/state/` | Riverpod providers, notification prefs wiring | `select()` narrow rebuilds; test fakes via provider overrides |
-| `lib/src/ui/` | 5 tabs + dialogs; `pages/` (dashboard/courses/study-log), `settings/` (tiles/dialogs), shared `widgets.dart`/`glass.dart`/`app_sizes.dart` | God-files were split via `part`/`part of` (verbatim); same library, private names stay private |
-| `lib/src/notifications/` | Reminder prefs + OS scheduling backend + service | Windows-testable via fakes; dev preview feed in-app |
+| `lib/src/logic/` | All formulas: `ects.dart` (required/completed/remaining/progress/pace/status), `statistics.dart` (+ `buildStatisticsView`), `session_totals.dart` (+ `groupSessionsByCourse`), `reminders.dart`, `custom_reminders.dart`, `course_list.dart`, `pace_format.dart`, `date_utils.dart`, `study_timer.dart` (wall-clock elapsed/ceil/format + `StudyTimerState`) | Pure Dart, no Flutter imports (UI labels live in `ui/course_labels.dart`); repositories return errors as values, never throw (except documented programming-error `ArgumentError`s) |
+| `lib/src/data/` | Drift tables (`app_database.dart`), repositories (`repositories/` parts), bootstrap/seed (`bootstrap.dart`), `Result` (`result.dart`), timer prefs blob (`study_timer_prefs.dart`) | One-shot `getAll()` for snapshot uses; `watch*()` streams for UI |
+| `lib/src/state/` | Riverpod providers, notification prefs wiring, study-timer notifier (`study_timer_provider.dart`) | `select()` narrow rebuilds; test fakes via provider overrides |
+| `lib/src/ui/` | 5 tabs + dialogs; `pages/` (dashboard/courses/study-log), `settings/` (tiles/dialogs), shared `widgets.dart`/`glass.dart`/`app_sizes.dart`, timer sheets/banner (`study_timer_sheet.dart`, timer tab in `session_form.dart`) | God-files were split via `part`/`part of` (verbatim); same library, private names stay private |
+| `lib/src/notifications/` | Reminder prefs + OS scheduling backend + service; timer phone alert (`study_timer_alerts.dart`: content/details builders, background action handler) | Windows-testable via fakes; dev preview feed in-app |
 | `lib/l10n/` | `app_en.arb` source of truth | New keys English-only (AGENTS.md §6); other locales fall back to English until a bulk pass |
 
 ## ECTS math (single home: `lib/src/logic/ects.dart`)
