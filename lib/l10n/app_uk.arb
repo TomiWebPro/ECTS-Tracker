@@ -2072,7 +2072,7 @@
       }
     }
   },
-  "notifBehindTitle": "⚠️ {course} перейшов у відставання",
+  "notifBehindTitle": "🔻 {course} перейшов у відставання",
   "@notifBehindTitle": {
     "description": "Behind-nudge notification title. {course} is the course name.",
     "placeholders": {

@@ -2072,7 +2072,7 @@
       }
     }
   },
-  "notifBehindTitle": "⚠️ {course} merosot ke Tertinggal",
+  "notifBehindTitle": "🔻 {course} merosot ke Tertinggal",
   "@notifBehindTitle": {
     "description": "Behind-nudge notification title. {course} is the course name.",
     "placeholders": {

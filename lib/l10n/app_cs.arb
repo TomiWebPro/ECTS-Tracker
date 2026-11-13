@@ -2072,7 +2072,7 @@
       }
     }
   },
-  "notifBehindTitle": "⚠️ {course} se dostal do zpoždění",
+  "notifBehindTitle": "🔻 {course} se dostal do zpoždění",
   "@notifBehindTitle": {
     "description": "Behind-nudge notification title. {course} is the course name.",
     "placeholders": {

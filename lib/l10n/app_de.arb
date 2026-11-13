@@ -2072,7 +2072,7 @@
       }
     }
   },
-  "notifBehindTitle": "⚠️ {course} ist in Rückstand geraten",
+  "notifBehindTitle": "🔻 {course} ist in Rückstand geraten",
   "@notifBehindTitle": {
     "description": "Behind-nudge notification title. {course} is the course name.",
     "placeholders": {

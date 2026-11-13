@@ -2072,7 +2072,7 @@
       }
     }
   },
-  "notifBehindTitle": "⚠️ {course} je skliznuo u Kasni",
+  "notifBehindTitle": "🔻 {course} je skliznuo u Kasni",
   "@notifBehindTitle": {
     "description": "Behind-nudge notification title. {course} is the course name.",
     "placeholders": {

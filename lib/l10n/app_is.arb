@@ -2072,7 +2072,7 @@
       }
     }
   },
-  "notifBehindTitle": "⚠️ {course}: staðan er Eftir á",
+  "notifBehindTitle": "🔻 {course}: staðan er Eftir á",
   "@notifBehindTitle": {
     "description": "Behind-nudge notification title. {course} is the course name.",
     "placeholders": {

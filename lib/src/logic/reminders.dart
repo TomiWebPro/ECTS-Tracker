@@ -242,7 +242,7 @@ List<ReminderContent> computeBehindNudges({
     }
     out.add(ReminderContent(
       kind: ReminderKind.behind,
-      title: '⚠️ ${course.name} slipped to Behind',
+      title: '🔻 ${course.name} slipped to Behind',
       body: body,
       courseId: course.id,
       messageId: messageId,

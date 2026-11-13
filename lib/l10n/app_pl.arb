@@ -2072,7 +2072,7 @@
       }
     }
   },
-  "notifBehindTitle": "⚠️ {course} jest teraz Opóźniony",
+  "notifBehindTitle": "🔻 {course} jest teraz Opóźniony",
   "@notifBehindTitle": {
     "description": "Behind-nudge notification title. {course} is the course name.",
     "placeholders": {

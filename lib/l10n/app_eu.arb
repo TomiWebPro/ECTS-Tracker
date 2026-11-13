@@ -2072,7 +2072,7 @@
       }
     }
   },
-  "notifBehindTitle": "⚠️ {course} Atzeratuta izatera igaro da",
+  "notifBehindTitle": "🔻 {course} Atzeratuta izatera igaro da",
   "@notifBehindTitle": {
     "description": "Behind-nudge notification title. {course} is the course name.",
     "placeholders": {

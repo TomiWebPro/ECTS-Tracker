@@ -2072,7 +2072,7 @@
       }
     }
   },
-  "notifBehindTitle": "⚠️ {course}이(가) 지연 상태가 되었습니다",
+  "notifBehindTitle": "🔻 {course}이(가) 지연 상태가 되었습니다",
   "@notifBehindTitle": {
     "description": "Behind-nudge notification title. {course} is the course name.",
     "placeholders": {

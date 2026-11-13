@@ -2072,7 +2072,7 @@
       }
     }
   },
-  "notifBehindTitle": "⚠️ Tá {course} tite Ar gcúl",
+  "notifBehindTitle": "🔻 Tá {course} tite Ar gcúl",
   "@notifBehindTitle": {
     "description": "Behind-nudge notification title. {course} is the course name.",
     "placeholders": {

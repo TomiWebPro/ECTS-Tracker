@@ -19,7 +19,7 @@ deadline countdown when close. Never nag. Phone and tablet identical
      (or silence — caller decides; pure logic returns `null` when nothing due)
 2. **Behind** (folded into the daily ping, no extra push): only when
    `status == behind` (real shortfall past the tolerance band, not one
-   missed evening). `⚠️ {Course} slipped to Behind` /
+   missed evening). `🔻 {Course} slipped to Behind` /
    `{left} h left, {d} days to go — {p} h/day from here. Log {catchUp} h
    to get back On track.` — where {catchUp} is computed by bisection over
    the engine (ECTS-075, never a hardcoded session size); when only

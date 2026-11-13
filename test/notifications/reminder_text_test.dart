@@ -67,7 +67,7 @@ void main() {
         },
       );
       final text = localizeReminder(en, base);
-      expect(text.title, '⚠️ Linear Algebra slipped to Behind');
+      expect(text.title, '🔻 Linear Algebra slipped to Behind');
       expect(text.body, contains('27 min/day'));
       expect(text.body, contains('1.2 h to get back On track.'));
     });
