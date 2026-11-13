@@ -32,9 +32,19 @@ Future<void> main() async {
   final startup = await initializeApp(openConnection());
   if (startup case StartupReady(:final db)) {
     // Single notification backend for reminders + the study-timer alert.
-    final backend = await RealNotificationBackend.create();
-    // Best-effort: never blocks or breaks launch (M9, ECTS-072).
-    unawaited(_rescheduleReminders(db, backend));
+    // Best-effort: a failed init (missing permissions/platform support)
+    // degrades to no OS notifications instead of blocking launch
+    // (the Windows-crash regression ECTS-094).
+    RealNotificationBackend? backend;
+    try {
+      backend = await RealNotificationBackend.create();
+    } catch (_) {
+      backend = null;
+    }
+    if (backend != null) {
+      // Best-effort: never blocks or breaks launch (M9, ECTS-072).
+      unawaited(_rescheduleReminders(db, backend));
+    }
     runApp(EctsTrackerApp(startup: startup, notificationBackend: backend));
   } else {
     runApp(EctsTrackerApp(startup: startup));

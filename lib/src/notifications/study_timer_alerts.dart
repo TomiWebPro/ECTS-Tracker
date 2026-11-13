@@ -22,6 +22,14 @@ import '../logic/study_timer.dart';
 /// Notification id for the single active timer (reminders use 1..3xx).
 const int studyTimerNotificationId = 9001;
 
+/// Windows toast identity (stable GUID for the activation callback).
+const WindowsInitializationSettings windowsNotificationSettings =
+    WindowsInitializationSettings(
+  appName: 'ECTS Tracker',
+  appUserModelId: 'EctsTracker.ECTSTracker',
+  guid: '7d9e2f4a-1b3c-4d5e-8f6a-9c0b2d4e6f8a',
+);
+
 /// Notification tap payload identifying the timer surface.
 const String studyTimerPayload = 'timer';
 
@@ -246,6 +254,9 @@ Future<void> _applyBackgroundTimerAction(String action) async {
           settings: const InitializationSettings(
             android: AndroidInitializationSettings('@mipmap/ic_launcher'),
             iOS: DarwinInitializationSettings(),
+            macOS: DarwinInitializationSettings(),
+            linux: LinuxInitializationSettings(defaultActionName: 'Open'),
+            windows: windowsNotificationSettings,
           ),
         );
         await plugin.cancel(id: studyTimerNotificationId);
@@ -273,6 +284,9 @@ Future<void> _reshowBackground(StudyTimerState timer) async {
     settings: const InitializationSettings(
       android: AndroidInitializationSettings('@mipmap/ic_launcher'),
       iOS: DarwinInitializationSettings(),
+      macOS: DarwinInitializationSettings(),
+      linux: LinuxInitializationSettings(defaultActionName: 'Open'),
+      windows: windowsNotificationSettings,
     ),
   );
   await plugin.show(

@@ -164,6 +164,9 @@ class RealNotificationBackend
 
   /// (Re-)initializes the plugin: response routing plus localized iOS timer
   /// categories (`visuals` null keeps the last/default English labels).
+  /// All platforms are registered so `create()`/`showTimer()` never throw
+  /// for a missing platform block (the Windows crash ECTS-094: the unified
+  /// plugin throws when the current platform's settings are absent).
   Future<void> _initializeTimerCategories(TimerAlertVisuals? visuals) {
     final categories = visuals == null
         ? _timerCategories(const TimerAlertVisuals(
@@ -182,6 +185,9 @@ class RealNotificationBackend
         iOS: DarwinInitializationSettings(
           notificationCategories: categories,
         ),
+        macOS: const DarwinInitializationSettings(),
+        linux: const LinuxInitializationSettings(defaultActionName: 'Open'),
+        windows: windowsNotificationSettings,
       ),
       onDidReceiveNotificationResponse: (response) {
         final action = response.actionId;
