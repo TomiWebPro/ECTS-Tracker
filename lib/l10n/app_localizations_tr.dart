@@ -1,5 +1,6 @@
 // ignore: unused_import
 import 'package:intl/intl.dart' as intl;
+
 import 'app_localizations.dart';
 
 // ignore_for_file: type=lint
@@ -82,10 +83,12 @@ class AppLocalizationsTr extends AppLocalizations {
   }
 
   @override
-  String get courseFormStartEarlyOn => 'Açık: süre şu ana kadar bölünür ve Bugünün temposuna dahil edilir.';
+  String get courseFormStartEarlyOn =>
+      'Açık: süre şu ana kadar bölünür ve Bugünün temposuna dahil edilir.';
 
   @override
-  String get courseFormStartEarlyTitle => 'Gelecekteki başlangıca rağmen şimdi başla';
+  String get courseFormStartEarlyTitle =>
+      'Gelecekteki başlangıca rağmen şimdi başla';
 
   @override
   String get courseFormTitleAdd => 'Ders ekle';
@@ -110,7 +113,8 @@ class AppLocalizationsTr extends AppLocalizations {
   }
 
   @override
-  String get coursesEmptyHint => '“Yeni ders” düğmesine dokunarak ilk dersini oluştur.';
+  String get coursesEmptyHint =>
+      '“Yeni ders” düğmesine dokunarak ilk dersini oluştur.';
 
   @override
   String get coursesEmptyTitle => 'Henüz ders yok';
@@ -150,7 +154,11 @@ class AppLocalizationsTr extends AppLocalizations {
   }
 
   @override
-  String coursesProgressWithStatus(String done, String required, String status) {
+  String coursesProgressWithStatus(
+    String done,
+    String required,
+    String status,
+  ) {
     return '$done / $required sa • $status';
   }
 
@@ -219,10 +227,12 @@ class AppLocalizationsTr extends AppLocalizations {
   }
 
   @override
-  String get dashboardEmptyHintAllDone => 'Tüm dersler tamamlandı — tam liste için Dersler sekmesine bak.';
+  String get dashboardEmptyHintAllDone =>
+      'Tüm dersler tamamlandı — tam liste için Dersler sekmesine bak.';
 
   @override
-  String get dashboardEmptyHintNoCourses => 'AKTS ilerlemeni takip etmeye başlamak için ders ekle.';
+  String get dashboardEmptyHintNoCourses =>
+      'AKTS ilerlemeni takip etmeye başlamak için ders ekle.';
 
   @override
   String dashboardExplainerBehind(String achieved, String need) {
@@ -235,10 +245,12 @@ class AppLocalizationsTr extends AppLocalizations {
   }
 
   @override
-  String get dashboardExplainerBehindNoPace => 'Geride: kalan saatlerle bugünkü son tarihe ulaşan sonlu bir tempo yok';
+  String get dashboardExplainerBehindNoPace =>
+      'Geride: kalan saatlerle bugünkü son tarihe ulaşan sonlu bir tempo yok';
 
   @override
-  String get dashboardExplainerOnTrackNoPace => 'Yolunda: henüz tempo yok — onaylamak için ilk oturumu kaydet';
+  String get dashboardExplainerOnTrackNoPace =>
+      'Yolunda: henüz tempo yok — onaylamak için ilk oturumu kaydet';
 
   @override
   String dashboardExplainerStartsIn(String days, String date) {
@@ -388,10 +400,12 @@ class AppLocalizationsTr extends AppLocalizations {
   String get dashboardStartsSoon => 'Yakında başlıyor';
 
   @override
-  String get dashboardTipEmpty => 'İlk dersini ekle — günlük tempon ve ilerlemen burada görünecek.';
+  String get dashboardTipEmpty =>
+      'İlk dersini ekle — günlük tempon ve ilerlemen burada görünecek.';
 
   @override
-  String get dashboardTipFirst => 'İlk 25 dakika en önemlisi — önce vadesi gelen dersi seç.';
+  String get dashboardTipFirst =>
+      'İlk 25 dakika en önemlisi — önce vadesi gelen dersi seç.';
 
   @override
   String get dashboardTodayBare => 'BUGÜN';
@@ -415,7 +429,8 @@ class AppLocalizationsTr extends AppLocalizations {
   }
 
   @override
-  String get dashboardUpcomingSubtitle => 'Gelecekteki başlangıçlar — bugün baskı yok, Bugünün temposuna dahil değil.';
+  String get dashboardUpcomingSubtitle =>
+      'Gelecekteki başlangıçlar — bugün baskı yok, Bugünün temposuna dahil değil.';
 
   @override
   String get dashboardUpcomingTitle => 'Yaklaşan';
@@ -424,7 +439,8 @@ class AppLocalizationsTr extends AppLocalizations {
   String get devToolsActivate => 'Etkinleştir';
 
   @override
-  String get devToolsActivateMessage => 'Bu, gizli stres testi araçlarının kilidini açar (üretilmiş veri yükler). Yalnızca geliştirme içindir.';
+  String get devToolsActivateMessage =>
+      'Bu, gizli stres testi araçlarının kilidini açar (üretilmiş veri yükler). Yalnızca geliştirme içindir.';
 
   @override
   String get devToolsActivateTitle => 'Geliştirici modu etkinleştirilsin mi?';
@@ -436,10 +452,12 @@ class AppLocalizationsTr extends AppLocalizations {
   String get devToolsClearPumped => 'Yüklenen veriyi temizle';
 
   @override
-  String get devToolsClearPumpedMessage => 'Üretilen STRES derslerini ve oturumlarını siler. Kendi verilerin korunur.';
+  String get devToolsClearPumpedMessage =>
+      'Üretilen STRES derslerini ve oturumlarını siler. Kendi verilerin korunur.';
 
   @override
-  String get devToolsClearPumpedSubtitle => 'Üretilen STRES derslerini ve oturumlarını sil.';
+  String get devToolsClearPumpedSubtitle =>
+      'Üretilen STRES derslerini ve oturumlarını sil.';
 
   @override
   String get devToolsClearPumpedTitle => 'Yüklenen veri temizlensin mi?';
@@ -450,7 +468,8 @@ class AppLocalizationsTr extends AppLocalizations {
   }
 
   @override
-  String get devToolsConfirmPumpMessage => 'İkinci onay: bu işlem dersleri, listeleri, grafikleri ve tempo hesaplarını şişirir ve birkaç saniye sürebilir. Şimdi yüklensin mi?';
+  String get devToolsConfirmPumpMessage =>
+      'İkinci onay: bu işlem dersleri, listeleri, grafikleri ve tempo hesaplarını şişirir ve birkaç saniye sürebilir. Şimdi yüklensin mi?';
 
   @override
   String get devToolsConfirmPumpTitle => 'Stres yüklemesini onayla';
@@ -468,10 +487,12 @@ class AppLocalizationsTr extends AppLocalizations {
   String get devToolsPumpData => 'Veri yükle';
 
   @override
-  String get devToolsPumpMessage => 'Bu, gerçekçi üretilmiş bir dönem ekler (~10 ders, son 12 haftada ~800 oturum). Mevcut verilerin korunur. Devam edilsin mi?';
+  String get devToolsPumpMessage =>
+      'Bu, gerçekçi üretilmiş bir dönem ekler (~10 ders, son 12 haftada ~800 oturum). Mevcut verilerin korunur. Devam edilsin mi?';
 
   @override
-  String get devToolsPumpSubtitle => 'Üretilmiş bir dönem ekle (~10 ders, ~800 oturum, 12 hafta). Mevcut veri korunur.';
+  String get devToolsPumpSubtitle =>
+      'Üretilmiş bir dönem ekle (~10 ders, ~800 oturum, 12 hafta). Mevcut veri korunur.';
 
   @override
   String get devToolsPumpTile => 'Test verisi yükle';
@@ -491,10 +512,12 @@ class AppLocalizationsTr extends AppLocalizations {
   String get devToolsRemoveAll => 'Tüm veriyi kaldır';
 
   @override
-  String get devToolsRemoveAllMessage => 'Geliştirici kısayolu: bu işlem TÜM dersleri, oturumları ve ayarları kalıcı olarak siler. Bu işlem geri alınamaz.';
+  String get devToolsRemoveAllMessage =>
+      'Geliştirici kısayolu: bu işlem TÜM dersleri, oturumları ve ayarları kalıcı olarak siler. Bu işlem geri alınamaz.';
 
   @override
-  String get devToolsRemoveAllSubtitle => 'Geliştirici kısayolu: TÜM dersleri, oturumları ve ayarları sil.';
+  String get devToolsRemoveAllSubtitle =>
+      'Geliştirici kısayolu: TÜM dersleri, oturumları ve ayarları sil.';
 
   @override
   String get devToolsRemoveAllTitle => 'Tüm veri kaldırılsın mı?';
@@ -547,7 +570,8 @@ class AppLocalizationsTr extends AppLocalizations {
   String get sessionFormNoCourseError => 'Bir ders seç.';
 
   @override
-  String get sessionFormNoCoursesHint => 'Oturum kaydetmek için önce ders ekle.';
+  String get sessionFormNoCoursesHint =>
+      'Oturum kaydetmek için önce ders ekle.';
 
   @override
   String get sessionFormNotesLabel => 'Notlar (isteğe bağlı)';
@@ -603,10 +627,12 @@ class AppLocalizationsTr extends AppLocalizations {
   String get settingsClearSample => 'Örnek veriyi temizle';
 
   @override
-  String get settingsClearSampleMessage => 'Bu işlem örnek dersleri ve oturumları kaldırır. Kendi eklediğin dersler veya oturumlar kaldırılmaz.';
+  String get settingsClearSampleMessage =>
+      'Bu işlem örnek dersleri ve oturumları kaldırır. Kendi eklediğin dersler veya oturumlar kaldırılmaz.';
 
   @override
-  String get settingsClearSampleSubtitle => 'Hazır örnek dersleri ve oturumları kaldır. Kendi verilerin korunur.';
+  String get settingsClearSampleSubtitle =>
+      'Hazır örnek dersleri ve oturumları kaldır. Kendi verilerin korunur.';
 
   @override
   String get settingsClearSampleTitle => 'Örnek veri temizlensin mi?';
@@ -670,7 +696,8 @@ class AppLocalizationsTr extends AppLocalizations {
   String get settingsExportCopied => 'Dışa aktarım panoya kopyalandı.';
 
   @override
-  String get settingsExportSubtitle => 'Tüm dersleri, oturumları ve ayarları JSON olarak kopyala.';
+  String get settingsExportSubtitle =>
+      'Tüm dersleri, oturumları ve ayarları JSON olarak kopyala.';
 
   @override
   String settingsExportSummary(String courses, String sessions, String kb) {
@@ -700,7 +727,8 @@ class AppLocalizationsTr extends AppLocalizations {
   String get settingsHoursError => 'Sıfırdan büyük bir sayı gir.';
 
   @override
-  String get settingsHoursHelper => 'Varsayılan 30. Değişiklik gereksinimleri yeniden hesaplar; kayıtlar korunur.';
+  String get settingsHoursHelper =>
+      'Varsayılan 30. Değişiklik gereksinimleri yeniden hesaplar; kayıtlar korunur.';
 
   @override
   String get settingsHoursLabel => 'AKTS kredisi başına saat';
@@ -731,7 +759,8 @@ class AppLocalizationsTr extends AppLocalizations {
   }
 
   @override
-  String get settingsImportInfo => 'Ekleme, yedeği mevcut verinin yanına ekler (ayarlar korunur). Değiştirme önce TÜM dersleri, oturumları ve ayarları siler.';
+  String get settingsImportInfo =>
+      'Ekleme, yedeği mevcut verinin yanına ekler (ayarlar korunur). Değiştirme önce TÜM dersleri, oturumları ve ayarları siler.';
 
   @override
   String get settingsImportLabel => 'Dışa aktarılan JSON\'u yapıştır';
@@ -765,7 +794,8 @@ class AppLocalizationsTr extends AppLocalizations {
   }
 
   @override
-  String get settingsImportSubtitle => 'Önceden dışa aktarılmış bir JSON yedeğinden tüm veriyi değiştir.';
+  String get settingsImportSubtitle =>
+      'Önceden dışa aktarılmış bir JSON yedeğinden tüm veriyi değiştir.';
 
   @override
   String settingsKeepHolding(String remaining) {
@@ -785,7 +815,8 @@ class AppLocalizationsTr extends AppLocalizations {
   String get settingsOverloadError => '5–100 arası bir sayı gir (sa/hafta).';
 
   @override
-  String get settingsOverloadHelper => 'Bu değerin üzerindeki gelecek yük haftaları kırmızı işaretlenir. Tam zamanlı çalışma ~35–40 sa/haftadır.';
+  String get settingsOverloadHelper =>
+      'Bu değerin üzerindeki gelecek yük haftaları kırmızı işaretlenir. Tam zamanlı çalışma ~35–40 sa/haftadır.';
 
   @override
   String settingsOverloadHours(String value) {
@@ -819,10 +850,12 @@ class AppLocalizationsTr extends AppLocalizations {
   String get settingsResetAll => 'Tüm veriyi sıfırla';
 
   @override
-  String get settingsResetAllMessage => 'Bu işlem TÜM dersleri, oturumları ve ayarları kalıcı olarak siler. Bu işlem geri alınamaz. Gerekirse önce yedek dışa aktar.';
+  String get settingsResetAllMessage =>
+      'Bu işlem TÜM dersleri, oturumları ve ayarları kalıcı olarak siler. Bu işlem geri alınamaz. Gerekirse önce yedek dışa aktar.';
 
   @override
-  String get settingsResetAllSubtitle => 'Tüm dersleri, oturumları ve ayarları sil.';
+  String get settingsResetAllSubtitle =>
+      'Tüm dersleri, oturumları ve ayarları sil.';
 
   @override
   String get settingsResetAllTitle => 'Tüm veri sıfırlansın mı?';
@@ -834,10 +867,12 @@ class AppLocalizationsTr extends AppLocalizations {
   String get settingsResetSettingsDone => 'Ayarlar varsayılanlara döndürüldü.';
 
   @override
-  String get settingsResetSettingsMessage => 'AKTS başına saat (30), günlük hedef (yok), haftanın ilk günü (Pazartesi), tema (sistem), tolerans (5 gün), aşırı yük (35 sa/hafta), boyut (rahat), renk (arduvaz) geri yüklenir. Dersler ve oturumlar korunur.';
+  String get settingsResetSettingsMessage =>
+      'AKTS başına saat (30), günlük hedef (yok), haftanın ilk günü (Pazartesi), tema (sistem), tolerans (5 gün), aşırı yük (35 sa/hafta), boyut (rahat), renk (arduvaz) geri yüklenir. Dersler ve oturumlar korunur.';
 
   @override
-  String get settingsResetSettingsSubtitle => 'Varsayılanları geri yükle: 30 sa/AKTS, hedef yok, Pazartesi, sistem teması, 5 gün tolerans, 35 sa/hafta aşırı yük, rahat boyut, arduvaz renk.';
+  String get settingsResetSettingsSubtitle =>
+      'Varsayılanları geri yükle: 30 sa/AKTS, hedef yok, Pazartesi, sistem teması, 5 gün tolerans, 35 sa/hafta aşırı yük, rahat boyut, arduvaz renk.';
 
   @override
   String get settingsResetSettingsTitle => 'Ayarlar sıfırlansın mı?';
@@ -877,7 +912,8 @@ class AppLocalizationsTr extends AppLocalizations {
   String get settingsToleranceError => '0–30 arası bir gün sayısı gir.';
 
   @override
-  String get settingsToleranceHelper => 'İleri durum +N gün fazla, geri durum −N gün gerektirir. 5 = dengeli, 0 = hassas.';
+  String get settingsToleranceHelper =>
+      'İleri durum +N gün fazla, geri durum −N gün gerektirir. 5 = dengeli, 0 = hassas.';
 
   @override
   String get settingsToleranceLabel => 'İş günü (0–30)';
@@ -944,7 +980,8 @@ class AppLocalizationsTr extends AppLocalizations {
   String get statsConsistency => 'Tutarlılık';
 
   @override
-  String get statsConsistencyHint => 'Son 30 günde çalışılan günler. Her gün küçük adımlar, sıkıştırmaktan iyidir.';
+  String get statsConsistencyHint =>
+      'Son 30 günde çalışılan günler. Her gün küçük adımlar, sıkıştırmaktan iyidir.';
 
   @override
   String statsConsistencyScore(String percent) {
@@ -1009,7 +1046,8 @@ class AppLocalizationsTr extends AppLocalizations {
   String get statsOverview => 'Genel bakış';
 
   @override
-  String get statsPaceCovers => 'Geçmiş tempo ihtiyacı karşılıyor. Seriyi koru.';
+  String get statsPaceCovers =>
+      'Geçmiş tempo ihtiyacı karşılıyor. Seriyi koru.';
 
   @override
   String statsPaceShort(String gap) {
@@ -1067,13 +1105,15 @@ class AppLocalizationsTr extends AppLocalizations {
   String get statusOverdue => 'Gecikmiş';
 
   @override
-  String get studyLogDeleteBody => 'Bu çalışma oturumu silinsin mi? Bu işlem geri alınamaz.';
+  String get studyLogDeleteBody =>
+      'Bu çalışma oturumu silinsin mi? Bu işlem geri alınamaz.';
 
   @override
   String get studyLogDeleteTitle => 'Oturum silinsin mi?';
 
   @override
-  String get studyLogEmptyHint => 'Çalışma süreni takip etmek için bir oturum kaydet.';
+  String get studyLogEmptyHint =>
+      'Çalışma süreni takip etmek için bir oturum kaydet.';
 
   @override
   String get studyLogEmptyTitle => 'Henüz çalışma oturumu yok';
@@ -1114,7 +1154,8 @@ class AppLocalizationsTr extends AppLocalizations {
   }
 
   @override
-  String get studyTimerAlreadyRunning => 'A timer is already running. Finish or discard it first.';
+  String get studyTimerAlreadyRunning =>
+      'A timer is already running. Finish or discard it first.';
 
   @override
   String get studyTimerCourseLabel => 'Course';
@@ -1123,7 +1164,8 @@ class AppLocalizationsTr extends AppLocalizations {
   String get studyTimerDiscard => 'Discard';
 
   @override
-  String get studyTimerDiscardBody => 'Throw away the current timer without logging? This cannot be undone.';
+  String get studyTimerDiscardBody =>
+      'Throw away the current timer without logging? This cannot be undone.';
 
   @override
   String get studyTimerDiscardTitle => 'Discard timer?';
@@ -1190,7 +1232,8 @@ class AppLocalizationsTr extends AppLocalizations {
   String get settingsLiquidGlass => 'Sıvı cam';
 
   @override
-  String get settingsLiquidGlassSubtitle => 'Buzlu cam kartlar ve çubuklar. Kapalı klasik düz görünümü korur.';
+  String get settingsLiquidGlassSubtitle =>
+      'Buzlu cam kartlar ve çubuklar. Kapalı klasik düz görünümü korur.';
 
   @override
   String get settingsLiquidGlassOn => 'Açık';
@@ -1205,7 +1248,8 @@ class AppLocalizationsTr extends AppLocalizations {
   String get devToolsReminderPreview => 'Hatırlatıcı önizleme';
 
   @override
-  String get devToolsReminderPreviewSubtitle => 'Şu anda neyin bildirim vereceğini gör. Windows güvenli test akışı.';
+  String get devToolsReminderPreviewSubtitle =>
+      'Şu anda neyin bildirim vereceğini gör. Windows güvenli test akışı.';
 
   @override
   String get reminderPreviewTitle => 'Hatırlatıcı önizleme';
@@ -1217,7 +1261,8 @@ class AppLocalizationsTr extends AppLocalizations {
   String get reminderPreviewReset => 'Şimdi';
 
   @override
-  String get reminderPreviewEmpty => 'Her yer sessiz — şu anda bildirim verecek bir şey yok.';
+  String get reminderPreviewEmpty =>
+      'Her yer sessiz — şu anda bildirim verecek bir şey yok.';
 
   @override
   String get reminderPreviewCustom => 'Özel programlar (demo)';
@@ -1253,7 +1298,8 @@ class AppLocalizationsTr extends AppLocalizations {
   String get settingsReminderTime => 'Hatırlatıcı saati';
 
   @override
-  String get settingsReminderDenied => 'Bildirimler engellendi — sistem ayarlarından etkinleştir.';
+  String get settingsReminderDenied =>
+      'Bildirimler engellendi — sistem ayarlarından etkinleştir.';
 
   @override
   String notifDurationHours(String value) {
@@ -1291,7 +1337,12 @@ class AppLocalizationsTr extends AppLocalizations {
   }
 
   @override
-  String notifBehindBodyPace(String left, String days, String pace, String catchUp) {
+  String notifBehindBodyPace(
+    String left,
+    String days,
+    String pace,
+    String catchUp,
+  ) {
     return '$left kaldı, $days gün kaldı — bundan sonra $pace/gün. Yeniden yoluna girmek için $catchUp kaydet.';
   }
 
@@ -1311,7 +1362,8 @@ class AppLocalizationsTr extends AppLocalizations {
   }
 
   @override
-  String get notifDeadlineTomorrowBody => 'Bugün kaydedeceğin her şey iki katı sayılır.';
+  String get notifDeadlineTomorrowBody =>
+      'Bugün kaydedeceğin her şey iki katı sayılır.';
 
   @override
   String notifDeadlineSoonTitle(String course, String days, String left) {
@@ -1324,7 +1376,8 @@ class AppLocalizationsTr extends AppLocalizations {
   }
 
   @override
-  String get notifDeadlineSoonBodyNoPace => 'Şimdi kaydedeceğin her saat sayılır.';
+  String get notifDeadlineSoonBodyNoPace =>
+      'Şimdi kaydedeceğin her saat sayılır.';
 
   @override
   String notifOverdueTitle(String course, String left) {
@@ -1332,7 +1385,8 @@ class AppLocalizationsTr extends AppLocalizations {
   }
 
   @override
-  String get notifOverdueBody => 'Son tarihi ertele veya saatleri tamamla — o zamana kadar ders Dikkat gerekiyor durumunda kalır.';
+  String get notifOverdueBody =>
+      'Son tarihi ertele veya saatleri tamamla — o zamana kadar ders Dikkat gerekiyor durumunda kalır.';
 
   @override
   String notifStreakTitle(String days, String week) {
@@ -1340,7 +1394,8 @@ class AppLocalizationsTr extends AppLocalizations {
   }
 
   @override
-  String get notifStreakBody => 'Tüm dersler yolunda veya önde. Güzel gidiyorsun.';
+  String get notifStreakBody =>
+      'Tüm dersler yolunda veya önde. Güzel gidiyorsun.';
 
   @override
   String notifCustomTitleAuto(String course) {

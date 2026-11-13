@@ -1,5 +1,6 @@
 // ignore: unused_import
 import 'package:intl/intl.dart' as intl;
+
 import 'app_localizations.dart';
 
 // ignore_for_file: type=lint
@@ -150,7 +151,11 @@ class AppLocalizationsKo extends AppLocalizations {
   }
 
   @override
-  String coursesProgressWithStatus(String done, String required, String status) {
+  String coursesProgressWithStatus(
+    String done,
+    String required,
+    String status,
+  ) {
     return '$done / $required시간・$status';
   }
 
@@ -219,7 +224,8 @@ class AppLocalizationsKo extends AppLocalizations {
   }
 
   @override
-  String get dashboardEmptyHintAllDone => '모든 과목이 완료되었습니다 — 전체 목록은 과목 탭에서 확인하세요.';
+  String get dashboardEmptyHintAllDone =>
+      '모든 과목이 완료되었습니다 — 전체 목록은 과목 탭에서 확인하세요.';
 
   @override
   String get dashboardEmptyHintNoCourses => '과목을 추가해 ECTS 진도 관리를 시작하세요.';
@@ -235,7 +241,8 @@ class AppLocalizationsKo extends AppLocalizations {
   }
 
   @override
-  String get dashboardExplainerBehindNoPace => '지연: 오늘이 마감이고 남은 시간 있음, 유한 페이스 없음';
+  String get dashboardExplainerBehindNoPace =>
+      '지연: 오늘이 마감이고 남은 시간 있음, 유한 페이스 없음';
 
   @override
   String get dashboardExplainerOnTrackNoPace => '정상: 아직 페이스 없음 — 첫 기록 후 확정됩니다';
@@ -424,7 +431,8 @@ class AppLocalizationsKo extends AppLocalizations {
   String get devToolsActivate => '활성화';
 
   @override
-  String get devToolsActivateMessage => '숨겨진 스트레스 테스트 도구(생성 데이터 주입)를 엽니다. 개발 전용입니다.';
+  String get devToolsActivateMessage =>
+      '숨겨진 스트레스 테스트 도구(생성 데이터 주입)를 엽니다. 개발 전용입니다.';
 
   @override
   String get devToolsActivateTitle => '개발 모드를 활성화할까요?';
@@ -436,7 +444,8 @@ class AppLocalizationsKo extends AppLocalizations {
   String get devToolsClearPumped => '생성 데이터 지우기';
 
   @override
-  String get devToolsClearPumpedMessage => '생성된 STRESS 과목과 기록을 삭제합니다. 내 데이터는 유지됩니다.';
+  String get devToolsClearPumpedMessage =>
+      '생성된 STRESS 과목과 기록을 삭제합니다. 내 데이터는 유지됩니다.';
 
   @override
   String get devToolsClearPumpedSubtitle => '생성된 STRESS 과목과 기록을 삭제합니다.';
@@ -450,7 +459,8 @@ class AppLocalizationsKo extends AppLocalizations {
   }
 
   @override
-  String get devToolsConfirmPumpMessage => '최종 확인: 과목・목록・차트・페이스 계산이 부풀어 오르고 몇 초 걸릴 수 있습니다. 지금 주입할까요?';
+  String get devToolsConfirmPumpMessage =>
+      '최종 확인: 과목・목록・차트・페이스 계산이 부풀어 오르고 몇 초 걸릴 수 있습니다. 지금 주입할까요?';
 
   @override
   String get devToolsConfirmPumpTitle => '스트레스 주입 확인';
@@ -468,10 +478,12 @@ class AppLocalizationsKo extends AppLocalizations {
   String get devToolsPumpData => '데이터 주입';
 
   @override
-  String get devToolsPumpMessage => '현실적인 생성 학기(약 10개 과목, 최근 12주간 약 800개 기록)를 삽입합니다. 기존 데이터는 유지됩니다. 계속할까요?';
+  String get devToolsPumpMessage =>
+      '현실적인 생성 학기(약 10개 과목, 최근 12주간 약 800개 기록)를 삽입합니다. 기존 데이터는 유지됩니다. 계속할까요?';
 
   @override
-  String get devToolsPumpSubtitle => '생성 학기 삽입(약 10개 과목・약 800개 기록・12주). 기존 데이터 유지.';
+  String get devToolsPumpSubtitle =>
+      '생성 학기 삽입(약 10개 과목・약 800개 기록・12주). 기존 데이터 유지.';
 
   @override
   String get devToolsPumpTile => '테스트 데이터 주입';
@@ -491,7 +503,8 @@ class AppLocalizationsKo extends AppLocalizations {
   String get devToolsRemoveAll => '모든 데이터 삭제';
 
   @override
-  String get devToolsRemoveAllMessage => '개발용 바로가기: 모든 과목・기록・설정을 완전히 삭제합니다. 되돌릴 수 없습니다.';
+  String get devToolsRemoveAllMessage =>
+      '개발용 바로가기: 모든 과목・기록・설정을 완전히 삭제합니다. 되돌릴 수 없습니다.';
 
   @override
   String get devToolsRemoveAllSubtitle => '개발용 바로가기: 모든 과목・기록・설정을 삭제합니다.';
@@ -603,7 +616,8 @@ class AppLocalizationsKo extends AppLocalizations {
   String get settingsClearSample => '샘플 데이터 지우기';
 
   @override
-  String get settingsClearSampleMessage => '예제 과목과 기록을 삭제합니다. 직접 추가한 과목・기록은 삭제되지 않습니다.';
+  String get settingsClearSampleMessage =>
+      '예제 과목과 기록을 삭제합니다. 직접 추가한 과목・기록은 삭제되지 않습니다.';
 
   @override
   String get settingsClearSampleSubtitle => '예제 과목과 기록을 삭제합니다. 내 데이터는 유지됩니다.';
@@ -731,7 +745,8 @@ class AppLocalizationsKo extends AppLocalizations {
   }
 
   @override
-  String get settingsImportInfo => '추가는 현재 데이터에 백업을 더합니다(설정 유지). 교체는 먼저 모든 과목・기록・설정을 지웁니다.';
+  String get settingsImportInfo =>
+      '추가는 현재 데이터에 백업을 더합니다(설정 유지). 교체는 먼저 모든 과목・기록・설정을 지웁니다.';
 
   @override
   String get settingsImportLabel => '내보낸 JSON 붙여넣기';
@@ -785,7 +800,8 @@ class AppLocalizationsKo extends AppLocalizations {
   String get settingsOverloadError => '5–100시간/주의 숫자를 입력하세요.';
 
   @override
-  String get settingsOverloadHelper => '이 값을 넘는 주는 빨간색으로 표시됩니다. 전일제 학습은 약 35–40시간/주입니다.';
+  String get settingsOverloadHelper =>
+      '이 값을 넘는 주는 빨간색으로 표시됩니다. 전일제 학습은 약 35–40시간/주입니다.';
 
   @override
   String settingsOverloadHours(String value) {
@@ -819,7 +835,8 @@ class AppLocalizationsKo extends AppLocalizations {
   String get settingsResetAll => '모든 데이터 초기화';
 
   @override
-  String get settingsResetAllMessage => '모든 과목・기록・설정을 완전히 삭제합니다. 되돌릴 수 없습니다. 필요하면 먼저 백업을 내보내세요.';
+  String get settingsResetAllMessage =>
+      '모든 과목・기록・설정을 완전히 삭제합니다. 되돌릴 수 없습니다. 필요하면 먼저 백업을 내보내세요.';
 
   @override
   String get settingsResetAllSubtitle => '모든 과목・기록・설정을 삭제합니다.';
@@ -834,10 +851,12 @@ class AppLocalizationsKo extends AppLocalizations {
   String get settingsResetSettingsDone => '설정을 기본값으로 되돌렸습니다.';
 
   @override
-  String get settingsResetSettingsMessage => 'ECTS당 시간(30), 하루 목표(없음), 주 시작(월요일), 테마(시스템), 허용치(5일), 과부하(35시간/주), 크기(보통), 색상(슬레이트)으로 되돌립니다. 과목과 기록은 유지됩니다.';
+  String get settingsResetSettingsMessage =>
+      'ECTS당 시간(30), 하루 목표(없음), 주 시작(월요일), 테마(시스템), 허용치(5일), 과부하(35시간/주), 크기(보통), 색상(슬레이트)으로 되돌립니다. 과목과 기록은 유지됩니다.';
 
   @override
-  String get settingsResetSettingsSubtitle => '기본값으로 복원: 30시간/ECTS, 목표 없음, 월요일, 시스템 테마, 5일 허용치, 35시간/주, 보통 크기, 슬레이트 색상.';
+  String get settingsResetSettingsSubtitle =>
+      '기본값으로 복원: 30시간/ECTS, 목표 없음, 월요일, 시스템 테마, 5일 허용치, 35시간/주, 보통 크기, 슬레이트 색상.';
 
   @override
   String get settingsResetSettingsTitle => '설정을 초기화할까요?';
@@ -877,7 +896,8 @@ class AppLocalizationsKo extends AppLocalizations {
   String get settingsToleranceError => '0–30일의 숫자를 입력하세요.';
 
   @override
-  String get settingsToleranceHelper => '앞서감은 +N일 여유, 지연은 −N일이 필요합니다. 5=안정, 0=민감.';
+  String get settingsToleranceHelper =>
+      '앞서감은 +N일 여유, 지연은 −N일이 필요합니다. 5=안정, 0=민감.';
 
   @override
   String get settingsToleranceLabel => '작업 일수(0–30)';
@@ -1114,7 +1134,8 @@ class AppLocalizationsKo extends AppLocalizations {
   }
 
   @override
-  String get studyTimerAlreadyRunning => 'A timer is already running. Finish or discard it first.';
+  String get studyTimerAlreadyRunning =>
+      'A timer is already running. Finish or discard it first.';
 
   @override
   String get studyTimerCourseLabel => 'Course';
@@ -1123,7 +1144,8 @@ class AppLocalizationsKo extends AppLocalizations {
   String get studyTimerDiscard => 'Discard';
 
   @override
-  String get studyTimerDiscardBody => 'Throw away the current timer without logging? This cannot be undone.';
+  String get studyTimerDiscardBody =>
+      'Throw away the current timer without logging? This cannot be undone.';
 
   @override
   String get studyTimerDiscardTitle => 'Discard timer?';
@@ -1190,7 +1212,8 @@ class AppLocalizationsKo extends AppLocalizations {
   String get settingsLiquidGlass => '리퀴드 글래스';
 
   @override
-  String get settingsLiquidGlassSubtitle => '프로스티드 유리 카드와 바. 끄면 기존의 단단한 모양이 유지됩니다.';
+  String get settingsLiquidGlassSubtitle =>
+      '프로스티드 유리 카드와 바. 끄면 기존의 단단한 모양이 유지됩니다.';
 
   @override
   String get settingsLiquidGlassOn => '켜짐';
@@ -1205,7 +1228,8 @@ class AppLocalizationsKo extends AppLocalizations {
   String get devToolsReminderPreview => '미리 알림 미리 보기';
 
   @override
-  String get devToolsReminderPreviewSubtitle => '지금 알림될 내용을 확인하세요. Windows 안전 테스트 피드.';
+  String get devToolsReminderPreviewSubtitle =>
+      '지금 알림될 내용을 확인하세요. Windows 안전 테스트 피드.';
 
   @override
   String get reminderPreviewTitle => '미리 알림 미리 보기';
@@ -1291,7 +1315,12 @@ class AppLocalizationsKo extends AppLocalizations {
   }
 
   @override
-  String notifBehindBodyPace(String left, String days, String pace, String catchUp) {
+  String notifBehindBodyPace(
+    String left,
+    String days,
+    String pace,
+    String catchUp,
+  ) {
     return '$left 남음, $days일 남음 — 여기서부터 $pace/일. 정상으로 돌아가려면 $catchUp을(를) 기록하세요.';
   }
 
@@ -1332,7 +1361,8 @@ class AppLocalizationsKo extends AppLocalizations {
   }
 
   @override
-  String get notifOverdueBody => '마감일을 옮기거나 시간을 채우세요 — 그때까지 이 과목은 관심 필요 상태로 남습니다.';
+  String get notifOverdueBody =>
+      '마감일을 옮기거나 시간을 채우세요 — 그때까지 이 과목은 관심 필요 상태로 남습니다.';
 
   @override
   String notifStreakTitle(String days, String week) {

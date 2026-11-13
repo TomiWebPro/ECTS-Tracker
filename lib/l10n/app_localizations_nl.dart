@@ -1,5 +1,6 @@
 // ignore: unused_import
 import 'package:intl/intl.dart' as intl;
+
 import 'app_localizations.dart';
 
 // ignore_for_file: type=lint
@@ -82,10 +83,12 @@ class AppLocalizationsNl extends AppLocalizations {
   }
 
   @override
-  String get courseFormStartEarlyOn => 'Aan: tijd wordt verdeeld tot nu en telt mee voor het tempo van Vandaag.';
+  String get courseFormStartEarlyOn =>
+      'Aan: tijd wordt verdeeld tot nu en telt mee voor het tempo van Vandaag.';
 
   @override
-  String get courseFormStartEarlyTitle => 'Nu starten ondanks toekomstige start';
+  String get courseFormStartEarlyTitle =>
+      'Nu starten ondanks toekomstige start';
 
   @override
   String get courseFormTitleAdd => 'Vak toevoegen';
@@ -110,7 +113,8 @@ class AppLocalizationsNl extends AppLocalizations {
   }
 
   @override
-  String get coursesEmptyHint => 'Tik op \"Nieuw vak\" om je eerste vak aan te maken.';
+  String get coursesEmptyHint =>
+      'Tik op \"Nieuw vak\" om je eerste vak aan te maken.';
 
   @override
   String get coursesEmptyTitle => 'Nog geen vakken';
@@ -150,7 +154,11 @@ class AppLocalizationsNl extends AppLocalizations {
   }
 
   @override
-  String coursesProgressWithStatus(String done, String required, String status) {
+  String coursesProgressWithStatus(
+    String done,
+    String required,
+    String status,
+  ) {
     return '$done / $required u • $status';
   }
 
@@ -219,10 +227,12 @@ class AppLocalizationsNl extends AppLocalizations {
   }
 
   @override
-  String get dashboardEmptyHintAllDone => 'Alle vakken zijn afgerond — zie het tabblad Vakken voor de volledige lijst.';
+  String get dashboardEmptyHintAllDone =>
+      'Alle vakken zijn afgerond — zie het tabblad Vakken voor de volledige lijst.';
 
   @override
-  String get dashboardEmptyHintNoCourses => 'Voeg een vak toe om je ECTS-voortgang bij te houden.';
+  String get dashboardEmptyHintNoCourses =>
+      'Voeg een vak toe om je ECTS-voortgang bij te houden.';
 
   @override
   String dashboardExplainerBehind(String achieved, String need) {
@@ -235,10 +245,12 @@ class AppLocalizationsNl extends AppLocalizations {
   }
 
   @override
-  String get dashboardExplainerBehindNoPace => 'Achter: geen eindig tempo haalt een deadline van vandaag met resterende uren';
+  String get dashboardExplainerBehindNoPace =>
+      'Achter: geen eindig tempo haalt een deadline van vandaag met resterende uren';
 
   @override
-  String get dashboardExplainerOnTrackNoPace => 'Op schema: nog geen tempo — log de eerste sessie om te bevestigen';
+  String get dashboardExplainerOnTrackNoPace =>
+      'Op schema: nog geen tempo — log de eerste sessie om te bevestigen';
 
   @override
   String dashboardExplainerStartsIn(String days, String date) {
@@ -359,7 +371,8 @@ class AppLocalizationsNl extends AppLocalizations {
   String get dashboardProgramBare => 'PROGRAMMA';
 
   @override
-  String get dashboardProgramEmptyHint => 'Voeg een vak toe om te beginnen met bijhouden';
+  String get dashboardProgramEmptyHint =>
+      'Voeg een vak toe om te beginnen met bijhouden';
 
   @override
   String dashboardProgramHours(String done, String required) {
@@ -388,10 +401,12 @@ class AppLocalizationsNl extends AppLocalizations {
   String get dashboardStartsSoon => 'Begint binnenkort';
 
   @override
-  String get dashboardTipEmpty => 'Voeg je eerste vak toe — je dagelijkse tempo en voortgang verschijnen hier.';
+  String get dashboardTipEmpty =>
+      'Voeg je eerste vak toe — je dagelijkse tempo en voortgang verschijnen hier.';
 
   @override
-  String get dashboardTipFirst => 'De eerste 25 minuten tellen het meest — kies het vak met de vroegste deadline.';
+  String get dashboardTipFirst =>
+      'De eerste 25 minuten tellen het meest — kies het vak met de vroegste deadline.';
 
   @override
   String get dashboardTodayBare => 'VANDAAG';
@@ -415,7 +430,8 @@ class AppLocalizationsNl extends AppLocalizations {
   }
 
   @override
-  String get dashboardUpcomingSubtitle => 'Toekomstige starts — vandaag geen druk, uitgesloten van het tempo van Vandaag.';
+  String get dashboardUpcomingSubtitle =>
+      'Toekomstige starts — vandaag geen druk, uitgesloten van het tempo van Vandaag.';
 
   @override
   String get dashboardUpcomingTitle => 'Aankomend';
@@ -424,7 +440,8 @@ class AppLocalizationsNl extends AppLocalizations {
   String get devToolsActivate => 'Activeren';
 
   @override
-  String get devToolsActivateMessage => 'Dit ontgrendelt verborgen stresstesttools (gegenereerde data pompen). Alleen voor ontwikkeling.';
+  String get devToolsActivateMessage =>
+      'Dit ontgrendelt verborgen stresstesttools (gegenereerde data pompen). Alleen voor ontwikkeling.';
 
   @override
   String get devToolsActivateTitle => 'Dev-modus activeren?';
@@ -436,10 +453,12 @@ class AppLocalizationsNl extends AppLocalizations {
   String get devToolsClearPumped => 'Gepompte data wissen';
 
   @override
-  String get devToolsClearPumpedMessage => 'Verwijdert de gegenereerde STRESS-vakken en hun sessies. Je eigen data blijft behouden.';
+  String get devToolsClearPumpedMessage =>
+      'Verwijdert de gegenereerde STRESS-vakken en hun sessies. Je eigen data blijft behouden.';
 
   @override
-  String get devToolsClearPumpedSubtitle => 'Gegenereerde STRESS-vakken en sessies verwijderen.';
+  String get devToolsClearPumpedSubtitle =>
+      'Gegenereerde STRESS-vakken en sessies verwijderen.';
 
   @override
   String get devToolsClearPumpedTitle => 'Gepompte data wissen?';
@@ -450,7 +469,8 @@ class AppLocalizationsNl extends AppLocalizations {
   }
 
   @override
-  String get devToolsConfirmPumpMessage => 'Tweede bevestiging: dit blaast vakken, lijsten, grafieken en tempoberekeningen op en kan enkele seconden duren. Nu pompen?';
+  String get devToolsConfirmPumpMessage =>
+      'Tweede bevestiging: dit blaast vakken, lijsten, grafieken en tempoberekeningen op en kan enkele seconden duren. Nu pompen?';
 
   @override
   String get devToolsConfirmPumpTitle => 'Stresspomp bevestigen';
@@ -468,10 +488,12 @@ class AppLocalizationsNl extends AppLocalizations {
   String get devToolsPumpData => 'Data pompen';
 
   @override
-  String get devToolsPumpMessage => 'Dit voegt een realistisch gegenereerd semester in (~10 vakken, ~800 sessies over de afgelopen 12 weken). Je bestaande data blijft behouden. Doorgaan?';
+  String get devToolsPumpMessage =>
+      'Dit voegt een realistisch gegenereerd semester in (~10 vakken, ~800 sessies over de afgelopen 12 weken). Je bestaande data blijft behouden. Doorgaan?';
 
   @override
-  String get devToolsPumpSubtitle => 'Een gegenereerd semester invoegen (~10 vakken, ~800 sessies, 12 weken). Bestaande data blijft behouden.';
+  String get devToolsPumpSubtitle =>
+      'Een gegenereerd semester invoegen (~10 vakken, ~800 sessies, 12 weken). Bestaande data blijft behouden.';
 
   @override
   String get devToolsPumpTile => 'Testdata pompen';
@@ -491,10 +513,12 @@ class AppLocalizationsNl extends AppLocalizations {
   String get devToolsRemoveAll => 'Alle data verwijderen';
 
   @override
-  String get devToolsRemoveAllMessage => 'Dev-snelkoppeling: dit verwijdert permanent ALLE vakken, sessies en instellingen. Dit kan niet ongedaan worden gemaakt.';
+  String get devToolsRemoveAllMessage =>
+      'Dev-snelkoppeling: dit verwijdert permanent ALLE vakken, sessies en instellingen. Dit kan niet ongedaan worden gemaakt.';
 
   @override
-  String get devToolsRemoveAllSubtitle => 'Dev-snelkoppeling: ALLE vakken, sessies en instellingen verwijderen.';
+  String get devToolsRemoveAllSubtitle =>
+      'Dev-snelkoppeling: ALLE vakken, sessies en instellingen verwijderen.';
 
   @override
   String get devToolsRemoveAllTitle => 'Alle data verwijderen?';
@@ -547,7 +571,8 @@ class AppLocalizationsNl extends AppLocalizations {
   String get sessionFormNoCourseError => 'Selecteer een vak.';
 
   @override
-  String get sessionFormNoCoursesHint => 'Voeg eerst een vak toe om een sessie te loggen.';
+  String get sessionFormNoCoursesHint =>
+      'Voeg eerst een vak toe om een sessie te loggen.';
 
   @override
   String get sessionFormNotesLabel => 'Notities (optioneel)';
@@ -603,10 +628,12 @@ class AppLocalizationsNl extends AppLocalizations {
   String get settingsClearSample => 'Voorbeelddata wissen';
 
   @override
-  String get settingsClearSampleMessage => 'Dit verwijdert de voorbeeldvakken en -sessies. Vakken of sessies die je zelf hebt toegevoegd, worden niet verwijderd.';
+  String get settingsClearSampleMessage =>
+      'Dit verwijdert de voorbeeldvakken en -sessies. Vakken of sessies die je zelf hebt toegevoegd, worden niet verwijderd.';
 
   @override
-  String get settingsClearSampleSubtitle => 'De vooraf ingevulde voorbeeldvakken en -sessies verwijderen. Je eigen data blijft behouden.';
+  String get settingsClearSampleSubtitle =>
+      'De vooraf ingevulde voorbeeldvakken en -sessies verwijderen. Je eigen data blijft behouden.';
 
   @override
   String get settingsClearSampleTitle => 'Voorbeelddata wissen?';
@@ -670,7 +697,8 @@ class AppLocalizationsNl extends AppLocalizations {
   String get settingsExportCopied => 'Export naar klembord gekopieerd.';
 
   @override
-  String get settingsExportSubtitle => 'Alle vakken, sessies en instellingen als JSON kopiëren.';
+  String get settingsExportSubtitle =>
+      'Alle vakken, sessies en instellingen als JSON kopiëren.';
 
   @override
   String settingsExportSummary(String courses, String sessions, String kb) {
@@ -686,7 +714,8 @@ class AppLocalizationsNl extends AppLocalizations {
   String get settingsFirstWeekday => 'Eerste dag van de week';
 
   @override
-  String get settingsFirstWeekdayUpdated => 'Eerste dag van de week bijgewerkt.';
+  String get settingsFirstWeekdayUpdated =>
+      'Eerste dag van de week bijgewerkt.';
 
   @override
   String settingsHoldLabel(String label, String seconds) {
@@ -700,7 +729,8 @@ class AppLocalizationsNl extends AppLocalizations {
   String get settingsHoursError => 'Voer een getal groter dan nul in.';
 
   @override
-  String get settingsHoursHelper => 'Standaard 30. Wijzigen herberekent vereisten; logs blijven behouden.';
+  String get settingsHoursHelper =>
+      'Standaard 30. Wijzigen herberekent vereisten; logs blijven behouden.';
 
   @override
   String get settingsHoursLabel => 'Uren per ECTS-punt';
@@ -731,7 +761,8 @@ class AppLocalizationsNl extends AppLocalizations {
   }
 
   @override
-  String get settingsImportInfo => 'Toevoegen plaatst de back-up naast je huidige data (instellingen blijven). Vervangen wist eerst ALLE vakken, sessies en instellingen.';
+  String get settingsImportInfo =>
+      'Toevoegen plaatst de back-up naast je huidige data (instellingen blijven). Vervangen wist eerst ALLE vakken, sessies en instellingen.';
 
   @override
   String get settingsImportLabel => 'Geëxporteerde JSON plakken';
@@ -765,7 +796,8 @@ class AppLocalizationsNl extends AppLocalizations {
   }
 
   @override
-  String get settingsImportSubtitle => 'Alle data vervangen vanuit een eerder geëxporteerde JSON-back-up.';
+  String get settingsImportSubtitle =>
+      'Alle data vervangen vanuit een eerder geëxporteerde JSON-back-up.';
 
   @override
   String settingsKeepHolding(String remaining) {
@@ -776,7 +808,8 @@ class AppLocalizationsNl extends AppLocalizations {
   String get settingsNoSample => 'Geen voorbeelddata';
 
   @override
-  String get settingsNoSampleSubtitle => 'De vooraf ingevulde voorbeelddata is al gewist.';
+  String get settingsNoSampleSubtitle =>
+      'De vooraf ingevulde voorbeelddata is al gewist.';
 
   @override
   String get settingsNoTarget => 'Geen doel ingesteld';
@@ -785,7 +818,8 @@ class AppLocalizationsNl extends AppLocalizations {
   String get settingsOverloadError => 'Voer een getal 5–100 u/week in.';
 
   @override
-  String get settingsOverloadHelper => 'Aankomende belastingsweken hierboven worden rood gemarkeerd. Voltijdstudie is ~35–40 u/week.';
+  String get settingsOverloadHelper =>
+      'Aankomende belastingsweken hierboven worden rood gemarkeerd. Voltijdstudie is ~35–40 u/week.';
 
   @override
   String settingsOverloadHours(String value) {
@@ -819,10 +853,12 @@ class AppLocalizationsNl extends AppLocalizations {
   String get settingsResetAll => 'Alle data opnieuw instellen';
 
   @override
-  String get settingsResetAllMessage => 'Dit verwijdert permanent ALLE vakken, sessies en instellingen. Dit kan niet ongedaan worden gemaakt. Exporteer eerst een back-up indien nodig.';
+  String get settingsResetAllMessage =>
+      'Dit verwijdert permanent ALLE vakken, sessies en instellingen. Dit kan niet ongedaan worden gemaakt. Exporteer eerst een back-up indien nodig.';
 
   @override
-  String get settingsResetAllSubtitle => 'Alle vakken, sessies en instellingen verwijderen.';
+  String get settingsResetAllSubtitle =>
+      'Alle vakken, sessies en instellingen verwijderen.';
 
   @override
   String get settingsResetAllTitle => 'Alle data opnieuw instellen?';
@@ -831,13 +867,16 @@ class AppLocalizationsNl extends AppLocalizations {
   String get settingsResetSettings => 'Instellingen opnieuw instellen';
 
   @override
-  String get settingsResetSettingsDone => 'Instellingen teruggezet naar standaard.';
+  String get settingsResetSettingsDone =>
+      'Instellingen teruggezet naar standaard.';
 
   @override
-  String get settingsResetSettingsMessage => 'Herstelt uren per ECTS (30), dagdoel (geen), eerste weekdag (maandag), thema (systeem), tolerantie (5 dagen), overbelasting (35 u/week), grootte (comfortabel), kleur (leisteen). Vakken en sessies blijven behouden.';
+  String get settingsResetSettingsMessage =>
+      'Herstelt uren per ECTS (30), dagdoel (geen), eerste weekdag (maandag), thema (systeem), tolerantie (5 dagen), overbelasting (35 u/week), grootte (comfortabel), kleur (leisteen). Vakken en sessies blijven behouden.';
 
   @override
-  String get settingsResetSettingsSubtitle => 'Standaarden herstellen: 30 u/ECTS, geen doel, maandag, systeemthema, tolerantie 5 dagen, overbelasting 35 u/week, comfortabele grootte, leisteenkleur.';
+  String get settingsResetSettingsSubtitle =>
+      'Standaarden herstellen: 30 u/ECTS, geen doel, maandag, systeemthema, tolerantie 5 dagen, overbelasting 35 u/week, comfortabele grootte, leisteenkleur.';
 
   @override
   String get settingsResetSettingsTitle => 'Instellingen opnieuw instellen?';
@@ -877,7 +916,8 @@ class AppLocalizationsNl extends AppLocalizations {
   String get settingsToleranceError => 'Voer een getal 0–30 dagen in.';
 
   @override
-  String get settingsToleranceHelper => 'Voorsprong vereist +N dagen overschot, achterstand −N dagen. 5 = stabiel, 0 = gevoelig.';
+  String get settingsToleranceHelper =>
+      'Voorsprong vereist +N dagen overschot, achterstand −N dagen. 5 = stabiel, 0 = gevoelig.';
 
   @override
   String get settingsToleranceLabel => 'Dagen werk (0–30)';
@@ -935,7 +975,8 @@ class AppLocalizationsNl extends AppLocalizations {
   }
 
   @override
-  String get statsAddDeadlines => 'Voeg deadlines toe om de belasting te voorspellen.';
+  String get statsAddDeadlines =>
+      'Voeg deadlines toe om de belasting te voorspellen.';
 
   @override
   String get statsComingLoad => 'Aankomende belasting';
@@ -944,7 +985,8 @@ class AppLocalizationsNl extends AppLocalizations {
   String get statsConsistency => 'Consistentie';
 
   @override
-  String get statsConsistencyHint => 'Studiedagen in de afgelopen 30 dagen. Kleine stappen elke dag verslaan blokken.';
+  String get statsConsistencyHint =>
+      'Studiedagen in de afgelopen 30 dagen. Kleine stappen elke dag verslaan blokken.';
 
   @override
   String statsConsistencyScore(String percent) {
@@ -998,7 +1040,8 @@ class AppLocalizationsNl extends AppLocalizations {
   String get statsNext8Weeks => 'Volgende 8 weken';
 
   @override
-  String get statsOfLast30DaysVolume => 'van het volume van de afgelopen 30 dagen';
+  String get statsOfLast30DaysVolume =>
+      'van het volume van de afgelopen 30 dagen';
 
   @override
   String statsOverloadWarning(String threshold) {
@@ -1009,7 +1052,8 @@ class AppLocalizationsNl extends AppLocalizations {
   String get statsOverview => 'Overzicht';
 
   @override
-  String get statsPaceCovers => 'Het tempo tot nu toe dekt wat nodig is. Houd de reeks vast.';
+  String get statsPaceCovers =>
+      'Het tempo tot nu toe dekt wat nodig is. Houd de reeks vast.';
 
   @override
   String statsPaceShort(String gap) {
@@ -1067,13 +1111,15 @@ class AppLocalizationsNl extends AppLocalizations {
   String get statusOverdue => 'Te laat';
 
   @override
-  String get studyLogDeleteBody => 'Deze studiesessie verwijderen? Dit kan niet ongedaan worden gemaakt.';
+  String get studyLogDeleteBody =>
+      'Deze studiesessie verwijderen? Dit kan niet ongedaan worden gemaakt.';
 
   @override
   String get studyLogDeleteTitle => 'Sessie verwijderen?';
 
   @override
-  String get studyLogEmptyHint => 'Log een sessie om je studietijd bij te houden.';
+  String get studyLogEmptyHint =>
+      'Log een sessie om je studietijd bij te houden.';
 
   @override
   String get studyLogEmptyTitle => 'Nog geen studiesessies';
@@ -1114,7 +1160,8 @@ class AppLocalizationsNl extends AppLocalizations {
   }
 
   @override
-  String get studyTimerAlreadyRunning => 'A timer is already running. Finish or discard it first.';
+  String get studyTimerAlreadyRunning =>
+      'A timer is already running. Finish or discard it first.';
 
   @override
   String get studyTimerCourseLabel => 'Course';
@@ -1123,7 +1170,8 @@ class AppLocalizationsNl extends AppLocalizations {
   String get studyTimerDiscard => 'Discard';
 
   @override
-  String get studyTimerDiscardBody => 'Throw away the current timer without logging? This cannot be undone.';
+  String get studyTimerDiscardBody =>
+      'Throw away the current timer without logging? This cannot be undone.';
 
   @override
   String get studyTimerDiscardTitle => 'Discard timer?';
@@ -1190,7 +1238,8 @@ class AppLocalizationsNl extends AppLocalizations {
   String get settingsLiquidGlass => 'Liquid glass';
 
   @override
-  String get settingsLiquidGlassSubtitle => 'Kaarten en balken van matglas. Uit behoudt de klassieke, effen uitstraling.';
+  String get settingsLiquidGlassSubtitle =>
+      'Kaarten en balken van matglas. Uit behoudt de klassieke, effen uitstraling.';
 
   @override
   String get settingsLiquidGlassOn => 'Aan';
@@ -1205,7 +1254,8 @@ class AppLocalizationsNl extends AppLocalizations {
   String get devToolsReminderPreview => 'Voorbeeld herinnering';
 
   @override
-  String get devToolsReminderPreviewSubtitle => 'Zie wat nu een melding zou geven. Windows-veilige testfeed.';
+  String get devToolsReminderPreviewSubtitle =>
+      'Zie wat nu een melding zou geven. Windows-veilige testfeed.';
 
   @override
   String get reminderPreviewTitle => 'Voorbeeld herinnering';
@@ -1247,13 +1297,15 @@ class AppLocalizationsNl extends AppLocalizations {
   String get settingsReminders => 'Studieherinneringen';
 
   @override
-  String get settingsRemindersOff => 'Uit — zet aan voor een dagelijkse herinnering.';
+  String get settingsRemindersOff =>
+      'Uit — zet aan voor een dagelijkse herinnering.';
 
   @override
   String get settingsReminderTime => 'Herinneringstijd';
 
   @override
-  String get settingsReminderDenied => 'Meldingen zijn geblokkeerd — schakel ze in via de systeeminstellingen.';
+  String get settingsReminderDenied =>
+      'Meldingen zijn geblokkeerd — schakel ze in via de systeeminstellingen.';
 
   @override
   String notifDurationHours(String value) {
@@ -1291,7 +1343,12 @@ class AppLocalizationsNl extends AppLocalizations {
   }
 
   @override
-  String notifBehindBodyPace(String left, String days, String pace, String catchUp) {
+  String notifBehindBodyPace(
+    String left,
+    String days,
+    String pace,
+    String catchUp,
+  ) {
     return 'Nog $left, nog $days dagen — $pace/dag vanaf hier. Log $catchUp om weer Op schema te komen.';
   }
 
@@ -1311,7 +1368,8 @@ class AppLocalizationsNl extends AppLocalizations {
   }
 
   @override
-  String get notifDeadlineTomorrowBody => 'Alles wat je vandaag logt telt dubbel.';
+  String get notifDeadlineTomorrowBody =>
+      'Alles wat je vandaag logt telt dubbel.';
 
   @override
   String notifDeadlineSoonTitle(String course, String days, String left) {
@@ -1332,7 +1390,8 @@ class AppLocalizationsNl extends AppLocalizations {
   }
 
   @override
-  String get notifOverdueBody => 'Verplaats de deadline of maak de uren af — de cursus blijft onder Aandacht nodig tot dan.';
+  String get notifOverdueBody =>
+      'Verplaats de deadline of maak de uren af — de cursus blijft onder Aandacht nodig tot dan.';
 
   @override
   String notifStreakTitle(String days, String week) {
@@ -1340,7 +1399,8 @@ class AppLocalizationsNl extends AppLocalizations {
   }
 
   @override
-  String get notifStreakBody => 'Alle cursussen Op schema of Voorop. Lekker bezig.';
+  String get notifStreakBody =>
+      'Alle cursussen Op schema of Voorop. Lekker bezig.';
 
   @override
   String notifCustomTitleAuto(String course) {

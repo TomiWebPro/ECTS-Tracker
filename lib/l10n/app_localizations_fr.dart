@@ -1,5 +1,6 @@
 // ignore: unused_import
 import 'package:intl/intl.dart' as intl;
+
 import 'app_localizations.dart';
 
 // ignore_for_file: type=lint
@@ -82,7 +83,8 @@ class AppLocalizationsFr extends AppLocalizations {
   }
 
   @override
-  String get courseFormStartEarlyOn => 'Activé : le temps est réparti jusqu’à maintenant et compte pour le rythme du jour.';
+  String get courseFormStartEarlyOn =>
+      'Activé : le temps est réparti jusqu’à maintenant et compte pour le rythme du jour.';
 
   @override
   String get courseFormStartEarlyTitle => 'Commencer malgré un début futur';
@@ -110,7 +112,8 @@ class AppLocalizationsFr extends AppLocalizations {
   }
 
   @override
-  String get coursesEmptyHint => 'Touchez « Nouveau cours » pour créer votre premier cours.';
+  String get coursesEmptyHint =>
+      'Touchez « Nouveau cours » pour créer votre premier cours.';
 
   @override
   String get coursesEmptyTitle => 'Aucun cours pour l’instant';
@@ -150,7 +153,11 @@ class AppLocalizationsFr extends AppLocalizations {
   }
 
   @override
-  String coursesProgressWithStatus(String done, String required, String status) {
+  String coursesProgressWithStatus(
+    String done,
+    String required,
+    String status,
+  ) {
     return '$done / $required h • $status';
   }
 
@@ -219,10 +226,12 @@ class AppLocalizationsFr extends AppLocalizations {
   }
 
   @override
-  String get dashboardEmptyHintAllDone => 'Tous les cours sont terminés — voir l’onglet Cours pour la liste complète.';
+  String get dashboardEmptyHintAllDone =>
+      'Tous les cours sont terminés — voir l’onglet Cours pour la liste complète.';
 
   @override
-  String get dashboardEmptyHintNoCourses => 'Ajoutez un cours pour suivre votre progression ECTS.';
+  String get dashboardEmptyHintNoCourses =>
+      'Ajoutez un cours pour suivre votre progression ECTS.';
 
   @override
   String dashboardExplainerBehind(String achieved, String need) {
@@ -235,10 +244,12 @@ class AppLocalizationsFr extends AppLocalizations {
   }
 
   @override
-  String get dashboardExplainerBehindNoPace => 'En retard : aucun rythme fini ne permet de tenir une échéance aujourd’hui avec des heures restantes';
+  String get dashboardExplainerBehindNoPace =>
+      'En retard : aucun rythme fini ne permet de tenir une échéance aujourd’hui avec des heures restantes';
 
   @override
-  String get dashboardExplainerOnTrackNoPace => 'En bonne voie : pas encore de rythme — enregistrez la première session pour confirmer';
+  String get dashboardExplainerOnTrackNoPace =>
+      'En bonne voie : pas encore de rythme — enregistrez la première session pour confirmer';
 
   @override
   String dashboardExplainerStartsIn(String days, String date) {
@@ -388,10 +399,12 @@ class AppLocalizationsFr extends AppLocalizations {
   String get dashboardStartsSoon => 'Commence bientôt';
 
   @override
-  String get dashboardTipEmpty => 'Ajoutez votre premier cours — votre rythme quotidien et votre progression apparaîtront ici.';
+  String get dashboardTipEmpty =>
+      'Ajoutez votre premier cours — votre rythme quotidien et votre progression apparaîtront ici.';
 
   @override
-  String get dashboardTipFirst => 'Les 25 premières minutes comptent le plus — choisissez le cours à l’échéance la plus proche.';
+  String get dashboardTipFirst =>
+      'Les 25 premières minutes comptent le plus — choisissez le cours à l’échéance la plus proche.';
 
   @override
   String get dashboardTodayBare => 'AUJOURD’HUI';
@@ -415,7 +428,8 @@ class AppLocalizationsFr extends AppLocalizations {
   }
 
   @override
-  String get dashboardUpcomingSubtitle => 'Débuts futurs — aucune pression aujourd’hui, exclus du rythme du jour.';
+  String get dashboardUpcomingSubtitle =>
+      'Débuts futurs — aucune pression aujourd’hui, exclus du rythme du jour.';
 
   @override
   String get dashboardUpcomingTitle => 'À venir';
@@ -424,7 +438,8 @@ class AppLocalizationsFr extends AppLocalizations {
   String get devToolsActivate => 'Activer';
 
   @override
-  String get devToolsActivateMessage => 'Cela déverrouille des outils de test cachés (génération de données). Réservé au développement.';
+  String get devToolsActivateMessage =>
+      'Cela déverrouille des outils de test cachés (génération de données). Réservé au développement.';
 
   @override
   String get devToolsActivateTitle => 'Activer le mode dev ?';
@@ -436,10 +451,12 @@ class AppLocalizationsFr extends AppLocalizations {
   String get devToolsClearPumped => 'Effacer les données générées';
 
   @override
-  String get devToolsClearPumpedMessage => 'Supprime les cours STRESS générés et leurs sessions. Vos propres données sont conservées.';
+  String get devToolsClearPumpedMessage =>
+      'Supprime les cours STRESS générés et leurs sessions. Vos propres données sont conservées.';
 
   @override
-  String get devToolsClearPumpedSubtitle => 'Supprimer les cours et sessions STRESS générés.';
+  String get devToolsClearPumpedSubtitle =>
+      'Supprimer les cours et sessions STRESS générés.';
 
   @override
   String get devToolsClearPumpedTitle => 'Effacer les données générées ?';
@@ -450,7 +467,8 @@ class AppLocalizationsFr extends AppLocalizations {
   }
 
   @override
-  String get devToolsConfirmPumpMessage => 'Seconde confirmation : cela va gonfler cours, listes, graphiques et calculs de rythme, et peut prendre quelques secondes. Générer maintenant ?';
+  String get devToolsConfirmPumpMessage =>
+      'Seconde confirmation : cela va gonfler cours, listes, graphiques et calculs de rythme, et peut prendre quelques secondes. Générer maintenant ?';
 
   @override
   String get devToolsConfirmPumpTitle => 'Confirmer le test de charge';
@@ -468,10 +486,12 @@ class AppLocalizationsFr extends AppLocalizations {
   String get devToolsPumpData => 'Générer des données';
 
   @override
-  String get devToolsPumpMessage => 'Cela insère un semestre généré réaliste (~10 cours, ~800 sessions sur les 12 dernières semaines). Vos données existantes sont conservées. Continuer ?';
+  String get devToolsPumpMessage =>
+      'Cela insère un semestre généré réaliste (~10 cours, ~800 sessions sur les 12 dernières semaines). Vos données existantes sont conservées. Continuer ?';
 
   @override
-  String get devToolsPumpSubtitle => 'Insérer un semestre généré (~10 cours, ~800 sessions, 12 semaines). Données existantes conservées.';
+  String get devToolsPumpSubtitle =>
+      'Insérer un semestre généré (~10 cours, ~800 sessions, 12 semaines). Données existantes conservées.';
 
   @override
   String get devToolsPumpTile => 'Générer des données de test';
@@ -491,10 +511,12 @@ class AppLocalizationsFr extends AppLocalizations {
   String get devToolsRemoveAll => 'Tout supprimer';
 
   @override
-  String get devToolsRemoveAllMessage => 'Raccourci dev : cela supprime définitivement TOUS les cours, sessions et réglages. Cette action est irréversible.';
+  String get devToolsRemoveAllMessage =>
+      'Raccourci dev : cela supprime définitivement TOUS les cours, sessions et réglages. Cette action est irréversible.';
 
   @override
-  String get devToolsRemoveAllSubtitle => 'Raccourci dev : supprimer TOUS les cours, sessions et réglages.';
+  String get devToolsRemoveAllSubtitle =>
+      'Raccourci dev : supprimer TOUS les cours, sessions et réglages.';
 
   @override
   String get devToolsRemoveAllTitle => 'Tout supprimer ?';
@@ -526,7 +548,8 @@ class AppLocalizationsFr extends AppLocalizations {
   }
 
   @override
-  String get sessionFormDurationError => 'La durée doit être supérieure à zéro.';
+  String get sessionFormDurationError =>
+      'La durée doit être supérieure à zéro.';
 
   @override
   String get sessionFormHoursLabel => 'Heures';
@@ -547,7 +570,8 @@ class AppLocalizationsFr extends AppLocalizations {
   String get sessionFormNoCourseError => 'Sélectionnez un cours.';
 
   @override
-  String get sessionFormNoCoursesHint => 'Ajoutez d’abord un cours pour enregistrer une session.';
+  String get sessionFormNoCoursesHint =>
+      'Ajoutez d’abord un cours pour enregistrer une session.';
 
   @override
   String get sessionFormNotesLabel => 'Notes (facultatif)';
@@ -603,10 +627,12 @@ class AppLocalizationsFr extends AppLocalizations {
   String get settingsClearSample => 'Effacer les données d’exemple';
 
   @override
-  String get settingsClearSampleMessage => 'Cela supprime les cours et sessions d’exemple. Les cours ou sessions que vous avez ajoutés ne sont pas supprimés.';
+  String get settingsClearSampleMessage =>
+      'Cela supprime les cours et sessions d’exemple. Les cours ou sessions que vous avez ajoutés ne sont pas supprimés.';
 
   @override
-  String get settingsClearSampleSubtitle => 'Supprimer les cours et sessions d’exemple fournis. Vos propres données sont conservées.';
+  String get settingsClearSampleSubtitle =>
+      'Supprimer les cours et sessions d’exemple fournis. Vos propres données sont conservées.';
 
   @override
   String get settingsClearSampleTitle => 'Effacer les données d’exemple ?';
@@ -615,7 +641,8 @@ class AppLocalizationsFr extends AppLocalizations {
   String get settingsCopy => 'Copier';
 
   @override
-  String get settingsDailyError => 'Saisissez 0 ou un nombre positif de minutes.';
+  String get settingsDailyError =>
+      'Saisissez 0 ou un nombre positif de minutes.';
 
   @override
   String get settingsDailyLabel => 'Minutes par jour (0 = aucun objectif)';
@@ -670,7 +697,8 @@ class AppLocalizationsFr extends AppLocalizations {
   String get settingsExportCopied => 'Export copié dans le presse-papiers.';
 
   @override
-  String get settingsExportSubtitle => 'Copier tous les cours, sessions et réglages en JSON.';
+  String get settingsExportSubtitle =>
+      'Copier tous les cours, sessions et réglages en JSON.';
 
   @override
   String settingsExportSummary(String courses, String sessions, String kb) {
@@ -686,7 +714,8 @@ class AppLocalizationsFr extends AppLocalizations {
   String get settingsFirstWeekday => 'Premier jour de la semaine';
 
   @override
-  String get settingsFirstWeekdayUpdated => 'Premier jour de la semaine mis à jour.';
+  String get settingsFirstWeekdayUpdated =>
+      'Premier jour de la semaine mis à jour.';
 
   @override
   String settingsHoldLabel(String label, String seconds) {
@@ -700,7 +729,8 @@ class AppLocalizationsFr extends AppLocalizations {
   String get settingsHoursError => 'Saisissez un nombre supérieur à zéro.';
 
   @override
-  String get settingsHoursHelper => 'Par défaut 30. Toute modification recalcule les exigences ; les relevés sont conservés.';
+  String get settingsHoursHelper =>
+      'Par défaut 30. Toute modification recalcule les exigences ; les relevés sont conservés.';
 
   @override
   String get settingsHoursLabel => 'Heures par crédit ECTS';
@@ -731,7 +761,8 @@ class AppLocalizationsFr extends AppLocalizations {
   }
 
   @override
-  String get settingsImportInfo => 'L’ajout ajoute la sauvegarde à vos données actuelles (réglages conservés). Remplacer efface d’abord TOUS les cours, sessions et réglages.';
+  String get settingsImportInfo =>
+      'L’ajout ajoute la sauvegarde à vos données actuelles (réglages conservés). Remplacer efface d’abord TOUS les cours, sessions et réglages.';
 
   @override
   String get settingsImportLabel => 'Coller le JSON exporté';
@@ -765,7 +796,8 @@ class AppLocalizationsFr extends AppLocalizations {
   }
 
   @override
-  String get settingsImportSubtitle => 'Remplacer toutes les données à partir d’une sauvegarde JSON exportée.';
+  String get settingsImportSubtitle =>
+      'Remplacer toutes les données à partir d’une sauvegarde JSON exportée.';
 
   @override
   String settingsKeepHolding(String remaining) {
@@ -776,16 +808,19 @@ class AppLocalizationsFr extends AppLocalizations {
   String get settingsNoSample => 'Aucune donnée d’exemple';
 
   @override
-  String get settingsNoSampleSubtitle => 'Les données d’exemple fournies ont déjà été effacées.';
+  String get settingsNoSampleSubtitle =>
+      'Les données d’exemple fournies ont déjà été effacées.';
 
   @override
   String get settingsNoTarget => 'Aucun objectif défini';
 
   @override
-  String get settingsOverloadError => 'Saisissez un nombre de 5 à 100 h/semaine.';
+  String get settingsOverloadError =>
+      'Saisissez un nombre de 5 à 100 h/semaine.';
 
   @override
-  String get settingsOverloadHelper => 'Les semaines à venir au-dessus de ce seuil sont signalées en rouge. Des études à temps plein représentent ~35–40 h/semaine.';
+  String get settingsOverloadHelper =>
+      'Les semaines à venir au-dessus de ce seuil sont signalées en rouge. Des études à temps plein représentent ~35–40 h/semaine.';
 
   @override
   String settingsOverloadHours(String value) {
@@ -819,10 +854,12 @@ class AppLocalizationsFr extends AppLocalizations {
   String get settingsResetAll => 'Réinitialiser toutes les données';
 
   @override
-  String get settingsResetAllMessage => 'Cela supprime définitivement TOUS les cours, sessions et réglages. Cette action est irréversible. Exportez d’abord une sauvegarde si besoin.';
+  String get settingsResetAllMessage =>
+      'Cela supprime définitivement TOUS les cours, sessions et réglages. Cette action est irréversible. Exportez d’abord une sauvegarde si besoin.';
 
   @override
-  String get settingsResetAllSubtitle => 'Supprimer tous les cours, sessions et réglages.';
+  String get settingsResetAllSubtitle =>
+      'Supprimer tous les cours, sessions et réglages.';
 
   @override
   String get settingsResetAllTitle => 'Réinitialiser toutes les données ?';
@@ -834,10 +871,12 @@ class AppLocalizationsFr extends AppLocalizations {
   String get settingsResetSettingsDone => 'Réglages réinitialisés par défaut.';
 
   @override
-  String get settingsResetSettingsMessage => 'Restaure heures-par-ECTS (30), objectif quotidien (aucun), premier jour (lundi), thème (système), tolérance (5 jours), surcharge (35 h/semaine), taille (confortable), couleur (ardoise). Cours et sessions conservés.';
+  String get settingsResetSettingsMessage =>
+      'Restaure heures-par-ECTS (30), objectif quotidien (aucun), premier jour (lundi), thème (système), tolérance (5 jours), surcharge (35 h/semaine), taille (confortable), couleur (ardoise). Cours et sessions conservés.';
 
   @override
-  String get settingsResetSettingsSubtitle => 'Restaurer les valeurs par défaut : 30 h/ECTS, aucun objectif, lundi, thème système, tolérance 5 jours, surcharge 35 h/semaine, taille confortable, couleur ardoise.';
+  String get settingsResetSettingsSubtitle =>
+      'Restaurer les valeurs par défaut : 30 h/ECTS, aucun objectif, lundi, thème système, tolérance 5 jours, surcharge 35 h/semaine, taille confortable, couleur ardoise.';
 
   @override
   String get settingsResetSettingsTitle => 'Réinitialiser les réglages ?';
@@ -877,7 +916,8 @@ class AppLocalizationsFr extends AppLocalizations {
   String get settingsToleranceError => 'Saisissez un nombre de 0 à 30 jours.';
 
   @override
-  String get settingsToleranceHelper => 'L’avance nécessite +N jours de surplus, le retard −N jours. 5 = stable, 0 = sensible.';
+  String get settingsToleranceHelper =>
+      'L’avance nécessite +N jours de surplus, le retard −N jours. 5 = stable, 0 = sensible.';
 
   @override
   String get settingsToleranceLabel => 'Jours de travail (0–30)';
@@ -935,7 +975,8 @@ class AppLocalizationsFr extends AppLocalizations {
   }
 
   @override
-  String get statsAddDeadlines => 'Ajoutez des échéances pour prévoir la charge.';
+  String get statsAddDeadlines =>
+      'Ajoutez des échéances pour prévoir la charge.';
 
   @override
   String get statsComingLoad => 'Charge à venir';
@@ -944,7 +985,8 @@ class AppLocalizationsFr extends AppLocalizations {
   String get statsConsistency => 'Régularité';
 
   @override
-  String get statsConsistencyHint => 'Jours d’étude sur les 30 derniers jours. Mieux vaut un peu chaque jour que le bachotage.';
+  String get statsConsistencyHint =>
+      'Jours d’étude sur les 30 derniers jours. Mieux vaut un peu chaque jour que le bachotage.';
 
   @override
   String statsConsistencyScore(String percent) {
@@ -1009,7 +1051,8 @@ class AppLocalizationsFr extends AppLocalizations {
   String get statsOverview => 'Aperçu';
 
   @override
-  String get statsPaceCovers => 'Le rythme passé couvre le nécessaire. Gardez l’élan.';
+  String get statsPaceCovers =>
+      'Le rythme passé couvre le nécessaire. Gardez l’élan.';
 
   @override
   String statsPaceShort(String gap) {
@@ -1067,13 +1110,15 @@ class AppLocalizationsFr extends AppLocalizations {
   String get statusOverdue => 'Dépassé';
 
   @override
-  String get studyLogDeleteBody => 'Supprimer cette session d’étude ? Cette action est irréversible.';
+  String get studyLogDeleteBody =>
+      'Supprimer cette session d’étude ? Cette action est irréversible.';
 
   @override
   String get studyLogDeleteTitle => 'Supprimer la session ?';
 
   @override
-  String get studyLogEmptyHint => 'Enregistrez une session pour suivre votre temps d’étude.';
+  String get studyLogEmptyHint =>
+      'Enregistrez une session pour suivre votre temps d’étude.';
 
   @override
   String get studyLogEmptyTitle => 'Aucune session d’étude pour l’instant';
@@ -1114,7 +1159,8 @@ class AppLocalizationsFr extends AppLocalizations {
   }
 
   @override
-  String get studyTimerAlreadyRunning => 'A timer is already running. Finish or discard it first.';
+  String get studyTimerAlreadyRunning =>
+      'A timer is already running. Finish or discard it first.';
 
   @override
   String get studyTimerCourseLabel => 'Course';
@@ -1123,7 +1169,8 @@ class AppLocalizationsFr extends AppLocalizations {
   String get studyTimerDiscard => 'Discard';
 
   @override
-  String get studyTimerDiscardBody => 'Throw away the current timer without logging? This cannot be undone.';
+  String get studyTimerDiscardBody =>
+      'Throw away the current timer without logging? This cannot be undone.';
 
   @override
   String get studyTimerDiscardTitle => 'Discard timer?';
@@ -1163,7 +1210,8 @@ class AppLocalizationsFr extends AppLocalizations {
   String get studyTimerTooShort => 'Timer has not run yet.';
 
   @override
-  String get validationCourseEctsPositive => 'Les ECTS doivent être supérieurs à zéro';
+  String get validationCourseEctsPositive =>
+      'Les ECTS doivent être supérieurs à zéro';
 
   @override
   String get validationCourseEctsRequired => 'Saisissez les crédits ECTS';
@@ -1190,7 +1238,8 @@ class AppLocalizationsFr extends AppLocalizations {
   String get settingsLiquidGlass => 'Verre liquide';
 
   @override
-  String get settingsLiquidGlassSubtitle => 'Cartes et barres en verre dépoli. Désactivé conserve le style classique uni.';
+  String get settingsLiquidGlassSubtitle =>
+      'Cartes et barres en verre dépoli. Désactivé conserve le style classique uni.';
 
   @override
   String get settingsLiquidGlassOn => 'Activé';
@@ -1205,7 +1254,8 @@ class AppLocalizationsFr extends AppLocalizations {
   String get devToolsReminderPreview => 'Aperçu du rappel';
 
   @override
-  String get devToolsReminderPreviewSubtitle => 'Voyez ce qui se déclencherait maintenant. Flux de test sans risque sous Windows.';
+  String get devToolsReminderPreviewSubtitle =>
+      'Voyez ce qui se déclencherait maintenant. Flux de test sans risque sous Windows.';
 
   @override
   String get reminderPreviewTitle => 'Aperçu du rappel';
@@ -1217,7 +1267,8 @@ class AppLocalizationsFr extends AppLocalizations {
   String get reminderPreviewReset => 'Maintenant';
 
   @override
-  String get reminderPreviewEmpty => 'Tout est calme — rien ne se déclencherait à cette heure.';
+  String get reminderPreviewEmpty =>
+      'Tout est calme — rien ne se déclencherait à cette heure.';
 
   @override
   String get reminderPreviewCustom => 'Horaires personnalisés (démo)';
@@ -1247,13 +1298,15 @@ class AppLocalizationsFr extends AppLocalizations {
   String get settingsReminders => 'Rappels d’étude';
 
   @override
-  String get settingsRemindersOff => 'Désactivé — activez pour un rappel quotidien.';
+  String get settingsRemindersOff =>
+      'Désactivé — activez pour un rappel quotidien.';
 
   @override
   String get settingsReminderTime => 'Heure du rappel';
 
   @override
-  String get settingsReminderDenied => 'Les notifications sont bloquées — activez-les dans les réglages système.';
+  String get settingsReminderDenied =>
+      'Les notifications sont bloquées — activez-les dans les réglages système.';
 
   @override
   String notifDurationHours(String value) {
@@ -1291,7 +1344,12 @@ class AppLocalizationsFr extends AppLocalizations {
   }
 
   @override
-  String notifBehindBodyPace(String left, String days, String pace, String catchUp) {
+  String notifBehindBodyPace(
+    String left,
+    String days,
+    String pace,
+    String catchUp,
+  ) {
     return '$left restants, $days jours restants — $pace/jour à partir d’ici. Enregistrez $catchUp pour revenir En bonne voie.';
   }
 
@@ -1311,7 +1369,8 @@ class AppLocalizationsFr extends AppLocalizations {
   }
 
   @override
-  String get notifDeadlineTomorrowBody => 'Tout ce que vous enregistrez aujourd’hui compte double.';
+  String get notifDeadlineTomorrowBody =>
+      'Tout ce que vous enregistrez aujourd’hui compte double.';
 
   @override
   String notifDeadlineSoonTitle(String course, String days, String left) {
@@ -1324,7 +1383,8 @@ class AppLocalizationsFr extends AppLocalizations {
   }
 
   @override
-  String get notifDeadlineSoonBodyNoPace => 'Chaque heure enregistrée maintenant compte.';
+  String get notifDeadlineSoonBodyNoPace =>
+      'Chaque heure enregistrée maintenant compte.';
 
   @override
   String notifOverdueTitle(String course, String left) {
@@ -1332,7 +1392,8 @@ class AppLocalizationsFr extends AppLocalizations {
   }
 
   @override
-  String get notifOverdueBody => 'Déplacez l’échéance ou terminez les heures — le cours reste à surveiller jusque-là.';
+  String get notifOverdueBody =>
+      'Déplacez l’échéance ou terminez les heures — le cours reste à surveiller jusque-là.';
 
   @override
   String notifStreakTitle(String days, String week) {
@@ -1340,7 +1401,8 @@ class AppLocalizationsFr extends AppLocalizations {
   }
 
   @override
-  String get notifStreakBody => 'Tous les cours En bonne voie ou En avance. Belle série.';
+  String get notifStreakBody =>
+      'Tous les cours En bonne voie ou En avance. Belle série.';
 
   @override
   String notifCustomTitleAuto(String course) {

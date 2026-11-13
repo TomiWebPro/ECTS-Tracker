@@ -1,5 +1,6 @@
 // ignore: unused_import
 import 'package:intl/intl.dart' as intl;
+
 import 'app_localizations.dart';
 
 // ignore_for_file: type=lint
@@ -82,10 +83,12 @@ class AppLocalizationsLv extends AppLocalizations {
   }
 
   @override
-  String get courseFormStartEarlyOn => 'Ieslēgts: laiks tiek sadalīts līdz šim brīdim un ieskaitīts šodienas tempā.';
+  String get courseFormStartEarlyOn =>
+      'Ieslēgts: laiks tiek sadalīts līdz šim brīdim un ieskaitīts šodienas tempā.';
 
   @override
-  String get courseFormStartEarlyTitle => 'Sākt tagad, neskatoties uz nākotnes sākumu';
+  String get courseFormStartEarlyTitle =>
+      'Sākt tagad, neskatoties uz nākotnes sākumu';
 
   @override
   String get courseFormTitleAdd => 'Pievienot kursu';
@@ -110,7 +113,8 @@ class AppLocalizationsLv extends AppLocalizations {
   }
 
   @override
-  String get coursesEmptyHint => 'Pieskarieties “Jauns kurss”, lai izveidotu savu pirmo kursu.';
+  String get coursesEmptyHint =>
+      'Pieskarieties “Jauns kurss”, lai izveidotu savu pirmo kursu.';
 
   @override
   String get coursesEmptyTitle => 'Vēl nav kursu';
@@ -150,7 +154,11 @@ class AppLocalizationsLv extends AppLocalizations {
   }
 
   @override
-  String coursesProgressWithStatus(String done, String required, String status) {
+  String coursesProgressWithStatus(
+    String done,
+    String required,
+    String status,
+  ) {
     return '$done / $required h • $status';
   }
 
@@ -219,10 +227,12 @@ class AppLocalizationsLv extends AppLocalizations {
   }
 
   @override
-  String get dashboardEmptyHintAllDone => 'Visi kursi ir pabeigti — pilnu sarakstu skatiet cilnē Kursi.';
+  String get dashboardEmptyHintAllDone =>
+      'Visi kursi ir pabeigti — pilnu sarakstu skatiet cilnē Kursi.';
 
   @override
-  String get dashboardEmptyHintNoCourses => 'Pievienojiet kursu, lai sāktu izsekot savu ECTS progresu.';
+  String get dashboardEmptyHintNoCourses =>
+      'Pievienojiet kursu, lai sāktu izsekot savu ECTS progresu.';
 
   @override
   String dashboardExplainerBehind(String achieved, String need) {
@@ -235,10 +245,12 @@ class AppLocalizationsLv extends AppLocalizations {
   }
 
   @override
-  String get dashboardExplainerBehindNoPace => 'Atpaliek: neviens galīgs temps nesasniedz šodienas termiņu ar atlikušajām stundām';
+  String get dashboardExplainerBehindNoPace =>
+      'Atpaliek: neviens galīgs temps nesasniedz šodienas termiņu ar atlikušajām stundām';
 
   @override
-  String get dashboardExplainerOnTrackNoPace => 'Labā ritmā: tempa vēl nav — reģistrējiet pirmo sesiju, lai apstiprinātu';
+  String get dashboardExplainerOnTrackNoPace =>
+      'Labā ritmā: tempa vēl nav — reģistrējiet pirmo sesiju, lai apstiprinātu';
 
   @override
   String dashboardExplainerStartsIn(String days, String date) {
@@ -359,7 +371,8 @@ class AppLocalizationsLv extends AppLocalizations {
   String get dashboardProgramBare => 'PROGRAMMA';
 
   @override
-  String get dashboardProgramEmptyHint => 'Pievienojiet kursu, lai sāktu izsekot';
+  String get dashboardProgramEmptyHint =>
+      'Pievienojiet kursu, lai sāktu izsekot';
 
   @override
   String dashboardProgramHours(String done, String required) {
@@ -388,10 +401,12 @@ class AppLocalizationsLv extends AppLocalizations {
   String get dashboardStartsSoon => 'Sākas drīz';
 
   @override
-  String get dashboardTipEmpty => 'Pievienojiet savu pirmo kursu — jūsu ikdienas temps un progress parādīsies šeit.';
+  String get dashboardTipEmpty =>
+      'Pievienojiet savu pirmo kursu — jūsu ikdienas temps un progress parādīsies šeit.';
 
   @override
-  String get dashboardTipFirst => 'Pirmās 25 minūtes ir vissvarīgākās — izvēlieties kursu ar tuvāko termiņu.';
+  String get dashboardTipFirst =>
+      'Pirmās 25 minūtes ir vissvarīgākās — izvēlieties kursu ar tuvāko termiņu.';
 
   @override
   String get dashboardTodayBare => 'ŠODIEN';
@@ -415,7 +430,8 @@ class AppLocalizationsLv extends AppLocalizations {
   }
 
   @override
-  String get dashboardUpcomingSubtitle => 'Nākotnes sākumi — šodien bez slodzes, izslēgti no šodienas tempa.';
+  String get dashboardUpcomingSubtitle =>
+      'Nākotnes sākumi — šodien bez slodzes, izslēgti no šodienas tempa.';
 
   @override
   String get dashboardUpcomingTitle => 'Gaidāmie';
@@ -424,7 +440,8 @@ class AppLocalizationsLv extends AppLocalizations {
   String get devToolsActivate => 'Aktivizēt';
 
   @override
-  String get devToolsActivateMessage => 'Tas atbloķē slēptos stresa testa rīkus (ģenerētu datu ievietošanu). Tikai izstrādei.';
+  String get devToolsActivateMessage =>
+      'Tas atbloķē slēptos stresa testa rīkus (ģenerētu datu ievietošanu). Tikai izstrādei.';
 
   @override
   String get devToolsActivateTitle => 'Aktivizēt izstrādātāja režīmu?';
@@ -436,10 +453,12 @@ class AppLocalizationsLv extends AppLocalizations {
   String get devToolsClearPumped => 'Notīrīt ģenerētos datus';
 
   @override
-  String get devToolsClearPumpedMessage => 'Dzēš ģenerētos STRESS kursus un to sesijas. Jūsu dati tiek saglabāti.';
+  String get devToolsClearPumpedMessage =>
+      'Dzēš ģenerētos STRESS kursus un to sesijas. Jūsu dati tiek saglabāti.';
 
   @override
-  String get devToolsClearPumpedSubtitle => 'Dzēst ģenerētos STRESS kursus un sesijas.';
+  String get devToolsClearPumpedSubtitle =>
+      'Dzēst ģenerētos STRESS kursus un sesijas.';
 
   @override
   String get devToolsClearPumpedTitle => 'Notīrīt ģenerētos datus?';
@@ -450,7 +469,8 @@ class AppLocalizationsLv extends AppLocalizations {
   }
 
   @override
-  String get devToolsConfirmPumpMessage => 'Otrais apstiprinājums: tas palielinās kursus, sarakstus, diagrammas un tempa aprēķinus, un var aizņemt dažas sekundes. Ievietot tagad?';
+  String get devToolsConfirmPumpMessage =>
+      'Otrais apstiprinājums: tas palielinās kursus, sarakstus, diagrammas un tempa aprēķinus, un var aizņemt dažas sekundes. Ievietot tagad?';
 
   @override
   String get devToolsConfirmPumpTitle => 'Apstiprināt stresa datu ievietošanu';
@@ -468,10 +488,12 @@ class AppLocalizationsLv extends AppLocalizations {
   String get devToolsPumpData => 'Ievietot datus';
 
   @override
-  String get devToolsPumpMessage => 'Tas ievieto reālistisku ģenerētu semestri (~10 kursi, ~800 sesijas pēdējo 12 nedēļu laikā). Jūsu esošie dati tiek saglabāti. Turpināt?';
+  String get devToolsPumpMessage =>
+      'Tas ievieto reālistisku ģenerētu semestri (~10 kursi, ~800 sesijas pēdējo 12 nedēļu laikā). Jūsu esošie dati tiek saglabāti. Turpināt?';
 
   @override
-  String get devToolsPumpSubtitle => 'Ievietot ģenerētu semestri (~10 kursi, ~800 sesijas, 12 nedēļas). Esošie dati saglabāti.';
+  String get devToolsPumpSubtitle =>
+      'Ievietot ģenerētu semestri (~10 kursi, ~800 sesijas, 12 nedēļas). Esošie dati saglabāti.';
 
   @override
   String get devToolsPumpTile => 'Ievietot testa datus';
@@ -491,10 +513,12 @@ class AppLocalizationsLv extends AppLocalizations {
   String get devToolsRemoveAll => 'Noņemt visus datus';
 
   @override
-  String get devToolsRemoveAllMessage => 'Izstrādātāja saīsne: tas neatgriezeniski dzēš VISUS kursus, sesijas un iestatījumus. Šo nevar atsaukt.';
+  String get devToolsRemoveAllMessage =>
+      'Izstrādātāja saīsne: tas neatgriezeniski dzēš VISUS kursus, sesijas un iestatījumus. Šo nevar atsaukt.';
 
   @override
-  String get devToolsRemoveAllSubtitle => 'Izstrādātāja saīsne: dzēst VISUS kursus, sesijas un iestatījumus.';
+  String get devToolsRemoveAllSubtitle =>
+      'Izstrādātāja saīsne: dzēst VISUS kursus, sesijas un iestatījumus.';
 
   @override
   String get devToolsRemoveAllTitle => 'Noņemt visus datus?';
@@ -547,7 +571,8 @@ class AppLocalizationsLv extends AppLocalizations {
   String get sessionFormNoCourseError => 'Izvēlieties kursu.';
 
   @override
-  String get sessionFormNoCoursesHint => 'Vispirms pievienojiet kursu, lai reģistrētu sesiju.';
+  String get sessionFormNoCoursesHint =>
+      'Vispirms pievienojiet kursu, lai reģistrētu sesiju.';
 
   @override
   String get sessionFormNotesLabel => 'Piezīmes (neobligāti)';
@@ -603,10 +628,12 @@ class AppLocalizationsLv extends AppLocalizations {
   String get settingsClearSample => 'Notīrīt parauga datus';
 
   @override
-  String get settingsClearSampleMessage => 'Tas noņem parauga kursus un sesijas. Kursi vai sesijas, ko pievienojāt pats, netiek noņemtas.';
+  String get settingsClearSampleMessage =>
+      'Tas noņem parauga kursus un sesijas. Kursi vai sesijas, ko pievienojāt pats, netiek noņemtas.';
 
   @override
-  String get settingsClearSampleSubtitle => 'Noņemt iepriekš ielādētos parauga kursus un sesijas. Jūsu dati tiek saglabāti.';
+  String get settingsClearSampleSubtitle =>
+      'Noņemt iepriekš ielādētos parauga kursus un sesijas. Jūsu dati tiek saglabāti.';
 
   @override
   String get settingsClearSampleTitle => 'Notīrīt parauga datus?';
@@ -670,7 +697,8 @@ class AppLocalizationsLv extends AppLocalizations {
   String get settingsExportCopied => 'Eksports nokopēts starpliktuvē.';
 
   @override
-  String get settingsExportSubtitle => 'Kopēt visus kursus, sesijas un iestatījumus kā JSON.';
+  String get settingsExportSubtitle =>
+      'Kopēt visus kursus, sesijas un iestatījumus kā JSON.';
 
   @override
   String settingsExportSummary(String courses, String sessions, String kb) {
@@ -700,7 +728,8 @@ class AppLocalizationsLv extends AppLocalizations {
   String get settingsHoursError => 'Ievadiet skaitli, kas lielāks par nulli.';
 
   @override
-  String get settingsHoursHelper => 'Noklusējums 30. Mainīšana pārrēķina prasības; žurnāli saglabāti.';
+  String get settingsHoursHelper =>
+      'Noklusējums 30. Mainīšana pārrēķina prasības; žurnāli saglabāti.';
 
   @override
   String get settingsHoursLabel => 'Stundas uz ECTS kredītpunktu';
@@ -731,7 +760,8 @@ class AppLocalizationsLv extends AppLocalizations {
   }
 
   @override
-  String get settingsImportInfo => 'Pievienošana pievieno dublējumu līdzās pašreizējiem datiem (iestatījumi saglabāti). Aizstāšana vispirms izdzēš VISUS kursus, sesijas un iestatījumus.';
+  String get settingsImportInfo =>
+      'Pievienošana pievieno dublējumu līdzās pašreizējiem datiem (iestatījumi saglabāti). Aizstāšana vispirms izdzēš VISUS kursus, sesijas un iestatījumus.';
 
   @override
   String get settingsImportLabel => 'Ielīmēt eksportēto JSON';
@@ -765,7 +795,8 @@ class AppLocalizationsLv extends AppLocalizations {
   }
 
   @override
-  String get settingsImportSubtitle => 'Aizstāt visus datus no iepriekš eksportētas JSON dublējumkopijas.';
+  String get settingsImportSubtitle =>
+      'Aizstāt visus datus no iepriekš eksportētas JSON dublējumkopijas.';
 
   @override
   String settingsKeepHolding(String remaining) {
@@ -776,7 +807,8 @@ class AppLocalizationsLv extends AppLocalizations {
   String get settingsNoSample => 'Nav parauga datu';
 
   @override
-  String get settingsNoSampleSubtitle => 'Ielādētie parauga dati jau ir notīrīti.';
+  String get settingsNoSampleSubtitle =>
+      'Ielādētie parauga dati jau ir notīrīti.';
 
   @override
   String get settingsNoTarget => 'Mērķis nav iestatīts';
@@ -785,7 +817,8 @@ class AppLocalizationsLv extends AppLocalizations {
   String get settingsOverloadError => 'Ievadiet skaitli 5–100 h/nedēļā.';
 
   @override
-  String get settingsOverloadHelper => 'Nākotnes slodzes nedēļas virs šī tiek atzīmētas sarkanā krāsā. Pilna laika studijas ir ~35–40 h/nedēļā.';
+  String get settingsOverloadHelper =>
+      'Nākotnes slodzes nedēļas virs šī tiek atzīmētas sarkanā krāsā. Pilna laika studijas ir ~35–40 h/nedēļā.';
 
   @override
   String settingsOverloadHours(String value) {
@@ -819,10 +852,12 @@ class AppLocalizationsLv extends AppLocalizations {
   String get settingsResetAll => 'Atiestatīt visus datus';
 
   @override
-  String get settingsResetAllMessage => 'Tas neatgriezeniski izdzēš VISUS kursus, sesijas un iestatījumus. Šo nevar atsaukt. Vispirms eksportējiet dublējumu, ja nepieciešams.';
+  String get settingsResetAllMessage =>
+      'Tas neatgriezeniski izdzēš VISUS kursus, sesijas un iestatījumus. Šo nevar atsaukt. Vispirms eksportējiet dublējumu, ja nepieciešams.';
 
   @override
-  String get settingsResetAllSubtitle => 'Dzēst visus kursus, sesijas un iestatījumus.';
+  String get settingsResetAllSubtitle =>
+      'Dzēst visus kursus, sesijas un iestatījumus.';
 
   @override
   String get settingsResetAllTitle => 'Atiestatīt visus datus?';
@@ -831,13 +866,16 @@ class AppLocalizationsLv extends AppLocalizations {
   String get settingsResetSettings => 'Atiestatīt iestatījumus';
 
   @override
-  String get settingsResetSettingsDone => 'Iestatījumi atiestatīti uz noklusējumu.';
+  String get settingsResetSettingsDone =>
+      'Iestatījumi atiestatīti uz noklusējumu.';
 
   @override
-  String get settingsResetSettingsMessage => 'Atjauno stundas uz ECTS (30), ikdienas mērķi (nekādu), nedēļas pirmo dienu (pirmdiena), motīvu (sistēma), pielaidi (5 dienas), pārslodzi (35 h/nedēļā), izmēru (ērts), krāsu (šīferis). Kursi un sesijas tiek saglabāti.';
+  String get settingsResetSettingsMessage =>
+      'Atjauno stundas uz ECTS (30), ikdienas mērķi (nekādu), nedēļas pirmo dienu (pirmdiena), motīvu (sistēma), pielaidi (5 dienas), pārslodzi (35 h/nedēļā), izmēru (ērts), krāsu (šīferis). Kursi un sesijas tiek saglabāti.';
 
   @override
-  String get settingsResetSettingsSubtitle => 'Atjaunot noklusējumu: 30 h/ECTS, bez mērķa, pirmdiena, sistēmas motīvs, 5 dienu pielaide, 35 h/nedēļā pārslodze, ērts izmērs, šīferis krāsa.';
+  String get settingsResetSettingsSubtitle =>
+      'Atjaunot noklusējumu: 30 h/ECTS, bez mērķa, pirmdiena, sistēmas motīvs, 5 dienu pielaide, 35 h/nedēļā pārslodze, ērts izmērs, šīferis krāsa.';
 
   @override
   String get settingsResetSettingsTitle => 'Atiestatīt iestatījumus?';
@@ -877,7 +915,8 @@ class AppLocalizationsLv extends AppLocalizations {
   String get settingsToleranceError => 'Ievadiet skaitli 0–30 dienas.';
 
   @override
-  String get settingsToleranceHelper => 'Priekšā vajag +N dienu rezervi, atpaliek −N dienas. 5 = stabili, 0 = jutīgi.';
+  String get settingsToleranceHelper =>
+      'Priekšā vajag +N dienu rezervi, atpaliek −N dienas. 5 = stabili, 0 = jutīgi.';
 
   @override
   String get settingsToleranceLabel => 'Darba dienas (0–30)';
@@ -935,7 +974,8 @@ class AppLocalizationsLv extends AppLocalizations {
   }
 
   @override
-  String get statsAddDeadlines => 'Pievienojiet termiņus, lai prognozētu slodzi.';
+  String get statsAddDeadlines =>
+      'Pievienojiet termiņus, lai prognozētu slodzi.';
 
   @override
   String get statsComingLoad => 'Gaidāmā slodze';
@@ -944,7 +984,8 @@ class AppLocalizationsLv extends AppLocalizations {
   String get statsConsistency => 'Konsekvence';
 
   @override
-  String get statsConsistencyHint => 'Mācību dienas pēdējo 30 dienu laikā. Nelieli soļi katru dienu pārspēj kalšanu.';
+  String get statsConsistencyHint =>
+      'Mācību dienas pēdējo 30 dienu laikā. Nelieli soļi katru dienu pārspēj kalšanu.';
 
   @override
   String statsConsistencyScore(String percent) {
@@ -1009,7 +1050,8 @@ class AppLocalizationsLv extends AppLocalizations {
   String get statsOverview => 'Pārskats';
 
   @override
-  String get statsPaceCovers => 'Iepriekšējais temps sedz nepieciešamo. Turpiniet sēriju.';
+  String get statsPaceCovers =>
+      'Iepriekšējais temps sedz nepieciešamo. Turpiniet sēriju.';
 
   @override
   String statsPaceShort(String gap) {
@@ -1073,7 +1115,8 @@ class AppLocalizationsLv extends AppLocalizations {
   String get studyLogDeleteTitle => 'Dzēst sesiju?';
 
   @override
-  String get studyLogEmptyHint => 'Reģistrējiet sesiju, lai izsekotu savu mācību laiku.';
+  String get studyLogEmptyHint =>
+      'Reģistrējiet sesiju, lai izsekotu savu mācību laiku.';
 
   @override
   String get studyLogEmptyTitle => 'Vēl nav mācību sesiju';
@@ -1114,7 +1157,8 @@ class AppLocalizationsLv extends AppLocalizations {
   }
 
   @override
-  String get studyTimerAlreadyRunning => 'A timer is already running. Finish or discard it first.';
+  String get studyTimerAlreadyRunning =>
+      'A timer is already running. Finish or discard it first.';
 
   @override
   String get studyTimerCourseLabel => 'Course';
@@ -1123,7 +1167,8 @@ class AppLocalizationsLv extends AppLocalizations {
   String get studyTimerDiscard => 'Discard';
 
   @override
-  String get studyTimerDiscardBody => 'Throw away the current timer without logging? This cannot be undone.';
+  String get studyTimerDiscardBody =>
+      'Throw away the current timer without logging? This cannot be undone.';
 
   @override
   String get studyTimerDiscardTitle => 'Discard timer?';
@@ -1190,7 +1235,8 @@ class AppLocalizationsLv extends AppLocalizations {
   String get settingsLiquidGlass => 'Šķidrais stikls';
 
   @override
-  String get settingsLiquidGlassSubtitle => 'Matēta stikla kartītes un joslas. Izslēgts saglabā klasisko vienlaidu izskatu.';
+  String get settingsLiquidGlassSubtitle =>
+      'Matēta stikla kartītes un joslas. Izslēgts saglabā klasisko vienlaidu izskatu.';
 
   @override
   String get settingsLiquidGlassOn => 'Ieslēgts';
@@ -1205,7 +1251,8 @@ class AppLocalizationsLv extends AppLocalizations {
   String get devToolsReminderPreview => 'Atgādinājumu priekšskatījums';
 
   @override
-  String get devToolsReminderPreviewSubtitle => 'Skatiet, kas tiktu paziņots tieši tagad. Drošs testa avots operētājsistēmai Windows.';
+  String get devToolsReminderPreviewSubtitle =>
+      'Skatiet, kas tiktu paziņots tieši tagad. Drošs testa avots operētājsistēmai Windows.';
 
   @override
   String get reminderPreviewTitle => 'Atgādinājumu priekšskatījums';
@@ -1217,7 +1264,8 @@ class AppLocalizationsLv extends AppLocalizations {
   String get reminderPreviewReset => 'Tagad';
 
   @override
-  String get reminderPreviewEmpty => 'Viss mierīgi — šajā laikā nekas netiktu paziņots.';
+  String get reminderPreviewEmpty =>
+      'Viss mierīgi — šajā laikā nekas netiktu paziņots.';
 
   @override
   String get reminderPreviewCustom => 'Pielāgoti grafiki (demonstrācija)';
@@ -1247,13 +1295,15 @@ class AppLocalizationsLv extends AppLocalizations {
   String get settingsReminders => 'Mācību atgādinājumi';
 
   @override
-  String get settingsRemindersOff => 'Izslēgts — ieslēdziet ikdienas atgādinājumu.';
+  String get settingsRemindersOff =>
+      'Izslēgts — ieslēdziet ikdienas atgādinājumu.';
 
   @override
   String get settingsReminderTime => 'Atgādinājuma laiks';
 
   @override
-  String get settingsReminderDenied => 'Paziņojumi ir bloķēti — iespējojiet tos sistēmas iestatījumos.';
+  String get settingsReminderDenied =>
+      'Paziņojumi ir bloķēti — iespējojiet tos sistēmas iestatījumos.';
 
   @override
   String notifDurationHours(String value) {
@@ -1291,7 +1341,12 @@ class AppLocalizationsLv extends AppLocalizations {
   }
 
   @override
-  String notifBehindBodyPace(String left, String days, String pace, String catchUp) {
+  String notifBehindBodyPace(
+    String left,
+    String days,
+    String pace,
+    String catchUp,
+  ) {
     return 'Atlikušas $left, atlikušas $days dienas — no šejienes $pace/dienā. Reģistrējiet $catchUp, lai atgrieztos labā ritmā.';
   }
 
@@ -1311,7 +1366,8 @@ class AppLocalizationsLv extends AppLocalizations {
   }
 
   @override
-  String get notifDeadlineTomorrowBody => 'Viss, ko šodien reģistrējat, skaitās dubulti.';
+  String get notifDeadlineTomorrowBody =>
+      'Viss, ko šodien reģistrējat, skaitās dubulti.';
 
   @override
   String notifDeadlineSoonTitle(String course, String days, String left) {
@@ -1324,7 +1380,8 @@ class AppLocalizationsLv extends AppLocalizations {
   }
 
   @override
-  String get notifDeadlineSoonBodyNoPace => 'Katra stunda, ko tagad reģistrējat, tiek ieskaitīta.';
+  String get notifDeadlineSoonBodyNoPace =>
+      'Katra stunda, ko tagad reģistrējat, tiek ieskaitīta.';
 
   @override
   String notifOverdueTitle(String course, String left) {
@@ -1332,7 +1389,8 @@ class AppLocalizationsLv extends AppLocalizations {
   }
 
   @override
-  String get notifOverdueBody => 'Pārceliet termiņu vai pabeidziet stundas — kurss līdz tam paliek uzmanības lokā.';
+  String get notifOverdueBody =>
+      'Pārceliet termiņu vai pabeidziet stundas — kurss līdz tam paliek uzmanības lokā.';
 
   @override
   String notifStreakTitle(String days, String week) {
@@ -1340,7 +1398,8 @@ class AppLocalizationsLv extends AppLocalizations {
   }
 
   @override
-  String get notifStreakBody => 'Visi kursi labā ritmā vai priekšā. Labs darbs.';
+  String get notifStreakBody =>
+      'Visi kursi labā ritmā vai priekšā. Labs darbs.';
 
   @override
   String notifCustomTitleAuto(String course) {

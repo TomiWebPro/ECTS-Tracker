@@ -1,5 +1,6 @@
 // ignore: unused_import
 import 'package:intl/intl.dart' as intl;
+
 import 'app_localizations.dart';
 
 // ignore_for_file: type=lint
@@ -82,10 +83,12 @@ class AppLocalizationsPcm extends AppLocalizations {
   }
 
   @override
-  String get courseFormStartEarlyOn => 'On: time don share till now and e dey count for Today pace.';
+  String get courseFormStartEarlyOn =>
+      'On: time don share till now and e dey count for Today pace.';
 
   @override
-  String get courseFormStartEarlyTitle => 'Start now even though start dey for future';
+  String get courseFormStartEarlyTitle =>
+      'Start now even though start dey for future';
 
   @override
   String get courseFormTitleAdd => 'Add course';
@@ -110,7 +113,8 @@ class AppLocalizationsPcm extends AppLocalizations {
   }
 
   @override
-  String get coursesEmptyHint => 'Tap “New course” make you create your first course.';
+  String get coursesEmptyHint =>
+      'Tap “New course” make you create your first course.';
 
   @override
   String get coursesEmptyTitle => 'No course yet';
@@ -150,7 +154,11 @@ class AppLocalizationsPcm extends AppLocalizations {
   }
 
   @override
-  String coursesProgressWithStatus(String done, String required, String status) {
+  String coursesProgressWithStatus(
+    String done,
+    String required,
+    String status,
+  ) {
     return '$done / $required h • $status';
   }
 
@@ -219,10 +227,12 @@ class AppLocalizationsPcm extends AppLocalizations {
   }
 
   @override
-  String get dashboardEmptyHintAllDone => 'Every course don finish — check Courses tab for full list.';
+  String get dashboardEmptyHintAllDone =>
+      'Every course don finish — check Courses tab for full list.';
 
   @override
-  String get dashboardEmptyHintNoCourses => 'Add course to start track your ECTS progress.';
+  String get dashboardEmptyHintNoCourses =>
+      'Add course to start track your ECTS progress.';
 
   @override
   String dashboardExplainerBehind(String achieved, String need) {
@@ -235,10 +245,12 @@ class AppLocalizationsPcm extends AppLocalizations {
   }
 
   @override
-  String get dashboardExplainerBehindNoPace => 'Behind: no pace fit meet today deadline wit hours wey remain';
+  String get dashboardExplainerBehindNoPace =>
+      'Behind: no pace fit meet today deadline wit hours wey remain';
 
   @override
-  String get dashboardExplainerOnTrackNoPace => 'You dey on track: no pace yet — log first session to confirm';
+  String get dashboardExplainerOnTrackNoPace =>
+      'You dey on track: no pace yet — log first session to confirm';
 
   @override
   String dashboardExplainerStartsIn(String days, String date) {
@@ -388,10 +400,12 @@ class AppLocalizationsPcm extends AppLocalizations {
   String get dashboardStartsSoon => 'E go start soon';
 
   @override
-  String get dashboardTipEmpty => 'Add your first course — your daily pace and progress go appear here.';
+  String get dashboardTipEmpty =>
+      'Add your first course — your daily pace and progress go appear here.';
 
   @override
-  String get dashboardTipFirst => 'First 25 min matter pass — pick di course wey due first.';
+  String get dashboardTipFirst =>
+      'First 25 min matter pass — pick di course wey due first.';
 
   @override
   String get dashboardTodayBare => 'TODAY';
@@ -415,7 +429,8 @@ class AppLocalizationsPcm extends AppLocalizations {
   }
 
   @override
-  String get dashboardUpcomingSubtitle => 'Future starts — no pressure today, e no dey inside Today pace.';
+  String get dashboardUpcomingSubtitle =>
+      'Future starts — no pressure today, e no dey inside Today pace.';
 
   @override
   String get dashboardUpcomingTitle => 'Upcoming';
@@ -424,7 +439,8 @@ class AppLocalizationsPcm extends AppLocalizations {
   String get devToolsActivate => 'Activate';
 
   @override
-  String get devToolsActivateMessage => 'Dis go unlock hidden stress-test tools (e go pump generated data). Na for development only.';
+  String get devToolsActivateMessage =>
+      'Dis go unlock hidden stress-test tools (e go pump generated data). Na for development only.';
 
   @override
   String get devToolsActivateTitle => 'Activate dev mode?';
@@ -436,10 +452,12 @@ class AppLocalizationsPcm extends AppLocalizations {
   String get devToolsClearPumped => 'Clear pumped data';
 
   @override
-  String get devToolsClearPumpedMessage => 'E go delete di generated STRESS courses and dia sessions. Your own data go remain.';
+  String get devToolsClearPumpedMessage =>
+      'E go delete di generated STRESS courses and dia sessions. Your own data go remain.';
 
   @override
-  String get devToolsClearPumpedSubtitle => 'Delete di generated STRESS courses and sessions.';
+  String get devToolsClearPumpedSubtitle =>
+      'Delete di generated STRESS courses and sessions.';
 
   @override
   String get devToolsClearPumpedTitle => 'Clear pumped data?';
@@ -450,7 +468,8 @@ class AppLocalizationsPcm extends AppLocalizations {
   }
 
   @override
-  String get devToolsConfirmPumpMessage => 'Second confirmation: dis go inflate courses, lists, charts, and pace calculations, and e fit take few seconds. Pump now?';
+  String get devToolsConfirmPumpMessage =>
+      'Second confirmation: dis go inflate courses, lists, charts, and pace calculations, and e fit take few seconds. Pump now?';
 
   @override
   String get devToolsConfirmPumpTitle => 'Confirm stress pump';
@@ -468,10 +487,12 @@ class AppLocalizationsPcm extends AppLocalizations {
   String get devToolsPumpData => 'Pump data';
 
   @override
-  String get devToolsPumpMessage => 'Dis go insert realistic generated semester (~10 courses, ~800 sessions for last 12 weeks). Your existing data go remain. Continue?';
+  String get devToolsPumpMessage =>
+      'Dis go insert realistic generated semester (~10 courses, ~800 sessions for last 12 weeks). Your existing data go remain. Continue?';
 
   @override
-  String get devToolsPumpSubtitle => 'Insert generated semester (~10 courses, ~800 sessions, 12 weeks). Existing data remain.';
+  String get devToolsPumpSubtitle =>
+      'Insert generated semester (~10 courses, ~800 sessions, 12 weeks). Existing data remain.';
 
   @override
   String get devToolsPumpTile => 'Pump test data';
@@ -491,10 +512,12 @@ class AppLocalizationsPcm extends AppLocalizations {
   String get devToolsRemoveAll => 'Remove all data';
 
   @override
-  String get devToolsRemoveAllMessage => 'Dev shortcut: dis go permanently delete ALL courses, sessions, and settings. You no fit undo am.';
+  String get devToolsRemoveAllMessage =>
+      'Dev shortcut: dis go permanently delete ALL courses, sessions, and settings. You no fit undo am.';
 
   @override
-  String get devToolsRemoveAllSubtitle => 'Dev shortcut: e go delete ALL courses, sessions, and settings.';
+  String get devToolsRemoveAllSubtitle =>
+      'Dev shortcut: e go delete ALL courses, sessions, and settings.';
 
   @override
   String get devToolsRemoveAllTitle => 'Remove all data?';
@@ -603,10 +626,12 @@ class AppLocalizationsPcm extends AppLocalizations {
   String get settingsClearSample => 'Clear sample data';
 
   @override
-  String get settingsClearSampleMessage => 'Dis go remove di example courses and sessions. Courses or sessions wey you add yourself no go remove.';
+  String get settingsClearSampleMessage =>
+      'Dis go remove di example courses and sessions. Courses or sessions wey you add yourself no go remove.';
 
   @override
-  String get settingsClearSampleSubtitle => 'Remove di seeded example courses and sessions. Your own data go remain.';
+  String get settingsClearSampleSubtitle =>
+      'Remove di seeded example courses and sessions. Your own data go remain.';
 
   @override
   String get settingsClearSampleTitle => 'Clear sample data?';
@@ -670,7 +695,8 @@ class AppLocalizationsPcm extends AppLocalizations {
   String get settingsExportCopied => 'Export don copy to clipboard.';
 
   @override
-  String get settingsExportSubtitle => 'Copy all courses, sessions, plus settings as JSON.';
+  String get settingsExportSubtitle =>
+      'Copy all courses, sessions, plus settings as JSON.';
 
   @override
   String settingsExportSummary(String courses, String sessions, String kb) {
@@ -700,7 +726,8 @@ class AppLocalizationsPcm extends AppLocalizations {
   String get settingsHoursError => 'Enter number wey pass zero.';
 
   @override
-  String get settingsHoursHelper => 'Default 30. If you change am, e go recalculate wetin you need; logs go remain.';
+  String get settingsHoursHelper =>
+      'Default 30. If you change am, e go recalculate wetin you need; logs go remain.';
 
   @override
   String get settingsHoursLabel => 'Hours for every ECTS credit';
@@ -731,7 +758,8 @@ class AppLocalizationsPcm extends AppLocalizations {
   }
 
   @override
-  String get settingsImportInfo => 'Append go add di backup join your current data (settings go remain). Replace go wipe ALL courses, sessions, and settings first.';
+  String get settingsImportInfo =>
+      'Append go add di backup join your current data (settings go remain). Replace go wipe ALL courses, sessions, and settings first.';
 
   @override
   String get settingsImportLabel => 'Paste exported JSON';
@@ -765,7 +793,8 @@ class AppLocalizationsPcm extends AppLocalizations {
   }
 
   @override
-  String get settingsImportSubtitle => 'Replace all data from previously exported JSON backup.';
+  String get settingsImportSubtitle =>
+      'Replace all data from previously exported JSON backup.';
 
   @override
   String settingsKeepHolding(String remaining) {
@@ -776,7 +805,8 @@ class AppLocalizationsPcm extends AppLocalizations {
   String get settingsNoSample => 'No sample data';
 
   @override
-  String get settingsNoSampleSubtitle => 'Seeded example data don already clear.';
+  String get settingsNoSampleSubtitle =>
+      'Seeded example data don already clear.';
 
   @override
   String get settingsNoTarget => 'No target set';
@@ -785,7 +815,8 @@ class AppLocalizationsPcm extends AppLocalizations {
   String get settingsOverloadError => 'Enter number 5–100 h/week.';
 
   @override
-  String get settingsOverloadHelper => 'Coming-load weeks wey pass dis go flag red. Full-time study na ~35–40 h/week.';
+  String get settingsOverloadHelper =>
+      'Coming-load weeks wey pass dis go flag red. Full-time study na ~35–40 h/week.';
 
   @override
   String settingsOverloadHours(String value) {
@@ -819,10 +850,12 @@ class AppLocalizationsPcm extends AppLocalizations {
   String get settingsResetAll => 'Reset all data';
 
   @override
-  String get settingsResetAllMessage => 'Dis go permanently delete ALL courses, sessions, and settings. You no fit undo am. Export backup first if you need am.';
+  String get settingsResetAllMessage =>
+      'Dis go permanently delete ALL courses, sessions, and settings. You no fit undo am. Export backup first if you need am.';
 
   @override
-  String get settingsResetAllSubtitle => 'Delete all courses, sessions, plus settings.';
+  String get settingsResetAllSubtitle =>
+      'Delete all courses, sessions, plus settings.';
 
   @override
   String get settingsResetAllTitle => 'Reset all data?';
@@ -834,10 +867,12 @@ class AppLocalizationsPcm extends AppLocalizations {
   String get settingsResetSettingsDone => 'Settings don reset to defaults.';
 
   @override
-  String get settingsResetSettingsMessage => 'E go restore hours-per-ECTS (30), daily target (none), first weekday (Monday), theme (system), tolerance (5 days), overload (35 h/week), size (comfortable), colour (slate). Courses and sessions go remain.';
+  String get settingsResetSettingsMessage =>
+      'E go restore hours-per-ECTS (30), daily target (none), first weekday (Monday), theme (system), tolerance (5 days), overload (35 h/week), size (comfortable), colour (slate). Courses and sessions go remain.';
 
   @override
-  String get settingsResetSettingsSubtitle => 'E go restore defaults: 30 h/ECTS, no target, Monday, system theme, 5-day tolerance, 35 h/week overload, comfortable size, slate colour.';
+  String get settingsResetSettingsSubtitle =>
+      'E go restore defaults: 30 h/ECTS, no target, Monday, system theme, 5-day tolerance, 35 h/week overload, comfortable size, slate colour.';
 
   @override
   String get settingsResetSettingsTitle => 'Reset settings?';
@@ -877,7 +912,8 @@ class AppLocalizationsPcm extends AppLocalizations {
   String get settingsToleranceError => 'Enter number 0–30 days.';
 
   @override
-  String get settingsToleranceHelper => 'Ahead need +N days surplus, behind na −N days. 5 = stable, 0 = sensitive.';
+  String get settingsToleranceHelper =>
+      'Ahead need +N days surplus, behind na −N days. 5 = stable, 0 = sensitive.';
 
   @override
   String get settingsToleranceLabel => 'Days of work (0–30)';
@@ -944,7 +980,8 @@ class AppLocalizationsPcm extends AppLocalizations {
   String get statsConsistency => 'Consistency';
 
   @override
-  String get statsConsistencyHint => 'Study days for last 30 days. Small steps everyday pass cramming.';
+  String get statsConsistencyHint =>
+      'Study days for last 30 days. Small steps everyday pass cramming.';
 
   @override
   String statsConsistencyScore(String percent) {
@@ -1009,7 +1046,8 @@ class AppLocalizationsPcm extends AppLocalizations {
   String get statsOverview => 'Overview';
 
   @override
-  String get statsPaceCovers => 'Past pace cover wetin you need. Keep di streak.';
+  String get statsPaceCovers =>
+      'Past pace cover wetin you need. Keep di streak.';
 
   @override
   String statsPaceShort(String gap) {
@@ -1067,7 +1105,8 @@ class AppLocalizationsPcm extends AppLocalizations {
   String get statusOverdue => 'Overdue';
 
   @override
-  String get studyLogDeleteBody => 'Delete dis study session? You no fit undo am.';
+  String get studyLogDeleteBody =>
+      'Delete dis study session? You no fit undo am.';
 
   @override
   String get studyLogDeleteTitle => 'Delete session?';
@@ -1114,7 +1153,8 @@ class AppLocalizationsPcm extends AppLocalizations {
   }
 
   @override
-  String get studyTimerAlreadyRunning => 'A timer is already running. Finish or discard it first.';
+  String get studyTimerAlreadyRunning =>
+      'A timer is already running. Finish or discard it first.';
 
   @override
   String get studyTimerCourseLabel => 'Course';
@@ -1123,7 +1163,8 @@ class AppLocalizationsPcm extends AppLocalizations {
   String get studyTimerDiscard => 'Discard';
 
   @override
-  String get studyTimerDiscardBody => 'Throw away the current timer without logging? This cannot be undone.';
+  String get studyTimerDiscardBody =>
+      'Throw away the current timer without logging? This cannot be undone.';
 
   @override
   String get studyTimerDiscardTitle => 'Discard timer?';
@@ -1190,7 +1231,8 @@ class AppLocalizationsPcm extends AppLocalizations {
   String get settingsLiquidGlass => 'Liquid glass';
 
   @override
-  String get settingsLiquidGlassSubtitle => 'Cards and bars wit frosted glass. Off go keep di classic solid look.';
+  String get settingsLiquidGlassSubtitle =>
+      'Cards and bars wit frosted glass. Off go keep di classic solid look.';
 
   @override
   String get settingsLiquidGlassOn => 'On';
@@ -1205,7 +1247,8 @@ class AppLocalizationsPcm extends AppLocalizations {
   String get devToolsReminderPreview => 'Reminder preview';
 
   @override
-  String get devToolsReminderPreviewSubtitle => 'See wetin go notify right now. Windows-safe test feed.';
+  String get devToolsReminderPreviewSubtitle =>
+      'See wetin go notify right now. Windows-safe test feed.';
 
   @override
   String get reminderPreviewTitle => 'Reminder preview';
@@ -1217,7 +1260,8 @@ class AppLocalizationsPcm extends AppLocalizations {
   String get reminderPreviewReset => 'Now';
 
   @override
-  String get reminderPreviewEmpty => 'Everywhere quiet — nothing go notify for dis time.';
+  String get reminderPreviewEmpty =>
+      'Everywhere quiet — nothing go notify for dis time.';
 
   @override
   String get reminderPreviewCustom => 'Custom schedules (demo)';
@@ -1253,7 +1297,8 @@ class AppLocalizationsPcm extends AppLocalizations {
   String get settingsReminderTime => 'Reminder time';
 
   @override
-  String get settingsReminderDenied => 'Notifications don block — enable dem for system settings.';
+  String get settingsReminderDenied =>
+      'Notifications don block — enable dem for system settings.';
 
   @override
   String notifDurationHours(String value) {
@@ -1291,7 +1336,12 @@ class AppLocalizationsPcm extends AppLocalizations {
   }
 
   @override
-  String notifBehindBodyPace(String left, String days, String pace, String catchUp) {
+  String notifBehindBodyPace(
+    String left,
+    String days,
+    String pace,
+    String catchUp,
+  ) {
     return '$left remain, $days days remain — $pace/day from here. Log $catchUp to take get back On track.';
   }
 
@@ -1311,7 +1361,8 @@ class AppLocalizationsPcm extends AppLocalizations {
   }
 
   @override
-  String get notifDeadlineTomorrowBody => 'Anything wey you log today go count double.';
+  String get notifDeadlineTomorrowBody =>
+      'Anything wey you log today go count double.';
 
   @override
   String notifDeadlineSoonTitle(String course, String days, String left) {
@@ -1324,7 +1375,8 @@ class AppLocalizationsPcm extends AppLocalizations {
   }
 
   @override
-  String get notifDeadlineSoonBodyNoPace => 'Every hour wey you log now go count.';
+  String get notifDeadlineSoonBodyNoPace =>
+      'Every hour wey you log now go count.';
 
   @override
   String notifOverdueTitle(String course, String left) {
@@ -1332,7 +1384,8 @@ class AppLocalizationsPcm extends AppLocalizations {
   }
 
   @override
-  String get notifOverdueBody => 'Move di deadline or finish di hours — di course go still dey for Needs attention till den.';
+  String get notifOverdueBody =>
+      'Move di deadline or finish di hours — di course go still dey for Needs attention till den.';
 
   @override
   String notifStreakTitle(String days, String week) {
@@ -1340,7 +1393,8 @@ class AppLocalizationsPcm extends AppLocalizations {
   }
 
   @override
-  String get notifStreakBody => 'All courses dey On track or Ahead. Correct run.';
+  String get notifStreakBody =>
+      'All courses dey On track or Ahead. Correct run.';
 
   @override
   String notifCustomTitleAuto(String course) {

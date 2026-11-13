@@ -1,5 +1,6 @@
 // ignore: unused_import
 import 'package:intl/intl.dart' as intl;
+
 import 'app_localizations.dart';
 
 // ignore_for_file: type=lint
@@ -82,7 +83,8 @@ class AppLocalizationsRm extends AppLocalizations {
   }
 
   @override
-  String get courseFormStartEarlyOn => 'On: il temp vegn dividì fin uss e quinta per il tempo d\'Hoz.';
+  String get courseFormStartEarlyOn =>
+      'On: il temp vegn dividì fin uss e quinta per il tempo d\'Hoz.';
 
   @override
   String get courseFormStartEarlyTitle => 'Cumenzar ussa malgrà l\'inizi futur';
@@ -150,7 +152,11 @@ class AppLocalizationsRm extends AppLocalizations {
   }
 
   @override
-  String coursesProgressWithStatus(String done, String required, String status) {
+  String coursesProgressWithStatus(
+    String done,
+    String required,
+    String status,
+  ) {
     return '$done / $required u • $status';
   }
 
@@ -219,10 +225,12 @@ class AppLocalizationsRm extends AppLocalizations {
   }
 
   @override
-  String get dashboardEmptyHintAllDone => 'Mintga curs è finì — guarda il tab Curs per la glista cumpleta.';
+  String get dashboardEmptyHintAllDone =>
+      'Mintga curs è finì — guarda il tab Curs per la glista cumpleta.';
 
   @override
-  String get dashboardEmptyHintNoCourses => 'Agiunta in curs per persequitar tes progress ECTS.';
+  String get dashboardEmptyHintNoCourses =>
+      'Agiunta in curs per persequitar tes progress ECTS.';
 
   @override
   String dashboardExplainerBehind(String achieved, String need) {
@@ -235,10 +243,12 @@ class AppLocalizationsRm extends AppLocalizations {
   }
 
   @override
-  String get dashboardExplainerBehindNoPace => 'Enavos: nagin tempo finit cuntanscha ina scadenza hoz cun uras restantas';
+  String get dashboardExplainerBehindNoPace =>
+      'Enavos: nagin tempo finit cuntanscha ina scadenza hoz cun uras restantas';
 
   @override
-  String get dashboardExplainerOnTrackNoPace => 'Sin via: anc nagin tempo — protocolla l\'emprima sesida per confermar';
+  String get dashboardExplainerOnTrackNoPace =>
+      'Sin via: anc nagin tempo — protocolla l\'emprima sesida per confermar';
 
   @override
   String dashboardExplainerStartsIn(String days, String date) {
@@ -388,10 +398,12 @@ class AppLocalizationsRm extends AppLocalizations {
   String get dashboardStartsSoon => 'Cumenza prest';
 
   @override
-  String get dashboardTipEmpty => 'Agiunta tes emprim curs — tes tempo quotidian ed il progress cumparan qua.';
+  String get dashboardTipEmpty =>
+      'Agiunta tes emprim curs — tes tempo quotidian ed il progress cumparan qua.';
 
   @override
-  String get dashboardTipFirst => 'Las emprimas 25 minutas quintan il pli — tscherna il curs cun l\'emprima scadenza.';
+  String get dashboardTipFirst =>
+      'Las emprimas 25 minutas quintan il pli — tscherna il curs cun l\'emprima scadenza.';
 
   @override
   String get dashboardTodayBare => 'HOZ';
@@ -415,7 +427,8 @@ class AppLocalizationsRm extends AppLocalizations {
   }
 
   @override
-  String get dashboardUpcomingSubtitle => 'Inizis futurs — nagina pressiun hoz, exclus dal tempo d\'Hoz.';
+  String get dashboardUpcomingSubtitle =>
+      'Inizis futurs — nagina pressiun hoz, exclus dal tempo d\'Hoz.';
 
   @override
   String get dashboardUpcomingTitle => 'Futur';
@@ -424,7 +437,8 @@ class AppLocalizationsRm extends AppLocalizations {
   String get devToolsActivate => 'Activar';
 
   @override
-  String get devToolsActivateMessage => 'Quai debloca instuments zuppads per tests da stress (datas generadas). Sulettamain per il svilup.';
+  String get devToolsActivateMessage =>
+      'Quai debloca instuments zuppads per tests da stress (datas generadas). Sulettamain per il svilup.';
 
   @override
   String get devToolsActivateTitle => 'Activar il modus da svilup?';
@@ -436,10 +450,12 @@ class AppLocalizationsRm extends AppLocalizations {
   String get devToolsClearPumped => 'Stizzar las datas pompadas';
 
   @override
-  String get devToolsClearPumpedMessage => 'Stizza ils curs STRESS generads e lur sesidas. Tias atgnas datas vegnan mantegndas.';
+  String get devToolsClearPumpedMessage =>
+      'Stizza ils curs STRESS generads e lur sesidas. Tias atgnas datas vegnan mantegndas.';
 
   @override
-  String get devToolsClearPumpedSubtitle => 'Stizzar ils curs e las sesidas STRESS generads.';
+  String get devToolsClearPumpedSubtitle =>
+      'Stizzar ils curs e las sesidas STRESS generads.';
 
   @override
   String get devToolsClearPumpedTitle => 'Stizzar las datas pompadas?';
@@ -450,7 +466,8 @@ class AppLocalizationsRm extends AppLocalizations {
   }
 
   @override
-  String get devToolsConfirmPumpMessage => 'Segunda conferma: quai vegn ad enflar curs, glistas, diagramms e calculaziuns dal tempo, e po durar in pèr secundas. Pompar ussa?';
+  String get devToolsConfirmPumpMessage =>
+      'Segunda conferma: quai vegn ad enflar curs, glistas, diagramms e calculaziuns dal tempo, e po durar in pèr secundas. Pompar ussa?';
 
   @override
   String get devToolsConfirmPumpTitle => 'Confermar la pompa da stress';
@@ -462,16 +479,19 @@ class AppLocalizationsRm extends AppLocalizations {
   String get devToolsExit => 'Sortir dal modus da svilup';
 
   @override
-  String get devToolsExitSubtitle => 'Zuppentar ils instuments da svilup sin quest apparat.';
+  String get devToolsExitSubtitle =>
+      'Zuppentar ils instuments da svilup sin quest apparat.';
 
   @override
   String get devToolsPumpData => 'Pompar datas';
 
   @override
-  String get devToolsPumpMessage => 'Quai inserescha in semestrer generà realistic (~10 curs, ~800 sesidas sur las ultimas 12 emnas). Tias datas vegnan mantegndas. Cuntinuar?';
+  String get devToolsPumpMessage =>
+      'Quai inserescha in semestrer generà realistic (~10 curs, ~800 sesidas sur las ultimas 12 emnas). Tias datas vegnan mantegndas. Cuntinuar?';
 
   @override
-  String get devToolsPumpSubtitle => 'Inserir in semestrer generà (~10 curs, ~800 sesidas, 12 emnas). Datas mantegndas.';
+  String get devToolsPumpSubtitle =>
+      'Inserir in semestrer generà (~10 curs, ~800 sesidas, 12 emnas). Datas mantegndas.';
 
   @override
   String get devToolsPumpTile => 'Pompar datas da test';
@@ -491,10 +511,12 @@ class AppLocalizationsRm extends AppLocalizations {
   String get devToolsRemoveAll => 'Allontanar tuttas datas';
 
   @override
-  String get devToolsRemoveAllMessage => 'Scursanida da svilup: quai stizza definitivamain TUTS curs, sesidas e configuraziuns. Quai na po betg vegnir revocà.';
+  String get devToolsRemoveAllMessage =>
+      'Scursanida da svilup: quai stizza definitivamain TUTS curs, sesidas e configuraziuns. Quai na po betg vegnir revocà.';
 
   @override
-  String get devToolsRemoveAllSubtitle => 'Scursanida da svilup: stizzar TUTS curs, sesidas e configuraziuns.';
+  String get devToolsRemoveAllSubtitle =>
+      'Scursanida da svilup: stizzar TUTS curs, sesidas e configuraziuns.';
 
   @override
   String get devToolsRemoveAllTitle => 'Allontanar tuttas datas?';
@@ -526,7 +548,8 @@ class AppLocalizationsRm extends AppLocalizations {
   }
 
   @override
-  String get sessionFormDurationError => 'La durada sto esser pli gronda che nulla.';
+  String get sessionFormDurationError =>
+      'La durada sto esser pli gronda che nulla.';
 
   @override
   String get sessionFormHoursLabel => 'Uras';
@@ -547,7 +570,8 @@ class AppLocalizationsRm extends AppLocalizations {
   String get sessionFormNoCourseError => 'Tscherna in curs.';
 
   @override
-  String get sessionFormNoCoursesHint => 'Agiunta l\'emprim in curs per protocollar ina sesida.';
+  String get sessionFormNoCoursesHint =>
+      'Agiunta l\'emprim in curs per protocollar ina sesida.';
 
   @override
   String get sessionFormNotesLabel => 'Notas (facultativ)';
@@ -603,10 +627,12 @@ class AppLocalizationsRm extends AppLocalizations {
   String get settingsClearSample => 'Stizzar datas d\'exempel';
 
   @override
-  String get settingsClearSampleMessage => 'Quai allontanescha ils curs e las sesidas d\'exempel. Curs u sesidas che ti has agiuntà sez na vegnan betg allontanads.';
+  String get settingsClearSampleMessage =>
+      'Quai allontanescha ils curs e las sesidas d\'exempel. Curs u sesidas che ti has agiuntà sez na vegnan betg allontanads.';
 
   @override
-  String get settingsClearSampleSubtitle => 'Allontanar ils curs e las sesidas d\'exempel. Tias atgnas datas vegnan mantegndas.';
+  String get settingsClearSampleSubtitle =>
+      'Allontanar ils curs e las sesidas d\'exempel. Tias atgnas datas vegnan mantegndas.';
 
   @override
   String get settingsClearSampleTitle => 'Stizzar datas d\'exempel?';
@@ -615,7 +641,8 @@ class AppLocalizationsRm extends AppLocalizations {
   String get settingsCopy => 'Copiar';
 
   @override
-  String get settingsDailyError => 'Endatescha 0 u in dumber positiv da minutas.';
+  String get settingsDailyError =>
+      'Endatescha 0 u in dumber positiv da minutas.';
 
   @override
   String get settingsDailyLabel => 'Minutas per di (0 = nagina finamira)';
@@ -661,7 +688,8 @@ class AppLocalizationsRm extends AppLocalizations {
   }
 
   @override
-  String get settingsDisplaySizeUpdated => 'Grondezza da visualisaziun actualisada.';
+  String get settingsDisplaySizeUpdated =>
+      'Grondezza da visualisaziun actualisada.';
 
   @override
   String get settingsExport => 'Exportar datas';
@@ -670,7 +698,8 @@ class AppLocalizationsRm extends AppLocalizations {
   String get settingsExportCopied => 'Export copià en la memoria.';
 
   @override
-  String get settingsExportSubtitle => 'Copiar tuts curs, sesidas e configuraziuns sco JSON.';
+  String get settingsExportSubtitle =>
+      'Copiar tuts curs, sesidas e configuraziuns sco JSON.';
 
   @override
   String settingsExportSummary(String courses, String sessions, String kb) {
@@ -700,7 +729,8 @@ class AppLocalizationsRm extends AppLocalizations {
   String get settingsHoursError => 'Endatescha in dumber pli grond che nulla.';
 
   @override
-  String get settingsHoursHelper => 'Standard 30. Midar recalculescha las pretensiuns; protocollaziuns vegnan mantegndas.';
+  String get settingsHoursHelper =>
+      'Standard 30. Midar recalculescha las pretensiuns; protocollaziuns vegnan mantegndas.';
 
   @override
   String get settingsHoursLabel => 'Uras per credit ECTS';
@@ -731,7 +761,8 @@ class AppLocalizationsRm extends AppLocalizations {
   }
 
   @override
-  String get settingsImportInfo => 'Agiuntar metta il backup sper tias datas actualas (configuraziuns mantegndas). Remplazzar stizza l\'emprim TUTS curs, sesidas e configuraziuns.';
+  String get settingsImportInfo =>
+      'Agiuntar metta il backup sper tias datas actualas (configuraziuns mantegndas). Remplazzar stizza l\'emprim TUTS curs, sesidas e configuraziuns.';
 
   @override
   String get settingsImportLabel => 'Enfiantar il JSON exportà';
@@ -765,7 +796,8 @@ class AppLocalizationsRm extends AppLocalizations {
   }
 
   @override
-  String get settingsImportSubtitle => 'Remplazzar tuttas datas cun in backup JSON exportà pli baud.';
+  String get settingsImportSubtitle =>
+      'Remplazzar tuttas datas cun in backup JSON exportà pli baud.';
 
   @override
   String settingsKeepHolding(String remaining) {
@@ -776,7 +808,8 @@ class AppLocalizationsRm extends AppLocalizations {
   String get settingsNoSample => 'Naginas datas d\'exempel';
 
   @override
-  String get settingsNoSampleSubtitle => 'Las datas d\'exempel èn gia stizzadas.';
+  String get settingsNoSampleSubtitle =>
+      'Las datas d\'exempel èn gia stizzadas.';
 
   @override
   String get settingsNoTarget => 'Nagina finamira tschentada';
@@ -785,7 +818,8 @@ class AppLocalizationsRm extends AppLocalizations {
   String get settingsOverloadError => 'Endatescha in dumber 5–100 u/emna.';
 
   @override
-  String get settingsOverloadHelper => 'Emnas cun chargia futura sur quai vegnan marcadas cotschen. Studi a temp cumplet è ~35–40 u/emna.';
+  String get settingsOverloadHelper =>
+      'Emnas cun chargia futura sur quai vegnan marcadas cotschen. Studi a temp cumplet è ~35–40 u/emna.';
 
   @override
   String settingsOverloadHours(String value) {
@@ -819,10 +853,12 @@ class AppLocalizationsRm extends AppLocalizations {
   String get settingsResetAll => 'Reinizialisar tuttas datas';
 
   @override
-  String get settingsResetAllMessage => 'Quai stizza definitivamain TUTS curs, sesidas e configuraziuns. Quai na po betg vegnir revocà. Exportescha l\'emprim in backup sche necessari.';
+  String get settingsResetAllMessage =>
+      'Quai stizza definitivamain TUTS curs, sesidas e configuraziuns. Quai na po betg vegnir revocà. Exportescha l\'emprim in backup sche necessari.';
 
   @override
-  String get settingsResetAllSubtitle => 'Stizzar tuts curs, sesidas e configuraziuns.';
+  String get settingsResetAllSubtitle =>
+      'Stizzar tuts curs, sesidas e configuraziuns.';
 
   @override
   String get settingsResetAllTitle => 'Reinizialisar tuttas datas?';
@@ -831,13 +867,16 @@ class AppLocalizationsRm extends AppLocalizations {
   String get settingsResetSettings => 'Reinizialisar configuraziuns';
 
   @override
-  String get settingsResetSettingsDone => 'Configuraziuns reinizialisadas als standards.';
+  String get settingsResetSettingsDone =>
+      'Configuraziuns reinizialisadas als standards.';
 
   @override
-  String get settingsResetSettingsMessage => 'Restaurescha uras-per-ECTS (30), finamira quotidiana (nagut), emprim di d\'emna (glindesdi), visad (system), toleranza (5 dis), surchargia (35 u/emna), grondezza (cumadaivla), colur (schista). Curs e sesidas vegnan mantegnds.';
+  String get settingsResetSettingsMessage =>
+      'Restaurescha uras-per-ECTS (30), finamira quotidiana (nagut), emprim di d\'emna (glindesdi), visad (system), toleranza (5 dis), surchargia (35 u/emna), grondezza (cumadaivla), colur (schista). Curs e sesidas vegnan mantegnds.';
 
   @override
-  String get settingsResetSettingsSubtitle => 'Restaurar ils standards: 30 u/ECTS, nagina finamira, glindesdi, visad da system, toleranza da 5 dis, surchargia 35 u/emna, grondezza cumadaivla, colur schista.';
+  String get settingsResetSettingsSubtitle =>
+      'Restaurar ils standards: 30 u/ECTS, nagina finamira, glindesdi, visad da system, toleranza da 5 dis, surchargia 35 u/emna, grondezza cumadaivla, colur schista.';
 
   @override
   String get settingsResetSettingsTitle => 'Reinizialisar configuraziuns?';
@@ -877,7 +916,8 @@ class AppLocalizationsRm extends AppLocalizations {
   String get settingsToleranceError => 'Endatescha in dumber 0–30 dis.';
 
   @override
-  String get settingsToleranceHelper => 'Enavant dovra +N dis surplus, enavos −N dis. 5 = stabil, 0 = sensibel.';
+  String get settingsToleranceHelper =>
+      'Enavant dovra +N dis surplus, enavos −N dis. 5 = stabil, 0 = sensibel.';
 
   @override
   String get settingsToleranceLabel => 'Dis da lavur (0–30)';
@@ -935,7 +975,8 @@ class AppLocalizationsRm extends AppLocalizations {
   }
 
   @override
-  String get statsAddDeadlines => 'Agiunta scadenzas per pronosticar la chargia.';
+  String get statsAddDeadlines =>
+      'Agiunta scadenzas per pronosticar la chargia.';
 
   @override
   String get statsComingLoad => 'Chargia futura';
@@ -944,7 +985,8 @@ class AppLocalizationsRm extends AppLocalizations {
   String get statsConsistency => 'Constanza';
 
   @override
-  String get statsConsistencyHint => 'Dis da studi en ils ultims 30 dis. Pitschens pass mintga di batan il cramming.';
+  String get statsConsistencyHint =>
+      'Dis da studi en ils ultims 30 dis. Pitschens pass mintga di batan il cramming.';
 
   @override
   String statsConsistencyScore(String percent) {
@@ -1009,7 +1051,8 @@ class AppLocalizationsRm extends AppLocalizations {
   String get statsOverview => 'Survista';
 
   @override
-  String get statsPaceCovers => 'Il tempo passà cuvra quai ch\'è necessari. Resta vidlunder.';
+  String get statsPaceCovers =>
+      'Il tempo passà cuvra quai ch\'è necessari. Resta vidlunder.';
 
   @override
   String statsPaceShort(String gap) {
@@ -1067,13 +1110,15 @@ class AppLocalizationsRm extends AppLocalizations {
   String get statusOverdue => 'Scadì';
 
   @override
-  String get studyLogDeleteBody => 'Stizzar questa sesida da studi? Quai na po betg vegnir revocà.';
+  String get studyLogDeleteBody =>
+      'Stizzar questa sesida da studi? Quai na po betg vegnir revocà.';
 
   @override
   String get studyLogDeleteTitle => 'Stizzar la sesida?';
 
   @override
-  String get studyLogEmptyHint => 'Protocolla ina sesida per persequitar tes temp da studi.';
+  String get studyLogEmptyHint =>
+      'Protocolla ina sesida per persequitar tes temp da studi.';
 
   @override
   String get studyLogEmptyTitle => 'Anc naginas sesidas da studi';
@@ -1114,7 +1159,8 @@ class AppLocalizationsRm extends AppLocalizations {
   }
 
   @override
-  String get studyTimerAlreadyRunning => 'A timer is already running. Finish or discard it first.';
+  String get studyTimerAlreadyRunning =>
+      'A timer is already running. Finish or discard it first.';
 
   @override
   String get studyTimerCourseLabel => 'Course';
@@ -1123,7 +1169,8 @@ class AppLocalizationsRm extends AppLocalizations {
   String get studyTimerDiscard => 'Discard';
 
   @override
-  String get studyTimerDiscardBody => 'Throw away the current timer without logging? This cannot be undone.';
+  String get studyTimerDiscardBody =>
+      'Throw away the current timer without logging? This cannot be undone.';
 
   @override
   String get studyTimerDiscardTitle => 'Discard timer?';
@@ -1163,7 +1210,8 @@ class AppLocalizationsRm extends AppLocalizations {
   String get studyTimerTooShort => 'Timer has not run yet.';
 
   @override
-  String get validationCourseEctsPositive => 'ECTS sto esser pli grond che nulla';
+  String get validationCourseEctsPositive =>
+      'ECTS sto esser pli grond che nulla';
 
   @override
   String get validationCourseEctsRequired => 'Endatescha credits ECTS';
@@ -1190,7 +1238,8 @@ class AppLocalizationsRm extends AppLocalizations {
   String get settingsLiquidGlass => 'Veder liquid';
 
   @override
-  String get settingsLiquidGlassSubtitle => 'Cartas e travs en veder smeriglià. Off mantegna la cumparsa classica solida.';
+  String get settingsLiquidGlassSubtitle =>
+      'Cartas e travs en veder smeriglià. Off mantegna la cumparsa classica solida.';
 
   @override
   String get settingsLiquidGlassOn => 'On';
@@ -1205,7 +1254,8 @@ class AppLocalizationsRm extends AppLocalizations {
   String get devToolsReminderPreview => 'Anteprima dals regurds';
 
   @override
-  String get devToolsReminderPreviewSubtitle => 'Guarda tge che notifitgass ussa. Feed da test segir per Windows.';
+  String get devToolsReminderPreviewSubtitle =>
+      'Guarda tge che notifitgass ussa. Feed da test segir per Windows.';
 
   @override
   String get reminderPreviewTitle => 'Anteprima dals regurds';
@@ -1217,7 +1267,8 @@ class AppLocalizationsRm extends AppLocalizations {
   String get reminderPreviewReset => 'Ussa';
 
   @override
-  String get reminderPreviewEmpty => 'Tut quiet — nagina notifica a quest temp.';
+  String get reminderPreviewEmpty =>
+      'Tut quiet — nagina notifica a quest temp.';
 
   @override
   String get reminderPreviewCustom => 'Plans persunalisads (demo)';
@@ -1253,7 +1304,8 @@ class AppLocalizationsRm extends AppLocalizations {
   String get settingsReminderTime => 'Ura dal regurd';
 
   @override
-  String get settingsReminderDenied => 'Las notificas èn bloccadas — activar en las configuraziuns dal sistem.';
+  String get settingsReminderDenied =>
+      'Las notificas èn bloccadas — activar en las configuraziuns dal sistem.';
 
   @override
   String notifDurationHours(String value) {
@@ -1291,7 +1343,12 @@ class AppLocalizationsRm extends AppLocalizations {
   }
 
   @override
-  String notifBehindBodyPace(String left, String days, String pace, String catchUp) {
+  String notifBehindBodyPace(
+    String left,
+    String days,
+    String pace,
+    String catchUp,
+  ) {
     return 'Anc $left, anc $days dis — $pace/di da qua. Protocolla $catchUp per turnar Sin via.';
   }
 
@@ -1311,7 +1368,8 @@ class AppLocalizationsRm extends AppLocalizations {
   }
 
   @override
-  String get notifDeadlineTomorrowBody => 'Mintga ch\'ins protocollescha oz vala dubel.';
+  String get notifDeadlineTomorrowBody =>
+      'Mintga ch\'ins protocollescha oz vala dubel.';
 
   @override
   String notifDeadlineSoonTitle(String course, String days, String left) {
@@ -1324,7 +1382,8 @@ class AppLocalizationsRm extends AppLocalizations {
   }
 
   @override
-  String get notifDeadlineSoonBodyNoPace => 'Mintga ura ch\'ins protocollescha uossa vala.';
+  String get notifDeadlineSoonBodyNoPace =>
+      'Mintga ura ch\'ins protocollescha uossa vala.';
 
   @override
   String notifOverdueTitle(String course, String left) {
@@ -1332,7 +1391,8 @@ class AppLocalizationsRm extends AppLocalizations {
   }
 
   @override
-  String get notifOverdueBody => 'Spusta la scadenza u finì las uras — il curs resta en Dovra attenziun fin là.';
+  String get notifOverdueBody =>
+      'Spusta la scadenza u finì las uras — il curs resta en Dovra attenziun fin là.';
 
   @override
   String notifStreakTitle(String days, String week) {

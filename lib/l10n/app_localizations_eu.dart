@@ -1,5 +1,6 @@
 // ignore: unused_import
 import 'package:intl/intl.dart' as intl;
+
 import 'app_localizations.dart';
 
 // ignore_for_file: type=lint
@@ -82,10 +83,12 @@ class AppLocalizationsEu extends AppLocalizations {
   }
 
   @override
-  String get courseFormStartEarlyOn => 'Aktibatuta: denbora orain arte banatzen da eta gaurko erritmorako balio du.';
+  String get courseFormStartEarlyOn =>
+      'Aktibatuta: denbora orain arte banatzen da eta gaurko erritmorako balio du.';
 
   @override
-  String get courseFormStartEarlyTitle => 'Hasi orain, etorkizuneko hasiera izan arren';
+  String get courseFormStartEarlyTitle =>
+      'Hasi orain, etorkizuneko hasiera izan arren';
 
   @override
   String get courseFormTitleAdd => 'Gehitu ikasgaia';
@@ -110,7 +113,8 @@ class AppLocalizationsEu extends AppLocalizations {
   }
 
   @override
-  String get coursesEmptyHint => 'Sakatu «Ikasgai berria» lehen ikasgaia sortzeko.';
+  String get coursesEmptyHint =>
+      'Sakatu «Ikasgai berria» lehen ikasgaia sortzeko.';
 
   @override
   String get coursesEmptyTitle => 'Ez dago ikasgairik oraindik';
@@ -119,7 +123,8 @@ class AppLocalizationsEu extends AppLocalizations {
   String get coursesFilterAll => 'Egoera guztiak';
 
   @override
-  String get coursesFilterEmpty => 'Ikasgai batek ere ez du iragazki hau betetzen';
+  String get coursesFilterEmpty =>
+      'Ikasgai batek ere ez du iragazki hau betetzen';
 
   @override
   String get coursesNewCourse => 'Ikasgai berria';
@@ -150,7 +155,11 @@ class AppLocalizationsEu extends AppLocalizations {
   }
 
   @override
-  String coursesProgressWithStatus(String done, String required, String status) {
+  String coursesProgressWithStatus(
+    String done,
+    String required,
+    String status,
+  ) {
     return '$done / $required h • $status';
   }
 
@@ -219,10 +228,12 @@ class AppLocalizationsEu extends AppLocalizations {
   }
 
   @override
-  String get dashboardEmptyHintAllDone => 'Ikasgai guztiak osatuta daude — ikusi zerrenda osoa Ikasgaiak fitxan.';
+  String get dashboardEmptyHintAllDone =>
+      'Ikasgai guztiak osatuta daude — ikusi zerrenda osoa Ikasgaiak fitxan.';
 
   @override
-  String get dashboardEmptyHintNoCourses => 'Gehitu ikasgai bat ECTS aurrerapena jarraitzeko.';
+  String get dashboardEmptyHintNoCourses =>
+      'Gehitu ikasgai bat ECTS aurrerapena jarraitzeko.';
 
   @override
   String dashboardExplainerBehind(String achieved, String need) {
@@ -235,10 +246,12 @@ class AppLocalizationsEu extends AppLocalizations {
   }
 
   @override
-  String get dashboardExplainerBehindNoPace => 'Atzeratuta: erritmo finitu batek ere ez du gaurko epemuga betetzen orduak falta badira';
+  String get dashboardExplainerBehindNoPace =>
+      'Atzeratuta: erritmo finitu batek ere ez du gaurko epemuga betetzen orduak falta badira';
 
   @override
-  String get dashboardExplainerOnTrackNoPace => 'Ondo zoaz: erritmorik gabe oraindik — erregistratu lehen saioa berresteko';
+  String get dashboardExplainerOnTrackNoPace =>
+      'Ondo zoaz: erritmorik gabe oraindik — erregistratu lehen saioa berresteko';
 
   @override
   String dashboardExplainerStartsIn(String days, String date) {
@@ -359,7 +372,8 @@ class AppLocalizationsEu extends AppLocalizations {
   String get dashboardProgramBare => 'PROGRAMA';
 
   @override
-  String get dashboardProgramEmptyHint => 'Gehitu ikasgai bat jarraipena hasteko';
+  String get dashboardProgramEmptyHint =>
+      'Gehitu ikasgai bat jarraipena hasteko';
 
   @override
   String dashboardProgramHours(String done, String required) {
@@ -388,10 +402,12 @@ class AppLocalizationsEu extends AppLocalizations {
   String get dashboardStartsSoon => 'Laster hasten da';
 
   @override
-  String get dashboardTipEmpty => 'Gehitu lehen ikasgaia — eguneko erritmoa eta aurrerapena hemen agertuko dira.';
+  String get dashboardTipEmpty =>
+      'Gehitu lehen ikasgaia — eguneko erritmoa eta aurrerapena hemen agertuko dira.';
 
   @override
-  String get dashboardTipFirst => 'Lehen 25 minutek balio dute gehien — aukeratu mugaegun hurbilena duen ikasgaia.';
+  String get dashboardTipFirst =>
+      'Lehen 25 minutek balio dute gehien — aukeratu mugaegun hurbilena duen ikasgaia.';
 
   @override
   String get dashboardTodayBare => 'GAUR';
@@ -415,7 +431,8 @@ class AppLocalizationsEu extends AppLocalizations {
   }
 
   @override
-  String get dashboardUpcomingSubtitle => 'Etorkizuneko hasierak — presiorik ez gaur, kanpo gaurko erritmotik.';
+  String get dashboardUpcomingSubtitle =>
+      'Etorkizuneko hasierak — presiorik ez gaur, kanpo gaurko erritmotik.';
 
   @override
   String get dashboardUpcomingTitle => 'Datozenak';
@@ -424,7 +441,8 @@ class AppLocalizationsEu extends AppLocalizations {
   String get devToolsActivate => 'Aktibatu';
 
   @override
-  String get devToolsActivateMessage => 'Honek ezkutuko estres-proba tresnak desblokeatzen ditu (datuak sortzen ditu). Garapenerako bakarrik.';
+  String get devToolsActivateMessage =>
+      'Honek ezkutuko estres-proba tresnak desblokeatzen ditu (datuak sortzen ditu). Garapenerako bakarrik.';
 
   @override
   String get devToolsActivateTitle => 'Aktibatu garapen-modua?';
@@ -436,10 +454,12 @@ class AppLocalizationsEu extends AppLocalizations {
   String get devToolsClearPumped => 'Garbitu sortutako datuak';
 
   @override
-  String get devToolsClearPumpedMessage => 'Sortutako STRESS ikasgaiak eta haien saioak ezabatzen ditu. Zure datuak gordetzen dira.';
+  String get devToolsClearPumpedMessage =>
+      'Sortutako STRESS ikasgaiak eta haien saioak ezabatzen ditu. Zure datuak gordetzen dira.';
 
   @override
-  String get devToolsClearPumpedSubtitle => 'Ezabatu sortutako STRESS ikasgaiak eta saioak.';
+  String get devToolsClearPumpedSubtitle =>
+      'Ezabatu sortutako STRESS ikasgaiak eta saioak.';
 
   @override
   String get devToolsClearPumpedTitle => 'Garbitu sortutako datuak?';
@@ -450,7 +470,8 @@ class AppLocalizationsEu extends AppLocalizations {
   }
 
   @override
-  String get devToolsConfirmPumpMessage => 'Bigarren berrespena: honek ikasgaiak, zerrendak, grafikoak eta erritmo-kalkuluak puztuko ditu, eta segundo batzuk iraun dezake. Sortu orain?';
+  String get devToolsConfirmPumpMessage =>
+      'Bigarren berrespena: honek ikasgaiak, zerrendak, grafikoak eta erritmo-kalkuluak puztuko ditu, eta segundo batzuk iraun dezake. Sortu orain?';
 
   @override
   String get devToolsConfirmPumpTitle => 'Berretsi estres-sorkuntza';
@@ -468,10 +489,12 @@ class AppLocalizationsEu extends AppLocalizations {
   String get devToolsPumpData => 'Sortu datuak';
 
   @override
-  String get devToolsPumpMessage => 'Honek ikasturte errealista bat sortzen du (~10 ikasgai, ~800 saio azken 12 asteetan). Zure datuak gordetzen dira. Jarraitu?';
+  String get devToolsPumpMessage =>
+      'Honek ikasturte errealista bat sortzen du (~10 ikasgai, ~800 saio azken 12 asteetan). Zure datuak gordetzen dira. Jarraitu?';
 
   @override
-  String get devToolsPumpSubtitle => 'Sartu sortutako ikasturte bat (~10 ikasgai, ~800 saio, 12 aste). Datuak gordetzen dira.';
+  String get devToolsPumpSubtitle =>
+      'Sartu sortutako ikasturte bat (~10 ikasgai, ~800 saio, 12 aste). Datuak gordetzen dira.';
 
   @override
   String get devToolsPumpTile => 'Sortu proba-datuak';
@@ -491,10 +514,12 @@ class AppLocalizationsEu extends AppLocalizations {
   String get devToolsRemoveAll => 'Ezabatu datu guztiak';
 
   @override
-  String get devToolsRemoveAllMessage => 'Garapen-lasterbidea: ikasgai, saio eta ezarpen GUZTIAK betiko ezabatzen ditu. Ezin da desegin.';
+  String get devToolsRemoveAllMessage =>
+      'Garapen-lasterbidea: ikasgai, saio eta ezarpen GUZTIAK betiko ezabatzen ditu. Ezin da desegin.';
 
   @override
-  String get devToolsRemoveAllSubtitle => 'Garapen-lasterbidea: ezabatu ikasgai, saio eta ezarpen GUZTIAK.';
+  String get devToolsRemoveAllSubtitle =>
+      'Garapen-lasterbidea: ezabatu ikasgai, saio eta ezarpen GUZTIAK.';
 
   @override
   String get devToolsRemoveAllTitle => 'Ezabatu datu guztiak?';
@@ -526,7 +551,8 @@ class AppLocalizationsEu extends AppLocalizations {
   }
 
   @override
-  String get sessionFormDurationError => 'Iraupena zero baino handiagoa izan behar da.';
+  String get sessionFormDurationError =>
+      'Iraupena zero baino handiagoa izan behar da.';
 
   @override
   String get sessionFormHoursLabel => 'Orduak';
@@ -547,7 +573,8 @@ class AppLocalizationsEu extends AppLocalizations {
   String get sessionFormNoCourseError => 'Aukeratu ikasgai bat.';
 
   @override
-  String get sessionFormNoCoursesHint => 'Gehitu ikasgai bat lehenik saio bat erregistratzeko.';
+  String get sessionFormNoCoursesHint =>
+      'Gehitu ikasgai bat lehenik saio bat erregistratzeko.';
 
   @override
   String get sessionFormNotesLabel => 'Oharrak (aukerakoa)';
@@ -603,10 +630,12 @@ class AppLocalizationsEu extends AppLocalizations {
   String get settingsClearSample => 'Garbitu lagin-datuak';
 
   @override
-  String get settingsClearSampleMessage => 'Honek adibide-ikasgaiak eta saioak kentzen ditu. Zuk gehitutako ikasgaiak edo saioak ez dira kentzen.';
+  String get settingsClearSampleMessage =>
+      'Honek adibide-ikasgaiak eta saioak kentzen ditu. Zuk gehitutako ikasgaiak edo saioak ez dira kentzen.';
 
   @override
-  String get settingsClearSampleSubtitle => 'Kendu adibide-ikasgaiak eta saioak. Zure datuak gordetzen dira.';
+  String get settingsClearSampleSubtitle =>
+      'Kendu adibide-ikasgaiak eta saioak. Zure datuak gordetzen dira.';
 
   @override
   String get settingsClearSampleTitle => 'Garbitu lagin-datuak?';
@@ -670,7 +699,8 @@ class AppLocalizationsEu extends AppLocalizations {
   String get settingsExportCopied => 'Esportazioa arbelean kopiatu da.';
 
   @override
-  String get settingsExportSubtitle => 'Kopiatu ikasgai, saio eta ezarpen guztiak JSON gisa.';
+  String get settingsExportSubtitle =>
+      'Kopiatu ikasgai, saio eta ezarpen guztiak JSON gisa.';
 
   @override
   String settingsExportSummary(String courses, String sessions, String kb) {
@@ -697,10 +727,12 @@ class AppLocalizationsEu extends AppLocalizations {
   String get settingsHoldToReplace => 'Eutsi guztia ordezteko';
 
   @override
-  String get settingsHoursError => 'Sartu zero baino handiagoa den zenbaki bat.';
+  String get settingsHoursError =>
+      'Sartu zero baino handiagoa den zenbaki bat.';
 
   @override
-  String get settingsHoursHelper => 'Lehenetsia 30. Aldatzeak eskakizunak birkalkulatzen ditu; erregistroak gordetzen dira.';
+  String get settingsHoursHelper =>
+      'Lehenetsia 30. Aldatzeak eskakizunak birkalkulatzen ditu; erregistroak gordetzen dira.';
 
   @override
   String get settingsHoursLabel => 'Orduak ECTS kreditu bakoitzeko';
@@ -731,7 +763,8 @@ class AppLocalizationsEu extends AppLocalizations {
   }
 
   @override
-  String get settingsImportInfo => 'Gehitzeak babeskopia uneko datuekin batera gehitzen du (ezarpenak gordetzen dira). Ordezteak ikasgai, saio eta ezarpen GUZTIAK ezabatzen ditu LEHENIK.';
+  String get settingsImportInfo =>
+      'Gehitzeak babeskopia uneko datuekin batera gehitzen du (ezarpenak gordetzen dira). Ordezteak ikasgai, saio eta ezarpen GUZTIAK ezabatzen ditu LEHENIK.';
 
   @override
   String get settingsImportLabel => 'Itsatsi esportatutako JSONa';
@@ -765,7 +798,8 @@ class AppLocalizationsEu extends AppLocalizations {
   }
 
   @override
-  String get settingsImportSubtitle => 'Ordeztu datu guztiak aurrez esportatutako JSON babeskopia batetik.';
+  String get settingsImportSubtitle =>
+      'Ordeztu datu guztiak aurrez esportatutako JSON babeskopia batetik.';
 
   @override
   String settingsKeepHolding(String remaining) {
@@ -776,7 +810,8 @@ class AppLocalizationsEu extends AppLocalizations {
   String get settingsNoSample => 'Ez dago lagin-daturik';
 
   @override
-  String get settingsNoSampleSubtitle => 'Adibide-datuak dagoeneko garbitu dira.';
+  String get settingsNoSampleSubtitle =>
+      'Adibide-datuak dagoeneko garbitu dira.';
 
   @override
   String get settingsNoTarget => 'Ez dago helbururik';
@@ -785,7 +820,8 @@ class AppLocalizationsEu extends AppLocalizations {
   String get settingsOverloadError => 'Sartu 5–100 h/aste arteko zenbaki bat.';
 
   @override
-  String get settingsOverloadHelper => 'Gainetik dauden datozen karga-asteak gorriz markatzen dira. Denbora osoko ikasketa ~35–40 h/aste da.';
+  String get settingsOverloadHelper =>
+      'Gainetik dauden datozen karga-asteak gorriz markatzen dira. Denbora osoko ikasketa ~35–40 h/aste da.';
 
   @override
   String settingsOverloadHours(String value) {
@@ -810,7 +846,8 @@ class AppLocalizationsEu extends AppLocalizations {
   String get settingsPaceTolerance => 'Aurrerapen/atzerapen tolerantzia';
 
   @override
-  String get settingsPasteValidBackup => 'Itsatsi baliozko babeskopia bat lehenik';
+  String get settingsPasteValidBackup =>
+      'Itsatsi baliozko babeskopia bat lehenik';
 
   @override
   String get settingsReset => 'Berrezarri';
@@ -819,10 +856,12 @@ class AppLocalizationsEu extends AppLocalizations {
   String get settingsResetAll => 'Berrezarri datu guztiak';
 
   @override
-  String get settingsResetAllMessage => 'Honek ikasgai, saio eta ezarpen GUZTIAK betiko ezabatzen ditu. Ezin da desegin. Esportatu babeskopia bat lehenik behar izanez gero.';
+  String get settingsResetAllMessage =>
+      'Honek ikasgai, saio eta ezarpen GUZTIAK betiko ezabatzen ditu. Ezin da desegin. Esportatu babeskopia bat lehenik behar izanez gero.';
 
   @override
-  String get settingsResetAllSubtitle => 'Ezabatu ikasgai, saio eta ezarpen guztiak.';
+  String get settingsResetAllSubtitle =>
+      'Ezabatu ikasgai, saio eta ezarpen guztiak.';
 
   @override
   String get settingsResetAllTitle => 'Berrezarri datu guztiak?';
@@ -831,13 +870,16 @@ class AppLocalizationsEu extends AppLocalizations {
   String get settingsResetSettings => 'Berrezarri ezarpenak';
 
   @override
-  String get settingsResetSettingsDone => 'Ezarpenak lehenetsietara berrezarri dira.';
+  String get settingsResetSettingsDone =>
+      'Ezarpenak lehenetsietara berrezarri dira.';
 
   @override
-  String get settingsResetSettingsMessage => 'Berrezartzen du orduak/ECTS (30), eguneko helburua (bat ere ez), asteko lehen eguna (astelehena), gaia (sistema), tolerantzia (5 egun), gainkarga (35 h/aste), tamaina (erosoa), kolorea (arbela). Ikasgaiak eta saioak gordetzen dira.';
+  String get settingsResetSettingsMessage =>
+      'Berrezartzen du orduak/ECTS (30), eguneko helburua (bat ere ez), asteko lehen eguna (astelehena), gaia (sistema), tolerantzia (5 egun), gainkarga (35 h/aste), tamaina (erosoa), kolorea (arbela). Ikasgaiak eta saioak gordetzen dira.';
 
   @override
-  String get settingsResetSettingsSubtitle => 'Berrezarri balioak: 30 h/ECTS, helbururik gabe, astelehena, sistemaren gaia, 5 eguneko tolerantzia, 35 h/asteko gainkarga, tamaina erosoa, kolore arbela.';
+  String get settingsResetSettingsSubtitle =>
+      'Berrezarri balioak: 30 h/ECTS, helbururik gabe, astelehena, sistemaren gaia, 5 eguneko tolerantzia, 35 h/asteko gainkarga, tamaina erosoa, kolore arbela.';
 
   @override
   String get settingsResetSettingsTitle => 'Berrezarri ezarpenak?';
@@ -877,7 +919,8 @@ class AppLocalizationsEu extends AppLocalizations {
   String get settingsToleranceError => 'Sartu 0–30 egun arteko zenbaki bat.';
 
   @override
-  String get settingsToleranceHelper => 'Aurrerapenak +N eguneko soberakina behar du, atzerapenak −N egun. 5 = egonkorra, 0 = sentikorra.';
+  String get settingsToleranceHelper =>
+      'Aurrerapenak +N eguneko soberakina behar du, atzerapenak −N egun. 5 = egonkorra, 0 = sentikorra.';
 
   @override
   String get settingsToleranceLabel => 'Lan-egunak (0–30)';
@@ -944,7 +987,8 @@ class AppLocalizationsEu extends AppLocalizations {
   String get statsConsistency => 'Koherentzia';
 
   @override
-  String get statsConsistencyHint => 'Azken 30 egunetako ikasketa-egunak. Urrats txikiak egunero, pilatzea baino hobe.';
+  String get statsConsistencyHint =>
+      'Azken 30 egunetako ikasketa-egunak. Urrats txikiak egunero, pilatzea baino hobe.';
 
   @override
   String statsConsistencyScore(String percent) {
@@ -1009,7 +1053,8 @@ class AppLocalizationsEu extends AppLocalizations {
   String get statsOverview => 'Laburpena';
 
   @override
-  String get statsPaceCovers => 'Iraganeko erritmoak behar dena estaltzen du. Eutsi boladari.';
+  String get statsPaceCovers =>
+      'Iraganeko erritmoak behar dena estaltzen du. Eutsi boladari.';
 
   @override
   String statsPaceShort(String gap) {
@@ -1067,13 +1112,15 @@ class AppLocalizationsEu extends AppLocalizations {
   String get statusOverdue => 'Igarota';
 
   @override
-  String get studyLogDeleteBody => 'Ezabatu ikasketa-saio hau? Ezin da desegin.';
+  String get studyLogDeleteBody =>
+      'Ezabatu ikasketa-saio hau? Ezin da desegin.';
 
   @override
   String get studyLogDeleteTitle => 'Ezabatu saioa?';
 
   @override
-  String get studyLogEmptyHint => 'Erregistratu saio bat ikasketa-denbora jarraitzeko.';
+  String get studyLogEmptyHint =>
+      'Erregistratu saio bat ikasketa-denbora jarraitzeko.';
 
   @override
   String get studyLogEmptyTitle => 'Ez dago ikasketa-saiorik oraindik';
@@ -1114,7 +1161,8 @@ class AppLocalizationsEu extends AppLocalizations {
   }
 
   @override
-  String get studyTimerAlreadyRunning => 'A timer is already running. Finish or discard it first.';
+  String get studyTimerAlreadyRunning =>
+      'A timer is already running. Finish or discard it first.';
 
   @override
   String get studyTimerCourseLabel => 'Course';
@@ -1123,7 +1171,8 @@ class AppLocalizationsEu extends AppLocalizations {
   String get studyTimerDiscard => 'Discard';
 
   @override
-  String get studyTimerDiscardBody => 'Throw away the current timer without logging? This cannot be undone.';
+  String get studyTimerDiscardBody =>
+      'Throw away the current timer without logging? This cannot be undone.';
 
   @override
   String get studyTimerDiscardTitle => 'Discard timer?';
@@ -1163,7 +1212,8 @@ class AppLocalizationsEu extends AppLocalizations {
   String get studyTimerTooShort => 'Timer has not run yet.';
 
   @override
-  String get validationCourseEctsPositive => 'ECTSak zero baino handiagoak izan behar dira';
+  String get validationCourseEctsPositive =>
+      'ECTSak zero baino handiagoak izan behar dira';
 
   @override
   String get validationCourseEctsRequired => 'Sartu ECTS kredituak';
@@ -1190,7 +1240,8 @@ class AppLocalizationsEu extends AppLocalizations {
   String get settingsLiquidGlass => 'Beira likidoa';
 
   @override
-  String get settingsLiquidGlassSubtitle => 'Beira izoztuzko txartelak eta barrak. Desaktibatuta itxura klasiko trinkoa mantentzen da.';
+  String get settingsLiquidGlassSubtitle =>
+      'Beira izoztuzko txartelak eta barrak. Desaktibatuta itxura klasiko trinkoa mantentzen da.';
 
   @override
   String get settingsLiquidGlassOn => 'Aktibatuta';
@@ -1205,7 +1256,8 @@ class AppLocalizationsEu extends AppLocalizations {
   String get devToolsReminderPreview => 'Gogorarazpenen aurrebista';
 
   @override
-  String get devToolsReminderPreviewSubtitle => 'Ikusi zer jakinaraziko litzatekeen orain. Proba-jario segurua Windowsen.';
+  String get devToolsReminderPreviewSubtitle =>
+      'Ikusi zer jakinaraziko litzatekeen orain. Proba-jario segurua Windowsen.';
 
   @override
   String get reminderPreviewTitle => 'Gogorarazpenen aurrebista';
@@ -1217,7 +1269,8 @@ class AppLocalizationsEu extends AppLocalizations {
   String get reminderPreviewReset => 'Orain';
 
   @override
-  String get reminderPreviewEmpty => 'Dena lasai — ez litzateke ezer jakinaraziko une honetan.';
+  String get reminderPreviewEmpty =>
+      'Dena lasai — ez litzateke ezer jakinaraziko une honetan.';
 
   @override
   String get reminderPreviewCustom => 'Ordutegi pertsonalizatuak (demo)';
@@ -1247,13 +1300,15 @@ class AppLocalizationsEu extends AppLocalizations {
   String get settingsReminders => 'Ikasketa-gogorarazpenak';
 
   @override
-  String get settingsRemindersOff => 'Desaktibatuta — aktibatu eguneroko abisua jasotzeko.';
+  String get settingsRemindersOff =>
+      'Desaktibatuta — aktibatu eguneroko abisua jasotzeko.';
 
   @override
   String get settingsReminderTime => 'Gogorarazpen-ordua';
 
   @override
-  String get settingsReminderDenied => 'Jakinarazpenak blokeatuta daude — gaitu itzazu sistemaren ezarpenetan.';
+  String get settingsReminderDenied =>
+      'Jakinarazpenak blokeatuta daude — gaitu itzazu sistemaren ezarpenetan.';
 
   @override
   String notifDurationHours(String value) {
@@ -1291,7 +1346,12 @@ class AppLocalizationsEu extends AppLocalizations {
   }
 
   @override
-  String notifBehindBodyPace(String left, String days, String pace, String catchUp) {
+  String notifBehindBodyPace(
+    String left,
+    String days,
+    String pace,
+    String catchUp,
+  ) {
     return '$left falta, $days egun geratzen dira — hemendik aurrera $pace/egun. Erregistratu $catchUp Ondo bidean itzultzeko.';
   }
 
@@ -1311,7 +1371,8 @@ class AppLocalizationsEu extends AppLocalizations {
   }
 
   @override
-  String get notifDeadlineTomorrowBody => 'Gaur erregistratzen duzun guztiak bikoitz balio du.';
+  String get notifDeadlineTomorrowBody =>
+      'Gaur erregistratzen duzun guztiak bikoitz balio du.';
 
   @override
   String notifDeadlineSoonTitle(String course, String days, String left) {
@@ -1324,7 +1385,8 @@ class AppLocalizationsEu extends AppLocalizations {
   }
 
   @override
-  String get notifDeadlineSoonBodyNoPace => 'Orain erregistratzen duzun ordu bakoitzak balio du.';
+  String get notifDeadlineSoonBodyNoPace =>
+      'Orain erregistratzen duzun ordu bakoitzak balio du.';
 
   @override
   String notifOverdueTitle(String course, String left) {
@@ -1332,7 +1394,8 @@ class AppLocalizationsEu extends AppLocalizations {
   }
 
   @override
-  String get notifOverdueBody => 'Mugitu epemuga edo amaitu orduak — bitartean ikasgaiak arreta behar du.';
+  String get notifOverdueBody =>
+      'Mugitu epemuga edo amaitu orduak — bitartean ikasgaiak arreta behar du.';
 
   @override
   String notifStreakTitle(String days, String week) {
@@ -1340,7 +1403,8 @@ class AppLocalizationsEu extends AppLocalizations {
   }
 
   @override
-  String get notifStreakBody => 'Ikasgai guztiak Ondo bidean edo Aurreratuta. Bolada bikaina.';
+  String get notifStreakBody =>
+      'Ikasgai guztiak Ondo bidean edo Aurreratuta. Bolada bikaina.';
 
   @override
   String notifCustomTitleAuto(String course) {

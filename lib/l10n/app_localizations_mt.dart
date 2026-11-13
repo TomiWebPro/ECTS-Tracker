@@ -1,5 +1,6 @@
 // ignore: unused_import
 import 'package:intl/intl.dart' as intl;
+
 import 'app_localizations.dart';
 
 // ignore_for_file: type=lint
@@ -82,7 +83,8 @@ class AppLocalizationsMt extends AppLocalizations {
   }
 
   @override
-  String get courseFormStartEarlyOn => 'Mixgħul: il-ħin jinqasam sa issa u jgħodd għall-pass tal-lum.';
+  String get courseFormStartEarlyOn =>
+      'Mixgħul: il-ħin jinqasam sa issa u jgħodd għall-pass tal-lum.';
 
   @override
   String get courseFormStartEarlyTitle => 'Ibda issa minkejja bidu futur';
@@ -110,7 +112,8 @@ class AppLocalizationsMt extends AppLocalizations {
   }
 
   @override
-  String get coursesEmptyHint => 'Miss “Kors ġdid” biex toħloq l-ewwel kors tiegħek.';
+  String get coursesEmptyHint =>
+      'Miss “Kors ġdid” biex toħloq l-ewwel kors tiegħek.';
 
   @override
   String get coursesEmptyTitle => 'L-ebda kors sʼissa';
@@ -150,7 +153,11 @@ class AppLocalizationsMt extends AppLocalizations {
   }
 
   @override
-  String coursesProgressWithStatus(String done, String required, String status) {
+  String coursesProgressWithStatus(
+    String done,
+    String required,
+    String status,
+  ) {
     return '$done / $required s • $status';
   }
 
@@ -219,10 +226,12 @@ class AppLocalizationsMt extends AppLocalizations {
   }
 
   @override
-  String get dashboardEmptyHintAllDone => 'Kull kors huwa lest — ara t-tab Korsijiet għal-lista sħiħa.';
+  String get dashboardEmptyHintAllDone =>
+      'Kull kors huwa lest — ara t-tab Korsijiet għal-lista sħiħa.';
 
   @override
-  String get dashboardEmptyHintNoCourses => 'Żid kors biex tibda ssegwi l-progress ECTS tiegħek.';
+  String get dashboardEmptyHintNoCourses =>
+      'Żid kors biex tibda ssegwi l-progress ECTS tiegħek.';
 
   @override
   String dashboardExplainerBehind(String achieved, String need) {
@@ -235,10 +244,12 @@ class AppLocalizationsMt extends AppLocalizations {
   }
 
   @override
-  String get dashboardExplainerBehindNoPace => 'Lura: l-ebda pass finit ma jilħaq għeluq tal-lum bis-sigħat li fadal';
+  String get dashboardExplainerBehindNoPace =>
+      'Lura: l-ebda pass finit ma jilħaq għeluq tal-lum bis-sigħat li fadal';
 
   @override
-  String get dashboardExplainerOnTrackNoPace => 'Fit-triq it-tajba: l-ebda pass sʼissa — irreġistra l-ewwel sessjoni biex tikkonferma';
+  String get dashboardExplainerOnTrackNoPace =>
+      'Fit-triq it-tajba: l-ebda pass sʼissa — irreġistra l-ewwel sessjoni biex tikkonferma';
 
   @override
   String dashboardExplainerStartsIn(String days, String date) {
@@ -388,10 +399,12 @@ class AppLocalizationsMt extends AppLocalizations {
   String get dashboardStartsSoon => 'Jibda dalwaqt';
 
   @override
-  String get dashboardTipEmpty => 'Żid l-ewwel kors tiegħek — il-pass taʼ kuljum u l-progress jidhru hawn.';
+  String get dashboardTipEmpty =>
+      'Żid l-ewwel kors tiegħek — il-pass taʼ kuljum u l-progress jidhru hawn.';
 
   @override
-  String get dashboardTipFirst => 'L-ewwel 25 minuta jgħoddu l-aktar — agħżel il-kors bl-eqreb għeluq.';
+  String get dashboardTipFirst =>
+      'L-ewwel 25 minuta jgħoddu l-aktar — agħżel il-kors bl-eqreb għeluq.';
 
   @override
   String get dashboardTodayBare => 'LUM';
@@ -415,7 +428,8 @@ class AppLocalizationsMt extends AppLocalizations {
   }
 
   @override
-  String get dashboardUpcomingSubtitle => 'Bidu futur — l-ebda pressjoni llum, esklużi mill-pass tal-lum.';
+  String get dashboardUpcomingSubtitle =>
+      'Bidu futur — l-ebda pressjoni llum, esklużi mill-pass tal-lum.';
 
   @override
   String get dashboardUpcomingTitle => 'Futuri';
@@ -424,7 +438,8 @@ class AppLocalizationsMt extends AppLocalizations {
   String get devToolsActivate => 'Attiva';
 
   @override
-  String get devToolsActivateMessage => 'Dan jiftaħ għodod moħbija tat-test tal-istress (iddaħħal data ġġenerata). Biss għall-iżvilupp.';
+  String get devToolsActivateMessage =>
+      'Dan jiftaħ għodod moħbija tat-test tal-istress (iddaħħal data ġġenerata). Biss għall-iżvilupp.';
 
   @override
   String get devToolsActivateTitle => 'Tattiva l-modalità taʼ żvilupp?';
@@ -436,10 +451,12 @@ class AppLocalizationsMt extends AppLocalizations {
   String get devToolsClearPumped => 'Neħħi d-data ġġenerata';
 
   @override
-  String get devToolsClearPumpedMessage => 'Tħassar il-korsijiet STRESS iġġenerati u s-sessjonijiet tagħhom. Id-data tiegħek tinżamm.';
+  String get devToolsClearPumpedMessage =>
+      'Tħassar il-korsijiet STRESS iġġenerati u s-sessjonijiet tagħhom. Id-data tiegħek tinżamm.';
 
   @override
-  String get devToolsClearPumpedSubtitle => 'Ħassar il-korsijiet u s-sessjonijiet STRESS iġġenerati.';
+  String get devToolsClearPumpedSubtitle =>
+      'Ħassar il-korsijiet u s-sessjonijiet STRESS iġġenerati.';
 
   @override
   String get devToolsClearPumpedTitle => 'Tneħħi d-data ġġenerata?';
@@ -450,7 +467,8 @@ class AppLocalizationsMt extends AppLocalizations {
   }
 
   @override
-  String get devToolsConfirmPumpMessage => 'It-tieni konferma: dan se jkabbar il-korsijiet, il-listi, iċ-ċarts u l-kalkoli tal-pass, u jistaʼ jieħu ftit sekondi. Riddaħħal issa?';
+  String get devToolsConfirmPumpMessage =>
+      'It-tieni konferma: dan se jkabbar il-korsijiet, il-listi, iċ-ċarts u l-kalkoli tal-pass, u jistaʼ jieħu ftit sekondi. Riddaħħal issa?';
 
   @override
   String get devToolsConfirmPumpTitle => 'Ikkonferma d-daħħal tal-istress';
@@ -462,16 +480,19 @@ class AppLocalizationsMt extends AppLocalizations {
   String get devToolsExit => 'Oħroġ mill-modalità taʼ żvilupp';
 
   @override
-  String get devToolsExitSubtitle => 'Aħbi l-għodod taʼ żvilupp fuq dan l-apparat.';
+  String get devToolsExitSubtitle =>
+      'Aħbi l-għodod taʼ żvilupp fuq dan l-apparat.';
 
   @override
   String get devToolsPumpData => 'Daħħal id-data';
 
   @override
-  String get devToolsPumpMessage => 'Dan idaħħal semestru ġġenerat realistiku (~10 korsijiet, ~800 sessjoni fl-aħħar 12-il ġimgħa). Id-data eżistenti tiegħek tinżamm. Tkompli?';
+  String get devToolsPumpMessage =>
+      'Dan idaħħal semestru ġġenerat realistiku (~10 korsijiet, ~800 sessjoni fl-aħħar 12-il ġimgħa). Id-data eżistenti tiegħek tinżamm. Tkompli?';
 
   @override
-  String get devToolsPumpSubtitle => 'Daħħal semestru ġġenerat (~10 korsijiet, ~800 sessjoni, 12-il ġimgħa). Id-data eżistenti tinżamm.';
+  String get devToolsPumpSubtitle =>
+      'Daħħal semestru ġġenerat (~10 korsijiet, ~800 sessjoni, 12-il ġimgħa). Id-data eżistenti tinżamm.';
 
   @override
   String get devToolsPumpTile => 'Daħħal data tat-test';
@@ -491,10 +512,12 @@ class AppLocalizationsMt extends AppLocalizations {
   String get devToolsRemoveAll => 'Neħħi d-data kollha';
 
   @override
-  String get devToolsRemoveAllMessage => 'Shortcut tal-iżvilupp: dan iħassar bʼmod permanenti l-korsijiet, is-sessjonijiet u l-issettjar KOLLHA. Dan ma jistax jitneħħa.';
+  String get devToolsRemoveAllMessage =>
+      'Shortcut tal-iżvilupp: dan iħassar bʼmod permanenti l-korsijiet, is-sessjonijiet u l-issettjar KOLLHA. Dan ma jistax jitneħħa.';
 
   @override
-  String get devToolsRemoveAllSubtitle => 'Shortcut tal-iżvilupp: ħassar il-korsijiet, is-sessjonijiet u l-issettjar KOLLHA.';
+  String get devToolsRemoveAllSubtitle =>
+      'Shortcut tal-iżvilupp: ħassar il-korsijiet, is-sessjonijiet u l-issettjar KOLLHA.';
 
   @override
   String get devToolsRemoveAllTitle => 'Tneħħi d-data kollha?';
@@ -547,7 +570,8 @@ class AppLocalizationsMt extends AppLocalizations {
   String get sessionFormNoCourseError => 'Agħżel kors.';
 
   @override
-  String get sessionFormNoCoursesHint => 'Żid kors l-ewwel biex tirreġistra sessjoni.';
+  String get sessionFormNoCoursesHint =>
+      'Żid kors l-ewwel biex tirreġistra sessjoni.';
 
   @override
   String get sessionFormNotesLabel => 'Noti (mhux obbligatorji)';
@@ -603,10 +627,12 @@ class AppLocalizationsMt extends AppLocalizations {
   String get settingsClearSample => 'Neħħi d-data taʼ kampjun';
 
   @override
-  String get settingsClearSampleMessage => 'Dan ineħħi l-korsijiet u s-sessjonijiet taʼ kampjun. Il-korsijiet jew is-sessjonijiet li żidt int mʼhumiex imneħħija.';
+  String get settingsClearSampleMessage =>
+      'Dan ineħħi l-korsijiet u s-sessjonijiet taʼ kampjun. Il-korsijiet jew is-sessjonijiet li żidt int mʼhumiex imneħħija.';
 
   @override
-  String get settingsClearSampleSubtitle => 'Neħħi l-korsijiet u s-sessjonijiet taʼ kampjun miżrugħa. Id-data tiegħek tinżamm.';
+  String get settingsClearSampleSubtitle =>
+      'Neħħi l-korsijiet u s-sessjonijiet taʼ kampjun miżrugħa. Id-data tiegħek tinżamm.';
 
   @override
   String get settingsClearSampleTitle => 'Tneħħi d-data taʼ kampjun?';
@@ -667,10 +693,12 @@ class AppLocalizationsMt extends AppLocalizations {
   String get settingsExport => 'Esporta d-data';
 
   @override
-  String get settingsExportCopied => 'L-esportazzjoni ġiet ikkupjata fil-clipboard.';
+  String get settingsExportCopied =>
+      'L-esportazzjoni ġiet ikkupjata fil-clipboard.';
 
   @override
-  String get settingsExportSubtitle => 'Ikkopja l-korsijiet, is-sessjonijiet u l-issettjar kollha bħala JSON.';
+  String get settingsExportSubtitle =>
+      'Ikkopja l-korsijiet, is-sessjonijiet u l-issettjar kollha bħala JSON.';
 
   @override
   String settingsExportSummary(String courses, String sessions, String kb) {
@@ -686,7 +714,8 @@ class AppLocalizationsMt extends AppLocalizations {
   String get settingsFirstWeekday => 'L-ewwel jum tal-ġimgħa';
 
   @override
-  String get settingsFirstWeekdayUpdated => 'L-ewwel jum tal-ġimgħa ġie aġġornat.';
+  String get settingsFirstWeekdayUpdated =>
+      'L-ewwel jum tal-ġimgħa ġie aġġornat.';
 
   @override
   String settingsHoldLabel(String label, String seconds) {
@@ -700,7 +729,8 @@ class AppLocalizationsMt extends AppLocalizations {
   String get settingsHoursError => 'Daħħal numru akbar minn żero.';
 
   @override
-  String get settingsHoursHelper => 'Normal 30. Il-bidla tikkalkula mill-ġdid ir-rekwiżiti; ir-reġistri jinżammu.';
+  String get settingsHoursHelper =>
+      'Normal 30. Il-bidla tikkalkula mill-ġdid ir-rekwiżiti; ir-reġistri jinżammu.';
 
   @override
   String get settingsHoursLabel => 'Sigħat għal kull kreditu ECTS';
@@ -731,7 +761,8 @@ class AppLocalizationsMt extends AppLocalizations {
   }
 
   @override
-  String get settingsImportInfo => 'Iż-żieda żżid il-backup malajr mad-data attwali tiegħek (l-issettjar jinżamm). Is-sostituzzjoni tħassar l-ewwel il-korsijiet, is-sessjonijiet u l-issettjar KOLLHA.';
+  String get settingsImportInfo =>
+      'Iż-żieda żżid il-backup malajr mad-data attwali tiegħek (l-issettjar jinżamm). Is-sostituzzjoni tħassar l-ewwel il-korsijiet, is-sessjonijiet u l-issettjar KOLLHA.';
 
   @override
   String get settingsImportLabel => 'Waħħal il-JSON esportat';
@@ -765,7 +796,8 @@ class AppLocalizationsMt extends AppLocalizations {
   }
 
   @override
-  String get settingsImportSubtitle => 'Issostitwixxi d-data kollha minn backup JSON esportat qabel.';
+  String get settingsImportSubtitle =>
+      'Issostitwixxi d-data kollha minn backup JSON esportat qabel.';
 
   @override
   String settingsKeepHolding(String remaining) {
@@ -776,7 +808,8 @@ class AppLocalizationsMt extends AppLocalizations {
   String get settingsNoSample => 'L-ebda data taʼ kampjun';
 
   @override
-  String get settingsNoSampleSubtitle => 'Id-data taʼ kampjun miżrugħa diġà tneħħiet.';
+  String get settingsNoSampleSubtitle =>
+      'Id-data taʼ kampjun miżrugħa diġà tneħħiet.';
 
   @override
   String get settingsNoTarget => 'L-ebda miri issettjat';
@@ -785,7 +818,8 @@ class AppLocalizationsMt extends AppLocalizations {
   String get settingsOverloadError => 'Daħħal numru 5–100 s/ġimgħa.';
 
   @override
-  String get settingsOverloadHelper => 'Il-ġimgħat tat-tagħbija futura fuq dan jiġu mmarkati bl-aħmar. Studju full-time huwa ~35–40 s/ġimgħa.';
+  String get settingsOverloadHelper =>
+      'Il-ġimgħat tat-tagħbija futura fuq dan jiġu mmarkati bl-aħmar. Studju full-time huwa ~35–40 s/ġimgħa.';
 
   @override
   String settingsOverloadHours(String value) {
@@ -801,10 +835,12 @@ class AppLocalizationsMt extends AppLocalizations {
   }
 
   @override
-  String get settingsOverloadThreshold => 'Limitu taʼ tagħbija żejda fil-ġimgħa';
+  String get settingsOverloadThreshold =>
+      'Limitu taʼ tagħbija żejda fil-ġimgħa';
 
   @override
-  String get settingsOverloadUpdated => 'Il-limitu taʼ tagħbija żejda ġie aġġornat.';
+  String get settingsOverloadUpdated =>
+      'Il-limitu taʼ tagħbija żejda ġie aġġornat.';
 
   @override
   String get settingsPaceTolerance => 'Tolleranza taʼ quddiem / lura';
@@ -819,10 +855,12 @@ class AppLocalizationsMt extends AppLocalizations {
   String get settingsResetAll => 'Irrisettja d-data kollha';
 
   @override
-  String get settingsResetAllMessage => 'Dan iħassar bʼmod permanenti l-korsijiet, is-sessjonijiet u l-issettjar KOLLHA. Dan ma jistax jitneħħa. Esporta backup l-ewwel jekk meħtieġ.';
+  String get settingsResetAllMessage =>
+      'Dan iħassar bʼmod permanenti l-korsijiet, is-sessjonijiet u l-issettjar KOLLHA. Dan ma jistax jitneħħa. Esporta backup l-ewwel jekk meħtieġ.';
 
   @override
-  String get settingsResetAllSubtitle => 'Ħassar il-korsijiet, is-sessjonijiet u l-issettjar kollha.';
+  String get settingsResetAllSubtitle =>
+      'Ħassar il-korsijiet, is-sessjonijiet u l-issettjar kollha.';
 
   @override
   String get settingsResetAllTitle => 'Tirrisettja d-data kollha?';
@@ -831,13 +869,16 @@ class AppLocalizationsMt extends AppLocalizations {
   String get settingsResetSettings => 'Irrisettja l-issettjar';
 
   @override
-  String get settingsResetSettingsDone => 'L-issettjar ġie rrisettjat għan-normal.';
+  String get settingsResetSettingsDone =>
+      'L-issettjar ġie rrisettjat għan-normal.';
 
   @override
-  String get settingsResetSettingsMessage => 'Jerġaʼ jġib is-sigħat għal kull ECTS (30), il-miri taʼ kuljum (xejn), l-ewwel jum tal-ġimgħa (it-Tnejn), it-tema (sistema), it-tolleranza (5 ijiem), it-tagħbija żejda (35 s/ġimgħa), id-daqs (komdu), il-kulur (lavanja). Il-korsijiet u s-sessjonijiet jinżammu.';
+  String get settingsResetSettingsMessage =>
+      'Jerġaʼ jġib is-sigħat għal kull ECTS (30), il-miri taʼ kuljum (xejn), l-ewwel jum tal-ġimgħa (it-Tnejn), it-tema (sistema), it-tolleranza (5 ijiem), it-tagħbija żejda (35 s/ġimgħa), id-daqs (komdu), il-kulur (lavanja). Il-korsijiet u s-sessjonijiet jinżammu.';
 
   @override
-  String get settingsResetSettingsSubtitle => 'Erġaʼ ġib in-normal: 30 s/ECTS, l-ebda miri, it-Tnejn, tema tas-sistema, tolleranza taʼ 5 ijiem, tagħbija żejda taʼ 35 s/ġimgħa, daqs komdu, kulur lavanja.';
+  String get settingsResetSettingsSubtitle =>
+      'Erġaʼ ġib in-normal: 30 s/ECTS, l-ebda miri, it-Tnejn, tema tas-sistema, tolleranza taʼ 5 ijiem, tagħbija żejda taʼ 35 s/ġimgħa, daqs komdu, kulur lavanja.';
 
   @override
   String get settingsResetSettingsTitle => 'Tirrisettja l-issettjar?';
@@ -877,7 +918,8 @@ class AppLocalizationsMt extends AppLocalizations {
   String get settingsToleranceError => 'Daħħal numru 0–30 jum.';
 
   @override
-  String get settingsToleranceHelper => 'Quddiem teħtieġ +N ijiem riżerva, lura −N ijiem. 5 = stabbli, 0 = sensittiv.';
+  String get settingsToleranceHelper =>
+      'Quddiem teħtieġ +N ijiem riżerva, lura −N ijiem. 5 = stabbli, 0 = sensittiv.';
 
   @override
   String get settingsToleranceLabel => 'Ijiem taʼ xogħol (0–30)';
@@ -935,7 +977,8 @@ class AppLocalizationsMt extends AppLocalizations {
   }
 
   @override
-  String get statsAddDeadlines => 'Żid dati taʼ għeluq biex tbassar it-tagħbija.';
+  String get statsAddDeadlines =>
+      'Żid dati taʼ għeluq biex tbassar it-tagħbija.';
 
   @override
   String get statsComingLoad => 'Tagħbija li ġejja';
@@ -944,7 +987,8 @@ class AppLocalizationsMt extends AppLocalizations {
   String get statsConsistency => 'Konsistenza';
 
   @override
-  String get statsConsistencyHint => 'Ijiem taʼ studju fl-aħħar 30 jum. Passi żgħar kuljum jegħlbu t-tħaffif.';
+  String get statsConsistencyHint =>
+      'Ijiem taʼ studju fl-aħħar 30 jum. Passi żgħar kuljum jegħlbu t-tħaffif.';
 
   @override
   String statsConsistencyScore(String percent) {
@@ -1009,7 +1053,8 @@ class AppLocalizationsMt extends AppLocalizations {
   String get statsOverview => 'Ħarsa ġenerali';
 
   @override
-  String get statsPaceCovers => 'Il-pass passat ikopri dak meħtieġ. Żomm ir-ritmu.';
+  String get statsPaceCovers =>
+      'Il-pass passat ikopri dak meħtieġ. Żomm ir-ritmu.';
 
   @override
   String statsPaceShort(String gap) {
@@ -1067,13 +1112,15 @@ class AppLocalizationsMt extends AppLocalizations {
   String get statusOverdue => 'Skadut';
 
   @override
-  String get studyLogDeleteBody => 'Tħassar din is-sessjoni taʼ studju? Dan ma jistax jitneħħa.';
+  String get studyLogDeleteBody =>
+      'Tħassar din is-sessjoni taʼ studju? Dan ma jistax jitneħħa.';
 
   @override
   String get studyLogDeleteTitle => 'Tħassar is-sessjoni?';
 
   @override
-  String get studyLogEmptyHint => 'Irreġistra sessjoni biex issegwi l-ħin taʼ studju tiegħek.';
+  String get studyLogEmptyHint =>
+      'Irreġistra sessjoni biex issegwi l-ħin taʼ studju tiegħek.';
 
   @override
   String get studyLogEmptyTitle => 'L-ebda sessjoni taʼ studju sʼissa';
@@ -1114,7 +1161,8 @@ class AppLocalizationsMt extends AppLocalizations {
   }
 
   @override
-  String get studyTimerAlreadyRunning => 'A timer is already running. Finish or discard it first.';
+  String get studyTimerAlreadyRunning =>
+      'A timer is already running. Finish or discard it first.';
 
   @override
   String get studyTimerCourseLabel => 'Course';
@@ -1123,7 +1171,8 @@ class AppLocalizationsMt extends AppLocalizations {
   String get studyTimerDiscard => 'Discard';
 
   @override
-  String get studyTimerDiscardBody => 'Throw away the current timer without logging? This cannot be undone.';
+  String get studyTimerDiscardBody =>
+      'Throw away the current timer without logging? This cannot be undone.';
 
   @override
   String get studyTimerDiscardTitle => 'Discard timer?';
@@ -1163,7 +1212,8 @@ class AppLocalizationsMt extends AppLocalizations {
   String get studyTimerTooShort => 'Timer has not run yet.';
 
   @override
-  String get validationCourseEctsPositive => 'L-ECTS għandu jkun akbar minn żero';
+  String get validationCourseEctsPositive =>
+      'L-ECTS għandu jkun akbar minn żero';
 
   @override
   String get validationCourseEctsRequired => 'Daħħal il-krediti ECTS';
@@ -1190,7 +1240,8 @@ class AppLocalizationsMt extends AppLocalizations {
   String get settingsLiquidGlass => 'Ħġieġ likwidu';
 
   @override
-  String get settingsLiquidGlassSubtitle => 'Kards u bars tal-ħġieġ imċajpar. Mitfi jżomm id-dehra klassika solida.';
+  String get settingsLiquidGlassSubtitle =>
+      'Kards u bars tal-ħġieġ imċajpar. Mitfi jżomm id-dehra klassika solida.';
 
   @override
   String get settingsLiquidGlassOn => 'Mixgħul';
@@ -1205,7 +1256,8 @@ class AppLocalizationsMt extends AppLocalizations {
   String get devToolsReminderPreview => 'Preview tat-tfakkira';
 
   @override
-  String get devToolsReminderPreviewSubtitle => 'Ara xʼjinnotifika bħalissa. Feed tat-test sikur għall-Windows.';
+  String get devToolsReminderPreviewSubtitle =>
+      'Ara xʼjinnotifika bħalissa. Feed tat-test sikur għall-Windows.';
 
   @override
   String get reminderPreviewTitle => 'Preview tat-tfakkira';
@@ -1217,7 +1269,8 @@ class AppLocalizationsMt extends AppLocalizations {
   String get reminderPreviewReset => 'Issa';
 
   @override
-  String get reminderPreviewEmpty => 'Kwiet kollox — xejn ma jinnotifika fʼdan il-ħin.';
+  String get reminderPreviewEmpty =>
+      'Kwiet kollox — xejn ma jinnotifika fʼdan il-ħin.';
 
   @override
   String get reminderPreviewCustom => 'Skedi personalizzati (demo)';
@@ -1253,7 +1306,8 @@ class AppLocalizationsMt extends AppLocalizations {
   String get settingsReminderTime => 'Ħin tat-tfakkira';
 
   @override
-  String get settingsReminderDenied => 'In-notifiki huma mblukkati — ħallihom mill-issettjar tas-sistema.';
+  String get settingsReminderDenied =>
+      'In-notifiki huma mblukkati — ħallihom mill-issettjar tas-sistema.';
 
   @override
   String notifDurationHours(String value) {
@@ -1291,7 +1345,12 @@ class AppLocalizationsMt extends AppLocalizations {
   }
 
   @override
-  String notifBehindBodyPace(String left, String days, String pace, String catchUp) {
+  String notifBehindBodyPace(
+    String left,
+    String days,
+    String pace,
+    String catchUp,
+  ) {
     return 'Fadal $left, $days ijiem — $pace/jum minn hawn. Illoġġja $catchUp biex terġaʼ Fit-triq it-tajba.';
   }
 
@@ -1311,7 +1370,8 @@ class AppLocalizationsMt extends AppLocalizations {
   }
 
   @override
-  String get notifDeadlineTomorrowBody => 'Kull ma tilloġġja llum jgħodd doppju.';
+  String get notifDeadlineTomorrowBody =>
+      'Kull ma tilloġġja llum jgħodd doppju.';
 
   @override
   String notifDeadlineSoonTitle(String course, String days, String left) {
@@ -1324,7 +1384,8 @@ class AppLocalizationsMt extends AppLocalizations {
   }
 
   @override
-  String get notifDeadlineSoonBodyNoPace => 'Kull siegħa li tilloġġja issa tgħodd.';
+  String get notifDeadlineSoonBodyNoPace =>
+      'Kull siegħa li tilloġġja issa tgħodd.';
 
   @override
   String notifOverdueTitle(String course, String left) {
@@ -1332,7 +1393,8 @@ class AppLocalizationsMt extends AppLocalizations {
   }
 
   @override
-  String get notifOverdueBody => 'Ċaqlaq l-għeluq jew lesti s-sigħat — il-kors jibqaʼ jeħtieġ attenzjoni sadanittant.';
+  String get notifOverdueBody =>
+      'Ċaqlaq l-għeluq jew lesti s-sigħat — il-kors jibqaʼ jeħtieġ attenzjoni sadanittant.';
 
   @override
   String notifStreakTitle(String days, String week) {
@@ -1340,7 +1402,8 @@ class AppLocalizationsMt extends AppLocalizations {
   }
 
   @override
-  String get notifStreakBody => 'Il-korsijiet kollha Fit-triq it-tajba jew Quddiem. Kompli hekk.';
+  String get notifStreakBody =>
+      'Il-korsijiet kollha Fit-triq it-tajba jew Quddiem. Kompli hekk.';
 
   @override
   String notifCustomTitleAuto(String course) {

@@ -1,5 +1,6 @@
 // ignore: unused_import
 import 'package:intl/intl.dart' as intl;
+
 import 'app_localizations.dart';
 
 // ignore_for_file: type=lint
@@ -82,10 +83,12 @@ class AppLocalizationsCy extends AppLocalizations {
   }
 
   @override
-  String get courseFormStartEarlyOn => 'Ymlaen: mae\'r amser yn cael ei rannu hyd yn hyn ac yn cyfrif tuag at gyflymder heddiw.';
+  String get courseFormStartEarlyOn =>
+      'Ymlaen: mae\'r amser yn cael ei rannu hyd yn hyn ac yn cyfrif tuag at gyflymder heddiw.';
 
   @override
-  String get courseFormStartEarlyTitle => 'Dechrau nawr er gwaethaf dechrau yn y dyfodol';
+  String get courseFormStartEarlyTitle =>
+      'Dechrau nawr er gwaethaf dechrau yn y dyfodol';
 
   @override
   String get courseFormTitleAdd => 'Ychwanegu modiwl';
@@ -110,7 +113,8 @@ class AppLocalizationsCy extends AppLocalizations {
   }
 
   @override
-  String get coursesEmptyHint => 'Tapiwch “Modiwl newydd” i greu eich modiwl cyntaf.';
+  String get coursesEmptyHint =>
+      'Tapiwch “Modiwl newydd” i greu eich modiwl cyntaf.';
 
   @override
   String get coursesEmptyTitle => 'Dim modiwlau eto';
@@ -119,7 +123,8 @@ class AppLocalizationsCy extends AppLocalizations {
   String get coursesFilterAll => 'Pob statws';
 
   @override
-  String get coursesFilterEmpty => 'Nid yw unrhyw fodiwl yn cyd-fynd â\'r hidlydd hwn';
+  String get coursesFilterEmpty =>
+      'Nid yw unrhyw fodiwl yn cyd-fynd â\'r hidlydd hwn';
 
   @override
   String get coursesNewCourse => 'Modiwl newydd';
@@ -150,7 +155,11 @@ class AppLocalizationsCy extends AppLocalizations {
   }
 
   @override
-  String coursesProgressWithStatus(String done, String required, String status) {
+  String coursesProgressWithStatus(
+    String done,
+    String required,
+    String status,
+  ) {
     return '$done / $required h • $status';
   }
 
@@ -219,10 +228,12 @@ class AppLocalizationsCy extends AppLocalizations {
   }
 
   @override
-  String get dashboardEmptyHintAllDone => 'Mae pob modiwl wedi\'i gwblhau — gweler y tab Modiwlau am y rhestr lawn.';
+  String get dashboardEmptyHintAllDone =>
+      'Mae pob modiwl wedi\'i gwblhau — gweler y tab Modiwlau am y rhestr lawn.';
 
   @override
-  String get dashboardEmptyHintNoCourses => 'Ychwanegwch fmodiwl i ddechrau olrhain eich cynnydd ECTS.';
+  String get dashboardEmptyHintNoCourses =>
+      'Ychwanegwch fmodiwl i ddechrau olrhain eich cynnydd ECTS.';
 
   @override
   String dashboardExplainerBehind(String achieved, String need) {
@@ -235,10 +246,12 @@ class AppLocalizationsCy extends AppLocalizations {
   }
 
   @override
-  String get dashboardExplainerBehindNoPace => 'Ar ei hôl hi: nid yw unrhyw gyflymder pendant yn cyrraedd dyddiad cau heddiw gydag oriau ar ôl';
+  String get dashboardExplainerBehindNoPace =>
+      'Ar ei hôl hi: nid yw unrhyw gyflymder pendant yn cyrraedd dyddiad cau heddiw gydag oriau ar ôl';
 
   @override
-  String get dashboardExplainerOnTrackNoPace => 'Ar y trywydd iawn: dim cyflymder eto — cofnodwch y sesiwn gyntaf i gadarnhau';
+  String get dashboardExplainerOnTrackNoPace =>
+      'Ar y trywydd iawn: dim cyflymder eto — cofnodwch y sesiwn gyntaf i gadarnhau';
 
   @override
   String dashboardExplainerStartsIn(String days, String date) {
@@ -359,7 +372,8 @@ class AppLocalizationsCy extends AppLocalizations {
   String get dashboardProgramBare => 'RHAGLEN';
 
   @override
-  String get dashboardProgramEmptyHint => 'Ychwanegwch fmodiwl i ddechrau olrhain';
+  String get dashboardProgramEmptyHint =>
+      'Ychwanegwch fmodiwl i ddechrau olrhain';
 
   @override
   String dashboardProgramHours(String done, String required) {
@@ -388,10 +402,12 @@ class AppLocalizationsCy extends AppLocalizations {
   String get dashboardStartsSoon => 'Yn dechrau\'n fuan';
 
   @override
-  String get dashboardTipEmpty => 'Ychwanegwch eich modiwl cyntaf — bydd eich cyflymder dyddiol a\'ch cynnydd yn ymddangos yma.';
+  String get dashboardTipEmpty =>
+      'Ychwanegwch eich modiwl cyntaf — bydd eich cyflymder dyddiol a\'ch cynnydd yn ymddangos yma.';
 
   @override
-  String get dashboardTipFirst => 'Mae\'r 25 munud cyntaf yn cyfrif fwyaf — dewiswch y modiwl sy\'n ddyledus gyntaf.';
+  String get dashboardTipFirst =>
+      'Mae\'r 25 munud cyntaf yn cyfrif fwyaf — dewiswch y modiwl sy\'n ddyledus gyntaf.';
 
   @override
   String get dashboardTodayBare => 'HEDDIW';
@@ -415,7 +431,8 @@ class AppLocalizationsCy extends AppLocalizations {
   }
 
   @override
-  String get dashboardUpcomingSubtitle => 'Dechreuadau yn y dyfodol — dim pwysau heddiw, wedi\'u heithrio o gyflymder heddiw.';
+  String get dashboardUpcomingSubtitle =>
+      'Dechreuadau yn y dyfodol — dim pwysau heddiw, wedi\'u heithrio o gyflymder heddiw.';
 
   @override
   String get dashboardUpcomingTitle => 'Ar y gweill';
@@ -424,7 +441,8 @@ class AppLocalizationsCy extends AppLocalizations {
   String get devToolsActivate => 'Gweithredu';
 
   @override
-  String get devToolsActivateMessage => 'Mae hyn yn datgloi offer cudd profi straen (cynhyrchu data). Ar gyfer datblygu yn unig.';
+  String get devToolsActivateMessage =>
+      'Mae hyn yn datgloi offer cudd profi straen (cynhyrchu data). Ar gyfer datblygu yn unig.';
 
   @override
   String get devToolsActivateTitle => 'Gweithredu\'r modd datblygu?';
@@ -436,10 +454,12 @@ class AppLocalizationsCy extends AppLocalizations {
   String get devToolsClearPumped => 'Clirio data wedi\'i bwmpio';
 
   @override
-  String get devToolsClearPumpedMessage => 'Yn dileu\'r modiwlau STRESS a gynhyrchwyd a\'u sesiynau. Cedwir eich data.';
+  String get devToolsClearPumpedMessage =>
+      'Yn dileu\'r modiwlau STRESS a gynhyrchwyd a\'u sesiynau. Cedwir eich data.';
 
   @override
-  String get devToolsClearPumpedSubtitle => 'Dileu modiwlau a sesiynau STRESS wedi\'u cynhyrchu.';
+  String get devToolsClearPumpedSubtitle =>
+      'Dileu modiwlau a sesiynau STRESS wedi\'u cynhyrchu.';
 
   @override
   String get devToolsClearPumpedTitle => 'Clirio data wedi\'i bwmpio?';
@@ -450,7 +470,8 @@ class AppLocalizationsCy extends AppLocalizations {
   }
 
   @override
-  String get devToolsConfirmPumpMessage => 'Ail gadarnhad: bydd hyn yn chwyddo modiwlau, rhestrau, siartiau a chyfrifiadau cyflymder, a gall gymryd ychydig eiliadau. Pwmpio nawr?';
+  String get devToolsConfirmPumpMessage =>
+      'Ail gadarnhad: bydd hyn yn chwyddo modiwlau, rhestrau, siartiau a chyfrifiadau cyflymder, a gall gymryd ychydig eiliadau. Pwmpio nawr?';
 
   @override
   String get devToolsConfirmPumpTitle => 'Cadarnhau pwmp straen';
@@ -468,10 +489,12 @@ class AppLocalizationsCy extends AppLocalizations {
   String get devToolsPumpData => 'Pwmpio data';
 
   @override
-  String get devToolsPumpMessage => 'Mae hyn yn mewnosod semester realistig wedi\'i gynhyrchu (~10 modiwl, ~800 sesiwn dros y 12 wythnos diwethaf). Cedwir eich data presennol. Parhau?';
+  String get devToolsPumpMessage =>
+      'Mae hyn yn mewnosod semester realistig wedi\'i gynhyrchu (~10 modiwl, ~800 sesiwn dros y 12 wythnos diwethaf). Cedwir eich data presennol. Parhau?';
 
   @override
-  String get devToolsPumpSubtitle => 'Mewnosod semester wedi\'i gynhyrchu (~10 modiwl, ~800 sesiwn, 12 wythnos). Cedwir data presennol.';
+  String get devToolsPumpSubtitle =>
+      'Mewnosod semester wedi\'i gynhyrchu (~10 modiwl, ~800 sesiwn, 12 wythnos). Cedwir data presennol.';
 
   @override
   String get devToolsPumpTile => 'Pwmpio data prawf';
@@ -491,10 +514,12 @@ class AppLocalizationsCy extends AppLocalizations {
   String get devToolsRemoveAll => 'Tynnu pob data';
 
   @override
-  String get devToolsRemoveAllMessage => 'Llwybr byr datblygu: mae hyn yn dileu pob modiwl, sesiwn a gosodiad yn barhaol. Ni ellir dadwneud hyn.';
+  String get devToolsRemoveAllMessage =>
+      'Llwybr byr datblygu: mae hyn yn dileu pob modiwl, sesiwn a gosodiad yn barhaol. Ni ellir dadwneud hyn.';
 
   @override
-  String get devToolsRemoveAllSubtitle => 'Llwybr byr datblygu: dileu pob modiwl, sesiwn a gosodiad.';
+  String get devToolsRemoveAllSubtitle =>
+      'Llwybr byr datblygu: dileu pob modiwl, sesiwn a gosodiad.';
 
   @override
   String get devToolsRemoveAllTitle => 'Tynnu pob data?';
@@ -547,7 +572,8 @@ class AppLocalizationsCy extends AppLocalizations {
   String get sessionFormNoCourseError => 'Dewiswch fmodiwl.';
 
   @override
-  String get sessionFormNoCoursesHint => 'Ychwanegwch fmodiwl yn gyntaf i gofnodi sesiwn.';
+  String get sessionFormNoCoursesHint =>
+      'Ychwanegwch fmodiwl yn gyntaf i gofnodi sesiwn.';
 
   @override
   String get sessionFormNotesLabel => 'Nodiadau (dewisol)';
@@ -603,10 +629,12 @@ class AppLocalizationsCy extends AppLocalizations {
   String get settingsClearSample => 'Clirio data enghreifftiol';
 
   @override
-  String get settingsClearSampleMessage => 'Mae hyn yn tynnu\'r modiwlau a\'r sesiynau enghreifftiol. Ni chaiff modiwlau na sesiynau a ychwanegwyd gennych eu tynnu.';
+  String get settingsClearSampleMessage =>
+      'Mae hyn yn tynnu\'r modiwlau a\'r sesiynau enghreifftiol. Ni chaiff modiwlau na sesiynau a ychwanegwyd gennych eu tynnu.';
 
   @override
-  String get settingsClearSampleSubtitle => 'Tynnu\'r modiwlau a\'r sesiynau enghreifftiol. Cedwir eich data.';
+  String get settingsClearSampleSubtitle =>
+      'Tynnu\'r modiwlau a\'r sesiynau enghreifftiol. Cedwir eich data.';
 
   @override
   String get settingsClearSampleTitle => 'Clirio data enghreifftiol?';
@@ -661,7 +689,8 @@ class AppLocalizationsCy extends AppLocalizations {
   }
 
   @override
-  String get settingsDisplaySizeUpdated => 'Maint arddangos wedi\'i ddiweddaru.';
+  String get settingsDisplaySizeUpdated =>
+      'Maint arddangos wedi\'i ddiweddaru.';
 
   @override
   String get settingsExport => 'Allforio data';
@@ -670,7 +699,8 @@ class AppLocalizationsCy extends AppLocalizations {
   String get settingsExportCopied => 'Allforiad wedi\'i gopïo i\'r clipfwrdd.';
 
   @override
-  String get settingsExportSubtitle => 'Copïo pob modiwl, sesiwn a gosodiad fel JSON.';
+  String get settingsExportSubtitle =>
+      'Copïo pob modiwl, sesiwn a gosodiad fel JSON.';
 
   @override
   String settingsExportSummary(String courses, String sessions, String kb) {
@@ -686,7 +716,8 @@ class AppLocalizationsCy extends AppLocalizations {
   String get settingsFirstWeekday => 'Diwrnod cyntaf yr wythnos';
 
   @override
-  String get settingsFirstWeekdayUpdated => 'Diwrnod cyntaf yr wythnos wedi\'i ddiweddaru.';
+  String get settingsFirstWeekdayUpdated =>
+      'Diwrnod cyntaf yr wythnos wedi\'i ddiweddaru.';
 
   @override
   String settingsHoldLabel(String label, String seconds) {
@@ -700,7 +731,8 @@ class AppLocalizationsCy extends AppLocalizations {
   String get settingsHoursError => 'Rhowch rif sy\'n fwy na sero.';
 
   @override
-  String get settingsHoursHelper => 'Diofyn 30. Mae newid yn ailgyfrifo\'r gofynion; cedwir logiau.';
+  String get settingsHoursHelper =>
+      'Diofyn 30. Mae newid yn ailgyfrifo\'r gofynion; cedwir logiau.';
 
   @override
   String get settingsHoursLabel => 'Oriau fesul credyd ECTS';
@@ -731,7 +763,8 @@ class AppLocalizationsCy extends AppLocalizations {
   }
 
   @override
-  String get settingsImportInfo => 'Mae atodi yn ychwanegu\'r copi wrth gefn at eich data presennol (cedwir gosodiadau). Mae disodli yn dileu pob modiwl, sesiwn a gosodiad YN GYNTAF.';
+  String get settingsImportInfo =>
+      'Mae atodi yn ychwanegu\'r copi wrth gefn at eich data presennol (cedwir gosodiadau). Mae disodli yn dileu pob modiwl, sesiwn a gosodiad YN GYNTAF.';
 
   @override
   String get settingsImportLabel => 'Gludwch y JSON wedi\'i allforio';
@@ -765,7 +798,8 @@ class AppLocalizationsCy extends AppLocalizations {
   }
 
   @override
-  String get settingsImportSubtitle => 'Disodli pob data o gopi wrth gefn JSON wedi\'i allforio.';
+  String get settingsImportSubtitle =>
+      'Disodli pob data o gopi wrth gefn JSON wedi\'i allforio.';
 
   @override
   String settingsKeepHolding(String remaining) {
@@ -776,7 +810,8 @@ class AppLocalizationsCy extends AppLocalizations {
   String get settingsNoSample => 'Dim data enghreifftiol';
 
   @override
-  String get settingsNoSampleSubtitle => 'Mae\'r data enghreifftiol eisoes wedi\'i chlirio.';
+  String get settingsNoSampleSubtitle =>
+      'Mae\'r data enghreifftiol eisoes wedi\'i chlirio.';
 
   @override
   String get settingsNoTarget => 'Dim targed wedi\'i osod';
@@ -785,7 +820,8 @@ class AppLocalizationsCy extends AppLocalizations {
   String get settingsOverloadError => 'Rhowch rif 5–100 h/wythnos.';
 
   @override
-  String get settingsOverloadHelper => 'Mae wythnosau llwyth dod â mwy na hyn wedi\'u nodi\'n goch. Mae astudio llawn amser tua 35–40 h/wythnos.';
+  String get settingsOverloadHelper =>
+      'Mae wythnosau llwyth dod â mwy na hyn wedi\'u nodi\'n goch. Mae astudio llawn amser tua 35–40 h/wythnos.';
 
   @override
   String settingsOverloadHours(String value) {
@@ -810,7 +846,8 @@ class AppLocalizationsCy extends AppLocalizations {
   String get settingsPaceTolerance => 'Goddefiant arwain / ar ei hôl';
 
   @override
-  String get settingsPasteValidBackup => 'Gludwch gopi wrth gefn dilys yn gyntaf';
+  String get settingsPasteValidBackup =>
+      'Gludwch gopi wrth gefn dilys yn gyntaf';
 
   @override
   String get settingsReset => 'Ailosod';
@@ -819,7 +856,8 @@ class AppLocalizationsCy extends AppLocalizations {
   String get settingsResetAll => 'Ailosod pob data';
 
   @override
-  String get settingsResetAllMessage => 'Mae hyn yn dileu pob modiwl, sesiwn a gosodiad yn barhaol. Ni ellir dadwneud hyn. Allforiwch gopi wrth gefn yn gyntaf os oes angen.';
+  String get settingsResetAllMessage =>
+      'Mae hyn yn dileu pob modiwl, sesiwn a gosodiad yn barhaol. Ni ellir dadwneud hyn. Allforiwch gopi wrth gefn yn gyntaf os oes angen.';
 
   @override
   String get settingsResetAllSubtitle => 'Dileu pob modiwl, sesiwn a gosodiad.';
@@ -831,13 +869,16 @@ class AppLocalizationsCy extends AppLocalizations {
   String get settingsResetSettings => 'Ailosod gosodiadau';
 
   @override
-  String get settingsResetSettingsDone => 'Gosodiadau wedi\'u hailosod i\'r diofyn.';
+  String get settingsResetSettingsDone =>
+      'Gosodiadau wedi\'u hailosod i\'r diofyn.';
 
   @override
-  String get settingsResetSettingsMessage => 'Yn adfer oriau-fesul-ECTS (30), targed dyddiol (dim), dydd cyntaf yr wythnos (dydd Llun), thema (system), goddefiant (5 diwrnod), gorlwytho (35 h/wythnos), maint (cyfforddus), lliw (llechen). Cedwir modiwlau a sesiynau.';
+  String get settingsResetSettingsMessage =>
+      'Yn adfer oriau-fesul-ECTS (30), targed dyddiol (dim), dydd cyntaf yr wythnos (dydd Llun), thema (system), goddefiant (5 diwrnod), gorlwytho (35 h/wythnos), maint (cyfforddus), lliw (llechen). Cedwir modiwlau a sesiynau.';
 
   @override
-  String get settingsResetSettingsSubtitle => 'Adfer diofynion: 30 h/ECTS, dim targed, dydd Llun, thema system, goddefiant 5 diwrnod, gorlwytho 35 h/wythnos, maint cyfforddus, lliw llechen.';
+  String get settingsResetSettingsSubtitle =>
+      'Adfer diofynion: 30 h/ECTS, dim targed, dydd Llun, thema system, goddefiant 5 diwrnod, gorlwytho 35 h/wythnos, maint cyfforddus, lliw llechen.';
 
   @override
   String get settingsResetSettingsTitle => 'Ailosod gosodiadau?';
@@ -877,7 +918,8 @@ class AppLocalizationsCy extends AppLocalizations {
   String get settingsToleranceError => 'Rhowch rif 0–30 diwrnod.';
 
   @override
-  String get settingsToleranceHelper => 'Mae arwain angen +N diwrnod o warged, ar ei hôl −N diwrnod. 5 = sefydlog, 0 = sensitif.';
+  String get settingsToleranceHelper =>
+      'Mae arwain angen +N diwrnod o warged, ar ei hôl −N diwrnod. 5 = sefydlog, 0 = sensitif.';
 
   @override
   String get settingsToleranceLabel => 'Diwrnodau gwaith (0–30)';
@@ -935,7 +977,8 @@ class AppLocalizationsCy extends AppLocalizations {
   }
 
   @override
-  String get statsAddDeadlines => 'Ychwanegwch ddyddiadau cau i ragweld y llwyth.';
+  String get statsAddDeadlines =>
+      'Ychwanegwch ddyddiadau cau i ragweld y llwyth.';
 
   @override
   String get statsComingLoad => 'Llwyth dod';
@@ -944,7 +987,8 @@ class AppLocalizationsCy extends AppLocalizations {
   String get statsConsistency => 'Cysondeb';
 
   @override
-  String get statsConsistencyHint => 'Diwrnodau astudio yn y 30 diwrnod diwethaf. Mae camau bach bob dydd yn trechu cramio.';
+  String get statsConsistencyHint =>
+      'Diwrnodau astudio yn y 30 diwrnod diwethaf. Mae camau bach bob dydd yn trechu cramio.';
 
   @override
   String statsConsistencyScore(String percent) {
@@ -1009,7 +1053,8 @@ class AppLocalizationsCy extends AppLocalizations {
   String get statsOverview => 'Trosolwg';
 
   @override
-  String get statsPaceCovers => 'Mae cyflymder y gorffennol yn cwmpasu\'r hyn sydd ei angen. Daliwch ati.';
+  String get statsPaceCovers =>
+      'Mae cyflymder y gorffennol yn cwmpasu\'r hyn sydd ei angen. Daliwch ati.';
 
   @override
   String statsPaceShort(String gap) {
@@ -1067,13 +1112,15 @@ class AppLocalizationsCy extends AppLocalizations {
   String get statusOverdue => 'Wedi mynd heibio';
 
   @override
-  String get studyLogDeleteBody => 'Dileu\'r sesiwn astudio hon? Ni ellir dadwneud hyn.';
+  String get studyLogDeleteBody =>
+      'Dileu\'r sesiwn astudio hon? Ni ellir dadwneud hyn.';
 
   @override
   String get studyLogDeleteTitle => 'Dileu sesiwn?';
 
   @override
-  String get studyLogEmptyHint => 'Cofnodwch sesiwn i olrhain eich amser astudio.';
+  String get studyLogEmptyHint =>
+      'Cofnodwch sesiwn i olrhain eich amser astudio.';
 
   @override
   String get studyLogEmptyTitle => 'Dim sesiynau astudio eto';
@@ -1114,7 +1161,8 @@ class AppLocalizationsCy extends AppLocalizations {
   }
 
   @override
-  String get studyTimerAlreadyRunning => 'A timer is already running. Finish or discard it first.';
+  String get studyTimerAlreadyRunning =>
+      'A timer is already running. Finish or discard it first.';
 
   @override
   String get studyTimerCourseLabel => 'Course';
@@ -1123,7 +1171,8 @@ class AppLocalizationsCy extends AppLocalizations {
   String get studyTimerDiscard => 'Discard';
 
   @override
-  String get studyTimerDiscardBody => 'Throw away the current timer without logging? This cannot be undone.';
+  String get studyTimerDiscardBody =>
+      'Throw away the current timer without logging? This cannot be undone.';
 
   @override
   String get studyTimerDiscardTitle => 'Discard timer?';
@@ -1190,7 +1239,8 @@ class AppLocalizationsCy extends AppLocalizations {
   String get settingsLiquidGlass => 'Gwydr hylif';
 
   @override
-  String get settingsLiquidGlassSubtitle => 'Cardiau a bariau gwydr barugog. Mae I ffwrdd yn cadw\'r olwg solet glasurol.';
+  String get settingsLiquidGlassSubtitle =>
+      'Cardiau a bariau gwydr barugog. Mae I ffwrdd yn cadw\'r olwg solet glasurol.';
 
   @override
   String get settingsLiquidGlassOn => 'Ymlaen';
@@ -1205,7 +1255,8 @@ class AppLocalizationsCy extends AppLocalizations {
   String get devToolsReminderPreview => 'Rhagolwg atgoffa';
 
   @override
-  String get devToolsReminderPreviewSubtitle => 'Gweld beth fyddai\'n hysbysu ar hyn o bryd. Ffrwd prawf sy\'n ddiogel i Windows.';
+  String get devToolsReminderPreviewSubtitle =>
+      'Gweld beth fyddai\'n hysbysu ar hyn o bryd. Ffrwd prawf sy\'n ddiogel i Windows.';
 
   @override
   String get reminderPreviewTitle => 'Rhagolwg atgoffa';
@@ -1217,7 +1268,8 @@ class AppLocalizationsCy extends AppLocalizations {
   String get reminderPreviewReset => 'Nawr';
 
   @override
-  String get reminderPreviewEmpty => 'Popeth yn dawel — fyddai dim yn hysbysu ar yr adeg hon.';
+  String get reminderPreviewEmpty =>
+      'Popeth yn dawel — fyddai dim yn hysbysu ar yr adeg hon.';
 
   @override
   String get reminderPreviewCustom => 'Amserlenni personol (demo)';
@@ -1253,7 +1305,8 @@ class AppLocalizationsCy extends AppLocalizations {
   String get settingsReminderTime => 'Amser atgoffa';
 
   @override
-  String get settingsReminderDenied => 'Mae hysbysiadau wedi\'u blocio — galluogwch nhw yng ngosodiadau\'r system.';
+  String get settingsReminderDenied =>
+      'Mae hysbysiadau wedi\'u blocio — galluogwch nhw yng ngosodiadau\'r system.';
 
   @override
   String notifDurationHours(String value) {
@@ -1291,7 +1344,12 @@ class AppLocalizationsCy extends AppLocalizations {
   }
 
   @override
-  String notifBehindBodyPace(String left, String days, String pace, String catchUp) {
+  String notifBehindBodyPace(
+    String left,
+    String days,
+    String pace,
+    String catchUp,
+  ) {
     return '$left ar ôl, $days diwrnod i fynd — $pace/dydd o hyn ymlaen. Cofnodwch $catchUp i fynd yn ôl ar y trywydd iawn.';
   }
 
@@ -1311,7 +1369,8 @@ class AppLocalizationsCy extends AppLocalizations {
   }
 
   @override
-  String get notifDeadlineTomorrowBody => 'Mae popeth rydych chi’n ei gofnodi heddiw yn cyfrif ddwywaith.';
+  String get notifDeadlineTomorrowBody =>
+      'Mae popeth rydych chi’n ei gofnodi heddiw yn cyfrif ddwywaith.';
 
   @override
   String notifDeadlineSoonTitle(String course, String days, String left) {
@@ -1324,7 +1383,8 @@ class AppLocalizationsCy extends AppLocalizations {
   }
 
   @override
-  String get notifDeadlineSoonBodyNoPace => 'Mae pob awr rydych chi’n ei chofnodi nawr yn cyfrif.';
+  String get notifDeadlineSoonBodyNoPace =>
+      'Mae pob awr rydych chi’n ei chofnodi nawr yn cyfrif.';
 
   @override
   String notifOverdueTitle(String course, String left) {
@@ -1332,7 +1392,8 @@ class AppLocalizationsCy extends AppLocalizations {
   }
 
   @override
-  String get notifOverdueBody => 'Symudwch y dyddiad cau neu gorffennwch yr oriau — mae’r modiwl yn aros yn «angen sylw» tan hynny.';
+  String get notifOverdueBody =>
+      'Symudwch y dyddiad cau neu gorffennwch yr oriau — mae’r modiwl yn aros yn «angen sylw» tan hynny.';
 
   @override
   String notifStreakTitle(String days, String week) {
@@ -1340,7 +1401,8 @@ class AppLocalizationsCy extends AppLocalizations {
   }
 
   @override
-  String get notifStreakBody => 'Pob modiwl ar y trywydd iawn neu ar y blaen. Rhediad braf.';
+  String get notifStreakBody =>
+      'Pob modiwl ar y trywydd iawn neu ar y blaen. Rhediad braf.';
 
   @override
   String notifCustomTitleAuto(String course) {

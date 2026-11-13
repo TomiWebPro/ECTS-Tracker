@@ -1,5 +1,6 @@
 // ignore: unused_import
 import 'package:intl/intl.dart' as intl;
+
 import 'app_localizations.dart';
 
 // ignore_for_file: type=lint
@@ -82,10 +83,12 @@ class AppLocalizationsRo extends AppLocalizations {
   }
 
   @override
-  String get courseFormStartEarlyOn => 'Activat: timpul este împărțit până azi și contează pentru ritmul de azi.';
+  String get courseFormStartEarlyOn =>
+      'Activat: timpul este împărțit până azi și contează pentru ritmul de azi.';
 
   @override
-  String get courseFormStartEarlyTitle => 'Începe acum, deși startul e în viitor';
+  String get courseFormStartEarlyTitle =>
+      'Începe acum, deși startul e în viitor';
 
   @override
   String get courseFormTitleAdd => 'Adaugă curs';
@@ -150,7 +153,11 @@ class AppLocalizationsRo extends AppLocalizations {
   }
 
   @override
-  String coursesProgressWithStatus(String done, String required, String status) {
+  String coursesProgressWithStatus(
+    String done,
+    String required,
+    String status,
+  ) {
     return '$done / $required h • $status';
   }
 
@@ -219,10 +226,12 @@ class AppLocalizationsRo extends AppLocalizations {
   }
 
   @override
-  String get dashboardEmptyHintAllDone => 'Fiecare curs este finalizat — vezi lista completă în fila Cursuri.';
+  String get dashboardEmptyHintAllDone =>
+      'Fiecare curs este finalizat — vezi lista completă în fila Cursuri.';
 
   @override
-  String get dashboardEmptyHintNoCourses => 'Adaugă un curs pentru a începe urmărirea progresului ECTS.';
+  String get dashboardEmptyHintNoCourses =>
+      'Adaugă un curs pentru a începe urmărirea progresului ECTS.';
 
   @override
   String dashboardExplainerBehind(String achieved, String need) {
@@ -235,10 +244,12 @@ class AppLocalizationsRo extends AppLocalizations {
   }
 
   @override
-  String get dashboardExplainerBehindNoPace => 'În urmă: niciun ritm finit nu ajunge la un termen de azi cu ore rămase';
+  String get dashboardExplainerBehindNoPace =>
+      'În urmă: niciun ritm finit nu ajunge la un termen de azi cu ore rămase';
 
   @override
-  String get dashboardExplainerOnTrackNoPace => 'În grafic: încă niciun ritm — înregistrează prima sesiune pentru confirmare';
+  String get dashboardExplainerOnTrackNoPace =>
+      'În grafic: încă niciun ritm — înregistrează prima sesiune pentru confirmare';
 
   @override
   String dashboardExplainerStartsIn(String days, String date) {
@@ -359,7 +370,8 @@ class AppLocalizationsRo extends AppLocalizations {
   String get dashboardProgramBare => 'PROGRAM';
 
   @override
-  String get dashboardProgramEmptyHint => 'Adaugă un curs pentru a începe urmărirea';
+  String get dashboardProgramEmptyHint =>
+      'Adaugă un curs pentru a începe urmărirea';
 
   @override
   String dashboardProgramHours(String done, String required) {
@@ -388,10 +400,12 @@ class AppLocalizationsRo extends AppLocalizations {
   String get dashboardStartsSoon => 'Începe în curând';
 
   @override
-  String get dashboardTipEmpty => 'Adaugă primul curs — ritmul zilnic și progresul vor apărea aici.';
+  String get dashboardTipEmpty =>
+      'Adaugă primul curs — ritmul zilnic și progresul vor apărea aici.';
 
   @override
-  String get dashboardTipFirst => 'Primele 25 de minute contează cel mai mult — alege cursul cu termenul cel mai apropiat.';
+  String get dashboardTipFirst =>
+      'Primele 25 de minute contează cel mai mult — alege cursul cu termenul cel mai apropiat.';
 
   @override
   String get dashboardTodayBare => 'AZI';
@@ -415,7 +429,8 @@ class AppLocalizationsRo extends AppLocalizations {
   }
 
   @override
-  String get dashboardUpcomingSubtitle => 'Starturi viitoare — azi fără presiune, excluse din ritmul de azi.';
+  String get dashboardUpcomingSubtitle =>
+      'Starturi viitoare — azi fără presiune, excluse din ritmul de azi.';
 
   @override
   String get dashboardUpcomingTitle => 'În curând';
@@ -424,7 +439,8 @@ class AppLocalizationsRo extends AppLocalizations {
   String get devToolsActivate => 'Activează';
 
   @override
-  String get devToolsActivateMessage => 'Deblochează instrumentele ascunse de test de stres (generează date). Doar pentru dezvoltare.';
+  String get devToolsActivateMessage =>
+      'Deblochează instrumentele ascunse de test de stres (generează date). Doar pentru dezvoltare.';
 
   @override
   String get devToolsActivateTitle => 'Activezi modul dev?';
@@ -436,10 +452,12 @@ class AppLocalizationsRo extends AppLocalizations {
   String get devToolsClearPumped => 'Șterge datele generate';
 
   @override
-  String get devToolsClearPumpedMessage => 'Șterge cursurile STRESS generate și sesiunile lor. Datele tale sunt păstrate.';
+  String get devToolsClearPumpedMessage =>
+      'Șterge cursurile STRESS generate și sesiunile lor. Datele tale sunt păstrate.';
 
   @override
-  String get devToolsClearPumpedSubtitle => 'Șterge cursurile și sesiunile STRESS generate.';
+  String get devToolsClearPumpedSubtitle =>
+      'Șterge cursurile și sesiunile STRESS generate.';
 
   @override
   String get devToolsClearPumpedTitle => 'Ștergi datele generate?';
@@ -450,7 +468,8 @@ class AppLocalizationsRo extends AppLocalizations {
   }
 
   @override
-  String get devToolsConfirmPumpMessage => 'A doua confirmare: va umfla cursurile, listele, graficele și calculele de ritm și poate dura câteva secunde. Generezi?';
+  String get devToolsConfirmPumpMessage =>
+      'A doua confirmare: va umfla cursurile, listele, graficele și calculele de ritm și poate dura câteva secunde. Generezi?';
 
   @override
   String get devToolsConfirmPumpTitle => 'Confirmă generarea de stres';
@@ -462,16 +481,19 @@ class AppLocalizationsRo extends AppLocalizations {
   String get devToolsExit => 'Ieși din modul dev';
 
   @override
-  String get devToolsExitSubtitle => 'Ascunde instrumentele dev pe acest dispozitiv.';
+  String get devToolsExitSubtitle =>
+      'Ascunde instrumentele dev pe acest dispozitiv.';
 
   @override
   String get devToolsPumpData => 'Generează date';
 
   @override
-  String get devToolsPumpMessage => 'Inserează un semestru generat realist (~10 cursuri, ~800 sesiuni din ultimele 12 săptămâni). Datele existente sunt păstrate. Continui?';
+  String get devToolsPumpMessage =>
+      'Inserează un semestru generat realist (~10 cursuri, ~800 sesiuni din ultimele 12 săptămâni). Datele existente sunt păstrate. Continui?';
 
   @override
-  String get devToolsPumpSubtitle => 'Inserează un semestru generat (~10 cursuri, ~800 sesiuni, 12 săptămâni). Datele existente sunt păstrate.';
+  String get devToolsPumpSubtitle =>
+      'Inserează un semestru generat (~10 cursuri, ~800 sesiuni, 12 săptămâni). Datele existente sunt păstrate.';
 
   @override
   String get devToolsPumpTile => 'Generează date de test';
@@ -491,10 +513,12 @@ class AppLocalizationsRo extends AppLocalizations {
   String get devToolsRemoveAll => 'Elimină toate datele';
 
   @override
-  String get devToolsRemoveAllMessage => 'Scurtătură dev: șterge definitiv TOATE cursurile, sesiunile și setările. Nu poate fi anulat.';
+  String get devToolsRemoveAllMessage =>
+      'Scurtătură dev: șterge definitiv TOATE cursurile, sesiunile și setările. Nu poate fi anulat.';
 
   @override
-  String get devToolsRemoveAllSubtitle => 'Scurtătură dev: șterge TOATE cursurile, sesiunile și setările.';
+  String get devToolsRemoveAllSubtitle =>
+      'Scurtătură dev: șterge TOATE cursurile, sesiunile și setările.';
 
   @override
   String get devToolsRemoveAllTitle => 'Elimini toate datele?';
@@ -526,7 +550,8 @@ class AppLocalizationsRo extends AppLocalizations {
   }
 
   @override
-  String get sessionFormDurationError => 'Durata trebuie să fie mai mare decât zero.';
+  String get sessionFormDurationError =>
+      'Durata trebuie să fie mai mare decât zero.';
 
   @override
   String get sessionFormHoursLabel => 'Ore';
@@ -547,7 +572,8 @@ class AppLocalizationsRo extends AppLocalizations {
   String get sessionFormNoCourseError => 'Selectează un curs.';
 
   @override
-  String get sessionFormNoCoursesHint => 'Adaugă mai întâi un curs pentru a înregistra o sesiune.';
+  String get sessionFormNoCoursesHint =>
+      'Adaugă mai întâi un curs pentru a înregistra o sesiune.';
 
   @override
   String get sessionFormNotesLabel => 'Notițe (opțional)';
@@ -603,10 +629,12 @@ class AppLocalizationsRo extends AppLocalizations {
   String get settingsClearSample => 'Șterge datele exemplu';
 
   @override
-  String get settingsClearSampleMessage => 'Elimină cursurile și sesiunile exemplu. Cursurile sau sesiunile adăugate de tine nu sunt eliminate.';
+  String get settingsClearSampleMessage =>
+      'Elimină cursurile și sesiunile exemplu. Cursurile sau sesiunile adăugate de tine nu sunt eliminate.';
 
   @override
-  String get settingsClearSampleSubtitle => 'Elimină cursurile și sesiunile exemplu generate. Datele tale sunt păstrate.';
+  String get settingsClearSampleSubtitle =>
+      'Elimină cursurile și sesiunile exemplu generate. Datele tale sunt păstrate.';
 
   @override
   String get settingsClearSampleTitle => 'Ștergi datele exemplu?';
@@ -661,7 +689,8 @@ class AppLocalizationsRo extends AppLocalizations {
   }
 
   @override
-  String get settingsDisplaySizeUpdated => 'Dimensiunea afișării a fost actualizată.';
+  String get settingsDisplaySizeUpdated =>
+      'Dimensiunea afișării a fost actualizată.';
 
   @override
   String get settingsExport => 'Exportă datele';
@@ -670,7 +699,8 @@ class AppLocalizationsRo extends AppLocalizations {
   String get settingsExportCopied => 'Exportul a fost copiat în clipboard.';
 
   @override
-  String get settingsExportSubtitle => 'Copiază toate cursurile, sesiunile și setările ca JSON.';
+  String get settingsExportSubtitle =>
+      'Copiază toate cursurile, sesiunile și setările ca JSON.';
 
   @override
   String settingsExportSummary(String courses, String sessions, String kb) {
@@ -686,7 +716,8 @@ class AppLocalizationsRo extends AppLocalizations {
   String get settingsFirstWeekday => 'Prima zi a săptămânii';
 
   @override
-  String get settingsFirstWeekdayUpdated => 'Prima zi a săptămânii a fost actualizată.';
+  String get settingsFirstWeekdayUpdated =>
+      'Prima zi a săptămânii a fost actualizată.';
 
   @override
   String settingsHoldLabel(String label, String seconds) {
@@ -700,7 +731,8 @@ class AppLocalizationsRo extends AppLocalizations {
   String get settingsHoursError => 'Introdu un număr mai mare decât zero.';
 
   @override
-  String get settingsHoursHelper => 'Implicit 30. Modificarea recalculează cerințele; înregistrările sunt păstrate.';
+  String get settingsHoursHelper =>
+      'Implicit 30. Modificarea recalculează cerințele; înregistrările sunt păstrate.';
 
   @override
   String get settingsHoursLabel => 'Ore per credit ECTS';
@@ -731,7 +763,8 @@ class AppLocalizationsRo extends AppLocalizations {
   }
 
   @override
-  String get settingsImportInfo => 'Adăugarea alătură copia la datele actuale (setările sunt păstrate). Înlocuirea șterge mai întâi TOATE cursurile, sesiunile și setările.';
+  String get settingsImportInfo =>
+      'Adăugarea alătură copia la datele actuale (setările sunt păstrate). Înlocuirea șterge mai întâi TOATE cursurile, sesiunile și setările.';
 
   @override
   String get settingsImportLabel => 'Lipește JSON-ul exportat';
@@ -765,7 +798,8 @@ class AppLocalizationsRo extends AppLocalizations {
   }
 
   @override
-  String get settingsImportSubtitle => 'Înlocuiește toate datele dintr-o copie JSON exportată anterior.';
+  String get settingsImportSubtitle =>
+      'Înlocuiește toate datele dintr-o copie JSON exportată anterior.';
 
   @override
   String settingsKeepHolding(String remaining) {
@@ -776,7 +810,8 @@ class AppLocalizationsRo extends AppLocalizations {
   String get settingsNoSample => 'Fără date exemplu';
 
   @override
-  String get settingsNoSampleSubtitle => 'Datele exemplu generate au fost deja șterse.';
+  String get settingsNoSampleSubtitle =>
+      'Datele exemplu generate au fost deja șterse.';
 
   @override
   String get settingsNoTarget => 'Niciun obiectiv setat';
@@ -785,7 +820,8 @@ class AppLocalizationsRo extends AppLocalizations {
   String get settingsOverloadError => 'Introdu un număr 5–100 h/săpt.';
 
   @override
-  String get settingsOverloadHelper => 'Săptămânile cu încărcare peste prag sunt marcate roșu. Studiul la zi este ~35–40 h/săpt.';
+  String get settingsOverloadHelper =>
+      'Săptămânile cu încărcare peste prag sunt marcate roșu. Studiul la zi este ~35–40 h/săpt.';
 
   @override
   String settingsOverloadHours(String value) {
@@ -804,7 +840,8 @@ class AppLocalizationsRo extends AppLocalizations {
   String get settingsOverloadThreshold => 'Prag săptămânal de suprasolicitare';
 
   @override
-  String get settingsOverloadUpdated => 'Pragul de suprasolicitare a fost actualizat.';
+  String get settingsOverloadUpdated =>
+      'Pragul de suprasolicitare a fost actualizat.';
 
   @override
   String get settingsPaceTolerance => 'Toleranță înainte / în urmă';
@@ -819,10 +856,12 @@ class AppLocalizationsRo extends AppLocalizations {
   String get settingsResetAll => 'Resetează toate datele';
 
   @override
-  String get settingsResetAllMessage => 'Șterge definitiv TOATE cursurile, sesiunile și setările. Nu poate fi anulat. Exportă mai întâi o copie dacă e nevoie.';
+  String get settingsResetAllMessage =>
+      'Șterge definitiv TOATE cursurile, sesiunile și setările. Nu poate fi anulat. Exportă mai întâi o copie dacă e nevoie.';
 
   @override
-  String get settingsResetAllSubtitle => 'Șterge toate cursurile, sesiunile și setările.';
+  String get settingsResetAllSubtitle =>
+      'Șterge toate cursurile, sesiunile și setările.';
 
   @override
   String get settingsResetAllTitle => 'Resetezi toate datele?';
@@ -831,13 +870,16 @@ class AppLocalizationsRo extends AppLocalizations {
   String get settingsResetSettings => 'Resetează setările';
 
   @override
-  String get settingsResetSettingsDone => 'Setările au fost resetate la implicite.';
+  String get settingsResetSettingsDone =>
+      'Setările au fost resetate la implicite.';
 
   @override
-  String get settingsResetSettingsMessage => 'Restabilește ore-per-ECTS (30), obiectiv zilnic (nimic), prima zi (luni), temă (sistem), toleranță (5 zile), suprasolicitare (35 h/săpt.), dimensiune (confortabil), culoare (ardezie). Cursurile și sesiunile sunt păstrate.';
+  String get settingsResetSettingsMessage =>
+      'Restabilește ore-per-ECTS (30), obiectiv zilnic (nimic), prima zi (luni), temă (sistem), toleranță (5 zile), suprasolicitare (35 h/săpt.), dimensiune (confortabil), culoare (ardezie). Cursurile și sesiunile sunt păstrate.';
 
   @override
-  String get settingsResetSettingsSubtitle => 'Restabilește implicite: 30 h/ECTS, fără obiectiv, luni, temă sistem, toleranță 5 zile, suprasolicitare 35 h/săpt., dimensiune confortabilă, culoare ardezie.';
+  String get settingsResetSettingsSubtitle =>
+      'Restabilește implicite: 30 h/ECTS, fără obiectiv, luni, temă sistem, toleranță 5 zile, suprasolicitare 35 h/săpt., dimensiune confortabilă, culoare ardezie.';
 
   @override
   String get settingsResetSettingsTitle => 'Resetezi setările?';
@@ -877,7 +919,8 @@ class AppLocalizationsRo extends AppLocalizations {
   String get settingsToleranceError => 'Introdu un număr 0–30 zile.';
 
   @override
-  String get settingsToleranceHelper => 'Înainte necesită +N zile surplus, în urmă −N zile. 5 = stabil, 0 = sensibil.';
+  String get settingsToleranceHelper =>
+      'Înainte necesită +N zile surplus, în urmă −N zile. 5 = stabil, 0 = sensibil.';
 
   @override
   String get settingsToleranceLabel => 'Zile de lucru (0–30)';
@@ -935,7 +978,8 @@ class AppLocalizationsRo extends AppLocalizations {
   }
 
   @override
-  String get statsAddDeadlines => 'Adaugă termene pentru a prognoza încărcarea.';
+  String get statsAddDeadlines =>
+      'Adaugă termene pentru a prognoza încărcarea.';
 
   @override
   String get statsComingLoad => 'Încărcare viitoare';
@@ -944,7 +988,8 @@ class AppLocalizationsRo extends AppLocalizations {
   String get statsConsistency => 'Consecvență';
 
   @override
-  String get statsConsistencyHint => 'Zile de studiu în ultimele 30 de zile. Pașii mici zilnici bat toceala.';
+  String get statsConsistencyHint =>
+      'Zile de studiu în ultimele 30 de zile. Pașii mici zilnici bat toceala.';
 
   @override
   String statsConsistencyScore(String percent) {
@@ -1067,13 +1112,15 @@ class AppLocalizationsRo extends AppLocalizations {
   String get statusOverdue => 'Depășit';
 
   @override
-  String get studyLogDeleteBody => 'Ștergi această sesiune de studiu? Nu poate fi anulat.';
+  String get studyLogDeleteBody =>
+      'Ștergi această sesiune de studiu? Nu poate fi anulat.';
 
   @override
   String get studyLogDeleteTitle => 'Ștergi sesiunea?';
 
   @override
-  String get studyLogEmptyHint => 'Înregistrează o sesiune pentru a-ți urmări timpul de studiu.';
+  String get studyLogEmptyHint =>
+      'Înregistrează o sesiune pentru a-ți urmări timpul de studiu.';
 
   @override
   String get studyLogEmptyTitle => 'Nicio sesiune de studiu deocamdată';
@@ -1114,7 +1161,8 @@ class AppLocalizationsRo extends AppLocalizations {
   }
 
   @override
-  String get studyTimerAlreadyRunning => 'A timer is already running. Finish or discard it first.';
+  String get studyTimerAlreadyRunning =>
+      'A timer is already running. Finish or discard it first.';
 
   @override
   String get studyTimerCourseLabel => 'Course';
@@ -1123,7 +1171,8 @@ class AppLocalizationsRo extends AppLocalizations {
   String get studyTimerDiscard => 'Discard';
 
   @override
-  String get studyTimerDiscardBody => 'Throw away the current timer without logging? This cannot be undone.';
+  String get studyTimerDiscardBody =>
+      'Throw away the current timer without logging? This cannot be undone.';
 
   @override
   String get studyTimerDiscardTitle => 'Discard timer?';
@@ -1163,7 +1212,8 @@ class AppLocalizationsRo extends AppLocalizations {
   String get studyTimerTooShort => 'Timer has not run yet.';
 
   @override
-  String get validationCourseEctsPositive => 'ECTS trebuie să fie mai mare decât zero';
+  String get validationCourseEctsPositive =>
+      'ECTS trebuie să fie mai mare decât zero';
 
   @override
   String get validationCourseEctsRequired => 'Introdu creditele ECTS';
@@ -1190,7 +1240,8 @@ class AppLocalizationsRo extends AppLocalizations {
   String get settingsLiquidGlass => 'Sticlă lichidă';
 
   @override
-  String get settingsLiquidGlassSubtitle => 'Carduri și bare din sticlă mată. Oprit păstrează aspectul clasic solid.';
+  String get settingsLiquidGlassSubtitle =>
+      'Carduri și bare din sticlă mată. Oprit păstrează aspectul clasic solid.';
 
   @override
   String get settingsLiquidGlassOn => 'Activat';
@@ -1205,7 +1256,8 @@ class AppLocalizationsRo extends AppLocalizations {
   String get devToolsReminderPreview => 'Previzualizare mementouri';
 
   @override
-  String get devToolsReminderPreviewSubtitle => 'Vezi ce ar notifica chiar acum. Feed de test sigur pentru Windows.';
+  String get devToolsReminderPreviewSubtitle =>
+      'Vezi ce ar notifica chiar acum. Feed de test sigur pentru Windows.';
 
   @override
   String get reminderPreviewTitle => 'Previzualizare mementouri';
@@ -1217,7 +1269,8 @@ class AppLocalizationsRo extends AppLocalizations {
   String get reminderPreviewReset => 'Acum';
 
   @override
-  String get reminderPreviewEmpty => 'Totul liniștit — nimic nu ar notifica în acest moment.';
+  String get reminderPreviewEmpty =>
+      'Totul liniștit — nimic nu ar notifica în acest moment.';
 
   @override
   String get reminderPreviewCustom => 'Programări personalizate (demo)';
@@ -1247,13 +1300,15 @@ class AppLocalizationsRo extends AppLocalizations {
   String get settingsReminders => 'Mementouri de studiu';
 
   @override
-  String get settingsRemindersOff => 'Dezactivat — activează pentru un memento zilnic.';
+  String get settingsRemindersOff =>
+      'Dezactivat — activează pentru un memento zilnic.';
 
   @override
   String get settingsReminderTime => 'Ora mementoului';
 
   @override
-  String get settingsReminderDenied => 'Notificările sunt blocate — activează-le din setările de sistem.';
+  String get settingsReminderDenied =>
+      'Notificările sunt blocate — activează-le din setările de sistem.';
 
   @override
   String notifDurationHours(String value) {
@@ -1291,7 +1346,12 @@ class AppLocalizationsRo extends AppLocalizations {
   }
 
   @override
-  String notifBehindBodyPace(String left, String days, String pace, String catchUp) {
+  String notifBehindBodyPace(
+    String left,
+    String days,
+    String pace,
+    String catchUp,
+  ) {
     return 'Au mai rămas $left, $days zile — $pace/zi de acum. Înregistrează $catchUp ca să revii În grafic.';
   }
 
@@ -1311,7 +1371,8 @@ class AppLocalizationsRo extends AppLocalizations {
   }
 
   @override
-  String get notifDeadlineTomorrowBody => 'Tot ce înregistrezi azi contează dublu.';
+  String get notifDeadlineTomorrowBody =>
+      'Tot ce înregistrezi azi contează dublu.';
 
   @override
   String notifDeadlineSoonTitle(String course, String days, String left) {
@@ -1324,7 +1385,8 @@ class AppLocalizationsRo extends AppLocalizations {
   }
 
   @override
-  String get notifDeadlineSoonBodyNoPace => 'Fiecare oră pe care o înregistrezi acum contează.';
+  String get notifDeadlineSoonBodyNoPace =>
+      'Fiecare oră pe care o înregistrezi acum contează.';
 
   @override
   String notifOverdueTitle(String course, String left) {
@@ -1332,7 +1394,8 @@ class AppLocalizationsRo extends AppLocalizations {
   }
 
   @override
-  String get notifOverdueBody => 'Mută termenul sau completează orele — cursul rămâne în Necesită atenție până atunci.';
+  String get notifOverdueBody =>
+      'Mută termenul sau completează orele — cursul rămâne în Necesită atenție până atunci.';
 
   @override
   String notifStreakTitle(String days, String week) {
@@ -1340,7 +1403,8 @@ class AppLocalizationsRo extends AppLocalizations {
   }
 
   @override
-  String get notifStreakBody => 'Toate cursurile sunt În grafic sau Înainte. Bravo.';
+  String get notifStreakBody =>
+      'Toate cursurile sunt În grafic sau Înainte. Bravo.';
 
   @override
   String notifCustomTitleAuto(String course) {

@@ -1,5 +1,6 @@
 // ignore: unused_import
 import 'package:intl/intl.dart' as intl;
+
 import 'app_localizations.dart';
 
 // ignore_for_file: type=lint
@@ -150,7 +151,11 @@ class AppLocalizationsZh extends AppLocalizations {
   }
 
   @override
-  String coursesProgressWithStatus(String done, String required, String status) {
+  String coursesProgressWithStatus(
+    String done,
+    String required,
+    String status,
+  ) {
     return '$done / $required 小时 • $status';
   }
 
@@ -450,7 +455,8 @@ class AppLocalizationsZh extends AppLocalizations {
   }
 
   @override
-  String get devToolsConfirmPumpMessage => '二次确认：这将增加课程、列表、图表和进度计算的数据量，可能需要几秒钟。现在生成吗？';
+  String get devToolsConfirmPumpMessage =>
+      '二次确认：这将增加课程、列表、图表和进度计算的数据量，可能需要几秒钟。现在生成吗？';
 
   @override
   String get devToolsConfirmPumpTitle => '确认压力测试数据生成';
@@ -468,7 +474,8 @@ class AppLocalizationsZh extends AppLocalizations {
   String get devToolsPumpData => '生成数据';
 
   @override
-  String get devToolsPumpMessage => '这将插入一个逼真的模拟学期（约 10 门课程、过去 12 周约 800 条记录）。现有数据会被保留。继续吗？';
+  String get devToolsPumpMessage =>
+      '这将插入一个逼真的模拟学期（约 10 门课程、过去 12 周约 800 条记录）。现有数据会被保留。继续吗？';
 
   @override
   String get devToolsPumpSubtitle => '插入模拟学期（约 10 门课程、约 800 条记录、12 周）。保留现有数据。';
@@ -819,7 +826,8 @@ class AppLocalizationsZh extends AppLocalizations {
   String get settingsResetAll => '重置所有数据';
 
   @override
-  String get settingsResetAllMessage => '这将永久删除所有课程、学习记录和设置。此操作无法撤销。如有需要，请先导出备份。';
+  String get settingsResetAllMessage =>
+      '这将永久删除所有课程、学习记录和设置。此操作无法撤销。如有需要，请先导出备份。';
 
   @override
   String get settingsResetAllSubtitle => '删除所有课程、学习记录和设置。';
@@ -834,10 +842,12 @@ class AppLocalizationsZh extends AppLocalizations {
   String get settingsResetSettingsDone => '设置已恢复为默认值。';
 
   @override
-  String get settingsResetSettingsMessage => '恢复每 ECTS 30 学时、无每日目标、周一起始、跟随系统主题、5 天容差、每周 35 小时过载、舒适大小、石板灰。课程和学习记录保留。';
+  String get settingsResetSettingsMessage =>
+      '恢复每 ECTS 30 学时、无每日目标、周一起始、跟随系统主题、5 天容差、每周 35 小时过载、舒适大小、石板灰。课程和学习记录保留。';
 
   @override
-  String get settingsResetSettingsSubtitle => '恢复默认值：30 小时/ECTS、无目标、周一、系统主题、5 天容差、每周 35 小时过载、舒适大小、石板灰。';
+  String get settingsResetSettingsSubtitle =>
+      '恢复默认值：30 小时/ECTS、无目标、周一、系统主题、5 天容差、每周 35 小时过载、舒适大小、石板灰。';
 
   @override
   String get settingsResetSettingsTitle => '重置设置？';
@@ -1114,7 +1124,8 @@ class AppLocalizationsZh extends AppLocalizations {
   }
 
   @override
-  String get studyTimerAlreadyRunning => 'A timer is already running. Finish or discard it first.';
+  String get studyTimerAlreadyRunning =>
+      'A timer is already running. Finish or discard it first.';
 
   @override
   String get studyTimerCourseLabel => 'Course';
@@ -1123,7 +1134,8 @@ class AppLocalizationsZh extends AppLocalizations {
   String get studyTimerDiscard => 'Discard';
 
   @override
-  String get studyTimerDiscardBody => 'Throw away the current timer without logging? This cannot be undone.';
+  String get studyTimerDiscardBody =>
+      'Throw away the current timer without logging? This cannot be undone.';
 
   @override
   String get studyTimerDiscardTitle => 'Discard timer?';
@@ -1291,7 +1303,12 @@ class AppLocalizationsZh extends AppLocalizations {
   }
 
   @override
-  String notifBehindBodyPace(String left, String days, String pace, String catchUp) {
+  String notifBehindBodyPace(
+    String left,
+    String days,
+    String pace,
+    String catchUp,
+  ) {
     return '还剩 $left，还有 $days 天——从现在起每天 $pace。记录 $catchUp 即可恢复正常。';
   }
 
@@ -1382,7 +1399,7 @@ class AppLocalizationsZh extends AppLocalizations {
 
 /// The translations for Chinese, using the Han script (`zh_Hans`).
 class AppLocalizationsZhHans extends AppLocalizationsZh {
-  AppLocalizationsZhHans(): super('zh_Hans');
+  AppLocalizationsZhHans() : super('zh_Hans');
 
   @override
   String get appTitle => 'ECTS Tracker';
@@ -1526,7 +1543,11 @@ class AppLocalizationsZhHans extends AppLocalizationsZh {
   }
 
   @override
-  String coursesProgressWithStatus(String done, String required, String status) {
+  String coursesProgressWithStatus(
+    String done,
+    String required,
+    String status,
+  ) {
     return '$done / $required 小时 • $status';
   }
 
@@ -1826,7 +1847,8 @@ class AppLocalizationsZhHans extends AppLocalizationsZh {
   }
 
   @override
-  String get devToolsConfirmPumpMessage => '二次确认：这将增加课程、列表、图表和进度计算的数据量，可能需要几秒钟。现在生成吗？';
+  String get devToolsConfirmPumpMessage =>
+      '二次确认：这将增加课程、列表、图表和进度计算的数据量，可能需要几秒钟。现在生成吗？';
 
   @override
   String get devToolsConfirmPumpTitle => '确认压力测试数据生成';
@@ -1844,7 +1866,8 @@ class AppLocalizationsZhHans extends AppLocalizationsZh {
   String get devToolsPumpData => '生成数据';
 
   @override
-  String get devToolsPumpMessage => '这将插入一个逼真的模拟学期（约 10 门课程、过去 12 周约 800 条记录）。现有数据会被保留。继续吗？';
+  String get devToolsPumpMessage =>
+      '这将插入一个逼真的模拟学期（约 10 门课程、过去 12 周约 800 条记录）。现有数据会被保留。继续吗？';
 
   @override
   String get devToolsPumpSubtitle => '插入模拟学期（约 10 门课程、约 800 条记录、12 周）。保留现有数据。';
@@ -2189,7 +2212,8 @@ class AppLocalizationsZhHans extends AppLocalizationsZh {
   String get settingsResetAll => '重置所有数据';
 
   @override
-  String get settingsResetAllMessage => '这将永久删除所有课程、学习记录和设置。此操作无法撤销。如有需要，请先导出备份。';
+  String get settingsResetAllMessage =>
+      '这将永久删除所有课程、学习记录和设置。此操作无法撤销。如有需要，请先导出备份。';
 
   @override
   String get settingsResetAllSubtitle => '删除所有课程、学习记录和设置。';
@@ -2204,10 +2228,12 @@ class AppLocalizationsZhHans extends AppLocalizationsZh {
   String get settingsResetSettingsDone => '设置已恢复为默认值。';
 
   @override
-  String get settingsResetSettingsMessage => '恢复每 ECTS 30 学时、无每日目标、周一起始、跟随系统主题、5 天容差、每周 35 小时过载、舒适大小、石板灰。课程和学习记录保留。';
+  String get settingsResetSettingsMessage =>
+      '恢复每 ECTS 30 学时、无每日目标、周一起始、跟随系统主题、5 天容差、每周 35 小时过载、舒适大小、石板灰。课程和学习记录保留。';
 
   @override
-  String get settingsResetSettingsSubtitle => '恢复默认值：30 小时/ECTS、无目标、周一、系统主题、5 天容差、每周 35 小时过载、舒适大小、石板灰。';
+  String get settingsResetSettingsSubtitle =>
+      '恢复默认值：30 小时/ECTS、无目标、周一、系统主题、5 天容差、每周 35 小时过载、舒适大小、石板灰。';
 
   @override
   String get settingsResetSettingsTitle => '重置设置？';
@@ -2607,7 +2633,12 @@ class AppLocalizationsZhHans extends AppLocalizationsZh {
   }
 
   @override
-  String notifBehindBodyPace(String left, String days, String pace, String catchUp) {
+  String notifBehindBodyPace(
+    String left,
+    String days,
+    String pace,
+    String catchUp,
+  ) {
     return '还剩 $left，还有 $days 天——从现在起每天 $pace。记录 $catchUp 即可恢复正常。';
   }
 
@@ -2698,7 +2729,7 @@ class AppLocalizationsZhHans extends AppLocalizationsZh {
 
 /// The translations for Chinese, using the Han script (`zh_Hant`).
 class AppLocalizationsZhHant extends AppLocalizationsZh {
-  AppLocalizationsZhHant(): super('zh_Hant');
+  AppLocalizationsZhHant() : super('zh_Hant');
 
   @override
   String get appTitle => 'ECTS Tracker';
@@ -2842,7 +2873,11 @@ class AppLocalizationsZhHant extends AppLocalizationsZh {
   }
 
   @override
-  String coursesProgressWithStatus(String done, String required, String status) {
+  String coursesProgressWithStatus(
+    String done,
+    String required,
+    String status,
+  ) {
     return '$done / $required 小時 • $status';
   }
 
@@ -3142,7 +3177,8 @@ class AppLocalizationsZhHant extends AppLocalizationsZh {
   }
 
   @override
-  String get devToolsConfirmPumpMessage => '二次確認：這將增加課程、清單、圖表和進度計算的資料量，可能需要幾秒鐘。現在產生嗎？';
+  String get devToolsConfirmPumpMessage =>
+      '二次確認：這將增加課程、清單、圖表和進度計算的資料量，可能需要幾秒鐘。現在產生嗎？';
 
   @override
   String get devToolsConfirmPumpTitle => '確認壓力測試資料產生';
@@ -3160,7 +3196,8 @@ class AppLocalizationsZhHant extends AppLocalizationsZh {
   String get devToolsPumpData => '產生資料';
 
   @override
-  String get devToolsPumpMessage => '這將插入一個寫實的模擬學期（約 10 門課程、過去 12 週約 800 筆紀錄）。現有資料會被保留。要繼續嗎？';
+  String get devToolsPumpMessage =>
+      '這將插入一個寫實的模擬學期（約 10 門課程、過去 12 週約 800 筆紀錄）。現有資料會被保留。要繼續嗎？';
 
   @override
   String get devToolsPumpSubtitle => '插入模擬學期（約 10 門課程、約 800 筆紀錄、12 週）。保留現有資料。';
@@ -3505,7 +3542,8 @@ class AppLocalizationsZhHant extends AppLocalizationsZh {
   String get settingsResetAll => '重設所有資料';
 
   @override
-  String get settingsResetAllMessage => '這將永久刪除所有課程、學習紀錄和設定。此操作無法復原。如有需要，請先匯出備份。';
+  String get settingsResetAllMessage =>
+      '這將永久刪除所有課程、學習紀錄和設定。此操作無法復原。如有需要，請先匯出備份。';
 
   @override
   String get settingsResetAllSubtitle => '刪除所有課程、學習紀錄和設定。';
@@ -3520,10 +3558,12 @@ class AppLocalizationsZhHant extends AppLocalizationsZh {
   String get settingsResetSettingsDone => '設定已恢復為預設值。';
 
   @override
-  String get settingsResetSettingsMessage => '恢復每 ECTS 30 學時、無每日目標、週一開始、跟隨系統主題、5 天容差、每週 35 小時過載、舒適大小、石板灰。課程和學習紀錄保留。';
+  String get settingsResetSettingsMessage =>
+      '恢復每 ECTS 30 學時、無每日目標、週一開始、跟隨系統主題、5 天容差、每週 35 小時過載、舒適大小、石板灰。課程和學習紀錄保留。';
 
   @override
-  String get settingsResetSettingsSubtitle => '恢復預設值：30 小時/ECTS、無目標、週一、系統主題、5 天容差、每週 35 小時過載、舒適大小、石板灰。';
+  String get settingsResetSettingsSubtitle =>
+      '恢復預設值：30 小時/ECTS、無目標、週一、系統主題、5 天容差、每週 35 小時過載、舒適大小、石板灰。';
 
   @override
   String get settingsResetSettingsTitle => '重設設定？';
@@ -3923,7 +3963,12 @@ class AppLocalizationsZhHant extends AppLocalizationsZh {
   }
 
   @override
-  String notifBehindBodyPace(String left, String days, String pace, String catchUp) {
+  String notifBehindBodyPace(
+    String left,
+    String days,
+    String pace,
+    String catchUp,
+  ) {
     return '還剩 $left，還有 $days 天——從現在起每天 $pace。記錄 $catchUp 即可恢復正常。';
   }
 

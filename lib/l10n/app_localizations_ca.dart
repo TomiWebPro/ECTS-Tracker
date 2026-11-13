@@ -1,5 +1,6 @@
 // ignore: unused_import
 import 'package:intl/intl.dart' as intl;
+
 import 'app_localizations.dart';
 
 // ignore_for_file: type=lint
@@ -82,7 +83,8 @@ class AppLocalizationsCa extends AppLocalizations {
   }
 
   @override
-  String get courseFormStartEarlyOn => 'Activat: el temps es reparteix fins ara i compta per al ritme d\'avui.';
+  String get courseFormStartEarlyOn =>
+      'Activat: el temps es reparteix fins ara i compta per al ritme d\'avui.';
 
   @override
   String get courseFormStartEarlyTitle => 'Comença ara malgrat l\'inici futur';
@@ -110,7 +112,8 @@ class AppLocalizationsCa extends AppLocalizations {
   }
 
   @override
-  String get coursesEmptyHint => 'Toca «Nova assignatura» per crear la primera assignatura.';
+  String get coursesEmptyHint =>
+      'Toca «Nova assignatura» per crear la primera assignatura.';
 
   @override
   String get coursesEmptyTitle => 'Encara no hi ha assignatures';
@@ -119,7 +122,8 @@ class AppLocalizationsCa extends AppLocalizations {
   String get coursesFilterAll => 'Tots els estats';
 
   @override
-  String get coursesFilterEmpty => 'Cap assignatura coincideix amb aquest filtre';
+  String get coursesFilterEmpty =>
+      'Cap assignatura coincideix amb aquest filtre';
 
   @override
   String get coursesNewCourse => 'Nova assignatura';
@@ -150,12 +154,17 @@ class AppLocalizationsCa extends AppLocalizations {
   }
 
   @override
-  String coursesProgressWithStatus(String done, String required, String status) {
+  String coursesProgressWithStatus(
+    String done,
+    String required,
+    String status,
+  ) {
     return '$done / $required h • $status';
   }
 
   @override
-  String get coursesRemoveSampleTooltip => 'Suprimeix l\'assignatura d\'exemple';
+  String get coursesRemoveSampleTooltip =>
+      'Suprimeix l\'assignatura d\'exemple';
 
   @override
   String coursesShownCount(String count) {
@@ -219,10 +228,12 @@ class AppLocalizationsCa extends AppLocalizations {
   }
 
   @override
-  String get dashboardEmptyHintAllDone => 'Totes les assignatures estan completades — consulta la pestanya Assignatures per veure la llista completa.';
+  String get dashboardEmptyHintAllDone =>
+      'Totes les assignatures estan completades — consulta la pestanya Assignatures per veure la llista completa.';
 
   @override
-  String get dashboardEmptyHintNoCourses => 'Afegeix una assignatura per començar a seguir el progrés ECTS.';
+  String get dashboardEmptyHintNoCourses =>
+      'Afegeix una assignatura per començar a seguir el progrés ECTS.';
 
   @override
   String dashboardExplainerBehind(String achieved, String need) {
@@ -235,10 +246,12 @@ class AppLocalizationsCa extends AppLocalizations {
   }
 
   @override
-  String get dashboardExplainerBehindNoPace => 'Endarrerit: cap ritme finit no arriba a una data límit d\'avui amb hores pendents';
+  String get dashboardExplainerBehindNoPace =>
+      'Endarrerit: cap ritme finit no arriba a una data límit d\'avui amb hores pendents';
 
   @override
-  String get dashboardExplainerOnTrackNoPace => 'En bon camí: encara sense ritme — registra la primera sessió per confirmar-ho';
+  String get dashboardExplainerOnTrackNoPace =>
+      'En bon camí: encara sense ritme — registra la primera sessió per confirmar-ho';
 
   @override
   String dashboardExplainerStartsIn(String days, String date) {
@@ -359,7 +372,8 @@ class AppLocalizationsCa extends AppLocalizations {
   String get dashboardProgramBare => 'PROGRAMA';
 
   @override
-  String get dashboardProgramEmptyHint => 'Afegeix una assignatura per començar el seguiment';
+  String get dashboardProgramEmptyHint =>
+      'Afegeix una assignatura per començar el seguiment';
 
   @override
   String dashboardProgramHours(String done, String required) {
@@ -388,10 +402,12 @@ class AppLocalizationsCa extends AppLocalizations {
   String get dashboardStartsSoon => 'Comença aviat';
 
   @override
-  String get dashboardTipEmpty => 'Afegeix la primera assignatura — el ritme diari i el progrés apareixeran aquí.';
+  String get dashboardTipEmpty =>
+      'Afegeix la primera assignatura — el ritme diari i el progrés apareixeran aquí.';
 
   @override
-  String get dashboardTipFirst => 'Els primers 25 min compten més — tria l\'assignatura que venç primer.';
+  String get dashboardTipFirst =>
+      'Els primers 25 min compten més — tria l\'assignatura que venç primer.';
 
   @override
   String get dashboardTodayBare => 'AVUI';
@@ -415,7 +431,8 @@ class AppLocalizationsCa extends AppLocalizations {
   }
 
   @override
-  String get dashboardUpcomingSubtitle => 'Inicis futurs — sense pressió avui, exclosos del ritme d\'avui.';
+  String get dashboardUpcomingSubtitle =>
+      'Inicis futurs — sense pressió avui, exclosos del ritme d\'avui.';
 
   @override
   String get dashboardUpcomingTitle => 'Propers';
@@ -424,7 +441,8 @@ class AppLocalizationsCa extends AppLocalizations {
   String get devToolsActivate => 'Activa';
 
   @override
-  String get devToolsActivateMessage => 'Això desbloqueja eines ocultes de prova d\'estrès (genera dades). Només per a desenvolupament.';
+  String get devToolsActivateMessage =>
+      'Això desbloqueja eines ocultes de prova d\'estrès (genera dades). Només per a desenvolupament.';
 
   @override
   String get devToolsActivateTitle => 'Activar el mode de desenvolupament?';
@@ -436,10 +454,12 @@ class AppLocalizationsCa extends AppLocalizations {
   String get devToolsClearPumped => 'Esborra les dades generades';
 
   @override
-  String get devToolsClearPumpedMessage => 'Suprimeix les assignatures STRESS generades i les seves sessions. Les teves dades es conserven.';
+  String get devToolsClearPumpedMessage =>
+      'Suprimeix les assignatures STRESS generades i les seves sessions. Les teves dades es conserven.';
 
   @override
-  String get devToolsClearPumpedSubtitle => 'Suprimeix les assignatures i sessions STRESS generades.';
+  String get devToolsClearPumpedSubtitle =>
+      'Suprimeix les assignatures i sessions STRESS generades.';
 
   @override
   String get devToolsClearPumpedTitle => 'Esborrar les dades generades?';
@@ -450,7 +470,8 @@ class AppLocalizationsCa extends AppLocalizations {
   }
 
   @override
-  String get devToolsConfirmPumpMessage => 'Segona confirmació: això inflarà assignatures, llistes, gràfics i càlculs de ritme, i pot trigar uns segons. Generar ara?';
+  String get devToolsConfirmPumpMessage =>
+      'Segona confirmació: això inflarà assignatures, llistes, gràfics i càlculs de ritme, i pot trigar uns segons. Generar ara?';
 
   @override
   String get devToolsConfirmPumpTitle => 'Confirma la generació d\'estrès';
@@ -462,16 +483,19 @@ class AppLocalizationsCa extends AppLocalizations {
   String get devToolsExit => 'Surt del mode de desenvolupament';
 
   @override
-  String get devToolsExitSubtitle => 'Amaga les eines de desenvolupament en aquest dispositiu.';
+  String get devToolsExitSubtitle =>
+      'Amaga les eines de desenvolupament en aquest dispositiu.';
 
   @override
   String get devToolsPumpData => 'Genera dades';
 
   @override
-  String get devToolsPumpMessage => 'Això insereix un semestre generat realista (~10 assignatures, ~800 sessions de les últimes 12 setmanes). Les dades existents es conserven. Continuar?';
+  String get devToolsPumpMessage =>
+      'Això insereix un semestre generat realista (~10 assignatures, ~800 sessions de les últimes 12 setmanes). Les dades existents es conserven. Continuar?';
 
   @override
-  String get devToolsPumpSubtitle => 'Insereix un semestre generat (~10 assignatures, ~800 sessions, 12 setmanes). Les dades existents es conserven.';
+  String get devToolsPumpSubtitle =>
+      'Insereix un semestre generat (~10 assignatures, ~800 sessions, 12 setmanes). Les dades existents es conserven.';
 
   @override
   String get devToolsPumpTile => 'Genera dades de prova';
@@ -491,10 +515,12 @@ class AppLocalizationsCa extends AppLocalizations {
   String get devToolsRemoveAll => 'Suprimeix totes les dades';
 
   @override
-  String get devToolsRemoveAllMessage => 'Drecera de desenvolupament: suprimeix permanentment TOTES les assignatures, sessions i configuració. Aquesta acció no es pot desfer.';
+  String get devToolsRemoveAllMessage =>
+      'Drecera de desenvolupament: suprimeix permanentment TOTES les assignatures, sessions i configuració. Aquesta acció no es pot desfer.';
 
   @override
-  String get devToolsRemoveAllSubtitle => 'Drecera de desenvolupament: suprimeix TOTES les assignatures, sessions i configuració.';
+  String get devToolsRemoveAllSubtitle =>
+      'Drecera de desenvolupament: suprimeix TOTES les assignatures, sessions i configuració.';
 
   @override
   String get devToolsRemoveAllTitle => 'Suprimir totes les dades?';
@@ -547,7 +573,8 @@ class AppLocalizationsCa extends AppLocalizations {
   String get sessionFormNoCourseError => 'Tria una assignatura.';
 
   @override
-  String get sessionFormNoCoursesHint => 'Afegeix primer una assignatura per registrar una sessió.';
+  String get sessionFormNoCoursesHint =>
+      'Afegeix primer una assignatura per registrar una sessió.';
 
   @override
   String get sessionFormNotesLabel => 'Notes (opcional)';
@@ -603,10 +630,12 @@ class AppLocalizationsCa extends AppLocalizations {
   String get settingsClearSample => 'Esborra les dades d\'exemple';
 
   @override
-  String get settingsClearSampleMessage => 'Això suprimeix les assignatures i sessions d\'exemple. Les assignatures o sessions que hagis afegit no s\'esborren.';
+  String get settingsClearSampleMessage =>
+      'Això suprimeix les assignatures i sessions d\'exemple. Les assignatures o sessions que hagis afegit no s\'esborren.';
 
   @override
-  String get settingsClearSampleSubtitle => 'Suprimeix les assignatures i sessions d\'exemple. Les teves dades es conserven.';
+  String get settingsClearSampleSubtitle =>
+      'Suprimeix les assignatures i sessions d\'exemple. Les teves dades es conserven.';
 
   @override
   String get settingsClearSampleTitle => 'Esborrar les dades d\'exemple?';
@@ -615,7 +644,8 @@ class AppLocalizationsCa extends AppLocalizations {
   String get settingsCopy => 'Copia';
 
   @override
-  String get settingsDailyError => 'Introdueix 0 o un nombre positiu de minuts.';
+  String get settingsDailyError =>
+      'Introdueix 0 o un nombre positiu de minuts.';
 
   @override
   String get settingsDailyLabel => 'Minuts per dia (0 = sense objectiu)';
@@ -670,7 +700,8 @@ class AppLocalizationsCa extends AppLocalizations {
   String get settingsExportCopied => 'Exportació copiada al porta-retalls.';
 
   @override
-  String get settingsExportSubtitle => 'Copia totes les assignatures, sessions i configuració com a JSON.';
+  String get settingsExportSubtitle =>
+      'Copia totes les assignatures, sessions i configuració com a JSON.';
 
   @override
   String settingsExportSummary(String courses, String sessions, String kb) {
@@ -686,7 +717,8 @@ class AppLocalizationsCa extends AppLocalizations {
   String get settingsFirstWeekday => 'Primer dia de la setmana';
 
   @override
-  String get settingsFirstWeekdayUpdated => 'Primer dia de la setmana actualitzat.';
+  String get settingsFirstWeekdayUpdated =>
+      'Primer dia de la setmana actualitzat.';
 
   @override
   String settingsHoldLabel(String label, String seconds) {
@@ -700,7 +732,8 @@ class AppLocalizationsCa extends AppLocalizations {
   String get settingsHoursError => 'Introdueix un nombre superior a zero.';
 
   @override
-  String get settingsHoursHelper => 'Per defecte 30. Canviar-ho recalcula els requisits; els registres es conserven.';
+  String get settingsHoursHelper =>
+      'Per defecte 30. Canviar-ho recalcula els requisits; els registres es conserven.';
 
   @override
   String get settingsHoursLabel => 'Hores per crèdit ECTS';
@@ -731,7 +764,8 @@ class AppLocalizationsCa extends AppLocalizations {
   }
 
   @override
-  String get settingsImportInfo => 'Afegeix la còpia de seguretat a les dades actuals (es conserva la configuració). Substitueix esborra PRIMER totes les assignatures, sessions i configuració.';
+  String get settingsImportInfo =>
+      'Afegeix la còpia de seguretat a les dades actuals (es conserva la configuració). Substitueix esborra PRIMER totes les assignatures, sessions i configuració.';
 
   @override
   String get settingsImportLabel => 'Enganxa el JSON exportat';
@@ -765,7 +799,8 @@ class AppLocalizationsCa extends AppLocalizations {
   }
 
   @override
-  String get settingsImportSubtitle => 'Substitueix totes les dades des d\'una còpia JSON exportada.';
+  String get settingsImportSubtitle =>
+      'Substitueix totes les dades des d\'una còpia JSON exportada.';
 
   @override
   String settingsKeepHolding(String remaining) {
@@ -776,16 +811,19 @@ class AppLocalizationsCa extends AppLocalizations {
   String get settingsNoSample => 'Sense dades d\'exemple';
 
   @override
-  String get settingsNoSampleSubtitle => 'Les dades d\'exemple ja s\'han esborrat.';
+  String get settingsNoSampleSubtitle =>
+      'Les dades d\'exemple ja s\'han esborrat.';
 
   @override
   String get settingsNoTarget => 'Sense objectiu definit';
 
   @override
-  String get settingsOverloadError => 'Introdueix un nombre de 5–100 h/setmana.';
+  String get settingsOverloadError =>
+      'Introdueix un nombre de 5–100 h/setmana.';
 
   @override
-  String get settingsOverloadHelper => 'Les setmanes de càrrega propera per sobre d\'això es marquen en vermell. Estudiar a temps complet és ~35–40 h/setmana.';
+  String get settingsOverloadHelper =>
+      'Les setmanes de càrrega propera per sobre d\'això es marquen en vermell. Estudiar a temps complet és ~35–40 h/setmana.';
 
   @override
   String settingsOverloadHours(String value) {
@@ -819,10 +857,12 @@ class AppLocalizationsCa extends AppLocalizations {
   String get settingsResetAll => 'Restableix totes les dades';
 
   @override
-  String get settingsResetAllMessage => 'Això suprimeix permanentment TOTES les assignatures, sessions i configuració. Aquesta acció no es pot desfer. Exporta una còpia de seguretat primer si cal.';
+  String get settingsResetAllMessage =>
+      'Això suprimeix permanentment TOTES les assignatures, sessions i configuració. Aquesta acció no es pot desfer. Exporta una còpia de seguretat primer si cal.';
 
   @override
-  String get settingsResetAllSubtitle => 'Suprimeix totes les assignatures, sessions i configuració.';
+  String get settingsResetAllSubtitle =>
+      'Suprimeix totes les assignatures, sessions i configuració.';
 
   @override
   String get settingsResetAllTitle => 'Restablir totes les dades?';
@@ -831,13 +871,16 @@ class AppLocalizationsCa extends AppLocalizations {
   String get settingsResetSettings => 'Restableix la configuració';
 
   @override
-  String get settingsResetSettingsDone => 'Configuració restablerta als valors per defecte.';
+  String get settingsResetSettingsDone =>
+      'Configuració restablerta als valors per defecte.';
 
   @override
-  String get settingsResetSettingsMessage => 'Restaura hores per ECTS (30), objectiu diari (cap), primer dia (dilluns), tema (sistema), tolerància (5 dies), sobrecàrrega (35 h/setmana), mida (confortable), color (pissarra). Les assignatures i sessions es conserven.';
+  String get settingsResetSettingsMessage =>
+      'Restaura hores per ECTS (30), objectiu diari (cap), primer dia (dilluns), tema (sistema), tolerància (5 dies), sobrecàrrega (35 h/setmana), mida (confortable), color (pissarra). Les assignatures i sessions es conserven.';
 
   @override
-  String get settingsResetSettingsSubtitle => 'Restaura valors: 30 h/ECTS, sense objectiu, dilluns, tema del sistema, tolerància de 5 dies, sobrecàrrega de 35 h/setmana, mida confortable, color pissarra.';
+  String get settingsResetSettingsSubtitle =>
+      'Restaura valors: 30 h/ECTS, sense objectiu, dilluns, tema del sistema, tolerància de 5 dies, sobrecàrrega de 35 h/setmana, mida confortable, color pissarra.';
 
   @override
   String get settingsResetSettingsTitle => 'Restablir la configuració?';
@@ -877,7 +920,8 @@ class AppLocalizationsCa extends AppLocalizations {
   String get settingsToleranceError => 'Introdueix un nombre de 0–30 dies.';
 
   @override
-  String get settingsToleranceHelper => 'L\'avanç necessita +N dies d\'excedent, el retard −N dies. 5 = estable, 0 = sensible.';
+  String get settingsToleranceHelper =>
+      'L\'avanç necessita +N dies d\'excedent, el retard −N dies. 5 = estable, 0 = sensible.';
 
   @override
   String get settingsToleranceLabel => 'Dies de feina (0–30)';
@@ -935,7 +979,8 @@ class AppLocalizationsCa extends AppLocalizations {
   }
 
   @override
-  String get statsAddDeadlines => 'Afegeix dates límit per preveure la càrrega.';
+  String get statsAddDeadlines =>
+      'Afegeix dates límit per preveure la càrrega.';
 
   @override
   String get statsComingLoad => 'Càrrega propera';
@@ -944,7 +989,8 @@ class AppLocalizationsCa extends AppLocalizations {
   String get statsConsistency => 'Constància';
 
   @override
-  String get statsConsistencyHint => 'Dies d\'estudi dels últims 30 dies. Passes petites cada dia superen les atracades.';
+  String get statsConsistencyHint =>
+      'Dies d\'estudi dels últims 30 dies. Passes petites cada dia superen les atracades.';
 
   @override
   String statsConsistencyScore(String percent) {
@@ -1009,7 +1055,8 @@ class AppLocalizationsCa extends AppLocalizations {
   String get statsOverview => 'Resum';
 
   @override
-  String get statsPaceCovers => 'El ritme passat cobreix el necessari. Mantén la ratxa.';
+  String get statsPaceCovers =>
+      'El ritme passat cobreix el necessari. Mantén la ratxa.';
 
   @override
   String statsPaceShort(String gap) {
@@ -1067,13 +1114,15 @@ class AppLocalizationsCa extends AppLocalizations {
   String get statusOverdue => 'Vençut';
 
   @override
-  String get studyLogDeleteBody => 'Suprimir aquesta sessió d\'estudi? Aquesta acció no es pot desfer.';
+  String get studyLogDeleteBody =>
+      'Suprimir aquesta sessió d\'estudi? Aquesta acció no es pot desfer.';
 
   @override
   String get studyLogDeleteTitle => 'Suprimir la sessió?';
 
   @override
-  String get studyLogEmptyHint => 'Registra una sessió per seguir el temps d\'estudi.';
+  String get studyLogEmptyHint =>
+      'Registra una sessió per seguir el temps d\'estudi.';
 
   @override
   String get studyLogEmptyTitle => 'Encara no hi ha sessions d\'estudi';
@@ -1114,7 +1163,8 @@ class AppLocalizationsCa extends AppLocalizations {
   }
 
   @override
-  String get studyTimerAlreadyRunning => 'A timer is already running. Finish or discard it first.';
+  String get studyTimerAlreadyRunning =>
+      'A timer is already running. Finish or discard it first.';
 
   @override
   String get studyTimerCourseLabel => 'Course';
@@ -1123,7 +1173,8 @@ class AppLocalizationsCa extends AppLocalizations {
   String get studyTimerDiscard => 'Discard';
 
   @override
-  String get studyTimerDiscardBody => 'Throw away the current timer without logging? This cannot be undone.';
+  String get studyTimerDiscardBody =>
+      'Throw away the current timer without logging? This cannot be undone.';
 
   @override
   String get studyTimerDiscardTitle => 'Discard timer?';
@@ -1163,7 +1214,8 @@ class AppLocalizationsCa extends AppLocalizations {
   String get studyTimerTooShort => 'Timer has not run yet.';
 
   @override
-  String get validationCourseEctsPositive => 'Els ECTS han de ser superiors a zero';
+  String get validationCourseEctsPositive =>
+      'Els ECTS han de ser superiors a zero';
 
   @override
   String get validationCourseEctsRequired => 'Introdueix els crèdits ECTS';
@@ -1190,7 +1242,8 @@ class AppLocalizationsCa extends AppLocalizations {
   String get settingsLiquidGlass => 'Vidre líquid';
 
   @override
-  String get settingsLiquidGlassSubtitle => 'Targetes i barres de vidre esmerilat. Desactivat manté l\'aspecte sòlid clàssic.';
+  String get settingsLiquidGlassSubtitle =>
+      'Targetes i barres de vidre esmerilat. Desactivat manté l\'aspecte sòlid clàssic.';
 
   @override
   String get settingsLiquidGlassOn => 'Activat';
@@ -1205,7 +1258,8 @@ class AppLocalizationsCa extends AppLocalizations {
   String get devToolsReminderPreview => 'Vista prèvia de recordatoris';
 
   @override
-  String get devToolsReminderPreviewSubtitle => 'Mira què notificaria ara mateix. Font de prova segura per al Windows.';
+  String get devToolsReminderPreviewSubtitle =>
+      'Mira què notificaria ara mateix. Font de prova segura per al Windows.';
 
   @override
   String get reminderPreviewTitle => 'Vista prèvia de recordatoris';
@@ -1217,7 +1271,8 @@ class AppLocalizationsCa extends AppLocalizations {
   String get reminderPreviewReset => 'Ara';
 
   @override
-  String get reminderPreviewEmpty => 'Tot tranquil — res no notificaria en aquest moment.';
+  String get reminderPreviewEmpty =>
+      'Tot tranquil — res no notificaria en aquest moment.';
 
   @override
   String get reminderPreviewCustom => 'Horaris personalitzats (demo)';
@@ -1247,13 +1302,15 @@ class AppLocalizationsCa extends AppLocalizations {
   String get settingsReminders => 'Recordatoris d\'estudi';
 
   @override
-  String get settingsRemindersOff => 'Desactivat — activa\'ls per a un impuls diari.';
+  String get settingsRemindersOff =>
+      'Desactivat — activa\'ls per a un impuls diari.';
 
   @override
   String get settingsReminderTime => 'Hora del recordatori';
 
   @override
-  String get settingsReminderDenied => 'Les notificacions estan bloquejades — activa-les als ajustos del sistema.';
+  String get settingsReminderDenied =>
+      'Les notificacions estan bloquejades — activa-les als ajustos del sistema.';
 
   @override
   String notifDurationHours(String value) {
@@ -1291,7 +1348,12 @@ class AppLocalizationsCa extends AppLocalizations {
   }
 
   @override
-  String notifBehindBodyPace(String left, String days, String pace, String catchUp) {
+  String notifBehindBodyPace(
+    String left,
+    String days,
+    String pace,
+    String catchUp,
+  ) {
     return 'Queden $left, falten $days dies — $pace/dia a partir d’ara. Registra $catchUp per tornar a anar en bon camí.';
   }
 
@@ -1311,7 +1373,8 @@ class AppLocalizationsCa extends AppLocalizations {
   }
 
   @override
-  String get notifDeadlineTomorrowBody => 'Tot el que registris avui compta doble.';
+  String get notifDeadlineTomorrowBody =>
+      'Tot el que registris avui compta doble.';
 
   @override
   String notifDeadlineSoonTitle(String course, String days, String left) {
@@ -1324,7 +1387,8 @@ class AppLocalizationsCa extends AppLocalizations {
   }
 
   @override
-  String get notifDeadlineSoonBodyNoPace => 'Cada hora que registris ara compta.';
+  String get notifDeadlineSoonBodyNoPace =>
+      'Cada hora que registris ara compta.';
 
   @override
   String notifOverdueTitle(String course, String left) {
@@ -1332,7 +1396,8 @@ class AppLocalizationsCa extends AppLocalizations {
   }
 
   @override
-  String get notifOverdueBody => 'Mou la data límit o acaba les hores — fins aleshores l’assignatura es queda en «necessita atenció».';
+  String get notifOverdueBody =>
+      'Mou la data límit o acaba les hores — fins aleshores l’assignatura es queda en «necessita atenció».';
 
   @override
   String notifStreakTitle(String days, String week) {
@@ -1340,7 +1405,8 @@ class AppLocalizationsCa extends AppLocalizations {
   }
 
   @override
-  String get notifStreakBody => 'Totes les assignatures van en bon camí o avançades. Bona ratxa.';
+  String get notifStreakBody =>
+      'Totes les assignatures van en bon camí o avançades. Bona ratxa.';
 
   @override
   String notifCustomTitleAuto(String course) {

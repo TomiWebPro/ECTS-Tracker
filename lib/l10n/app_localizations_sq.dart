@@ -1,5 +1,6 @@
 // ignore: unused_import
 import 'package:intl/intl.dart' as intl;
+
 import 'app_localizations.dart';
 
 // ignore_for_file: type=lint
@@ -82,10 +83,12 @@ class AppLocalizationsSq extends AppLocalizations {
   }
 
   @override
-  String get courseFormStartEarlyOn => 'Po: koha ndahet deri tani dhe llogaritet në ritmin e sotëm.';
+  String get courseFormStartEarlyOn =>
+      'Po: koha ndahet deri tani dhe llogaritet në ritmin e sotëm.';
 
   @override
-  String get courseFormStartEarlyTitle => 'Fillo tani pavarësisht fillimit të ardhshëm';
+  String get courseFormStartEarlyTitle =>
+      'Fillo tani pavarësisht fillimit të ardhshëm';
 
   @override
   String get courseFormTitleAdd => 'Shto lëndë';
@@ -110,7 +113,8 @@ class AppLocalizationsSq extends AppLocalizations {
   }
 
   @override
-  String get coursesEmptyHint => 'Prek «Lëndë e re» për të krijuar lëndën tënde të parë.';
+  String get coursesEmptyHint =>
+      'Prek «Lëndë e re» për të krijuar lëndën tënde të parë.';
 
   @override
   String get coursesEmptyTitle => 'Ende asnjë lëndë';
@@ -150,7 +154,11 @@ class AppLocalizationsSq extends AppLocalizations {
   }
 
   @override
-  String coursesProgressWithStatus(String done, String required, String status) {
+  String coursesProgressWithStatus(
+    String done,
+    String required,
+    String status,
+  ) {
     return '$done / $required o • $status';
   }
 
@@ -219,10 +227,12 @@ class AppLocalizationsSq extends AppLocalizations {
   }
 
   @override
-  String get dashboardEmptyHintAllDone => 'Çdo lëndë ka përfunduar — shih skedën Lëndët për listën e plotë.';
+  String get dashboardEmptyHintAllDone =>
+      'Çdo lëndë ka përfunduar — shih skedën Lëndët për listën e plotë.';
 
   @override
-  String get dashboardEmptyHintNoCourses => 'Shto një lëndë për të filluar ndjekjen e progresit ECTS.';
+  String get dashboardEmptyHintNoCourses =>
+      'Shto një lëndë për të filluar ndjekjen e progresit ECTS.';
 
   @override
   String dashboardExplainerBehind(String achieved, String need) {
@@ -235,10 +245,12 @@ class AppLocalizationsSq extends AppLocalizations {
   }
 
   @override
-  String get dashboardExplainerBehindNoPace => 'Prapa: asnjë ritëm përfundimtar nuk e arrin afatin e sotëm me orët që kanë mbetur';
+  String get dashboardExplainerBehindNoPace =>
+      'Prapa: asnjë ritëm përfundimtar nuk e arrin afatin e sotëm me orët që kanë mbetur';
 
   @override
-  String get dashboardExplainerOnTrackNoPace => 'Në rrugë: ende asnjë ritëm — regjistro seancën e parë për ta konfirmuar';
+  String get dashboardExplainerOnTrackNoPace =>
+      'Në rrugë: ende asnjë ritëm — regjistro seancën e parë për ta konfirmuar';
 
   @override
   String dashboardExplainerStartsIn(String days, String date) {
@@ -359,7 +371,8 @@ class AppLocalizationsSq extends AppLocalizations {
   String get dashboardProgramBare => 'PROGRAMI';
 
   @override
-  String get dashboardProgramEmptyHint => 'Shto një lëndë për të filluar ndjekjen';
+  String get dashboardProgramEmptyHint =>
+      'Shto një lëndë për të filluar ndjekjen';
 
   @override
   String dashboardProgramHours(String done, String required) {
@@ -388,10 +401,12 @@ class AppLocalizationsSq extends AppLocalizations {
   String get dashboardStartsSoon => 'Fillon së shpejti';
 
   @override
-  String get dashboardTipEmpty => 'Shto lëndën tënde të parë — ritmi ditor dhe progresi do të shfaqen këtu.';
+  String get dashboardTipEmpty =>
+      'Shto lëndën tënde të parë — ritmi ditor dhe progresi do të shfaqen këtu.';
 
   @override
-  String get dashboardTipFirst => '25 minutat e para vlejnë më shumë — zgjidh lëndën me afatin më të afërt.';
+  String get dashboardTipFirst =>
+      '25 minutat e para vlejnë më shumë — zgjidh lëndën me afatin më të afërt.';
 
   @override
   String get dashboardTodayBare => 'SOT';
@@ -415,7 +430,8 @@ class AppLocalizationsSq extends AppLocalizations {
   }
 
   @override
-  String get dashboardUpcomingSubtitle => 'Fillime të ardhshme — sot pa presion, përjashtuar nga ritmi i sotëm.';
+  String get dashboardUpcomingSubtitle =>
+      'Fillime të ardhshme — sot pa presion, përjashtuar nga ritmi i sotëm.';
 
   @override
   String get dashboardUpcomingTitle => 'Në vijim';
@@ -424,7 +440,8 @@ class AppLocalizationsSq extends AppLocalizations {
   String get devToolsActivate => 'Aktivizo';
 
   @override
-  String get devToolsActivateMessage => 'Kjo zhbllokon mjete të fshehura stres-testi (të dhëna të gjeneruara). Vetëm për zhvillim.';
+  String get devToolsActivateMessage =>
+      'Kjo zhbllokon mjete të fshehura stres-testi (të dhëna të gjeneruara). Vetëm për zhvillim.';
 
   @override
   String get devToolsActivateTitle => 'Të aktivizohet mënyra e zhvilluesit?';
@@ -436,10 +453,12 @@ class AppLocalizationsSq extends AppLocalizations {
   String get devToolsClearPumped => 'Pastro të dhënat e gjeneruara';
 
   @override
-  String get devToolsClearPumpedMessage => 'Fshin lëndët STRESS të gjeneruara dhe seancat e tyre. Të dhënat e tua ruhen.';
+  String get devToolsClearPumpedMessage =>
+      'Fshin lëndët STRESS të gjeneruara dhe seancat e tyre. Të dhënat e tua ruhen.';
 
   @override
-  String get devToolsClearPumpedSubtitle => 'Fshi lëndët dhe seancat STRESS të gjeneruara.';
+  String get devToolsClearPumpedSubtitle =>
+      'Fshi lëndët dhe seancat STRESS të gjeneruara.';
 
   @override
   String get devToolsClearPumpedTitle => 'Të pastrohen të dhënat e gjeneruara?';
@@ -450,7 +469,8 @@ class AppLocalizationsSq extends AppLocalizations {
   }
 
   @override
-  String get devToolsConfirmPumpMessage => 'Konfirmimi i dytë: kjo do të mbushë lëndët, listat, grafikët dhe llogaritjet e ritmit dhe mund të zgjasë disa sekonda. Të mbushet tani?';
+  String get devToolsConfirmPumpMessage =>
+      'Konfirmimi i dytë: kjo do të mbushë lëndët, listat, grafikët dhe llogaritjet e ritmit dhe mund të zgjasë disa sekonda. Të mbushet tani?';
 
   @override
   String get devToolsConfirmPumpTitle => 'Konfirmo stres-testin';
@@ -462,16 +482,19 @@ class AppLocalizationsSq extends AppLocalizations {
   String get devToolsExit => 'Dil nga mënyra e zhvilluesit';
 
   @override
-  String get devToolsExitSubtitle => 'Fshih mjetet e zhvilluesit në këtë pajisje.';
+  String get devToolsExitSubtitle =>
+      'Fshih mjetet e zhvilluesit në këtë pajisje.';
 
   @override
   String get devToolsPumpData => 'Mbush të dhëna';
 
   @override
-  String get devToolsPumpMessage => 'Kjo fut një semestër realiste të gjeneruar (rreth 10 lëndë, rreth 800 seanca gjatë 12 javëve të fundit). Të dhënat ekzistuese ruhen. Të vazhdohet?';
+  String get devToolsPumpMessage =>
+      'Kjo fut një semestër realiste të gjeneruar (rreth 10 lëndë, rreth 800 seanca gjatë 12 javëve të fundit). Të dhënat ekzistuese ruhen. Të vazhdohet?';
 
   @override
-  String get devToolsPumpSubtitle => 'Fut një semestër të gjeneruar (rreth 10 lëndë, rreth 800 seanca, 12 javë). Të dhënat ekzistuese ruhen.';
+  String get devToolsPumpSubtitle =>
+      'Fut një semestër të gjeneruar (rreth 10 lëndë, rreth 800 seanca, 12 javë). Të dhënat ekzistuese ruhen.';
 
   @override
   String get devToolsPumpTile => 'Mbush të dhëna testi';
@@ -491,10 +514,12 @@ class AppLocalizationsSq extends AppLocalizations {
   String get devToolsRemoveAll => 'Hiq të gjitha të dhënat';
 
   @override
-  String get devToolsRemoveAllMessage => 'Shkurtore zhvilluesi: kjo fshin përgjithmonë TË GJITHA lëndët, seancat dhe cilësimet. Kjo nuk mund të zhbëhet.';
+  String get devToolsRemoveAllMessage =>
+      'Shkurtore zhvilluesi: kjo fshin përgjithmonë TË GJITHA lëndët, seancat dhe cilësimet. Kjo nuk mund të zhbëhet.';
 
   @override
-  String get devToolsRemoveAllSubtitle => 'Shkurtore zhvilluesi: fshi TË GJITHA lëndët, seancat dhe cilësimet.';
+  String get devToolsRemoveAllSubtitle =>
+      'Shkurtore zhvilluesi: fshi TË GJITHA lëndët, seancat dhe cilësimet.';
 
   @override
   String get devToolsRemoveAllTitle => 'Të hiqen të gjitha të dhënat?';
@@ -526,7 +551,8 @@ class AppLocalizationsSq extends AppLocalizations {
   }
 
   @override
-  String get sessionFormDurationError => 'Kohëzgjatja duhet të jetë më e madhe se zero.';
+  String get sessionFormDurationError =>
+      'Kohëzgjatja duhet të jetë më e madhe se zero.';
 
   @override
   String get sessionFormHoursLabel => 'Orë';
@@ -547,7 +573,8 @@ class AppLocalizationsSq extends AppLocalizations {
   String get sessionFormNoCourseError => 'Zgjidh një lëndë.';
 
   @override
-  String get sessionFormNoCoursesHint => 'Shto fillimisht një lëndë për të regjistruar një seancë.';
+  String get sessionFormNoCoursesHint =>
+      'Shto fillimisht një lëndë për të regjistruar një seancë.';
 
   @override
   String get sessionFormNotesLabel => 'Shënime (opsionale)';
@@ -603,10 +630,12 @@ class AppLocalizationsSq extends AppLocalizations {
   String get settingsClearSample => 'Pastro të dhënat shembull';
 
   @override
-  String get settingsClearSampleMessage => 'Kjo heq lëndët dhe seancat shembull. Lëndët ose seancat që ke shtuar vetë nuk hiqen.';
+  String get settingsClearSampleMessage =>
+      'Kjo heq lëndët dhe seancat shembull. Lëndët ose seancat që ke shtuar vetë nuk hiqen.';
 
   @override
-  String get settingsClearSampleSubtitle => 'Hiq lëndët dhe seancat shembull të gatshme. Të dhënat e tua ruhen.';
+  String get settingsClearSampleSubtitle =>
+      'Hiq lëndët dhe seancat shembull të gatshme. Të dhënat e tua ruhen.';
 
   @override
   String get settingsClearSampleTitle => 'Të pastrohen të dhënat shembull?';
@@ -670,7 +699,8 @@ class AppLocalizationsSq extends AppLocalizations {
   String get settingsExportCopied => 'Eksporti u kopjua në clipboard.';
 
   @override
-  String get settingsExportSubtitle => 'Kopjo të gjitha lëndët, seancat dhe cilësimet si JSON.';
+  String get settingsExportSubtitle =>
+      'Kopjo të gjitha lëndët, seancat dhe cilësimet si JSON.';
 
   @override
   String settingsExportSummary(String courses, String sessions, String kb) {
@@ -700,7 +730,8 @@ class AppLocalizationsSq extends AppLocalizations {
   String get settingsHoursError => 'Shkruaj një numër më të madh se zero.';
 
   @override
-  String get settingsHoursHelper => 'Parazgjedhja 30. Ndryshimi rillogarit kërkesat; regjistrimet ruhen.';
+  String get settingsHoursHelper =>
+      'Parazgjedhja 30. Ndryshimi rillogarit kërkesat; regjistrimet ruhen.';
 
   @override
   String get settingsHoursLabel => 'Orë për kredit ECTS';
@@ -731,7 +762,8 @@ class AppLocalizationsSq extends AppLocalizations {
   }
 
   @override
-  String get settingsImportInfo => 'Shtimi e shton kopjen rezervë krahas të dhënave aktuale (cilësimet ruhen). Zëvendësimi fshin fillimisht TË GJITHA lëndët, seancat dhe cilësimet.';
+  String get settingsImportInfo =>
+      'Shtimi e shton kopjen rezervë krahas të dhënave aktuale (cilësimet ruhen). Zëvendësimi fshin fillimisht TË GJITHA lëndët, seancat dhe cilësimet.';
 
   @override
   String get settingsImportLabel => 'Ngjit JSON-in e eksportuar';
@@ -765,7 +797,8 @@ class AppLocalizationsSq extends AppLocalizations {
   }
 
   @override
-  String get settingsImportSubtitle => 'Zëvendëso të gjitha të dhënat nga një kopje rezervë JSON e eksportuar më parë.';
+  String get settingsImportSubtitle =>
+      'Zëvendëso të gjitha të dhënat nga një kopje rezervë JSON e eksportuar më parë.';
 
   @override
   String settingsKeepHolding(String remaining) {
@@ -776,7 +809,8 @@ class AppLocalizationsSq extends AppLocalizations {
   String get settingsNoSample => 'Asnjë e dhënë shembull';
 
   @override
-  String get settingsNoSampleSubtitle => 'Të dhënat shembull të gatshme janë pastruar tashmë.';
+  String get settingsNoSampleSubtitle =>
+      'Të dhënat shembull të gatshme janë pastruar tashmë.';
 
   @override
   String get settingsNoTarget => 'Asnjë objektiv i caktuar';
@@ -785,7 +819,8 @@ class AppLocalizationsSq extends AppLocalizations {
   String get settingsOverloadError => 'Shkruaj një numër 5–100 o/javë.';
 
   @override
-  String get settingsOverloadHelper => 'Javët e ardhshme mbi këtë shënohen me të kuqe. Studimi me kohë të plotë është rreth 35–40 o/javë.';
+  String get settingsOverloadHelper =>
+      'Javët e ardhshme mbi këtë shënohen me të kuqe. Studimi me kohë të plotë është rreth 35–40 o/javë.';
 
   @override
   String settingsOverloadHours(String value) {
@@ -810,7 +845,8 @@ class AppLocalizationsSq extends AppLocalizations {
   String get settingsPaceTolerance => 'Toleranca para / prapa';
 
   @override
-  String get settingsPasteValidBackup => 'Ngjit fillimisht një kopje rezervë të vlefshme';
+  String get settingsPasteValidBackup =>
+      'Ngjit fillimisht një kopje rezervë të vlefshme';
 
   @override
   String get settingsReset => 'Rivendos';
@@ -819,10 +855,12 @@ class AppLocalizationsSq extends AppLocalizations {
   String get settingsResetAll => 'Rivendos të gjitha të dhënat';
 
   @override
-  String get settingsResetAllMessage => 'Kjo fshin përgjithmonë TË GJITHA lëndët, seancat dhe cilësimet. Kjo nuk mund të zhbëhet. Eksporto fillimisht një kopje rezervë nëse duhet.';
+  String get settingsResetAllMessage =>
+      'Kjo fshin përgjithmonë TË GJITHA lëndët, seancat dhe cilësimet. Kjo nuk mund të zhbëhet. Eksporto fillimisht një kopje rezervë nëse duhet.';
 
   @override
-  String get settingsResetAllSubtitle => 'Fshi të gjitha lëndët, seancat dhe cilësimet.';
+  String get settingsResetAllSubtitle =>
+      'Fshi të gjitha lëndët, seancat dhe cilësimet.';
 
   @override
   String get settingsResetAllTitle => 'Të rivendosen të gjitha të dhënat?';
@@ -831,13 +869,16 @@ class AppLocalizationsSq extends AppLocalizations {
   String get settingsResetSettings => 'Rivendos cilësimet';
 
   @override
-  String get settingsResetSettingsDone => 'Cilësimet u rivendosën si parazgjedhje.';
+  String get settingsResetSettingsDone =>
+      'Cilësimet u rivendosën si parazgjedhje.';
 
   @override
-  String get settingsResetSettingsMessage => 'Rikthen orët për ECTS (30), objektivin ditor (asnjë), ditën e parë (e hënë), temën (sistemi), tolerancën (5 ditë), mbingarkesën (35 o/javë), madhësinë (komode), ngjyrën (rrasë). Lëndët dhe seancat ruhen.';
+  String get settingsResetSettingsMessage =>
+      'Rikthen orët për ECTS (30), objektivin ditor (asnjë), ditën e parë (e hënë), temën (sistemi), tolerancën (5 ditë), mbingarkesën (35 o/javë), madhësinë (komode), ngjyrën (rrasë). Lëndët dhe seancat ruhen.';
 
   @override
-  String get settingsResetSettingsSubtitle => 'Rikthe parazgjedhjet: 30 o/ECTS, pa objektiv, e hënë, tema e sistemit, tolerancë 5-ditore, mbingarkesë 35 o/javë, madhësi komode, ngjyrë rrasë.';
+  String get settingsResetSettingsSubtitle =>
+      'Rikthe parazgjedhjet: 30 o/ECTS, pa objektiv, e hënë, tema e sistemit, tolerancë 5-ditore, mbingarkesë 35 o/javë, madhësi komode, ngjyrë rrasë.';
 
   @override
   String get settingsResetSettingsTitle => 'Të rivendosen cilësimet?';
@@ -877,7 +918,8 @@ class AppLocalizationsSq extends AppLocalizations {
   String get settingsToleranceError => 'Shkruaj një numër 0–30 ditë.';
 
   @override
-  String get settingsToleranceHelper => 'Para duhen +N ditë tepricë, prapa −N ditë. 5 = e qëndrueshme, 0 = e ndjeshme.';
+  String get settingsToleranceHelper =>
+      'Para duhen +N ditë tepricë, prapa −N ditë. 5 = e qëndrueshme, 0 = e ndjeshme.';
 
   @override
   String get settingsToleranceLabel => 'Ditë pune (0–30)';
@@ -944,7 +986,8 @@ class AppLocalizationsSq extends AppLocalizations {
   String get statsConsistency => 'Qëndrueshmëria';
 
   @override
-  String get statsConsistencyHint => 'Ditët e studimit në 30 ditët e fundit. Hapa të vegjël çdo ditë mundin mësimin përmendësh.';
+  String get statsConsistencyHint =>
+      'Ditët e studimit në 30 ditët e fundit. Hapa të vegjël çdo ditë mundin mësimin përmendësh.';
 
   @override
   String statsConsistencyScore(String percent) {
@@ -1009,7 +1052,8 @@ class AppLocalizationsSq extends AppLocalizations {
   String get statsOverview => 'Përmbledhja';
 
   @override
-  String get statsPaceCovers => 'Ritmi i deritanishëm mbulon atë që duhet. Mbaje serinë.';
+  String get statsPaceCovers =>
+      'Ritmi i deritanishëm mbulon atë që duhet. Mbaje serinë.';
 
   @override
   String statsPaceShort(String gap) {
@@ -1067,13 +1111,15 @@ class AppLocalizationsSq extends AppLocalizations {
   String get statusOverdue => 'I vonuar';
 
   @override
-  String get studyLogDeleteBody => 'Të fshihet kjo seancë studimi? Kjo nuk mund të zhbëhet.';
+  String get studyLogDeleteBody =>
+      'Të fshihet kjo seancë studimi? Kjo nuk mund të zhbëhet.';
 
   @override
   String get studyLogDeleteTitle => 'Të fshihet seanca?';
 
   @override
-  String get studyLogEmptyHint => 'Regjistro një seancë për të ndjekur kohën e studimit.';
+  String get studyLogEmptyHint =>
+      'Regjistro një seancë për të ndjekur kohën e studimit.';
 
   @override
   String get studyLogEmptyTitle => 'Ende asnjë seancë studimi';
@@ -1114,7 +1160,8 @@ class AppLocalizationsSq extends AppLocalizations {
   }
 
   @override
-  String get studyTimerAlreadyRunning => 'A timer is already running. Finish or discard it first.';
+  String get studyTimerAlreadyRunning =>
+      'A timer is already running. Finish or discard it first.';
 
   @override
   String get studyTimerCourseLabel => 'Course';
@@ -1123,7 +1170,8 @@ class AppLocalizationsSq extends AppLocalizations {
   String get studyTimerDiscard => 'Discard';
 
   @override
-  String get studyTimerDiscardBody => 'Throw away the current timer without logging? This cannot be undone.';
+  String get studyTimerDiscardBody =>
+      'Throw away the current timer without logging? This cannot be undone.';
 
   @override
   String get studyTimerDiscardTitle => 'Discard timer?';
@@ -1163,7 +1211,8 @@ class AppLocalizationsSq extends AppLocalizations {
   String get studyTimerTooShort => 'Timer has not run yet.';
 
   @override
-  String get validationCourseEctsPositive => 'ECTS duhet të jetë më e madhe se zero';
+  String get validationCourseEctsPositive =>
+      'ECTS duhet të jetë më e madhe se zero';
 
   @override
   String get validationCourseEctsRequired => 'Shkruaj kreditë ECTS';
@@ -1190,7 +1239,8 @@ class AppLocalizationsSq extends AppLocalizations {
   String get settingsLiquidGlass => 'Xham i lëngshëm';
 
   @override
-  String get settingsLiquidGlassSubtitle => 'Karta dhe shirita me xham të mat. Fikur ruan pamjen klasike.';
+  String get settingsLiquidGlassSubtitle =>
+      'Karta dhe shirita me xham të mat. Fikur ruan pamjen klasike.';
 
   @override
   String get settingsLiquidGlassOn => 'Ndezur';
@@ -1205,7 +1255,8 @@ class AppLocalizationsSq extends AppLocalizations {
   String get devToolsReminderPreview => 'Parashikimi i kujtesave';
 
   @override
-  String get devToolsReminderPreviewSubtitle => 'Shih çfarë do të njoftohej tani. Feed testimi i sigurt për Windows.';
+  String get devToolsReminderPreviewSubtitle =>
+      'Shih çfarë do të njoftohej tani. Feed testimi i sigurt për Windows.';
 
   @override
   String get reminderPreviewTitle => 'Parashikimi i kujtesave';
@@ -1217,7 +1268,8 @@ class AppLocalizationsSq extends AppLocalizations {
   String get reminderPreviewReset => 'Tani';
 
   @override
-  String get reminderPreviewEmpty => 'Qetësi e plotë — asgjë nuk do të njoftohej në këtë kohë.';
+  String get reminderPreviewEmpty =>
+      'Qetësi e plotë — asgjë nuk do të njoftohej në këtë kohë.';
 
   @override
   String get reminderPreviewCustom => 'Oraret e personalizuara (demo)';
@@ -1253,7 +1305,8 @@ class AppLocalizationsSq extends AppLocalizations {
   String get settingsReminderTime => 'Koha e kujtesës';
 
   @override
-  String get settingsReminderDenied => 'Njoftimet janë bllokuar — aktivizoji në cilësimet e sistemit.';
+  String get settingsReminderDenied =>
+      'Njoftimet janë bllokuar — aktivizoji në cilësimet e sistemit.';
 
   @override
   String notifDurationHours(String value) {
@@ -1291,7 +1344,12 @@ class AppLocalizationsSq extends AppLocalizations {
   }
 
   @override
-  String notifBehindBodyPace(String left, String days, String pace, String catchUp) {
+  String notifBehindBodyPace(
+    String left,
+    String days,
+    String pace,
+    String catchUp,
+  ) {
     return 'Edhe $left, $days ditë afat — tani e tutje $pace/ditë. Regjistro $catchUp për t’u kthyer në rrugë.';
   }
 
@@ -1311,7 +1369,8 @@ class AppLocalizationsSq extends AppLocalizations {
   }
 
   @override
-  String get notifDeadlineTomorrowBody => 'Çdo gjë që regjistron sot vlen dyfish.';
+  String get notifDeadlineTomorrowBody =>
+      'Çdo gjë që regjistron sot vlen dyfish.';
 
   @override
   String notifDeadlineSoonTitle(String course, String days, String left) {
@@ -1332,7 +1391,8 @@ class AppLocalizationsSq extends AppLocalizations {
   }
 
   @override
-  String get notifOverdueBody => 'Zhvendos afatin ose plotëso orët — lënda mbetet në Nevojitet vëmendje deri atëherë.';
+  String get notifOverdueBody =>
+      'Zhvendos afatin ose plotëso orët — lënda mbetet në Nevojitet vëmendje deri atëherë.';
 
   @override
   String notifStreakTitle(String days, String week) {
@@ -1340,7 +1400,8 @@ class AppLocalizationsSq extends AppLocalizations {
   }
 
   @override
-  String get notifStreakBody => 'Të gjitha lëndët në rrugë ose para. Vazhdo kështu.';
+  String get notifStreakBody =>
+      'Të gjitha lëndët në rrugë ose para. Vazhdo kështu.';
 
   @override
   String notifCustomTitleAuto(String course) {

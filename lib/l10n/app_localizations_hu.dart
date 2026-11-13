@@ -1,5 +1,6 @@
 // ignore: unused_import
 import 'package:intl/intl.dart' as intl;
+
 import 'app_localizations.dart';
 
 // ignore_for_file: type=lint
@@ -82,10 +83,12 @@ class AppLocalizationsHu extends AppLocalizations {
   }
 
   @override
-  String get courseFormStartEarlyOn => 'Be: az idő mostanáig elosztva, beleszámít a mai tempóba.';
+  String get courseFormStartEarlyOn =>
+      'Be: az idő mostanáig elosztva, beleszámít a mai tempóba.';
 
   @override
-  String get courseFormStartEarlyTitle => 'Kezdés most a jövőbeli kezdés ellenére';
+  String get courseFormStartEarlyTitle =>
+      'Kezdés most a jövőbeli kezdés ellenére';
 
   @override
   String get courseFormTitleAdd => 'Kurzus hozzáadása';
@@ -110,7 +113,8 @@ class AppLocalizationsHu extends AppLocalizations {
   }
 
   @override
-  String get coursesEmptyHint => 'Koppints az „Új kurzus” gombra az első kurzus létrehozásához.';
+  String get coursesEmptyHint =>
+      'Koppints az „Új kurzus” gombra az első kurzus létrehozásához.';
 
   @override
   String get coursesEmptyTitle => 'Még nincsenek kurzusok';
@@ -150,7 +154,11 @@ class AppLocalizationsHu extends AppLocalizations {
   }
 
   @override
-  String coursesProgressWithStatus(String done, String required, String status) {
+  String coursesProgressWithStatus(
+    String done,
+    String required,
+    String status,
+  ) {
     return '$done / $required ó • $status';
   }
 
@@ -219,10 +227,12 @@ class AppLocalizationsHu extends AppLocalizations {
   }
 
   @override
-  String get dashboardEmptyHintAllDone => 'Minden kurzus kész — a teljes listát lásd a Kurzusok lapon.';
+  String get dashboardEmptyHintAllDone =>
+      'Minden kurzus kész — a teljes listát lásd a Kurzusok lapon.';
 
   @override
-  String get dashboardEmptyHintNoCourses => 'Adj hozzá egy kurzust az ECTS-előrehaladás követéséhez.';
+  String get dashboardEmptyHintNoCourses =>
+      'Adj hozzá egy kurzust az ECTS-előrehaladás követéséhez.';
 
   @override
   String dashboardExplainerBehind(String achieved, String need) {
@@ -235,10 +245,12 @@ class AppLocalizationsHu extends AppLocalizations {
   }
 
   @override
-  String get dashboardExplainerBehindNoPace => 'Lemaradva: nincs olyan véges tempó, amivel a mai határidő hátralévő órái teljesíthetők';
+  String get dashboardExplainerBehindNoPace =>
+      'Lemaradva: nincs olyan véges tempó, amivel a mai határidő hátralévő órái teljesíthetők';
 
   @override
-  String get dashboardExplainerOnTrackNoPace => 'Sínen: még nincs tempó — naplózd az első alkalmat a megerősítéshez';
+  String get dashboardExplainerOnTrackNoPace =>
+      'Sínen: még nincs tempó — naplózd az első alkalmat a megerősítéshez';
 
   @override
   String dashboardExplainerStartsIn(String days, String date) {
@@ -388,10 +400,12 @@ class AppLocalizationsHu extends AppLocalizations {
   String get dashboardStartsSoon => 'Hamarosan kezdődik';
 
   @override
-  String get dashboardTipEmpty => 'Add hozzá az első kurzusod — itt jelenik meg a napi tempó és az előrehaladás.';
+  String get dashboardTipEmpty =>
+      'Add hozzá az első kurzusod — itt jelenik meg a napi tempó és az előrehaladás.';
 
   @override
-  String get dashboardTipFirst => 'Az első 25 perc számít a legtöbbet — válaszd a legkorábban esedékes kurzust.';
+  String get dashboardTipFirst =>
+      'Az első 25 perc számít a legtöbbet — válaszd a legkorábban esedékes kurzust.';
 
   @override
   String get dashboardTodayBare => 'MA';
@@ -415,7 +429,8 @@ class AppLocalizationsHu extends AppLocalizations {
   }
 
   @override
-  String get dashboardUpcomingSubtitle => 'Későbbi kezdések — ma nincs nyomás, kimaradnak a mai tempóból.';
+  String get dashboardUpcomingSubtitle =>
+      'Későbbi kezdések — ma nincs nyomás, kimaradnak a mai tempóból.';
 
   @override
   String get dashboardUpcomingTitle => 'Közelgő';
@@ -424,7 +439,8 @@ class AppLocalizationsHu extends AppLocalizations {
   String get devToolsActivate => 'Aktiválás';
 
   @override
-  String get devToolsActivateMessage => 'Ez feloldja a rejtett stresszteszt-eszközöket (generált adatok betöltése). Csak fejlesztéshez.';
+  String get devToolsActivateMessage =>
+      'Ez feloldja a rejtett stresszteszt-eszközöket (generált adatok betöltése). Csak fejlesztéshez.';
 
   @override
   String get devToolsActivateTitle => 'Aktiválod a fejlesztői módot?';
@@ -436,10 +452,12 @@ class AppLocalizationsHu extends AppLocalizations {
   String get devToolsClearPumped => 'Generált adatok törlése';
 
   @override
-  String get devToolsClearPumpedMessage => 'Törli a generált STRESS kurzusokat és alkalmaikat. A saját adataid megmaradnak.';
+  String get devToolsClearPumpedMessage =>
+      'Törli a generált STRESS kurzusokat és alkalmaikat. A saját adataid megmaradnak.';
 
   @override
-  String get devToolsClearPumpedSubtitle => 'A generált STRESS kurzusok és alkalmak törlése.';
+  String get devToolsClearPumpedSubtitle =>
+      'A generált STRESS kurzusok és alkalmak törlése.';
 
   @override
   String get devToolsClearPumpedTitle => 'Törlöd a generált adatokat?';
@@ -450,7 +468,8 @@ class AppLocalizationsHu extends AppLocalizations {
   }
 
   @override
-  String get devToolsConfirmPumpMessage => 'Második megerősítés: ez felduzzasztja a kurzusokat, listákat, diagramokat és tempószámításokat, és eltarthat néhány másodpercig. Betöltöd most?';
+  String get devToolsConfirmPumpMessage =>
+      'Második megerősítés: ez felduzzasztja a kurzusokat, listákat, diagramokat és tempószámításokat, és eltarthat néhány másodpercig. Betöltöd most?';
 
   @override
   String get devToolsConfirmPumpTitle => 'Stresszteszt megerősítése';
@@ -462,16 +481,19 @@ class AppLocalizationsHu extends AppLocalizations {
   String get devToolsExit => 'Kilépés a fejlesztői módból';
 
   @override
-  String get devToolsExitSubtitle => 'Fejlesztői eszközök elrejtése ezen az eszközön.';
+  String get devToolsExitSubtitle =>
+      'Fejlesztői eszközök elrejtése ezen az eszközön.';
 
   @override
   String get devToolsPumpData => 'Adatok betöltése';
 
   @override
-  String get devToolsPumpMessage => 'Ez egy valósághű generált félévet szúr be (~10 kurzus, ~800 alkalom az elmúlt 12 hétben). A meglévő adataid megmaradnak. Folytatod?';
+  String get devToolsPumpMessage =>
+      'Ez egy valósághű generált félévet szúr be (~10 kurzus, ~800 alkalom az elmúlt 12 hétben). A meglévő adataid megmaradnak. Folytatod?';
 
   @override
-  String get devToolsPumpSubtitle => 'Generált félév beszúrása (~10 kurzus, ~800 alkalom, 12 hét). A meglévő adatok megmaradnak.';
+  String get devToolsPumpSubtitle =>
+      'Generált félév beszúrása (~10 kurzus, ~800 alkalom, 12 hét). A meglévő adatok megmaradnak.';
 
   @override
   String get devToolsPumpTile => 'Tesztadatok betöltése';
@@ -491,10 +513,12 @@ class AppLocalizationsHu extends AppLocalizations {
   String get devToolsRemoveAll => 'Minden adat törlése';
 
   @override
-  String get devToolsRemoveAllMessage => 'Fejlesztői parancs: véglegesen törli az ÖSSZES kurzust, alkalmat és beállítást. Ez nem vonható vissza.';
+  String get devToolsRemoveAllMessage =>
+      'Fejlesztői parancs: véglegesen törli az ÖSSZES kurzust, alkalmat és beállítást. Ez nem vonható vissza.';
 
   @override
-  String get devToolsRemoveAllSubtitle => 'Fejlesztői parancs: az ÖSSZES kurzus, alkalom és beállítás törlése.';
+  String get devToolsRemoveAllSubtitle =>
+      'Fejlesztői parancs: az ÖSSZES kurzus, alkalom és beállítás törlése.';
 
   @override
   String get devToolsRemoveAllTitle => 'Törlöd az összes adatot?';
@@ -526,7 +550,8 @@ class AppLocalizationsHu extends AppLocalizations {
   }
 
   @override
-  String get sessionFormDurationError => 'Az időtartamnak nullánál nagyobbnak kell lennie.';
+  String get sessionFormDurationError =>
+      'Az időtartamnak nullánál nagyobbnak kell lennie.';
 
   @override
   String get sessionFormHoursLabel => 'Órák';
@@ -547,7 +572,8 @@ class AppLocalizationsHu extends AppLocalizations {
   String get sessionFormNoCourseError => 'Válassz kurzust.';
 
   @override
-  String get sessionFormNoCoursesHint => 'Előbb adj hozzá egy kurzust az alkalom naplózásához.';
+  String get sessionFormNoCoursesHint =>
+      'Előbb adj hozzá egy kurzust az alkalom naplózásához.';
 
   @override
   String get sessionFormNotesLabel => 'Jegyzetek (opcionális)';
@@ -603,10 +629,12 @@ class AppLocalizationsHu extends AppLocalizations {
   String get settingsClearSample => 'Mintaadatok törlése';
 
   @override
-  String get settingsClearSampleMessage => 'Eltávolítja a példakurzusokat és alkalmakat. A saját magad által hozzáadott kurzusok és alkalmak megmaradnak.';
+  String get settingsClearSampleMessage =>
+      'Eltávolítja a példakurzusokat és alkalmakat. A saját magad által hozzáadott kurzusok és alkalmak megmaradnak.';
 
   @override
-  String get settingsClearSampleSubtitle => 'A beépített példakurzusok és alkalmak eltávolítása. A saját adataid megmaradnak.';
+  String get settingsClearSampleSubtitle =>
+      'A beépített példakurzusok és alkalmak eltávolítása. A saját adataid megmaradnak.';
 
   @override
   String get settingsClearSampleTitle => 'Törlöd a mintaadatokat?';
@@ -670,7 +698,8 @@ class AppLocalizationsHu extends AppLocalizations {
   String get settingsExportCopied => 'Exportálás a vágólapra másolva.';
 
   @override
-  String get settingsExportSubtitle => 'Minden kurzus, alkalom és beállítás másolása JSON-ként.';
+  String get settingsExportSubtitle =>
+      'Minden kurzus, alkalom és beállítás másolása JSON-ként.';
 
   @override
   String settingsExportSummary(String courses, String sessions, String kb) {
@@ -700,7 +729,8 @@ class AppLocalizationsHu extends AppLocalizations {
   String get settingsHoursError => 'Adj meg nullánál nagyobb számot.';
 
   @override
-  String get settingsHoursHelper => 'Alapértelmezett 30. Módosításkor újraszámolja a követelményeket; a naplók megmaradnak.';
+  String get settingsHoursHelper =>
+      'Alapértelmezett 30. Módosításkor újraszámolja a követelményeket; a naplók megmaradnak.';
 
   @override
   String get settingsHoursLabel => 'Óra ECTS kreditenként';
@@ -731,7 +761,8 @@ class AppLocalizationsHu extends AppLocalizations {
   }
 
   @override
-  String get settingsImportInfo => 'A hozzáfűzés a biztonsági mentést a jelenlegi adatok mellé adja (beállítások megmaradnak). A csere előbb MINDEN kurzust, alkalmat és beállítást töröl.';
+  String get settingsImportInfo =>
+      'A hozzáfűzés a biztonsági mentést a jelenlegi adatok mellé adja (beállítások megmaradnak). A csere előbb MINDEN kurzust, alkalmat és beállítást töröl.';
 
   @override
   String get settingsImportLabel => 'Exportált JSON beillesztése';
@@ -765,7 +796,8 @@ class AppLocalizationsHu extends AppLocalizations {
   }
 
   @override
-  String get settingsImportSubtitle => 'Minden adat cseréje korábban exportált JSON biztonsági mentésből.';
+  String get settingsImportSubtitle =>
+      'Minden adat cseréje korábban exportált JSON biztonsági mentésből.';
 
   @override
   String settingsKeepHolding(String remaining) {
@@ -776,7 +808,8 @@ class AppLocalizationsHu extends AppLocalizations {
   String get settingsNoSample => 'Nincs mintaadat';
 
   @override
-  String get settingsNoSampleSubtitle => 'A beépített példaadatok már törölve lettek.';
+  String get settingsNoSampleSubtitle =>
+      'A beépített példaadatok már törölve lettek.';
 
   @override
   String get settingsNoTarget => 'Nincs beállított cél';
@@ -785,7 +818,8 @@ class AppLocalizationsHu extends AppLocalizations {
   String get settingsOverloadError => 'Adj meg egy számot 5–100 ó/hét között.';
 
   @override
-  String get settingsOverloadHelper => 'Az ezt meghaladó terhelésű hetek pirossal jelölve. A teljes idejű tanulás ~35–40 ó/hét.';
+  String get settingsOverloadHelper =>
+      'Az ezt meghaladó terhelésű hetek pirossal jelölve. A teljes idejű tanulás ~35–40 ó/hét.';
 
   @override
   String settingsOverloadHours(String value) {
@@ -810,7 +844,8 @@ class AppLocalizationsHu extends AppLocalizations {
   String get settingsPaceTolerance => 'Előny / lemaradás tűrés';
 
   @override
-  String get settingsPasteValidBackup => 'Előbb illessz be egy érvényes biztonsági mentést';
+  String get settingsPasteValidBackup =>
+      'Előbb illessz be egy érvényes biztonsági mentést';
 
   @override
   String get settingsReset => 'Visszaállítás';
@@ -819,10 +854,12 @@ class AppLocalizationsHu extends AppLocalizations {
   String get settingsResetAll => 'Minden adat visszaállítása';
 
   @override
-  String get settingsResetAllMessage => 'Véglegesen törli az ÖSSZES kurzust, alkalmat és beállítást. Ez nem vonható vissza. Szükség esetén előbb exportálj biztonsági mentést.';
+  String get settingsResetAllMessage =>
+      'Véglegesen törli az ÖSSZES kurzust, alkalmat és beállítást. Ez nem vonható vissza. Szükség esetén előbb exportálj biztonsági mentést.';
 
   @override
-  String get settingsResetAllSubtitle => 'Minden kurzus, alkalom és beállítás törlése.';
+  String get settingsResetAllSubtitle =>
+      'Minden kurzus, alkalom és beállítás törlése.';
 
   @override
   String get settingsResetAllTitle => 'Visszaállítod az összes adatot?';
@@ -831,13 +868,16 @@ class AppLocalizationsHu extends AppLocalizations {
   String get settingsResetSettings => 'Beállítások visszaállítása';
 
   @override
-  String get settingsResetSettingsDone => 'Beállítások visszaállítva az alapértékekre.';
+  String get settingsResetSettingsDone =>
+      'Beállítások visszaállítva az alapértékekre.';
 
   @override
-  String get settingsResetSettingsMessage => 'Visszaállítja az óra/ECTS (30), napi cél (nincs), hét első napja (hétfő), téma (rendszer), tűrés (5 nap), túlterhelés (35 ó/hét), méret (kényelmes), szín (pala) értékeket. A kurzusok és alkalmak megmaradnak.';
+  String get settingsResetSettingsMessage =>
+      'Visszaállítja az óra/ECTS (30), napi cél (nincs), hét első napja (hétfő), téma (rendszer), tűrés (5 nap), túlterhelés (35 ó/hét), méret (kényelmes), szín (pala) értékeket. A kurzusok és alkalmak megmaradnak.';
 
   @override
-  String get settingsResetSettingsSubtitle => 'Alapértékek visszaállítása: 30 ó/ECTS, nincs cél, hétfő, rendszertéma, 5 napos tűrés, 35 ó/hét túlterhelés, kényelmes méret, pala szín.';
+  String get settingsResetSettingsSubtitle =>
+      'Alapértékek visszaállítása: 30 ó/ECTS, nincs cél, hétfő, rendszertéma, 5 napos tűrés, 35 ó/hét túlterhelés, kényelmes méret, pala szín.';
 
   @override
   String get settingsResetSettingsTitle => 'Visszaállítod a beállításokat?';
@@ -877,7 +917,8 @@ class AppLocalizationsHu extends AppLocalizations {
   String get settingsToleranceError => 'Adj meg egy számot 0–30 nap között.';
 
   @override
-  String get settingsToleranceHelper => 'Az előny +N nap többletet, a lemaradás −N napot igényel. 5 = stabil, 0 = érzékeny.';
+  String get settingsToleranceHelper =>
+      'Az előny +N nap többletet, a lemaradás −N napot igényel. 5 = stabil, 0 = érzékeny.';
 
   @override
   String get settingsToleranceLabel => 'Munkanapok (0–30)';
@@ -924,7 +965,8 @@ class AppLocalizationsHu extends AppLocalizations {
   String get sortStatus => 'Állapot';
 
   @override
-  String get startupTitle => 'Nem sikerült elindítani az ECTS Tracker alkalmazást';
+  String get startupTitle =>
+      'Nem sikerült elindítani az ECTS Tracker alkalmazást';
 
   @override
   String get statsActiveDays => 'Aktív napok';
@@ -935,7 +977,8 @@ class AppLocalizationsHu extends AppLocalizations {
   }
 
   @override
-  String get statsAddDeadlines => 'Adj meg határidőket a terhelés előrejelzéséhez.';
+  String get statsAddDeadlines =>
+      'Adj meg határidőket a terhelés előrejelzéséhez.';
 
   @override
   String get statsComingLoad => 'Várható terhelés';
@@ -944,7 +987,8 @@ class AppLocalizationsHu extends AppLocalizations {
   String get statsConsistency => 'Következetesség';
 
   @override
-  String get statsConsistencyHint => 'Tanulással töltött napok az elmúlt 30 napban. A napi kis lépések legyőzik a magolást.';
+  String get statsConsistencyHint =>
+      'Tanulással töltött napok az elmúlt 30 napban. A napi kis lépések legyőzik a magolást.';
 
   @override
   String statsConsistencyScore(String percent) {
@@ -1009,7 +1053,8 @@ class AppLocalizationsHu extends AppLocalizations {
   String get statsOverview => 'Áttekintés';
 
   @override
-  String get statsPaceCovers => 'Az eddigi tempó fedezi a szükségest. Tartsd a sorozatot.';
+  String get statsPaceCovers =>
+      'Az eddigi tempó fedezi a szükségest. Tartsd a sorozatot.';
 
   @override
   String statsPaceShort(String gap) {
@@ -1067,13 +1112,15 @@ class AppLocalizationsHu extends AppLocalizations {
   String get statusOverdue => 'Lejárt';
 
   @override
-  String get studyLogDeleteBody => 'Törlöd ezt a tanulási alkalmat? Ez nem vonható vissza.';
+  String get studyLogDeleteBody =>
+      'Törlöd ezt a tanulási alkalmat? Ez nem vonható vissza.';
 
   @override
   String get studyLogDeleteTitle => 'Törlöd az alkalmat?';
 
   @override
-  String get studyLogEmptyHint => 'Naplózz egy alkalmat a tanulási időd követéséhez.';
+  String get studyLogEmptyHint =>
+      'Naplózz egy alkalmat a tanulási időd követéséhez.';
 
   @override
   String get studyLogEmptyTitle => 'Még nincsenek tanulási alkalmak';
@@ -1114,7 +1161,8 @@ class AppLocalizationsHu extends AppLocalizations {
   }
 
   @override
-  String get studyTimerAlreadyRunning => 'A timer is already running. Finish or discard it first.';
+  String get studyTimerAlreadyRunning =>
+      'A timer is already running. Finish or discard it first.';
 
   @override
   String get studyTimerCourseLabel => 'Course';
@@ -1123,7 +1171,8 @@ class AppLocalizationsHu extends AppLocalizations {
   String get studyTimerDiscard => 'Discard';
 
   @override
-  String get studyTimerDiscardBody => 'Throw away the current timer without logging? This cannot be undone.';
+  String get studyTimerDiscardBody =>
+      'Throw away the current timer without logging? This cannot be undone.';
 
   @override
   String get studyTimerDiscardTitle => 'Discard timer?';
@@ -1163,7 +1212,8 @@ class AppLocalizationsHu extends AppLocalizations {
   String get studyTimerTooShort => 'Timer has not run yet.';
 
   @override
-  String get validationCourseEctsPositive => 'Az ECTS-nek nullánál nagyobbnak kell lennie';
+  String get validationCourseEctsPositive =>
+      'Az ECTS-nek nullánál nagyobbnak kell lennie';
 
   @override
   String get validationCourseEctsRequired => 'Add meg az ECTS krediteket';
@@ -1190,7 +1240,8 @@ class AppLocalizationsHu extends AppLocalizations {
   String get settingsLiquidGlass => 'Folyékony üveg';
 
   @override
-  String get settingsLiquidGlassSubtitle => 'Mattüveg hatású kártyák és sávok. Ki állapotban marad a klasszikus tömör megjelenés.';
+  String get settingsLiquidGlassSubtitle =>
+      'Mattüveg hatású kártyák és sávok. Ki állapotban marad a klasszikus tömör megjelenés.';
 
   @override
   String get settingsLiquidGlassOn => 'Be';
@@ -1205,7 +1256,8 @@ class AppLocalizationsHu extends AppLocalizations {
   String get devToolsReminderPreview => 'Emlékeztető előnézete';
 
   @override
-  String get devToolsReminderPreviewSubtitle => 'Nézd meg, mi jelezne most. Windows-biztos tesztcsatorna.';
+  String get devToolsReminderPreviewSubtitle =>
+      'Nézd meg, mi jelezne most. Windows-biztos tesztcsatorna.';
 
   @override
   String get reminderPreviewTitle => 'Emlékeztető előnézete';
@@ -1217,7 +1269,8 @@ class AppLocalizationsHu extends AppLocalizations {
   String get reminderPreviewReset => 'Most';
 
   @override
-  String get reminderPreviewEmpty => 'Minden csendes — ilyenkor semmi sem jelezne.';
+  String get reminderPreviewEmpty =>
+      'Minden csendes — ilyenkor semmi sem jelezne.';
 
   @override
   String get reminderPreviewCustom => 'Egyéni ütemezések (demó)';
@@ -1253,7 +1306,8 @@ class AppLocalizationsHu extends AppLocalizations {
   String get settingsReminderTime => 'Emlékeztető ideje';
 
   @override
-  String get settingsReminderDenied => 'Az értesítések le vannak tiltva — engedélyezd őket a rendszerbeállításokban.';
+  String get settingsReminderDenied =>
+      'Az értesítések le vannak tiltva — engedélyezd őket a rendszerbeállításokban.';
 
   @override
   String notifDurationHours(String value) {
@@ -1291,7 +1345,12 @@ class AppLocalizationsHu extends AppLocalizations {
   }
 
   @override
-  String notifBehindBodyPace(String left, String days, String pace, String catchUp) {
+  String notifBehindBodyPace(
+    String left,
+    String days,
+    String pace,
+    String catchUp,
+  ) {
     return '$left van hátra, $days nap van hátra — innentől $pace/nap. Naplózz $catchUp-nyit, hogy újra Sínen legyél.';
   }
 
@@ -1311,7 +1370,8 @@ class AppLocalizationsHu extends AppLocalizations {
   }
 
   @override
-  String get notifDeadlineTomorrowBody => 'Minden duplán számít, amit ma naplózol.';
+  String get notifDeadlineTomorrowBody =>
+      'Minden duplán számít, amit ma naplózol.';
 
   @override
   String notifDeadlineSoonTitle(String course, String days, String left) {
@@ -1324,7 +1384,8 @@ class AppLocalizationsHu extends AppLocalizations {
   }
 
   @override
-  String get notifDeadlineSoonBodyNoPace => 'Minden óra számít, amit most naplózol.';
+  String get notifDeadlineSoonBodyNoPace =>
+      'Minden óra számít, amit most naplózol.';
 
   @override
   String notifOverdueTitle(String course, String left) {
@@ -1332,7 +1393,8 @@ class AppLocalizationsHu extends AppLocalizations {
   }
 
   @override
-  String get notifOverdueBody => 'Told el a határidőt vagy dolgozd le az órákat — addig a kurzus figyelmet igényel.';
+  String get notifOverdueBody =>
+      'Told el a határidőt vagy dolgozd le az órákat — addig a kurzus figyelmet igényel.';
 
   @override
   String notifStreakTitle(String days, String week) {
@@ -1340,7 +1402,8 @@ class AppLocalizationsHu extends AppLocalizations {
   }
 
   @override
-  String get notifStreakBody => 'Minden kurzus Sínen vagy Előnyben. Szép sorozat.';
+  String get notifStreakBody =>
+      'Minden kurzus Sínen vagy Előnyben. Szép sorozat.';
 
   @override
   String notifCustomTitleAuto(String course) {

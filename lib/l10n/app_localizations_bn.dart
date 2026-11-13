@@ -1,5 +1,6 @@
 // ignore: unused_import
 import 'package:intl/intl.dart' as intl;
+
 import 'app_localizations.dart';
 
 // ignore_for_file: type=lint
@@ -82,7 +83,8 @@ class AppLocalizationsBn extends AppLocalizations {
   }
 
   @override
-  String get courseFormStartEarlyOn => 'চালু: সময় এখন পর্যন্ত ভাগ করা হয়েছে এবং আজকের গতিতে অন্তর্ভুক্ত।';
+  String get courseFormStartEarlyOn =>
+      'চালু: সময় এখন পর্যন্ত ভাগ করা হয়েছে এবং আজকের গতিতে অন্তর্ভুক্ত।';
 
   @override
   String get courseFormStartEarlyTitle => 'ভবিষ্যতে শুরু হলেও এখনই শুরু করুন';
@@ -110,7 +112,8 @@ class AppLocalizationsBn extends AppLocalizations {
   }
 
   @override
-  String get coursesEmptyHint => 'প্রথম কোর্স তৈরি করতে “New course”-এ ট্যাপ করুন।';
+  String get coursesEmptyHint =>
+      'প্রথম কোর্স তৈরি করতে “New course”-এ ট্যাপ করুন।';
 
   @override
   String get coursesEmptyTitle => 'এখনও কোনো কোর্স নেই';
@@ -150,7 +153,11 @@ class AppLocalizationsBn extends AppLocalizations {
   }
 
   @override
-  String coursesProgressWithStatus(String done, String required, String status) {
+  String coursesProgressWithStatus(
+    String done,
+    String required,
+    String status,
+  ) {
     return '$done / $required ঘণ্টা • $status';
   }
 
@@ -219,10 +226,12 @@ class AppLocalizationsBn extends AppLocalizations {
   }
 
   @override
-  String get dashboardEmptyHintAllDone => 'প্রতিটি কোর্স সম্পন্ন — সম্পূর্ণ তালিকার জন্য কোর্স ট্যাব দেখুন।';
+  String get dashboardEmptyHintAllDone =>
+      'প্রতিটি কোর্স সম্পন্ন — সম্পূর্ণ তালিকার জন্য কোর্স ট্যাব দেখুন।';
 
   @override
-  String get dashboardEmptyHintNoCourses => 'ECTS অগ্রগতি ট্র্যাক করতে একটি কোর্স যোগ করুন।';
+  String get dashboardEmptyHintNoCourses =>
+      'ECTS অগ্রগতি ট্র্যাক করতে একটি কোর্স যোগ করুন।';
 
   @override
   String dashboardExplainerBehind(String achieved, String need) {
@@ -235,10 +244,12 @@ class AppLocalizationsBn extends AppLocalizations {
   }
 
   @override
-  String get dashboardExplainerBehindNoPace => 'পিছিয়ে: বাকি সময় দিয়ে আজকের সমাপ্তি ধরার মতো কোনো নির্দিষ্ট গতি নেই';
+  String get dashboardExplainerBehindNoPace =>
+      'পিছিয়ে: বাকি সময় দিয়ে আজকের সমাপ্তি ধরার মতো কোনো নির্দিষ্ট গতি নেই';
 
   @override
-  String get dashboardExplainerOnTrackNoPace => 'সঠিক পথে: এখনও গতি নেই — নিশ্চিত করতে প্রথম সেশন লগ করুন';
+  String get dashboardExplainerOnTrackNoPace =>
+      'সঠিক পথে: এখনও গতি নেই — নিশ্চিত করতে প্রথম সেশন লগ করুন';
 
   @override
   String dashboardExplainerStartsIn(String days, String date) {
@@ -359,7 +370,8 @@ class AppLocalizationsBn extends AppLocalizations {
   String get dashboardProgramBare => 'প্রোগ্রাম';
 
   @override
-  String get dashboardProgramEmptyHint => 'ট্র্যাকিং শুরু করতে একটি কোর্স যোগ করুন';
+  String get dashboardProgramEmptyHint =>
+      'ট্র্যাকিং শুরু করতে একটি কোর্স যোগ করুন';
 
   @override
   String dashboardProgramHours(String done, String required) {
@@ -388,10 +400,12 @@ class AppLocalizationsBn extends AppLocalizations {
   String get dashboardStartsSoon => 'শীঘ্রই শুরু';
 
   @override
-  String get dashboardTipEmpty => 'প্রথম কোর্স যোগ করুন — দৈনিক গতি ও অগ্রগতি এখানে দেখা যাবে।';
+  String get dashboardTipEmpty =>
+      'প্রথম কোর্স যোগ করুন — দৈনিক গতি ও অগ্রগতি এখানে দেখা যাবে।';
 
   @override
-  String get dashboardTipFirst => 'প্রথম ২৫ মিনিট সবচেয়ে গুরুত্বপূর্ণ — যে কোর্সের সমাপ্তি আগে, সেটি বেছে নিন।';
+  String get dashboardTipFirst =>
+      'প্রথম ২৫ মিনিট সবচেয়ে গুরুত্বপূর্ণ — যে কোর্সের সমাপ্তি আগে, সেটি বেছে নিন।';
 
   @override
   String get dashboardTodayBare => 'আজ';
@@ -415,7 +429,8 @@ class AppLocalizationsBn extends AppLocalizations {
   }
 
   @override
-  String get dashboardUpcomingSubtitle => 'ভবিষ্যতে শুরু — আজ কোনো চাপ নেই, আজকের গতিতে অন্তর্ভুক্ত নয়।';
+  String get dashboardUpcomingSubtitle =>
+      'ভবিষ্যতে শুরু — আজ কোনো চাপ নেই, আজকের গতিতে অন্তর্ভুক্ত নয়।';
 
   @override
   String get dashboardUpcomingTitle => 'আসন্ন';
@@ -424,7 +439,8 @@ class AppLocalizationsBn extends AppLocalizations {
   String get devToolsActivate => 'সক্রিয় করুন';
 
   @override
-  String get devToolsActivateMessage => 'এটি লুকানো স্ট্রেস-টেস্ট সরঞ্জাম চালু করে (তৈরি করা ডেটা লোড করে)। শুধু ডেভেলপমেন্টের জন্য।';
+  String get devToolsActivateMessage =>
+      'এটি লুকানো স্ট্রেস-টেস্ট সরঞ্জাম চালু করে (তৈরি করা ডেটা লোড করে)। শুধু ডেভেলপমেন্টের জন্য।';
 
   @override
   String get devToolsActivateTitle => 'ডেভ মোড সক্রিয় করবেন?';
@@ -436,10 +452,12 @@ class AppLocalizationsBn extends AppLocalizations {
   String get devToolsClearPumped => 'লোড করা ডেটা মুছুন';
 
   @override
-  String get devToolsClearPumpedMessage => 'তৈরি করা STRESS কোর্স ও সেশন মুছে ফেলে। আপনার নিজের ডেটা রক্ষিত থাকবে।';
+  String get devToolsClearPumpedMessage =>
+      'তৈরি করা STRESS কোর্স ও সেশন মুছে ফেলে। আপনার নিজের ডেটা রক্ষিত থাকবে।';
 
   @override
-  String get devToolsClearPumpedSubtitle => 'তৈরি করা STRESS কোর্স ও সেশন মুছুন।';
+  String get devToolsClearPumpedSubtitle =>
+      'তৈরি করা STRESS কোর্স ও সেশন মুছুন।';
 
   @override
   String get devToolsClearPumpedTitle => 'লোড করা ডেটা মুছে ফেলবেন?';
@@ -450,7 +468,8 @@ class AppLocalizationsBn extends AppLocalizations {
   }
 
   @override
-  String get devToolsConfirmPumpMessage => 'দ্বিতীয় নিশ্চিতকরণ: এটি কোর্স, তালিকা, চার্ট ও গতি হিসাব ফুলিয়ে দেবে এবং কয়েক সেকেন্ড লাগতে পারে। এখন লোড করবেন?';
+  String get devToolsConfirmPumpMessage =>
+      'দ্বিতীয় নিশ্চিতকরণ: এটি কোর্স, তালিকা, চার্ট ও গতি হিসাব ফুলিয়ে দেবে এবং কয়েক সেকেন্ড লাগতে পারে। এখন লোড করবেন?';
 
   @override
   String get devToolsConfirmPumpTitle => 'স্ট্রেস লোড নিশ্চিত করুন';
@@ -468,10 +487,12 @@ class AppLocalizationsBn extends AppLocalizations {
   String get devToolsPumpData => 'ডেটা লোড করুন';
 
   @override
-  String get devToolsPumpMessage => 'এটি একটি বাস্তবসম্মত তৈরি সেমিস্টার যোগ করে (~১০টি কোর্স, গত ১২ সপ্তাহে ~৮০০ সেশন)। আপনার বিদ্যমান ডেটা রক্ষিত থাকবে। চালিয়ে যাবেন?';
+  String get devToolsPumpMessage =>
+      'এটি একটি বাস্তবসম্মত তৈরি সেমিস্টার যোগ করে (~১০টি কোর্স, গত ১২ সপ্তাহে ~৮০০ সেশন)। আপনার বিদ্যমান ডেটা রক্ষিত থাকবে। চালিয়ে যাবেন?';
 
   @override
-  String get devToolsPumpSubtitle => 'একটি তৈরি সেমিস্টার যোগ করুন (~১০টি কোর্স, ~৮০০ সেশন, ১২ সপ্তাহ)। বিদ্যমান ডেটা রক্ষিত থাকবে।';
+  String get devToolsPumpSubtitle =>
+      'একটি তৈরি সেমিস্টার যোগ করুন (~১০টি কোর্স, ~৮০০ সেশন, ১২ সপ্তাহ)। বিদ্যমান ডেটা রক্ষিত থাকবে।';
 
   @override
   String get devToolsPumpTile => 'টেস্ট ডেটা লোড করুন';
@@ -491,10 +512,12 @@ class AppLocalizationsBn extends AppLocalizations {
   String get devToolsRemoveAll => 'সব ডেটা সরান';
 
   @override
-  String get devToolsRemoveAllMessage => 'ডেভ শর্টকাট: এটি সব কোর্স, সেশন ও সেটিংস স্থায়ীভাবে মুছে ফেলে। এটি পূর্বাবস্থায় ফেরানো যাবে না।';
+  String get devToolsRemoveAllMessage =>
+      'ডেভ শর্টকাট: এটি সব কোর্স, সেশন ও সেটিংস স্থায়ীভাবে মুছে ফেলে। এটি পূর্বাবস্থায় ফেরানো যাবে না।';
 
   @override
-  String get devToolsRemoveAllSubtitle => 'ডেভ শর্টকাট: সব কোর্স, সেশন ও সেটিংস মুছুন।';
+  String get devToolsRemoveAllSubtitle =>
+      'ডেভ শর্টকাট: সব কোর্স, সেশন ও সেটিংস মুছুন।';
 
   @override
   String get devToolsRemoveAllTitle => 'সব ডেটা সরিয়ে ফেলবেন?';
@@ -547,7 +570,8 @@ class AppLocalizationsBn extends AppLocalizations {
   String get sessionFormNoCourseError => 'একটি কোর্স বেছে নিন।';
 
   @override
-  String get sessionFormNoCoursesHint => 'সেশন লগ করতে আগে একটি কোর্স যোগ করুন।';
+  String get sessionFormNoCoursesHint =>
+      'সেশন লগ করতে আগে একটি কোর্স যোগ করুন।';
 
   @override
   String get sessionFormNotesLabel => 'নোট (ঐচ্ছিক)';
@@ -603,10 +627,12 @@ class AppLocalizationsBn extends AppLocalizations {
   String get settingsClearSample => 'নমুনা ডেটা মুছুন';
 
   @override
-  String get settingsClearSampleMessage => 'এটি উদাহরণ কোর্স ও সেশন সরিয়ে ফেলে। আপনি নিজে যোগ করা কোর্স বা সেশন সরানো হয় না।';
+  String get settingsClearSampleMessage =>
+      'এটি উদাহরণ কোর্স ও সেশন সরিয়ে ফেলে। আপনি নিজে যোগ করা কোর্স বা সেশন সরানো হয় না।';
 
   @override
-  String get settingsClearSampleSubtitle => 'বীজ নমুনা কোর্স ও সেশন সরান। আপনার নিজের ডেটা রক্ষিত থাকবে।';
+  String get settingsClearSampleSubtitle =>
+      'বীজ নমুনা কোর্স ও সেশন সরান। আপনার নিজের ডেটা রক্ষিত থাকবে।';
 
   @override
   String get settingsClearSampleTitle => 'নমুনা ডেটা মুছে ফেলবেন?';
@@ -670,7 +696,8 @@ class AppLocalizationsBn extends AppLocalizations {
   String get settingsExportCopied => 'এক্সপোর্ট ক্লিপবোর্ডে কপি হয়েছে।';
 
   @override
-  String get settingsExportSubtitle => 'সব কোর্স, সেশন ও সেটিংস JSON হিসেবে কপি করুন।';
+  String get settingsExportSubtitle =>
+      'সব কোর্স, সেশন ও সেটিংস JSON হিসেবে কপি করুন।';
 
   @override
   String settingsExportSummary(String courses, String sessions, String kb) {
@@ -700,7 +727,8 @@ class AppLocalizationsBn extends AppLocalizations {
   String get settingsHoursError => 'শূন্যের বেশি একটি সংখ্যা লিখুন।';
 
   @override
-  String get settingsHoursHelper => 'ডিফল্ট 30। পরিবর্তনে প্রয়োজন পুনর্গণনা হয়; লগ রক্ষিত থাকে।';
+  String get settingsHoursHelper =>
+      'ডিফল্ট 30। পরিবর্তনে প্রয়োজন পুনর্গণনা হয়; লগ রক্ষিত থাকে।';
 
   @override
   String get settingsHoursLabel => 'প্রতি ECTS ক্রেডিটে ঘণ্টা';
@@ -731,7 +759,8 @@ class AppLocalizationsBn extends AppLocalizations {
   }
 
   @override
-  String get settingsImportInfo => 'যোগ করা ব্যাকআপকে বর্তমান ডেটার পাশে রাখে (সেটিংস রক্ষিত থাকে)। প্রতিস্থাপন আগে সব কোর্স, সেশন ও সেটিংস মুছে ফেলে।';
+  String get settingsImportInfo =>
+      'যোগ করা ব্যাকআপকে বর্তমান ডেটার পাশে রাখে (সেটিংস রক্ষিত থাকে)। প্রতিস্থাপন আগে সব কোর্স, সেশন ও সেটিংস মুছে ফেলে।';
 
   @override
   String get settingsImportLabel => 'এক্সপোর্ট করা JSON পেস্ট করুন';
@@ -765,7 +794,8 @@ class AppLocalizationsBn extends AppLocalizations {
   }
 
   @override
-  String get settingsImportSubtitle => 'আগে এক্সপোর্ট করা JSON ব্যাকআপ থেকে সব ডেটা প্রতিস্থাপন করুন।';
+  String get settingsImportSubtitle =>
+      'আগে এক্সপোর্ট করা JSON ব্যাকআপ থেকে সব ডেটা প্রতিস্থাপন করুন।';
 
   @override
   String settingsKeepHolding(String remaining) {
@@ -782,10 +812,12 @@ class AppLocalizationsBn extends AppLocalizations {
   String get settingsNoTarget => 'কোনো লক্ষ্য নির্ধারিত নেই';
 
   @override
-  String get settingsOverloadError => '5–100 এর মধ্যে সংখ্যা লিখুন (ঘণ্টা/সপ্তাহ)।';
+  String get settingsOverloadError =>
+      '5–100 এর মধ্যে সংখ্যা লিখুন (ঘণ্টা/সপ্তাহ)।';
 
   @override
-  String get settingsOverloadHelper => 'এর উপরে আসন্ন লোড সপ্তাহ লাল চিহ্নিত হয়। পূর্ণকালীন পড়াশোনা ~35–40 ঘণ্টা/সপ্তাহ।';
+  String get settingsOverloadHelper =>
+      'এর উপরে আসন্ন লোড সপ্তাহ লাল চিহ্নিত হয়। পূর্ণকালীন পড়াশোনা ~35–40 ঘণ্টা/সপ্তাহ।';
 
   @override
   String settingsOverloadHours(String value) {
@@ -819,7 +851,8 @@ class AppLocalizationsBn extends AppLocalizations {
   String get settingsResetAll => 'সব ডেটা রিসেট';
 
   @override
-  String get settingsResetAllMessage => 'এটি সব কোর্স, সেশন ও সেটিংস স্থায়ীভাবে মুছে ফেলে। এটি পূর্বাবস্থায় ফেরানো যাবে না। প্রয়োজনে আগে ব্যাকআপ এক্সপোর্ট করুন।';
+  String get settingsResetAllMessage =>
+      'এটি সব কোর্স, সেশন ও সেটিংস স্থায়ীভাবে মুছে ফেলে। এটি পূর্বাবস্থায় ফেরানো যাবে না। প্রয়োজনে আগে ব্যাকআপ এক্সপোর্ট করুন।';
 
   @override
   String get settingsResetAllSubtitle => 'সব কোর্স, সেশন ও সেটিংস মুছুন।';
@@ -834,10 +867,12 @@ class AppLocalizationsBn extends AppLocalizations {
   String get settingsResetSettingsDone => 'সেটিংস ডিফল্টে ফিরিয়ে আনা হয়েছে।';
 
   @override
-  String get settingsResetSettingsMessage => 'প্রতি ECTS-এ ঘণ্টা (30), দৈনিক লক্ষ্য (নেই), সপ্তাহের প্রথম দিন (সোমবার), থিম (সিস্টেম), সহনশীলতা (5 দিন), ওভারলোড (35 ঘণ্টা/সপ্তাহ), আকার (আরামদায়ক), রং (স্লেট) পুনরুদ্ধার করে। কোর্স ও সেশন রক্ষিত থাকে।';
+  String get settingsResetSettingsMessage =>
+      'প্রতি ECTS-এ ঘণ্টা (30), দৈনিক লক্ষ্য (নেই), সপ্তাহের প্রথম দিন (সোমবার), থিম (সিস্টেম), সহনশীলতা (5 দিন), ওভারলোড (35 ঘণ্টা/সপ্তাহ), আকার (আরামদায়ক), রং (স্লেট) পুনরুদ্ধার করে। কোর্স ও সেশন রক্ষিত থাকে।';
 
   @override
-  String get settingsResetSettingsSubtitle => 'ডিফল্ট পুনরুদ্ধার: 30 ঘণ্টা/ECTS, লক্ষ্য নেই, সোমবার, সিস্টেম থিম, 5 দিন সহনশীলতা, 35 ঘণ্টা/সপ্তাহ ওভারলোড, আরামদায়ক আকার, স্লেট রং।';
+  String get settingsResetSettingsSubtitle =>
+      'ডিফল্ট পুনরুদ্ধার: 30 ঘণ্টা/ECTS, লক্ষ্য নেই, সোমবার, সিস্টেম থিম, 5 দিন সহনশীলতা, 35 ঘণ্টা/সপ্তাহ ওভারলোড, আরামদায়ক আকার, স্লেট রং।';
 
   @override
   String get settingsResetSettingsTitle => 'সেটিংস রিসেট করবেন?';
@@ -877,7 +912,8 @@ class AppLocalizationsBn extends AppLocalizations {
   String get settingsToleranceError => '0–30 এর মধ্যে দিন সংখ্যা লিখুন।';
 
   @override
-  String get settingsToleranceHelper => 'এগিয়ে থাকতে +N দিন উদ্বৃত্ত, পিছিয়ে −N দিন প্রয়োজন। 5 = স্থিতিশীল, 0 = সংবেদনশীল।';
+  String get settingsToleranceHelper =>
+      'এগিয়ে থাকতে +N দিন উদ্বৃত্ত, পিছিয়ে −N দিন প্রয়োজন। 5 = স্থিতিশীল, 0 = সংবেদনশীল।';
 
   @override
   String get settingsToleranceLabel => 'কাজের দিন (0–30)';
@@ -944,7 +980,8 @@ class AppLocalizationsBn extends AppLocalizations {
   String get statsConsistency => 'ধারাবাহিকতা';
 
   @override
-  String get statsConsistencyHint => 'গত 30 দিনে পড়াশোনার দিন। প্রতিদিন ছোট পদক্ষেপ গাদা পড়ার চেয়ে ভালো।';
+  String get statsConsistencyHint =>
+      'গত 30 দিনে পড়াশোনার দিন। প্রতিদিন ছোট পদক্ষেপ গাদা পড়ার চেয়ে ভালো।';
 
   @override
   String statsConsistencyScore(String percent) {
@@ -1067,13 +1104,15 @@ class AppLocalizationsBn extends AppLocalizations {
   String get statusOverdue => 'মেয়াদোত্তীর্ণ';
 
   @override
-  String get studyLogDeleteBody => 'এই পড়াশোনার সেশন মুছে ফেলবেন? এটি পূর্বাবস্থায় ফেরানো যাবে না।';
+  String get studyLogDeleteBody =>
+      'এই পড়াশোনার সেশন মুছে ফেলবেন? এটি পূর্বাবস্থায় ফেরানো যাবে না।';
 
   @override
   String get studyLogDeleteTitle => 'সেশন মুছে ফেলবেন?';
 
   @override
-  String get studyLogEmptyHint => 'পড়াশোনার সময় ট্র্যাক করতে একটি সেশন লগ করুন।';
+  String get studyLogEmptyHint =>
+      'পড়াশোনার সময় ট্র্যাক করতে একটি সেশন লগ করুন।';
 
   @override
   String get studyLogEmptyTitle => 'এখনও কোনো পড়াশোনার সেশন নেই';
@@ -1114,7 +1153,8 @@ class AppLocalizationsBn extends AppLocalizations {
   }
 
   @override
-  String get studyTimerAlreadyRunning => 'A timer is already running. Finish or discard it first.';
+  String get studyTimerAlreadyRunning =>
+      'A timer is already running. Finish or discard it first.';
 
   @override
   String get studyTimerCourseLabel => 'Course';
@@ -1123,7 +1163,8 @@ class AppLocalizationsBn extends AppLocalizations {
   String get studyTimerDiscard => 'Discard';
 
   @override
-  String get studyTimerDiscardBody => 'Throw away the current timer without logging? This cannot be undone.';
+  String get studyTimerDiscardBody =>
+      'Throw away the current timer without logging? This cannot be undone.';
 
   @override
   String get studyTimerDiscardTitle => 'Discard timer?';
@@ -1190,7 +1231,8 @@ class AppLocalizationsBn extends AppLocalizations {
   String get settingsLiquidGlass => 'তরল কাচ';
 
   @override
-  String get settingsLiquidGlassSubtitle => 'ফ্রস্টেড কাচের কার্ড ও বার। বন্ধ থাকলে ক্লাসিক সলিড রূপ বজায় থাকে।';
+  String get settingsLiquidGlassSubtitle =>
+      'ফ্রস্টেড কাচের কার্ড ও বার। বন্ধ থাকলে ক্লাসিক সলিড রূপ বজায় থাকে।';
 
   @override
   String get settingsLiquidGlassOn => 'চালু';
@@ -1205,7 +1247,8 @@ class AppLocalizationsBn extends AppLocalizations {
   String get devToolsReminderPreview => 'রিমাইন্ডার প্রিভিউ';
 
   @override
-  String get devToolsReminderPreviewSubtitle => 'এই মুহূর্তে কী নোটিফাই করবে দেখুন। Windows-নিরাপদ টেস্ট ফিড।';
+  String get devToolsReminderPreviewSubtitle =>
+      'এই মুহূর্তে কী নোটিফাই করবে দেখুন। Windows-নিরাপদ টেস্ট ফিড।';
 
   @override
   String get reminderPreviewTitle => 'রিমাইন্ডার প্রিভিউ';
@@ -1217,7 +1260,8 @@ class AppLocalizationsBn extends AppLocalizations {
   String get reminderPreviewReset => 'এখন';
 
   @override
-  String get reminderPreviewEmpty => 'সব শান্ত — এই সময়ে কিছুই নোটিফাই করবে না।';
+  String get reminderPreviewEmpty =>
+      'সব শান্ত — এই সময়ে কিছুই নোটিফাই করবে না।';
 
   @override
   String get reminderPreviewCustom => 'কাস্টম সময়সূচি (demo)';
@@ -1253,7 +1297,8 @@ class AppLocalizationsBn extends AppLocalizations {
   String get settingsReminderTime => 'রিমাইন্ডারের সময়';
 
   @override
-  String get settingsReminderDenied => 'বিজ্ঞপ্তি বন্ধ আছে — সিস্টেম সেটিংসে চালু করুন।';
+  String get settingsReminderDenied =>
+      'বিজ্ঞপ্তি বন্ধ আছে — সিস্টেম সেটিংসে চালু করুন।';
 
   @override
   String notifDurationHours(String value) {
@@ -1291,7 +1336,12 @@ class AppLocalizationsBn extends AppLocalizations {
   }
 
   @override
-  String notifBehindBodyPace(String left, String days, String pace, String catchUp) {
+  String notifBehindBodyPace(
+    String left,
+    String days,
+    String pace,
+    String catchUp,
+  ) {
     return '$left বাকি, $days দিন বাকি — এখান থেকে $pace/দিন। সঠিক পথে ফিরতে $catchUp লগ করুন।';
   }
 
@@ -1324,7 +1374,8 @@ class AppLocalizationsBn extends AppLocalizations {
   }
 
   @override
-  String get notifDeadlineSoonBodyNoPace => 'এখন যে প্রতি ঘণ্টা লগ করবেন তা গণ্য হবে।';
+  String get notifDeadlineSoonBodyNoPace =>
+      'এখন যে প্রতি ঘণ্টা লগ করবেন তা গণ্য হবে।';
 
   @override
   String notifOverdueTitle(String course, String left) {
@@ -1332,7 +1383,8 @@ class AppLocalizationsBn extends AppLocalizations {
   }
 
   @override
-  String get notifOverdueBody => 'সমাপ্তি সরিয়ে নিন বা ঘণ্টাগুলো শেষ করুন — ততক্ষণ কোর্সটি মনোযোগ-প্রয়োজন অবস্থায় থাকবে।';
+  String get notifOverdueBody =>
+      'সমাপ্তি সরিয়ে নিন বা ঘণ্টাগুলো শেষ করুন — ততক্ষণ কোর্সটি মনোযোগ-প্রয়োজন অবস্থায় থাকবে।';
 
   @override
   String notifStreakTitle(String days, String week) {
