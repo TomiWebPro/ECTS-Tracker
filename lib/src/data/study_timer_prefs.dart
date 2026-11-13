@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:flutter/foundation.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../logic/study_timer.dart';
@@ -17,6 +18,11 @@ class StudyTimerPrefsRepository {
 
   static const String keyTimer = 'studyTimer.json';
 
+  /// Persisted app-locale code for background notification re-shows
+  /// (M12, ECTS-096): the background isolate has no Riverpod/DB access,
+  /// so the foreground provider snapshots its locale here on every save.
+  static const String keyLocale = 'studyTimer.localeCode';
+
   Future<SharedPreferences> _instance() async =>
       _store ??= await SharedPreferences.getInstance();
 
@@ -31,6 +37,7 @@ class StudyTimerPrefsRepository {
         Map<String, Object?>.from(decoded),
       );
     } catch (_) {
+      if (kDebugMode) debugPrint('study timer blob corrupt, using null');
       return null;
     }
   }
@@ -53,9 +60,35 @@ class StudyTimerPrefsRepository {
     try {
       final s = await _instance();
       await s.remove(keyTimer);
+      await s.remove(keyLocale);
       return const Ok(null);
     } catch (e) {
       return Err('Failed to clear timer: $e');
+    }
+  }
+
+  /// Best-effort locale snapshot for the background re-show path.
+  Future<void> saveLocale(String? code) async {
+    try {
+      final s = await _instance();
+      if (code == null || code.isEmpty) {
+        await s.remove(keyLocale);
+      } else {
+        await s.setString(keyLocale, code);
+      }
+    } catch (_) {
+      // Best-effort: foreground alerts already use the live locale.
+    }
+  }
+
+  Future<String?> loadLocale() async {
+    try {
+      final s = await _instance();
+      final raw = s.getString(keyLocale);
+      if (raw == null || raw.isEmpty) return null;
+      return raw;
+    } catch (_) {
+      return null;
     }
   }
 }

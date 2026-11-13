@@ -14,6 +14,7 @@ import '../state/providers.dart';
 import '../state/study_timer_provider.dart';
 import 'course_form.dart';
 import 'course_labels.dart';
+import 'err_text.dart';
 import 'glass.dart';
 import 'session_form.dart';
 import 'study_timer_sheet.dart';

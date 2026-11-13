@@ -117,8 +117,9 @@ class _ReminderTiles extends ConsumerWidget {
       case Ok<void>():
         break;
       case Err<void>(:final message):
-        ScaffoldMessenger.of(context)
-            .showSnackBar(SnackBar(content: Text(message)));
+        final l10n = AppLocalizations.of(context)!;
+        ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(content: Text(localizeRepoMessage(message, l10n))));
     }
   }
 }

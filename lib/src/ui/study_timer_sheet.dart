@@ -10,6 +10,7 @@ import '../models/models.dart';
 import '../state/providers.dart';
 import '../state/study_timer_provider.dart';
 import 'app_sizes.dart';
+import 'err_text.dart';
 import 'glass.dart';
 
 class StudyTimerActiveDialog extends ConsumerStatefulWidget {
@@ -162,7 +163,7 @@ class _StudyTimerActiveControlsState
         if (_error != null) ...[
           const SizedBox(height: 8),
           Text(
-            _error!,
+            localizeRepoMessage(_error!, l10n),
             key: const Key('studyTimerActiveError'),
             style: TextStyle(color: Theme.of(context).colorScheme.error),
           ),

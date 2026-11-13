@@ -43,8 +43,9 @@ class _StudyLogPage extends ConsumerWidget {
         await ref.read(sessionRepositoryProvider).deleteSession(session.id);
     if (!context.mounted) return;
     if (result is Err<void>) {
+      final l10n = AppLocalizations.of(context)!;
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text(result.message)),
+        SnackBar(content: Text(localizeRepoMessage(result.message, l10n))),
       );
     }
   }
@@ -272,8 +273,11 @@ class _StudyLogPage extends ConsumerWidget {
                                     .deleteSession(session.id);
                                 if (!context.mounted) return;
                                 if (result is Err) {
+                                  final l10n = AppLocalizations.of(context)!;
                                   ScaffoldMessenger.of(context).showSnackBar(
-                                    SnackBar(content: Text(result.message)),
+                                    SnackBar(
+                                        content: Text(localizeRepoMessage(
+                                            result.message, l10n))),
                                   );
                                 }
                               },

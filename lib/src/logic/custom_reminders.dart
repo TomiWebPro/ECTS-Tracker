@@ -16,7 +16,8 @@ import 'reminders.dart';
 import 'session_totals.dart';
 
 /// Stable notification ID base for custom reminders (ECTS-072).
-/// Fire ID = `customReminderIdBase + (scheduleId % 100000)`.
+/// Fire ID = [notificationId](`customReminderIdBase`, scheduleId): a stable
+/// 31-bit mix, not a bare modulo (see `reminders.dart`).
 const int customReminderIdBase = 5000;
 
 enum Recurrence { once, weekly, monthly }

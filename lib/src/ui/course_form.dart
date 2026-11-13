@@ -9,6 +9,7 @@ import '../logic/ects.dart';
 import '../models/models.dart';
 import '../state/providers.dart';
 import 'app_sizes.dart';
+import 'err_text.dart';
 import 'glass.dart';
 
 /// Preset colors for courses (ARGB values). Null means "no color".
@@ -335,7 +336,7 @@ class _CourseFormDialogState extends ConsumerState<CourseFormDialog> {
               if (_error != null) ...[
                 const SizedBox(height: 8),
                 Text(
-                  _error!,
+                  localizeRepoMessage(_error!, l10n),
                   key: const Key('courseFormError'),
                   style: TextStyle(color: Theme.of(context).colorScheme.error),
                 ),

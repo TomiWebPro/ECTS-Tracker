@@ -1439,4 +1439,79 @@ class AppLocalizationsNl extends AppLocalizations {
 
   @override
   String get reminderPreviewDemoLabel => 'Demo-check-in';
+
+  @override
+  String get notifChannelDailyName => 'Daily study nudge';
+
+  @override
+  String get notifChannelDailyDesc => 'The evening study plan summary.';
+
+  @override
+  String get notifChannelCourseName => 'Course alerts';
+
+  @override
+  String get notifChannelCourseDesc =>
+      'Deadline countdowns and overdue escalations.';
+
+  @override
+  String get notifChannelTimerName => 'Study timer';
+
+  @override
+  String get notifChannelTimerDesc =>
+      'The running study timer with pause/finish actions.';
+
+  @override
+  String get notifActionOpen => 'Open';
+
+  @override
+  String errorCourseNameLength(String max) {
+    return 'Name must be 1 to $max characters.';
+  }
+
+  @override
+  String get errorEctsPositive => 'ECTS credits must be greater than zero.';
+
+  @override
+  String get errorDeadlineOrder => 'Deadline must be after start date.';
+
+  @override
+  String get errorCourseNotFound => 'Course not found.';
+
+  @override
+  String get errorDurationPositive => 'Duration must be greater than zero.';
+
+  @override
+  String get errorHoursPositive => 'Hours per ECTS must be greater than zero.';
+
+  @override
+  String get errorDailyNegative => 'Daily target must not be negative.';
+
+  @override
+  String get errorFirstWeekday =>
+      'First weekday must be between 1 (Monday) and 7 (Sunday).';
+
+  @override
+  String get errorToleranceRange => 'Tolerance must be between 0 and 30 days.';
+
+  @override
+  String get errorOverloadRange =>
+      'Overload threshold must be between 5 and 100 h/week.';
+
+  @override
+  String get errorUnknownLanguage => 'Unknown language code.';
+
+  @override
+  String get errorReminderTime => 'Reminder time must be 0-1439 minutes.';
+
+  @override
+  String get errorReminderWarn => 'Deadline warning window must be 0-14 days.';
+
+  @override
+  String get errorTimerInvalid => 'Invalid timer state.';
+
+  @override
+  String get errorTimerNoActive => 'No active timer.';
+
+  @override
+  String get errorTimerAlreadyRunning => 'A timer is already running.';
 }

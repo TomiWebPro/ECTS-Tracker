@@ -11,12 +11,12 @@ import 'package:ects_tracker/l10n/app_localizations.dart';
 
 import '../data/repositories.dart';
 import '../dev/stress_seed.dart';
-import '../i18n/app_locales.dart';
-import '../models/models.dart';
+import '../i18n/app_locales.dart';import '../models/models.dart';
 import '../models/reminder_settings.dart';
 import '../notifications/reminder_service.dart';
 import '../state/providers.dart';
 import 'app_sizes.dart';
+import 'err_text.dart';
 import 'glass.dart';
 import 'reminder_preview.dart';
 import 'widgets.dart';
@@ -164,7 +164,7 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
           );
         case Err<(int, int)>(:final message):
           ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(content: Text(message)),
+            SnackBar(content: Text(localizeRepoMessage(message, l10n))),
           );
       }
     } finally {
@@ -979,7 +979,9 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
         break;
       case Err<void>(:final message):
         ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text(message)),
+          SnackBar(
+              content: Text(localizeRepoMessage(
+                  message, AppLocalizations.of(context)!))),
         );
     }
   }
@@ -1206,7 +1208,8 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             key: const Key('clearSampleDataError'),
-            content: Text(message),
+            content: Text(localizeRepoMessage(
+                message, AppLocalizations.of(context)!)),
           ),
         );
     }
@@ -1517,8 +1520,10 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
               .showSnackBar(SnackBar(content: Text(success)));
         }
       case Err<void>(:final message):
-        ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(key: errorKey, content: Text(message)));
+        final l10n = AppLocalizations.of(context)!;
+        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+            key: errorKey,
+            content: Text(localizeRepoMessage(message, l10n))));
     }
   }
 }

@@ -46,8 +46,9 @@ class _CoursesPageState extends ConsumerState<_CoursesPage> {
     final result = await ref.read(courseRepositoryProvider).deleteCourse(course.id);
     if (!mounted) return;
     if (result is Err<void>) {
+      final l10n = AppLocalizations.of(context)!;
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text(result.message)),
+        SnackBar(content: Text(localizeRepoMessage(result.message, l10n))),
       );
     }
   }
@@ -57,8 +58,9 @@ class _CoursesPageState extends ConsumerState<_CoursesPage> {
         await ref.read(courseRepositoryProvider).deleteSampleCourse(course.id);
     if (!mounted) return;
     if (result is Err) {
+      final l10n = AppLocalizations.of(context)!;
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text(result.message)),
+        SnackBar(content: Text(localizeRepoMessage(result.message, l10n))),
       );
     }
   }

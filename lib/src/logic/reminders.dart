@@ -19,6 +19,16 @@ const int deadlineReminderIdBase = 2000;
 const int overdueReminderIdBase = 3000;
 const int streakReminderId = 4000;
 
+/// Stable per-course/per-schedule notification ID.
+///
+/// Course and schedule IDs are small autoincrement ints, but a bare
+/// `% 100000` folds distinct rows onto one platform ID (one course cancels
+/// another's alarm). Mix [base] and [id] into the 31-bit positive range
+/// instead: deterministic, no collisions in practice, still a valid
+/// Android notification ID.
+int notificationId(int base, int id) =>
+    ((base * 1000033) ^ (id * 2654435761)) & 0x7fffffff;
+
 /// Max courses named inline in one message before folding into "+N more".
 const int maxNamedCourses = 2;
 

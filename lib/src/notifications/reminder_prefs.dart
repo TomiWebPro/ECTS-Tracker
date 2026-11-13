@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:flutter/foundation.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../data/result.dart';
@@ -71,6 +72,7 @@ class ReminderPrefsRepository {
       return out;
     } catch (_) {
       // Corrupt JSON: start from no schedules (doc on [loadCustom]).
+      if (kDebugMode) debugPrint('reminder custom JSON corrupt, using []');
       return const [];
     }
   }

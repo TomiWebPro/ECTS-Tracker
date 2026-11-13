@@ -12,6 +12,7 @@ import '../models/models.dart';
 import '../state/providers.dart';
 import '../state/study_timer_provider.dart';
 import 'app_sizes.dart';
+import 'err_text.dart';
 import 'glass.dart';
 import 'study_timer_sheet.dart';
 
@@ -319,7 +320,7 @@ class _SessionFormDialogState extends ConsumerState<SessionFormDialog> {
         if (_error != null) ...[
           const SizedBox(height: 8),
           Text(
-            _error!,
+            localizeRepoMessage(_error!, l10n),
             key: const Key('studyTimerFormError'),
             style: TextStyle(
               color: Theme.of(context).colorScheme.error,
@@ -563,7 +564,7 @@ class _SessionFormDialogState extends ConsumerState<SessionFormDialog> {
               if (_error != null) ...[
                 const SizedBox(height: 8),
                 Text(
-                  _error!,
+                  localizeRepoMessage(_error!, l10n),
                   key: const Key('sessionFormError'),
                   style: TextStyle(color: Theme.of(context).colorScheme.error),
                 ),

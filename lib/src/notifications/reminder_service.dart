@@ -1,6 +1,8 @@
 import 'dart:async';
 
 import 'package:ects_tracker/l10n/app_localizations.dart';
+import 'package:flutter/foundation.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:flutter_timezone/flutter_timezone.dart';
 import 'package:timezone/data/latest_all.dart' as tzdata;
@@ -47,8 +49,6 @@ abstract class NotificationBackend {
 /// stream feeds the study-timer notifier through `timerActionEventsProvider`.
 class RealNotificationBackend
     implements NotificationBackend, TimerAlertBackend {
-  RealNotificationBackend._(this._plugin);
-
   final FlutterLocalNotificationsPlugin _plugin;
 
   /// Foreground timer-action taps (`timer_*`). The plugin delivers response
@@ -58,14 +58,14 @@ class RealNotificationBackend
   @override
   Stream<String> get actionEvents => _timerActions.stream;
 
-  static const AndroidNotificationChannel _dailyChannel =
+  static const AndroidNotificationChannel _dailyChannelFallback =
       AndroidNotificationChannel(
     'daily_nudge',
     'Daily study nudge',
     description: 'The evening study plan summary.',
     importance: Importance.defaultImportance,
   );
-  static const AndroidNotificationChannel _courseChannel =
+  static const AndroidNotificationChannel _courseChannelFallback =
       AndroidNotificationChannel(
     'course_alert',
     'Course alerts',
@@ -75,13 +75,27 @@ class RealNotificationBackend
 
   /// Ongoing timer channel (silent, shade-only; the in-app banner covers
   /// the foreground case). First show peeks via default importance.
-  static const AndroidNotificationChannel _timerChannel =
+  static const AndroidNotificationChannel _timerChannelFallback =
       AndroidNotificationChannel(
     'study_timer',
     'Study timer',
     description: 'The running study timer with pause/finish actions.',
     importance: Importance.defaultImportance,
   );
+
+  final AndroidNotificationChannel _dailyChannel;
+  final AndroidNotificationChannel _courseChannel;
+  final AndroidNotificationChannel _timerChannel;
+  String _openLabel = 'Open';
+
+  RealNotificationBackend._(
+    this._plugin, {
+    AndroidNotificationChannel? dailyChannel,
+    AndroidNotificationChannel? courseChannel,
+    AndroidNotificationChannel? timerChannel,
+  })  : _dailyChannel = dailyChannel ?? _dailyChannelFallback,
+        _courseChannel = courseChannel ?? _courseChannelFallback,
+        _timerChannel = timerChannel ?? _timerChannelFallback;
 
   /// iOS timer categories, rebuilt per show so action labels follow the app
   /// language (categories are fixed at registration time).
@@ -124,6 +138,32 @@ class RealNotificationBackend
         ),
       ];
 
+  /// English fallback for category registration before any localized frame.
+  static TimerAlertVisuals _englishFallbackVisuals() {
+    try {
+      final en = lookupAppLocalizations(const Locale('en'));
+      return TimerAlertVisuals(
+        title: '',
+        body: '',
+        running: true,
+        pauseLabel: en.studyTimerPause,
+        resumeLabel: en.studyTimerResume,
+        finishLabel: en.studyTimerFinishLog('0'),
+        discardLabel: en.studyTimerDiscard,
+      );
+    } catch (_) {
+      return const TimerAlertVisuals(
+        title: '',
+        body: '',
+        running: true,
+        pauseLabel: 'Pause',
+        resumeLabel: 'Resume',
+        finishLabel: 'Finish',
+        discardLabel: 'Discard',
+      );
+    }
+  }
+
   static NotificationDetails _details(AndroidNotificationChannel channel,
           {bool silent = false}) =>
       NotificationDetails(
@@ -142,42 +182,80 @@ class RealNotificationBackend
         ),
       );
 
-  static Future<RealNotificationBackend> create() async {
+  static Future<RealNotificationBackend> create(
+      {AppLocalizations? l10n}) async {
     tzdata.initializeTimeZones();
     try {
       final zone = await FlutterTimezone.getLocalTimezone();
       tz.setLocalLocation(tz.getLocation(zone.identifier));
     } catch (_) {
       // Timezone lookup is best-effort; UTC keeps scheduling working.
+      // Logged in debug so a shifted alarm clock is diagnosable.
+      if (kDebugMode) debugPrint('timezone lookup failed, using UTC');
       tz.setLocalLocation(tz.UTC);
     }
+    AndroidNotificationChannel daily = _dailyChannelFallback;
+    AndroidNotificationChannel course = _courseChannelFallback;
+    AndroidNotificationChannel timer = _timerChannelFallback;
+    String openLabel = 'Open';
+    TimerAlertVisuals? fallbackVisuals;
+    if (l10n != null) {
+      daily = AndroidNotificationChannel(
+        'daily_nudge',
+        l10n.notifChannelDailyName,
+        description: l10n.notifChannelDailyDesc,
+        importance: Importance.defaultImportance,
+      );
+      course = AndroidNotificationChannel(
+        'course_alert',
+        l10n.notifChannelCourseName,
+        description: l10n.notifChannelCourseDesc,
+        importance: Importance.high,
+      );
+      timer = AndroidNotificationChannel(
+        'study_timer',
+        l10n.notifChannelTimerName,
+        description: l10n.notifChannelTimerDesc,
+        importance: Importance.defaultImportance,
+      );
+      openLabel = l10n.notifActionOpen;
+      fallbackVisuals = TimerAlertVisuals(
+        title: '',
+        body: '',
+        running: true,
+        pauseLabel: l10n.studyTimerPause,
+        resumeLabel: l10n.studyTimerResume,
+        finishLabel: l10n.studyTimerFinishLog('0'),
+        discardLabel: l10n.studyTimerDiscard,
+      );
+    }
     final plugin = FlutterLocalNotificationsPlugin();
-    final backend = RealNotificationBackend._(plugin);
-    await backend._initializeTimerCategories(null);
+    final backend = RealNotificationBackend._(
+      plugin,
+      dailyChannel: daily,
+      courseChannel: course,
+      timerChannel: timer,
+    );
+    backend._openLabel = openLabel;
+    await backend._initializeTimerCategories(fallbackVisuals,
+        openLabel: openLabel);
     final android =
         plugin.resolvePlatformSpecificImplementation<AndroidFlutterLocalNotificationsPlugin>();
-    await android?.createNotificationChannel(_dailyChannel);
-    await android?.createNotificationChannel(_courseChannel);
-    await android?.createNotificationChannel(_timerChannel);
+    await android?.createNotificationChannel(daily);
+    await android?.createNotificationChannel(course);
+    await android?.createNotificationChannel(timer);
     return backend;
   }
 
   /// (Re-)initializes the plugin: response routing plus localized iOS timer
-  /// categories (`visuals` null keeps the last/default English labels).
+  /// categories (`visuals` null falls back to English labels).
   /// All platforms are registered so `create()`/`showTimer()` never throw
   /// for a missing platform block (the Windows crash ECTS-094: the unified
   /// plugin throws when the current platform's settings are absent).
-  Future<void> _initializeTimerCategories(TimerAlertVisuals? visuals) {
+  Future<void> _initializeTimerCategories(TimerAlertVisuals? visuals,
+      {String openLabel = 'Open'}) {
     final categories = visuals == null
-        ? _timerCategories(const TimerAlertVisuals(
-            title: '',
-            body: '',
-            running: true,
-            pauseLabel: 'Pause',
-            resumeLabel: 'Resume',
-            finishLabel: 'Finish',
-            discardLabel: 'Discard',
-          ))
+        ? _timerCategories(_englishFallbackVisuals())
         : _timerCategories(visuals);
     return _plugin.initialize(
       settings: InitializationSettings(
@@ -186,7 +264,7 @@ class RealNotificationBackend
           notificationCategories: categories,
         ),
         macOS: const DarwinInitializationSettings(),
-        linux: const LinuxInitializationSettings(defaultActionName: 'Open'),
+        linux: LinuxInitializationSettings(defaultActionName: openLabel),
         windows: windowsNotificationSettings,
       ),
       onDidReceiveNotificationResponse: (response) {
@@ -291,7 +369,7 @@ class RealNotificationBackend
   @override
   Future<void> showTimer(TimerAlertVisuals visuals) async {
     // Refresh categories so iOS action labels match the app language.
-    await _initializeTimerCategories(visuals);
+    await _initializeTimerCategories(visuals, openLabel: _openLabel);
     await _plugin.show(
       id: studyTimerNotificationId,
       title: visuals.title,
@@ -303,6 +381,9 @@ class RealNotificationBackend
         resumeLabel: visuals.resumeLabel,
         finishLabel: visuals.finishLabel,
         discardLabel: visuals.discardLabel,
+        channelName: _timerChannel.name,
+        channelDesc: _timerChannel.description ??
+            'The running study timer with pause/finish actions.',
       ),
       payload: studyTimerPayload,
     );
@@ -374,7 +455,7 @@ class ReminderService {
       )) {
         final text = localizeReminder(l10n, countdown);
         await _backend.scheduleOnce(
-          id: deadlineReminderIdBase + (countdown.courseId! % 100000),
+          id: notificationId(deadlineReminderIdBase, countdown.courseId!),
           title: text.title,
           body: text.body,
           fireAt: todayFire,
@@ -396,7 +477,7 @@ class ReminderService {
       if (await _prefs.overdueCount(key) >= 2) continue;
       final text = localizeReminder(l10n, overdue);
       await _backend.showNow(
-        id: overdueReminderIdBase + (overdue.courseId! % 100000),
+        id: notificationId(overdueReminderIdBase, overdue.courseId!),
         title: text.title,
         body: text.body,
       );
@@ -417,7 +498,7 @@ class ReminderService {
       if (content == null) continue;
       final text = localizeReminder(l10n, content);
       await _backend.scheduleOnce(
-        id: customReminderIdBase + (schedule.id % 100000),
+        id: notificationId(customReminderIdBase, schedule.id),
         title: text.title,
         body: text.body,
         fireAt: fire,

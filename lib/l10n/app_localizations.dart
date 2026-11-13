@@ -2502,6 +2502,144 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Demo check-in'**
   String get reminderPreviewDemoLabel;
+
+  /// Android channel name for the daily study nudge (system settings).
+  ///
+  /// In en, this message translates to:
+  /// **'Daily study nudge'**
+  String get notifChannelDailyName;
+
+  /// Android channel description for the daily study nudge.
+  ///
+  /// In en, this message translates to:
+  /// **'The evening study plan summary.'**
+  String get notifChannelDailyDesc;
+
+  /// Android channel name for course deadline/overdue alerts (system settings).
+  ///
+  /// In en, this message translates to:
+  /// **'Course alerts'**
+  String get notifChannelCourseName;
+
+  /// Android channel description for course alerts.
+  ///
+  /// In en, this message translates to:
+  /// **'Deadline countdowns and overdue escalations.'**
+  String get notifChannelCourseDesc;
+
+  /// Android channel name for the ongoing study timer (system settings).
+  ///
+  /// In en, this message translates to:
+  /// **'Study timer'**
+  String get notifChannelTimerName;
+
+  /// Android channel description for the study timer.
+  ///
+  /// In en, this message translates to:
+  /// **'The running study timer with pause/finish actions.'**
+  String get notifChannelTimerDesc;
+
+  /// Linux notification default action label.
+  ///
+  /// In en, this message translates to:
+  /// **'Open'**
+  String get notifActionOpen;
+
+  /// Repository validation: course name length bounds. {max} is the max length, e.g. '200'.
+  ///
+  /// In en, this message translates to:
+  /// **'Name must be 1 to {max} characters.'**
+  String errorCourseNameLength(String max);
+
+  /// Repository validation: ECTS credits must be positive.
+  ///
+  /// In en, this message translates to:
+  /// **'ECTS credits must be greater than zero.'**
+  String get errorEctsPositive;
+
+  /// Repository validation: deadline must be after the start date.
+  ///
+  /// In en, this message translates to:
+  /// **'Deadline must be after start date.'**
+  String get errorDeadlineOrder;
+
+  /// Repository error: referenced course does not exist.
+  ///
+  /// In en, this message translates to:
+  /// **'Course not found.'**
+  String get errorCourseNotFound;
+
+  /// Repository validation: session duration must be positive.
+  ///
+  /// In en, this message translates to:
+  /// **'Duration must be greater than zero.'**
+  String get errorDurationPositive;
+
+  /// Repository validation: hours-per-ECTS must be positive.
+  ///
+  /// In en, this message translates to:
+  /// **'Hours per ECTS must be greater than zero.'**
+  String get errorHoursPositive;
+
+  /// Repository validation: daily target minutes must not be negative.
+  ///
+  /// In en, this message translates to:
+  /// **'Daily target must not be negative.'**
+  String get errorDailyNegative;
+
+  /// Repository validation: first weekday range.
+  ///
+  /// In en, this message translates to:
+  /// **'First weekday must be between 1 (Monday) and 7 (Sunday).'**
+  String get errorFirstWeekday;
+
+  /// Repository validation: pace tolerance range.
+  ///
+  /// In en, this message translates to:
+  /// **'Tolerance must be between 0 and 30 days.'**
+  String get errorToleranceRange;
+
+  /// Repository validation: weekly overload threshold range.
+  ///
+  /// In en, this message translates to:
+  /// **'Overload threshold must be between 5 and 100 h/week.'**
+  String get errorOverloadRange;
+
+  /// Repository validation: unknown locale code (without the offending value).
+  ///
+  /// In en, this message translates to:
+  /// **'Unknown language code.'**
+  String get errorUnknownLanguage;
+
+  /// Repository validation: reminder time range.
+  ///
+  /// In en, this message translates to:
+  /// **'Reminder time must be 0-1439 minutes.'**
+  String get errorReminderTime;
+
+  /// Repository validation: deadline warning window range.
+  ///
+  /// In en, this message translates to:
+  /// **'Deadline warning window must be 0-14 days.'**
+  String get errorReminderWarn;
+
+  /// Timer persistence validation: invalid timer state.
+  ///
+  /// In en, this message translates to:
+  /// **'Invalid timer state.'**
+  String get errorTimerInvalid;
+
+  /// Timer error: no active timer.
+  ///
+  /// In en, this message translates to:
+  /// **'No active timer.'**
+  String get errorTimerNoActive;
+
+  /// Timer error: start rejected while a timer is active.
+  ///
+  /// In en, this message translates to:
+  /// **'A timer is already running.'**
+  String get errorTimerAlreadyRunning;
 }
 
 class _AppLocalizationsDelegate

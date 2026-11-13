@@ -2377,5 +2377,103 @@
   "reminderPreviewDemoLabel": "Demo check-in",
   "@reminderPreviewDemoLabel": {
     "description": "Label of the demo one-off custom schedule on the reminder preview page."
+  },
+  "notifChannelDailyName": "Daily study nudge",
+  "@notifChannelDailyName": {
+    "description": "Android channel name for the daily study nudge (system settings)."
+  },
+  "notifChannelDailyDesc": "The evening study plan summary.",
+  "@notifChannelDailyDesc": {
+    "description": "Android channel description for the daily study nudge."
+  },
+  "notifChannelCourseName": "Course alerts",
+  "@notifChannelCourseName": {
+    "description": "Android channel name for course deadline/overdue alerts (system settings)."
+  },
+  "notifChannelCourseDesc": "Deadline countdowns and overdue escalations.",
+  "@notifChannelCourseDesc": {
+    "description": "Android channel description for course alerts."
+  },
+  "notifChannelTimerName": "Study timer",
+  "@notifChannelTimerName": {
+    "description": "Android channel name for the ongoing study timer (system settings)."
+  },
+  "notifChannelTimerDesc": "The running study timer with pause/finish actions.",
+  "@notifChannelTimerDesc": {
+    "description": "Android channel description for the study timer."
+  },
+  "notifActionOpen": "Open",
+  "@notifActionOpen": {
+    "description": "Linux notification default action label."
+  },
+  "errorCourseNameLength": "Name must be 1 to {max} characters.",
+  "@errorCourseNameLength": {
+    "description": "Repository validation: course name length bounds. {max} is the max length, e.g. '200'.",
+    "placeholders": {
+      "max": {
+        "type": "String",
+        "example": "200"
+      }
+    }
+  },
+  "errorEctsPositive": "ECTS credits must be greater than zero.",
+  "@errorEctsPositive": {
+    "description": "Repository validation: ECTS credits must be positive."
+  },
+  "errorDeadlineOrder": "Deadline must be after start date.",
+  "@errorDeadlineOrder": {
+    "description": "Repository validation: deadline must be after the start date."
+  },
+  "errorCourseNotFound": "Course not found.",
+  "@errorCourseNotFound": {
+    "description": "Repository error: referenced course does not exist."
+  },
+  "errorDurationPositive": "Duration must be greater than zero.",
+  "@errorDurationPositive": {
+    "description": "Repository validation: session duration must be positive."
+  },
+  "errorHoursPositive": "Hours per ECTS must be greater than zero.",
+  "@errorHoursPositive": {
+    "description": "Repository validation: hours-per-ECTS must be positive."
+  },
+  "errorDailyNegative": "Daily target must not be negative.",
+  "@errorDailyNegative": {
+    "description": "Repository validation: daily target minutes must not be negative."
+  },
+  "errorFirstWeekday": "First weekday must be between 1 (Monday) and 7 (Sunday).",
+  "@errorFirstWeekday": {
+    "description": "Repository validation: first weekday range."
+  },
+  "errorToleranceRange": "Tolerance must be between 0 and 30 days.",
+  "@errorToleranceRange": {
+    "description": "Repository validation: pace tolerance range."
+  },
+  "errorOverloadRange": "Overload threshold must be between 5 and 100 h/week.",
+  "@errorOverloadRange": {
+    "description": "Repository validation: weekly overload threshold range."
+  },
+  "errorUnknownLanguage": "Unknown language code.",
+  "@errorUnknownLanguage": {
+    "description": "Repository validation: unknown locale code (without the offending value)."
+  },
+  "errorReminderTime": "Reminder time must be 0-1439 minutes.",
+  "@errorReminderTime": {
+    "description": "Repository validation: reminder time range."
+  },
+  "errorReminderWarn": "Deadline warning window must be 0-14 days.",
+  "@errorReminderWarn": {
+    "description": "Repository validation: deadline warning window range."
+  },
+  "errorTimerInvalid": "Invalid timer state.",
+  "@errorTimerInvalid": {
+    "description": "Timer persistence validation: invalid timer state."
+  },
+  "errorTimerNoActive": "No active timer.",
+  "@errorTimerNoActive": {
+    "description": "Timer error: no active timer."
+  },
+  "errorTimerAlreadyRunning": "A timer is already running.",
+  "@errorTimerAlreadyRunning": {
+    "description": "Timer error: start rejected while a timer is active."
   }
 }

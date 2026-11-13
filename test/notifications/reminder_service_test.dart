@@ -1,6 +1,7 @@
 import 'package:ects_tracker/l10n/app_localizations.dart';
 import 'package:ects_tracker/src/data/repositories.dart';
 import 'package:ects_tracker/src/logic/custom_reminders.dart';
+import 'package:ects_tracker/src/logic/reminders.dart';
 import 'package:ects_tracker/src/models/models.dart';
 import 'package:ects_tracker/src/notifications/reminder_prefs.dart';
 import 'package:ects_tracker/src/notifications/reminder_service.dart';
@@ -171,7 +172,7 @@ void main() {
       );
       final once = backend.calls.where((c) => c.kind == 'once').toList();
       expect(once, hasLength(1));
-      expect(once.first.id, 2001);
+      expect(once.first.id, notificationId(deadlineReminderIdBase, 1));
       expect(once.first.when, DateTime(2026, 11, 11, 19, 0));
     });
 
@@ -192,7 +193,7 @@ void main() {
       );
       final once = backend.calls.where((c) => c.kind == 'once').toList();
       expect(once, hasLength(1));
-      expect(once.first.id, 5007);
+      expect(once.first.id, notificationId(customReminderIdBase, 7));
       expect(once.first.when, DateTime(2026, 11, 12, 8));
     });
 

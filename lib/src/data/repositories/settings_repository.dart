@@ -36,6 +36,9 @@ class SettingsRepository {
       if (row == null) return const AppSettings();
       return _fromRow(row);
     } catch (_) {
+      // DB fault reads as defaults (contract); log in debug so a broken
+      // settings row is diagnosable instead of silent.
+      if (kDebugMode) debugPrint('settings get DB fault, using defaults');
       return const AppSettings();
     }
   }

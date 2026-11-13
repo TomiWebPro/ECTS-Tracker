@@ -1,3 +1,6 @@
+import 'dart:async';
+
+import 'package:flutter/foundation.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../data/repositories.dart';
@@ -71,6 +74,9 @@ class StudyTimerNotifier extends Notifier<StudyTimerState?> {
     final saved = await ref.read(studyTimerPrefsProvider).save(timer);
     if (saved is Err<void>) return saved;
     state = timer;
+    // Locale snapshot is best-effort and must never gate timer ops
+    // (widget tests use an in-memory prefs fake without platform channels).
+    unawaited(_snapshotLocale());
     await _syncAlert();
     return const Ok(null);
   }
@@ -88,6 +94,9 @@ class StudyTimerNotifier extends Notifier<StudyTimerState?> {
     final saved = await ref.read(studyTimerPrefsProvider).save(timer);
     if (saved is Err<void>) return saved;
     state = timer;
+    // Locale snapshot is best-effort and must never gate timer ops
+    // (widget tests use an in-memory prefs fake without platform channels).
+    unawaited(_snapshotLocale());
     await _syncAlert();
     return const Ok(null);
   }
@@ -101,6 +110,7 @@ class StudyTimerNotifier extends Notifier<StudyTimerState?> {
     final saved = await ref.read(studyTimerPrefsProvider).save(paused);
     if (saved is Err<void>) return saved;
     state = paused;
+    unawaited(_snapshotLocale());
     await _syncAlert();
     return const Ok(null);
   }
@@ -114,6 +124,7 @@ class StudyTimerNotifier extends Notifier<StudyTimerState?> {
     final saved = await ref.read(studyTimerPrefsProvider).save(resumed);
     if (saved is Err<void>) return saved;
     state = resumed;
+    unawaited(_snapshotLocale());
     await _syncAlert();
     return const Ok(null);
   }
@@ -170,6 +181,18 @@ class StudyTimerNotifier extends Notifier<StudyTimerState?> {
 
   /// Best-effort display-name snapshot for notification surfaces (the
   /// background handler has no database access, so it reuses this).
+  /// Also snapshots the locale for background re-shows (ECTS-096).
+  Future<void> _snapshotLocale() async {
+    try {
+      final settings = await ref.read(settingsRepositoryProvider).get();
+      await ref.read(studyTimerPrefsProvider).saveLocale(settings.localeCode);
+    } catch (_) {
+      // Best-effort: foreground alerts already use the live locale.
+    }
+  }
+
+  /// Best-effort display-name snapshot for notification surfaces (the
+  /// background handler has no database access, so it reuses this).
   Future<String?> _resolveCourseName(int courseId) async {
     try {
       final courses = await ref.read(courseRepositoryProvider).getAll();
@@ -178,6 +201,7 @@ class StudyTimerNotifier extends Notifier<StudyTimerState?> {
       }
     } catch (_) {
       // Falls through to null; alerts fall back to the C{id} label.
+      if (kDebugMode) debugPrint('study timer resolve course failed');
     }
     return null;
   }

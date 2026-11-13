@@ -37,8 +37,13 @@ Future<void> main() async {
     // (the Windows-crash regression ECTS-094).
     RealNotificationBackend? backend;
     try {
-      backend = await RealNotificationBackend.create();
+      final dbForLocale = db;
+      final localeSettings = await SettingsRepository(dbForLocale).get();
+      backend = await RealNotificationBackend.create(
+        l10n: _reminderLocale(localeSettings.localeCode),
+      );
     } catch (_) {
+      if (kDebugMode) debugPrint('notification backend init failed');
       backend = null;
     }
     if (backend != null) {

@@ -143,6 +143,8 @@ NotificationDetails timerAlertDetails({
   required String resumeLabel,
   required String finishLabel,
   required String discardLabel,
+  String channelName = 'Study timer',
+  String channelDesc = 'The running study timer with pause/finish actions.',
 }) {
   AndroidNotificationAction pauseOrResume(String id, String label) =>
       AndroidNotificationAction(
@@ -154,8 +156,8 @@ NotificationDetails timerAlertDetails({
   return NotificationDetails(
     android: AndroidNotificationDetails(
       'study_timer',
-      'Study timer',
-      channelDescription: 'The running study timer with pause/finish actions.',
+      channelName,
+      channelDescription: channelDesc,
       importance: Importance.defaultImportance,
       priority: Priority.low,
       playSound: false,
@@ -269,7 +271,15 @@ Future<void> _applyBackgroundTimerAction(String action) async {
 }
 
 Future<void> _reshowBackground(StudyTimerState timer) async {
-  final l10n = timerAlertL10n(null);
+  // Foreground snapshots its locale next to the timer (ECTS-096) so the
+  // background re-show keeps the user's language instead of English.
+  String? code;
+  try {
+    code = await StudyTimerPrefsRepository().loadLocale();
+  } catch (_) {
+    code = null;
+  }
+  final l10n = timerAlertL10n(code);
   final name = timer.courseName ?? l10n.studyLogUnknownCourse(
     '${timer.courseId}',
   );
@@ -281,11 +291,12 @@ Future<void> _reshowBackground(StudyTimerState timer) async {
   );
   final plugin = FlutterLocalNotificationsPlugin();
   await plugin.initialize(
-    settings: const InitializationSettings(
-      android: AndroidInitializationSettings('@mipmap/ic_launcher'),
-      iOS: DarwinInitializationSettings(),
-      macOS: DarwinInitializationSettings(),
-      linux: LinuxInitializationSettings(defaultActionName: 'Open'),
+    settings: InitializationSettings(
+      android: const AndroidInitializationSettings('@mipmap/ic_launcher'),
+      iOS: const DarwinInitializationSettings(),
+      macOS: const DarwinInitializationSettings(),
+      linux:
+          LinuxInitializationSettings(defaultActionName: l10n.notifActionOpen),
       windows: windowsNotificationSettings,
     ),
   );
@@ -302,6 +313,8 @@ Future<void> _reshowBackground(StudyTimerState timer) async {
         '${studyTimerLogMinutes(timer.elapsedSec(DateTime.now()))}',
       ),
       discardLabel: l10n.studyTimerDiscard,
+      channelName: l10n.notifChannelTimerName,
+      channelDesc: l10n.notifChannelTimerDesc,
     ),
     payload: studyTimerPayload,
   );
