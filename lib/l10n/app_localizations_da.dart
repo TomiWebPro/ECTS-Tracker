@@ -561,7 +561,7 @@ class AppLocalizationsDa extends AppLocalizations {
   String get sessionFormMinutesLabel => 'Minutter';
 
   @override
-  String get sessionFormModeManual => 'Manual';
+  String get sessionFormModeManual => 'Manuelt';
 
   @override
   String get sessionFormModeTimer => 'Timer';
@@ -1154,59 +1154,60 @@ class AppLocalizationsDa extends AppLocalizations {
 
   @override
   String studyTimerActiveTitle(String course) {
-    return 'Timing $course';
+    return 'Timer: $course';
   }
 
   @override
   String get studyTimerAlreadyRunning =>
-      'A timer is already running. Finish or discard it first.';
+      'En timer kører allerede. Afslut eller kassér den først.';
 
   @override
-  String get studyTimerCourseLabel => 'Course';
+  String get studyTimerCourseLabel => 'Fag';
 
   @override
-  String get studyTimerDiscard => 'Discard';
+  String get studyTimerDiscard => 'Kassér';
 
   @override
   String get studyTimerDiscardBody =>
-      'Throw away the current timer without logging? This cannot be undone.';
+      'Kassér den aktuelle timer uden at logge? Dette kan ikke fortrydes.';
 
   @override
-  String get studyTimerDiscardTitle => 'Discard timer?';
+  String get studyTimerDiscardTitle => 'Kassér timer?';
 
   @override
   String studyTimerFinishLog(String minutes) {
-    return 'Finish & log $minutes min';
+    return 'Afslut & log $minutes min';
   }
 
   @override
-  String get studyTimerNoCourseError => 'Select a course.';
+  String get studyTimerNoCourseError => 'Vælg et fag.';
 
   @override
-  String get studyTimerNoCoursesHint => 'Add a course first to start a timer.';
+  String get studyTimerNoCoursesHint =>
+      'Tilføj først et fag for at starte en timer.';
 
   @override
   String studyTimerNotifPaused(String elapsed) {
-    return 'Paused · $elapsed';
+    return 'Sat på pause · $elapsed';
   }
 
   @override
-  String get studyTimerNotifRunning => 'Tap to open the timer';
+  String get studyTimerNotifRunning => 'Tryk for at åbne timeren';
 
   @override
   String get studyTimerPause => 'Pause';
 
   @override
-  String get studyTimerResume => 'Resume';
+  String get studyTimerResume => 'Fortsæt';
 
   @override
   String get studyTimerStart => 'Start timer';
 
   @override
-  String get studyTimerStartTitle => 'Start study timer';
+  String get studyTimerStartTitle => 'Start studietimer';
 
   @override
-  String get studyTimerTooShort => 'Timer has not run yet.';
+  String get studyTimerTooShort => 'Timeren har ikke kørt endnu.';
 
   @override
   String get validationCourseEctsPositive => 'ECTS skal være større end nul';

@@ -2287,5 +2287,95 @@
   "reminderPreviewDemoLabel": "डेमो जाँच",
   "@reminderPreviewDemoLabel": {
     "description": "Label of the demo one-off custom schedule on the reminder preview page."
+  },
+  "sessionFormModeManual": "मैन्युअल",
+  "@sessionFormModeManual": {
+    "description": "Manual-entry segment of the log-session mode switch."
+  },
+  "sessionFormModeTimer": "टाइमर",
+  "@sessionFormModeTimer": {
+    "description": "Timer segment of the log-session mode switch."
+  },
+  "studyTimerActiveTitle": "टाइमर चल रहा है: {course}",
+  "@studyTimerActiveTitle": {
+    "description": "Active timer sheet title. {course} is the timed course name.",
+    "placeholders": {
+      "course": {
+        "type": "String",
+        "example": "Math 101"
+      }
+    }
+  },
+  "studyTimerAlreadyRunning": "एक टाइमर पहले से चल रहा है। पहले उसे समाप्त करें या छोड़ें।",
+  "@studyTimerAlreadyRunning": {
+    "description": "Error when starting a timer while one is already active."
+  },
+  "studyTimerCourseLabel": "कोर्स",
+  "@studyTimerCourseLabel": {
+    "description": "Label of the timer course dropdown."
+  },
+  "studyTimerDiscard": "छोड़ें",
+  "@studyTimerDiscard": {
+    "description": "Discard action on the active timer sheet and banner."
+  },
+  "studyTimerDiscardBody": "वर्तमान टाइमर को दर्ज किए बिना छोड़ें? यह पूर्ववत नहीं होगा।",
+  "@studyTimerDiscardBody": {
+    "description": "Body of the discard-timer confirmation dialog."
+  },
+  "studyTimerDiscardTitle": "टाइमर छोड़ें?",
+  "@studyTimerDiscardTitle": {
+    "description": "Title of the discard-timer confirmation dialog."
+  },
+  "studyTimerFinishLog": "समाप्त करें & {minutes} मिनट दर्ज करें",
+  "@studyTimerFinishLog": {
+    "description": "Finish action with the loggable minutes preview. {minutes} is ceil(elapsed/60).",
+    "placeholders": {
+      "minutes": {
+        "type": "String",
+        "example": "26"
+      }
+    }
+  },
+  "studyTimerNoCourseError": "कोर्स चुनें।",
+  "@studyTimerNoCourseError": {
+    "description": "Form error when starting a timer without picking a course."
+  },
+  "studyTimerNoCoursesHint": "टाइमर शुरू करने के लिए पहले कोर्स जोड़ें।",
+  "@studyTimerNoCoursesHint": {
+    "description": "Hint shown when no courses exist yet and no timer can start."
+  },
+  "studyTimerNotifPaused": "रोका गया · {elapsed}",
+  "@studyTimerNotifPaused": {
+    "description": "Timer notification body while paused. {elapsed} is H:MM:SS.",
+    "placeholders": {
+      "elapsed": {
+        "type": "String",
+        "example": "0:05:12"
+      }
+    }
+  },
+  "studyTimerNotifRunning": "टाइमर खोलने के लिए टैप करें",
+  "@studyTimerNotifRunning": {
+    "description": "Timer notification body while running (chronometer shows the time)."
+  },
+  "studyTimerPause": "रोकें",
+  "@studyTimerPause": {
+    "description": "Pause action on the active timer."
+  },
+  "studyTimerResume": "जारी रखें",
+  "@studyTimerResume": {
+    "description": "Resume action on a paused timer."
+  },
+  "studyTimerStart": "टाइमर शुरू करें",
+  "@studyTimerStart": {
+    "description": "Start-timer action label (dashboard button, sheet button, course menu)."
+  },
+  "studyTimerStartTitle": "अध्ययन टाइमर शुरू करें",
+  "@studyTimerStartTitle": {
+    "description": "Title of the start-timer sheet."
+  },
+  "studyTimerTooShort": "टाइमर अभी चला नहीं है।",
+  "@studyTimerTooShort": {
+    "description": "Error when finishing a timer before a minute is loggable."
   }
 }

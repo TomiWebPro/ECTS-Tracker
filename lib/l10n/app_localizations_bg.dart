@@ -564,10 +564,10 @@ class AppLocalizationsBg extends AppLocalizations {
   String get sessionFormMinutesLabel => 'Минути';
 
   @override
-  String get sessionFormModeManual => 'Manual';
+  String get sessionFormModeManual => 'Ръчно';
 
   @override
-  String get sessionFormModeTimer => 'Timer';
+  String get sessionFormModeTimer => 'Таймер';
 
   @override
   String get sessionFormNoCourseError => 'Избери курс.';
@@ -1156,59 +1156,60 @@ class AppLocalizationsBg extends AppLocalizations {
 
   @override
   String studyTimerActiveTitle(String course) {
-    return 'Timing $course';
+    return 'Таймер: $course';
   }
 
   @override
   String get studyTimerAlreadyRunning =>
-      'A timer is already running. Finish or discard it first.';
+      'Таймерът вече работи. Първо го завърши или отхвърли.';
 
   @override
-  String get studyTimerCourseLabel => 'Course';
+  String get studyTimerCourseLabel => 'Курс';
 
   @override
-  String get studyTimerDiscard => 'Discard';
+  String get studyTimerDiscard => 'Отхвърли';
 
   @override
   String get studyTimerDiscardBody =>
-      'Throw away the current timer without logging? This cannot be undone.';
+      'Да отхвърля ли текущия таймер без запис? Това не може да се отмени.';
 
   @override
-  String get studyTimerDiscardTitle => 'Discard timer?';
+  String get studyTimerDiscardTitle => 'Да отхвърля ли таймера?';
 
   @override
   String studyTimerFinishLog(String minutes) {
-    return 'Finish & log $minutes min';
+    return 'Завърши & запиши $minutes мин';
   }
 
   @override
-  String get studyTimerNoCourseError => 'Select a course.';
+  String get studyTimerNoCourseError => 'Избери курс.';
 
   @override
-  String get studyTimerNoCoursesHint => 'Add a course first to start a timer.';
+  String get studyTimerNoCoursesHint =>
+      'Първо добави курс, за да пуснеш таймер.';
 
   @override
   String studyTimerNotifPaused(String elapsed) {
-    return 'Paused · $elapsed';
+    return 'На пауза · $elapsed';
   }
 
   @override
-  String get studyTimerNotifRunning => 'Tap to open the timer';
+  String get studyTimerNotifRunning => 'Докосни, за да отвориш таймера';
 
   @override
-  String get studyTimerPause => 'Pause';
+  String get studyTimerPause => 'Пауза';
 
   @override
-  String get studyTimerResume => 'Resume';
+  String get studyTimerResume => 'Продължи';
 
   @override
-  String get studyTimerStart => 'Start timer';
+  String get studyTimerStart => 'Пусни таймер';
 
   @override
-  String get studyTimerStartTitle => 'Start study timer';
+  String get studyTimerStartTitle => 'Пусни таймер за учене';
 
   @override
-  String get studyTimerTooShort => 'Timer has not run yet.';
+  String get studyTimerTooShort => 'Таймерът още не е работил.';
 
   @override
   String get validationCourseEctsPositive =>

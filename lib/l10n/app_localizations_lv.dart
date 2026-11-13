@@ -562,10 +562,10 @@ class AppLocalizationsLv extends AppLocalizations {
   String get sessionFormMinutesLabel => 'Minūtes';
 
   @override
-  String get sessionFormModeManual => 'Manual';
+  String get sessionFormModeManual => 'Manuāli';
 
   @override
-  String get sessionFormModeTimer => 'Timer';
+  String get sessionFormModeTimer => 'Taimeris';
 
   @override
   String get sessionFormNoCourseError => 'Izvēlieties kursu.';
@@ -1153,59 +1153,60 @@ class AppLocalizationsLv extends AppLocalizations {
 
   @override
   String studyTimerActiveTitle(String course) {
-    return 'Timing $course';
+    return 'Taimeris $course';
   }
 
   @override
   String get studyTimerAlreadyRunning =>
-      'A timer is already running. Finish or discard it first.';
+      'Taimeris jau darbojas. Vispirms pabeidziet vai atmetiet to.';
 
   @override
-  String get studyTimerCourseLabel => 'Course';
+  String get studyTimerCourseLabel => 'Kurss';
 
   @override
-  String get studyTimerDiscard => 'Discard';
+  String get studyTimerDiscard => 'Atmest';
 
   @override
   String get studyTimerDiscardBody =>
-      'Throw away the current timer without logging? This cannot be undone.';
+      'Atmest pašreizējo taimeri bez reģistrēšanas? Šo nevar atsaukt.';
 
   @override
-  String get studyTimerDiscardTitle => 'Discard timer?';
+  String get studyTimerDiscardTitle => 'Atmest taimeri?';
 
   @override
   String studyTimerFinishLog(String minutes) {
-    return 'Finish & log $minutes min';
+    return 'Pabeigt & reģistrēt $minutes min';
   }
 
   @override
-  String get studyTimerNoCourseError => 'Select a course.';
+  String get studyTimerNoCourseError => 'Izvēlieties kursu.';
 
   @override
-  String get studyTimerNoCoursesHint => 'Add a course first to start a timer.';
+  String get studyTimerNoCoursesHint =>
+      'Vispirms pievienojiet kursu, lai palaistu taimeri.';
 
   @override
   String studyTimerNotifPaused(String elapsed) {
-    return 'Paused · $elapsed';
+    return 'Apturēts · $elapsed';
   }
 
   @override
-  String get studyTimerNotifRunning => 'Tap to open the timer';
+  String get studyTimerNotifRunning => 'Pieskarieties, lai atvērtu taimeri';
 
   @override
-  String get studyTimerPause => 'Pause';
+  String get studyTimerPause => 'Apturēt';
 
   @override
-  String get studyTimerResume => 'Resume';
+  String get studyTimerResume => 'Turpināt';
 
   @override
-  String get studyTimerStart => 'Start timer';
+  String get studyTimerStart => 'Palaist taimeri';
 
   @override
-  String get studyTimerStartTitle => 'Start study timer';
+  String get studyTimerStartTitle => 'Palaist mācību taimeri';
 
   @override
-  String get studyTimerTooShort => 'Timer has not run yet.';
+  String get studyTimerTooShort => 'Taimeris vēl nav darbojies.';
 
   @override
   String get validationCourseEctsPositive => 'ECTS jābūt lielākam par nulli';

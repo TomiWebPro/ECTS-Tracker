@@ -1149,25 +1149,25 @@ class AppLocalizationsPcm extends AppLocalizations {
 
   @override
   String studyTimerActiveTitle(String course) {
-    return 'Timing $course';
+    return 'Timer dey run for $course';
   }
 
   @override
   String get studyTimerAlreadyRunning =>
-      'A timer is already running. Finish or discard it first.';
+      'One timer dey run already. Finish am or throway am first.';
 
   @override
   String get studyTimerCourseLabel => 'Course';
 
   @override
-  String get studyTimerDiscard => 'Discard';
+  String get studyTimerDiscard => 'Throway';
 
   @override
   String get studyTimerDiscardBody =>
-      'Throw away the current timer without logging? This cannot be undone.';
+      'Throway di timer wey dey run witout log? You no fit undo am.';
 
   @override
-  String get studyTimerDiscardTitle => 'Discard timer?';
+  String get studyTimerDiscardTitle => 'Throway timer?';
 
   @override
   String studyTimerFinishLog(String minutes) {
@@ -1175,24 +1175,24 @@ class AppLocalizationsPcm extends AppLocalizations {
   }
 
   @override
-  String get studyTimerNoCourseError => 'Select a course.';
+  String get studyTimerNoCourseError => 'Select course.';
 
   @override
-  String get studyTimerNoCoursesHint => 'Add a course first to start a timer.';
+  String get studyTimerNoCoursesHint => 'Add course first to start timer.';
 
   @override
   String studyTimerNotifPaused(String elapsed) {
-    return 'Paused · $elapsed';
+    return 'Don pause · $elapsed';
   }
 
   @override
-  String get studyTimerNotifRunning => 'Tap to open the timer';
+  String get studyTimerNotifRunning => 'Tap to open timer.';
 
   @override
   String get studyTimerPause => 'Pause';
 
   @override
-  String get studyTimerResume => 'Resume';
+  String get studyTimerResume => 'Continue';
 
   @override
   String get studyTimerStart => 'Start timer';
@@ -1201,7 +1201,7 @@ class AppLocalizationsPcm extends AppLocalizations {
   String get studyTimerStartTitle => 'Start study timer';
 
   @override
-  String get studyTimerTooShort => 'Timer has not run yet.';
+  String get studyTimerTooShort => 'Timer neva run yet.';
 
   @override
   String get validationCourseEctsPositive => 'ECTS must pass zero.';

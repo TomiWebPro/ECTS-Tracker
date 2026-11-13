@@ -563,10 +563,10 @@ class AppLocalizationsCy extends AppLocalizations {
   String get sessionFormMinutesLabel => 'Munudau';
 
   @override
-  String get sessionFormModeManual => 'Manual';
+  String get sessionFormModeManual => 'Â law';
 
   @override
-  String get sessionFormModeTimer => 'Timer';
+  String get sessionFormModeTimer => 'Amserydd';
 
   @override
   String get sessionFormNoCourseError => 'Dewiswch fmodiwl.';
@@ -1157,59 +1157,60 @@ class AppLocalizationsCy extends AppLocalizations {
 
   @override
   String studyTimerActiveTitle(String course) {
-    return 'Timing $course';
+    return 'Amseru $course';
   }
 
   @override
   String get studyTimerAlreadyRunning =>
-      'A timer is already running. Finish or discard it first.';
+      'Mae amserydd yn rhedeg yn barod. Gorffennwch neu taflwch ef yn gyntaf.';
 
   @override
-  String get studyTimerCourseLabel => 'Course';
+  String get studyTimerCourseLabel => 'Modiwl';
 
   @override
-  String get studyTimerDiscard => 'Discard';
+  String get studyTimerDiscard => 'Taflu';
 
   @override
   String get studyTimerDiscardBody =>
-      'Throw away the current timer without logging? This cannot be undone.';
+      'Taflu\'r amserydd presennol heb gofnodi? Ni ellir dadwneud hyn.';
 
   @override
-  String get studyTimerDiscardTitle => 'Discard timer?';
+  String get studyTimerDiscardTitle => 'Taflu\'r amserydd?';
 
   @override
   String studyTimerFinishLog(String minutes) {
-    return 'Finish & log $minutes min';
+    return 'Gorffen & cofnodi $minutes mun';
   }
 
   @override
-  String get studyTimerNoCourseError => 'Select a course.';
+  String get studyTimerNoCourseError => 'Dewiswch fmodiwl.';
 
   @override
-  String get studyTimerNoCoursesHint => 'Add a course first to start a timer.';
+  String get studyTimerNoCoursesHint =>
+      'Ychwanegwch fmodiwl yn gyntaf i ddechrau amserydd.';
 
   @override
   String studyTimerNotifPaused(String elapsed) {
-    return 'Paused · $elapsed';
+    return 'Wedi oedi · $elapsed';
   }
 
   @override
-  String get studyTimerNotifRunning => 'Tap to open the timer';
+  String get studyTimerNotifRunning => 'Tapiwch i agor yr amserydd';
 
   @override
-  String get studyTimerPause => 'Pause';
+  String get studyTimerPause => 'Oedi';
 
   @override
-  String get studyTimerResume => 'Resume';
+  String get studyTimerResume => 'Ail-ddechrau';
 
   @override
-  String get studyTimerStart => 'Start timer';
+  String get studyTimerStart => 'Dechrau amserydd';
 
   @override
-  String get studyTimerStartTitle => 'Start study timer';
+  String get studyTimerStartTitle => 'Dechrau amserydd astudio';
 
   @override
-  String get studyTimerTooShort => 'Timer has not run yet.';
+  String get studyTimerTooShort => 'Nid yw\'r amserydd wedi rhedeg eto.';
 
   @override
   String get validationCourseEctsPositive => 'Rhaid i ECTS fod yn fwy na sero';

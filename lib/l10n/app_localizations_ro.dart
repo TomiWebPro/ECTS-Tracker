@@ -566,7 +566,7 @@ class AppLocalizationsRo extends AppLocalizations {
   String get sessionFormModeManual => 'Manual';
 
   @override
-  String get sessionFormModeTimer => 'Timer';
+  String get sessionFormModeTimer => 'Cronometru';
 
   @override
   String get sessionFormNoCourseError => 'Selectează un curs.';
@@ -1157,59 +1157,60 @@ class AppLocalizationsRo extends AppLocalizations {
 
   @override
   String studyTimerActiveTitle(String course) {
-    return 'Timing $course';
+    return 'Cronometrare $course';
   }
 
   @override
   String get studyTimerAlreadyRunning =>
-      'A timer is already running. Finish or discard it first.';
+      'Un cronometru rulează deja. Termină-l sau renunță la el mai întâi.';
 
   @override
-  String get studyTimerCourseLabel => 'Course';
+  String get studyTimerCourseLabel => 'Curs';
 
   @override
-  String get studyTimerDiscard => 'Discard';
+  String get studyTimerDiscard => 'Renunță';
 
   @override
   String get studyTimerDiscardBody =>
-      'Throw away the current timer without logging? This cannot be undone.';
+      'Renunți la cronometrul actual fără înregistrare? Nu poate fi anulat.';
 
   @override
-  String get studyTimerDiscardTitle => 'Discard timer?';
+  String get studyTimerDiscardTitle => 'Renunți la cronometru?';
 
   @override
   String studyTimerFinishLog(String minutes) {
-    return 'Finish & log $minutes min';
+    return 'Termină & înregistrează $minutes min';
   }
 
   @override
-  String get studyTimerNoCourseError => 'Select a course.';
+  String get studyTimerNoCourseError => 'Selectează un curs.';
 
   @override
-  String get studyTimerNoCoursesHint => 'Add a course first to start a timer.';
+  String get studyTimerNoCoursesHint =>
+      'Adaugă mai întâi un curs pentru a porni un cronometru.';
 
   @override
   String studyTimerNotifPaused(String elapsed) {
-    return 'Paused · $elapsed';
+    return 'În pauză · $elapsed';
   }
 
   @override
-  String get studyTimerNotifRunning => 'Tap to open the timer';
+  String get studyTimerNotifRunning => 'Atinge pentru a deschide cronometrul.';
 
   @override
-  String get studyTimerPause => 'Pause';
+  String get studyTimerPause => 'Pauză';
 
   @override
-  String get studyTimerResume => 'Resume';
+  String get studyTimerResume => 'Continuă';
 
   @override
-  String get studyTimerStart => 'Start timer';
+  String get studyTimerStart => 'Pornește cronometrul';
 
   @override
-  String get studyTimerStartTitle => 'Start study timer';
+  String get studyTimerStartTitle => 'Pornește cronometrul de studiu';
 
   @override
-  String get studyTimerTooShort => 'Timer has not run yet.';
+  String get studyTimerTooShort => 'Cronometrul nu a pornit încă.';
 
   @override
   String get validationCourseEctsPositive =>

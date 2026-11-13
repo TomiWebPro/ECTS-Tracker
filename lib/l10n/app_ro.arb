@@ -2287,5 +2287,95 @@
   "reminderPreviewDemoLabel": "Verificare demo",
   "@reminderPreviewDemoLabel": {
     "description": "Label of the demo one-off custom schedule on the reminder preview page."
+  },
+  "sessionFormModeManual": "Manual",
+  "@sessionFormModeManual": {
+    "description": "Manual-entry segment of the log-session mode switch."
+  },
+  "sessionFormModeTimer": "Cronometru",
+  "@sessionFormModeTimer": {
+    "description": "Timer segment of the log-session mode switch."
+  },
+  "studyTimerActiveTitle": "Cronometrare {course}",
+  "@studyTimerActiveTitle": {
+    "description": "Active timer sheet title. {course} is the timed course name.",
+    "placeholders": {
+      "course": {
+        "type": "String",
+        "example": "Math 101"
+      }
+    }
+  },
+  "studyTimerAlreadyRunning": "Un cronometru rulează deja. Termină-l sau renunță la el mai întâi.",
+  "@studyTimerAlreadyRunning": {
+    "description": "Error when starting a timer while one is already active."
+  },
+  "studyTimerCourseLabel": "Curs",
+  "@studyTimerCourseLabel": {
+    "description": "Label of the timer course dropdown."
+  },
+  "studyTimerDiscard": "Renunță",
+  "@studyTimerDiscard": {
+    "description": "Discard action on the active timer sheet and banner."
+  },
+  "studyTimerDiscardBody": "Renunți la cronometrul actual fără înregistrare? Nu poate fi anulat.",
+  "@studyTimerDiscardBody": {
+    "description": "Body of the discard-timer confirmation dialog."
+  },
+  "studyTimerDiscardTitle": "Renunți la cronometru?",
+  "@studyTimerDiscardTitle": {
+    "description": "Title of the discard-timer confirmation dialog."
+  },
+  "studyTimerFinishLog": "Termină & înregistrează {minutes} min",
+  "@studyTimerFinishLog": {
+    "description": "Finish action with the loggable minutes preview. {minutes} is ceil(elapsed/60).",
+    "placeholders": {
+      "minutes": {
+        "type": "String",
+        "example": "26"
+      }
+    }
+  },
+  "studyTimerNoCourseError": "Selectează un curs.",
+  "@studyTimerNoCourseError": {
+    "description": "Form error when starting a timer without picking a course."
+  },
+  "studyTimerNoCoursesHint": "Adaugă mai întâi un curs pentru a porni un cronometru.",
+  "@studyTimerNoCoursesHint": {
+    "description": "Hint shown when no courses exist yet and no timer can start."
+  },
+  "studyTimerNotifPaused": "În pauză · {elapsed}",
+  "@studyTimerNotifPaused": {
+    "description": "Timer notification body while paused. {elapsed} is H:MM:SS.",
+    "placeholders": {
+      "elapsed": {
+        "type": "String",
+        "example": "0:05:12"
+      }
+    }
+  },
+  "studyTimerNotifRunning": "Atinge pentru a deschide cronometrul.",
+  "@studyTimerNotifRunning": {
+    "description": "Timer notification body while running (chronometer shows the time)."
+  },
+  "studyTimerPause": "Pauză",
+  "@studyTimerPause": {
+    "description": "Pause action on the active timer."
+  },
+  "studyTimerResume": "Continuă",
+  "@studyTimerResume": {
+    "description": "Resume action on a paused timer."
+  },
+  "studyTimerStart": "Pornește cronometrul",
+  "@studyTimerStart": {
+    "description": "Start-timer action label (dashboard button, sheet button, course menu)."
+  },
+  "studyTimerStartTitle": "Pornește cronometrul de studiu",
+  "@studyTimerStartTitle": {
+    "description": "Title of the start-timer sheet."
+  },
+  "studyTimerTooShort": "Cronometrul nu a pornit încă.",
+  "@studyTimerTooShort": {
+    "description": "Error when finishing a timer before a minute is loggable."
   }
 }

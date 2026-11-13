@@ -2287,5 +2287,95 @@
   "reminderPreviewDemoLabel": "Check-in demo",
   "@reminderPreviewDemoLabel": {
     "description": "Label of the demo one-off custom schedule on the reminder preview page."
+  },
+  "sessionFormModeManual": "Manwal",
+  "@sessionFormModeManual": {
+    "description": "Manual-entry segment of the log-session mode switch."
+  },
+  "sessionFormModeTimer": "Tajmer",
+  "@sessionFormModeTimer": {
+    "description": "Timer segment of the log-session mode switch."
+  },
+  "studyTimerActiveTitle": "Qed ikejjel {course}",
+  "@studyTimerActiveTitle": {
+    "description": "Active timer sheet title. {course} is the timed course name.",
+    "placeholders": {
+      "course": {
+        "type": "String",
+        "example": "Math 101"
+      }
+    }
+  },
+  "studyTimerAlreadyRunning": "Diġà hemm tajmer għaddej. Lestuh jew armih l-ewwel.",
+  "@studyTimerAlreadyRunning": {
+    "description": "Error when starting a timer while one is already active."
+  },
+  "studyTimerCourseLabel": "Kors",
+  "@studyTimerCourseLabel": {
+    "description": "Label of the timer course dropdown."
+  },
+  "studyTimerDiscard": "Armi",
+  "@studyTimerDiscard": {
+    "description": "Discard action on the active timer sheet and banner."
+  },
+  "studyTimerDiscardBody": "Tarmi t-tajmer attwali mingħajr ma tirreġistrah? Dan ma jistax jitneħħa.",
+  "@studyTimerDiscardBody": {
+    "description": "Body of the discard-timer confirmation dialog."
+  },
+  "studyTimerDiscardTitle": "Tarmi t-tajmer?",
+  "@studyTimerDiscardTitle": {
+    "description": "Title of the discard-timer confirmation dialog."
+  },
+  "studyTimerFinishLog": "Lesti & irreġistra {minutes} min",
+  "@studyTimerFinishLog": {
+    "description": "Finish action with the loggable minutes preview. {minutes} is ceil(elapsed/60).",
+    "placeholders": {
+      "minutes": {
+        "type": "String",
+        "example": "26"
+      }
+    }
+  },
+  "studyTimerNoCourseError": "Agħżel kors.",
+  "@studyTimerNoCourseError": {
+    "description": "Form error when starting a timer without picking a course."
+  },
+  "studyTimerNoCoursesHint": "Żid kors l-ewwel biex tħaddem tajmer.",
+  "@studyTimerNoCoursesHint": {
+    "description": "Hint shown when no courses exist yet and no timer can start."
+  },
+  "studyTimerNotifPaused": "Pawsa · {elapsed}",
+  "@studyTimerNotifPaused": {
+    "description": "Timer notification body while paused. {elapsed} is H:MM:SS.",
+    "placeholders": {
+      "elapsed": {
+        "type": "String",
+        "example": "0:05:12"
+      }
+    }
+  },
+  "studyTimerNotifRunning": "Tektek biex tiftaħ it-tajmer",
+  "@studyTimerNotifRunning": {
+    "description": "Timer notification body while running (chronometer shows the time)."
+  },
+  "studyTimerPause": "Pawsa",
+  "@studyTimerPause": {
+    "description": "Pause action on the active timer."
+  },
+  "studyTimerResume": "Kompli",
+  "@studyTimerResume": {
+    "description": "Resume action on a paused timer."
+  },
+  "studyTimerStart": "Ħaddem tajmer",
+  "@studyTimerStart": {
+    "description": "Start-timer action label (dashboard button, sheet button, course menu)."
+  },
+  "studyTimerStartTitle": "Ħaddem tajmer tal-istudju",
+  "@studyTimerStartTitle": {
+    "description": "Title of the start-timer sheet."
+  },
+  "studyTimerTooShort": "It-tajmer għadu ma ħadimx.",
+  "@studyTimerTooShort": {
+    "description": "Error when finishing a timer before a minute is loggable."
   }
 }

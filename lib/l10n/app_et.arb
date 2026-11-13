@@ -2287,5 +2287,95 @@
   "reminderPreviewDemoLabel": "Demo-kontroll",
   "@reminderPreviewDemoLabel": {
     "description": "Label of the demo one-off custom schedule on the reminder preview page."
+  },
+  "sessionFormModeManual": "Käsitsi",
+  "@sessionFormModeManual": {
+    "description": "Manual-entry segment of the log-session mode switch."
+  },
+  "sessionFormModeTimer": "Taimer",
+  "@sessionFormModeTimer": {
+    "description": "Timer segment of the log-session mode switch."
+  },
+  "studyTimerActiveTitle": "Taimer: {course}",
+  "@studyTimerActiveTitle": {
+    "description": "Active timer sheet title. {course} is the timed course name.",
+    "placeholders": {
+      "course": {
+        "type": "String",
+        "example": "Math 101"
+      }
+    }
+  },
+  "studyTimerAlreadyRunning": "Taimer juba töötab. Lõpeta see või loobu sellest esmalt.",
+  "@studyTimerAlreadyRunning": {
+    "description": "Error when starting a timer while one is already active."
+  },
+  "studyTimerCourseLabel": "Kursus",
+  "@studyTimerCourseLabel": {
+    "description": "Label of the timer course dropdown."
+  },
+  "studyTimerDiscard": "Loobu",
+  "@studyTimerDiscard": {
+    "description": "Discard action on the active timer sheet and banner."
+  },
+  "studyTimerDiscardBody": "Visata praegune taimer minema ilma logimata? Seda ei saa tagasi võtta.",
+  "@studyTimerDiscardBody": {
+    "description": "Body of the discard-timer confirmation dialog."
+  },
+  "studyTimerDiscardTitle": "Loobuda taimerist?",
+  "@studyTimerDiscardTitle": {
+    "description": "Title of the discard-timer confirmation dialog."
+  },
+  "studyTimerFinishLog": "Lõpeta & logi {minutes} min",
+  "@studyTimerFinishLog": {
+    "description": "Finish action with the loggable minutes preview. {minutes} is ceil(elapsed/60).",
+    "placeholders": {
+      "minutes": {
+        "type": "String",
+        "example": "26"
+      }
+    }
+  },
+  "studyTimerNoCourseError": "Vali kursus.",
+  "@studyTimerNoCourseError": {
+    "description": "Form error when starting a timer without picking a course."
+  },
+  "studyTimerNoCoursesHint": "Taimeri käivitamiseks lisa esmalt kursus.",
+  "@studyTimerNoCoursesHint": {
+    "description": "Hint shown when no courses exist yet and no timer can start."
+  },
+  "studyTimerNotifPaused": "Pausil · {elapsed}",
+  "@studyTimerNotifPaused": {
+    "description": "Timer notification body while paused. {elapsed} is H:MM:SS.",
+    "placeholders": {
+      "elapsed": {
+        "type": "String",
+        "example": "0:05:12"
+      }
+    }
+  },
+  "studyTimerNotifRunning": "Taimeri avamiseks puuduta",
+  "@studyTimerNotifRunning": {
+    "description": "Timer notification body while running (chronometer shows the time)."
+  },
+  "studyTimerPause": "Peata",
+  "@studyTimerPause": {
+    "description": "Pause action on the active timer."
+  },
+  "studyTimerResume": "Jätka",
+  "@studyTimerResume": {
+    "description": "Resume action on a paused timer."
+  },
+  "studyTimerStart": "Käivita taimer",
+  "@studyTimerStart": {
+    "description": "Start-timer action label (dashboard button, sheet button, course menu)."
+  },
+  "studyTimerStartTitle": "Alusta õppetaimer",
+  "@studyTimerStartTitle": {
+    "description": "Title of the start-timer sheet."
+  },
+  "studyTimerTooShort": "Taimer pole veel käinud.",
+  "@studyTimerTooShort": {
+    "description": "Error when finishing a timer before a minute is loggable."
   }
 }

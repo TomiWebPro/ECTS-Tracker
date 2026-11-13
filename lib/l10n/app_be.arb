@@ -2287,5 +2287,95 @@
   "reminderPreviewDemoLabel": "Дэма-напамін",
   "@reminderPreviewDemoLabel": {
     "description": "Label of the demo one-off custom schedule on the reminder preview page."
+  },
+  "sessionFormModeManual": "Уручную",
+  "@sessionFormModeManual": {
+    "description": "Manual-entry segment of the log-session mode switch."
+  },
+  "sessionFormModeTimer": "Таймер",
+  "@sessionFormModeTimer": {
+    "description": "Timer segment of the log-session mode switch."
+  },
+  "studyTimerActiveTitle": "Таймер: {course}",
+  "@studyTimerActiveTitle": {
+    "description": "Active timer sheet title. {course} is the timed course name.",
+    "placeholders": {
+      "course": {
+        "type": "String",
+        "example": "Math 101"
+      }
+    }
+  },
+  "studyTimerAlreadyRunning": "Таймер ужо запушчаны. Спачатку завершыце або адкіньце яго.",
+  "@studyTimerAlreadyRunning": {
+    "description": "Error when starting a timer while one is already active."
+  },
+  "studyTimerCourseLabel": "Курс",
+  "@studyTimerCourseLabel": {
+    "description": "Label of the timer course dropdown."
+  },
+  "studyTimerDiscard": "Адкінуць",
+  "@studyTimerDiscard": {
+    "description": "Discard action on the active timer sheet and banner."
+  },
+  "studyTimerDiscardBody": "Адкінуць бягучы таймер без запісу? Гэта нельга адмяніць.",
+  "@studyTimerDiscardBody": {
+    "description": "Body of the discard-timer confirmation dialog."
+  },
+  "studyTimerDiscardTitle": "Адкінуць таймер?",
+  "@studyTimerDiscardTitle": {
+    "description": "Title of the discard-timer confirmation dialog."
+  },
+  "studyTimerFinishLog": "Завяршыць & запісаць {minutes} хв",
+  "@studyTimerFinishLog": {
+    "description": "Finish action with the loggable minutes preview. {minutes} is ceil(elapsed/60).",
+    "placeholders": {
+      "minutes": {
+        "type": "String",
+        "example": "26"
+      }
+    }
+  },
+  "studyTimerNoCourseError": "Выберыце курс.",
+  "@studyTimerNoCourseError": {
+    "description": "Form error when starting a timer without picking a course."
+  },
+  "studyTimerNoCoursesHint": "Спачатку дадайце курс, каб запусціць таймер.",
+  "@studyTimerNoCoursesHint": {
+    "description": "Hint shown when no courses exist yet and no timer can start."
+  },
+  "studyTimerNotifPaused": "Паўза · {elapsed}",
+  "@studyTimerNotifPaused": {
+    "description": "Timer notification body while paused. {elapsed} is H:MM:SS.",
+    "placeholders": {
+      "elapsed": {
+        "type": "String",
+        "example": "0:05:12"
+      }
+    }
+  },
+  "studyTimerNotifRunning": "Націсніце, каб адкрыць таймер",
+  "@studyTimerNotifRunning": {
+    "description": "Timer notification body while running (chronometer shows the time)."
+  },
+  "studyTimerPause": "Паўза",
+  "@studyTimerPause": {
+    "description": "Pause action on the active timer."
+  },
+  "studyTimerResume": "Працягнуць",
+  "@studyTimerResume": {
+    "description": "Resume action on a paused timer."
+  },
+  "studyTimerStart": "Запусціць таймер",
+  "@studyTimerStart": {
+    "description": "Start-timer action label (dashboard button, sheet button, course menu)."
+  },
+  "studyTimerStartTitle": "Запусціць таймер вучобы",
+  "@studyTimerStartTitle": {
+    "description": "Title of the start-timer sheet."
+  },
+  "studyTimerTooShort": "Таймер яшчэ не працаваў.",
+  "@studyTimerTooShort": {
+    "description": "Error when finishing a timer before a minute is loggable."
   }
 }

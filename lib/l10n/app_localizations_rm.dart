@@ -1155,59 +1155,60 @@ class AppLocalizationsRm extends AppLocalizations {
 
   @override
   String studyTimerActiveTitle(String course) {
-    return 'Timing $course';
+    return 'Mesirar temp: $course';
   }
 
   @override
   String get studyTimerAlreadyRunning =>
-      'A timer is already running. Finish or discard it first.';
+      'In timer è gia activ. Finescha u sbietta el l\'emprim.';
 
   @override
-  String get studyTimerCourseLabel => 'Course';
+  String get studyTimerCourseLabel => 'Curs';
 
   @override
-  String get studyTimerDiscard => 'Discard';
+  String get studyTimerDiscard => 'Sbittar';
 
   @override
   String get studyTimerDiscardBody =>
-      'Throw away the current timer without logging? This cannot be undone.';
+      'Sbittar il timer actual senza protocollar? Quai na po betg vegnir revocà.';
 
   @override
-  String get studyTimerDiscardTitle => 'Discard timer?';
+  String get studyTimerDiscardTitle => 'Sbittar il timer?';
 
   @override
   String studyTimerFinishLog(String minutes) {
-    return 'Finish & log $minutes min';
+    return 'Finir & protocollar $minutes min';
   }
 
   @override
-  String get studyTimerNoCourseError => 'Select a course.';
+  String get studyTimerNoCourseError => 'Tscherna in curs.';
 
   @override
-  String get studyTimerNoCoursesHint => 'Add a course first to start a timer.';
+  String get studyTimerNoCoursesHint =>
+      'Agiunta l\'emprim in curs per aviar in timer.';
 
   @override
   String studyTimerNotifPaused(String elapsed) {
-    return 'Paused · $elapsed';
+    return 'En pausa · $elapsed';
   }
 
   @override
-  String get studyTimerNotifRunning => 'Tap to open the timer';
+  String get studyTimerNotifRunning => 'Toca per avrir il timer.';
 
   @override
-  String get studyTimerPause => 'Pause';
+  String get studyTimerPause => 'Pausa';
 
   @override
-  String get studyTimerResume => 'Resume';
+  String get studyTimerResume => 'Cuntinuar';
 
   @override
-  String get studyTimerStart => 'Start timer';
+  String get studyTimerStart => 'Aviar il timer';
 
   @override
-  String get studyTimerStartTitle => 'Start study timer';
+  String get studyTimerStartTitle => 'Aviar il timer da studi';
 
   @override
-  String get studyTimerTooShort => 'Timer has not run yet.';
+  String get studyTimerTooShort => 'Il timer n\'è anc betg currì.';
 
   @override
   String get validationCourseEctsPositive =>

@@ -561,10 +561,10 @@ class AppLocalizationsBn extends AppLocalizations {
   String get sessionFormMinutesLabel => 'মিনিট';
 
   @override
-  String get sessionFormModeManual => 'Manual';
+  String get sessionFormModeManual => 'ম্যানুয়াল';
 
   @override
-  String get sessionFormModeTimer => 'Timer';
+  String get sessionFormModeTimer => 'টাইমার';
 
   @override
   String get sessionFormNoCourseError => 'একটি কোর্স বেছে নিন।';
@@ -1149,59 +1149,60 @@ class AppLocalizationsBn extends AppLocalizations {
 
   @override
   String studyTimerActiveTitle(String course) {
-    return 'Timing $course';
+    return 'টাইমার: $course';
   }
 
   @override
   String get studyTimerAlreadyRunning =>
-      'A timer is already running. Finish or discard it first.';
+      'একটি টাইমার ইতিমধ্যে চলছে। আগে এটি শেষ করুন বা বাতিল করুন।';
 
   @override
-  String get studyTimerCourseLabel => 'Course';
+  String get studyTimerCourseLabel => 'কোর্স';
 
   @override
-  String get studyTimerDiscard => 'Discard';
+  String get studyTimerDiscard => 'বাতিল করুন';
 
   @override
   String get studyTimerDiscardBody =>
-      'Throw away the current timer without logging? This cannot be undone.';
+      'বর্তমান টাইমার লগ না করে ফেলে দেবেন? এটি পূর্বাবস্থায় ফেরানো যাবে না।';
 
   @override
-  String get studyTimerDiscardTitle => 'Discard timer?';
+  String get studyTimerDiscardTitle => 'টাইমার বাতিল করবেন?';
 
   @override
   String studyTimerFinishLog(String minutes) {
-    return 'Finish & log $minutes min';
+    return 'শেষ করুন & $minutes মিনিট লগ করুন';
   }
 
   @override
-  String get studyTimerNoCourseError => 'Select a course.';
+  String get studyTimerNoCourseError => 'একটি কোর্স বেছে নিন।';
 
   @override
-  String get studyTimerNoCoursesHint => 'Add a course first to start a timer.';
+  String get studyTimerNoCoursesHint =>
+      'টাইমার চালু করতে আগে একটি কোর্স যোগ করুন।';
 
   @override
   String studyTimerNotifPaused(String elapsed) {
-    return 'Paused · $elapsed';
+    return 'বিরতিতে আছে · $elapsed';
   }
 
   @override
-  String get studyTimerNotifRunning => 'Tap to open the timer';
+  String get studyTimerNotifRunning => 'টাইমার খুলতে ট্যাপ করুন';
 
   @override
-  String get studyTimerPause => 'Pause';
+  String get studyTimerPause => 'বিরতি';
 
   @override
-  String get studyTimerResume => 'Resume';
+  String get studyTimerResume => 'আবার শুরু';
 
   @override
-  String get studyTimerStart => 'Start timer';
+  String get studyTimerStart => 'টাইমার চালু করুন';
 
   @override
-  String get studyTimerStartTitle => 'Start study timer';
+  String get studyTimerStartTitle => 'পড়াশোনার টাইমার চালু করুন';
 
   @override
-  String get studyTimerTooShort => 'Timer has not run yet.';
+  String get studyTimerTooShort => 'টাইমার এখনো চলেনি।';
 
   @override
   String get validationCourseEctsPositive => 'ECTS শূন্যের বেশি হতে হবে';

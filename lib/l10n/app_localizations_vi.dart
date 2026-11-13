@@ -560,10 +560,10 @@ class AppLocalizationsVi extends AppLocalizations {
   String get sessionFormMinutesLabel => 'Phút';
 
   @override
-  String get sessionFormModeManual => 'Manual';
+  String get sessionFormModeManual => 'Thủ công';
 
   @override
-  String get sessionFormModeTimer => 'Timer';
+  String get sessionFormModeTimer => 'Bấm giờ';
 
   @override
   String get sessionFormNoCourseError => 'Hãy chọn môn học.';
@@ -1146,59 +1146,60 @@ class AppLocalizationsVi extends AppLocalizations {
 
   @override
   String studyTimerActiveTitle(String course) {
-    return 'Timing $course';
+    return 'Đang bấm giờ $course';
   }
 
   @override
   String get studyTimerAlreadyRunning =>
-      'A timer is already running. Finish or discard it first.';
+      'Đồng hồ bấm giờ đang chạy. Hãy kết thúc hoặc hủy bỏ nó trước.';
 
   @override
-  String get studyTimerCourseLabel => 'Course';
+  String get studyTimerCourseLabel => 'Môn học';
 
   @override
-  String get studyTimerDiscard => 'Discard';
+  String get studyTimerDiscard => 'Hủy bỏ';
 
   @override
   String get studyTimerDiscardBody =>
-      'Throw away the current timer without logging? This cannot be undone.';
+      'Hủy bỏ đồng hồ hiện tại mà không ghi lại? Không thể hoàn tác.';
 
   @override
-  String get studyTimerDiscardTitle => 'Discard timer?';
+  String get studyTimerDiscardTitle => 'Hủy bỏ bấm giờ?';
 
   @override
   String studyTimerFinishLog(String minutes) {
-    return 'Finish & log $minutes min';
+    return 'Kết thúc & ghi $minutes phút';
   }
 
   @override
-  String get studyTimerNoCourseError => 'Select a course.';
+  String get studyTimerNoCourseError => 'Hãy chọn môn học.';
 
   @override
-  String get studyTimerNoCoursesHint => 'Add a course first to start a timer.';
+  String get studyTimerNoCoursesHint =>
+      'Hãy thêm môn học trước để bắt đầu bấm giờ.';
 
   @override
   String studyTimerNotifPaused(String elapsed) {
-    return 'Paused · $elapsed';
+    return 'Đã tạm dừng · $elapsed';
   }
 
   @override
-  String get studyTimerNotifRunning => 'Tap to open the timer';
+  String get studyTimerNotifRunning => 'Chạm để mở đồng hồ';
 
   @override
-  String get studyTimerPause => 'Pause';
+  String get studyTimerPause => 'Tạm dừng';
 
   @override
-  String get studyTimerResume => 'Resume';
+  String get studyTimerResume => 'Tiếp tục';
 
   @override
-  String get studyTimerStart => 'Start timer';
+  String get studyTimerStart => 'Bắt đầu bấm giờ';
 
   @override
-  String get studyTimerStartTitle => 'Start study timer';
+  String get studyTimerStartTitle => 'Bắt đầu đồng hồ học tập';
 
   @override
-  String get studyTimerTooShort => 'Timer has not run yet.';
+  String get studyTimerTooShort => 'Đồng hồ chưa chạy.';
 
   @override
   String get validationCourseEctsPositive => 'ECTS phải lớn hơn 0';

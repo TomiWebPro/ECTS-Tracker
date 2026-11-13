@@ -562,10 +562,10 @@ class AppLocalizationsAz extends AppLocalizations {
   String get sessionFormMinutesLabel => 'Dəqiqə';
 
   @override
-  String get sessionFormModeManual => 'Manual';
+  String get sessionFormModeManual => 'Əl ilə';
 
   @override
-  String get sessionFormModeTimer => 'Timer';
+  String get sessionFormModeTimer => 'Taymer';
 
   @override
   String get sessionFormNoCourseError => 'Fənn seçin.';
@@ -1154,59 +1154,60 @@ class AppLocalizationsAz extends AppLocalizations {
 
   @override
   String studyTimerActiveTitle(String course) {
-    return 'Timing $course';
+    return 'Taymer: $course';
   }
 
   @override
   String get studyTimerAlreadyRunning =>
-      'A timer is already running. Finish or discard it first.';
+      'Taymer artıq işləyir. Əvvəlcə onu bitir və ya ləğv et.';
 
   @override
-  String get studyTimerCourseLabel => 'Course';
+  String get studyTimerCourseLabel => 'Fənn';
 
   @override
-  String get studyTimerDiscard => 'Discard';
+  String get studyTimerDiscard => 'Ləğv et';
 
   @override
   String get studyTimerDiscardBody =>
-      'Throw away the current timer without logging? This cannot be undone.';
+      'Cari taymeri qeyd etmədən ləğv edilsin? Bu geri qaytarılmır.';
 
   @override
-  String get studyTimerDiscardTitle => 'Discard timer?';
+  String get studyTimerDiscardTitle => 'Taymer ləğv edilsin?';
 
   @override
   String studyTimerFinishLog(String minutes) {
-    return 'Finish & log $minutes min';
+    return 'Bitir & $minutes dəq. qeyd et';
   }
 
   @override
-  String get studyTimerNoCourseError => 'Select a course.';
+  String get studyTimerNoCourseError => 'Fənn seçin.';
 
   @override
-  String get studyTimerNoCoursesHint => 'Add a course first to start a timer.';
+  String get studyTimerNoCoursesHint =>
+      'Taymer başlatmaq üçün əvvəlcə fənn əlavə edin.';
 
   @override
   String studyTimerNotifPaused(String elapsed) {
-    return 'Paused · $elapsed';
+    return 'Dayandırıldı · $elapsed';
   }
 
   @override
-  String get studyTimerNotifRunning => 'Tap to open the timer';
+  String get studyTimerNotifRunning => 'Taymeri açmaq üçün toxun';
 
   @override
-  String get studyTimerPause => 'Pause';
+  String get studyTimerPause => 'Dayandır';
 
   @override
-  String get studyTimerResume => 'Resume';
+  String get studyTimerResume => 'Davam et';
 
   @override
-  String get studyTimerStart => 'Start timer';
+  String get studyTimerStart => 'Taymeri başlat';
 
   @override
-  String get studyTimerStartTitle => 'Start study timer';
+  String get studyTimerStartTitle => 'Tədris taymerini başlat';
 
   @override
-  String get studyTimerTooShort => 'Timer has not run yet.';
+  String get studyTimerTooShort => 'Taymer hələ işləməyib.';
 
   @override
   String get validationCourseEctsPositive => 'AKTS sıfırdan böyük olmalıdır';

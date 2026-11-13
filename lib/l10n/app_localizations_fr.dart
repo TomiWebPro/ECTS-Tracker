@@ -561,10 +561,10 @@ class AppLocalizationsFr extends AppLocalizations {
   String get sessionFormMinutesLabel => 'Minutes';
 
   @override
-  String get sessionFormModeManual => 'Manual';
+  String get sessionFormModeManual => 'Manuel';
 
   @override
-  String get sessionFormModeTimer => 'Timer';
+  String get sessionFormModeTimer => 'Minuteur';
 
   @override
   String get sessionFormNoCourseError => 'Sélectionnez un cours.';
@@ -1155,59 +1155,60 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String studyTimerActiveTitle(String course) {
-    return 'Timing $course';
+    return 'Minuteur : $course';
   }
 
   @override
   String get studyTimerAlreadyRunning =>
-      'A timer is already running. Finish or discard it first.';
+      'Un minuteur est déjà en cours. Terminez-le ou abandonnez-le d\'abord.';
 
   @override
-  String get studyTimerCourseLabel => 'Course';
+  String get studyTimerCourseLabel => 'Cours';
 
   @override
-  String get studyTimerDiscard => 'Discard';
+  String get studyTimerDiscard => 'Abandonner';
 
   @override
   String get studyTimerDiscardBody =>
-      'Throw away the current timer without logging? This cannot be undone.';
+      'Abandonner le minuteur actuel sans l\'enregistrer ? Cette action est irréversible.';
 
   @override
-  String get studyTimerDiscardTitle => 'Discard timer?';
+  String get studyTimerDiscardTitle => 'Abandonner le minuteur ?';
 
   @override
   String studyTimerFinishLog(String minutes) {
-    return 'Finish & log $minutes min';
+    return 'Terminer & enregistrer $minutes min';
   }
 
   @override
-  String get studyTimerNoCourseError => 'Select a course.';
+  String get studyTimerNoCourseError => 'Sélectionnez un cours.';
 
   @override
-  String get studyTimerNoCoursesHint => 'Add a course first to start a timer.';
+  String get studyTimerNoCoursesHint =>
+      'Ajoutez d\'abord un cours pour démarrer un minuteur.';
 
   @override
   String studyTimerNotifPaused(String elapsed) {
-    return 'Paused · $elapsed';
+    return 'En pause · $elapsed';
   }
 
   @override
-  String get studyTimerNotifRunning => 'Tap to open the timer';
+  String get studyTimerNotifRunning => 'Touchez pour ouvrir le minuteur';
 
   @override
   String get studyTimerPause => 'Pause';
 
   @override
-  String get studyTimerResume => 'Resume';
+  String get studyTimerResume => 'Reprendre';
 
   @override
-  String get studyTimerStart => 'Start timer';
+  String get studyTimerStart => 'Démarrer le minuteur';
 
   @override
-  String get studyTimerStartTitle => 'Start study timer';
+  String get studyTimerStartTitle => 'Démarrer le minuteur d\'étude';
 
   @override
-  String get studyTimerTooShort => 'Timer has not run yet.';
+  String get studyTimerTooShort => 'Le minuteur n\'a pas encore tourné.';
 
   @override
   String get validationCourseEctsPositive =>

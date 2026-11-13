@@ -561,10 +561,10 @@ class AppLocalizationsEt extends AppLocalizations {
   String get sessionFormMinutesLabel => 'Minutid';
 
   @override
-  String get sessionFormModeManual => 'Manual';
+  String get sessionFormModeManual => 'Käsitsi';
 
   @override
-  String get sessionFormModeTimer => 'Timer';
+  String get sessionFormModeTimer => 'Taimer';
 
   @override
   String get sessionFormNoCourseError => 'Vali kursus.';
@@ -1150,59 +1150,60 @@ class AppLocalizationsEt extends AppLocalizations {
 
   @override
   String studyTimerActiveTitle(String course) {
-    return 'Timing $course';
+    return 'Taimer: $course';
   }
 
   @override
   String get studyTimerAlreadyRunning =>
-      'A timer is already running. Finish or discard it first.';
+      'Taimer juba töötab. Lõpeta see või loobu sellest esmalt.';
 
   @override
-  String get studyTimerCourseLabel => 'Course';
+  String get studyTimerCourseLabel => 'Kursus';
 
   @override
-  String get studyTimerDiscard => 'Discard';
+  String get studyTimerDiscard => 'Loobu';
 
   @override
   String get studyTimerDiscardBody =>
-      'Throw away the current timer without logging? This cannot be undone.';
+      'Visata praegune taimer minema ilma logimata? Seda ei saa tagasi võtta.';
 
   @override
-  String get studyTimerDiscardTitle => 'Discard timer?';
+  String get studyTimerDiscardTitle => 'Loobuda taimerist?';
 
   @override
   String studyTimerFinishLog(String minutes) {
-    return 'Finish & log $minutes min';
+    return 'Lõpeta & logi $minutes min';
   }
 
   @override
-  String get studyTimerNoCourseError => 'Select a course.';
+  String get studyTimerNoCourseError => 'Vali kursus.';
 
   @override
-  String get studyTimerNoCoursesHint => 'Add a course first to start a timer.';
+  String get studyTimerNoCoursesHint =>
+      'Taimeri käivitamiseks lisa esmalt kursus.';
 
   @override
   String studyTimerNotifPaused(String elapsed) {
-    return 'Paused · $elapsed';
+    return 'Pausil · $elapsed';
   }
 
   @override
-  String get studyTimerNotifRunning => 'Tap to open the timer';
+  String get studyTimerNotifRunning => 'Taimeri avamiseks puuduta';
 
   @override
-  String get studyTimerPause => 'Pause';
+  String get studyTimerPause => 'Peata';
 
   @override
-  String get studyTimerResume => 'Resume';
+  String get studyTimerResume => 'Jätka';
 
   @override
-  String get studyTimerStart => 'Start timer';
+  String get studyTimerStart => 'Käivita taimer';
 
   @override
-  String get studyTimerStartTitle => 'Start study timer';
+  String get studyTimerStartTitle => 'Alusta õppetaimer';
 
   @override
-  String get studyTimerTooShort => 'Timer has not run yet.';
+  String get studyTimerTooShort => 'Taimer pole veel käinud.';
 
   @override
   String get validationCourseEctsPositive => 'ECTS peab olema suurem kui null';

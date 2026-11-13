@@ -564,10 +564,10 @@ class AppLocalizationsEu extends AppLocalizations {
   String get sessionFormMinutesLabel => 'Minutuak';
 
   @override
-  String get sessionFormModeManual => 'Manual';
+  String get sessionFormModeManual => 'Eskuz';
 
   @override
-  String get sessionFormModeTimer => 'Timer';
+  String get sessionFormModeTimer => 'Tenporizadorea';
 
   @override
   String get sessionFormNoCourseError => 'Aukeratu ikasgai bat.';
@@ -1157,59 +1157,61 @@ class AppLocalizationsEu extends AppLocalizations {
 
   @override
   String studyTimerActiveTitle(String course) {
-    return 'Timing $course';
+    return 'Kronometratzen: $course';
   }
 
   @override
   String get studyTimerAlreadyRunning =>
-      'A timer is already running. Finish or discard it first.';
+      'Tenporizadore bat martxan dago jada. Amaitu edo baztertu ezazu lehenik.';
 
   @override
-  String get studyTimerCourseLabel => 'Course';
+  String get studyTimerCourseLabel => 'Ikasgaia';
 
   @override
-  String get studyTimerDiscard => 'Discard';
+  String get studyTimerDiscard => 'Baztertu';
 
   @override
   String get studyTimerDiscardBody =>
-      'Throw away the current timer without logging? This cannot be undone.';
+      'Baztertu uneko tenporizadorea erregistratu gabe? Ezin da desegin.';
 
   @override
-  String get studyTimerDiscardTitle => 'Discard timer?';
+  String get studyTimerDiscardTitle => 'Baztertu tenporizadorea?';
 
   @override
   String studyTimerFinishLog(String minutes) {
-    return 'Finish & log $minutes min';
+    return 'Amaitu & erregistratu $minutes min';
   }
 
   @override
-  String get studyTimerNoCourseError => 'Select a course.';
+  String get studyTimerNoCourseError => 'Aukeratu ikasgai bat.';
 
   @override
-  String get studyTimerNoCoursesHint => 'Add a course first to start a timer.';
+  String get studyTimerNoCoursesHint =>
+      'Gehitu ikasgai bat lehenik tenporizadorea hasteko.';
 
   @override
   String studyTimerNotifPaused(String elapsed) {
-    return 'Paused · $elapsed';
+    return 'Pausatuta · $elapsed';
   }
 
   @override
-  String get studyTimerNotifRunning => 'Tap to open the timer';
+  String get studyTimerNotifRunning => 'Sakatu tenporizadorea irekitzeko';
 
   @override
-  String get studyTimerPause => 'Pause';
+  String get studyTimerPause => 'Pausatu';
 
   @override
-  String get studyTimerResume => 'Resume';
+  String get studyTimerResume => 'Jarraitu';
 
   @override
-  String get studyTimerStart => 'Start timer';
+  String get studyTimerStart => 'Hasi tenporizadorea';
 
   @override
-  String get studyTimerStartTitle => 'Start study timer';
+  String get studyTimerStartTitle => 'Hasi ikasketa-tenporizadorea';
 
   @override
-  String get studyTimerTooShort => 'Timer has not run yet.';
+  String get studyTimerTooShort =>
+      'Tenporizadoreak oraindik ez du denborarik neurtu.';
 
   @override
   String get validationCourseEctsPositive =>

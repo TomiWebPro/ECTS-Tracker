@@ -551,10 +551,10 @@ class AppLocalizationsKo extends AppLocalizations {
   String get sessionFormMinutesLabel => '분';
 
   @override
-  String get sessionFormModeManual => 'Manual';
+  String get sessionFormModeManual => '수동';
 
   @override
-  String get sessionFormModeTimer => 'Timer';
+  String get sessionFormModeTimer => '타이머';
 
   @override
   String get sessionFormNoCourseError => '과목을 선택하세요.';
@@ -1130,59 +1130,57 @@ class AppLocalizationsKo extends AppLocalizations {
 
   @override
   String studyTimerActiveTitle(String course) {
-    return 'Timing $course';
+    return '$course 측정 중';
   }
 
   @override
-  String get studyTimerAlreadyRunning =>
-      'A timer is already running. Finish or discard it first.';
+  String get studyTimerAlreadyRunning => '이미 실행 중인 타이머가 있습니다. 먼저 완료하거나 버리세요.';
 
   @override
-  String get studyTimerCourseLabel => 'Course';
+  String get studyTimerCourseLabel => '과목';
 
   @override
-  String get studyTimerDiscard => 'Discard';
+  String get studyTimerDiscard => '버리기';
 
   @override
-  String get studyTimerDiscardBody =>
-      'Throw away the current timer without logging? This cannot be undone.';
+  String get studyTimerDiscardBody => '현재 타이머를 기록하지 않고 버릴까요? 되돌릴 수 없습니다.';
 
   @override
-  String get studyTimerDiscardTitle => 'Discard timer?';
+  String get studyTimerDiscardTitle => '타이머를 버릴까요?';
 
   @override
   String studyTimerFinishLog(String minutes) {
-    return 'Finish & log $minutes min';
+    return '완료 & $minutes분 기록';
   }
 
   @override
-  String get studyTimerNoCourseError => 'Select a course.';
+  String get studyTimerNoCourseError => '과목을 선택하세요.';
 
   @override
-  String get studyTimerNoCoursesHint => 'Add a course first to start a timer.';
+  String get studyTimerNoCoursesHint => '먼저 과목을 추가한 뒤 타이머를 시작하세요.';
 
   @override
   String studyTimerNotifPaused(String elapsed) {
-    return 'Paused · $elapsed';
+    return '일시정지됨 · $elapsed';
   }
 
   @override
-  String get studyTimerNotifRunning => 'Tap to open the timer';
+  String get studyTimerNotifRunning => '탭하여 타이머 열기';
 
   @override
-  String get studyTimerPause => 'Pause';
+  String get studyTimerPause => '일시정지';
 
   @override
-  String get studyTimerResume => 'Resume';
+  String get studyTimerResume => '계속하기';
 
   @override
-  String get studyTimerStart => 'Start timer';
+  String get studyTimerStart => '타이머 시작';
 
   @override
-  String get studyTimerStartTitle => 'Start study timer';
+  String get studyTimerStartTitle => '학습 타이머 시작';
 
   @override
-  String get studyTimerTooShort => 'Timer has not run yet.';
+  String get studyTimerTooShort => '타이머가 아직 실행되지 않았습니다.';
 
   @override
   String get validationCourseEctsPositive => 'ECTS는 0보다 커야 합니다';

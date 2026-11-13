@@ -545,10 +545,10 @@ class AppLocalizationsZh extends AppLocalizations {
   String get sessionFormMinutesLabel => '分钟';
 
   @override
-  String get sessionFormModeManual => 'Manual';
+  String get sessionFormModeManual => '手动';
 
   @override
-  String get sessionFormModeTimer => 'Timer';
+  String get sessionFormModeTimer => '计时器';
 
   @override
   String get sessionFormNoCourseError => '请选择课程。';
@@ -1120,59 +1120,57 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String studyTimerActiveTitle(String course) {
-    return 'Timing $course';
+    return '正在计时 $course';
   }
 
   @override
-  String get studyTimerAlreadyRunning =>
-      'A timer is already running. Finish or discard it first.';
+  String get studyTimerAlreadyRunning => '已有计时器在运行。请先完成或舍弃它。';
 
   @override
-  String get studyTimerCourseLabel => 'Course';
+  String get studyTimerCourseLabel => '课程';
 
   @override
-  String get studyTimerDiscard => 'Discard';
+  String get studyTimerDiscard => '舍弃';
 
   @override
-  String get studyTimerDiscardBody =>
-      'Throw away the current timer without logging? This cannot be undone.';
+  String get studyTimerDiscardBody => '舍弃当前计时而不记录？此操作无法撤销。';
 
   @override
-  String get studyTimerDiscardTitle => 'Discard timer?';
+  String get studyTimerDiscardTitle => '舍弃计时器？';
 
   @override
   String studyTimerFinishLog(String minutes) {
-    return 'Finish & log $minutes min';
+    return '完成 & 记录 $minutes 分钟';
   }
 
   @override
-  String get studyTimerNoCourseError => 'Select a course.';
+  String get studyTimerNoCourseError => '请选择课程。';
 
   @override
-  String get studyTimerNoCoursesHint => 'Add a course first to start a timer.';
+  String get studyTimerNoCoursesHint => '请先添加课程，再启动计时器。';
 
   @override
   String studyTimerNotifPaused(String elapsed) {
-    return 'Paused · $elapsed';
+    return '已暂停 · $elapsed';
   }
 
   @override
-  String get studyTimerNotifRunning => 'Tap to open the timer';
+  String get studyTimerNotifRunning => '点击打开计时器';
 
   @override
-  String get studyTimerPause => 'Pause';
+  String get studyTimerPause => '暂停';
 
   @override
-  String get studyTimerResume => 'Resume';
+  String get studyTimerResume => '继续';
 
   @override
-  String get studyTimerStart => 'Start timer';
+  String get studyTimerStart => '启动计时器';
 
   @override
-  String get studyTimerStartTitle => 'Start study timer';
+  String get studyTimerStartTitle => '启动学习计时器';
 
   @override
-  String get studyTimerTooShort => 'Timer has not run yet.';
+  String get studyTimerTooShort => '计时器尚未运行。';
 
   @override
   String get validationCourseEctsPositive => 'ECTS 必须大于零';
@@ -1937,6 +1935,12 @@ class AppLocalizationsZhHans extends AppLocalizationsZh {
   String get sessionFormMinutesLabel => '分钟';
 
   @override
+  String get sessionFormModeManual => '手动';
+
+  @override
+  String get sessionFormModeTimer => '计时器';
+
+  @override
   String get sessionFormNoCourseError => '请选择课程。';
 
   @override
@@ -2503,6 +2507,60 @@ class AppLocalizationsZhHans extends AppLocalizationsZh {
   String studyLogUnknownCourseShort(String id) {
     return '课$id';
   }
+
+  @override
+  String studyTimerActiveTitle(String course) {
+    return '正在计时 $course';
+  }
+
+  @override
+  String get studyTimerAlreadyRunning => '已有计时器在运行。请先完成或舍弃它。';
+
+  @override
+  String get studyTimerCourseLabel => '课程';
+
+  @override
+  String get studyTimerDiscard => '舍弃';
+
+  @override
+  String get studyTimerDiscardBody => '舍弃当前计时而不记录？此操作无法撤销。';
+
+  @override
+  String get studyTimerDiscardTitle => '舍弃计时器？';
+
+  @override
+  String studyTimerFinishLog(String minutes) {
+    return '完成 & 记录 $minutes 分钟';
+  }
+
+  @override
+  String get studyTimerNoCourseError => '请选择课程。';
+
+  @override
+  String get studyTimerNoCoursesHint => '请先添加课程，再启动计时器。';
+
+  @override
+  String studyTimerNotifPaused(String elapsed) {
+    return '已暂停 · $elapsed';
+  }
+
+  @override
+  String get studyTimerNotifRunning => '点击打开计时器';
+
+  @override
+  String get studyTimerPause => '暂停';
+
+  @override
+  String get studyTimerResume => '继续';
+
+  @override
+  String get studyTimerStart => '启动计时器';
+
+  @override
+  String get studyTimerStartTitle => '启动学习计时器';
+
+  @override
+  String get studyTimerTooShort => '计时器尚未运行。';
 
   @override
   String get validationCourseEctsPositive => 'ECTS 必须大于零';
@@ -3267,6 +3325,12 @@ class AppLocalizationsZhHant extends AppLocalizationsZh {
   String get sessionFormMinutesLabel => '分鐘';
 
   @override
+  String get sessionFormModeManual => '手動';
+
+  @override
+  String get sessionFormModeTimer => '計時器';
+
+  @override
   String get sessionFormNoCourseError => '請選擇課程。';
 
   @override
@@ -3833,6 +3897,60 @@ class AppLocalizationsZhHant extends AppLocalizationsZh {
   String studyLogUnknownCourseShort(String id) {
     return '課$id';
   }
+
+  @override
+  String studyTimerActiveTitle(String course) {
+    return '正在計時 $course';
+  }
+
+  @override
+  String get studyTimerAlreadyRunning => '已有計時器正在執行。請先完成或捨棄它。';
+
+  @override
+  String get studyTimerCourseLabel => '課程';
+
+  @override
+  String get studyTimerDiscard => '捨棄';
+
+  @override
+  String get studyTimerDiscardBody => '捨棄目前計時而不記錄？此操作無法復原。';
+
+  @override
+  String get studyTimerDiscardTitle => '捨棄計時器？';
+
+  @override
+  String studyTimerFinishLog(String minutes) {
+    return '完成 & 記錄 $minutes 分鐘';
+  }
+
+  @override
+  String get studyTimerNoCourseError => '請選擇課程。';
+
+  @override
+  String get studyTimerNoCoursesHint => '請先新增課程，再啟動計時器。';
+
+  @override
+  String studyTimerNotifPaused(String elapsed) {
+    return '已暫停 · $elapsed';
+  }
+
+  @override
+  String get studyTimerNotifRunning => '點選以開啟計時器';
+
+  @override
+  String get studyTimerPause => '暫停';
+
+  @override
+  String get studyTimerResume => '繼續';
+
+  @override
+  String get studyTimerStart => '啟動計時器';
+
+  @override
+  String get studyTimerStartTitle => '啟動學習計時器';
+
+  @override
+  String get studyTimerTooShort => '計時器尚未執行。';
 
   @override
   String get validationCourseEctsPositive => 'ECTS 必須大於零';

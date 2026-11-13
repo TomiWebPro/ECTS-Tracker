@@ -564,10 +564,10 @@ class AppLocalizationsFi extends AppLocalizations {
   String get sessionFormMinutesLabel => 'Minuutit';
 
   @override
-  String get sessionFormModeManual => 'Manual';
+  String get sessionFormModeManual => 'Käsin';
 
   @override
-  String get sessionFormModeTimer => 'Timer';
+  String get sessionFormModeTimer => 'Ajastin';
 
   @override
   String get sessionFormNoCourseError => 'Valitse kurssi.';
@@ -1154,59 +1154,60 @@ class AppLocalizationsFi extends AppLocalizations {
 
   @override
   String studyTimerActiveTitle(String course) {
-    return 'Timing $course';
+    return 'Ajastetaan: $course';
   }
 
   @override
   String get studyTimerAlreadyRunning =>
-      'A timer is already running. Finish or discard it first.';
+      'Ajastin on jo käynnissä. Lopeta tai hylkää se ensin.';
 
   @override
-  String get studyTimerCourseLabel => 'Course';
+  String get studyTimerCourseLabel => 'Kurssi';
 
   @override
-  String get studyTimerDiscard => 'Discard';
+  String get studyTimerDiscard => 'Hylkää';
 
   @override
   String get studyTimerDiscardBody =>
-      'Throw away the current timer without logging? This cannot be undone.';
+      'Hylätäänkö nykyinen ajastin kirjaamatta? Tätä ei voi kumota.';
 
   @override
-  String get studyTimerDiscardTitle => 'Discard timer?';
+  String get studyTimerDiscardTitle => 'Hylätäänkö ajastin?';
 
   @override
   String studyTimerFinishLog(String minutes) {
-    return 'Finish & log $minutes min';
+    return 'Lopeta & kirjaa $minutes min';
   }
 
   @override
-  String get studyTimerNoCourseError => 'Select a course.';
+  String get studyTimerNoCourseError => 'Valitse kurssi.';
 
   @override
-  String get studyTimerNoCoursesHint => 'Add a course first to start a timer.';
+  String get studyTimerNoCoursesHint =>
+      'Lisää ensin kurssi käynnistääksesi ajastimen.';
 
   @override
   String studyTimerNotifPaused(String elapsed) {
-    return 'Paused · $elapsed';
+    return 'Tauotettu · $elapsed';
   }
 
   @override
-  String get studyTimerNotifRunning => 'Tap to open the timer';
+  String get studyTimerNotifRunning => 'Avaa ajastin napauttamalla';
 
   @override
-  String get studyTimerPause => 'Pause';
+  String get studyTimerPause => 'Tauota';
 
   @override
-  String get studyTimerResume => 'Resume';
+  String get studyTimerResume => 'Jatka';
 
   @override
-  String get studyTimerStart => 'Start timer';
+  String get studyTimerStart => 'Käynnistä ajastin';
 
   @override
-  String get studyTimerStartTitle => 'Start study timer';
+  String get studyTimerStartTitle => 'Käynnistä opiskeluajastin';
 
   @override
-  String get studyTimerTooShort => 'Timer has not run yet.';
+  String get studyTimerTooShort => 'Ajastin ei ole vielä käynyt.';
 
   @override
   String get validationCourseEctsPositive =>

@@ -562,10 +562,10 @@ class AppLocalizationsKa extends AppLocalizations {
   String get sessionFormMinutesLabel => 'წუთები';
 
   @override
-  String get sessionFormModeManual => 'Manual';
+  String get sessionFormModeManual => 'ხელით';
 
   @override
-  String get sessionFormModeTimer => 'Timer';
+  String get sessionFormModeTimer => 'ტაიმერი';
 
   @override
   String get sessionFormNoCourseError => 'აირჩიეთ კურსი.';
@@ -1153,59 +1153,60 @@ class AppLocalizationsKa extends AppLocalizations {
 
   @override
   String studyTimerActiveTitle(String course) {
-    return 'Timing $course';
+    return 'ითვლება $course';
   }
 
   @override
   String get studyTimerAlreadyRunning =>
-      'A timer is already running. Finish or discard it first.';
+      'ტაიმერი უკვე ჩართულია. ჯერ დაასრულეთ ან გადააგდეთ ის.';
 
   @override
-  String get studyTimerCourseLabel => 'Course';
+  String get studyTimerCourseLabel => 'კურსი';
 
   @override
-  String get studyTimerDiscard => 'Discard';
+  String get studyTimerDiscard => 'გადაგდება';
 
   @override
   String get studyTimerDiscardBody =>
-      'Throw away the current timer without logging? This cannot be undone.';
+      'გადააგდოთ მიმდინარე ტაიმერი ჩაწერის გარეშე? ამის გაუქმება შეუძლებელია.';
 
   @override
-  String get studyTimerDiscardTitle => 'Discard timer?';
+  String get studyTimerDiscardTitle => 'გადააგდოთ ტაიმერი?';
 
   @override
   String studyTimerFinishLog(String minutes) {
-    return 'Finish & log $minutes min';
+    return 'დასრულება & $minutes წთ-ის ჩაწერა';
   }
 
   @override
-  String get studyTimerNoCourseError => 'Select a course.';
+  String get studyTimerNoCourseError => 'აირჩიეთ კურსი.';
 
   @override
-  String get studyTimerNoCoursesHint => 'Add a course first to start a timer.';
+  String get studyTimerNoCoursesHint =>
+      'ტაიმერის დასაწყებად ჯერ დაამატეთ კურსი.';
 
   @override
   String studyTimerNotifPaused(String elapsed) {
-    return 'Paused · $elapsed';
+    return 'პაუზა · $elapsed';
   }
 
   @override
-  String get studyTimerNotifRunning => 'Tap to open the timer';
+  String get studyTimerNotifRunning => 'ტაიმერის გასახსნელად შეეხეთ';
 
   @override
-  String get studyTimerPause => 'Pause';
+  String get studyTimerPause => 'პაუზა';
 
   @override
-  String get studyTimerResume => 'Resume';
+  String get studyTimerResume => 'გაგრძელება';
 
   @override
-  String get studyTimerStart => 'Start timer';
+  String get studyTimerStart => 'ტაიმერის დაწყება';
 
   @override
-  String get studyTimerStartTitle => 'Start study timer';
+  String get studyTimerStartTitle => 'სასწავლო ტაიმერის დაწყება';
 
   @override
-  String get studyTimerTooShort => 'Timer has not run yet.';
+  String get studyTimerTooShort => 'ტაიმერი ჯერ არ გაშვებულა.';
 
   @override
   String get validationCourseEctsPositive => 'ECTS უნდა იყოს ნულზე მეტი';

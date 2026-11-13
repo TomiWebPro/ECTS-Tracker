@@ -547,10 +547,10 @@ class AppLocalizationsJa extends AppLocalizations {
   String get sessionFormMinutesLabel => '分';
 
   @override
-  String get sessionFormModeManual => 'Manual';
+  String get sessionFormModeManual => '手動';
 
   @override
-  String get sessionFormModeTimer => 'Timer';
+  String get sessionFormModeTimer => 'タイマー';
 
   @override
   String get sessionFormNoCourseError => '科目を選択してください。';
@@ -1125,59 +1125,57 @@ class AppLocalizationsJa extends AppLocalizations {
 
   @override
   String studyTimerActiveTitle(String course) {
-    return 'Timing $course';
+    return '$courseを計測中';
   }
 
   @override
-  String get studyTimerAlreadyRunning =>
-      'A timer is already running. Finish or discard it first.';
+  String get studyTimerAlreadyRunning => 'タイマーが既に実行中です。先に終了または破棄してください。';
 
   @override
-  String get studyTimerCourseLabel => 'Course';
+  String get studyTimerCourseLabel => '科目';
 
   @override
-  String get studyTimerDiscard => 'Discard';
+  String get studyTimerDiscard => '破棄';
 
   @override
-  String get studyTimerDiscardBody =>
-      'Throw away the current timer without logging? This cannot be undone.';
+  String get studyTimerDiscardBody => '現在のタイマーを記録せずに破棄しますか？元に戻せません。';
 
   @override
-  String get studyTimerDiscardTitle => 'Discard timer?';
+  String get studyTimerDiscardTitle => 'タイマーを破棄しますか？';
 
   @override
   String studyTimerFinishLog(String minutes) {
-    return 'Finish & log $minutes min';
+    return '終了 & $minutes分を記録';
   }
 
   @override
-  String get studyTimerNoCourseError => 'Select a course.';
+  String get studyTimerNoCourseError => '科目を選択してください。';
 
   @override
-  String get studyTimerNoCoursesHint => 'Add a course first to start a timer.';
+  String get studyTimerNoCoursesHint => '先に科目を追加してタイマーを開始しましょう。';
 
   @override
   String studyTimerNotifPaused(String elapsed) {
-    return 'Paused · $elapsed';
+    return '一時停止中 · $elapsed';
   }
 
   @override
-  String get studyTimerNotifRunning => 'Tap to open the timer';
+  String get studyTimerNotifRunning => 'タップしてタイマーを開く';
 
   @override
-  String get studyTimerPause => 'Pause';
+  String get studyTimerPause => '一時停止';
 
   @override
-  String get studyTimerResume => 'Resume';
+  String get studyTimerResume => '再開';
 
   @override
-  String get studyTimerStart => 'Start timer';
+  String get studyTimerStart => 'タイマー開始';
 
   @override
-  String get studyTimerStartTitle => 'Start study timer';
+  String get studyTimerStartTitle => '学習タイマーを開始';
 
   @override
-  String get studyTimerTooShort => 'Timer has not run yet.';
+  String get studyTimerTooShort => 'タイマーはまだ実行されていません。';
 
   @override
   String get validationCourseEctsPositive => 'ECTSは0より大きくしてください';

@@ -562,10 +562,10 @@ class AppLocalizationsMr extends AppLocalizations {
   String get sessionFormMinutesLabel => 'मिनिटे';
 
   @override
-  String get sessionFormModeManual => 'Manual';
+  String get sessionFormModeManual => 'मॅन्युअल';
 
   @override
-  String get sessionFormModeTimer => 'Timer';
+  String get sessionFormModeTimer => 'टायमर';
 
   @override
   String get sessionFormNoCourseError => 'अभ्यासक्रम निवडा.';
@@ -1151,59 +1151,60 @@ class AppLocalizationsMr extends AppLocalizations {
 
   @override
   String studyTimerActiveTitle(String course) {
-    return 'Timing $course';
+    return 'टायमर $course';
   }
 
   @override
   String get studyTimerAlreadyRunning =>
-      'A timer is already running. Finish or discard it first.';
+      'टायमर आधीच सुरू आहे. आधी तो पूर्ण करा किंवा टाकून द्या.';
 
   @override
-  String get studyTimerCourseLabel => 'Course';
+  String get studyTimerCourseLabel => 'अभ्यासक्रम';
 
   @override
-  String get studyTimerDiscard => 'Discard';
+  String get studyTimerDiscard => 'टाकून द्या';
 
   @override
   String get studyTimerDiscardBody =>
-      'Throw away the current timer without logging? This cannot be undone.';
+      'सध्याचा टायमर नोंद न करता टाकून द्यायचा? हे पूर्ववत करता येणार नाही.';
 
   @override
-  String get studyTimerDiscardTitle => 'Discard timer?';
+  String get studyTimerDiscardTitle => 'टायमर टाकून द्यायचा?';
 
   @override
   String studyTimerFinishLog(String minutes) {
-    return 'Finish & log $minutes min';
+    return 'पूर्ण करा & $minutes मि नोंदवा';
   }
 
   @override
-  String get studyTimerNoCourseError => 'Select a course.';
+  String get studyTimerNoCourseError => 'अभ्यासक्रम निवडा.';
 
   @override
-  String get studyTimerNoCoursesHint => 'Add a course first to start a timer.';
+  String get studyTimerNoCoursesHint =>
+      'टायमर सुरू करण्यासाठी आधी अभ्यासक्रम जोडा.';
 
   @override
   String studyTimerNotifPaused(String elapsed) {
-    return 'Paused · $elapsed';
+    return 'विराम दिला · $elapsed';
   }
 
   @override
-  String get studyTimerNotifRunning => 'Tap to open the timer';
+  String get studyTimerNotifRunning => 'टायमर उघडण्यासाठी टॅप करा';
 
   @override
-  String get studyTimerPause => 'Pause';
+  String get studyTimerPause => 'विराम द्या';
 
   @override
-  String get studyTimerResume => 'Resume';
+  String get studyTimerResume => 'पुन्हा सुरू करा';
 
   @override
-  String get studyTimerStart => 'Start timer';
+  String get studyTimerStart => 'टायमर सुरू करा';
 
   @override
-  String get studyTimerStartTitle => 'Start study timer';
+  String get studyTimerStartTitle => 'अभ्यास टायमर सुरू करा';
 
   @override
-  String get studyTimerTooShort => 'Timer has not run yet.';
+  String get studyTimerTooShort => 'टायमर अद्याप चाललेला नाही.';
 
   @override
   String get validationCourseEctsPositive => 'ECTS शून्यापेक्षा जास्त असावे';

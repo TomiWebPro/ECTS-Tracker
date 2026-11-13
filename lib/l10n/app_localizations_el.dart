@@ -567,10 +567,10 @@ class AppLocalizationsEl extends AppLocalizations {
   String get sessionFormMinutesLabel => 'Λεπτά';
 
   @override
-  String get sessionFormModeManual => 'Manual';
+  String get sessionFormModeManual => 'Χειροκίνητα';
 
   @override
-  String get sessionFormModeTimer => 'Timer';
+  String get sessionFormModeTimer => 'Χρονόμετρο';
 
   @override
   String get sessionFormNoCourseError => 'Επίλεξε μάθημα.';
@@ -1161,59 +1161,60 @@ class AppLocalizationsEl extends AppLocalizations {
 
   @override
   String studyTimerActiveTitle(String course) {
-    return 'Timing $course';
+    return 'Χρονόμετρο: $course';
   }
 
   @override
   String get studyTimerAlreadyRunning =>
-      'A timer is already running. Finish or discard it first.';
+      'Ένα χρονόμετρο εκτελείται ήδη. Ολοκλήρωσέ το ή απόρριψέ το πρώτα.';
 
   @override
-  String get studyTimerCourseLabel => 'Course';
+  String get studyTimerCourseLabel => 'Μάθημα';
 
   @override
-  String get studyTimerDiscard => 'Discard';
+  String get studyTimerDiscard => 'Απόρριψη';
 
   @override
   String get studyTimerDiscardBody =>
-      'Throw away the current timer without logging? This cannot be undone.';
+      'Απόρριψη του τρέχοντος χρονομέτρου χωρίς καταγραφή; Δεν μπορεί να αναιρεθεί.';
 
   @override
-  String get studyTimerDiscardTitle => 'Discard timer?';
+  String get studyTimerDiscardTitle => 'Απόρριψη χρονομέτρου;';
 
   @override
   String studyTimerFinishLog(String minutes) {
-    return 'Finish & log $minutes min';
+    return 'Τέλος & καταγραφή $minutes λεπ.';
   }
 
   @override
-  String get studyTimerNoCourseError => 'Select a course.';
+  String get studyTimerNoCourseError => 'Επίλεξε μάθημα.';
 
   @override
-  String get studyTimerNoCoursesHint => 'Add a course first to start a timer.';
+  String get studyTimerNoCoursesHint =>
+      'Πρόσθεσε πρώτα ένα μάθημα για να ξεκινήσεις χρονόμετρο.';
 
   @override
   String studyTimerNotifPaused(String elapsed) {
-    return 'Paused · $elapsed';
+    return 'Σε παύση · $elapsed';
   }
 
   @override
-  String get studyTimerNotifRunning => 'Tap to open the timer';
+  String get studyTimerNotifRunning => 'Πάτα για να ανοίξεις το χρονόμετρο';
 
   @override
-  String get studyTimerPause => 'Pause';
+  String get studyTimerPause => 'Παύση';
 
   @override
-  String get studyTimerResume => 'Resume';
+  String get studyTimerResume => 'Συνέχεια';
 
   @override
-  String get studyTimerStart => 'Start timer';
+  String get studyTimerStart => 'Έναρξη χρονομέτρου';
 
   @override
-  String get studyTimerStartTitle => 'Start study timer';
+  String get studyTimerStartTitle => 'Έναρξη χρονομέτρου μελέτης';
 
   @override
-  String get studyTimerTooShort => 'Timer has not run yet.';
+  String get studyTimerTooShort => 'Το χρονόμετρο δεν έχει λειτουργήσει ακόμη.';
 
   @override
   String get validationCourseEctsPositive =>

@@ -567,7 +567,7 @@ class AppLocalizationsPt extends AppLocalizations {
   String get sessionFormModeManual => 'Manual';
 
   @override
-  String get sessionFormModeTimer => 'Timer';
+  String get sessionFormModeTimer => 'Cronômetro';
 
   @override
   String get sessionFormNoCourseError => 'Selecione uma disciplina.';
@@ -1157,59 +1157,60 @@ class AppLocalizationsPt extends AppLocalizations {
 
   @override
   String studyTimerActiveTitle(String course) {
-    return 'Timing $course';
+    return 'Cronometrando $course';
   }
 
   @override
   String get studyTimerAlreadyRunning =>
-      'A timer is already running. Finish or discard it first.';
+      'Já há um cronômetro em execução. Termine-o ou descarte-o primeiro.';
 
   @override
-  String get studyTimerCourseLabel => 'Course';
+  String get studyTimerCourseLabel => 'Disciplina';
 
   @override
-  String get studyTimerDiscard => 'Discard';
+  String get studyTimerDiscard => 'Descartar';
 
   @override
   String get studyTimerDiscardBody =>
-      'Throw away the current timer without logging? This cannot be undone.';
+      'Descartar o cronômetro atual sem registrar? Não pode ser desfeita.';
 
   @override
-  String get studyTimerDiscardTitle => 'Discard timer?';
+  String get studyTimerDiscardTitle => 'Descartar cronômetro?';
 
   @override
   String studyTimerFinishLog(String minutes) {
-    return 'Finish & log $minutes min';
+    return 'Terminar & registrar $minutes min';
   }
 
   @override
-  String get studyTimerNoCourseError => 'Select a course.';
+  String get studyTimerNoCourseError => 'Selecione uma disciplina.';
 
   @override
-  String get studyTimerNoCoursesHint => 'Add a course first to start a timer.';
+  String get studyTimerNoCoursesHint =>
+      'Adicione uma disciplina primeiro para iniciar um cronômetro.';
 
   @override
   String studyTimerNotifPaused(String elapsed) {
-    return 'Paused · $elapsed';
+    return 'Pausado · $elapsed';
   }
 
   @override
-  String get studyTimerNotifRunning => 'Tap to open the timer';
+  String get studyTimerNotifRunning => 'Toque para abrir o cronômetro.';
 
   @override
-  String get studyTimerPause => 'Pause';
+  String get studyTimerPause => 'Pausar';
 
   @override
-  String get studyTimerResume => 'Resume';
+  String get studyTimerResume => 'Retomar';
 
   @override
-  String get studyTimerStart => 'Start timer';
+  String get studyTimerStart => 'Iniciar cronômetro';
 
   @override
-  String get studyTimerStartTitle => 'Start study timer';
+  String get studyTimerStartTitle => 'Iniciar cronômetro de estudo';
 
   @override
-  String get studyTimerTooShort => 'Timer has not run yet.';
+  String get studyTimerTooShort => 'O cronômetro ainda não rodou.';
 
   @override
   String get validationCourseEctsPositive => 'ECTS deve ser maior que zero';

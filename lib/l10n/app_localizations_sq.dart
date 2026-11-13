@@ -564,10 +564,10 @@ class AppLocalizationsSq extends AppLocalizations {
   String get sessionFormMinutesLabel => 'Minuta';
 
   @override
-  String get sessionFormModeManual => 'Manual';
+  String get sessionFormModeManual => 'Manuale';
 
   @override
-  String get sessionFormModeTimer => 'Timer';
+  String get sessionFormModeTimer => 'Kohëmatës';
 
   @override
   String get sessionFormNoCourseError => 'Zgjidh një lëndë.';
@@ -1156,59 +1156,60 @@ class AppLocalizationsSq extends AppLocalizations {
 
   @override
   String studyTimerActiveTitle(String course) {
-    return 'Timing $course';
+    return 'Duke matur $course';
   }
 
   @override
   String get studyTimerAlreadyRunning =>
-      'A timer is already running. Finish or discard it first.';
+      'Një kohëmatës është tashmë aktiv. Përfundoje ose hidhe poshtë fillimisht.';
 
   @override
-  String get studyTimerCourseLabel => 'Course';
+  String get studyTimerCourseLabel => 'Lënda';
 
   @override
-  String get studyTimerDiscard => 'Discard';
+  String get studyTimerDiscard => 'Hidhe poshtë';
 
   @override
   String get studyTimerDiscardBody =>
-      'Throw away the current timer without logging? This cannot be undone.';
+      'Ta hedhësh poshtë kohëmatësin aktual pa e regjistruar? Kjo nuk mund të zhbëhet.';
 
   @override
-  String get studyTimerDiscardTitle => 'Discard timer?';
+  String get studyTimerDiscardTitle => 'Të hidhet kohëmatësi?';
 
   @override
   String studyTimerFinishLog(String minutes) {
-    return 'Finish & log $minutes min';
+    return 'Përfundo & regjistro $minutes min';
   }
 
   @override
-  String get studyTimerNoCourseError => 'Select a course.';
+  String get studyTimerNoCourseError => 'Zgjidh një lëndë.';
 
   @override
-  String get studyTimerNoCoursesHint => 'Add a course first to start a timer.';
+  String get studyTimerNoCoursesHint =>
+      'Shto fillimisht një lëndë për të nisur kohëmatësin.';
 
   @override
   String studyTimerNotifPaused(String elapsed) {
-    return 'Paused · $elapsed';
+    return 'Në pauzë · $elapsed';
   }
 
   @override
-  String get studyTimerNotifRunning => 'Tap to open the timer';
+  String get studyTimerNotifRunning => 'Prek për të hapur kohëmatësin';
 
   @override
-  String get studyTimerPause => 'Pause';
+  String get studyTimerPause => 'Pauzë';
 
   @override
-  String get studyTimerResume => 'Resume';
+  String get studyTimerResume => 'Vazhdo';
 
   @override
-  String get studyTimerStart => 'Start timer';
+  String get studyTimerStart => 'Nis kohëmatësin';
 
   @override
-  String get studyTimerStartTitle => 'Start study timer';
+  String get studyTimerStartTitle => 'Nis kohëmatësin e studimit';
 
   @override
-  String get studyTimerTooShort => 'Timer has not run yet.';
+  String get studyTimerTooShort => 'Kohëmatësi nuk ka matur ende.';
 
   @override
   String get validationCourseEctsPositive =>

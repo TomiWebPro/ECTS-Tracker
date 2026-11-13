@@ -564,10 +564,10 @@ class AppLocalizationsGa extends AppLocalizations {
   String get sessionFormMinutesLabel => 'Nóiméid';
 
   @override
-  String get sessionFormModeManual => 'Manual';
+  String get sessionFormModeManual => 'De láimh';
 
   @override
-  String get sessionFormModeTimer => 'Timer';
+  String get sessionFormModeTimer => 'Amadóir';
 
   @override
   String get sessionFormNoCourseError => 'Roghnaigh cúrsa.';
@@ -1159,59 +1159,60 @@ class AppLocalizationsGa extends AppLocalizations {
 
   @override
   String studyTimerActiveTitle(String course) {
-    return 'Timing $course';
+    return 'Amadóir: $course';
   }
 
   @override
   String get studyTimerAlreadyRunning =>
-      'A timer is already running. Finish or discard it first.';
+      'Tá amadóir ar siúl cheana. Críochnaigh é nó scaoil é ar dtús.';
 
   @override
-  String get studyTimerCourseLabel => 'Course';
+  String get studyTimerCourseLabel => 'Cúrsa';
 
   @override
-  String get studyTimerDiscard => 'Discard';
+  String get studyTimerDiscard => 'Scaoil';
 
   @override
   String get studyTimerDiscardBody =>
-      'Throw away the current timer without logging? This cannot be undone.';
+      'An amadóir reatha a chaitheamh amach gan é a logáil? Ní féidir é seo a chur ar ceal.';
 
   @override
-  String get studyTimerDiscardTitle => 'Discard timer?';
+  String get studyTimerDiscardTitle => 'An t-amadóir a scaoileadh?';
 
   @override
   String studyTimerFinishLog(String minutes) {
-    return 'Finish & log $minutes min';
+    return 'Críochnaigh & logáil $minutes nóim';
   }
 
   @override
-  String get studyTimerNoCourseError => 'Select a course.';
+  String get studyTimerNoCourseError => 'Roghnaigh cúrsa.';
 
   @override
-  String get studyTimerNoCoursesHint => 'Add a course first to start a timer.';
+  String get studyTimerNoCoursesHint =>
+      'Cuir cúrsa leis ar dtús chun amadóir a thosú.';
 
   @override
   String studyTimerNotifPaused(String elapsed) {
-    return 'Paused · $elapsed';
+    return 'Ar sos · $elapsed';
   }
 
   @override
-  String get studyTimerNotifRunning => 'Tap to open the timer';
+  String get studyTimerNotifRunning => 'Tapáil chun an t-amadóir a oscailt';
 
   @override
-  String get studyTimerPause => 'Pause';
+  String get studyTimerPause => 'Cuir ar sos';
 
   @override
-  String get studyTimerResume => 'Resume';
+  String get studyTimerResume => 'Lean ar aghaidh';
 
   @override
-  String get studyTimerStart => 'Start timer';
+  String get studyTimerStart => 'Tosaigh an t-amadóir';
 
   @override
-  String get studyTimerStartTitle => 'Start study timer';
+  String get studyTimerStartTitle => 'Tosaigh amadóir staidéir';
 
   @override
-  String get studyTimerTooShort => 'Timer has not run yet.';
+  String get studyTimerTooShort => 'Níor rith an t-amadóir fós.';
 
   @override
   String get validationCourseEctsPositive =>

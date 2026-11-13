@@ -562,10 +562,10 @@ class AppLocalizationsHy extends AppLocalizations {
   String get sessionFormMinutesLabel => 'Րոպեներ';
 
   @override
-  String get sessionFormModeManual => 'Manual';
+  String get sessionFormModeManual => 'Ձեռքով';
 
   @override
-  String get sessionFormModeTimer => 'Timer';
+  String get sessionFormModeTimer => 'Ժամանակաչափ';
 
   @override
   String get sessionFormNoCourseError => 'Ընտրեք դասընթաց։';
@@ -1154,59 +1154,60 @@ class AppLocalizationsHy extends AppLocalizations {
 
   @override
   String studyTimerActiveTitle(String course) {
-    return 'Timing $course';
+    return 'Ժամանակաչափ՝ $course';
   }
 
   @override
   String get studyTimerAlreadyRunning =>
-      'A timer is already running. Finish or discard it first.';
+      'Ժամանակաչափն արդեն աշխատում է։ Նախ ավարտեք այն կամ մերժեք։';
 
   @override
-  String get studyTimerCourseLabel => 'Course';
+  String get studyTimerCourseLabel => 'Դասընթաց';
 
   @override
-  String get studyTimerDiscard => 'Discard';
+  String get studyTimerDiscard => 'Մերժել';
 
   @override
   String get studyTimerDiscardBody =>
-      'Throw away the current timer without logging? This cannot be undone.';
+      'Մերժե՞լ ընթացիկ ժամանակաչափը առանց գրանցելու։ Սա հնարավոր չէ հետարկել։';
 
   @override
-  String get studyTimerDiscardTitle => 'Discard timer?';
+  String get studyTimerDiscardTitle => 'Մերժե՞լ ժամանակաչափը';
 
   @override
   String studyTimerFinishLog(String minutes) {
-    return 'Finish & log $minutes min';
+    return 'Ավարտել & գրանցել $minutes ր';
   }
 
   @override
-  String get studyTimerNoCourseError => 'Select a course.';
+  String get studyTimerNoCourseError => 'Ընտրեք դասընթաց։';
 
   @override
-  String get studyTimerNoCoursesHint => 'Add a course first to start a timer.';
+  String get studyTimerNoCoursesHint =>
+      'Ժամանակաչափ գործարկելու համար նախ ավելացրեք դասընթաց։';
 
   @override
   String studyTimerNotifPaused(String elapsed) {
-    return 'Paused · $elapsed';
+    return 'Դադարեցված · $elapsed';
   }
 
   @override
-  String get studyTimerNotifRunning => 'Tap to open the timer';
+  String get studyTimerNotifRunning => 'Հպեք՝ ժամանակաչափը բացելու համար';
 
   @override
-  String get studyTimerPause => 'Pause';
+  String get studyTimerPause => 'Դադարեցնել';
 
   @override
-  String get studyTimerResume => 'Resume';
+  String get studyTimerResume => 'Շարունակել';
 
   @override
-  String get studyTimerStart => 'Start timer';
+  String get studyTimerStart => 'Գործարկել ժամանակաչափը';
 
   @override
-  String get studyTimerStartTitle => 'Start study timer';
+  String get studyTimerStartTitle => 'Գործարկել ուսման ժամանակաչափը';
 
   @override
-  String get studyTimerTooShort => 'Timer has not run yet.';
+  String get studyTimerTooShort => 'Ժամանակաչափը դեռ չի աշխատել։';
 
   @override
   String get validationCourseEctsPositive => 'ECTS-ը պետք է զրոյից մեծ լինի';

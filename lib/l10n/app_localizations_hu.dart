@@ -563,10 +563,10 @@ class AppLocalizationsHu extends AppLocalizations {
   String get sessionFormMinutesLabel => 'Percek';
 
   @override
-  String get sessionFormModeManual => 'Manual';
+  String get sessionFormModeManual => 'Kézi';
 
   @override
-  String get sessionFormModeTimer => 'Timer';
+  String get sessionFormModeTimer => 'Időzítő';
 
   @override
   String get sessionFormNoCourseError => 'Válassz kurzust.';
@@ -1157,59 +1157,60 @@ class AppLocalizationsHu extends AppLocalizations {
 
   @override
   String studyTimerActiveTitle(String course) {
-    return 'Timing $course';
+    return 'Időzítés: $course';
   }
 
   @override
   String get studyTimerAlreadyRunning =>
-      'A timer is already running. Finish or discard it first.';
+      'Már fut egy időzítő. Előbb fejezd be vagy dobd el.';
 
   @override
-  String get studyTimerCourseLabel => 'Course';
+  String get studyTimerCourseLabel => 'Kurzus';
 
   @override
-  String get studyTimerDiscard => 'Discard';
+  String get studyTimerDiscard => 'Eldobás';
 
   @override
   String get studyTimerDiscardBody =>
-      'Throw away the current timer without logging? This cannot be undone.';
+      'Eldobod a jelenlegi időzítőt naplózás nélkül? Ez nem vonható vissza.';
 
   @override
-  String get studyTimerDiscardTitle => 'Discard timer?';
+  String get studyTimerDiscardTitle => 'Eldobod az időzítőt?';
 
   @override
   String studyTimerFinishLog(String minutes) {
-    return 'Finish & log $minutes min';
+    return 'Befejezés & $minutes perc naplózása';
   }
 
   @override
-  String get studyTimerNoCourseError => 'Select a course.';
+  String get studyTimerNoCourseError => 'Válassz kurzust.';
 
   @override
-  String get studyTimerNoCoursesHint => 'Add a course first to start a timer.';
+  String get studyTimerNoCoursesHint =>
+      'Előbb adj hozzá egy kurzust az időzítő indításához.';
 
   @override
   String studyTimerNotifPaused(String elapsed) {
-    return 'Paused · $elapsed';
+    return 'Szünetel · $elapsed';
   }
 
   @override
-  String get studyTimerNotifRunning => 'Tap to open the timer';
+  String get studyTimerNotifRunning => 'Koppints az időzítő megnyitásához';
 
   @override
-  String get studyTimerPause => 'Pause';
+  String get studyTimerPause => 'Szünet';
 
   @override
-  String get studyTimerResume => 'Resume';
+  String get studyTimerResume => 'Folytatás';
 
   @override
-  String get studyTimerStart => 'Start timer';
+  String get studyTimerStart => 'Időzítő indítása';
 
   @override
-  String get studyTimerStartTitle => 'Start study timer';
+  String get studyTimerStartTitle => 'Tanulási időzítő indítása';
 
   @override
-  String get studyTimerTooShort => 'Timer has not run yet.';
+  String get studyTimerTooShort => 'Az időzítő még nem futott.';
 
   @override
   String get validationCourseEctsPositive =>
