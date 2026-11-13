@@ -1249,4 +1249,137 @@ class AppLocalizationsGa extends AppLocalizations {
   @override
   String get settingsReminderDenied =>
       'Tá fógraí bactha — cumasaigh iad i socruithe an chórais.';
+
+  @override
+  String notifDurationHours(String value) {
+    return '$value u';
+  }
+
+  @override
+  String notifDurationMinutes(String value) {
+    return '$value nóim';
+  }
+
+  @override
+  String notifDailyTitle(String duration) {
+    return '📚 Anocht: $duration chun fanacht ar an mbóthar ceart';
+  }
+
+  @override
+  String notifDailyCourseNeed(String course, String duration) {
+    return '$course: $duration fágtha inniu';
+  }
+
+  @override
+  String notifDailyMore(String count) {
+    return '(+$count eile)';
+  }
+
+  @override
+  String notifDailyBody(String detail) {
+    return '$detail. Logáil seisiún chun an lá inniu a ghlanadh.';
+  }
+
+  @override
+  String notifBehindTitle(String course) {
+    return '⚠️ Tá $course tite Ar gcúl';
+  }
+
+  @override
+  String notifBehindBodyPace(
+    String left,
+    String days,
+    String pace,
+    String catchUp,
+  ) {
+    return '$left fágtha, $days lá le dul — $pace/lá as seo amach. Logáil $catchUp le filleadh Ar an mbóthar ceart.';
+  }
+
+  @override
+  String notifBehindBodyFull(String left, String days, String pace) {
+    return '$left fágtha, $days lá le dul — $pace/lá as seo amach. Ní ghlanann ach an $left iomlán é seo — tosaigh anocht.';
+  }
+
+  @override
+  String notifBehindBodyDeadlineDay(String left) {
+    return 'Tá $left fós ar oscailt agus tá an spriocdháta anseo. Comhairítear gach a logálann tú anois.';
+  }
+
+  @override
+  String notifDeadlineTomorrowTitle(String course, String left) {
+    return '🚨 Tá $course dlite amárach agus tá $left fós ar oscailt';
+  }
+
+  @override
+  String get notifDeadlineTomorrowBody =>
+      'Comhairítear faoi dhó gach a logálann tú inniu.';
+
+  @override
+  String notifDeadlineSoonTitle(String course, String days, String left) {
+    return '⏳ Scrúdú $course i $days lá — $left fágtha';
+  }
+
+  @override
+  String notifDeadlineSoonBody(String pace) {
+    return 'Sin $pace/lá. Roinn é: sáraíonn 2 sheisiún sa lá maratón amháin.';
+  }
+
+  @override
+  String get notifDeadlineSoonBodyNoPace =>
+      'Comhairítear gach uair a logálann tú anois.';
+
+  @override
+  String notifOverdueTitle(String course, String left) {
+    return '❌ Tá spriocdháta $course caite le $left ar oscailt';
+  }
+
+  @override
+  String get notifOverdueBody =>
+      'Bog an spriocdháta nó críochnaigh na huaireanta — fanann an cúrsa ag teastáil aird go dtí sin.';
+
+  @override
+  String notifStreakTitle(String days, String week) {
+    return '🔥 Sraith $days lá — $week an tseachtain seo';
+  }
+
+  @override
+  String get notifStreakBody =>
+      'Tá gach cúrsa Ar an mbóthar ceart nó Chun tosaigh. Sraith bhreá.';
+
+  @override
+  String notifCustomTitleAuto(String course) {
+    return '📚 Seiceáil staidéir: $course';
+  }
+
+  @override
+  String notifCustomTitleCourse(String course) {
+    return '📚 Am le nuashonrú: $course';
+  }
+
+  @override
+  String notifCustomBodyPace(String left, String pace) {
+    return '$left ar oscailt · $pace/lá chun críochnú in am. Logáil seisiún chun an dul chun cinn a nuashonrú.';
+  }
+
+  @override
+  String notifCustomBodyNoPace(String left) {
+    return 'Tá $left fós ar oscailt — comhairítear gach a logálann tú anois.';
+  }
+
+  @override
+  String reminderPreviewNext(String time) {
+    return 'Ar Aghaidh: $time';
+  }
+
+  @override
+  String get reminderPreviewBackDay => '-1l';
+
+  @override
+  String get reminderPreviewFwdDay => '+1l';
+
+  @override
+  String get reminderPreviewFake => '(bréige)';
+
+  @override
+  String get reminderPreviewDemoLabel => 'Seiceáil taispeána';
 }

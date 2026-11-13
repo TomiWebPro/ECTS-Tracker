@@ -1237,4 +1237,135 @@ class AppLocalizationsBn extends AppLocalizations {
   @override
   String get settingsReminderDenied =>
       'বিজ্ঞপ্তি বন্ধ আছে — সিস্টেম সেটিংসে চালু করুন।';
+
+  @override
+  String notifDurationHours(String value) {
+    return '$value ঘণ্টা';
+  }
+
+  @override
+  String notifDurationMinutes(String value) {
+    return '$value মিনিট';
+  }
+
+  @override
+  String notifDailyTitle(String duration) {
+    return '📚 আজ রাতে: সঠিক পথে থাকতে $duration';
+  }
+
+  @override
+  String notifDailyCourseNeed(String course, String duration) {
+    return '$course: আজ $duration বাকি';
+  }
+
+  @override
+  String notifDailyMore(String count) {
+    return '(+আরও $count)';
+  }
+
+  @override
+  String notifDailyBody(String detail) {
+    return '$detail। আজকের লক্ষ্য পূরণে একটি সেশন লগ করুন।';
+  }
+
+  @override
+  String notifBehindTitle(String course) {
+    return '⚠️ $course পিছিয়ে পড়েছে';
+  }
+
+  @override
+  String notifBehindBodyPace(
+    String left,
+    String days,
+    String pace,
+    String catchUp,
+  ) {
+    return '$left বাকি, $days দিন বাকি — এখান থেকে $pace/দিন। সঠিক পথে ফিরতে $catchUp লগ করুন।';
+  }
+
+  @override
+  String notifBehindBodyFull(String left, String days, String pace) {
+    return '$left বাকি, $days দিন বাকি — এখান থেকে $pace/দিন। শুধু পুরো $left শেষ করলেই এটি ঠিক হবে — আজ রাতেই শুরু করুন।';
+  }
+
+  @override
+  String notifBehindBodyDeadlineDay(String left) {
+    return '$left এখনও বাকি আর সমাপ্তি এসে গেছে। এখন যা লগ করবেন সবই গণ্য হবে।';
+  }
+
+  @override
+  String notifDeadlineTomorrowTitle(String course, String left) {
+    return '🚨 $course-এর সময়সীমা আগামীকাল, এখনও $left বাকি';
+  }
+
+  @override
+  String get notifDeadlineTomorrowBody => 'আজ যা লগ করবেন সব দ্বিগুণ গণ্য হবে।';
+
+  @override
+  String notifDeadlineSoonTitle(String course, String days, String left) {
+    return '⏳ $days দিনে $course পরীক্ষা — $left বাকি';
+  }
+
+  @override
+  String notifDeadlineSoonBody(String pace) {
+    return 'অর্থাৎ $pace/দিন। ভাগ করে নিন: দিনে 2টি সেশন একটি ম্যারাথনের চেয়ে ভালো।';
+  }
+
+  @override
+  String get notifDeadlineSoonBodyNoPace =>
+      'এখন যে প্রতি ঘণ্টা লগ করবেন তা গণ্য হবে।';
+
+  @override
+  String notifOverdueTitle(String course, String left) {
+    return '❌ $course সমাপ্তি পেরিয়ে গেছে, $left বাকি';
+  }
+
+  @override
+  String get notifOverdueBody =>
+      'সমাপ্তি সরিয়ে নিন বা ঘণ্টাগুলো শেষ করুন — ততক্ষণ কোর্সটি মনোযোগ-প্রয়োজন অবস্থায় থাকবে।';
+
+  @override
+  String notifStreakTitle(String days, String week) {
+    return '🔥 $days দিনের ধারা — এই সপ্তাহে $week';
+  }
+
+  @override
+  String get notifStreakBody => 'সব কোর্স সঠিক পথে বা এগিয়ে। চমৎকার ধারা।';
+
+  @override
+  String notifCustomTitleAuto(String course) {
+    return '📚 পড়াশোনার চেক-ইন: $course';
+  }
+
+  @override
+  String notifCustomTitleCourse(String course) {
+    return '📚 আপডেটের সময়: $course';
+  }
+
+  @override
+  String notifCustomBodyPace(String left, String pace) {
+    return '$left বাকি · সময়মতো শেষ করতে $pace/দিন। অগ্রগতি আপডেট করতে একটি সেশন লগ করুন।';
+  }
+
+  @override
+  String notifCustomBodyNoPace(String left) {
+    return '$left এখনও বাকি — এখন যা লগ করবেন সবই গণ্য হবে।';
+  }
+
+  @override
+  String reminderPreviewNext(String time) {
+    return 'পরবর্তী: $time';
+  }
+
+  @override
+  String get reminderPreviewBackDay => '-1দি';
+
+  @override
+  String get reminderPreviewFwdDay => '+1দি';
+
+  @override
+  String get reminderPreviewFake => '(fake)';
+
+  @override
+  String get reminderPreviewDemoLabel => 'ডেমো চেক-ইন';
 }

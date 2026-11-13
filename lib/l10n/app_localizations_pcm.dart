@@ -1237,4 +1237,137 @@ class AppLocalizationsPcm extends AppLocalizations {
   @override
   String get settingsReminderDenied =>
       'Notifications don block — enable dem for system settings.';
+
+  @override
+  String notifDurationHours(String value) {
+    return '$value h';
+  }
+
+  @override
+  String notifDurationMinutes(String value) {
+    return '$value min';
+  }
+
+  @override
+  String notifDailyTitle(String duration) {
+    return '📚 Tonight: $duration to take remain on track';
+  }
+
+  @override
+  String notifDailyCourseNeed(String course, String duration) {
+    return '$course $duration remain today';
+  }
+
+  @override
+  String notifDailyMore(String count) {
+    return '(+$count more)';
+  }
+
+  @override
+  String notifDailyBody(String detail) {
+    return '$detail. Log one session to take clear today.';
+  }
+
+  @override
+  String notifBehindTitle(String course) {
+    return '⚠️ $course don slip go Behind';
+  }
+
+  @override
+  String notifBehindBodyPace(
+    String left,
+    String days,
+    String pace,
+    String catchUp,
+  ) {
+    return '$left remain, $days days remain — $pace/day from here. Log $catchUp to take get back On track.';
+  }
+
+  @override
+  String notifBehindBodyFull(String left, String days, String pace) {
+    return '$left remain, $days days remain — $pace/day from here. Na to finish di whole $left go clear am — start tonight.';
+  }
+
+  @override
+  String notifBehindBodyDeadlineDay(String left) {
+    return '$left still open and deadline don reach. Anything wey you log now go count.';
+  }
+
+  @override
+  String notifDeadlineTomorrowTitle(String course, String left) {
+    return '🚨 $course deadline na tomorrow and $left still open';
+  }
+
+  @override
+  String get notifDeadlineTomorrowBody =>
+      'Anything wey you log today go count double.';
+
+  @override
+  String notifDeadlineSoonTitle(String course, String days, String left) {
+    return '⏳ $course exam in $days days — $left remain';
+  }
+
+  @override
+  String notifDeadlineSoonBody(String pace) {
+    return 'Na $pace/day be dat. Split am: 2 sessions for day pass one marathon.';
+  }
+
+  @override
+  String get notifDeadlineSoonBodyNoPace =>
+      'Every hour wey you log now go count.';
+
+  @override
+  String notifOverdueTitle(String course, String left) {
+    return '❌ $course don pass im deadline wit $left open';
+  }
+
+  @override
+  String get notifOverdueBody =>
+      'Move di deadline or finish di hours — di course go still dey for Needs attention till den.';
+
+  @override
+  String notifStreakTitle(String days, String week) {
+    return '🔥 $days-day streak — $week dis week';
+  }
+
+  @override
+  String get notifStreakBody =>
+      'All courses dey On track or Ahead. Correct run.';
+
+  @override
+  String notifCustomTitleAuto(String course) {
+    return '📚 Study check-in: $course';
+  }
+
+  @override
+  String notifCustomTitleCourse(String course) {
+    return '📚 Time to update: $course';
+  }
+
+  @override
+  String notifCustomBodyPace(String left, String pace) {
+    return '$left open · $pace/day to take finish on time. Log one session to take update progress.';
+  }
+
+  @override
+  String notifCustomBodyNoPace(String left) {
+    return '$left still open — anything wey you log now go count.';
+  }
+
+  @override
+  String reminderPreviewNext(String time) {
+    return 'Next: $time';
+  }
+
+  @override
+  String get reminderPreviewBackDay => '-1d';
+
+  @override
+  String get reminderPreviewFwdDay => '+1d';
+
+  @override
+  String get reminderPreviewFake => '(fake)';
+
+  @override
+  String get reminderPreviewDemoLabel => 'Demo check-in';
 }

@@ -1241,4 +1241,137 @@ class AppLocalizationsId extends AppLocalizations {
   @override
   String get settingsReminderDenied =>
       'Notifikasi diblokir — aktifkan di pengaturan sistem.';
+
+  @override
+  String notifDurationHours(String value) {
+    return '$value jam';
+  }
+
+  @override
+  String notifDurationMinutes(String value) {
+    return '$value mnt';
+  }
+
+  @override
+  String notifDailyTitle(String duration) {
+    return '📚 Malam ini: $duration agar tetap sesuai jalur';
+  }
+
+  @override
+  String notifDailyCourseNeed(String course, String duration) {
+    return '$course: $duration tersisa hari ini';
+  }
+
+  @override
+  String notifDailyMore(String count) {
+    return '(+$count lainnya)';
+  }
+
+  @override
+  String notifDailyBody(String detail) {
+    return '$detail. Catat sesi untuk menuntaskan hari ini.';
+  }
+
+  @override
+  String notifBehindTitle(String course) {
+    return '⚠️ $course merosot ke Tertinggal';
+  }
+
+  @override
+  String notifBehindBodyPace(
+    String left,
+    String days,
+    String pace,
+    String catchUp,
+  ) {
+    return '$left tersisa, $days hari lagi — $pace/hari dari sini. Catat $catchUp untuk kembali Sesuai jalur.';
+  }
+
+  @override
+  String notifBehindBodyFull(String left, String days, String pace) {
+    return '$left tersisa, $days hari lagi — $pace/hari dari sini. Hanya menyelesaikan seluruh $left yang menghapus ini — mulai malam ini.';
+  }
+
+  @override
+  String notifBehindBodyDeadlineDay(String left) {
+    return '$left masih terbuka dan tenggatnya sudah tiba. Semua yang Anda catat sekarang dihitung.';
+  }
+
+  @override
+  String notifDeadlineTomorrowTitle(String course, String left) {
+    return '🚨 $course jatuh tempo besok dan masih ada $left terbuka';
+  }
+
+  @override
+  String get notifDeadlineTomorrowBody =>
+      'Semua yang Anda catat hari ini dihitung ganda.';
+
+  @override
+  String notifDeadlineSoonTitle(String course, String days, String left) {
+    return '⏳ Ujian $course dalam $days hari — $left tersisa';
+  }
+
+  @override
+  String notifDeadlineSoonBody(String pace) {
+    return 'Itu $pace/hari. Bagi saja: 2 sesi sehari mengalahkan satu maraton.';
+  }
+
+  @override
+  String get notifDeadlineSoonBodyNoPace =>
+      'Setiap jam yang Anda catat sekarang dihitung.';
+
+  @override
+  String notifOverdueTitle(String course, String left) {
+    return '❌ $course melewati tenggatnya dengan $left terbuka';
+  }
+
+  @override
+  String get notifOverdueBody =>
+      'Geser tenggatnya atau selesaikan jamnya — kursus tetap perlu perhatian sampai saat itu.';
+
+  @override
+  String notifStreakTitle(String days, String week) {
+    return '🔥 Rentetan $days hari — $week minggu ini';
+  }
+
+  @override
+  String get notifStreakBody =>
+      'Semua kursus Sesuai jalur atau Maju. Rentetan yang bagus.';
+
+  @override
+  String notifCustomTitleAuto(String course) {
+    return '📚 Cek belajar: $course';
+  }
+
+  @override
+  String notifCustomTitleCourse(String course) {
+    return '📚 Saatnya memperbarui: $course';
+  }
+
+  @override
+  String notifCustomBodyPace(String left, String pace) {
+    return '$left terbuka · $pace/hari agar selesai tepat waktu. Catat sesi untuk memperbarui progres.';
+  }
+
+  @override
+  String notifCustomBodyNoPace(String left) {
+    return '$left masih terbuka — semua yang Anda catat sekarang dihitung.';
+  }
+
+  @override
+  String reminderPreviewNext(String time) {
+    return 'Berikutnya: $time';
+  }
+
+  @override
+  String get reminderPreviewBackDay => '-1h';
+
+  @override
+  String get reminderPreviewFwdDay => '+1h';
+
+  @override
+  String get reminderPreviewFake => '(palsu)';
+
+  @override
+  String get reminderPreviewDemoLabel => 'Cek demo';
 }

@@ -1245,4 +1245,137 @@ class AppLocalizationsCy extends AppLocalizations {
   @override
   String get settingsReminderDenied =>
       'Mae hysbysiadau wedi\'u blocio — galluogwch nhw yng ngosodiadau\'r system.';
+
+  @override
+  String notifDurationHours(String value) {
+    return '$value h';
+  }
+
+  @override
+  String notifDurationMinutes(String value) {
+    return '$value mun';
+  }
+
+  @override
+  String notifDailyTitle(String duration) {
+    return '📚 Heno: $duration i aros ar y trywydd iawn';
+  }
+
+  @override
+  String notifDailyCourseNeed(String course, String duration) {
+    return '$course: $duration ar ôl heddiw';
+  }
+
+  @override
+  String notifDailyMore(String count) {
+    return '(+$count mwy)';
+  }
+
+  @override
+  String notifDailyBody(String detail) {
+    return '$detail. Cofnodwch sesiwn i glirio heddiw.';
+  }
+
+  @override
+  String notifBehindTitle(String course) {
+    return '⚠️ Mae $course ar ei hôl hi';
+  }
+
+  @override
+  String notifBehindBodyPace(
+    String left,
+    String days,
+    String pace,
+    String catchUp,
+  ) {
+    return '$left ar ôl, $days diwrnod i fynd — $pace/dydd o hyn ymlaen. Cofnodwch $catchUp i fynd yn ôl ar y trywydd iawn.';
+  }
+
+  @override
+  String notifBehindBodyFull(String left, String days, String pace) {
+    return '$left ar ôl, $days diwrnod i fynd — $pace/dydd o hyn ymlaen. Dim ond gorffen y $left llawn fydd yn clirio hyn — dechreuwch heno.';
+  }
+
+  @override
+  String notifBehindBodyDeadlineDay(String left) {
+    return '$left yn dal ar agor a’r dyddiad cau yma. Mae popeth rydych chi’n ei gofnodi nawr yn cyfrif.';
+  }
+
+  @override
+  String notifDeadlineTomorrowTitle(String course, String left) {
+    return '🚨 Mae $course i fod yfory ac mae $left ar agor o hyd';
+  }
+
+  @override
+  String get notifDeadlineTomorrowBody =>
+      'Mae popeth rydych chi’n ei gofnodi heddiw yn cyfrif ddwywaith.';
+
+  @override
+  String notifDeadlineSoonTitle(String course, String days, String left) {
+    return '⏳ Arholiad $course ymhen $days diwrnod — $left ar ôl';
+  }
+
+  @override
+  String notifDeadlineSoonBody(String pace) {
+    return '$pace/dydd yw hynny. Rhannwch ef: mae 2 sesiwn y dydd yn trechu un marathon.';
+  }
+
+  @override
+  String get notifDeadlineSoonBodyNoPace =>
+      'Mae pob awr rydych chi’n ei chofnodi nawr yn cyfrif.';
+
+  @override
+  String notifOverdueTitle(String course, String left) {
+    return '❌ Mae $course wedi mynd heibio’r dyddiad cau gyda $left ar agor';
+  }
+
+  @override
+  String get notifOverdueBody =>
+      'Symudwch y dyddiad cau neu gorffennwch yr oriau — mae’r modiwl yn aros yn «angen sylw» tan hynny.';
+
+  @override
+  String notifStreakTitle(String days, String week) {
+    return '🔥 Cyfres o $days diwrnod — $week yr wythnos hon';
+  }
+
+  @override
+  String get notifStreakBody =>
+      'Pob modiwl ar y trywydd iawn neu ar y blaen. Rhediad braf.';
+
+  @override
+  String notifCustomTitleAuto(String course) {
+    return '📚 Cofnodi astudio: $course';
+  }
+
+  @override
+  String notifCustomTitleCourse(String course) {
+    return '📚 Amser diweddaru: $course';
+  }
+
+  @override
+  String notifCustomBodyPace(String left, String pace) {
+    return '$left ar agor · $pace/dydd i orffen mewn pryd. Cofnodwch sesiwn i ddiweddaru’r cynnydd.';
+  }
+
+  @override
+  String notifCustomBodyNoPace(String left) {
+    return '$left yn dal ar agor — mae popeth rydych chi’n ei gofnodi nawr yn cyfrif.';
+  }
+
+  @override
+  String reminderPreviewNext(String time) {
+    return 'Nesaf: $time';
+  }
+
+  @override
+  String get reminderPreviewBackDay => '-1d';
+
+  @override
+  String get reminderPreviewFwdDay => '+1d';
+
+  @override
+  String get reminderPreviewFake => '(fake)';
+
+  @override
+  String get reminderPreviewDemoLabel => 'Mewngofnodi Demo';
 }

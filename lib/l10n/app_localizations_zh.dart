@@ -1204,6 +1204,135 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get settingsReminderDenied => '通知已被屏蔽——请在系统设置中启用。';
+
+  @override
+  String notifDurationHours(String value) {
+    return '$value 小时';
+  }
+
+  @override
+  String notifDurationMinutes(String value) {
+    return '$value 分钟';
+  }
+
+  @override
+  String notifDailyTitle(String duration) {
+    return '📚 今晚还需 $duration，保持正常进度';
+  }
+
+  @override
+  String notifDailyCourseNeed(String course, String duration) {
+    return '$course 今天还剩 $duration';
+  }
+
+  @override
+  String notifDailyMore(String count) {
+    return '(还有$count门)';
+  }
+
+  @override
+  String notifDailyBody(String detail) {
+    return '$detail。记录一次会话，完成今天的进度。';
+  }
+
+  @override
+  String notifBehindTitle(String course) {
+    return '⚠️ $course 已落后';
+  }
+
+  @override
+  String notifBehindBodyPace(
+    String left,
+    String days,
+    String pace,
+    String catchUp,
+  ) {
+    return '还剩 $left，还有 $days 天——从现在起每天 $pace。记录 $catchUp 即可恢复正常。';
+  }
+
+  @override
+  String notifBehindBodyFull(String left, String days, String pace) {
+    return '还剩 $left，还有 $days 天——从现在起每天 $pace。只有学完这 $left 才能解除——今晚就开始吧。';
+  }
+
+  @override
+  String notifBehindBodyDeadlineDay(String left) {
+    return '还有 $left 没学完，截止日期就在今天。现在记录的每一点都算数。';
+  }
+
+  @override
+  String notifDeadlineTomorrowTitle(String course, String left) {
+    return '🚨 $course 明天截止，还有 $left 没完成';
+  }
+
+  @override
+  String get notifDeadlineTomorrowBody => '今天记录的每一分钟都算双倍。';
+
+  @override
+  String notifDeadlineSoonTitle(String course, String days, String left) {
+    return '⏳ $course 考试还有 $days 天——还剩 $left';
+  }
+
+  @override
+  String notifDeadlineSoonBody(String pace) {
+    return '也就是每天 $pace。拆开学：每天 2 次胜过一次突击。';
+  }
+
+  @override
+  String get notifDeadlineSoonBodyNoPace => '现在记录的每一小时都算数。';
+
+  @override
+  String notifOverdueTitle(String course, String left) {
+    return '❌ $course 已过截止日期，还有 $left 没完成';
+  }
+
+  @override
+  String get notifOverdueBody => '请调整截止日期或学完这些学时——在此之前，该课程将一直处于“需要注意”状态。';
+
+  @override
+  String notifStreakTitle(String days, String week) {
+    return '🔥 连击 $days 天——本周 $week';
+  }
+
+  @override
+  String get notifStreakBody => '所有课程都正常或领先。继续保持。';
+
+  @override
+  String notifCustomTitleAuto(String course) {
+    return '📚 学习打卡：$course';
+  }
+
+  @override
+  String notifCustomTitleCourse(String course) {
+    return '📚 该更新了：$course';
+  }
+
+  @override
+  String notifCustomBodyPace(String left, String pace) {
+    return '还有 $left 未完成·每天 $pace 可按时完成。记录一次会话以更新进度。';
+  }
+
+  @override
+  String notifCustomBodyNoPace(String left) {
+    return '还有 $left 没学完——现在记录的每一点都算数。';
+  }
+
+  @override
+  String reminderPreviewNext(String time) {
+    return '下次：$time';
+  }
+
+  @override
+  String get reminderPreviewBackDay => '-1天';
+
+  @override
+  String get reminderPreviewFwdDay => '+1天';
+
+  @override
+  String get reminderPreviewFake => '(虚拟)';
+
+  @override
+  String get reminderPreviewDemoLabel => '演示打卡';
 }
 
 /// The translations for Chinese, using the Han script (`zh_Hans`).
@@ -2405,6 +2534,135 @@ class AppLocalizationsZhHans extends AppLocalizationsZh {
 
   @override
   String get settingsReminderDenied => '通知已被屏蔽——请在系统设置中启用。';
+
+  @override
+  String notifDurationHours(String value) {
+    return '$value 小时';
+  }
+
+  @override
+  String notifDurationMinutes(String value) {
+    return '$value 分钟';
+  }
+
+  @override
+  String notifDailyTitle(String duration) {
+    return '📚 今晚还需 $duration，保持正常进度';
+  }
+
+  @override
+  String notifDailyCourseNeed(String course, String duration) {
+    return '$course 今天还剩 $duration';
+  }
+
+  @override
+  String notifDailyMore(String count) {
+    return '(还有$count门)';
+  }
+
+  @override
+  String notifDailyBody(String detail) {
+    return '$detail。记录一次会话，完成今天的进度。';
+  }
+
+  @override
+  String notifBehindTitle(String course) {
+    return '⚠️ $course 已落后';
+  }
+
+  @override
+  String notifBehindBodyPace(
+    String left,
+    String days,
+    String pace,
+    String catchUp,
+  ) {
+    return '还剩 $left，还有 $days 天——从现在起每天 $pace。记录 $catchUp 即可恢复正常。';
+  }
+
+  @override
+  String notifBehindBodyFull(String left, String days, String pace) {
+    return '还剩 $left，还有 $days 天——从现在起每天 $pace。只有学完这 $left 才能解除——今晚就开始吧。';
+  }
+
+  @override
+  String notifBehindBodyDeadlineDay(String left) {
+    return '还有 $left 没学完，截止日期就在今天。现在记录的每一点都算数。';
+  }
+
+  @override
+  String notifDeadlineTomorrowTitle(String course, String left) {
+    return '🚨 $course 明天截止，还有 $left 没完成';
+  }
+
+  @override
+  String get notifDeadlineTomorrowBody => '今天记录的每一分钟都算双倍。';
+
+  @override
+  String notifDeadlineSoonTitle(String course, String days, String left) {
+    return '⏳ $course 考试还有 $days 天——还剩 $left';
+  }
+
+  @override
+  String notifDeadlineSoonBody(String pace) {
+    return '也就是每天 $pace。拆开学：每天 2 次胜过一次突击。';
+  }
+
+  @override
+  String get notifDeadlineSoonBodyNoPace => '现在记录的每一小时都算数。';
+
+  @override
+  String notifOverdueTitle(String course, String left) {
+    return '❌ $course 已过截止日期，还有 $left 没完成';
+  }
+
+  @override
+  String get notifOverdueBody => '请调整截止日期或学完这些学时——在此之前，该课程将一直处于“需要注意”状态。';
+
+  @override
+  String notifStreakTitle(String days, String week) {
+    return '🔥 连击 $days 天——本周 $week';
+  }
+
+  @override
+  String get notifStreakBody => '所有课程都正常或领先。继续保持。';
+
+  @override
+  String notifCustomTitleAuto(String course) {
+    return '📚 学习打卡：$course';
+  }
+
+  @override
+  String notifCustomTitleCourse(String course) {
+    return '📚 该更新了：$course';
+  }
+
+  @override
+  String notifCustomBodyPace(String left, String pace) {
+    return '还有 $left 未完成·每天 $pace 可按时完成。记录一次会话以更新进度。';
+  }
+
+  @override
+  String notifCustomBodyNoPace(String left) {
+    return '还有 $left 没学完——现在记录的每一点都算数。';
+  }
+
+  @override
+  String reminderPreviewNext(String time) {
+    return '下次：$time';
+  }
+
+  @override
+  String get reminderPreviewBackDay => '-1天';
+
+  @override
+  String get reminderPreviewFwdDay => '+1天';
+
+  @override
+  String get reminderPreviewFake => '(虚拟)';
+
+  @override
+  String get reminderPreviewDemoLabel => '演示打卡';
 }
 
 /// The translations for Chinese, using the Han script (`zh_Hant`).
@@ -3606,4 +3864,133 @@ class AppLocalizationsZhHant extends AppLocalizationsZh {
 
   @override
   String get settingsReminderDenied => '通知已被封鎖——請在系統設定中啟用。';
+
+  @override
+  String notifDurationHours(String value) {
+    return '$value 小時';
+  }
+
+  @override
+  String notifDurationMinutes(String value) {
+    return '$value 分鐘';
+  }
+
+  @override
+  String notifDailyTitle(String duration) {
+    return '📚 今晚還需 $duration，保持正常進度';
+  }
+
+  @override
+  String notifDailyCourseNeed(String course, String duration) {
+    return '$course 今天還剩 $duration';
+  }
+
+  @override
+  String notifDailyMore(String count) {
+    return '(還有$count門)';
+  }
+
+  @override
+  String notifDailyBody(String detail) {
+    return '$detail。記錄時段以完成今天的進度。';
+  }
+
+  @override
+  String notifBehindTitle(String course) {
+    return '⚠️ $course 已落後';
+  }
+
+  @override
+  String notifBehindBodyPace(
+    String left,
+    String days,
+    String pace,
+    String catchUp,
+  ) {
+    return '還剩 $left，還有 $days 天——從現在起每天 $pace。記錄 $catchUp 即可恢復正常。';
+  }
+
+  @override
+  String notifBehindBodyFull(String left, String days, String pace) {
+    return '還剩 $left，還有 $days 天——從現在起每天 $pace。只有學完這 $left 才能解除——今晚就開始吧。';
+  }
+
+  @override
+  String notifBehindBodyDeadlineDay(String left) {
+    return '還有 $left 沒學完，截止日期就在今天。現在記錄的每一點都算數。';
+  }
+
+  @override
+  String notifDeadlineTomorrowTitle(String course, String left) {
+    return '🚨 $course 明天截止，還有 $left 沒完成';
+  }
+
+  @override
+  String get notifDeadlineTomorrowBody => '今天記錄的每一分鐘都算雙倍。';
+
+  @override
+  String notifDeadlineSoonTitle(String course, String days, String left) {
+    return '⏳ $course 考試還有 $days 天——還剩 $left';
+  }
+
+  @override
+  String notifDeadlineSoonBody(String pace) {
+    return '也就是每天 $pace。拆開學：每天 2 次勝過一次突擊。';
+  }
+
+  @override
+  String get notifDeadlineSoonBodyNoPace => '現在記錄的每一小時都算數。';
+
+  @override
+  String notifOverdueTitle(String course, String left) {
+    return '❌ $course 已過截止日期，還有 $left 沒完成';
+  }
+
+  @override
+  String get notifOverdueBody => '請調整截止日期或學完這些學時——在此之前，該課程將一直處於「需要注意」狀態。';
+
+  @override
+  String notifStreakTitle(String days, String week) {
+    return '🔥 連擊 $days 天——本週 $week';
+  }
+
+  @override
+  String get notifStreakBody => '所有課程都正常或領先。繼續保持。';
+
+  @override
+  String notifCustomTitleAuto(String course) {
+    return '📚 學習打卡：$course';
+  }
+
+  @override
+  String notifCustomTitleCourse(String course) {
+    return '📚 該更新了：$course';
+  }
+
+  @override
+  String notifCustomBodyPace(String left, String pace) {
+    return '還有 $left 未完成·每天 $pace 可按時完成。記錄時段以更新進度。';
+  }
+
+  @override
+  String notifCustomBodyNoPace(String left) {
+    return '還有 $left 沒學完——現在記錄的每一點都算數。';
+  }
+
+  @override
+  String reminderPreviewNext(String time) {
+    return '下次：$time';
+  }
+
+  @override
+  String get reminderPreviewBackDay => '-1天';
+
+  @override
+  String get reminderPreviewFwdDay => '+1天';
+
+  @override
+  String get reminderPreviewFake => '(虛擬)';
+
+  @override
+  String get reminderPreviewDemoLabel => '演示打卡';
 }

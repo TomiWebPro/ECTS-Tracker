@@ -1251,4 +1251,137 @@ class AppLocalizationsEl extends AppLocalizations {
   @override
   String get settingsReminderDenied =>
       'Οι ειδοποιήσεις είναι αποκλεισμένες — ενεργοποίησέ τες στις ρυθμίσεις συστήματος.';
+
+  @override
+  String notifDurationHours(String value) {
+    return '$value ώ';
+  }
+
+  @override
+  String notifDurationMinutes(String value) {
+    return '$value λεπ';
+  }
+
+  @override
+  String notifDailyTitle(String duration) {
+    return '📚 Απόψε: $duration για να μείνεις εντός προγράμματος';
+  }
+
+  @override
+  String notifDailyCourseNeed(String course, String duration) {
+    return '$course: απομένουν $duration σήμερα';
+  }
+
+  @override
+  String notifDailyMore(String count) {
+    return '(+$count ακόμη)';
+  }
+
+  @override
+  String notifDailyBody(String detail) {
+    return '$detail. Κατέγραψε μια συνεδρία για να κλείσεις τη μέρα.';
+  }
+
+  @override
+  String notifBehindTitle(String course) {
+    return '⚠️ Το $course έμεινε πίσω';
+  }
+
+  @override
+  String notifBehindBodyPace(
+    String left,
+    String days,
+    String pace,
+    String catchUp,
+  ) {
+    return 'Απομένουν $left, απομένουν $days ημέρες — από εδώ $pace/ημέρα. Κατέγραψε $catchUp για να ξαναμπείς εντός προγράμματος.';
+  }
+
+  @override
+  String notifBehindBodyFull(String left, String days, String pace) {
+    return 'Απομένουν $left, απομένουν $days ημέρες — από εδώ $pace/ημέρα. Μόνο τα πλήρη $left το καθαρίζουν — ξεκίνα απόψε.';
+  }
+
+  @override
+  String notifBehindBodyDeadlineDay(String left) {
+    return 'Τα $left είναι ακόμη ανοιχτά και η προθεσμία έφτασε. Ό,τι καταγράψεις τώρα μετράει.';
+  }
+
+  @override
+  String notifDeadlineTomorrowTitle(String course, String left) {
+    return '🚨 Το $course λήγει αύριο και έχει ακόμη $left ανοιχτά';
+  }
+
+  @override
+  String get notifDeadlineTomorrowBody =>
+      'Ό,τι καταγράψεις σήμερα μετράει διπλά.';
+
+  @override
+  String notifDeadlineSoonTitle(String course, String days, String left) {
+    return '⏳ Εξέταση $course σε $days ημέρες — απομένουν $left';
+  }
+
+  @override
+  String notifDeadlineSoonBody(String pace) {
+    return 'Αυτό είναι $pace/ημέρα. Σπάσ’ το: 2 συνεδρίες τη μέρα νικούν έναν μαραθώνιο.';
+  }
+
+  @override
+  String get notifDeadlineSoonBodyNoPace =>
+      'Κάθε ώρα που καταγράφεις τώρα μετράει.';
+
+  @override
+  String notifOverdueTitle(String course, String left) {
+    return '❌ Το $course έχασε την προθεσμία με $left ανοιχτά';
+  }
+
+  @override
+  String get notifOverdueBody =>
+      'Μετακίνησε την προθεσμία ή ολοκλήρωσε τις ώρες — μέχρι τότε το μάθημα μένει σε «χρειάζεται προσοχή».';
+
+  @override
+  String notifStreakTitle(String days, String week) {
+    return '🔥 Σερί $days ημερών — $week αυτή την εβδομάδα';
+  }
+
+  @override
+  String get notifStreakBody =>
+      'Όλα τα μαθήματα εντός προγράμματος ή μπροστά. Ωραίο σερί.';
+
+  @override
+  String notifCustomTitleAuto(String course) {
+    return '📚 Έλεγχος μελέτης: $course';
+  }
+
+  @override
+  String notifCustomTitleCourse(String course) {
+    return '📚 Ώρα για ενημέρωση: $course';
+  }
+
+  @override
+  String notifCustomBodyPace(String left, String pace) {
+    return '$left ανοιχτά · $pace/ημέρα για έγκαιρη ολοκλήρωση. Κατέγραψε μια συνεδρία για να ενημερώσεις την πρόοδο.';
+  }
+
+  @override
+  String notifCustomBodyNoPace(String left) {
+    return 'Ακόμη $left ανοιχτά — ό,τι καταγράψεις τώρα μετράει.';
+  }
+
+  @override
+  String reminderPreviewNext(String time) {
+    return 'Επόμενο: $time';
+  }
+
+  @override
+  String get reminderPreviewBackDay => '-1ημ';
+
+  @override
+  String get reminderPreviewFwdDay => '+1ημ';
+
+  @override
+  String get reminderPreviewFake => '(fake)';
+
+  @override
+  String get reminderPreviewDemoLabel => 'Demo έλεγχος';
 }

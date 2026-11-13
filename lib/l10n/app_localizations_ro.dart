@@ -1247,4 +1247,137 @@ class AppLocalizationsRo extends AppLocalizations {
   @override
   String get settingsReminderDenied =>
       'Notificările sunt blocate — activează-le din setările de sistem.';
+
+  @override
+  String notifDurationHours(String value) {
+    return '$value h';
+  }
+
+  @override
+  String notifDurationMinutes(String value) {
+    return '$value min';
+  }
+
+  @override
+  String notifDailyTitle(String duration) {
+    return '📚 Diseară: $duration pentru a rămâne În grafic';
+  }
+
+  @override
+  String notifDailyCourseNeed(String course, String duration) {
+    return '$course: au mai rămas $duration azi';
+  }
+
+  @override
+  String notifDailyMore(String count) {
+    return '(+$count în plus)';
+  }
+
+  @override
+  String notifDailyBody(String detail) {
+    return '$detail. Înregistrează o sesiune ca să închei ziua de azi.';
+  }
+
+  @override
+  String notifBehindTitle(String course) {
+    return '⚠️ $course a ajuns În urmă';
+  }
+
+  @override
+  String notifBehindBodyPace(
+    String left,
+    String days,
+    String pace,
+    String catchUp,
+  ) {
+    return 'Au mai rămas $left, $days zile — $pace/zi de acum. Înregistrează $catchUp ca să revii În grafic.';
+  }
+
+  @override
+  String notifBehindBodyFull(String left, String days, String pace) {
+    return 'Au mai rămas $left, $days zile — $pace/zi de acum. Doar finalizarea tuturor $left rezolvă asta — începe diseară.';
+  }
+
+  @override
+  String notifBehindBodyDeadlineDay(String left) {
+    return 'Au mai rămas $left, iar termenul este azi. Tot ce înregistrezi acum contează.';
+  }
+
+  @override
+  String notifDeadlineTomorrowTitle(String course, String left) {
+    return '🚨 $course are termenul mâine și au mai rămas $left';
+  }
+
+  @override
+  String get notifDeadlineTomorrowBody =>
+      'Tot ce înregistrezi azi contează dublu.';
+
+  @override
+  String notifDeadlineSoonTitle(String course, String days, String left) {
+    return '⏳ Examenul $course peste $days zile — au mai rămas $left';
+  }
+
+  @override
+  String notifDeadlineSoonBody(String pace) {
+    return 'Asta înseamnă $pace/zi. Împarte: 2 sesiuni pe zi bat un maraton.';
+  }
+
+  @override
+  String get notifDeadlineSoonBodyNoPace =>
+      'Fiecare oră pe care o înregistrezi acum contează.';
+
+  @override
+  String notifOverdueTitle(String course, String left) {
+    return '❌ $course a depășit termenul cu $left rămase';
+  }
+
+  @override
+  String get notifOverdueBody =>
+      'Mută termenul sau completează orele — cursul rămâne în Necesită atenție până atunci.';
+
+  @override
+  String notifStreakTitle(String days, String week) {
+    return '🔥 Serie de $days zile — $week săptămâna aceasta';
+  }
+
+  @override
+  String get notifStreakBody =>
+      'Toate cursurile sunt În grafic sau Înainte. Bravo.';
+
+  @override
+  String notifCustomTitleAuto(String course) {
+    return '📚 Verificare de studiu: $course';
+  }
+
+  @override
+  String notifCustomTitleCourse(String course) {
+    return '📚 E timpul să actualizezi: $course';
+  }
+
+  @override
+  String notifCustomBodyPace(String left, String pace) {
+    return '$left rămase · $pace/zi pentru a termina la timp. Înregistrează o sesiune pentru a actualiza progresul.';
+  }
+
+  @override
+  String notifCustomBodyNoPace(String left) {
+    return 'Au mai rămas $left — tot ce înregistrezi acum contează.';
+  }
+
+  @override
+  String reminderPreviewNext(String time) {
+    return 'Următorul: $time';
+  }
+
+  @override
+  String get reminderPreviewBackDay => '-1z';
+
+  @override
+  String get reminderPreviewFwdDay => '+1z';
+
+  @override
+  String get reminderPreviewFake => '(fals)';
+
+  @override
+  String get reminderPreviewDemoLabel => 'Verificare demo';
 }

@@ -1243,4 +1243,136 @@ class AppLocalizationsLb extends AppLocalizations {
   @override
   String get settingsReminderDenied =>
       'Notifikatioune si blockéiert — aktivéier se an den Systemastellungen.';
+
+  @override
+  String notifDurationHours(String value) {
+    return '$value St';
+  }
+
+  @override
+  String notifDurationMinutes(String value) {
+    return '$value Min';
+  }
+
+  @override
+  String notifDailyTitle(String duration) {
+    return '📚 Haut den Owend: $duration fir um Wee ze bleiwen';
+  }
+
+  @override
+  String notifDailyCourseNeed(String course, String duration) {
+    return '$course $duration Rescht haut';
+  }
+
+  @override
+  String notifDailyMore(String count) {
+    return '(+$count weider)';
+  }
+
+  @override
+  String notifDailyBody(String detail) {
+    return '$detail. Logg eng Sëtzung fir haut ofzeschléissen.';
+  }
+
+  @override
+  String notifBehindTitle(String course) {
+    return '⚠️ $course ass hannerier geroden';
+  }
+
+  @override
+  String notifBehindBodyPace(
+    String left,
+    String days,
+    String pace,
+    String catchUp,
+  ) {
+    return '$left Rescht, $days Deeg Rescht — $pace/Dag vun hei un. Logg $catchUp fir erëm um Wee ze kommen.';
+  }
+
+  @override
+  String notifBehindBodyFull(String left, String days, String pace) {
+    return '$left Rescht, $days Deeg Rescht — $pace/Dag vun hei un. Nëmmen déi ganz $left fäerdeg ze maachen hëlleft — fänk haut den Owend un.';
+  }
+
+  @override
+  String notifBehindBodyDeadlineDay(String left) {
+    return '$left nach op an dDeadline ass haut. Alles wat s de elo loggs zielt.';
+  }
+
+  @override
+  String notifDeadlineTomorrowTitle(String course, String left) {
+    return '🚨 $course ass muer fälleg an huet nach $left op';
+  }
+
+  @override
+  String get notifDeadlineTomorrowBody =>
+      'Alles wat s de haut loggs zielt duebel.';
+
+  @override
+  String notifDeadlineSoonTitle(String course, String days, String left) {
+    return '⏳ $course-Examen an $days Deeg — $left Rescht';
+  }
+
+  @override
+  String notifDeadlineSoonBody(String pace) {
+    return 'Dat sinn $pace/Dag. Deel et op: 2 Sëtzungen den Dag schloe een Marathon.';
+  }
+
+  @override
+  String get notifDeadlineSoonBodyNoPace =>
+      'All Stonn déi s de elo loggs zielt.';
+
+  @override
+  String notifOverdueTitle(String course, String left) {
+    return '❌ $course huet dDeadline verpasst mat $left op';
+  }
+
+  @override
+  String get notifOverdueBody =>
+      'Verréckel dDeadline oder maach dStonnen fäerdeg — de Cours brauch bis dohin Opmierksamkeet.';
+
+  @override
+  String notifStreakTitle(String days, String week) {
+    return '🔥 $days Deeg Serie — $week dës Woch';
+  }
+
+  @override
+  String get notifStreakBody => 'All Coursen um Wee oder viraus. Gutt gemaach.';
+
+  @override
+  String notifCustomTitleAuto(String course) {
+    return '📚 Léier-Check-in: $course';
+  }
+
+  @override
+  String notifCustomTitleCourse(String course) {
+    return '📚 Zäit fir ze aktualiséieren: $course';
+  }
+
+  @override
+  String notifCustomBodyPace(String left, String pace) {
+    return '$left op · $pace/Dag fir reegelrecht fäerdeg ze ginn. Logg eng Sëtzung fir de Fortschrëtt ze aktualiséieren.';
+  }
+
+  @override
+  String notifCustomBodyNoPace(String left) {
+    return '$left nach op — alles wat s de elo loggs zielt.';
+  }
+
+  @override
+  String reminderPreviewNext(String time) {
+    return 'Nächst: $time';
+  }
+
+  @override
+  String get reminderPreviewBackDay => '-1Dag';
+
+  @override
+  String get reminderPreviewFwdDay => '+1Dag';
+
+  @override
+  String get reminderPreviewFake => '(Fake)';
+
+  @override
+  String get reminderPreviewDemoLabel => 'Demo-Check-in';
 }

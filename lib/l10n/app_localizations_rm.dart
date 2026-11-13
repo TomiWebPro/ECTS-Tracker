@@ -1244,4 +1244,136 @@ class AppLocalizationsRm extends AppLocalizations {
   @override
   String get settingsReminderDenied =>
       'Las notificas èn bloccadas — activar en las configuraziuns dal sistem.';
+
+  @override
+  String notifDurationHours(String value) {
+    return '$value u';
+  }
+
+  @override
+  String notifDurationMinutes(String value) {
+    return '$value min';
+  }
+
+  @override
+  String notifDailyTitle(String duration) {
+    return '📚 Hoz saira: $duration per restar Sin via';
+  }
+
+  @override
+  String notifDailyCourseNeed(String course, String duration) {
+    return '$course anc $duration oz';
+  }
+
+  @override
+  String notifDailyMore(String count) {
+    return '(+$count dapli)';
+  }
+
+  @override
+  String notifDailyBody(String detail) {
+    return '$detail. Protocolla ina sesida per serrar oz.';
+  }
+
+  @override
+  String notifBehindTitle(String course) {
+    return '⚠️ $course è crudà Enavos';
+  }
+
+  @override
+  String notifBehindBodyPace(
+    String left,
+    String days,
+    String pace,
+    String catchUp,
+  ) {
+    return 'Anc $left, anc $days dis — $pace/di da qua. Protocolla $catchUp per turnar Sin via.';
+  }
+
+  @override
+  String notifBehindBodyFull(String left, String days, String pace) {
+    return 'Anc $left, anc $days dis — $pace/di da qua. Sule finir tut las $left schlia quai — cumenza hoz saira.';
+  }
+
+  @override
+  String notifBehindBodyDeadlineDay(String left) {
+    return 'Anc avert $left e la scadenza è qua. Mintga ch\'ins protocollescha uossa vala.';
+  }
+
+  @override
+  String notifDeadlineTomorrowTitle(String course, String left) {
+    return '🚨 $course ha scadenza damaun ed ha anc avert $left';
+  }
+
+  @override
+  String get notifDeadlineTomorrowBody =>
+      'Mintga ch\'ins protocollescha oz vala dubel.';
+
+  @override
+  String notifDeadlineSoonTitle(String course, String days, String left) {
+    return '⏳ Examen da $course en $days dis — anc $left';
+  }
+
+  @override
+  String notifDeadlineSoonBody(String pace) {
+    return 'Quai è $pace/di. Parta: 2 sesidas al di batan ina maratona.';
+  }
+
+  @override
+  String get notifDeadlineSoonBodyNoPace =>
+      'Mintga ura ch\'ins protocollescha uossa vala.';
+
+  @override
+  String notifOverdueTitle(String course, String left) {
+    return '❌ $course ha surpassà la scadenza cun $left avert';
+  }
+
+  @override
+  String get notifOverdueBody =>
+      'Spusta la scadenza u finì las uras — il curs resta en Dovra attenziun fin là.';
+
+  @override
+  String notifStreakTitle(String days, String week) {
+    return '🔥 Serie da $days dis — $week questa emna';
+  }
+
+  @override
+  String get notifStreakBody => 'Tut ils curs Sin via u Enavant. Bel progred.';
+
+  @override
+  String notifCustomTitleAuto(String course) {
+    return '📚 Check-in da studi: $course';
+  }
+
+  @override
+  String notifCustomTitleCourse(String course) {
+    return '📚 Temp d\'actualisar: $course';
+  }
+
+  @override
+  String notifCustomBodyPace(String left, String pace) {
+    return '$left avert · $pace/di per finir a temp. Protocolla ina sesida per actualisar il progress.';
+  }
+
+  @override
+  String notifCustomBodyNoPace(String left) {
+    return 'Anc avert $left — mintga ch\'ins protocollescha uossa vala.';
+  }
+
+  @override
+  String reminderPreviewNext(String time) {
+    return 'Prossem: $time';
+  }
+
+  @override
+  String get reminderPreviewBackDay => '-1d';
+
+  @override
+  String get reminderPreviewFwdDay => '+1d';
+
+  @override
+  String get reminderPreviewFake => '(fals)';
+
+  @override
+  String get reminderPreviewDemoLabel => 'Check-in demo';
 }

@@ -1216,4 +1216,134 @@ class AppLocalizationsKo extends AppLocalizations {
 
   @override
   String get settingsReminderDenied => '알림이 차단되어 있습니다 — 시스템 설정에서 허용하세요.';
+
+  @override
+  String notifDurationHours(String value) {
+    return '$value시간';
+  }
+
+  @override
+  String notifDurationMinutes(String value) {
+    return '$value분';
+  }
+
+  @override
+  String notifDailyTitle(String duration) {
+    return '📚 오늘 밤: 정상을 유지하려면 $duration';
+  }
+
+  @override
+  String notifDailyCourseNeed(String course, String duration) {
+    return '$course 오늘 $duration 남음';
+  }
+
+  @override
+  String notifDailyMore(String count) {
+    return '(+$count개 더)';
+  }
+
+  @override
+  String notifDailyBody(String detail) {
+    return '$detail. 오늘을 마치려면 기록하세요.';
+  }
+
+  @override
+  String notifBehindTitle(String course) {
+    return '⚠️ $course이(가) 지연 상태가 되었습니다';
+  }
+
+  @override
+  String notifBehindBodyPace(
+    String left,
+    String days,
+    String pace,
+    String catchUp,
+  ) {
+    return '$left 남음, $days일 남음 — 여기서부터 $pace/일. 정상으로 돌아가려면 $catchUp을(를) 기록하세요.';
+  }
+
+  @override
+  String notifBehindBodyFull(String left, String days, String pace) {
+    return '$left 남음, $days일 남음 — 여기서부터 $pace/일. $left 전체를 마쳐야 해결됩니다 — 오늘 밤 시작하세요.';
+  }
+
+  @override
+  String notifBehindBodyDeadlineDay(String left) {
+    return '$left 아직 남았고 마감일이 오늘입니다. 지금 기록하는 모든 것이 반영됩니다.';
+  }
+
+  @override
+  String notifDeadlineTomorrowTitle(String course, String left) {
+    return '🚨 $course이(가) 내일 마감이며 $left 남았습니다';
+  }
+
+  @override
+  String get notifDeadlineTomorrowBody => '오늘 기록하는 모든 것은 두 배가 됩니다.';
+
+  @override
+  String notifDeadlineSoonTitle(String course, String days, String left) {
+    return '⏳ $days일 후 $course 시험 — $left 남음';
+  }
+
+  @override
+  String notifDeadlineSoonBody(String pace) {
+    return '$pace/일입니다. 나누세요: 하루 2번이 한 번의 마라톤보다 낫습니다.';
+  }
+
+  @override
+  String get notifDeadlineSoonBodyNoPace => '지금 기록하는 매 시간이 반영됩니다.';
+
+  @override
+  String notifOverdueTitle(String course, String left) {
+    return '❌ $course이(가) 마감일을 넘겼고 $left 남았습니다';
+  }
+
+  @override
+  String get notifOverdueBody =>
+      '마감일을 옮기거나 시간을 채우세요 — 그때까지 이 과목은 관심 필요 상태로 남습니다.';
+
+  @override
+  String notifStreakTitle(String days, String week) {
+    return '🔥 $days일 연속 — 이번 주 $week';
+  }
+
+  @override
+  String get notifStreakBody => '모든 과목이 정상 또는 앞서감입니다. 잘하고 있어요.';
+
+  @override
+  String notifCustomTitleAuto(String course) {
+    return '📚 학습 체크인: $course';
+  }
+
+  @override
+  String notifCustomTitleCourse(String course) {
+    return '📚 업데이트할 시간: $course';
+  }
+
+  @override
+  String notifCustomBodyPace(String left, String pace) {
+    return '$left 남음 · 제시간에 마치려면 $pace/일. 진도를 업데이트하려면 기록하세요.';
+  }
+
+  @override
+  String notifCustomBodyNoPace(String left) {
+    return '$left 아직 남음 — 지금 기록하는 모든 것이 반영됩니다.';
+  }
+
+  @override
+  String reminderPreviewNext(String time) {
+    return '다음: $time';
+  }
+
+  @override
+  String get reminderPreviewBackDay => '-1일';
+
+  @override
+  String get reminderPreviewFwdDay => '+1일';
+
+  @override
+  String get reminderPreviewFake => '(가상)';
+
+  @override
+  String get reminderPreviewDemoLabel => '데모 체크인';
 }

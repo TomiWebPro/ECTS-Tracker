@@ -1239,4 +1239,137 @@ class AppLocalizationsCs extends AppLocalizations {
   @override
   String get settingsReminderDenied =>
       'Oznámení jsou zablokována — povol je v nastavení systému.';
+
+  @override
+  String notifDurationHours(String value) {
+    return '$value h';
+  }
+
+  @override
+  String notifDurationMinutes(String value) {
+    return '$value min';
+  }
+
+  @override
+  String notifDailyTitle(String duration) {
+    return '📚 Dnes večer: $duration, abyste zůstali na dobré cestě';
+  }
+
+  @override
+  String notifDailyCourseNeed(String course, String duration) {
+    return '$course: dnes zbývá $duration';
+  }
+
+  @override
+  String notifDailyMore(String count) {
+    return '(+$count dalších)';
+  }
+
+  @override
+  String notifDailyBody(String detail) {
+    return '$detail. Zaznamenejte lekci, ať máte dnes hotovo.';
+  }
+
+  @override
+  String notifBehindTitle(String course) {
+    return '⚠️ $course se dostal do zpoždění';
+  }
+
+  @override
+  String notifBehindBodyPace(
+    String left,
+    String days,
+    String pace,
+    String catchUp,
+  ) {
+    return 'Zbývá $left, zbývají $days dní — ode dneška $pace/den. Zaznamenejte $catchUp a budete zase na dobré cestě.';
+  }
+
+  @override
+  String notifBehindBodyFull(String left, String days, String pace) {
+    return 'Zbývá $left, zbývají $days dní — ode dneška $pace/den. Spraví to jen celých $left — začněte dnes večer.';
+  }
+
+  @override
+  String notifBehindBodyDeadlineDay(String left) {
+    return 'Stále zbývá $left a termín je tady. Všechno, co teď zaznamenáte, se počítá.';
+  }
+
+  @override
+  String notifDeadlineTomorrowTitle(String course, String left) {
+    return '🚨 $course má termín zítra a zbývá $left';
+  }
+
+  @override
+  String get notifDeadlineTomorrowBody =>
+      'Všechno, co dnes zaznamenáte, se počítá dvojnásob.';
+
+  @override
+  String notifDeadlineSoonTitle(String course, String days, String left) {
+    return '⏳ Zkouška $course za $days dní — zbývá $left';
+  }
+
+  @override
+  String notifDeadlineSoonBody(String pace) {
+    return 'To je $pace/den. Rozdělte to: 2 lekce denně porazí jeden maraton.';
+  }
+
+  @override
+  String get notifDeadlineSoonBodyNoPace =>
+      'Každá hodina, kterou teď zaznamenáte, se počítá.';
+
+  @override
+  String notifOverdueTitle(String course, String left) {
+    return '❌ $course promeškal termín, zbývá $left';
+  }
+
+  @override
+  String get notifOverdueBody =>
+      'Posuňte termín nebo dodělejte hodiny — do té doby předmět zůstává ve stavu „vyžaduje pozornost“.';
+
+  @override
+  String notifStreakTitle(String days, String week) {
+    return '🔥 Série $days dní — tento týden $week';
+  }
+
+  @override
+  String get notifStreakBody =>
+      'Všechny předměty na dobré cestě nebo v předstihu. Pěkná série.';
+
+  @override
+  String notifCustomTitleAuto(String course) {
+    return '📚 Studijní kontrola: $course';
+  }
+
+  @override
+  String notifCustomTitleCourse(String course) {
+    return '📚 Čas na aktualizaci: $course';
+  }
+
+  @override
+  String notifCustomBodyPace(String left, String pace) {
+    return 'Zbývá $left · $pace/den pro včasné dokončení. Zaznamenejte lekci pro aktualizaci pokroku.';
+  }
+
+  @override
+  String notifCustomBodyNoPace(String left) {
+    return 'Stále zbývá $left — všechno, co teď zaznamenáte, se počítá.';
+  }
+
+  @override
+  String reminderPreviewNext(String time) {
+    return 'Další: $time';
+  }
+
+  @override
+  String get reminderPreviewBackDay => '-1d';
+
+  @override
+  String get reminderPreviewFwdDay => '+1d';
+
+  @override
+  String get reminderPreviewFake => '(fake)';
+
+  @override
+  String get reminderPreviewDemoLabel => 'Demo kontrola';
 }

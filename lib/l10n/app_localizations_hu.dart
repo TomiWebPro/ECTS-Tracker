@@ -1246,4 +1246,137 @@ class AppLocalizationsHu extends AppLocalizations {
   @override
   String get settingsReminderDenied =>
       'Az értesítések le vannak tiltva — engedélyezd őket a rendszerbeállításokban.';
+
+  @override
+  String notifDurationHours(String value) {
+    return '$value ó';
+  }
+
+  @override
+  String notifDurationMinutes(String value) {
+    return '$value perc';
+  }
+
+  @override
+  String notifDailyTitle(String duration) {
+    return '📚 Ma este: $duration, hogy sínen maradj';
+  }
+
+  @override
+  String notifDailyCourseNeed(String course, String duration) {
+    return '$course: ma még $duration';
+  }
+
+  @override
+  String notifDailyMore(String count) {
+    return '(+$count további)';
+  }
+
+  @override
+  String notifDailyBody(String detail) {
+    return '$detail. Naplózz egy alkalmat, hogy letudd a mait.';
+  }
+
+  @override
+  String notifBehindTitle(String course) {
+    return '⚠️ $course átcsúszott ebbe: Lemaradva';
+  }
+
+  @override
+  String notifBehindBodyPace(
+    String left,
+    String days,
+    String pace,
+    String catchUp,
+  ) {
+    return '$left van hátra, $days nap van hátra — innentől $pace/nap. Naplózz $catchUp-nyit, hogy újra Sínen legyél.';
+  }
+
+  @override
+  String notifBehindBodyFull(String left, String days, String pace) {
+    return '$left van hátra, $days nap van hátra — innentől $pace/nap. Csak a teljes $left befejezése oldja meg — kezdj neki ma este.';
+  }
+
+  @override
+  String notifBehindBodyDeadlineDay(String left) {
+    return '$left még hátra van, és a határidő itt van. Minden számít, amit most naplózol.';
+  }
+
+  @override
+  String notifDeadlineTomorrowTitle(String course, String left) {
+    return '🚨 $course holnap esedékes, és még $left hátra van';
+  }
+
+  @override
+  String get notifDeadlineTomorrowBody =>
+      'Minden duplán számít, amit ma naplózol.';
+
+  @override
+  String notifDeadlineSoonTitle(String course, String days, String left) {
+    return '⏳ $course vizsga $days nap múlva — $left van hátra';
+  }
+
+  @override
+  String notifDeadlineSoonBody(String pace) {
+    return 'Ez $pace/nap. Oszd be: napi 2 alkalom többet ér egy maratonnál.';
+  }
+
+  @override
+  String get notifDeadlineSoonBodyNoPace =>
+      'Minden óra számít, amit most naplózol.';
+
+  @override
+  String notifOverdueTitle(String course, String left) {
+    return '❌ $course határideje lejárt, $left még hátra van';
+  }
+
+  @override
+  String get notifOverdueBody =>
+      'Told el a határidőt vagy dolgozd le az órákat — addig a kurzus figyelmet igényel.';
+
+  @override
+  String notifStreakTitle(String days, String week) {
+    return '🔥 $days napos sorozat — $week ezen a héten';
+  }
+
+  @override
+  String get notifStreakBody =>
+      'Minden kurzus Sínen vagy Előnyben. Szép sorozat.';
+
+  @override
+  String notifCustomTitleAuto(String course) {
+    return '📚 Tanulási bejelentkezés: $course';
+  }
+
+  @override
+  String notifCustomTitleCourse(String course) {
+    return '📚 Ideje frissíteni: $course';
+  }
+
+  @override
+  String notifCustomBodyPace(String left, String pace) {
+    return '$left hátra · $pace/nap, hogy időben elkészülj. Naplózz egy alkalmat az előrehaladás frissítéséhez.';
+  }
+
+  @override
+  String notifCustomBodyNoPace(String left) {
+    return '$left még hátra van — minden számít, amit most naplózol.';
+  }
+
+  @override
+  String reminderPreviewNext(String time) {
+    return 'Következő: $time';
+  }
+
+  @override
+  String get reminderPreviewBackDay => '-1n';
+
+  @override
+  String get reminderPreviewFwdDay => '+1n';
+
+  @override
+  String get reminderPreviewFake => '(hamis)';
+
+  @override
+  String get reminderPreviewDemoLabel => 'Demó bejelentkezés';
 }

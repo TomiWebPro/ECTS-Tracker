@@ -1241,4 +1241,137 @@ class AppLocalizationsIs extends AppLocalizations {
   @override
   String get settingsReminderDenied =>
       'Tilkynningar eru læstar — kveiktu á þeim í kerfisstillingum.';
+
+  @override
+  String notifDurationHours(String value) {
+    return '$value klst';
+  }
+
+  @override
+  String notifDurationMinutes(String value) {
+    return '$value mín';
+  }
+
+  @override
+  String notifDailyTitle(String duration) {
+    return '📚 Í kvöld: $duration til að halda þér á réttri leið';
+  }
+
+  @override
+  String notifDailyCourseNeed(String course, String duration) {
+    return '$course $duration eftir í dag';
+  }
+
+  @override
+  String notifDailyMore(String count) {
+    return '(+$count fleiri)';
+  }
+
+  @override
+  String notifDailyBody(String detail) {
+    return '$detail. Skráðu lotu til að klára daginn.';
+  }
+
+  @override
+  String notifBehindTitle(String course) {
+    return '⚠️ $course: staðan er Eftir á';
+  }
+
+  @override
+  String notifBehindBodyPace(
+    String left,
+    String days,
+    String pace,
+    String catchUp,
+  ) {
+    return '$left eftir, $days dagar eftir — $pace/dag héðan. Skráðu $catchUp til að komast aftur á rétta leið.';
+  }
+
+  @override
+  String notifBehindBodyFull(String left, String days, String pace) {
+    return '$left eftir, $days dagar eftir — $pace/dag héðan. Aðeins að klára allt $left dugar — byrjaðu í kvöld.';
+  }
+
+  @override
+  String notifBehindBodyDeadlineDay(String left) {
+    return '$left eftir og skil eru í dag. Allt sem þú skráir núna gildir.';
+  }
+
+  @override
+  String notifDeadlineTomorrowTitle(String course, String left) {
+    return '🚨 $course er á skilum á morgun og á ennþá $left eftir';
+  }
+
+  @override
+  String get notifDeadlineTomorrowBody =>
+      'Allt sem þú skráir í dag gildir tvöfalt.';
+
+  @override
+  String notifDeadlineSoonTitle(String course, String days, String left) {
+    return '⏳ Prófið í $course er eftir $days daga — $left eftir';
+  }
+
+  @override
+  String notifDeadlineSoonBody(String pace) {
+    return 'Það er $pace/dag. Skiptu því: 2 lotur á dag vinna eitt maraton.';
+  }
+
+  @override
+  String get notifDeadlineSoonBodyNoPace =>
+      'Sérhver klukkutími sem þú skráir núna gildir.';
+
+  @override
+  String notifOverdueTitle(String course, String left) {
+    return '❌ $course fór framhjá skilum með $left eftir';
+  }
+
+  @override
+  String get notifOverdueBody =>
+      'Færðu skiladaginn eða kláraðu tímana — áfanginn þarfnast athygli þangað til.';
+
+  @override
+  String notifStreakTitle(String days, String week) {
+    return '🔥 $days daga sigurganga — $week þessa viku';
+  }
+
+  @override
+  String get notifStreakBody =>
+      'Allir áfangar á réttri leið eða á undan. Vel gert.';
+
+  @override
+  String notifCustomTitleAuto(String course) {
+    return '📚 Námsinnritun: $course';
+  }
+
+  @override
+  String notifCustomTitleCourse(String course) {
+    return '📚 Tími til að uppfæra: $course';
+  }
+
+  @override
+  String notifCustomBodyPace(String left, String pace) {
+    return '$left eftir · $pace/dag til að klára í tíma. Skráðu lotu til að uppfæra framvinduna.';
+  }
+
+  @override
+  String notifCustomBodyNoPace(String left) {
+    return '$left ennþá eftir — allt sem þú skráir núna gildir.';
+  }
+
+  @override
+  String reminderPreviewNext(String time) {
+    return 'Næst: $time';
+  }
+
+  @override
+  String get reminderPreviewBackDay => '-1d';
+
+  @override
+  String get reminderPreviewFwdDay => '+1d';
+
+  @override
+  String get reminderPreviewFake => '(sýndar)';
+
+  @override
+  String get reminderPreviewDemoLabel => 'Kynningarinnritun';
 }

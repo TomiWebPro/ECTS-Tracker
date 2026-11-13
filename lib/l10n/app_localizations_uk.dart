@@ -1242,4 +1242,137 @@ class AppLocalizationsUk extends AppLocalizations {
   @override
   String get settingsReminderDenied =>
       'Сповіщення заблоковано — увімкніть їх у системних налаштуваннях.';
+
+  @override
+  String notifDurationHours(String value) {
+    return '$value год';
+  }
+
+  @override
+  String notifDurationMinutes(String value) {
+    return '$value хв';
+  }
+
+  @override
+  String notifDailyTitle(String duration) {
+    return '📚 Сьогодні ввечері: $duration, щоб утримати план';
+  }
+
+  @override
+  String notifDailyCourseNeed(String course, String duration) {
+    return '$course сьогодні ще $duration';
+  }
+
+  @override
+  String notifDailyMore(String count) {
+    return '(+$count ще)';
+  }
+
+  @override
+  String notifDailyBody(String detail) {
+    return '$detail. Запишіть сесію, щоб закрити сьогоднішній день.';
+  }
+
+  @override
+  String notifBehindTitle(String course) {
+    return '⚠️ $course перейшов у відставання';
+  }
+
+  @override
+  String notifBehindBodyPace(
+    String left,
+    String days,
+    String pace,
+    String catchUp,
+  ) {
+    return 'Залишилось $left, $days дн. попереду — звідси $pace/день. Запишіть $catchUp, щоб повернутися до плану.';
+  }
+
+  @override
+  String notifBehindBodyFull(String left, String days, String pace) {
+    return 'Залишилось $left, $days дн. попереду — звідси $pace/день. Допоможе лише повне закриття $left — почніть сьогодні ввечері.';
+  }
+
+  @override
+  String notifBehindBodyDeadlineDay(String left) {
+    return '$left ще відкрито, а дедлайн уже настав. Усе, що запишете зараз, зараховується.';
+  }
+
+  @override
+  String notifDeadlineTomorrowTitle(String course, String left) {
+    return '🚨 $course — дедлайн завтра, і ще відкрито $left';
+  }
+
+  @override
+  String get notifDeadlineTomorrowBody =>
+      'Усе, що запишете сьогодні, зараховується подвійно.';
+
+  @override
+  String notifDeadlineSoonTitle(String course, String days, String left) {
+    return '⏳ Іспит $course за $days дн. — залишилось $left';
+  }
+
+  @override
+  String notifDeadlineSoonBody(String pace) {
+    return 'Це $pace/день. Розділіть: 2 сесії на день кращі за один марафон.';
+  }
+
+  @override
+  String get notifDeadlineSoonBodyNoPace =>
+      'Кожна година, яку запишете зараз, зараховується.';
+
+  @override
+  String notifOverdueTitle(String course, String left) {
+    return '❌ $course прострочив дедлайн, відкрито $left';
+  }
+
+  @override
+  String get notifOverdueBody =>
+      'Перенесіть дедлайн або закрийте години — курс доти залишається таким, що потребує уваги.';
+
+  @override
+  String notifStreakTitle(String days, String week) {
+    return '🔥 $days-денна серія — $week цього тижня';
+  }
+
+  @override
+  String get notifStreakBody =>
+      'Усі курси за планом або попереду. Так тримати.';
+
+  @override
+  String notifCustomTitleAuto(String course) {
+    return '📚 Навчальна перевірка: $course';
+  }
+
+  @override
+  String notifCustomTitleCourse(String course) {
+    return '📚 Час оновити: $course';
+  }
+
+  @override
+  String notifCustomBodyPace(String left, String pace) {
+    return '$left відкрито · $pace/день, щоб встигнути вчасно. Запишіть сесію, щоб оновити прогрес.';
+  }
+
+  @override
+  String notifCustomBodyNoPace(String left) {
+    return '$left ще відкрито — усе, що запишете зараз, зараховується.';
+  }
+
+  @override
+  String reminderPreviewNext(String time) {
+    return 'Наступне: $time';
+  }
+
+  @override
+  String get reminderPreviewBackDay => '-1 дн.';
+
+  @override
+  String get reminderPreviewFwdDay => '+1 дн.';
+
+  @override
+  String get reminderPreviewFake => '(фейк)';
+
+  @override
+  String get reminderPreviewDemoLabel => 'Демо-перевірка';
 }

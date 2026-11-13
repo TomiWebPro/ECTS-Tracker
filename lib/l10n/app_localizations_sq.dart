@@ -1245,4 +1245,136 @@ class AppLocalizationsSq extends AppLocalizations {
   @override
   String get settingsReminderDenied =>
       'Njoftimet janë bllokuar — aktivizoji në cilësimet e sistemit.';
+
+  @override
+  String notifDurationHours(String value) {
+    return '$value o';
+  }
+
+  @override
+  String notifDurationMinutes(String value) {
+    return '$value min';
+  }
+
+  @override
+  String notifDailyTitle(String duration) {
+    return '📚 Sonte: $duration për të qëndruar në rrugë';
+  }
+
+  @override
+  String notifDailyCourseNeed(String course, String duration) {
+    return '$course sot edhe $duration';
+  }
+
+  @override
+  String notifDailyMore(String count) {
+    return '(+$count më shumë)';
+  }
+
+  @override
+  String notifDailyBody(String detail) {
+    return '$detail. Regjistro një seancë për të mbyllur ditën e sotme.';
+  }
+
+  @override
+  String notifBehindTitle(String course) {
+    return '⚠️ $course ra prapa';
+  }
+
+  @override
+  String notifBehindBodyPace(
+    String left,
+    String days,
+    String pace,
+    String catchUp,
+  ) {
+    return 'Edhe $left, $days ditë afat — tani e tutje $pace/ditë. Regjistro $catchUp për t’u kthyer në rrugë.';
+  }
+
+  @override
+  String notifBehindBodyFull(String left, String days, String pace) {
+    return 'Edhe $left, $days ditë afat — tani e tutje $pace/ditë. Vetëm plotësimi i të gjithë $left e zgjidh — fillo sonte.';
+  }
+
+  @override
+  String notifBehindBodyDeadlineDay(String left) {
+    return '$left ende të hapura dhe afati është këtu. Çdo gjë që regjistron tani vlen.';
+  }
+
+  @override
+  String notifDeadlineTomorrowTitle(String course, String left) {
+    return '🚨 $course ka afat nesër dhe ende ka $left të hapura';
+  }
+
+  @override
+  String get notifDeadlineTomorrowBody =>
+      'Çdo gjë që regjistron sot vlen dyfish.';
+
+  @override
+  String notifDeadlineSoonTitle(String course, String days, String left) {
+    return '⏳ Provimi $course pas $days ditësh — edhe $left';
+  }
+
+  @override
+  String notifDeadlineSoonBody(String pace) {
+    return 'Kjo është $pace/ditë. Ndaje: 2 seanca në ditë mundin një maratonë.';
+  }
+
+  @override
+  String get notifDeadlineSoonBodyNoPace => 'Çdo orë që regjistron tani vlen.';
+
+  @override
+  String notifOverdueTitle(String course, String left) {
+    return '❌ $course e kaloi afatin me $left të hapura';
+  }
+
+  @override
+  String get notifOverdueBody =>
+      'Zhvendos afatin ose plotëso orët — lënda mbetet në Nevojitet vëmendje deri atëherë.';
+
+  @override
+  String notifStreakTitle(String days, String week) {
+    return '🔥 Seri $days-ditore — $week këtë javë';
+  }
+
+  @override
+  String get notifStreakBody =>
+      'Të gjitha lëndët në rrugë ose para. Vazhdo kështu.';
+
+  @override
+  String notifCustomTitleAuto(String course) {
+    return '📚 Kontroll studimi: $course';
+  }
+
+  @override
+  String notifCustomTitleCourse(String course) {
+    return '📚 Koha për përditësim: $course';
+  }
+
+  @override
+  String notifCustomBodyPace(String left, String pace) {
+    return '$left të hapura · $pace/ditë për të përfunduar në kohë. Regjistro një seancë për të përditësuar progresin.';
+  }
+
+  @override
+  String notifCustomBodyNoPace(String left) {
+    return '$left ende të hapura — çdo gjë që regjistron tani vlen.';
+  }
+
+  @override
+  String reminderPreviewNext(String time) {
+    return 'Tjetra: $time';
+  }
+
+  @override
+  String get reminderPreviewBackDay => '-1d';
+
+  @override
+  String get reminderPreviewFwdDay => '+1d';
+
+  @override
+  String get reminderPreviewFake => '(fallco)';
+
+  @override
+  String get reminderPreviewDemoLabel => 'Kontroll demo';
 }

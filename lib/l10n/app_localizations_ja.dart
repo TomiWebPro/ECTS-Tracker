@@ -1211,4 +1211,133 @@ class AppLocalizationsJa extends AppLocalizations {
 
   @override
   String get settingsReminderDenied => '通知がブロックされています — システム設定で有効にしてください。';
+
+  @override
+  String notifDurationHours(String value) {
+    return '$value時間';
+  }
+
+  @override
+  String notifDurationMinutes(String value) {
+    return '$value分';
+  }
+
+  @override
+  String notifDailyTitle(String duration) {
+    return '📚 今夜: 順調を保つには$duration';
+  }
+
+  @override
+  String notifDailyCourseNeed(String course, String duration) {
+    return '$course 今日残り$duration';
+  }
+
+  @override
+  String notifDailyMore(String count) {
+    return '(+$count件ほか)';
+  }
+
+  @override
+  String notifDailyBody(String detail) {
+    return '$detail。今日をクリアするために記録しましょう。';
+  }
+
+  @override
+  String notifBehindTitle(String course) {
+    return '⚠️ $courseが遅れになりました';
+  }
+
+  @override
+  String notifBehindBodyPace(
+    String left,
+    String days,
+    String pace,
+    String catchUp,
+  ) {
+    return '残り$left、あと$days日 — ここからは$pace/日。$catchUpを記録して順調に戻しましょう。';
+  }
+
+  @override
+  String notifBehindBodyFull(String left, String days, String pace) {
+    return '残り$left、あと$days日 — ここからは$pace/日。$leftを全部終わらせるしかありません — 今夜から始めましょう。';
+  }
+
+  @override
+  String notifBehindBodyDeadlineDay(String left) {
+    return '$leftが残っていて期限は今日です。今記録するものはすべて反映されます。';
+  }
+
+  @override
+  String notifDeadlineTomorrowTitle(String course, String left) {
+    return '🚨 $courseは明日が期限で、まだ$left残っています';
+  }
+
+  @override
+  String get notifDeadlineTomorrowBody => '今日記録するものは2倍になります。';
+
+  @override
+  String notifDeadlineSoonTitle(String course, String days, String left) {
+    return '⏳ $courseの試験まであと$days日 — 残り$left';
+  }
+
+  @override
+  String notifDeadlineSoonBody(String pace) {
+    return '$pace/日が必要です。分割しましょう: 1日2回は1回のマラソンより効果的です。';
+  }
+
+  @override
+  String get notifDeadlineSoonBodyNoPace => '今記録する1時間1時間が反映されます。';
+
+  @override
+  String notifOverdueTitle(String course, String left) {
+    return '❌ $courseは期限を過ぎ、$left残っています';
+  }
+
+  @override
+  String get notifOverdueBody => '期限を延ばすか時間を終わらせましょう — それまでこの科目は要対応のままです。';
+
+  @override
+  String notifStreakTitle(String days, String week) {
+    return '🔥 $days日連続 — 今週$week';
+  }
+
+  @override
+  String get notifStreakBody => 'すべての科目が順調か先行です。いい調子です。';
+
+  @override
+  String notifCustomTitleAuto(String course) {
+    return '📚 学習チェックイン: $course';
+  }
+
+  @override
+  String notifCustomTitleCourse(String course) {
+    return '📚 更新の時間: $course';
+  }
+
+  @override
+  String notifCustomBodyPace(String left, String pace) {
+    return '$left残っています · 時間通りに終えるには$pace/日。進捗を更新するために記録しましょう。';
+  }
+
+  @override
+  String notifCustomBodyNoPace(String left) {
+    return '$leftが残っています — 今記録するものはすべて反映されます。';
+  }
+
+  @override
+  String reminderPreviewNext(String time) {
+    return '次: $time';
+  }
+
+  @override
+  String get reminderPreviewBackDay => '-1日';
+
+  @override
+  String get reminderPreviewFwdDay => '+1日';
+
+  @override
+  String get reminderPreviewFake => '(仮)';
+
+  @override
+  String get reminderPreviewDemoLabel => 'デモチェックイン';
 }

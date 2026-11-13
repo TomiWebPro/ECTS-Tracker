@@ -1247,4 +1247,137 @@ class AppLocalizationsEu extends AppLocalizations {
   @override
   String get settingsReminderDenied =>
       'Jakinarazpenak blokeatuta daude — gaitu itzazu sistemaren ezarpenetan.';
+
+  @override
+  String notifDurationHours(String value) {
+    return '$value h';
+  }
+
+  @override
+  String notifDurationMinutes(String value) {
+    return '$value min';
+  }
+
+  @override
+  String notifDailyTitle(String duration) {
+    return '📚 Gauean: $duration Ondo bidean jarraitzeko';
+  }
+
+  @override
+  String notifDailyCourseNeed(String course, String duration) {
+    return '$course: $duration falta gaur';
+  }
+
+  @override
+  String notifDailyMore(String count) {
+    return '(+$count gehiago)';
+  }
+
+  @override
+  String notifDailyBody(String detail) {
+    return '$detail. Erregistratu saio bat gaurkoa garbitzeko.';
+  }
+
+  @override
+  String notifBehindTitle(String course) {
+    return '⚠️ $course Atzeratuta izatera igaro da';
+  }
+
+  @override
+  String notifBehindBodyPace(
+    String left,
+    String days,
+    String pace,
+    String catchUp,
+  ) {
+    return '$left falta, $days egun geratzen dira — hemendik aurrera $pace/egun. Erregistratu $catchUp Ondo bidean itzultzeko.';
+  }
+
+  @override
+  String notifBehindBodyFull(String left, String days, String pace) {
+    return '$left falta, $days egun geratzen dira — hemendik aurrera $pace/egun. Soilik $left osoa amaitzeak garbitzen du hau — hasi gaur gauean.';
+  }
+
+  @override
+  String notifBehindBodyDeadlineDay(String left) {
+    return '$left zabalik dago oraindik eta epemuga iritsi da. Orain erregistratzen duzun guztiak balio du.';
+  }
+
+  @override
+  String notifDeadlineTomorrowTitle(String course, String left) {
+    return '🚨 $course bihar muga da eta $left zabalik dago oraindik';
+  }
+
+  @override
+  String get notifDeadlineTomorrowBody =>
+      'Gaur erregistratzen duzun guztiak bikoitz balio du.';
+
+  @override
+  String notifDeadlineSoonTitle(String course, String days, String left) {
+    return '⏳ $course azterketa $days egun barru — $left falta';
+  }
+
+  @override
+  String notifDeadlineSoonBody(String pace) {
+    return 'Hori $pace/egun da. Zatitu: eguneko 2 saiok maratoi bat garaitzen dute.';
+  }
+
+  @override
+  String get notifDeadlineSoonBodyNoPace =>
+      'Orain erregistratzen duzun ordu bakoitzak balio du.';
+
+  @override
+  String notifOverdueTitle(String course, String left) {
+    return '❌ $course epemuga igaro du $left zabalik duela';
+  }
+
+  @override
+  String get notifOverdueBody =>
+      'Mugitu epemuga edo amaitu orduak — bitartean ikasgaiak arreta behar du.';
+
+  @override
+  String notifStreakTitle(String days, String week) {
+    return '🔥 $days eguneko bolada — $week aste honetan';
+  }
+
+  @override
+  String get notifStreakBody =>
+      'Ikasgai guztiak Ondo bidean edo Aurreratuta. Bolada bikaina.';
+
+  @override
+  String notifCustomTitleAuto(String course) {
+    return '📚 Ikasketa-egiaztapena: $course';
+  }
+
+  @override
+  String notifCustomTitleCourse(String course) {
+    return '📚 Eguneratzeko ordua: $course';
+  }
+
+  @override
+  String notifCustomBodyPace(String left, String pace) {
+    return '$left zabalik · $pace/egun garaiz amaitzeko. Erregistratu saio bat aurrerapena eguneratzeko.';
+  }
+
+  @override
+  String notifCustomBodyNoPace(String left) {
+    return '$left zabalik dago oraindik — orain erregistratzen duzun guztiak balio du.';
+  }
+
+  @override
+  String reminderPreviewNext(String time) {
+    return 'Hurrengoa: $time';
+  }
+
+  @override
+  String get reminderPreviewBackDay => '-1e';
+
+  @override
+  String get reminderPreviewFwdDay => '+1e';
+
+  @override
+  String get reminderPreviewFake => '(faltsua)';
+
+  @override
+  String get reminderPreviewDemoLabel => 'Demo egiaztapena';
 }

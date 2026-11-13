@@ -2221,6 +2221,179 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Notifications are blocked — enable them in system settings.'**
   String get settingsReminderDenied;
+
+  /// Notification duration unit (hours, >= 1 h). {value} is whole or one-decimal, e.g. '27' or '2.9'. Localize the unit; keep the placeholder.
+  ///
+  /// In en, this message translates to:
+  /// **'{value} h'**
+  String notifDurationHours(String value);
+
+  /// Notification duration unit (sub-hour). {value} is whole minutes, e.g. '36'. Localize the unit; keep the placeholder.
+  ///
+  /// In en, this message translates to:
+  /// **'{value} min'**
+  String notifDurationMinutes(String value);
+
+  /// Daily-plan notification title. {duration} is a localized duration like '2.9 h' or '36 min'.
+  ///
+  /// In en, this message translates to:
+  /// **'📚 Tonight: {duration} to stay on track'**
+  String notifDailyTitle(String duration);
+
+  /// Per-course fragment inside the daily-plan body. {course} is the course name, {duration} a localized duration.
+  ///
+  /// In en, this message translates to:
+  /// **'{course} {duration} left today'**
+  String notifDailyCourseNeed(String course, String duration);
+
+  /// Folded-course suffix in the daily-plan body when more than 2 courses are due. {count} is the hidden-course count.
+  ///
+  /// In en, this message translates to:
+  /// **'(+{count} more)'**
+  String notifDailyMore(String count);
+
+  /// Daily-plan notification body. {detail} is the joined per-course list with optional folded suffix.
+  ///
+  /// In en, this message translates to:
+  /// **'{detail}. Log a session to clear today.'**
+  String notifDailyBody(String detail);
+
+  /// Behind-nudge notification title. {course} is the course name.
+  ///
+  /// In en, this message translates to:
+  /// **'⚠️ {course} slipped to Behind'**
+  String notifBehindTitle(String course);
+
+  /// Behind-nudge body when a finite pace exists and partial catch-up clears it. Durations are localized ('2.9 h', '36 min'); {days} is a plain count.
+  ///
+  /// In en, this message translates to:
+  /// **'{left} left, {days} days to go — {pace}/day from here. Log {catchUp} to get back On track.'**
+  String notifBehindBodyPace(
+    String left,
+    String days,
+    String pace,
+    String catchUp,
+  );
+
+  /// Behind-nudge body when only finishing the course clears it. Same placeholders as notifBehindBodyPace minus catchUp.
+  ///
+  /// In en, this message translates to:
+  /// **'{left} left, {days} days to go — {pace}/day from here. Only finishing the full {left} clears this — start tonight.'**
+  String notifBehindBodyFull(String left, String days, String pace);
+
+  /// Behind-nudge body on deadline day (no finite pace exists). {left} is a localized duration.
+  ///
+  /// In en, this message translates to:
+  /// **'{left} still open and the deadline is here. Anything you log now counts.'**
+  String notifBehindBodyDeadlineDay(String left);
+
+  /// Deadline-countdown title for a course due tomorrow. {left} is a localized duration.
+  ///
+  /// In en, this message translates to:
+  /// **'🚨 {course} is due tomorrow and still has {left} open'**
+  String notifDeadlineTomorrowTitle(String course, String left);
+
+  /// Deadline-countdown body for a course due tomorrow.
+  ///
+  /// In en, this message translates to:
+  /// **'Anything you log today counts double.'**
+  String get notifDeadlineTomorrowBody;
+
+  /// Deadline-countdown title for a course due in 2+ days. {days} is a plain count, {left} a localized duration.
+  ///
+  /// In en, this message translates to:
+  /// **'⏳ {course} exam in {days} days — {left} left'**
+  String notifDeadlineSoonTitle(String course, String days, String left);
+
+  /// Deadline-countdown body when a finite pace exists. {pace} is a localized duration.
+  ///
+  /// In en, this message translates to:
+  /// **'That\'s {pace}/day. Split it: 2 sessions a day beats one marathon.'**
+  String notifDeadlineSoonBody(String pace);
+
+  /// Deadline-countdown body when no finite pace exists.
+  ///
+  /// In en, this message translates to:
+  /// **'Every hour you log now counts.'**
+  String get notifDeadlineSoonBodyNoPace;
+
+  /// Overdue-escalation title. {left} is a localized duration.
+  ///
+  /// In en, this message translates to:
+  /// **'❌ {course} passed its deadline with {left} open'**
+  String notifOverdueTitle(String course, String left);
+
+  /// Overdue-escalation body.
+  ///
+  /// In en, this message translates to:
+  /// **'Move the deadline or finish the hours — the course stays in Needs attention until then.'**
+  String get notifOverdueBody;
+
+  /// Weekly streak-celebration title. {days} is the streak length, {week} a localized duration of hours logged in the last 7 days.
+  ///
+  /// In en, this message translates to:
+  /// **'🔥 {days}-day streak — {week} this week'**
+  String notifStreakTitle(String days, String week);
+
+  /// Weekly streak-celebration body.
+  ///
+  /// In en, this message translates to:
+  /// **'All courses On track or Ahead. Nice run.'**
+  String get notifStreakBody;
+
+  /// Custom-schedule title when the automatic topic is used. {course} is the course name.
+  ///
+  /// In en, this message translates to:
+  /// **'📚 Study check-in: {course}'**
+  String notifCustomTitleAuto(String course);
+
+  /// Custom-schedule title when pinned to a specific course. {course} is the course name.
+  ///
+  /// In en, this message translates to:
+  /// **'📚 Time to update: {course}'**
+  String notifCustomTitleCourse(String course);
+
+  /// Custom-schedule body when a finite pace exists. Durations are localized.
+  ///
+  /// In en, this message translates to:
+  /// **'{left} open · {pace}/day to finish on time. Log a session to update progress.'**
+  String notifCustomBodyPace(String left, String pace);
+
+  /// Custom-schedule body when no finite pace exists. {left} is a localized duration.
+  ///
+  /// In en, this message translates to:
+  /// **'{left} still open — anything you log now counts.'**
+  String notifCustomBodyNoPace(String left);
+
+  /// Custom-schedule demo row header with the next fire time. {time} is a yyyy-MM-dd HH:mm timestamp (not localized).
+  ///
+  /// In en, this message translates to:
+  /// **'Next: {time}'**
+  String reminderPreviewNext(String time);
+
+  /// Preview step-back button: one day earlier. Localize the day abbreviation, keep the -1 prefix.
+  ///
+  /// In en, this message translates to:
+  /// **'-1d'**
+  String get reminderPreviewBackDay;
+
+  /// Preview step-forward button: one day later. Localize the day abbreviation, keep the +1 prefix.
+  ///
+  /// In en, this message translates to:
+  /// **'+1d'**
+  String get reminderPreviewFwdDay;
+
+  /// Tag after the preview time when a fake clock override is active.
+  ///
+  /// In en, this message translates to:
+  /// **'(fake)'**
+  String get reminderPreviewFake;
+
+  /// Label of the demo one-off custom schedule on the reminder preview page.
+  ///
+  /// In en, this message translates to:
+  /// **'Demo check-in'**
+  String get reminderPreviewDemoLabel;
 }
 
 class _AppLocalizationsDelegate

@@ -1246,4 +1246,137 @@ class AppLocalizationsMt extends AppLocalizations {
   @override
   String get settingsReminderDenied =>
       'In-notifiki huma mblukkati — ħallihom mill-issettjar tas-sistema.';
+
+  @override
+  String notifDurationHours(String value) {
+    return '$value s';
+  }
+
+  @override
+  String notifDurationMinutes(String value) {
+    return '$value min';
+  }
+
+  @override
+  String notifDailyTitle(String duration) {
+    return '📚 Illejla: $duration biex tibqaʼ fit-triq it-tajba';
+  }
+
+  @override
+  String notifDailyCourseNeed(String course, String duration) {
+    return '$course fadal $duration għal-lum';
+  }
+
+  @override
+  String notifDailyMore(String count) {
+    return '(+$count oħra)';
+  }
+
+  @override
+  String notifDailyBody(String detail) {
+    return '$detail. Illoġġja sessjoni biex tnaddaf tal-lum.';
+  }
+
+  @override
+  String notifBehindTitle(String course) {
+    return '⚠️ $course waqaʼ Lura';
+  }
+
+  @override
+  String notifBehindBodyPace(
+    String left,
+    String days,
+    String pace,
+    String catchUp,
+  ) {
+    return 'Fadal $left, $days ijiem — $pace/jum minn hawn. Illoġġja $catchUp biex terġaʼ Fit-triq it-tajba.';
+  }
+
+  @override
+  String notifBehindBodyFull(String left, String days, String pace) {
+    return 'Fadal $left, $days ijiem — $pace/jum minn hawn. Biex tneħħiha trid tlesti l-$left kollha — ibda llejla.';
+  }
+
+  @override
+  String notifBehindBodyDeadlineDay(String left) {
+    return 'Fadal $left miftuħa u l-għeluq wasal. Kull ma tilloġġja issa jgħodd.';
+  }
+
+  @override
+  String notifDeadlineTomorrowTitle(String course, String left) {
+    return '🚨 $course għandu l-għeluq għada u fadal $left miftuħa';
+  }
+
+  @override
+  String get notifDeadlineTomorrowBody =>
+      'Kull ma tilloġġja llum jgħodd doppju.';
+
+  @override
+  String notifDeadlineSoonTitle(String course, String days, String left) {
+    return '⏳ Eżami taʼ $course fi $days ijiem — fadal $left';
+  }
+
+  @override
+  String notifDeadlineSoonBody(String pace) {
+    return 'Jiġifieri $pace/jum. Aqsamha: 2 sessjonijiet kuljum jegħlbu maratona waħda.';
+  }
+
+  @override
+  String get notifDeadlineSoonBodyNoPace =>
+      'Kull siegħa li tilloġġja issa tgħodd.';
+
+  @override
+  String notifOverdueTitle(String course, String left) {
+    return '❌ $course għadda l-għeluq bʼ$left miftuħa';
+  }
+
+  @override
+  String get notifOverdueBody =>
+      'Ċaqlaq l-għeluq jew lesti s-sigħat — il-kors jibqaʼ jeħtieġ attenzjoni sadanittant.';
+
+  @override
+  String notifStreakTitle(String days, String week) {
+    return '🔥 Ritmu taʼ $days ijiem — $week din il-ġimgħa';
+  }
+
+  @override
+  String get notifStreakBody =>
+      'Il-korsijiet kollha Fit-triq it-tajba jew Quddiem. Kompli hekk.';
+
+  @override
+  String notifCustomTitleAuto(String course) {
+    return '📚 Check-in taʼ studju: $course';
+  }
+
+  @override
+  String notifCustomTitleCourse(String course) {
+    return '📚 Ħin għal aġġornament: $course';
+  }
+
+  @override
+  String notifCustomBodyPace(String left, String pace) {
+    return 'Miftuħa $left · $pace/jum biex tlesti fil-ħin. Illoġġja sessjoni biex taġġorna l-progress.';
+  }
+
+  @override
+  String notifCustomBodyNoPace(String left) {
+    return '$left għadhom miftuħa — kull ma tilloġġja issa jgħodd.';
+  }
+
+  @override
+  String reminderPreviewNext(String time) {
+    return 'Li jmiss: $time';
+  }
+
+  @override
+  String get reminderPreviewBackDay => '-1j';
+
+  @override
+  String get reminderPreviewFwdDay => '+1j';
+
+  @override
+  String get reminderPreviewFake => '(finta)';
+
+  @override
+  String get reminderPreviewDemoLabel => 'Check-in demo';
 }

@@ -1238,4 +1238,137 @@ class AppLocalizationsMr extends AppLocalizations {
   @override
   String get settingsReminderDenied =>
       'सूचना अवरोधित आहेत — सिस्टम सेटिंग्जमध्ये सक्षम करा.';
+
+  @override
+  String notifDurationHours(String value) {
+    return '$value ता';
+  }
+
+  @override
+  String notifDurationMinutes(String value) {
+    return '$value मि';
+  }
+
+  @override
+  String notifDailyTitle(String duration) {
+    return '📚 आज रात्री: योग्य मार्गावर राहण्यासाठी $duration';
+  }
+
+  @override
+  String notifDailyCourseNeed(String course, String duration) {
+    return '$course आज $duration बाकी';
+  }
+
+  @override
+  String notifDailyMore(String count) {
+    return '(+$count आणखी)';
+  }
+
+  @override
+  String notifDailyBody(String detail) {
+    return '$detail. आजचे पूर्ण करण्यासाठी सत्र नोंदवा.';
+  }
+
+  @override
+  String notifBehindTitle(String course) {
+    return '⚠️ $course मागे पडला आहे';
+  }
+
+  @override
+  String notifBehindBodyPace(
+    String left,
+    String days,
+    String pace,
+    String catchUp,
+  ) {
+    return '$left बाकी, $days दिवस बाकी — येथून $pace/दिवस. योग्य मार्गावर परतण्यासाठी $catchUp नोंदवा.';
+  }
+
+  @override
+  String notifBehindBodyFull(String left, String days, String pace) {
+    return '$left बाकी, $days दिवस बाकी — येथून $pace/दिवस. पूर्ण $left संपवल्यानेच हे सुटेल — आज रात्रीपासून सुरू करा.';
+  }
+
+  @override
+  String notifBehindBodyDeadlineDay(String left) {
+    return '$left अजूनही शिल्लक आणि अंतिम तारीख आजच आहे. तुम्ही आत्ता जे नोंदवाल ते मोजले जाईल.';
+  }
+
+  @override
+  String notifDeadlineTomorrowTitle(String course, String left) {
+    return '🚨 $course उद्या देय आहे आणि अजूनही $left शिल्लक आहे';
+  }
+
+  @override
+  String get notifDeadlineTomorrowBody =>
+      'तुम्ही आज जे नोंदवाल ते दुप्पट मोजले जाईल.';
+
+  @override
+  String notifDeadlineSoonTitle(String course, String days, String left) {
+    return '⏳ $days दिवसांत $course परीक्षा — $left बाकी';
+  }
+
+  @override
+  String notifDeadlineSoonBody(String pace) {
+    return 'ते $pace/दिवस आहे. विभागा: दिवसातून 2 सत्रे एका मॅरेथॉनपेक्षा चांगली.';
+  }
+
+  @override
+  String get notifDeadlineSoonBodyNoPace =>
+      'तुम्ही आत्ता नोंदवलेला प्रत्येक तास मोजला जाईल.';
+
+  @override
+  String notifOverdueTitle(String course, String left) {
+    return '❌ $course ची अंतिम तारीख $left शिल्लक असताना निघून गेली';
+  }
+
+  @override
+  String get notifOverdueBody =>
+      'अंतिम तारीख पुढे ढकला किंवा तास पूर्ण करा — तोपर्यंत अभ्यासक्रम लक्ष आवश्यक मध्येच राहील.';
+
+  @override
+  String notifStreakTitle(String days, String week) {
+    return '🔥 $days दिवसांची सलग — ह्या आठवड्यात $week';
+  }
+
+  @override
+  String get notifStreakBody =>
+      'सर्व अभ्यासक्रम योग्य मार्गावर किंवा पुढे आहेत. छान चाललंय.';
+
+  @override
+  String notifCustomTitleAuto(String course) {
+    return '📚 अभ्यास तपासणी: $course';
+  }
+
+  @override
+  String notifCustomTitleCourse(String course) {
+    return '📚 अद्ययावत करण्याची वेळ: $course';
+  }
+
+  @override
+  String notifCustomBodyPace(String left, String pace) {
+    return '$left शिल्लक · वेळेत पूर्ण करण्यासाठी $pace/दिवस. प्रगती अद्ययावत करण्यासाठी सत्र नोंदवा.';
+  }
+
+  @override
+  String notifCustomBodyNoPace(String left) {
+    return '$left अजूनही शिल्लक — तुम्ही आत्ता जे नोंदवाल ते मोजले जाईल.';
+  }
+
+  @override
+  String reminderPreviewNext(String time) {
+    return 'पुढील: $time';
+  }
+
+  @override
+  String get reminderPreviewBackDay => '-1दि';
+
+  @override
+  String get reminderPreviewFwdDay => '+1दि';
+
+  @override
+  String get reminderPreviewFake => '(बनावट)';
+
+  @override
+  String get reminderPreviewDemoLabel => 'डेमो तपासणी';
 }

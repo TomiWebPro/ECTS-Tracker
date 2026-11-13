@@ -1254,4 +1254,137 @@ class AppLocalizationsGd extends AppLocalizations {
   @override
   String get settingsReminderDenied =>
       'Tha brathan air am bacadh — cuir an comas iad ann an suidheachaidhean an t-siostaim.';
+
+  @override
+  String notifDurationHours(String value) {
+    return '$value u';
+  }
+
+  @override
+  String notifDurationMinutes(String value) {
+    return '$value mion';
+  }
+
+  @override
+  String notifDailyTitle(String duration) {
+    return '📚 A-nochd: $duration gus fuireach air an t-slighe';
+  }
+
+  @override
+  String notifDailyCourseNeed(String course, String duration) {
+    return '$course: $duration air fhàgail an-diugh';
+  }
+
+  @override
+  String notifDailyMore(String count) {
+    return '(+$count eile)';
+  }
+
+  @override
+  String notifDailyBody(String detail) {
+    return '$detail. Log seisean gus an-diugh a ghlanadh.';
+  }
+
+  @override
+  String notifBehindTitle(String course) {
+    return '⚠️ Tha $course air tuiteam Air dheireadh';
+  }
+
+  @override
+  String notifBehindBodyPace(
+    String left,
+    String days,
+    String pace,
+    String catchUp,
+  ) {
+    return '$left air fhàgail, $days latha air fhàgail — $pace/latha bho seo. Log $catchUp gus faighinn air ais Air an t-slighe.';
+  }
+
+  @override
+  String notifBehindBodyFull(String left, String days, String pace) {
+    return '$left air fhàgail, $days latha air fhàgail — $pace/latha bho seo. Chan eil ach an $left slàn a’ glanadh seo — tòisich a-nochd.';
+  }
+
+  @override
+  String notifBehindBodyDeadlineDay(String left) {
+    return 'Tha $left fosgailte fhathast agus tha an ceann-latha an seo. Tha a h-uile rud a logas tu a-nis a’ cunntadh.';
+  }
+
+  @override
+  String notifDeadlineTomorrowTitle(String course, String left) {
+    return '🚨 Tha $course ri phàigheadh a-màireach agus tha $left fosgailte fhathast';
+  }
+
+  @override
+  String get notifDeadlineTomorrowBody =>
+      'Tha a h-uile rud a logas tu an-diugh a’ cunntadh dùbailte.';
+
+  @override
+  String notifDeadlineSoonTitle(String course, String days, String left) {
+    return '⏳ Deuchainn $course ann an $days latha — $left air fhàgail';
+  }
+
+  @override
+  String notifDeadlineSoonBody(String pace) {
+    return 'Sin $pace/latha. Roinn e: tha 2 sheisean san latha a’ dèanamh a’ chùis air aon mharaton.';
+  }
+
+  @override
+  String get notifDeadlineSoonBodyNoPace =>
+      'Tha gach uair a logas tu a-nis a’ cunntadh.';
+
+  @override
+  String notifOverdueTitle(String course, String left) {
+    return '❌ Tha $course air a dhol seachad air a cheann-latha le $left fosgailte';
+  }
+
+  @override
+  String get notifOverdueBody =>
+      'Gluais an ceann-latha no cuir crìoch air na h-uairean — bidh an cùrsa a’ feumachdainn aire gus an uair sin.';
+
+  @override
+  String notifStreakTitle(String days, String week) {
+    return '🔥 Sreath $days-latha — $week an t-seachdain seo';
+  }
+
+  @override
+  String get notifStreakBody =>
+      'Tha a h-uile cùrsa Air an t-slighe no Air thoiseach. Sreath mhath.';
+
+  @override
+  String notifCustomTitleAuto(String course) {
+    return '📚 Sgrùdadh ionnsachaidh: $course';
+  }
+
+  @override
+  String notifCustomTitleCourse(String course) {
+    return '📚 Àm airson ùrachadh: $course';
+  }
+
+  @override
+  String notifCustomBodyPace(String left, String pace) {
+    return '$left fosgailte · $pace/latha gus crìochnachadh ann an àm. Log seisean gus an t-adhartas ùrachadh.';
+  }
+
+  @override
+  String notifCustomBodyNoPace(String left) {
+    return 'Tha $left fosgailte fhathast — tha a h-uile rud a logas tu a-nis a’ cunntadh.';
+  }
+
+  @override
+  String reminderPreviewNext(String time) {
+    return 'Air adhart: $time';
+  }
+
+  @override
+  String get reminderPreviewBackDay => '-1l';
+
+  @override
+  String get reminderPreviewFwdDay => '+1l';
+
+  @override
+  String get reminderPreviewFake => '(brèige)';
+
+  @override
+  String get reminderPreviewDemoLabel => 'Sgrùdadh taisbeanaidh';
 }

@@ -1244,4 +1244,137 @@ class AppLocalizationsPl extends AppLocalizations {
   @override
   String get settingsReminderDenied =>
       'Powiadomienia są zablokowane — włącz je w ustawieniach systemowych.';
+
+  @override
+  String notifDurationHours(String value) {
+    return '$value h';
+  }
+
+  @override
+  String notifDurationMinutes(String value) {
+    return '$value min';
+  }
+
+  @override
+  String notifDailyTitle(String duration) {
+    return '📚 Dziś wieczorem: $duration, żeby dotrzymać planu';
+  }
+
+  @override
+  String notifDailyCourseNeed(String course, String duration) {
+    return '$course: jeszcze $duration na dziś';
+  }
+
+  @override
+  String notifDailyMore(String count) {
+    return '(+$count więcej)';
+  }
+
+  @override
+  String notifDailyBody(String detail) {
+    return '$detail. Zaloguj sesję, aby zamknąć dzisiejszy plan.';
+  }
+
+  @override
+  String notifBehindTitle(String course) {
+    return '⚠️ $course jest teraz Opóźniony';
+  }
+
+  @override
+  String notifBehindBodyPace(
+    String left,
+    String days,
+    String pace,
+    String catchUp,
+  ) {
+    return 'Zostało $left, jeszcze $days dni — $pace/dzień od teraz. Zaloguj $catchUp, aby wrócić do Zgodnie z planem.';
+  }
+
+  @override
+  String notifBehindBodyFull(String left, String days, String pace) {
+    return 'Zostało $left, jeszcze $days dni — $pace/dzień od teraz. Pomoże tylko ukończenie całych $left — zacznij dziś wieczorem.';
+  }
+
+  @override
+  String notifBehindBodyDeadlineDay(String left) {
+    return 'Zostało jeszcze $left, a termin już dziś. Wszystko, co teraz zalogujesz, liczy się.';
+  }
+
+  @override
+  String notifDeadlineTomorrowTitle(String course, String left) {
+    return '🚨 $course ma termin jutro, a zostało jeszcze $left';
+  }
+
+  @override
+  String get notifDeadlineTomorrowBody =>
+      'Wszystko, co dziś zalogujesz, liczy się podwójnie.';
+
+  @override
+  String notifDeadlineSoonTitle(String course, String days, String left) {
+    return '⏳ Egzamin $course za $days dni — zostało $left';
+  }
+
+  @override
+  String notifDeadlineSoonBody(String pace) {
+    return 'To $pace/dzień. Podziel to: 2 sesje dziennie pokonują jeden maraton.';
+  }
+
+  @override
+  String get notifDeadlineSoonBodyNoPace =>
+      'Każda godzina, którą teraz zalogujesz, liczy się.';
+
+  @override
+  String notifOverdueTitle(String course, String left) {
+    return '❌ $course przekroczył termin, zostało $left';
+  }
+
+  @override
+  String get notifOverdueBody =>
+      'Przesuń termin albo uzupełnij godziny — kurs zostaje w Wymaga uwagi do tego czasu.';
+
+  @override
+  String notifStreakTitle(String days, String week) {
+    return '🔥 Passa $days dni — $week w tym tygodniu';
+  }
+
+  @override
+  String get notifStreakBody =>
+      'Wszystkie kursy Zgodnie z planem albo Do przodu. Tak trzymać.';
+
+  @override
+  String notifCustomTitleAuto(String course) {
+    return '📚 Kontrola nauki: $course';
+  }
+
+  @override
+  String notifCustomTitleCourse(String course) {
+    return '📚 Czas na aktualizację: $course';
+  }
+
+  @override
+  String notifCustomBodyPace(String left, String pace) {
+    return 'Otwarte $left · $pace/dzień, aby zdążyć na czas. Zaloguj sesję, aby zaktualizować postępy.';
+  }
+
+  @override
+  String notifCustomBodyNoPace(String left) {
+    return 'Wciąż otwarte $left — wszystko, co teraz zalogujesz, liczy się.';
+  }
+
+  @override
+  String reminderPreviewNext(String time) {
+    return 'Następne: $time';
+  }
+
+  @override
+  String get reminderPreviewBackDay => '-1d';
+
+  @override
+  String get reminderPreviewFwdDay => '+1d';
+
+  @override
+  String get reminderPreviewFake => '(próbne)';
+
+  @override
+  String get reminderPreviewDemoLabel => 'Kontrola demo';
 }

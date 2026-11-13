@@ -1243,4 +1243,137 @@ class AppLocalizationsHy extends AppLocalizations {
   @override
   String get settingsReminderDenied =>
       'Ծանուցումներն արգելափակված են — միացրեք դրանք համակարգի կարգավորումներում։';
+
+  @override
+  String notifDurationHours(String value) {
+    return '$value ժ';
+  }
+
+  @override
+  String notifDurationMinutes(String value) {
+    return '$value ր';
+  }
+
+  @override
+  String notifDailyTitle(String duration) {
+    return '📚 Այսօր երեկոյան՝ $duration նորմալ ընթացքը պահպանելու համար';
+  }
+
+  @override
+  String notifDailyCourseNeed(String course, String duration) {
+    return '$course՝ այսօր մնաց $duration';
+  }
+
+  @override
+  String notifDailyMore(String count) {
+    return '(+$count այլ)';
+  }
+
+  @override
+  String notifDailyBody(String detail) {
+    return '$detail։ Գրանցեք նիստ՝ այսօրվանը փակելու համար։';
+  }
+
+  @override
+  String notifBehindTitle(String course) {
+    return '⚠️ $course-ը հետ է մնացել';
+  }
+
+  @override
+  String notifBehindBodyPace(
+    String left,
+    String days,
+    String pace,
+    String catchUp,
+  ) {
+    return 'Մնացել է $left, մնաց $days օր — այստեղից՝ $pace/օր։ Գրանցեք $catchUp՝ նորմալ ընթացքին վերադառնալու համար։';
+  }
+
+  @override
+  String notifBehindBodyFull(String left, String days, String pace) {
+    return 'Մնացել է $left, մնաց $days օր — այստեղից՝ $pace/օր։ Սա կվերանա միայն ամբողջ $left-ը ավարտելու դեպքում — սկսեք այսօր երեկոյան։';
+  }
+
+  @override
+  String notifBehindBodyDeadlineDay(String left) {
+    return '$left-ը դեռ բաց է, և վերջնաժամկետը հասել է։ Այն ամենը, ինչ հիմա գրանցեք, հաշվվում է։';
+  }
+
+  @override
+  String notifDeadlineTomorrowTitle(String course, String left) {
+    return '🚨 $course-ը վաղն է, և դեռ $left բաց է';
+  }
+
+  @override
+  String get notifDeadlineTomorrowBody =>
+      'Այն ամենը, ինչ այսօր գրանցեք, կրկնակի է հաշվվում։';
+
+  @override
+  String notifDeadlineSoonTitle(String course, String days, String left) {
+    return '⏳ $course քննությունը $days օրից — մնաց $left';
+  }
+
+  @override
+  String notifDeadlineSoonBody(String pace) {
+    return 'Դա $pace/օր է։ Բաժանեք․ օրական 2 նիստը մեկ մարաթոնից լավ է։';
+  }
+
+  @override
+  String get notifDeadlineSoonBodyNoPace =>
+      'Յուրաքանչյուր ժամ, որը հիմա գրանցեք, հաշվվում է։';
+
+  @override
+  String notifOverdueTitle(String course, String left) {
+    return '❌ $course-ի վերջնաժամկետն անցել է, իսկ $left-ը դեռ բաց է';
+  }
+
+  @override
+  String get notifOverdueBody =>
+      'Տեղափոխեք վերջնաժամկետը կամ ավարտեք ժամերը — մինչ այդ դասընթացը ուշադրության կարիք ունի։';
+
+  @override
+  String notifStreakTitle(String days, String week) {
+    return '🔥 $days-օրյա շարք — այս շաբաթ՝ $week';
+  }
+
+  @override
+  String get notifStreakBody =>
+      'Բոլոր դասընթացներն ընթանում են նորմալ կամ առաջ են։ Լավ շարք։';
+
+  @override
+  String notifCustomTitleAuto(String course) {
+    return '📚 Ուսումնական ստուգում՝ $course';
+  }
+
+  @override
+  String notifCustomTitleCourse(String course) {
+    return '📚 Թարմացման ժամանակն է՝ $course';
+  }
+
+  @override
+  String notifCustomBodyPace(String left, String pace) {
+    return '$left բաց է · $pace/օր՝ ժամանակին ավարտելու համար։ Գրանցեք նիստ՝ առաջընթացը թարմացնելու համար։';
+  }
+
+  @override
+  String notifCustomBodyNoPace(String left) {
+    return '$left-ը դեռ բաց է — այն ամենը, ինչ հիմա գրանցեք, հաշվվում է։';
+  }
+
+  @override
+  String reminderPreviewNext(String time) {
+    return 'Հաջորդը՝ $time';
+  }
+
+  @override
+  String get reminderPreviewBackDay => '-1օ';
+
+  @override
+  String get reminderPreviewFwdDay => '+1օ';
+
+  @override
+  String get reminderPreviewFake => '(կեղծ)';
+
+  @override
+  String get reminderPreviewDemoLabel => 'Դեմո ստուգում';
 }

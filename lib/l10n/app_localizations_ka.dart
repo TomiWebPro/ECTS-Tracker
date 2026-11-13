@@ -1242,4 +1242,136 @@ class AppLocalizationsKa extends AppLocalizations {
   @override
   String get settingsReminderDenied =>
       'შეტყობინებები დაბლოკილია — ჩართეთ სისტემის პარამეტრებში.';
+
+  @override
+  String notifDurationHours(String value) {
+    return '$value სთ';
+  }
+
+  @override
+  String notifDurationMinutes(String value) {
+    return '$value წთ';
+  }
+
+  @override
+  String notifDailyTitle(String duration) {
+    return '📚 დღეს საღამოს: $duration გრაფიკში დასარჩენად';
+  }
+
+  @override
+  String notifDailyCourseNeed(String course, String duration) {
+    return '$course: დღეს დარჩა $duration';
+  }
+
+  @override
+  String notifDailyMore(String count) {
+    return '(+$count კიდევ)';
+  }
+
+  @override
+  String notifDailyBody(String detail) {
+    return '$detail. დღევანდელი დღე რომ დახუროთ, ჩაწერეთ სესია.';
+  }
+
+  @override
+  String notifBehindTitle(String course) {
+    return '⚠️ $course ჩამორჩენილებში გადავიდა';
+  }
+
+  @override
+  String notifBehindBodyPace(
+    String left,
+    String days,
+    String pace,
+    String catchUp,
+  ) {
+    return 'დარჩა $left, $days დღე — აქედან $pace/დღეში. ჩაწერეთ $catchUp, რომ გრაფიკს დაუბრუნდეთ.';
+  }
+
+  @override
+  String notifBehindBodyFull(String left, String days, String pace) {
+    return 'დარჩა $left, $days დღე — აქედან $pace/დღეში. გამოსავალი მხოლოდ $left-ის სრულად დასრულებაა — დაიწყეთ დღეს საღამოს.';
+  }
+
+  @override
+  String notifBehindBodyDeadlineDay(String left) {
+    return '$left ჯერ კიდევ ღიაა და ვადა დღესაა. ყველაფერი, რასაც ახლა ჩაწერთ, ითვლება.';
+  }
+
+  @override
+  String notifDeadlineTomorrowTitle(String course, String left) {
+    return '🚨 ვადა ხვალაა: $course — $left ჯერ კიდევ ღიაა';
+  }
+
+  @override
+  String get notifDeadlineTomorrowBody =>
+      'ყველაფერი, რასაც დღეს ჩაწერთ, ორმაგად ითვლება.';
+
+  @override
+  String notifDeadlineSoonTitle(String course, String days, String left) {
+    return '⏳ გამოცდა $days დღეში: $course — დარჩა $left';
+  }
+
+  @override
+  String notifDeadlineSoonBody(String pace) {
+    return 'ეს არის $pace/დღეში. გაყავით: დღეში 2 სესია ერთ მარათონს სჯობს.';
+  }
+
+  @override
+  String get notifDeadlineSoonBodyNoPace =>
+      'ყოველი საათი, რომელსაც ახლა ჩაწერთ, ითვლება.';
+
+  @override
+  String notifOverdueTitle(String course, String left) {
+    return '❌ ვადა ამოიწურა: $course — $left ღიაა';
+  }
+
+  @override
+  String get notifOverdueBody =>
+      'გადადეთ ვადა ან დაასრულეთ საათები — კურსს დასრულებამდე ყურადღება სჭირდება.';
+
+  @override
+  String notifStreakTitle(String days, String week) {
+    return '🔥 $days-დღიანი სერია — ამ კვირაში $week';
+  }
+
+  @override
+  String get notifStreakBody => 'ყველა კურსი გრაფიკშია ან წინ. კარგი რიტმია.';
+
+  @override
+  String notifCustomTitleAuto(String course) {
+    return '📚 სასწავლო მონიშვნა: $course';
+  }
+
+  @override
+  String notifCustomTitleCourse(String course) {
+    return '📚 განახლების დრო: $course';
+  }
+
+  @override
+  String notifCustomBodyPace(String left, String pace) {
+    return '$left ღიაა · დროულად დასასრულებლად $pace/დღეში. პროგრესის განახლებისთვის ჩაწერეთ სესია.';
+  }
+
+  @override
+  String notifCustomBodyNoPace(String left) {
+    return '$left ჯერ კიდევ ღიაა — ყველაფერი, რასაც ახლა ჩაწერთ, ითვლება.';
+  }
+
+  @override
+  String reminderPreviewNext(String time) {
+    return 'შემდეგი: $time';
+  }
+
+  @override
+  String get reminderPreviewBackDay => '-1დ';
+
+  @override
+  String get reminderPreviewFwdDay => '+1დ';
+
+  @override
+  String get reminderPreviewFake => '(ყალბი)';
+
+  @override
+  String get reminderPreviewDemoLabel => 'დემო მონიშვნა';
 }

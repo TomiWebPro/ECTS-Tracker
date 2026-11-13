@@ -1242,4 +1242,134 @@ class AppLocalizationsSv extends AppLocalizations {
   @override
   String get settingsReminderDenied =>
       'Aviseringar är blockerade — aktivera dem i systeminställningarna.';
+
+  @override
+  String notifDurationHours(String value) {
+    return '$value tim';
+  }
+
+  @override
+  String notifDurationMinutes(String value) {
+    return '$value min';
+  }
+
+  @override
+  String notifDailyTitle(String duration) {
+    return '📚 Ikväll: $duration för att hålla dig i fas';
+  }
+
+  @override
+  String notifDailyCourseNeed(String course, String duration) {
+    return '$course $duration kvar idag';
+  }
+
+  @override
+  String notifDailyMore(String count) {
+    return '(+$count till)';
+  }
+
+  @override
+  String notifDailyBody(String detail) {
+    return '$detail. Logga en session för att beta av idag.';
+  }
+
+  @override
+  String notifBehindTitle(String course) {
+    return '⚠️ $course har halkat efter';
+  }
+
+  @override
+  String notifBehindBodyPace(
+    String left,
+    String days,
+    String pace,
+    String catchUp,
+  ) {
+    return '$left kvar, $days dagar kvar — $pace/dag härifrån. Logga $catchUp för att komma i fas igen.';
+  }
+
+  @override
+  String notifBehindBodyFull(String left, String days, String pace) {
+    return '$left kvar, $days dagar kvar — $pace/dag härifrån. Bara att beta av hela $left hjälper — börja ikväll.';
+  }
+
+  @override
+  String notifBehindBodyDeadlineDay(String left) {
+    return '$left är fortfarande öppet och deadlinen är här. Allt du loggar nu räknas.';
+  }
+
+  @override
+  String notifDeadlineTomorrowTitle(String course, String left) {
+    return '🚨 $course ska vara klar imorgon och har fortfarande $left öppet';
+  }
+
+  @override
+  String get notifDeadlineTomorrowBody => 'Allt du loggar idag räknas dubbelt.';
+
+  @override
+  String notifDeadlineSoonTitle(String course, String days, String left) {
+    return '⏳ $course-tenta om $days dagar — $left kvar';
+  }
+
+  @override
+  String notifDeadlineSoonBody(String pace) {
+    return 'Det blir $pace/dag. Dela upp det: 2 pass om dagen slår ett maraton.';
+  }
+
+  @override
+  String get notifDeadlineSoonBodyNoPace => 'Varje timme du loggar nu räknas.';
+
+  @override
+  String notifOverdueTitle(String course, String left) {
+    return '❌ $course missade deadlinen med $left öppet';
+  }
+
+  @override
+  String get notifOverdueBody =>
+      'Flytta deadlinen eller beta av timmarna — kursen stannar i Kräver uppmärksamhet tills dess.';
+
+  @override
+  String notifStreakTitle(String days, String week) {
+    return '🔥 $days dagars svit — $week denna vecka';
+  }
+
+  @override
+  String get notifStreakBody => 'Alla kurser i fas eller före. Snyggt jobbat.';
+
+  @override
+  String notifCustomTitleAuto(String course) {
+    return '📚 Studieavstämning: $course';
+  }
+
+  @override
+  String notifCustomTitleCourse(String course) {
+    return '📚 Dags att uppdatera: $course';
+  }
+
+  @override
+  String notifCustomBodyPace(String left, String pace) {
+    return '$left öppet · $pace/dag för att bli klar i tid. Logga en session för att uppdatera framstegen.';
+  }
+
+  @override
+  String notifCustomBodyNoPace(String left) {
+    return '$left fortfarande öppet — allt du loggar nu räknas.';
+  }
+
+  @override
+  String reminderPreviewNext(String time) {
+    return 'Nästa: $time';
+  }
+
+  @override
+  String get reminderPreviewBackDay => '-1d';
+
+  @override
+  String get reminderPreviewFwdDay => '+1d';
+
+  @override
+  String get reminderPreviewFake => '(falsk)';
+
+  @override
+  String get reminderPreviewDemoLabel => 'Demoavstämning';
 }

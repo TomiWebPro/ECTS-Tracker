@@ -1242,4 +1242,137 @@ class AppLocalizationsAz extends AppLocalizations {
   @override
   String get settingsReminderDenied =>
       'Bildirişlər bloklanıb — onları sistem parametrlərində aktivləşdir.';
+
+  @override
+  String notifDurationHours(String value) {
+    return '$value s';
+  }
+
+  @override
+  String notifDurationMinutes(String value) {
+    return '$value dəq';
+  }
+
+  @override
+  String notifDailyTitle(String duration) {
+    return '📚 Bu axşam: yolda qalmaq üçün $duration';
+  }
+
+  @override
+  String notifDailyCourseNeed(String course, String duration) {
+    return '$course — $duration bu gün qaldı';
+  }
+
+  @override
+  String notifDailyMore(String count) {
+    return '(+$count daha)';
+  }
+
+  @override
+  String notifDailyBody(String detail) {
+    return '$detail. Bu günü tamamlamaq üçün sessiya qeydə al.';
+  }
+
+  @override
+  String notifBehindTitle(String course) {
+    return '⚠️ $course geridə qaldı';
+  }
+
+  @override
+  String notifBehindBodyPace(
+    String left,
+    String days,
+    String pace,
+    String catchUp,
+  ) {
+    return '$left qalıb, qarşıda $days gün — buradan $pace/gün. Yoldadır-a qayıtmaq üçün $catchUp qeydə al.';
+  }
+
+  @override
+  String notifBehindBodyFull(String left, String days, String pace) {
+    return '$left qalıb, qarşıda $days gün — buradan $pace/gün. Bunu yalnız tam $left-i bitirmək təmizləyir — bu axşam başla.';
+  }
+
+  @override
+  String notifBehindBodyDeadlineDay(String left) {
+    return '$left hələ açıqdır və son tarix gəlib çatıb. İndi qeydə aldığın hər şey sayılır.';
+  }
+
+  @override
+  String notifDeadlineTomorrowTitle(String course, String left) {
+    return '🚨 $course sabah çatmalıdır və hələ $left açıqdır';
+  }
+
+  @override
+  String get notifDeadlineTomorrowBody =>
+      'Bu gün qeydə aldığın hər şey ikiqat sayılır.';
+
+  @override
+  String notifDeadlineSoonTitle(String course, String days, String left) {
+    return '⏳ $days gündən $course imtahanı — $left qalıb';
+  }
+
+  @override
+  String notifDeadlineSoonBody(String pace) {
+    return 'Bu $pace/gün deməkdir. Böl: gündə 2 sessiya bir marafondan yaxşıdır.';
+  }
+
+  @override
+  String get notifDeadlineSoonBodyNoPace =>
+      'İndi qeydə aldığın hər saat sayılır.';
+
+  @override
+  String notifOverdueTitle(String course, String left) {
+    return '❌ $course son tarixi keçdi, $left açıq qaldı';
+  }
+
+  @override
+  String get notifOverdueBody =>
+      'Son tarixi dəyiş və ya saatları bitir — o vaxtadək fənn Diqqət tələb edir vəziyyətində qalır.';
+
+  @override
+  String notifStreakTitle(String days, String week) {
+    return '🔥 $days günlük seriya — bu həftə $week';
+  }
+
+  @override
+  String get notifStreakBody =>
+      'Bütün fənnlər Yoldadır və ya İrəlidə. Əla gediş.';
+
+  @override
+  String notifCustomTitleAuto(String course) {
+    return '📚 Tədris yoxlanışı: $course';
+  }
+
+  @override
+  String notifCustomTitleCourse(String course) {
+    return '📚 Yeniləmək vaxtıdır: $course';
+  }
+
+  @override
+  String notifCustomBodyPace(String left, String pace) {
+    return '$left açıqdır · vaxtında bitirmək üçün $pace/gün. Tərəqqini yeniləmək üçün sessiya qeydə al.';
+  }
+
+  @override
+  String notifCustomBodyNoPace(String left) {
+    return '$left hələ açıqdır — indi qeydə aldığın hər şey sayılır.';
+  }
+
+  @override
+  String reminderPreviewNext(String time) {
+    return 'Növbəti: $time';
+  }
+
+  @override
+  String get reminderPreviewBackDay => '-1g';
+
+  @override
+  String get reminderPreviewFwdDay => '+1g';
+
+  @override
+  String get reminderPreviewFake => '(fake)';
+
+  @override
+  String get reminderPreviewDemoLabel => 'Demo yoxlama';
 }

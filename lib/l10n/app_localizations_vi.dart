@@ -1234,4 +1234,137 @@ class AppLocalizationsVi extends AppLocalizations {
   @override
   String get settingsReminderDenied =>
       'Thông báo bị chặn — hãy bật chúng trong cài đặt hệ thống.';
+
+  @override
+  String notifDurationHours(String value) {
+    return '$value giờ';
+  }
+
+  @override
+  String notifDurationMinutes(String value) {
+    return '$value phút';
+  }
+
+  @override
+  String notifDailyTitle(String duration) {
+    return '📚 Tối nay: $duration để đúng tiến độ';
+  }
+
+  @override
+  String notifDailyCourseNeed(String course, String duration) {
+    return '$course hôm nay còn $duration';
+  }
+
+  @override
+  String notifDailyMore(String count) {
+    return '(+$count nữa)';
+  }
+
+  @override
+  String notifDailyBody(String detail) {
+    return '$detail. Ghi một buổi học để hoàn thành hôm nay.';
+  }
+
+  @override
+  String notifBehindTitle(String course) {
+    return '⚠️ $course đã bị trễ';
+  }
+
+  @override
+  String notifBehindBodyPace(
+    String left,
+    String days,
+    String pace,
+    String catchUp,
+  ) {
+    return 'Còn $left, còn $days ngày — từ đây $pace/ngày. Ghi $catchUp để trở lại đúng tiến độ.';
+  }
+
+  @override
+  String notifBehindBodyFull(String left, String days, String pace) {
+    return 'Còn $left, còn $days ngày — từ đây $pace/ngày. Chỉ hoàn thành toàn bộ $left mới xong — hãy bắt đầu tối nay.';
+  }
+
+  @override
+  String notifBehindBodyDeadlineDay(String left) {
+    return 'Vẫn còn $left mà hạn đã đến. Mọi buổi bạn ghi lúc này đều được tính.';
+  }
+
+  @override
+  String notifDeadlineTomorrowTitle(String course, String left) {
+    return '🚨 $course đến hạn vào ngày mai mà vẫn còn $left';
+  }
+
+  @override
+  String get notifDeadlineTomorrowBody =>
+      'Mọi buổi bạn ghi hôm nay đều tính gấp đôi.';
+
+  @override
+  String notifDeadlineSoonTitle(String course, String days, String left) {
+    return '⏳ Thi $course sau $days ngày nữa — còn $left';
+  }
+
+  @override
+  String notifDeadlineSoonBody(String pace) {
+    return 'Tức là $pace/ngày. Hãy chia nhỏ: 2 buổi mỗi ngày tốt hơn một buổi marathon.';
+  }
+
+  @override
+  String get notifDeadlineSoonBodyNoPace =>
+      'Mỗi giờ bạn ghi lúc này đều được tính.';
+
+  @override
+  String notifOverdueTitle(String course, String left) {
+    return '❌ $course đã quá hạn mà vẫn còn $left';
+  }
+
+  @override
+  String get notifOverdueBody =>
+      'Hãy dời hạn hoặc hoàn thành số giờ — đến lúc đó môn học vẫn ở trạng thái Cần chú ý.';
+
+  @override
+  String notifStreakTitle(String days, String week) {
+    return '🔥 Chuỗi $days ngày — $week tuần này';
+  }
+
+  @override
+  String get notifStreakBody =>
+      'Mọi môn đều đúng tiến độ hoặc vượt tiến độ. Tuyệt vời.';
+
+  @override
+  String notifCustomTitleAuto(String course) {
+    return '📚 Điểm danh học tập: $course';
+  }
+
+  @override
+  String notifCustomTitleCourse(String course) {
+    return '📚 Đến lúc cập nhật: $course';
+  }
+
+  @override
+  String notifCustomBodyPace(String left, String pace) {
+    return 'Còn $left · $pace/ngày để xong đúng hạn. Ghi một buổi học để cập nhật tiến độ.';
+  }
+
+  @override
+  String notifCustomBodyNoPace(String left) {
+    return 'Vẫn còn $left — mọi buổi bạn ghi lúc này đều được tính.';
+  }
+
+  @override
+  String reminderPreviewNext(String time) {
+    return 'Tiếp theo: $time';
+  }
+
+  @override
+  String get reminderPreviewBackDay => '-1 ngày';
+
+  @override
+  String get reminderPreviewFwdDay => '+1 ngày';
+
+  @override
+  String get reminderPreviewFake => '(giả)';
+
+  @override
+  String get reminderPreviewDemoLabel => 'Điểm danh demo';
 }

@@ -1244,4 +1244,137 @@ class AppLocalizationsFi extends AppLocalizations {
   @override
   String get settingsReminderDenied =>
       'Ilmoitukset on estetty — ota ne käyttöön järjestelmän asetuksissa.';
+
+  @override
+  String notifDurationHours(String value) {
+    return '$value h';
+  }
+
+  @override
+  String notifDurationMinutes(String value) {
+    return '$value min';
+  }
+
+  @override
+  String notifDailyTitle(String duration) {
+    return '📚 Tänä iltana: $duration pysyäksesi aikataulussa';
+  }
+
+  @override
+  String notifDailyCourseNeed(String course, String duration) {
+    return '$course: $duration jäljellä tänään';
+  }
+
+  @override
+  String notifDailyMore(String count) {
+    return '(+$count lisää)';
+  }
+
+  @override
+  String notifDailyBody(String detail) {
+    return '$detail. Kirjaa kerta kuitataksesi tämän päivän.';
+  }
+
+  @override
+  String notifBehindTitle(String course) {
+    return '⚠️ $course putosi tilaan Jäljessä';
+  }
+
+  @override
+  String notifBehindBodyPace(
+    String left,
+    String days,
+    String pace,
+    String catchUp,
+  ) {
+    return '$left jäljellä, $days päivää aikaa — täältä eteenpäin $pace/päivä. Kirjaa $catchUp niin olet taas Aikataulussa.';
+  }
+
+  @override
+  String notifBehindBodyFull(String left, String days, String pace) {
+    return '$left jäljellä, $days päivää aikaa — täältä eteenpäin $pace/päivä. Vain koko $left suorittaminen kuittaa tämän — aloita tänä iltana.';
+  }
+
+  @override
+  String notifBehindBodyDeadlineDay(String left) {
+    return '$left on vielä auki ja määräaika on käsillä. Kaikki kirjaamasi lasketaan.';
+  }
+
+  @override
+  String notifDeadlineTomorrowTitle(String course, String left) {
+    return '🚨 $course erääntyy huomenna ja $left on vielä auki';
+  }
+
+  @override
+  String get notifDeadlineTomorrowBody =>
+      'Kaikki tänään kirjaamasi lasketaan tuplana.';
+
+  @override
+  String notifDeadlineSoonTitle(String course, String days, String left) {
+    return '⏳ $course koe $days päivän kuluttua — jäljellä $left';
+  }
+
+  @override
+  String notifDeadlineSoonBody(String pace) {
+    return 'Se on $pace/päivä. Jaa se: 2 kertaa päivässä voittaa maratonin.';
+  }
+
+  @override
+  String get notifDeadlineSoonBodyNoPace =>
+      'Jokainen nyt kirjaamasi tunti lasketaan.';
+
+  @override
+  String notifOverdueTitle(String course, String left) {
+    return '❌ $course määräaika meni ohi, $left vielä auki';
+  }
+
+  @override
+  String get notifOverdueBody =>
+      'Siirrä määräaikaa tai tee tunnit täyteen — kurssi vaatii siihen asti huomiota.';
+
+  @override
+  String notifStreakTitle(String days, String week) {
+    return '🔥 $days päivän putki — $week tällä viikolla';
+  }
+
+  @override
+  String get notifStreakBody =>
+      'Kaikki kurssit Aikataulussa tai Edellä. Hieno putki.';
+
+  @override
+  String notifCustomTitleAuto(String course) {
+    return '📚 Opiskelun tarkistus: $course';
+  }
+
+  @override
+  String notifCustomTitleCourse(String course) {
+    return '📚 Aika päivittää: $course';
+  }
+
+  @override
+  String notifCustomBodyPace(String left, String pace) {
+    return '$left auki · $pace/päivä valmistuaksesi ajoissa. Kirjaa kerta päivittääksesi edistymisen.';
+  }
+
+  @override
+  String notifCustomBodyNoPace(String left) {
+    return '$left on vielä auki — kaikki kirjaamasi lasketaan.';
+  }
+
+  @override
+  String reminderPreviewNext(String time) {
+    return 'Seuraava: $time';
+  }
+
+  @override
+  String get reminderPreviewBackDay => '-1pv';
+
+  @override
+  String get reminderPreviewFwdDay => '+1pv';
+
+  @override
+  String get reminderPreviewFake => '(tekaistu)';
+
+  @override
+  String get reminderPreviewDemoLabel => 'Demo-tarkistus';
 }

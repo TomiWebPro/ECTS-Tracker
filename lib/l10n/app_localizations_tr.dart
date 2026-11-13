@@ -1238,4 +1238,137 @@ class AppLocalizationsTr extends AppLocalizations {
   @override
   String get settingsReminderDenied =>
       'Bildirimler engellendi — sistem ayarlarından etkinleştir.';
+
+  @override
+  String notifDurationHours(String value) {
+    return '$value sa';
+  }
+
+  @override
+  String notifDurationMinutes(String value) {
+    return '$value dk';
+  }
+
+  @override
+  String notifDailyTitle(String duration) {
+    return '📚 Bu akşam yolunda kalmak için $duration';
+  }
+
+  @override
+  String notifDailyCourseNeed(String course, String duration) {
+    return '$course bugün $duration kaldı';
+  }
+
+  @override
+  String notifDailyMore(String count) {
+    return '(+$count tane daha)';
+  }
+
+  @override
+  String notifDailyBody(String detail) {
+    return '$detail. Bugünü kapatmak için bir oturum kaydet.';
+  }
+
+  @override
+  String notifBehindTitle(String course) {
+    return '⚠️ $course geriye düştü';
+  }
+
+  @override
+  String notifBehindBodyPace(
+    String left,
+    String days,
+    String pace,
+    String catchUp,
+  ) {
+    return '$left kaldı, $days gün kaldı — bundan sonra $pace/gün. Yeniden yoluna girmek için $catchUp kaydet.';
+  }
+
+  @override
+  String notifBehindBodyFull(String left, String days, String pace) {
+    return '$left kaldı, $days gün kaldı — bundan sonra $pace/gün. Yalnızca $left tamamını bitirmen bunu kapatır — bu akşam başla.';
+  }
+
+  @override
+  String notifBehindBodyDeadlineDay(String left) {
+    return '$left hâlâ açık ve son tarih geldi. Şimdi kaydedeceğin her şey sayılır.';
+  }
+
+  @override
+  String notifDeadlineTomorrowTitle(String course, String left) {
+    return '🚨 $course yarın bitiyor ve hâlâ $left açık';
+  }
+
+  @override
+  String get notifDeadlineTomorrowBody =>
+      'Bugün kaydedeceğin her şey iki katı sayılır.';
+
+  @override
+  String notifDeadlineSoonTitle(String course, String days, String left) {
+    return '⏳ $days gün sonra $course sınavı — $left kaldı';
+  }
+
+  @override
+  String notifDeadlineSoonBody(String pace) {
+    return 'Bu $pace/gün demek. Böl: günde 2 oturum bir maratondan iyidir.';
+  }
+
+  @override
+  String get notifDeadlineSoonBodyNoPace =>
+      'Şimdi kaydedeceğin her saat sayılır.';
+
+  @override
+  String notifOverdueTitle(String course, String left) {
+    return '❌ $course son tarihi $left açıkla geçti';
+  }
+
+  @override
+  String get notifOverdueBody =>
+      'Son tarihi ertele veya saatleri tamamla — o zamana kadar ders Dikkat gerekiyor durumunda kalır.';
+
+  @override
+  String notifStreakTitle(String days, String week) {
+    return '🔥 $days günlük seri — bu hafta $week';
+  }
+
+  @override
+  String get notifStreakBody =>
+      'Tüm dersler yolunda veya önde. Güzel gidiyorsun.';
+
+  @override
+  String notifCustomTitleAuto(String course) {
+    return '📚 Çalışma kontrolü: $course';
+  }
+
+  @override
+  String notifCustomTitleCourse(String course) {
+    return '📚 Güncelleme zamanı: $course';
+  }
+
+  @override
+  String notifCustomBodyPace(String left, String pace) {
+    return '$left açık · zamanında bitirmek için $pace/gün. İlerlemeyi güncellemek için bir oturum kaydet.';
+  }
+
+  @override
+  String notifCustomBodyNoPace(String left) {
+    return '$left hâlâ açık — şimdi kaydedeceğin her şey sayılır.';
+  }
+
+  @override
+  String reminderPreviewNext(String time) {
+    return 'Sonraki: $time';
+  }
+
+  @override
+  String get reminderPreviewBackDay => '-1g';
+
+  @override
+  String get reminderPreviewFwdDay => '+1g';
+
+  @override
+  String get reminderPreviewFake => '(sahte)';
+
+  @override
+  String get reminderPreviewDemoLabel => 'Demo kontrol';
 }

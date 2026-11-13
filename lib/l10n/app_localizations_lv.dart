@@ -1242,4 +1242,137 @@ class AppLocalizationsLv extends AppLocalizations {
   @override
   String get settingsReminderDenied =>
       'Paziņojumi ir bloķēti — iespējojiet tos sistēmas iestatījumos.';
+
+  @override
+  String notifDurationHours(String value) {
+    return '$value h';
+  }
+
+  @override
+  String notifDurationMinutes(String value) {
+    return '$value min';
+  }
+
+  @override
+  String notifDailyTitle(String duration) {
+    return '📚 Šovakar: $duration, lai noturētos labā ritmā';
+  }
+
+  @override
+  String notifDailyCourseNeed(String course, String duration) {
+    return '$course: šodien atlikuši $duration';
+  }
+
+  @override
+  String notifDailyMore(String count) {
+    return '(+$count vēl)';
+  }
+
+  @override
+  String notifDailyBody(String detail) {
+    return '$detail. Reģistrējiet sesiju, lai pabeigtu šodienu.';
+  }
+
+  @override
+  String notifBehindTitle(String course) {
+    return '⚠️ $course: statuss Atpaliek';
+  }
+
+  @override
+  String notifBehindBodyPace(
+    String left,
+    String days,
+    String pace,
+    String catchUp,
+  ) {
+    return 'Atlikušas $left, atlikušas $days dienas — no šejienes $pace/dienā. Reģistrējiet $catchUp, lai atgrieztos labā ritmā.';
+  }
+
+  @override
+  String notifBehindBodyFull(String left, String days, String pace) {
+    return 'Atlikušas $left, atlikušas $days dienas — no šejienes $pace/dienā. Palīdz tikai pilnas $left pabeigšana — sāciet šovakar.';
+  }
+
+  @override
+  String notifBehindBodyDeadlineDay(String left) {
+    return '$left vēl atvērtas un termiņš ir šodien. Viss, ko tagad reģistrējat, tiek ieskaitīts.';
+  }
+
+  @override
+  String notifDeadlineTomorrowTitle(String course, String left) {
+    return '🚨 $course: termiņš ir rīt, vēl atvērtas $left';
+  }
+
+  @override
+  String get notifDeadlineTomorrowBody =>
+      'Viss, ko šodien reģistrējat, skaitās dubulti.';
+
+  @override
+  String notifDeadlineSoonTitle(String course, String days, String left) {
+    return '⏳ $course eksāmens pēc $days dienām — atlikušas $left';
+  }
+
+  @override
+  String notifDeadlineSoonBody(String pace) {
+    return 'Tas ir $pace/dienā. Sadaliet: 2 sesijas dienā pārspēj vienu maratonu.';
+  }
+
+  @override
+  String get notifDeadlineSoonBodyNoPace =>
+      'Katra stunda, ko tagad reģistrējat, tiek ieskaitīta.';
+
+  @override
+  String notifOverdueTitle(String course, String left) {
+    return '❌ $course: termiņš nokavēts, vēl atvērtas $left';
+  }
+
+  @override
+  String get notifOverdueBody =>
+      'Pārceliet termiņu vai pabeidziet stundas — kurss līdz tam paliek uzmanības lokā.';
+
+  @override
+  String notifStreakTitle(String days, String week) {
+    return '🔥 $days dienu sērija — šonedēļ $week';
+  }
+
+  @override
+  String get notifStreakBody =>
+      'Visi kursi labā ritmā vai priekšā. Labs darbs.';
+
+  @override
+  String notifCustomTitleAuto(String course) {
+    return '📚 Mācību reģistrēšanās: $course';
+  }
+
+  @override
+  String notifCustomTitleCourse(String course) {
+    return '📚 Laiks atjaunināt: $course';
+  }
+
+  @override
+  String notifCustomBodyPace(String left, String pace) {
+    return '$left atvērtas · $pace/dienā, lai pabeigtu laikā. Reģistrējiet sesiju, lai atjauninātu progresu.';
+  }
+
+  @override
+  String notifCustomBodyNoPace(String left) {
+    return '$left vēl atvērtas — viss, ko tagad reģistrējat, tiek ieskaitīts.';
+  }
+
+  @override
+  String reminderPreviewNext(String time) {
+    return 'Nākamais: $time';
+  }
+
+  @override
+  String get reminderPreviewBackDay => '-1d';
+
+  @override
+  String get reminderPreviewFwdDay => '+1d';
+
+  @override
+  String get reminderPreviewFake => '(viltus)';
+
+  @override
+  String get reminderPreviewDemoLabel => 'Demonstrācijas reģistrēšanās';
 }

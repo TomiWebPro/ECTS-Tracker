@@ -1242,4 +1242,137 @@ class AppLocalizationsTe extends AppLocalizations {
   @override
   String get settingsReminderDenied =>
       'నోటిఫికేషన్లు బ్లాక్ చేయబడ్డాయి — సిస్టమ్ సెట్టింగుల్లో వాటిని ప్రారంభించండి.';
+
+  @override
+  String notifDurationHours(String value) {
+    return '$value గం';
+  }
+
+  @override
+  String notifDurationMinutes(String value) {
+    return '$value నిమి';
+  }
+
+  @override
+  String notifDailyTitle(String duration) {
+    return '📚 ఈ రాత్రి: సక్రమంగా ఉండేందుకు $duration';
+  }
+
+  @override
+  String notifDailyCourseNeed(String course, String duration) {
+    return '$course ఈరోజు $duration మిగిలింది';
+  }
+
+  @override
+  String notifDailyMore(String count) {
+    return '(+$count ఇంకా)';
+  }
+
+  @override
+  String notifDailyBody(String detail) {
+    return '$detail. ఈరోజు పూర్తి చేయడానికి సెషన్ నమోదు చేయండి.';
+  }
+
+  @override
+  String notifBehindTitle(String course) {
+    return '⚠️ $course వెనుకబడింది';
+  }
+
+  @override
+  String notifBehindBodyPace(
+    String left,
+    String days,
+    String pace,
+    String catchUp,
+  ) {
+    return '$left మిగిలింది, $days రోజులు ఉన్నాయి — ఇక్కడి నుండి $pace/రోజు. తిరిగి సక్రమంగా రావడానికి $catchUp నమోదు చేయండి.';
+  }
+
+  @override
+  String notifBehindBodyFull(String left, String days, String pace) {
+    return '$left మిగిలింది, $days రోజులు ఉన్నాయి — ఇక్కడి నుండి $pace/రోజు. మొత్తం $left పూర్తి చేస్తేనే ఇది తొలగుతుంది — ఈ రాత్రే మొదలుపెట్టండి.';
+  }
+
+  @override
+  String notifBehindBodyDeadlineDay(String left) {
+    return '$left ఇంకా మిగిలి ఉంది, గడువు వచ్చేసింది. ఇప్పుడు మీరు నమోదు చేసేదంతా లెక్కలోకి వస్తుంది.';
+  }
+
+  @override
+  String notifDeadlineTomorrowTitle(String course, String left) {
+    return '🚨 $course గడువు రేపు, ఇంకా $left మిగిలి ఉంది';
+  }
+
+  @override
+  String get notifDeadlineTomorrowBody =>
+      'ఈరోజు మీరు నమోదు చేసేదంతా రెట్టింపు లెక్క.';
+
+  @override
+  String notifDeadlineSoonTitle(String course, String days, String left) {
+    return '⏳ $days రోజుల్లో $course పరీక్ష — $left మిగిలింది';
+  }
+
+  @override
+  String notifDeadlineSoonBody(String pace) {
+    return 'అంటే $pace/రోజు. విడగొట్టండి: రోజుకు 2 సెషన్లు ఒక మారథాన్ కంటే మేలు.';
+  }
+
+  @override
+  String get notifDeadlineSoonBodyNoPace =>
+      'ఇప్పుడు మీరు నమోదు చేసే ప్రతి గంటా లెక్కలోకి వస్తుంది.';
+
+  @override
+  String notifOverdueTitle(String course, String left) {
+    return '❌ $course గడువు దాటిపోయింది, $left మిగిలి ఉంది';
+  }
+
+  @override
+  String get notifOverdueBody =>
+      'గడువును మార్చండి లేదా గంటలు పూర్తి చేయండి — అప్పటివరకు కోర్సు శ్రద్ధ అవసరం స్థితిలోనే ఉంటుంది.';
+
+  @override
+  String notifStreakTitle(String days, String week) {
+    return '🔥 $days రోజుల వరుస — ఈ వారం $week';
+  }
+
+  @override
+  String get notifStreakBody =>
+      'అన్ని కోర్సులు సక్రమంగా లేదా ముందంజలో ఉన్నాయి. బాగా చేస్తున్నారు.';
+
+  @override
+  String notifCustomTitleAuto(String course) {
+    return '📚 స్టడీ చెక్-ఇన్: $course';
+  }
+
+  @override
+  String notifCustomTitleCourse(String course) {
+    return '📚 నవీకరించే సమయం: $course';
+  }
+
+  @override
+  String notifCustomBodyPace(String left, String pace) {
+    return '$left మిగిలి ఉంది · సకాలంలో పూర్తికి $pace/రోజు. పురోగతి నవీకరించడానికి సెషన్ నమోదు చేయండి.';
+  }
+
+  @override
+  String notifCustomBodyNoPace(String left) {
+    return '$left ఇంకా మిగిలి ఉంది — ఇప్పుడు మీరు నమోదు చేసేదంతా లెక్కలోకి వస్తుంది.';
+  }
+
+  @override
+  String reminderPreviewNext(String time) {
+    return 'తర్వాత: $time';
+  }
+
+  @override
+  String get reminderPreviewBackDay => '-1రో';
+
+  @override
+  String get reminderPreviewFwdDay => '+1రో';
+
+  @override
+  String get reminderPreviewFake => '(నకిలీ)';
+
+  @override
+  String get reminderPreviewDemoLabel => 'డెమో చెక్-ఇన్';
 }
