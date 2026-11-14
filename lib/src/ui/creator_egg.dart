@@ -1,4 +1,7 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../../l10n/app_localizations.dart';
@@ -37,19 +40,41 @@ final Uri kCreatorLinkedinUrl =
   return (count: next, tap: now, unlocked: false);
 }
 
-/// Opens a creator profile URL in the external browser, showing a
-/// localized failure note when the platform cannot handle it.
+/// Bounds each platform attempt: a missing plugin answers with an error,
+/// but a dead channel may never answer at all — never hang the UI on it.
+const Duration kCreatorLinkTimeout = Duration(seconds: 3);
+
+/// Opens a creator profile URL in the external browser on any platform.
+/// When the browser cannot be opened (missing plugin, stale desktop build,
+/// platform failure, or a channel that never answers), falls back to
+/// copying the URL to the clipboard and confirming with the shared
+/// copied-to-clipboard note.
 Future<void> openCreatorLink(
   BuildContext context,
   Uri url,
   AppLocalizations l10n,
 ) async {
-  final opened = await launchUrl(url, mode: LaunchMode.externalApplication);
-  if (!opened && context.mounted) {
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(content: Text(l10n.creatorEggOpenFailed)),
-    );
+  try {
+    final opened = await launchUrl(url, mode: LaunchMode.externalApplication)
+        .timeout(kCreatorLinkTimeout);
+    if (opened) return;
+  } on TimeoutException {
+    // Dead channel — fall through to the clipboard fallback below.
+  } catch (_) {
+    // Fall through to the clipboard fallback below.
   }
+  try {
+    await Clipboard.setData(ClipboardData(text: url.toString()))
+        .timeout(kCreatorLinkTimeout);
+  } on TimeoutException {
+    // Clipboard unavailable; the note below still shows the outcome.
+  } catch (_) {
+    // Clipboard unavailable; the note below still shows the outcome.
+  }
+  if (!context.mounted) return;
+  ScaffoldMessenger.of(context).showSnackBar(
+    SnackBar(content: Text(l10n.settingsExportCopied)),
+  );
 }
 
 /// Shows the creator tribute dialog.

@@ -84,6 +84,15 @@ void main() {
     expect(find.byKey(const Key('creatorEggGithubButton')), findsOneWidget);
     expect(find.byKey(const Key('creatorEggLinkedinButton')), findsOneWidget);
 
+    // No url_launcher plugin in tests: the link falls back to the
+    // clipboard + copied note instead of throwing (timed pumps: the
+    // note auto-dismisses, so pumpAndSettle would miss it; 10s covers
+    // both 3s link timeouts in fake time).
+    await tester.tap(find.byKey(const Key('creatorEggGithubButton')));
+    await tester.pump();
+    await tester.pump(const Duration(seconds: 10));
+    expect(find.text('Export copied to clipboard.'), findsOneWidget);
+
     await tester.pumpWidget(const SizedBox());
     await tester.pump(const Duration(milliseconds: 200));
     await db.close();
