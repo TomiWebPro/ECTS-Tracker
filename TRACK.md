@@ -122,6 +122,7 @@ Conventions: `AGENTS.md` (binding, incl. new-locale policy §6) · `README.md` (
 | ECTS-097 | M13 | Null-safety + logic-locale + locale-aware formatting batch (`!` removal, logic string l10n, NumberFormat/DateFormat) | done | analyze clean; full 376/376; 2026-11-14 |
 | ECTS-098 | M11 | Timer fullscreen focus view + banner padding top + auto-fullscreen on start | done | analyze clean; full 376/376 (flutter analyze No issues; affected timer+l10n 34/34); 2026-11-14 |
 | ECTS-099 | M11 | Timer fullscreen polish: centered clock, fat bottom buttons, exit-fullscreen icon | done | analyze clean; affected 39/39; 2026-11-14 |
+| ECTS-100 | M11 | Glass-mode timer as floating liquid-glass pill; drop in-flow duplicate + top gap | done | analyze clean; affected 36/36 + new banner lens test 2/2; 2026-11-14 |
 
 Note: ECTS-033/034 were announced in a 2026-11-05 log but never got rows; IDs skipped, do NOT renumber.
 
@@ -140,6 +141,8 @@ trims (different semantics per surface); hold-to-confirm timer test
 (private widget, covered indirectly by settings pumps).
 
 ## Progress log (newest on top)
+
+- 2026-11-14: ECTS-100 done (glass timer: banner renders frosted secondaryContainer lens w/ chrome shadow, content scrolls under; removed in-flow duplicate so single overlay pill at top inset w/o extra pad; new glass_timer_banner_test 2/2; analyze clean; affected 36/36).
 
 - 2026-11-14: ECTS-099 done (fullscreen focus polish: clock vertically centered, 56pt actions pinned bottom via fullscreenLayout, X -> fullscreen_exit w/ Exit-fullscreen EN key; sheet controls refactored to shared part-builders, same keys; analyze clean; affected 39/39).
 

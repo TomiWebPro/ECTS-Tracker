@@ -80,6 +80,23 @@ LiquidGlassStyle glassStyle(BuildContext context) {
   );
 }
 
+/// Frosted timer-pill style for glass mode (ECTS-100).
+///
+/// Same lens optics as [glassStyle] so the pill reads as one family with
+/// the cards, but tinted with `secondaryContainer` (the legacy banner
+/// surface) and the floating-chrome shadow ([glassChromeShadow]): the
+/// pill floats over scrolled content like the app/tab bars.
+LiquidGlassStyle glassTimerStyle(BuildContext context) {
+  return glassStyle(context).copyWith(
+    color: glassTint(
+      Theme.of(context).colorScheme,
+      Theme.of(context).colorScheme.secondaryContainer,
+      opacity: 0.35,
+    ),
+    shadow: glassChromeShadow,
+  );
+}
+
 /// A card that renders as lite glass when the opt-in is on, else as the
 /// identical legacy [Card] (ECTS-061).
 ///

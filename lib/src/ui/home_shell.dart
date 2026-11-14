@@ -208,15 +208,11 @@ class _HomeShellState extends State<HomeShell> {
                       padding: const EdgeInsets.only(
                         top: AppSizes.glassPageTopInset,
                       ),
-                      child: Column(
-                        children: [
-                          // In-flow (never overlapping): when no timer runs
-                          // this is a zero-size box; while timing it pushes
-                          // the page down below the floating app bar.
-                          const StudyTimerBanner(),
-                          Expanded(child: page),
-                        ],
-                      ),
+                      // No in-flow banner (ECTS-100): the timer is a
+                      // floating frosted pill (Positioned below), so page
+                      // content scrolls underneath it. When idle the pill
+                      // is a zero-size box and changes nothing.
+                      child: page,
                     ),
                   ),
                   Positioned(

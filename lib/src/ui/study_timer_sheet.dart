@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:ects_tracker/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:liquid_glass_easy/liquid_glass_easy.dart';
 
 import '../data/repositories.dart';
 import '../i18n/app_locales.dart';
@@ -598,84 +599,128 @@ class _StudyTimerBannerState extends ConsumerState<StudyTimerBanner> {
 
     // Same width cap + centering as the page body (home_shell): on wide
     // windows a full-bleed banner would stick out past every card.
-    return Align(
-      alignment: Alignment.topCenter,
-      child: ConstrainedBox(
-        constraints: const BoxConstraints(maxWidth: AppSizes.maxContentWidth),
-        child: Padding(
-          key: const Key('studyTimerBanner'),
-          padding: const EdgeInsets.fromLTRB(
-            AppSizes.pageHPad,
-            AppSizes.sectionInnerGap,
-            AppSizes.pageHPad,
-            0,
+    final content = _bannerContent(
+      context,
+      l10n,
+      scheme,
+      timer,
+      courseName,
+      elapsed,
+    );
+    if (!ref.watch(glassEnabledProvider)) {
+      return Align(
+        alignment: Alignment.topCenter,
+        child: ConstrainedBox(
+          constraints: const BoxConstraints(
+            maxWidth: AppSizes.maxContentWidth,
           ),
-          child: Material(
-            color: scheme.secondaryContainer,
-            borderRadius: BorderRadius.circular(AppSizes.cardRadius),
-            child: InkWell(
+          child: Padding(
+            key: const Key('studyTimerBanner'),
+            padding: const EdgeInsets.fromLTRB(
+              AppSizes.pageHPad,
+              AppSizes.sectionInnerGap,
+              AppSizes.pageHPad,
+              0,
+            ),
+            child: Material(
+              color: scheme.secondaryContainer,
               borderRadius: BorderRadius.circular(AppSizes.cardRadius),
-              onTap: () => showStudyTimerActiveSheet(context),
-              child: Padding(
-                padding: const EdgeInsets.symmetric(
-                  horizontal: AppSizes.coursePadH,
-                  vertical: AppSizes.coursePadV,
-                ),
-                child: Row(
-                  children: [
-                    Icon(
-                      timer.isRunning
-                          ? Icons.pause_circle_outline
-                          : Icons.play_circle_outline,
-                      color: scheme.onSecondaryContainer,
-                    ),
-                    const SizedBox(width: AppSizes.headerGap),
-                    Expanded(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          Text(
-                            l10n.studyTimerActiveTitle(courseName),
-                            style: Theme.of(context).textTheme.titleSmall
-                                ?.copyWith(
-                                  color: scheme.onSecondaryContainer,
-                                  fontWeight: FontWeight.w800,
-                                ),
-                            overflow: TextOverflow.ellipsis,
-                          ),
-                          Text(
-                            formatTimerHms(elapsed),
-                            style: Theme.of(context).textTheme.bodyMedium
-                                ?.copyWith(
-                                  color: scheme.onSecondaryContainer,
-                                  fontFeatures: const [
-                                    FontFeature.tabularFigures(),
-                                  ],
-                                ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    IconButton(
-                      key: const Key('studyTimerBannerToggle'),
-                      tooltip: timer.isRunning
-                          ? l10n.studyTimerPause
-                          : l10n.studyTimerResume,
-                      color: scheme.onSecondaryContainer,
-                      onPressed: () => timer.isRunning
-                          ? ref.read(studyTimerProvider.notifier).pause()
-                          : ref.read(studyTimerProvider.notifier).resume(),
-                      icon: Icon(
-                        timer.isRunning ? Icons.pause : Icons.play_arrow,
-                      ),
-                    ),
-                  ],
-                ),
+              child: InkWell(
+                borderRadius: BorderRadius.circular(AppSizes.cardRadius),
+                onTap: () => showStudyTimerActiveSheet(context),
+                child: content,
               ),
             ),
           ),
         ),
+      );
+    }
+    // Glass mode (ECTS-100): floating frosted pill. No vertical outer
+    // padding — the overlay offset in home_shell already gaps it from the
+    // floating app bar — and page content scrolls underneath the lens.
+    return Align(
+      alignment: Alignment.topCenter,
+      child: ConstrainedBox(
+        constraints: const BoxConstraints(
+          maxWidth: AppSizes.maxContentWidth,
+        ),
+        child: Padding(
+          key: const Key('studyTimerBanner'),
+          padding: const EdgeInsets.symmetric(
+            horizontal: AppSizes.pageHPad,
+          ),
+          child: LiquidGlassLens(
+            style: glassTimerStyle(context),
+            child: GestureDetector(
+              behavior: HitTestBehavior.opaque,
+              onTap: () => showStudyTimerActiveSheet(context),
+              child: content,
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+
+  /// Shared pill content for both banner branches: status icon, course
+  /// title, live elapsed readout and the pause/resume toggle.
+  Widget _bannerContent(
+    BuildContext context,
+    AppLocalizations l10n,
+    ColorScheme scheme,
+    StudyTimerState timer,
+    String courseName,
+    int elapsed,
+  ) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(
+        horizontal: AppSizes.coursePadH,
+        vertical: AppSizes.coursePadV,
+      ),
+      child: Row(
+        children: [
+          Icon(
+            timer.isRunning
+                ? Icons.pause_circle_outline
+                : Icons.play_circle_outline,
+            color: scheme.onSecondaryContainer,
+          ),
+          const SizedBox(width: AppSizes.headerGap),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Text(
+                  l10n.studyTimerActiveTitle(courseName),
+                  style: Theme.of(context).textTheme.titleSmall?.copyWith(
+                    color: scheme.onSecondaryContainer,
+                    fontWeight: FontWeight.w800,
+                  ),
+                  overflow: TextOverflow.ellipsis,
+                ),
+                Text(
+                  formatTimerHms(elapsed),
+                  style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                    color: scheme.onSecondaryContainer,
+                    fontFeatures: const [FontFeature.tabularFigures()],
+                  ),
+                ),
+              ],
+            ),
+          ),
+          IconButton(
+            key: const Key('studyTimerBannerToggle'),
+            tooltip: timer.isRunning
+                ? l10n.studyTimerPause
+                : l10n.studyTimerResume,
+            color: scheme.onSecondaryContainer,
+            onPressed: () => timer.isRunning
+                ? ref.read(studyTimerProvider.notifier).pause()
+                : ref.read(studyTimerProvider.notifier).resume(),
+            icon: Icon(timer.isRunning ? Icons.pause : Icons.play_arrow),
+          ),
+        ],
       ),
     );
   }
