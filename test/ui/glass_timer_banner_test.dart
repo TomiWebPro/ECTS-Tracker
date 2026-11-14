@@ -6,6 +6,7 @@ import 'package:ects_tracker/src/data/study_timer_prefs.dart';
 import 'package:ects_tracker/src/logic/study_timer.dart';
 import 'package:ects_tracker/src/state/providers.dart';
 import 'package:ects_tracker/src/state/study_timer_provider.dart';
+import 'package:ects_tracker/src/ui/app_sizes.dart';
 import 'package:ects_tracker/src/ui/glass.dart';
 import 'package:ects_tracker/src/ui/study_timer_sheet.dart';
 import 'package:flutter/material.dart';
@@ -114,8 +115,25 @@ void main() {
     await tester.pumpAndSettle();
     expect(find.byKey(const Key('pauseResumeTimerButton')), findsOneWidget);
 
-    await tester.tap(find.text('Close'));
+    // Fat buttons, pinned at the dialog bottom.
+    expect(
+      tester.getRect(find.byKey(const Key('pauseResumeTimerButton'))).height,
+      AppSizes.timerFullscreenButtonHeight,
+    );
+    expect(
+      tester.getRect(find.byKey(const Key('discardTimerButton'))).height,
+      AppSizes.timerFullscreenButtonHeight,
+    );
+    expect(
+      tester.getRect(find.byKey(const Key('finishTimerButton'))).height,
+      AppSizes.timerFullscreenButtonHeight,
+    );
+
+    // Dismiss by tapping outside (no close button).
+    await tester.tapAt(const Offset(10, 10));
     await tester.pumpAndSettle();
+    expect(find.byKey(const Key('pauseResumeTimerButton')), findsNothing);
+
     await finishDb(tester);
   });
 
@@ -131,8 +149,11 @@ void main() {
     await tester.pumpAndSettle();
     expect(find.byKey(const Key('pauseResumeTimerButton')), findsOneWidget);
 
-    await tester.tap(find.text('Close'));
+    // Dismiss by tapping outside (no close button).
+    await tester.tapAt(const Offset(10, 10));
     await tester.pumpAndSettle();
+    expect(find.byKey(const Key('pauseResumeTimerButton')), findsNothing);
+
     await finishDb(tester);
   });
 }

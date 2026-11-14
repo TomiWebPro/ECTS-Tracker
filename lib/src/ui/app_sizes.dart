@@ -107,6 +107,10 @@ abstract final class AppSizes {
   static const double fabVPad = 12.0;
   static const double fabIconGap = 8.0;
 
+  /// Dashboard "log session" CTA: slightly fatter than the shared FAB
+  /// pad so it matches the fat 56px timer-button language.
+  static const double dashboardCtaVPad = 16.0;
+
   static const double dialogRadius = 24.0;
   static const double chipRadius = 10.0;
 

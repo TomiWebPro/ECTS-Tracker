@@ -175,9 +175,9 @@ class _StudyTimerActiveControlsState
           const SizedBox(height: 8),
           _errorLine(context, l10n, errorText),
         ],
-        const SizedBox(height: 12),
+        const SizedBox(height: AppSizes.timerFullscreenGap),
         _actionRow(l10n, timer),
-        const SizedBox(height: 8),
+        const SizedBox(height: AppSizes.timerFullscreenGap),
         _finishButton(l10n, minutes),
       ],
     );
@@ -271,10 +271,9 @@ class _StudyTimerActiveControlsState
     );
   }
 
-  /// Wraps [child] in the fat fullscreen button height; the compact
-  /// sheet keeps the default Material button height.
-  Widget _maybeFat(Widget child) {
-    if (!widget.fullscreenLayout) return child;
+  /// Fat action buttons everywhere (same language as the fullscreen
+  /// focus view): pause/discard/finish all share the tall hit target.
+  Widget _fat(Widget child) {
     return SizedBox(height: AppSizes.timerFullscreenButtonHeight, child: child);
   }
 
@@ -282,7 +281,7 @@ class _StudyTimerActiveControlsState
     return Row(
       children: [
         Expanded(
-          child: _maybeFat(
+          child: _fat(
             FilledButton.tonal(
               key: const Key('pauseResumeTimerButton'),
               onPressed: _busy ? null : () => _toggle(timer),
@@ -292,11 +291,9 @@ class _StudyTimerActiveControlsState
             ),
           ),
         ),
-        SizedBox(
-          width: widget.fullscreenLayout ? AppSizes.timerFullscreenGap : 8,
-        ),
+        const SizedBox(width: AppSizes.timerFullscreenGap),
         Expanded(
-          child: _maybeFat(
+          child: _fat(
             OutlinedButton(
               key: const Key('discardTimerButton'),
               onPressed: _busy ? null : _confirmDiscard,
@@ -311,9 +308,7 @@ class _StudyTimerActiveControlsState
   Widget _finishButton(AppLocalizations l10n, int minutes) {
     return SizedBox(
       width: double.infinity,
-      height: widget.fullscreenLayout
-          ? AppSizes.timerFullscreenButtonHeight
-          : null,
+      height: AppSizes.timerFullscreenButtonHeight,
       child: FilledButton(
         key: const Key('finishTimerButton'),
         onPressed: _busy || minutes <= 0 ? null : _finish,
@@ -364,7 +359,6 @@ class _StudyTimerActiveDialogState
   Widget build(BuildContext context) {
     final l10n = l10nOf(context);
     final timer = ref.watch(studyTimerProvider);
-    final glass = ref.watch(glassEnabledProvider);
     if (timer == null) {
       return AlertDialog(
         title: Text(l10n.studyTimerStartTitle),
@@ -403,20 +397,12 @@ class _StudyTimerActiveDialogState
         onDiscarded: () => Navigator.of(context).pop(),
       ),
     );
-    final actions = [
-      TextButton(
-        onPressed: () => Navigator.of(context).pop(),
-        child: Text(l10n.commonClose),
-      ),
-    ];
-    if (!glass) {
-      return AlertDialog(title: title, content: content, actions: actions);
-    }
-    return glassAlert(
-      context,
+    // No close action (outside tap dismisses); symmetric inner edges —
+    // bottom matches the 24px sides. Same dialog in both modes.
+    return AlertDialog(
       title: title,
       content: content,
-      actions: actions,
+      contentPadding: const EdgeInsets.fromLTRB(24, 20, 24, 24),
     );
   }
 }

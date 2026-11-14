@@ -179,7 +179,7 @@ class _OverviewPage extends ConsumerWidget {
                   style: FilledButton.styleFrom(
                     padding: const EdgeInsets.symmetric(
                       horizontal: AppSizes.fabHPad,
-                      vertical: AppSizes.fabVPad,
+                      vertical: AppSizes.dashboardCtaVPad,
                     ),
                     shape: RoundedRectangleBorder(
                       borderRadius:

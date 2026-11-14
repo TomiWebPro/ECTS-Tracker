@@ -432,17 +432,10 @@ class _SessionFormDialogState extends ConsumerState<SessionFormDialog> {
       ),
     ];
     // The timer tab drives itself inline (start / pause / finish / discard):
-    // the dialog frame only needs a way out. Cancel never stops the timer.
-    final actions = inTimerTab
-        ? [
-            TextButton(
-              onPressed: _saving
-                  ? null
-                  : () => Navigator.of(context).pop(false),
-              child: Text(l10n.commonCancel),
-            ),
-          ]
-        : manualActions;
+    // the dialog frame needs no actions — outside tap dismisses, and
+    // Cancel never stops the timer. Null (not empty) so no actions
+    // padding reserves bottom space.
+    final List<Widget>? actions = inTimerTab ? null : manualActions;
     if (!glass) {
       return AlertDialog(title: title, content: content, actions: actions);
     }
