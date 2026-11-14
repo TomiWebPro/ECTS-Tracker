@@ -16,6 +16,7 @@ import '../state/providers.dart';
 import '../state/study_timer_provider.dart';
 import 'course_form.dart';
 import 'course_labels.dart';
+import 'creator_egg.dart';
 import 'err_text.dart';
 import 'glass.dart';
 import 'session_form.dart';
@@ -55,6 +56,31 @@ class HomeShell extends StatefulWidget {
 
 class _HomeShellState extends State<HomeShell> {
   int _index = 0;
+  int _eggTaps = 0;
+  DateTime? _eggLastTap;
+
+  void _handleEggTap() {
+    final step = creatorEggNext(
+      count: _eggTaps,
+      lastTap: _eggLastTap,
+      now: DateTime.now(),
+    );
+    setState(() {
+      _eggTaps = step.count;
+      _eggLastTap = step.tap;
+    });
+    if (step.unlocked) {
+      showCreatorEggDialog(context);
+    }
+  }
+
+  void _selectTab(int i) {
+    setState(() {
+      _index = i;
+      _eggTaps = 0;
+      _eggLastTap = null;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -120,6 +146,12 @@ class _HomeShellState extends State<HomeShell> {
               ),
               title: Text(titles[_index], style: const TextStyle(fontSize: 26)),
               actions: [
+                IconButton(
+                  key: const Key('creatorEggButton'),
+                  tooltip: l10n.creatorEggTooltip,
+                  onPressed: _handleEggTap,
+                  icon: const Icon(Icons.palette_outlined),
+                ),
                 if (_index == 0)
                   IconButton(
                     tooltip: l10n.dashboardLogSessionTooltip,
@@ -167,7 +199,7 @@ class _HomeShellState extends State<HomeShell> {
             },
             bottomNavigationBar: NavigationBar(
               selectedIndex: _index,
-              onDestinationSelected: (i) => setState(() => _index = i),
+              onDestinationSelected: _selectTab,
               destinations: [
                 NavigationDestination(
                   icon: const Icon(Icons.dashboard),
@@ -338,7 +370,7 @@ class _HomeShellState extends State<HomeShell> {
                           ),
                         ],
                         selectedIndex: _index,
-                        onChanged: (i) => setState(() => _index = i),
+                        onChanged: _selectTab,
                         // Glass morph pill on Impeller; plain frosted capsule
                         // on Skia/Web (no capture view needed there).
                         pillStyle: const LiquidGlassTabPillStyle(
@@ -410,6 +442,12 @@ class _HomeShellState extends State<HomeShell> {
         ),
       ),
       actions: [
+        IconButton(
+          key: const Key('creatorEggButton'),
+          tooltip: l10n.creatorEggTooltip,
+          onPressed: _handleEggTap,
+          icon: const Icon(Icons.palette_outlined),
+        ),
         if (_index == 0)
           IconButton(
             tooltip: l10n.dashboardLogSessionTooltip,

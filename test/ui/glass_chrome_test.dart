@@ -239,7 +239,7 @@ void main() {
 
       final action = find.descendant(
         of: find.byType(LiquidGlassAppBar),
-        matching: find.byType(IconButton),
+        matching: find.byTooltip('Log study session'),
       );
       expect(action, findsOneWidget);
       await tester.tap(action);
