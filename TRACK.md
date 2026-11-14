@@ -128,6 +128,7 @@ Conventions: `AGENTS.md` (binding, incl. new-locale policy §6) · `README.md` (
 | ECTS-103 | M11 | Timer rest-gap compaction: timer-on drops page top pads (glass inner pill reserve) | done | analyze clean; timer_banner_spacing 5/5 + timer tab/banner 5/5; 2026-11-14 |
 | ECTS-104 | M11 | Classic AppBar skips scroll darkening while timer pill is up | done | analyze clean; spacing 7/7 + banner/tab 5/5; 2026-11-14 |
 | ECTS-105 | M11 | Classic AppBar keeps base background while timer runs (SDK swaps bg independent of elevation) | done | analyze clean; spacing 7/7 + banner/tab 5/5; user-confirmed on device; 2026-11-14 |
+| ECTS-106 | M11 | Idle list top pad 12px → 8px | done | analyze clean; spacing 7/7 + banner/tab 5/5; 2026-11-14 |
 
 Note: ECTS-033/034 were announced in a 2026-11-05 log but never got rows; IDs skipped, do NOT renumber.
 
@@ -146,6 +147,8 @@ trims (different semantics per surface); hold-to-confirm timer test
 (private widget, covered indirectly by settings pumps).
 
 ## Progress log (newest on top)
+
+- 2026-11-14: ECTS-106 done (idle list top pad 12→8 via `AppSizes.pageTopPad`; timer-on behavior unchanged at 0; analyze clean).
 
 - 2026-11-14: ECTS-105 done (classic AppBar keeps base background while timer runs: this SDK swaps the bar bg to surfaceContainer on scroll independent of elevation, so `backgroundColor` is pinned to surface too; render-level tests pin surface-with-timer vs container-without; user-confirmed on device; analyze clean).
 
