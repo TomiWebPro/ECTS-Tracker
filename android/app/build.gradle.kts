@@ -6,12 +6,15 @@ plugins {
 
 android {
     namespace = "com.example.ects_tracker"
-    compileSdk = flutter.compileSdkVersion
+    // flutter_local_notifications + androidx.core 1.19 require compiling against 37.
+    compileSdk = 37
     ndkVersion = flutter.ndkVersion
 
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_17
         targetCompatibility = JavaVersion.VERSION_17
+        // Required by flutter_local_notifications' Java 8+ API use.
+        isCoreLibraryDesugaringEnabled = true
     }
 
     defaultConfig {
@@ -19,6 +22,11 @@ android {
         applicationId = "com.example.ects_tracker"
         // You can update the following values to match your application needs.
         // For more information, see: https://flutter.dev/to/review-gradle-config.
+        // Default (currently 24 = Android 7.0): flutter_local_notifications
+        // declares minSdk 24, so 23 is not installable without
+        // tools:overrideLibrary (crash risk, unverifiable here) and Flutter
+        // itself warns 23 support is being dropped. 24 is the earliest safe
+        // floor and keeps the `flutter build` minSdk migrator happy.
         minSdk = flutter.minSdkVersion
         targetSdk = flutter.targetSdkVersion
         // Uses the version code from pubspec.yaml. When using split APKs, 1000 * ABI_VERSION
@@ -46,4 +54,9 @@ kotlin {
 
 flutter {
     source = "../.."
+}
+
+dependencies {
+    // Pairs with isCoreLibraryDesugaringEnabled above.
+    coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:2.1.4")
 }

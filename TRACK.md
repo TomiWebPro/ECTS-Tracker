@@ -20,6 +20,7 @@ Conventions: `AGENTS.md` (binding, incl. new-locale policy §6) · `README.md` (
 | M9 | Study reminders (Windows-testable dev preview + platform wiring) | done (070-078 per docs/reminders-spec.md) |
 | M10 | Docs hygiene + structural refactors | done (079 TRACK compaction + AGENTS.md §6 locale policy + docs cleanup/index/ARCHITECTURE.md; 080 date_utils/result split; 081 part-file splits; 082 correctness pass; 083 coverage + config + 069 closure) |
 | M11 | Study timer (start/pause/resume/finish, restart-proof) | done (ECTS-091/092/093) |
+| M12 | Distribution (Windows MSI + max-compat APK, logo-wired) | done |
 
 ## Open tasks (claim ONE per build run)
 
@@ -129,6 +130,8 @@ Conventions: `AGENTS.md` (binding, incl. new-locale policy §6) · `README.md` (
 | ECTS-104 | M11 | Classic AppBar skips scroll darkening while timer pill is up | done | analyze clean; spacing 7/7 + banner/tab 5/5; 2026-11-14 |
 | ECTS-105 | M11 | Classic AppBar keeps base background while timer runs (SDK swaps bg independent of elevation) | done | analyze clean; spacing 7/7 + banner/tab 5/5; user-confirmed on device; 2026-11-14 |
 | ECTS-106 | M11 | Idle list top pad 12px → 8px | done | analyze clean; spacing 7/7 + banner/tab 5/5; 2026-11-14 |
+| ECTS-107 | M12 | Windows MSI (WiX) + earliest-compat APK + logo wiring | done | analyze clean; full 385/385; apk sdk24/3-ABI + msi install/launch(20s)/uninstall smoke ok; 2026-11-14 |
+| ECTS-108 | M12 | AppBar creator easter egg (20-tap graffiti dialog + profile links, all locales) | done | analyze clean; full 390/390; code b1c1278 + bulk 6d3657b + gen 9306f44; 2026-11-14 |
 
 Note: ECTS-033/034 were announced in a 2026-11-05 log but never got rows; IDs skipped, do NOT renumber.
 
@@ -147,6 +150,8 @@ trims (different semantics per surface); hold-to-confirm timer test
 (private widget, covered indirectly by settings pumps).
 
 ## Progress log (newest on top)
+
+- 2026-11-14: ECTS-107 done (M12 distribution: WiX v5 per-machine MSI w/ WixUI wizard + logo bitmaps + Start Menu shortcut, HKMU keypath; APK minSdk 24 = earliest flutter_local_notifications allows, compileSdk 37 + desugaring; logo: new 256px ICO, Android splash bitmap, launcher icons already logo; fat APK 72.7MB + MSI 13.6MB in gitignored dist/; one launch-check flake, 3/4 healthy incl. 20s installed run).
 
 - 2026-11-14: ECTS-106 done (idle list top pad 12→8 via `AppSizes.pageTopPad`; timer-on behavior unchanged at 0; analyze clean).
 

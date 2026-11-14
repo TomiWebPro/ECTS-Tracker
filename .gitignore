@@ -46,3 +46,9 @@ app.*.map.json
 
 # Widget Preview related
 .widget_preview/
+
+# Distribution artifacts (built locally, never committed)
+/dist/
+
+# WiX extension cache (restored by `wix extension add ...`)
+/.wix/

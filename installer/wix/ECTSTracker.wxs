@@ -1,0 +1,141 @@
+<!-- ECTS Tracker — Windows installer (WiX Toolset v5).
+     Built by installer/wix/build-msi.ps1 from a `flutter build windows`
+     Release tree. Version is duplicated from pubspec.yaml — bump both together.
+     UpgradeCode is stable: never change it, or upgrades become side-by-side installs. -->
+<Wix xmlns="http://wixtoolset.org/schemas/v4/wxs"
+     xmlns:ui="http://wixtoolset.org/schemas/v4/wxs/ui">
+
+  <Package Name="ECTS Tracker"
+           Language="1033"
+           Version="1.0.0"
+           Manufacturer="TomiWebPro"
+           UpgradeCode="c32d6774-fc2a-4635-a28a-4d79297e8208"
+           Scope="perMachine">
+
+    <MajorUpgrade DowngradeErrorMessage="A newer version of [ProductName] is already installed. Setup will now exit." />
+
+    <Media Id="1" Cabinet="product.cab" EmbedCab="yes" />
+
+    <!-- Add/Remove Programs icon: first icon of the installed executable. -->
+    <Property Id="ARPPRODUCTICON" Value="ects_tracker.exe" />
+    <Property Id="WIXUI_INSTALLDIR" Value="INSTALLDIR" />
+
+    <ui:WixUI Id="WixUI_InstallDir" />
+    <WixVariable Id="WixUILicenseRtf" Value="installer\wix\License.rtf" />
+    <WixVariable Id="WixUIBannerBmp" Value="installer\wix\banner.bmp" />
+    <WixVariable Id="WixUIDialogBmp" Value="installer\wix\dialog.bmp" />
+
+    <StandardDirectory Id="ProgramFiles64Folder">
+      <Directory Id="INSTALLDIR" Name="ECTS Tracker">
+        <Directory Id="DATADIR" Name="data">
+          <Directory Id="FLUTTERASSETS" Name="flutter_assets">
+            <Directory Id="FA_ASSETS" Name="assets">
+              <Directory Id="FA_IMAGES" Name="images" />
+            </Directory>
+            <Directory Id="FA_FONTS" Name="fonts" />
+            <Directory Id="FA_SHADERS" Name="shaders" />
+            <Directory Id="FA_PKGS" Name="packages">
+              <Directory Id="FA_LGL" Name="liquid_glass_easy">
+                <Directory Id="FA_LGL_LIB" Name="lib">
+                  <Directory Id="FA_LGL_ASSETS" Name="assets">
+                    <Directory Id="FA_LGL_SHADERS" Name="shaders" />
+                  </Directory>
+                </Directory>
+              </Directory>
+              <Directory Id="FA_NLN" Name="flutter_local_notifications_web">
+                <Directory Id="FA_NLN_WEB" Name="web" />
+              </Directory>
+            </Directory>
+          </Directory>
+        </Directory>
+      </Directory>
+    </StandardDirectory>
+    <StandardDirectory Id="ProgramMenuFolder">
+      <Directory Id="APPSHORTCUTS" Name="ECTS Tracker" />
+    </StandardDirectory>
+
+    <!-- Program files (sources resolve against the repo root; see build-msi.ps1). -->
+    <Component Id="Binaries" Directory="INSTALLDIR" Bitness="always64" Guid="68f67b3e-d65d-4b74-90ab-004c69425e16">
+      <File Id="ExeFile" Source="build\windows\x64\runner\Release\ects_tracker.exe" KeyPath="yes" />
+      <File Source="build\windows\x64\runner\Release\dartjni.dll" />
+      <File Source="build\windows\x64\runner\Release\flutter_local_notifications_windows.dll" />
+      <File Source="build\windows\x64\runner\Release\flutter_timezone_plugin.dll" />
+      <File Source="build\windows\x64\runner\Release\flutter_windows.dll" />
+      <File Source="build\windows\x64\runner\Release\sqlite3.dll" />
+      <File Source="build\windows\x64\runner\Release\sqlite3_flutter_libs_plugin.dll" />
+    </Component>
+
+    <Component Id="RuntimeData" Directory="DATADIR" Bitness="always64" Guid="c78b5acf-9f21-4f41-8c23-64f58ab51c8d">
+      <File Source="build\windows\x64\runner\Release\data\app.so" KeyPath="yes" />
+      <File Source="build\windows\x64\runner\Release\data\icudtl.dat" />
+    </Component>
+
+    <Component Id="FlutterAssetsRoot" Directory="FLUTTERASSETS" Bitness="always64" Guid="bba438fe-b98a-44a8-8d05-9383c4d27bf5">
+      <File Source="build\windows\x64\runner\Release\data\flutter_assets\AssetManifest.bin" KeyPath="yes" />
+      <File Source="build\windows\x64\runner\Release\data\flutter_assets\FontManifest.json" />
+      <File Source="build\windows\x64\runner\Release\data\flutter_assets\NativeAssetsManifest.json" />
+      <File Source="build\windows\x64\runner\Release\data\flutter_assets\NOTICES.Z" />
+    </Component>
+
+    <Component Id="AppImages" Directory="FA_IMAGES" Bitness="always64" Guid="7df5e08d-e92d-4289-a58a-8ab9379bd26b">
+      <File Source="build\windows\x64\runner\Release\data\flutter_assets\assets\images\ects-tracker-logo.png" KeyPath="yes" />
+      <File Source="build\windows\x64\runner\Release\data\flutter_assets\assets\images\ects-tracker-logo.svg" />
+    </Component>
+
+    <Component Id="AppFonts" Directory="FA_FONTS" Bitness="always64" Guid="c8691971-b8f2-4e01-b901-71dd3fa3af11">
+      <File Source="build\windows\x64\runner\Release\data\flutter_assets\fonts\MaterialIcons-Regular.otf" KeyPath="yes" />
+    </Component>
+
+    <Component Id="FlutterShaders" Directory="FA_SHADERS" Bitness="always64" Guid="6a823692-f497-49b9-936e-aa389fc888dc">
+      <File Source="build\windows\x64\runner\Release\data\flutter_assets\shaders\ink_sparkle.frag" KeyPath="yes" />
+      <File Source="build\windows\x64\runner\Release\data\flutter_assets\shaders\stretch_effect.frag" />
+    </Component>
+
+    <Component Id="LiquidGlassShaders" Directory="FA_LGL_SHADERS" Bitness="always64" Guid="42dd098d-2bce-4029-b10b-9336e6f47690">
+      <File Source="build\windows\x64\runner\Release\data\flutter_assets\packages\liquid_glass_easy\lib\assets\shaders\liquid_glass.frag" KeyPath="yes" />
+      <File Source="build\windows\x64\runner\Release\data\flutter_assets\packages\liquid_glass_easy\lib\assets\shaders\liquid_glass_border.frag" />
+      <File Source="build\windows\x64\runner\Release\data\flutter_assets\packages\liquid_glass_easy\lib\assets\shaders\liquid_glass_border_skia.frag" />
+      <File Source="build\windows\x64\runner\Release\data\flutter_assets\packages\liquid_glass_easy\lib\assets\shaders\liquid_glass_desktop.frag" />
+      <File Source="build\windows\x64\runner\Release\data\flutter_assets\packages\liquid_glass_easy\lib\assets\shaders\liquid_glass_geometry.frag" />
+      <File Source="build\windows\x64\runner\Release\data\flutter_assets\packages\liquid_glass_easy\lib\assets\shaders\liquid_glass_skia.frag" />
+      <File Source="build\windows\x64\runner\Release\data\flutter_assets\packages\liquid_glass_easy\lib\assets\shaders\metaball_glass.frag" />
+      <File Source="build\windows\x64\runner\Release\data\flutter_assets\packages\liquid_glass_easy\lib\assets\shaders\metaball_glass_desktop.frag" />
+      <File Source="build\windows\x64\runner\Release\data\flutter_assets\packages\liquid_glass_easy\lib\assets\shaders\metaball_glass_skia.frag" />
+      <File Source="build\windows\x64\runner\Release\data\flutter_assets\packages\liquid_glass_easy\lib\assets\shaders\metaball_geometry.frag" />
+    </Component>
+
+    <Component Id="NotifWebWorker" Directory="FA_NLN_WEB" Bitness="always64" Guid="8671aa8a-5fb4-4723-9f01-fa3f937e339e">
+      <File Source="build\windows\x64\runner\Release\data\flutter_assets\packages\flutter_local_notifications_web\web\notifications_service_worker.js" KeyPath="yes" />
+    </Component>
+
+    <!-- Start Menu shortcut; registry value is the per-machine KeyPath. -->
+    <Component Id="StartMenuShortcut" Directory="APPSHORTCUTS" Bitness="always64" Guid="2c7da40c-63c1-4b30-862b-127ed237f6ea">
+      <!-- HKMU: HKLM for the per-machine install, HKCU for per-user. -->
+      <RegistryValue Root="HKMU"
+                     Key="SOFTWARE\TomiWebPro\ECTS Tracker"
+                     Name="Installed"
+                     Value="1"
+                     Type="integer"
+                     KeyPath="yes" />
+      <Shortcut Id="StartMenuLink"
+                Name="ECTS Tracker"
+                Description="ECTS Tracker — university study progress tracker"
+                Target="[#ExeFile]"
+                WorkingDirectory="INSTALLDIR" />
+      <RemoveFolder Id="RemoveAppShortcuts" Directory="APPSHORTCUTS" On="uninstall" />
+    </Component>
+
+    <Feature Id="Main" Title="ECTS Tracker" Description="University study progress tracker." Level="1">
+      <ComponentRef Id="Binaries" />
+      <ComponentRef Id="RuntimeData" />
+      <ComponentRef Id="FlutterAssetsRoot" />
+      <ComponentRef Id="AppImages" />
+      <ComponentRef Id="AppFonts" />
+      <ComponentRef Id="FlutterShaders" />
+      <ComponentRef Id="LiquidGlassShaders" />
+      <ComponentRef Id="NotifWebWorker" />
+      <ComponentRef Id="StartMenuShortcut" />
+    </Feature>
+
+  </Package>
+</Wix>
