@@ -126,6 +126,7 @@ Conventions: `AGENTS.md` (binding, incl. new-locale policy §6) · `README.md` (
 | ECTS-101 | M11 | Fullscreen timer hides the notes field (focus view) | done | analyze clean; session_timer_tab + glass_timer_banner 5/5; 2026-11-14 |
 | ECTS-102 | M11 | Timer banner spacing: glass reserves top space, classic balances top/bottom gaps | done | analyze clean; timer_banner_spacing 4/4 + timer tab/banner 5/5; 2026-11-14 |
 | ECTS-103 | M11 | Timer rest-gap compaction: timer-on drops page top pads (glass inner pill reserve) | done | analyze clean; timer_banner_spacing 5/5 + timer tab/banner 5/5; 2026-11-14 |
+| ECTS-104 | M11 | Classic AppBar skips scroll darkening while timer pill is up | done | analyze clean; spacing 7/7 + banner/tab 5/5; 2026-11-14 |
 
 Note: ECTS-033/034 were announced in a 2026-11-05 log but never got rows; IDs skipped, do NOT renumber.
 
@@ -144,6 +145,8 @@ trims (different semantics per surface); hold-to-confirm timer test
 (private widget, covered indirectly by settings pumps).
 
 ## Progress log (newest on top)
+
+- 2026-11-14: ECTS-104 done (classic AppBar `scrolledUnderElevation: 0` while the timer pill is up — the pill already separates chrome from content; default darkening back when idle; 2 new shell tests; analyze clean).
 
 - 2026-11-14: ECTS-103 done (rest-gap compaction: timer-on drops each page's list top pad — glass carries measured pill height + chrome gap inside the scrollable so content flows under the overlay, classic keeps banner's own 8px; first settings header 20→8 while timing; spacing tests pin 8px rest gaps + underlap; analyze clean).
 
