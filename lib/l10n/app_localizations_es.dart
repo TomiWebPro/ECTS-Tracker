@@ -1211,6 +1211,9 @@ class AppLocalizationsEs extends AppLocalizations {
   String get studyTimerTooShort => 'El temporizador aún no ha funcionado.';
 
   @override
+  String get studyTimerFullscreen => 'Fullscreen';
+
+  @override
   String get validationCourseEctsPositive =>
       'Los ECTS deben ser mayores que cero';
 

@@ -38,6 +38,7 @@ class StudyTimerActiveControls extends ConsumerStatefulWidget {
     super.key,
     this.notesController,
     this.showCourseName = false,
+    this.elapsedStyle,
     this.onFinished,
     this.onDiscarded,
   });
@@ -49,6 +50,10 @@ class StudyTimerActiveControls extends ConsumerStatefulWidget {
   /// Show the course name above the readout (the sheet already has it in
   /// the title; the embedded tab does not).
   final bool showCourseName;
+
+  /// Big-clock override for the fullscreen focus view (null keeps the
+  /// compact dialog style).
+  final TextStyle? elapsedStyle;
 
   /// Called after a successful finish-and-log (host pops itself).
   final VoidCallback? onFinished;
@@ -147,7 +152,8 @@ class _StudyTimerActiveControlsState
           child: Text(
             formatTimerHms(elapsed),
             key: const Key('studyTimerElapsed'),
-            style: Theme.of(context).textTheme.displaySmall?.copyWith(
+            style: widget.elapsedStyle ??
+                Theme.of(context).textTheme.displaySmall?.copyWith(
               fontWeight: FontWeight.w800,
               fontFeatures: const [FontFeature.tabularFigures()],
             ),
@@ -271,7 +277,17 @@ class _StudyTimerActiveDialogState
     final courseName =
         course?.name ?? l10n.studyLogUnknownCourse('${timer.courseId}');
 
-    final title = Text(l10n.studyTimerActiveTitle(courseName));
+    final title = Row(
+      children: [
+        Expanded(child: Text(l10n.studyTimerActiveTitle(courseName))),
+        IconButton(
+          key: const Key('openTimerFullscreenButton'),
+          tooltip: l10n.studyTimerFullscreen,
+          onPressed: () => showStudyTimerFullscreen(context),
+          icon: const Icon(Icons.fullscreen),
+        ),
+      ],
+    );
     final content = SingleChildScrollView(
       child: StudyTimerActiveControls(
         notesController: _notesController,
@@ -293,6 +309,130 @@ class _StudyTimerActiveDialogState
       title: title,
       content: content,
       actions: actions,
+    );
+  }
+}
+
+/// Opens the active timer in a fullscreen focus view (same elements as
+/// the sheet, bigger clock).
+Future<void> showStudyTimerFullscreen(BuildContext context) {
+  return Navigator.of(context).push(
+    MaterialPageRoute(
+      builder: (_) => const StudyTimerFullscreenPage(),
+      fullscreenDialog: true,
+    ),
+  );
+}
+
+/// Fullscreen focus view for the running timer: a big tabular clock plus
+/// the same notes/pause/discard/finish elements as the sheet.
+class StudyTimerFullscreenPage extends ConsumerStatefulWidget {
+  const StudyTimerFullscreenPage({super.key});
+
+  @override
+  ConsumerState<StudyTimerFullscreenPage> createState() =>
+      _StudyTimerFullscreenPageState();
+}
+
+class _StudyTimerFullscreenPageState
+    extends ConsumerState<StudyTimerFullscreenPage> {
+  Timer? _ticker;
+  late final TextEditingController _notesController;
+  bool _notesInit = false;
+
+  @override
+  void initState() {
+    super.initState();
+    _notesController = TextEditingController();
+    _ticker = Timer.periodic(
+      const Duration(seconds: 1),
+      (_) => mounted ? setState(() {}) : null,
+    );
+    // Persist notes edits live; fire-and-forget (best-effort).
+    _notesController.addListener(() {
+      final timer = ref.read(studyTimerProvider);
+      if (timer == null) return;
+      final text = _notesController.text.trim();
+      final current = timer.notes ?? '';
+      if (text != current) {
+        unawaited(
+          ref
+              .read(studyTimerProvider.notifier)
+              .updateNotes(text.isEmpty ? null : text),
+        );
+      }
+    });
+  }
+
+  @override
+  void dispose() {
+    _ticker?.cancel();
+    _notesController.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final l10n = l10nOf(context);
+    final timer = ref.watch(studyTimerProvider);
+    if (timer == null) {
+      return Scaffold(
+        appBar: AppBar(
+          leading: IconButton(
+            tooltip: l10n.commonClose,
+            onPressed: () => Navigator.of(context).pop(),
+            icon: const Icon(Icons.close),
+          ),
+          title: Text(l10n.studyTimerStartTitle),
+        ),
+        body: Center(child: Text(l10n.studyTimerTooShort)),
+      );
+    }
+    if (!_notesInit) {
+      _notesController.text = timer.notes ?? '';
+      _notesInit = true;
+    }
+    final courses = ref.watch(coursesProvider).valueOrNull ?? const [];
+    final course = _findCourse(courses, timer.courseId);
+    final courseName =
+        course?.name ?? l10n.studyLogUnknownCourse('${timer.courseId}');
+    final bigClock = Theme.of(context).textTheme.displayLarge?.copyWith(
+      fontWeight: FontWeight.w800,
+      fontFeatures: const [FontFeature.tabularFigures()],
+    );
+    return Scaffold(
+      appBar: AppBar(
+        leading: IconButton(
+          key: const Key('closeTimerFullscreenButton'),
+          tooltip: l10n.commonClose,
+          onPressed: () => Navigator.of(context).pop(),
+          icon: const Icon(Icons.close),
+        ),
+        title: Text(l10n.studyTimerActiveTitle(courseName)),
+      ),
+      body: Align(
+        alignment: Alignment.topCenter,
+        child: ConstrainedBox(
+          constraints: const BoxConstraints(
+            maxWidth: AppSizes.maxContentWidth,
+          ),
+          child: SingleChildScrollView(
+            padding: const EdgeInsets.fromLTRB(
+              AppSizes.pageHPad,
+              AppSizes.dashboardTopPad,
+              AppSizes.pageHPad,
+              AppSizes.pageBottomPadNoFab,
+            ),
+            child: StudyTimerActiveControls(
+              key: const Key('studyTimerFullscreenControls'),
+              notesController: _notesController,
+              elapsedStyle: bigClock,
+              onFinished: () => Navigator.of(context).pop(),
+              onDiscarded: () => Navigator.of(context).pop(),
+            ),
+          ),
+        ),
+      ),
     );
   }
 }
@@ -355,9 +495,9 @@ class _StudyTimerBannerState extends ConsumerState<StudyTimerBanner> {
           key: const Key('studyTimerBanner'),
           padding: const EdgeInsets.fromLTRB(
             AppSizes.pageHPad,
-            0,
-            AppSizes.pageHPad,
             AppSizes.sectionInnerGap,
+            AppSizes.pageHPad,
+            0,
           ),
           child: Material(
             color: scheme.secondaryContainer,

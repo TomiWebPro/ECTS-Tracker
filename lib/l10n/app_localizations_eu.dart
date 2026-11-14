@@ -1214,6 +1214,9 @@ class AppLocalizationsEu extends AppLocalizations {
       'Tenporizadoreak oraindik ez du denborarik neurtu.';
 
   @override
+  String get studyTimerFullscreen => 'Fullscreen';
+
+  @override
   String get validationCourseEctsPositive =>
       'ECTSak zero baino handiagoak izan behar dira';
 

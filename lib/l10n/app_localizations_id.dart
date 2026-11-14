@@ -1209,6 +1209,9 @@ class AppLocalizationsId extends AppLocalizations {
   String get studyTimerTooShort => 'Timer belum berjalan.';
 
   @override
+  String get studyTimerFullscreen => 'Fullscreen';
+
+  @override
   String get validationCourseEctsPositive => 'ECTS harus lebih dari nol';
 
   @override

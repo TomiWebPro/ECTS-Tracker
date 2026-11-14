@@ -241,8 +241,10 @@ class _SessionFormDialogState extends ConsumerState<SessionFormDialog> {
     setState(() => _saving = false);
     switch (result) {
       case Ok<void>():
-        // The banner takes over as the persistent timer surface.
-        Navigator.of(context).pop(false);
+        // Auto-open the fullscreen focus view on start.
+        final navigator = Navigator.of(context);
+        navigator.pop(false);
+        unawaited(showStudyTimerFullscreen(navigator.context));
       case Err<void>(:final message):
         setState(() => _error = message);
     }

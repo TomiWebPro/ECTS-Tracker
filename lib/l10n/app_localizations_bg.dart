@@ -1212,6 +1212,9 @@ class AppLocalizationsBg extends AppLocalizations {
   String get studyTimerTooShort => 'Таймерът още не е работил.';
 
   @override
+  String get studyTimerFullscreen => 'Fullscreen';
+
+  @override
   String get validationCourseEctsPositive =>
       'ECTS трябва да е по-голямо от нула';
 

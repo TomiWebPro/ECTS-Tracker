@@ -1209,6 +1209,9 @@ class AppLocalizationsLv extends AppLocalizations {
   String get studyTimerTooShort => 'Taimeris vēl nav darbojies.';
 
   @override
+  String get studyTimerFullscreen => 'Fullscreen';
+
+  @override
   String get validationCourseEctsPositive => 'ECTS jābūt lielākam par nulli';
 
   @override

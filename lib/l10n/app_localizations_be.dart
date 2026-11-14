@@ -1208,6 +1208,9 @@ class AppLocalizationsBe extends AppLocalizations {
   String get studyTimerTooShort => 'Таймер яшчэ не працаваў.';
 
   @override
+  String get studyTimerFullscreen => 'Fullscreen';
+
+  @override
   String get validationCourseEctsPositive => 'ECTS павінна быць больш за нуль';
 
   @override

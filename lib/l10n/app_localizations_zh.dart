@@ -1173,6 +1173,9 @@ class AppLocalizationsZh extends AppLocalizations {
   String get studyTimerTooShort => '计时器尚未运行。';
 
   @override
+  String get studyTimerFullscreen => 'Fullscreen';
+
+  @override
   String get validationCourseEctsPositive => 'ECTS 必须大于零';
 
   @override

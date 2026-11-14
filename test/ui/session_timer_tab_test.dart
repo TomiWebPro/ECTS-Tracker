@@ -123,6 +123,13 @@ void main() {
     await tester.tap(find.byKey(const Key('sessionStartTimerButton')));
     await tester.pumpAndSettle();
 
+    // Auto-fullscreen opens on start: close it to return to the host.
+    expect(
+        find.byKey(const Key('studyTimerFullscreenControls')), findsOneWidget);
+    await tester
+        .tap(find.byKey(const Key('closeTimerFullscreenButton')));
+    await tester.pumpAndSettle();
+
     // Dialog closed, banner takes over: reopening shows live controls,
     // which only exist while a timer is running.
     expect(find.byKey(const Key('sessionStartTimerButton')), findsNothing);

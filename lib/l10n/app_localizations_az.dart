@@ -1210,6 +1210,9 @@ class AppLocalizationsAz extends AppLocalizations {
   String get studyTimerTooShort => 'Taymer hələ işləməyib.';
 
   @override
+  String get studyTimerFullscreen => 'Fullscreen';
+
+  @override
   String get validationCourseEctsPositive => 'AKTS sıfırdan böyük olmalıdır';
 
   @override

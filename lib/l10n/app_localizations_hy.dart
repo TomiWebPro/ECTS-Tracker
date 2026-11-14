@@ -1210,6 +1210,9 @@ class AppLocalizationsHy extends AppLocalizations {
   String get studyTimerTooShort => 'Ժամանակաչափը դեռ չի աշխատել։';
 
   @override
+  String get studyTimerFullscreen => 'Fullscreen';
+
+  @override
   String get validationCourseEctsPositive => 'ECTS-ը պետք է զրոյից մեծ լինի';
 
   @override

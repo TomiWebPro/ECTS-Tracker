@@ -1178,6 +1178,9 @@ class AppLocalizationsJa extends AppLocalizations {
   String get studyTimerTooShort => 'タイマーはまだ実行されていません。';
 
   @override
+  String get studyTimerFullscreen => 'Fullscreen';
+
+  @override
   String get validationCourseEctsPositive => 'ECTSは0より大きくしてください';
 
   @override

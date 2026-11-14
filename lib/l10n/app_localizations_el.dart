@@ -1217,6 +1217,9 @@ class AppLocalizationsEl extends AppLocalizations {
   String get studyTimerTooShort => 'Το χρονόμετρο δεν έχει λειτουργήσει ακόμη.';
 
   @override
+  String get studyTimerFullscreen => 'Fullscreen';
+
+  @override
   String get validationCourseEctsPositive =>
       'Το ECTS πρέπει να είναι μεγαλύτερο από μηδέν';
 

@@ -1205,6 +1205,9 @@ class AppLocalizationsBn extends AppLocalizations {
   String get studyTimerTooShort => 'টাইমার এখনো চলেনি।';
 
   @override
+  String get studyTimerFullscreen => 'Fullscreen';
+
+  @override
   String get validationCourseEctsPositive => 'ECTS শূন্যের বেশি হতে হবে';
 
   @override

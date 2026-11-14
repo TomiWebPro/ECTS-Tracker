@@ -1212,6 +1212,9 @@ class AppLocalizationsSq extends AppLocalizations {
   String get studyTimerTooShort => 'Kohëmatësi nuk ka matur ende.';
 
   @override
+  String get studyTimerFullscreen => 'Fullscreen';
+
+  @override
   String get validationCourseEctsPositive =>
       'ECTS duhet të jetë më e madhe se zero';
 

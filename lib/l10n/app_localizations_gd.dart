@@ -1220,6 +1220,9 @@ class AppLocalizationsGd extends AppLocalizations {
   String get studyTimerTooShort => 'Cha do ruith an tìmear fhathast.';
 
   @override
+  String get studyTimerFullscreen => 'Fullscreen';
+
+  @override
   String get validationCourseEctsPositive =>
       'Feumaidh ECTS a bhith nas motha na neoni';
 

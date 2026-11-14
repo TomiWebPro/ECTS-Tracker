@@ -1202,6 +1202,9 @@ class AppLocalizationsVi extends AppLocalizations {
   String get studyTimerTooShort => 'Đồng hồ chưa chạy.';
 
   @override
+  String get studyTimerFullscreen => 'Fullscreen';
+
+  @override
   String get validationCourseEctsPositive => 'ECTS phải lớn hơn 0';
 
   @override

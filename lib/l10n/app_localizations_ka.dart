@@ -1209,6 +1209,9 @@ class AppLocalizationsKa extends AppLocalizations {
   String get studyTimerTooShort => 'ტაიმერი ჯერ არ გაშვებულა.';
 
   @override
+  String get studyTimerFullscreen => 'Fullscreen';
+
+  @override
   String get validationCourseEctsPositive => 'ECTS უნდა იყოს ნულზე მეტი';
 
   @override

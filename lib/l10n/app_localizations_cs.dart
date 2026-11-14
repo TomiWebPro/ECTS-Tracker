@@ -1207,6 +1207,9 @@ class AppLocalizationsCs extends AppLocalizations {
   String get studyTimerTooShort => 'Časovač ještě neběžel.';
 
   @override
+  String get studyTimerFullscreen => 'Fullscreen';
+
+  @override
   String get validationCourseEctsPositive => 'ECTS musí být větší než nula';
 
   @override

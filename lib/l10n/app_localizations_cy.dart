@@ -1213,6 +1213,9 @@ class AppLocalizationsCy extends AppLocalizations {
   String get studyTimerTooShort => 'Nid yw\'r amserydd wedi rhedeg eto.';
 
   @override
+  String get studyTimerFullscreen => 'Fullscreen';
+
+  @override
   String get validationCourseEctsPositive => 'Rhaid i ECTS fod yn fwy na sero';
 
   @override

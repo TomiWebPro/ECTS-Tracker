@@ -1213,6 +1213,9 @@ class AppLocalizationsPt extends AppLocalizations {
   String get studyTimerTooShort => 'O cronômetro ainda não rodou.';
 
   @override
+  String get studyTimerFullscreen => 'Fullscreen';
+
+  @override
   String get validationCourseEctsPositive => 'ECTS deve ser maior que zero';
 
   @override

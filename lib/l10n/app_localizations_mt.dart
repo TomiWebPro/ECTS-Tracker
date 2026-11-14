@@ -1212,6 +1212,9 @@ class AppLocalizationsMt extends AppLocalizations {
   String get studyTimerTooShort => 'It-tajmer għadu ma ħadimx.';
 
   @override
+  String get studyTimerFullscreen => 'Fullscreen';
+
+  @override
   String get validationCourseEctsPositive =>
       'L-ECTS għandu jkun akbar minn żero';
 

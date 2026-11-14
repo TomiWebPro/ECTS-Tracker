@@ -1213,6 +1213,9 @@ class AppLocalizationsRo extends AppLocalizations {
   String get studyTimerTooShort => 'Cronometrul nu a pornit încă.';
 
   @override
+  String get studyTimerFullscreen => 'Fullscreen';
+
+  @override
   String get validationCourseEctsPositive =>
       'ECTS trebuie să fie mai mare decât zero';
 

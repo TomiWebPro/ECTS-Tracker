@@ -1205,6 +1205,9 @@ class AppLocalizationsSh extends AppLocalizations {
   String get studyTimerTooShort => 'Tajmer još nije radio.';
 
   @override
+  String get studyTimerFullscreen => 'Fullscreen';
+
+  @override
   String get validationCourseEctsPositive => 'ECTS mora biti veći od nule';
 
   @override

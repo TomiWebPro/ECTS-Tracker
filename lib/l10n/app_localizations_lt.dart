@@ -1213,6 +1213,9 @@ class AppLocalizationsLt extends AppLocalizations {
   String get studyTimerTooShort => 'Laikmatis dar neveikė.';
 
   @override
+  String get studyTimerFullscreen => 'Fullscreen';
+
+  @override
   String get validationCourseEctsPositive => 'ECTS turi būti didesnis už nulį';
 
   @override

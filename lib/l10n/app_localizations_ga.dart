@@ -1215,6 +1215,9 @@ class AppLocalizationsGa extends AppLocalizations {
   String get studyTimerTooShort => 'Níor rith an t-amadóir fós.';
 
   @override
+  String get studyTimerFullscreen => 'Fullscreen';
+
+  @override
   String get validationCourseEctsPositive =>
       'Ní mór ECTS a bheith níos mó ná náid';
 

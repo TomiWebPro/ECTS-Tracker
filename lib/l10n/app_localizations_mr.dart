@@ -1207,6 +1207,9 @@ class AppLocalizationsMr extends AppLocalizations {
   String get studyTimerTooShort => 'टायमर अद्याप चाललेला नाही.';
 
   @override
+  String get studyTimerFullscreen => 'Fullscreen';
+
+  @override
   String get validationCourseEctsPositive => 'ECTS शून्यापेक्षा जास्त असावे';
 
   @override

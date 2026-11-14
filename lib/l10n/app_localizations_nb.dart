@@ -1210,6 +1210,9 @@ class AppLocalizationsNb extends AppLocalizations {
   String get studyTimerTooShort => 'Timeren har ikke gått ennå.';
 
   @override
+  String get studyTimerFullscreen => 'Fullscreen';
+
+  @override
   String get validationCourseEctsPositive =>
       'Studiepoeng må være større enn null';
 

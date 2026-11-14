@@ -272,13 +272,13 @@ abstract class AppLocalizations {
   /// **'Color'**
   String get courseFormColorLabel;
 
-  /// Placeholder shown in date buttons when no date is picked. Date display format stays yyyy-MM-dd.
+  /// Placeholder shown in date buttons when no date is picked. Date display uses the device locale short date.
   ///
   /// In en, this message translates to:
   /// **'Not set'**
   String get courseFormDateNotSet;
 
-  /// Course deadline picker button. {date} is a yyyy-MM-dd date or the not-set label.
+  /// Course deadline picker button. {date} is a locale-formatted short date or the not-set label.
   ///
   /// In en, this message translates to:
   /// **'Deadline: {date}'**
@@ -314,13 +314,13 @@ abstract class AppLocalizations {
   /// **'Saving…'**
   String get courseFormSaving;
 
-  /// Course start-date picker button. {date} is a yyyy-MM-dd date or the not-set label.
+  /// Course start-date picker button. {date} is a locale-formatted short date or the not-set label.
   ///
   /// In en, this message translates to:
   /// **'Start: {date}'**
   String courseFormStartButton(String date);
 
-  /// Subtitle of the start-early checkbox when disabled. {date} is the yyyy-MM-dd start date.
+  /// Subtitle of the start-early checkbox when disabled. {date} is the locale-formatted short start date.
   ///
   /// In en, this message translates to:
   /// **'Off: no pressure until {date}; excluded from Today’s pace.'**
@@ -1016,7 +1016,7 @@ abstract class AppLocalizations {
   /// **'Course'**
   String get sessionFormCourseLabel;
 
-  /// Session date picker button. {date} is a yyyy-MM-dd date.
+  /// Session date picker button. {date} is a locale-formatted short date.
   ///
   /// In en, this message translates to:
   /// **'Date: {date}'**
@@ -2144,6 +2144,12 @@ abstract class AppLocalizations {
   /// **'Timer has not run yet.'**
   String get studyTimerTooShort;
 
+  /// Tooltip for the button that opens the active timer in a fullscreen focus view.
+  ///
+  /// In en, this message translates to:
+  /// **'Fullscreen'**
+  String get studyTimerFullscreen;
+
   /// Course ECTS validator: non-positive value.
   ///
   /// In en, this message translates to:
@@ -2473,7 +2479,7 @@ abstract class AppLocalizations {
   /// **'{left} still open — anything you log now counts.'**
   String notifCustomBodyNoPace(String left);
 
-  /// Custom-schedule demo row header with the next fire time. {time} is a yyyy-MM-dd HH:mm timestamp (not localized).
+  /// Custom-schedule demo row header with the next fire time. {time} is a locale-formatted short date plus 24-hour HH:mm time.
   ///
   /// In en, this message translates to:
   /// **'Next: {time}'**

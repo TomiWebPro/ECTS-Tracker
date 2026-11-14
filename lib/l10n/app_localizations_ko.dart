@@ -1183,6 +1183,9 @@ class AppLocalizationsKo extends AppLocalizations {
   String get studyTimerTooShort => '타이머가 아직 실행되지 않았습니다.';
 
   @override
+  String get studyTimerFullscreen => 'Fullscreen';
+
+  @override
   String get validationCourseEctsPositive => 'ECTS는 0보다 커야 합니다';
 
   @override

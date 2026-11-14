@@ -1208,6 +1208,9 @@ class AppLocalizationsIs extends AppLocalizations {
   String get studyTimerTooShort => 'Enginn tími hefur mælst ennþá.';
 
   @override
+  String get studyTimerFullscreen => 'Fullscreen';
+
+  @override
   String get validationCourseEctsPositive =>
       'ECTS verður að vera meira en núll';
 

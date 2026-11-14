@@ -1205,6 +1205,9 @@ class AppLocalizationsSk extends AppLocalizations {
   String get studyTimerTooShort => 'Časovač ešte nebežal.';
 
   @override
+  String get studyTimerFullscreen => 'Fullscreen';
+
+  @override
   String get validationCourseEctsPositive => 'ECTS musí byť väčšie ako nula';
 
   @override

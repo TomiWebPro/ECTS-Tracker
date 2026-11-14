@@ -1206,6 +1206,9 @@ class AppLocalizationsTr extends AppLocalizations {
   String get studyTimerTooShort => 'Zamanlayıcı henüz çalışmadı.';
 
   @override
+  String get studyTimerFullscreen => 'Fullscreen';
+
+  @override
   String get validationCourseEctsPositive => 'AKTS sıfırdan büyük olmalıdır';
 
   @override
