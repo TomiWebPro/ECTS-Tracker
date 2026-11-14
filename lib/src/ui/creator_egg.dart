@@ -159,12 +159,7 @@ Future<void> showCreatorEggDialog(BuildContext context) {
             ),
           ],
         ),
-        actions: [
-          TextButton(
-            onPressed: () => Navigator.of(dialogContext).pop(),
-            child: Text(l10n.commonClose),
-          ),
-        ],
+      // ECTS-112: no Close action — tapping outside dismisses.
       );
     },
   );
