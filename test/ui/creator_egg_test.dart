@@ -45,7 +45,7 @@ void main() {
     });
   });
 
-  testWidgets('20 taps on AppBar icon open the tribute dialog',
+  testWidgets('20 taps on the app logo open the tribute dialog',
       (tester) async {
     final db = AppDatabase(NativeDatabase.memory());
     await bootstrapDatabase(db);
@@ -71,7 +71,7 @@ void main() {
     );
     await tester.pumpAndSettle();
 
-    final button = find.byKey(const Key('creatorEggButton'));
+    final button = find.byKey(const Key('creatorEggLogoTap'));
     expect(button, findsOneWidget);
     for (var i = 0; i < 20; i++) {
       await tester.tap(button);
@@ -83,6 +83,49 @@ void main() {
     expect(find.byType(GraffitiTitle), findsOneWidget);
     expect(find.byKey(const Key('creatorEggGithubButton')), findsOneWidget);
     expect(find.byKey(const Key('creatorEggLinkedinButton')), findsOneWidget);
+
+    await tester.pumpWidget(const SizedBox());
+    await tester.pump(const Duration(milliseconds: 200));
+    await db.close();
+  }, timeout: const Timeout(Duration(minutes: 3)));
+
+  testWidgets('20 taps on the glass app logo open the tribute dialog',
+      (tester) async {
+    final db = AppDatabase(NativeDatabase.memory());
+    await bootstrapDatabase(db);
+
+    await tester.pumpWidget(
+      ProviderScope(
+        overrides: [
+          databaseProvider.overrideWithValue(db),
+          glassEnabledProvider.overrideWithValue(true),
+        ],
+        child: const MaterialApp(
+          locale: Locale('en'),
+          localizationsDelegates: [
+            AppLocalizations.delegate,
+            GlobalMaterialLocalizations.delegate,
+            GlobalWidgetsLocalizations.delegate,
+            GlobalCupertinoLocalizations.delegate,
+          ],
+          supportedLocales: [Locale('en')],
+          home: HomeShell(),
+        ),
+      ),
+    );
+    await tester.pumpAndSettle();
+
+    final logo = find.byKey(const Key('creatorEggLogoTap'));
+    expect(logo, findsOneWidget);
+    for (var i = 0; i < 20; i++) {
+      await tester.tap(logo);
+      await tester.pump();
+    }
+    await tester.pumpAndSettle();
+
+    // Glass branch forwards the dialog key to the inner lens too.
+    expect(find.byKey(const Key('creatorEggDialog')), findsNWidgets(2));
+    expect(find.byType(GraffitiTitle), findsOneWidget);
 
     await tester.pumpWidget(const SizedBox());
     await tester.pump(const Duration(milliseconds: 200));

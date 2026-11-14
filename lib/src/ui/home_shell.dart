@@ -135,23 +135,25 @@ class _HomeShellState extends State<HomeShell> {
               // of elevation — so the base color is pinned too.
               backgroundColor: timerActive ? scheme.surface : null,
               scrolledUnderElevation: timerActive ? 0.0 : null,
-              leading: const Padding(
-                padding: EdgeInsets.only(left: 12.0),
+              leading: Padding(
+                padding: const EdgeInsets.only(left: 12.0),
                 child: Center(
-                  child: AppLogo(
-                    size: AppSizes.logoAppBar,
-                    radius: AppSizes.logoAppBarRadius,
+                  child: Tooltip(
+                    message: l10n.creatorEggTooltip,
+                    child: GestureDetector(
+                      key: const Key('creatorEggLogoTap'),
+                      onTap: _handleEggTap,
+                      behavior: HitTestBehavior.opaque,
+                      child: const AppLogo(
+                        size: AppSizes.logoAppBar,
+                        radius: AppSizes.logoAppBarRadius,
+                      ),
+                    ),
                   ),
                 ),
               ),
               title: Text(titles[_index], style: const TextStyle(fontSize: 26)),
               actions: [
-                IconButton(
-                  key: const Key('creatorEggButton'),
-                  tooltip: l10n.creatorEggTooltip,
-                  onPressed: _handleEggTap,
-                  icon: const Icon(Icons.palette_outlined),
-                ),
                 if (_index == 0)
                   IconButton(
                     tooltip: l10n.dashboardLogSessionTooltip,
@@ -425,12 +427,20 @@ class _HomeShellState extends State<HomeShell> {
         color: scheme.primaryContainer.withValues(alpha: 0.55),
         shadow: glassChromeShadow,
       ),
-      leading: const Padding(
-        padding: EdgeInsets.only(left: AppSizes.glassBarLeadingPad),
+      leading: Padding(
+        padding: const EdgeInsets.only(left: AppSizes.glassBarLeadingPad),
         child: Center(
-          child: AppLogo(
-            size: AppSizes.logoAppBar,
-            radius: AppSizes.logoAppBarRadius,
+          child: Tooltip(
+            message: l10n.creatorEggTooltip,
+            child: GestureDetector(
+              key: const Key('creatorEggLogoTap'),
+              onTap: _handleEggTap,
+              behavior: HitTestBehavior.opaque,
+              child: const AppLogo(
+                size: AppSizes.logoAppBar,
+                radius: AppSizes.logoAppBarRadius,
+              ),
+            ),
           ),
         ),
       ),
@@ -442,12 +452,6 @@ class _HomeShellState extends State<HomeShell> {
         ),
       ),
       actions: [
-        IconButton(
-          key: const Key('creatorEggButton'),
-          tooltip: l10n.creatorEggTooltip,
-          onPressed: _handleEggTap,
-          icon: const Icon(Icons.palette_outlined),
-        ),
         if (_index == 0)
           IconButton(
             tooltip: l10n.dashboardLogSessionTooltip,
