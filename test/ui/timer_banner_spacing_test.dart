@@ -230,11 +230,25 @@ void main() {
     final db = await openDb();
     await pumpShell(tester, db, MemoryTimerPrefs(runningTimer()), glass: false);
 
-    // The pill already separates chrome from content (ECTS-104).
-    expect(
-      tester.widget<AppBar>(find.byType(AppBar)).scrolledUnderElevation,
-      0.0,
+    // The pill already separates chrome from content (ECTS-104/105): no
+    // elevation and the base background pinned, so the SDK's scrolled
+    // surfaceContainer swap cannot kick in.
+    final bar = tester.widget<AppBar>(find.byType(AppBar));
+    expect(bar.scrolledUnderElevation, 0.0);
+    final surface =
+        Theme.of(tester.element(find.byType(AppBar))).colorScheme.surface;
+    expect(bar.backgroundColor, surface);
+
+    // End-to-end: scrolled under, the bar still paints the base surface.
+    await tester.drag(find.byType(ListView).first, const Offset(0, -400));
+    await tester.pump(const Duration(milliseconds: 200));
+    final barMaterial = tester.widget<Material>(
+      find
+          .descendant(of: find.byType(AppBar), matching: find.byType(Material))
+          .first,
     );
+    expect(barMaterial.elevation, 0.0);
+    expect(barMaterial.color, surface);
 
     await finishDb(tester, db);
   });
@@ -244,9 +258,24 @@ void main() {
     final db = await openDb();
     await pumpShell(tester, db, MemoryTimerPrefs(), glass: false);
 
+    final bar = tester.widget<AppBar>(find.byType(AppBar));
+    expect(bar.scrolledUnderElevation, isNull);
+    expect(bar.backgroundColor, isNull);
+
+    // Control case: without the timer the scrolled bar does darken, which
+    // proves the setup above can actually produce the effect.
+    await tester.drag(find.byType(ListView).first, const Offset(0, -400));
+    await tester.pump(const Duration(milliseconds: 200));
+    final barMaterial = tester.widget<Material>(
+      find
+          .descendant(of: find.byType(AppBar), matching: find.byType(Material))
+          .first,
+    );
     expect(
-      tester.widget<AppBar>(find.byType(AppBar)).scrolledUnderElevation,
-      isNull,
+      barMaterial.color,
+      Theme.of(tester.element(find.byType(AppBar)))
+          .colorScheme
+          .surfaceContainer,
     );
 
     await finishDb(tester, db);

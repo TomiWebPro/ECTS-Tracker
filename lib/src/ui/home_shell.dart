@@ -103,7 +103,11 @@ class _HomeShellState extends State<HomeShell> {
         if (!glass) {
           return Scaffold(
             appBar: AppBar(
-              // ECTS-104: no scroll darkening while the timer pill is up.
+              // ECTS-104/105: no scroll darkening while the timer pill is
+              // up. Elevation alone is not enough: this SDK swaps the bar
+              // background to surfaceContainer when scrolled, independent
+              // of elevation — so the base color is pinned too.
+              backgroundColor: timerActive ? scheme.surface : null,
               scrolledUnderElevation: timerActive ? 0.0 : null,
               leading: const Padding(
                 padding: EdgeInsets.only(left: 12.0),
