@@ -385,7 +385,6 @@ class _StudyTimerActiveDialogState
     final course = _findCourse(courses, timer.courseId);
     final courseName =
         course?.name ?? l10n.studyLogUnknownCourse('${timer.courseId}');
-
     final title = Row(
       children: [
         Expanded(child: Text(l10n.studyTimerActiveTitle(courseName))),
@@ -446,37 +445,19 @@ class StudyTimerFullscreenPage extends ConsumerStatefulWidget {
 class _StudyTimerFullscreenPageState
     extends ConsumerState<StudyTimerFullscreenPage> {
   Timer? _ticker;
-  late final TextEditingController _notesController;
-  bool _notesInit = false;
 
   @override
   void initState() {
     super.initState();
-    _notesController = TextEditingController();
     _ticker = Timer.periodic(
       const Duration(seconds: 1),
       (_) => mounted ? setState(() {}) : null,
     );
-    // Persist notes edits live; fire-and-forget (best-effort).
-    _notesController.addListener(() {
-      final timer = ref.read(studyTimerProvider);
-      if (timer == null) return;
-      final text = _notesController.text.trim();
-      final current = timer.notes ?? '';
-      if (text != current) {
-        unawaited(
-          ref
-              .read(studyTimerProvider.notifier)
-              .updateNotes(text.isEmpty ? null : text),
-        );
-      }
-    });
   }
 
   @override
   void dispose() {
     _ticker?.cancel();
-    _notesController.dispose();
     super.dispose();
   }
 
@@ -496,10 +477,6 @@ class _StudyTimerFullscreenPageState
         ),
         body: Center(child: Text(l10n.studyTimerTooShort)),
       );
-    }
-    if (!_notesInit) {
-      _notesController.text = timer.notes ?? '';
-      _notesInit = true;
     }
     final courses = ref.watch(coursesProvider).valueOrNull ?? const [];
     final course = _findCourse(courses, timer.courseId);
@@ -535,7 +512,6 @@ class _StudyTimerFullscreenPageState
               ),
               child: StudyTimerActiveControls(
                 key: const Key('studyTimerFullscreenControls'),
-                notesController: _notesController,
                 elapsedStyle: bigClock,
                 fullscreenLayout: true,
                 onFinished: () => Navigator.of(context).pop(),
