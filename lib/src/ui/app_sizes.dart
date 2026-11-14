@@ -14,7 +14,7 @@ abstract final class AppSizes {
   static const double maxContentWidth = 760.0;
 
   static const double pageHPad = 16.0;
-  static const double pageTopPad = 12.0;
+  static const double pageTopPad = 8.0;
   static const double pageBottomPad = 96.0;
 
   /// Bottom padding for pages WITHOUT a floating action button (Dashboard,
