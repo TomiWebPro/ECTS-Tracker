@@ -17,10 +17,12 @@ import '../models/reminder_settings.dart';
 import '../notifications/reminder_service.dart';
 import '../logic/locale_format.dart';
 import '../state/providers.dart';
+import '../state/study_timer_provider.dart';
 import 'app_sizes.dart';
 import 'err_text.dart';
 import 'glass.dart';
 import 'reminder_preview.dart';
+import 'study_timer_sheet.dart';
 import 'widgets.dart';
 
 part 'settings/reminder_tiles.dart';
@@ -264,6 +266,9 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
     // Glass flow-through: outer bottom inset is gone (see home_shell), so
     // the scrollable carries the tab-bar clearance itself.
     final glass = ref.watch(glassEnabledProvider);
+    // ECTS-103: timer on → drop the list top pad (banner separates);
+    // glass carries the measured pill height inside instead.
+    final timerActive = ref.watch(studyTimerProvider) != null;
     final bottomPad = glass
         ? AppSizes.glassPageBottomInset + AppSizes.pageBottomPadNoFab
         : AppSizes.pageBottomPadNoFab;
@@ -277,7 +282,12 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
           child: ListView(
           padding: EdgeInsets.fromLTRB(
             AppSizes.pageHPad,
-            AppSizes.pageTopPad,
+            timerActive
+                ? (glass
+                    ? ref.watch(timerBannerHeightProvider) +
+                        AppSizes.glassChromeGap
+                    : 0.0)
+                : AppSizes.pageTopPad,
             AppSizes.pageHPad,
             bottomPad,
           ),
@@ -285,7 +295,10 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
             SectionHeader(
               title: l10n.settingsStudySettings,
               icon: Icons.school_outlined,
-              padding: const EdgeInsets.fromLTRB(4, 20, 4, 8),
+              padding: timerActive
+                  ? const EdgeInsets.fromLTRB(
+                      4, AppSizes.sectionInnerGap, 4, 8)
+                  : const EdgeInsets.fromLTRB(4, 20, 4, 8),
             ),
             _SettingsCard(
               children: [

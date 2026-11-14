@@ -97,8 +97,16 @@ class _OverviewPage extends ConsumerWidget {
     // ECTS-074 Apple polish (glass-only): airier rhythm — larger top pad,
     // section gaps and card gaps so frosted cards breathe.
     final glass = ref.watch(glassEnabledProvider);
-    final topPad =
-        glass ? AppSizes.glassDashboardTopPad : AppSizes.dashboardTopPad;
+    // ECTS-103: timer on → the banner supplies the top separation, so the
+    // list drops its own top pad (glass carries the measured pill height
+    // inside the scrollable instead, keeping flow-under); timer off →
+    // legacy pads back on.
+    final timerActive = ref.watch(studyTimerProvider) != null;
+    final topPad = timerActive
+        ? (glass
+            ? ref.watch(timerBannerHeightProvider) + AppSizes.glassChromeGap
+            : 0.0)
+        : (glass ? AppSizes.glassDashboardTopPad : AppSizes.dashboardTopPad);
     final sectionGap =
         glass ? AppSizes.glassSectionGap : AppSizes.sectionGap;
     final innerGap = glass

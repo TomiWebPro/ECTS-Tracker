@@ -6,8 +6,10 @@ import '../logic/locale_format.dart';
 import '../logic/ects.dart';
 import '../logic/statistics.dart';
 import '../state/providers.dart';
+import '../state/study_timer_provider.dart';
 import 'app_sizes.dart';
 import 'glass.dart';
+import 'study_timer_sheet.dart';
 import 'widgets.dart';
 
 class StatisticsPage extends ConsumerWidget {
@@ -60,6 +62,9 @@ class StatisticsPage extends ConsumerWidget {
     // Glass flow-through: outer bottom inset is gone (see home_shell), so
     // the scrollable carries the tab-bar clearance itself.
     final glass = ref.watch(glassEnabledProvider);
+    // ECTS-103: timer on → drop the list top pad (banner separates);
+    // glass carries the measured pill height inside instead.
+    final timerActive = ref.watch(studyTimerProvider) != null;
     final bottomPad = glass
         ? AppSizes.glassPageBottomInset + AppSizes.pageBottomPadNoFab
         : AppSizes.pageBottomPadNoFab;
@@ -69,7 +74,12 @@ class StatisticsPage extends ConsumerWidget {
       child: ListView(
       padding: EdgeInsets.fromLTRB(
         AppSizes.pageHPad,
-        AppSizes.dashboardTopPad,
+        timerActive
+            ? (glass
+                ? ref.watch(timerBannerHeightProvider) +
+                    AppSizes.glassChromeGap
+                : 0.0)
+            : AppSizes.dashboardTopPad,
         AppSizes.pageHPad,
         bottomPad,
       ),

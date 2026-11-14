@@ -121,8 +121,15 @@ class _CoursesPageState extends ConsumerState<_CoursesPage> {
         glass ? AppSizes.glassSectionInnerGap : AppSizes.sectionInnerGap;
     final listTopPad =
         glass ? AppSizes.glassSectionInnerGap : AppSizes.sectionInnerGap;
-    final pageTopPad =
-        glass ? AppSizes.glassPageTopPad : AppSizes.pageTopPad;
+    // ECTS-103: timer on → drop the list top pad (the banner separates);
+    // glass carries the measured pill height inside instead. Timer off →
+    // legacy pads back on.
+    final timerActive = ref.watch(studyTimerProvider) != null;
+    final pageTopPad = timerActive
+        ? (glass
+            ? ref.watch(timerBannerHeightProvider) + AppSizes.glassChromeGap
+            : 0.0)
+        : (glass ? AppSizes.glassPageTopPad : AppSizes.pageTopPad);
     final cardGap =
         glass ? AppSizes.glassCardGap : AppSizes.cardGap;
     // Glass flow-through: outer bottom inset is gone (see home_shell), so

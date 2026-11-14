@@ -89,8 +89,15 @@ class _StudyLogPage extends ConsumerWidget {
         final glass = ref.watch(glassEnabledProvider);
         final filterGap =
             glass ? AppSizes.glassSectionInnerGap : AppSizes.sectionInnerGap;
-        final pageTopPad =
-            glass ? AppSizes.glassPageTopPad : AppSizes.pageTopPad;
+        // ECTS-103: timer on → drop the list top pad (banner separates);
+        // glass carries the measured pill height inside instead.
+        final timerActive = ref.watch(studyTimerProvider) != null;
+        final pageTopPad = timerActive
+            ? (glass
+                ? ref.watch(timerBannerHeightProvider) +
+                    AppSizes.glassChromeGap
+                : 0.0)
+            : (glass ? AppSizes.glassPageTopPad : AppSizes.pageTopPad);
         final cardGap =
             glass ? AppSizes.glassCardGap : AppSizes.cardGap;
         final menuColor = glass ? glassMenuColor(context) : null;

@@ -17,13 +17,13 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-/// Timer banner spacing (ECTS-102):
-/// - glass: the floating pill overlays the page, so the shell reserves the
-///   measured pill height at the page top while a timer runs — scrolled to
-///   the top, content starts below the pill instead of under it.
-/// - classic: the in-flow pill sits flush under the AppBar (the page below
-///   carries its own top air) with breathing room below, so scrolled
-///   content never touches it.
+/// Timer banner spacing (ECTS-102/103):
+/// - glass: the floating pill overlays the page, content flows under it
+///   while scrolling, and at scroll-top a small gap sits between pill and
+///   first content (the page drops its own top air while a timer runs and
+///   carries the measured pill height inside the scrollable instead).
+/// - classic: the in-flow pill sits flush under the AppBar with breathing
+///   room below, page top air dropped while a timer runs.
 class MemoryTimerPrefs extends StudyTimerPrefsRepository {
   MemoryTimerPrefs([this.initial]);
 
@@ -132,8 +132,16 @@ Future<void> pumpShell(
     ),
   );
   // Fixed frames, not settle: the banner ticks every second, and the
-  // glass reserve arrives via a post-frame height report.
+  // glass inner reserve arrives via a post-frame height report.
   for (var i = 0; i < 8; i++) {
+    await tester.pump(const Duration(milliseconds: 200));
+  }
+}
+
+Future<void> openSettingsTab(WidgetTester tester) async {
+  // Same tab pattern as glass_chrome_test.
+  await tester.tap(find.text('Settings').last);
+  for (var i = 0; i < 5; i++) {
     await tester.pump(const Duration(milliseconds: 200));
   }
 }
@@ -164,70 +172,81 @@ void main() {
     );
   });
 
-  testWidgets('glass banner reports its height for the shell reserve',
+  testWidgets('glass banner reports its height for the inner reserve',
       (tester) async {
     await pumpBanner(tester, MemoryTimerPrefs(runningTimer()), glass: true);
 
     final banner = find.byKey(const Key('studyTimerBanner'));
     expect(banner, findsOneWidget);
     final container = ProviderScope.containerOf(tester.element(banner));
-    // Post-frame report flushed by the pumps above; the shell reads this
-    // to keep scrolled-to-top content below the overlay pill.
+    // Post-frame report flushed by the pumps above; the glass pages read
+    // this to size their inner top reserve while a timer runs.
     expect(container.read(timerBannerHeightProvider), greaterThan(0));
 
     await finishDb(tester, container.read(databaseProvider));
   });
 
-  testWidgets('glass shell keeps top content below the overlay pill',
-      (tester) async {
+  testWidgets('glass shell keeps a small gap at scroll-top', (tester) async {
     final db = await openDb();
     await pumpShell(tester, db, MemoryTimerPrefs(runningTimer()), glass: true);
-
-    // Settings tab (same tap pattern as glass_chrome_test).
-    await tester.tap(find.text('Settings').last);
-    for (var i = 0; i < 5; i++) {
-      await tester.pump(const Duration(milliseconds: 200));
-    }
+    await openSettingsTab(tester);
 
     final bannerRect =
         tester.getRect(find.byKey(const Key('studyTimerBanner')));
-    final headerTop =
-        tester.getTopLeft(find.byType(SectionHeader).first).dy;
-    // Content starts below the pill with at least the chrome gap to spare
-    // (list + header pads add more on top).
-    expect(
-      headerTop - bannerRect.bottom,
-      greaterThanOrEqualTo(AppSizes.glassChromeGap - 0.5),
-    );
+    // Reserve gap only: list top air is dropped while timing and the
+    // header's own pad sits inside its box.
+    final headerTop = tester.getTopLeft(find.byType(SectionHeader).first).dy;
+    expect(headerTop - bannerRect.bottom, closeTo(8.0, 2.0));
 
     await finishDb(tester, db);
   });
 
-  testWidgets('classic shell keeps scrolled content off the pill',
-      (tester) async {
+  testWidgets('glass content flows under the overlay pill', (tester) async {
     final db = await openDb();
-    await pumpShell(tester, db, MemoryTimerPrefs(runningTimer()), glass: false);
+    await pumpShell(tester, db, MemoryTimerPrefs(runningTimer()), glass: true);
+    await openSettingsTab(tester);
 
-    await tester.tap(find.text('Settings').last);
-    for (var i = 0; i < 5; i++) {
+    final bannerRect =
+        tester.getRect(find.byKey(const Key('studyTimerBanner')));
+    final tile = find.byKey(const Key('hoursPerEctsTile'));
+    expect(tile, findsOneWidget);
+    await tester.drag(
+      find.byType(ListView).first,
+      const Offset(0, -400),
+    );
+    for (var i = 0; i < 3; i++) {
       await tester.pump(const Duration(milliseconds: 200));
     }
+
+    // The first card slides underneath the floating pill instead of
+    // clipping against its bottom edge.
+    expect(tester.getTopLeft(tile).dy, lessThan(bannerRect.bottom));
+
+    await finishDb(tester, db);
+  });
+
+  testWidgets('classic shell keeps a small gap above content', (tester) async {
+    final db = await openDb();
+    await pumpShell(tester, db, MemoryTimerPrefs(runningTimer()), glass: false);
+    await openSettingsTab(tester);
 
     final banner = find.byKey(const Key('studyTimerBanner'));
     final bannerRect = tester.getRect(banner);
     // Flush under the AppBar (default toolbar height, no top pad).
     expect(bannerRect.top, closeTo(56.0, 1.0));
 
-    final pillRect = tester
-        .getRect(
-          find.descendant(
-            of: banner,
-            matching: find.byType(Material),
-          ).first,
-        );
+    final pillRect = tester.getRect(
+      find
+          .descendant(of: banner, matching: find.byType(Material))
+          .first,
+    );
     final listTop = tester.getRect(find.byType(ListView).first).top;
-    // The pill keeps its bottom breathing room against page content.
+    // Pill breathing room only (page top air dropped while timing).
     expect(listTop - pillRect.bottom, closeTo(AppSizes.sectionInnerGap, 0.5));
+
+    final headerTop = tester.getTopLeft(find.byType(SectionHeader).first).dy;
+    // 8 (pill room) + 0 (list) + header box starts here (its own pad inside).
+    expect(headerTop - pillRect.bottom, closeTo(8.0, 2.0));
 
     await finishDb(tester, db);
   });

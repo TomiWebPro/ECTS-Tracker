@@ -63,11 +63,6 @@ class _HomeShellState extends State<HomeShell> {
     return Consumer(
       builder: (context, ref, _) {
         final glass = ref.watch(glassEnabledProvider);
-        // ECTS-102: the floating timer pill overlays the page top, so
-        // while a timer runs the glass page starts below the measured
-        // pill (plus the chrome gap); idle keeps the plain app-bar inset.
-        final timerActive = ref.watch(studyTimerProvider) != null;
-        final bannerReserve = ref.watch(timerBannerHeightProvider);
         final l10n = l10nOf(context);
         final titles = [
           l10n.navDashboard,
@@ -210,15 +205,8 @@ class _HomeShellState extends State<HomeShell> {
                   // fixed gap; list top padding scrolls under on travel).
                   Positioned.fill(
                     child: Padding(
-                      // ECTS-102: reserve the measured pill height while a
-                      // timer runs so scrolled-to-top content starts below
-                      // the overlay instead of under it.
-                      padding: EdgeInsets.only(
-                        top:
-                            AppSizes.glassPageTopInset +
-                            (timerActive
-                                ? bannerReserve + AppSizes.glassChromeGap
-                                : 0),
+                      padding: const EdgeInsets.only(
+                        top: AppSizes.glassPageTopInset,
                       ),
                       // No in-flow banner (ECTS-100): the timer is a
                       // floating frosted pill (Positioned below), so page
