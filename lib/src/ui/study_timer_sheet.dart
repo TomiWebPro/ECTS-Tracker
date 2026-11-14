@@ -532,6 +532,13 @@ Course? _findCourse(List<Course> courses, int id) {
   return null;
 }
 
+/// Rendered height of the running-timer banner (ECTS-102).
+///
+/// The glass shell overlays the pill, so it reserves this much space at the
+/// page top while a timer runs. Measured at runtime so larger text scales
+/// still clear the pill. 0 until the first frame is laid out.
+final timerBannerHeightProvider = StateProvider<double>((ref) => 0);
+
 /// Persistent banner shown on every tab while a timer is active.
 ///
 /// Ticks once per second for display only; the source of truth stays the
@@ -583,20 +590,22 @@ class _StudyTimerBannerState extends ConsumerState<StudyTimerBanner> {
       courseName,
       elapsed,
     );
+    final Widget body;
     if (!ref.watch(glassEnabledProvider)) {
-      return Align(
+      body = Align(
         alignment: Alignment.topCenter,
         child: ConstrainedBox(
-          constraints: const BoxConstraints(
-            maxWidth: AppSizes.maxContentWidth,
-          ),
+          constraints: const BoxConstraints(maxWidth: AppSizes.maxContentWidth),
           child: Padding(
             key: const Key('studyTimerBanner'),
+            // ECTS-102: flush under the AppBar (the page below carries
+            // its own top air), breathing room below so scrolled content
+            // never touches the pill.
             padding: const EdgeInsets.fromLTRB(
               AppSizes.pageHPad,
-              AppSizes.sectionInnerGap,
-              AppSizes.pageHPad,
               0,
+              AppSizes.pageHPad,
+              AppSizes.sectionInnerGap,
             ),
             child: Material(
               color: scheme.secondaryContainer,
@@ -610,32 +619,41 @@ class _StudyTimerBannerState extends ConsumerState<StudyTimerBanner> {
           ),
         ),
       );
-    }
-    // Glass mode (ECTS-100): floating frosted pill. No vertical outer
-    // padding — the overlay offset in home_shell already gaps it from the
-    // floating app bar — and page content scrolls underneath the lens.
-    return Align(
-      alignment: Alignment.topCenter,
-      child: ConstrainedBox(
-        constraints: const BoxConstraints(
-          maxWidth: AppSizes.maxContentWidth,
-        ),
-        child: Padding(
-          key: const Key('studyTimerBanner'),
-          padding: const EdgeInsets.symmetric(
-            horizontal: AppSizes.pageHPad,
-          ),
-          child: LiquidGlassLens(
-            style: glassTimerStyle(context),
-            child: GestureDetector(
-              behavior: HitTestBehavior.opaque,
-              onTap: () => showStudyTimerActiveSheet(context),
-              child: content,
+    } else {
+      // Glass mode (ECTS-100): floating frosted pill. No vertical outer
+      // padding — the overlay offset in home_shell already gaps it from the
+      // floating app bar — and page content scrolls underneath the lens.
+      body = Align(
+        alignment: Alignment.topCenter,
+        child: ConstrainedBox(
+          constraints: const BoxConstraints(maxWidth: AppSizes.maxContentWidth),
+          child: Padding(
+            key: const Key('studyTimerBanner'),
+            padding: const EdgeInsets.symmetric(horizontal: AppSizes.pageHPad),
+            child: LiquidGlassLens(
+              style: glassTimerStyle(context),
+              child: GestureDetector(
+                behavior: HitTestBehavior.opaque,
+                onTap: () => showStudyTimerActiveSheet(context),
+                child: content,
+              ),
             ),
           ),
         ),
-      ),
-    );
+      );
+    }
+    // ECTS-102: the glass shell overlays this pill, so it reserves the
+    // measured height at the page top while a timer runs. Post-frame:
+    // context.size is only valid after layout, and the write is guarded
+    // so the 1-second display ticker never notifies in a loop.
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (!mounted) return;
+      final height = context.size?.height;
+      if (height == null || height <= 0) return;
+      final holder = ref.read(timerBannerHeightProvider.notifier);
+      if ((holder.state - height).abs() > 0.5) holder.state = height;
+    });
+    return body;
   }
 
   /// Shared pill content for both banner branches: status icon, course
