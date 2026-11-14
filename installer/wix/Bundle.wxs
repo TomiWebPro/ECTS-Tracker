@@ -1,0 +1,34 @@
+<!-- ECTS Tracker — branded setup.exe wrapper (WiX v5 Burn bundle).
+     Embeds dist/ECTSTracker-<version>-x64.msi and carries the app logo as the
+     file icon (a bare .msi cannot have its own Explorer icon — Windows always
+     shows the system installer glyph). The MSI remains usable standalone.
+     Built by installer/wix/build-msi.ps1 after the MSI. Version is duplicated
+     from pubspec.yaml — bump together. Bundle UpgradeCode is stable: never
+     change it, or upgrades become side-by-side installs. -->
+<Wix xmlns="http://wixtoolset.org/schemas/v4/wxs"
+     xmlns:bal="http://wixtoolset.org/schemas/v4/wxs/bal">
+
+  <Bundle Name="ECTS Tracker"
+          Version="1.0.0"
+          Manufacturer="TomiWebPro"
+          UpgradeCode="4b7bbe75-f963-415f-b4fb-a4ee50a877f9"
+          IconSourceFile="windows\runner\resources\app_icon.ico"
+          Compressed="yes">
+
+    <BootstrapperApplication>
+      <bal:WixStandardBootstrapperApplication
+        LicenseUrl=""
+        LogoFile="assets\images\ects-tracker-logo.png"
+        Theme="hyperlinkSidebarLicense" />
+    </BootstrapperApplication>
+
+    <Chain>
+      <!-- Silent inside the wrapper by default (no DisplayInternalUI in v5);
+           the MSI keeps its own wizard for direct use. -->
+      <MsiPackage SourceFile="dist\ECTSTracker-1.0.0-x64.msi"
+                  Compressed="yes"
+                  Vital="yes" />
+    </Chain>
+
+  </Bundle>
+</Wix>

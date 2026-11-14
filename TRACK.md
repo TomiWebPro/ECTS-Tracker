@@ -131,7 +131,12 @@ Conventions: `AGENTS.md` (binding, incl. new-locale policy §6) · `README.md` (
 | ECTS-105 | M11 | Classic AppBar keeps base background while timer runs (SDK swaps bg independent of elevation) | done | analyze clean; spacing 7/7 + banner/tab 5/5; user-confirmed on device; 2026-11-14 |
 | ECTS-106 | M11 | Idle list top pad 12px → 8px | done | analyze clean; spacing 7/7 + banner/tab 5/5; 2026-11-14 |
 | ECTS-107 | M12 | Windows MSI (WiX) + earliest-compat APK + logo wiring | done | analyze clean; full 385/385; apk sdk24/3-ABI + msi install/launch(20s)/uninstall smoke ok; 2026-11-14 |
+| ECTS-113 | M12 | Branded setup.exe wrapper (Burn bundle around the MSI, logo icon) | done | msi bitmaps re-laid (text zones clear); missing dll+3 files added + drift guard in script; bundle built (Bal ext hollow in v5, BootstrapperApplications used); setup.exe logo icon verified, layout ok, elevate-blocked w/o admin (expected); 2026-11-14 |
 | ECTS-108 | M12 | AppBar creator easter egg (20-tap graffiti dialog + profile links, all locales) | done | analyze clean; full 390/390; code b1c1278 + bulk 6d3657b + gen 9306f44; 2026-11-14 |
+| ECTS-109 | M12 | Creator egg on app logo (drop palette button, 20 taps on AppLogo) | done | analyze clean; creator_egg 6/6 + glass/smoke 13/13; commit aa700a9; 2026-11-14 |
+| ECTS-110 | M12 | Creator egg fully hidden (drop logo Tooltip leak, key stays dead) | done | analyze clean; creator_egg + glass 13/13; commit af87499; 2026-11-14 |
+| ECTS-111 | M12 | Creator links bulletproof (all platforms: browser else clipboard + copied note) | done | analyze clean; affected 14/14; commit 1bfd7b1; 2026-11-14 |
+| ECTS-112 | M12 | Creator dialog: drop Close button (barrier dismisses) | done | analyze clean; creator_egg 6/6; 2026-11-14 |
 
 Note: ECTS-033/034 were announced in a 2026-11-05 log but never got rows; IDs skipped, do NOT renumber.
 
@@ -150,6 +155,8 @@ trims (different semantics per surface); hold-to-confirm timer test
 (private widget, covered indirectly by settings pumps).
 
 ## Progress log (newest on top)
+
+- 2026-11-14: ECTS-113 done (branded setup.exe via Burn: fixed MSI wizard bitmap layouts to classic text-clear zones; repaired installed-app crash by adding url_launcher DLL + 3 engine/asset files to .wxs with a drift-fail guard in build-msi.ps1; bundle carries logo icon, verified; elevation test blocked without admin as expected).
 
 - 2026-11-14: ECTS-107 done (M12 distribution: WiX v5 per-machine MSI w/ WixUI wizard + logo bitmaps + Start Menu shortcut, HKMU keypath; APK minSdk 24 = earliest flutter_local_notifications allows, compileSdk 37 + desugaring; logo: new 256px ICO, Android splash bitmap, launcher icons already logo; fat APK 72.7MB + MSI 13.6MB in gitignored dist/; one launch-check flake, 3/4 healthy incl. 20s installed run).
 

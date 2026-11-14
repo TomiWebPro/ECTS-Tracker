@@ -63,6 +63,8 @@
       <File Source="build\windows\x64\runner\Release\flutter_windows.dll" />
       <File Source="build\windows\x64\runner\Release\sqlite3.dll" />
       <File Source="build\windows\x64\runner\Release\sqlite3_flutter_libs_plugin.dll" />
+      <File Source="build\windows\x64\runner\Release\url_launcher_windows_plugin.dll" />
+      <File Source="build\windows\x64\runner\Release\native_assets.json" />
     </Component>
 
     <Component Id="RuntimeData" Directory="DATADIR" Bitness="always64" Guid="c78b5acf-9f21-4f41-8c23-64f58ab51c8d">
@@ -75,11 +77,13 @@
       <File Source="build\windows\x64\runner\Release\data\flutter_assets\FontManifest.json" />
       <File Source="build\windows\x64\runner\Release\data\flutter_assets\NativeAssetsManifest.json" />
       <File Source="build\windows\x64\runner\Release\data\flutter_assets\NOTICES.Z" />
+      <File Source="build\windows\x64\runner\Release\data\flutter_assets\kernel_blob.bin" />
     </Component>
 
     <Component Id="AppImages" Directory="FA_IMAGES" Bitness="always64" Guid="7df5e08d-e92d-4289-a58a-8ab9379bd26b">
       <File Source="build\windows\x64\runner\Release\data\flutter_assets\assets\images\ects-tracker-logo.png" KeyPath="yes" />
       <File Source="build\windows\x64\runner\Release\data\flutter_assets\assets\images\ects-tracker-logo.svg" />
+      <File Source="build\windows\x64\runner\Release\data\flutter_assets\assets\images\tomi-profile.jpg" />
     </Component>
 
     <Component Id="AppFonts" Directory="FA_FONTS" Bitness="always64" Guid="c8691971-b8f2-4e01-b901-71dd3fa3af11">
