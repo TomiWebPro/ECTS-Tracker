@@ -123,6 +123,7 @@ Conventions: `AGENTS.md` (binding, incl. new-locale policy §6) · `README.md` (
 | ECTS-098 | M11 | Timer fullscreen focus view + banner padding top + auto-fullscreen on start | done | analyze clean; full 376/376 (flutter analyze No issues; affected timer+l10n 34/34); 2026-11-14 |
 | ECTS-099 | M11 | Timer fullscreen polish: centered clock, fat bottom buttons, exit-fullscreen icon | done | analyze clean; affected 39/39; 2026-11-14 |
 | ECTS-100 | M11 | Glass-mode timer as floating liquid-glass pill; drop in-flow duplicate + top gap | done | analyze clean; affected 36/36 + new banner lens test 2/2; 2026-11-14 |
+| ECTS-101 | M11 | Fullscreen timer hides the notes field (focus view) | done | analyze clean; session_timer_tab + glass_timer_banner 5/5; 2026-11-14 |
 
 Note: ECTS-033/034 were announced in a 2026-11-05 log but never got rows; IDs skipped, do NOT renumber.
 
