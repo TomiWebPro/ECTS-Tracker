@@ -24,8 +24,6 @@ abstract final class AppSizes {
   /// forces a scrollbar on screens that would otherwise fit.
   static const double pageBottomPadNoFab = 24.0;
 
-  static const double dashboardTopPad = 16.0;
-
   static const double sectionGap = 16.0;
   static const double sectionInnerGap = 8.0;
   static const double cardGap = 8.0;
@@ -260,8 +258,7 @@ abstract final class AppSizes {
   static const double glassCardGap = 16.0;
   static const double glassSectionGap = 24.0;
   static const double glassSectionInnerGap = 16.0;
-  static const double glassPageTopPad = 20.0;
-  static const double glassDashboardTopPad = 24.0;
+  static const double glassPageTopPad = 12.0;
 
   // Apple-style menus (glass-only): rounded frosted overlays.
   static const double glassMenuRadius = 18.0;

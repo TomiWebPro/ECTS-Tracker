@@ -102,11 +102,9 @@ class _OverviewPage extends ConsumerWidget {
     // inside the scrollable instead, keeping flow-under); timer off →
     // legacy pads back on.
     final timerActive = ref.watch(studyTimerProvider) != null;
-    final topPad = timerActive
-        ? (glass
-            ? ref.watch(timerBannerHeightProvider) + AppSizes.glassChromeGap
-            : 0.0)
-        : (glass ? AppSizes.glassDashboardTopPad : AppSizes.dashboardTopPad);
+    final topPad = (glass && timerActive)
+        ? ref.watch(timerBannerHeightProvider) + AppSizes.glassChromeGap
+        : (glass ? AppSizes.glassPageTopPad : AppSizes.pageTopPad);
     final sectionGap =
         glass ? AppSizes.glassSectionGap : AppSizes.sectionGap;
     final innerGap = glass

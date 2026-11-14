@@ -125,10 +125,8 @@ class _CoursesPageState extends ConsumerState<_CoursesPage> {
     // glass carries the measured pill height inside instead. Timer off →
     // legacy pads back on.
     final timerActive = ref.watch(studyTimerProvider) != null;
-    final pageTopPad = timerActive
-        ? (glass
-            ? ref.watch(timerBannerHeightProvider) + AppSizes.glassChromeGap
-            : 0.0)
+    final pageTopPad = (glass && timerActive)
+        ? ref.watch(timerBannerHeightProvider) + AppSizes.glassChromeGap
         : (glass ? AppSizes.glassPageTopPad : AppSizes.pageTopPad);
     final cardGap =
         glass ? AppSizes.glassCardGap : AppSizes.cardGap;

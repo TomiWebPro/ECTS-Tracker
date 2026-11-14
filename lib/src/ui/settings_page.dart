@@ -282,12 +282,10 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
           child: ListView(
           padding: EdgeInsets.fromLTRB(
             AppSizes.pageHPad,
-            timerActive
-                ? (glass
-                    ? ref.watch(timerBannerHeightProvider) +
-                        AppSizes.glassChromeGap
-                    : 0.0)
-                : AppSizes.pageTopPad,
+            (glass && timerActive)
+                ? ref.watch(timerBannerHeightProvider) +
+                    AppSizes.glassChromeGap
+                : (glass ? AppSizes.glassPageTopPad : AppSizes.pageTopPad),
             AppSizes.pageHPad,
             bottomPad,
           ),
@@ -295,10 +293,8 @@ class _SettingsPageState extends ConsumerState<SettingsPage> {
             SectionHeader(
               title: l10n.settingsStudySettings,
               icon: Icons.school_outlined,
-              padding: timerActive
-                  ? const EdgeInsets.fromLTRB(
-                      4, AppSizes.sectionInnerGap, 4, 8)
-                  : const EdgeInsets.fromLTRB(4, 20, 4, 8),
+              padding:
+                  const EdgeInsets.only(bottom: AppSizes.headerBottomPad),
             ),
             _SettingsCard(
               children: [

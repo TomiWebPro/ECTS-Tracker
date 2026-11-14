@@ -301,8 +301,8 @@ void main() {
     expect(listTop - pillRect.bottom, closeTo(AppSizes.sectionInnerGap, 0.5));
 
     final headerTop = tester.getTopLeft(find.byType(SectionHeader).first).dy;
-    // 8 (pill room) + 0 (list) + header box starts here (its own pad inside).
-    expect(headerTop - pillRect.bottom, closeTo(8.0, 2.0));
+    // 8 (pill room) + 8 (list, same as idle) + header box starts here.
+    expect(headerTop - pillRect.bottom, closeTo(16.0, 2.0));
 
     await finishDb(tester, db);
   });

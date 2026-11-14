@@ -74,17 +74,22 @@ class StatisticsPage extends ConsumerWidget {
       child: ListView(
       padding: EdgeInsets.fromLTRB(
         AppSizes.pageHPad,
-        timerActive
-            ? (glass
-                ? ref.watch(timerBannerHeightProvider) +
-                    AppSizes.glassChromeGap
-                : 0.0)
-            : AppSizes.dashboardTopPad,
+        (glass && timerActive)
+            ? ref.watch(timerBannerHeightProvider) +
+                AppSizes.glassChromeGap
+            : (glass
+                ? AppSizes.glassPageTopPad
+                : AppSizes.pageTopPad),
         AppSizes.pageHPad,
         bottomPad,
       ),
       children: [
-        SectionHeader(title: l10n.statsOverview, icon: Icons.insights_outlined),
+        SectionHeader(
+          title: l10n.statsOverview,
+          icon: Icons.insights_outlined,
+          padding:
+              const EdgeInsets.only(bottom: AppSizes.headerBottomPad),
+        ),
         GlassCard(
           color: scheme.primaryContainer.withValues(alpha: 0.45),
           child: Padding(
