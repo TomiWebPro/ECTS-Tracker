@@ -225,6 +225,33 @@ void main() {
     await finishDb(tester, db);
   });
 
+  testWidgets('classic AppBar skips scroll darkening while timer runs',
+      (tester) async {
+    final db = await openDb();
+    await pumpShell(tester, db, MemoryTimerPrefs(runningTimer()), glass: false);
+
+    // The pill already separates chrome from content (ECTS-104).
+    expect(
+      tester.widget<AppBar>(find.byType(AppBar)).scrolledUnderElevation,
+      0.0,
+    );
+
+    await finishDb(tester, db);
+  });
+
+  testWidgets('classic AppBar keeps scroll darkening without timer',
+      (tester) async {
+    final db = await openDb();
+    await pumpShell(tester, db, MemoryTimerPrefs(), glass: false);
+
+    expect(
+      tester.widget<AppBar>(find.byType(AppBar)).scrolledUnderElevation,
+      isNull,
+    );
+
+    await finishDb(tester, db);
+  });
+
   testWidgets('classic shell keeps a small gap above content', (tester) async {
     final db = await openDb();
     await pumpShell(tester, db, MemoryTimerPrefs(runningTimer()), glass: false);

@@ -63,6 +63,9 @@ class _HomeShellState extends State<HomeShell> {
     return Consumer(
       builder: (context, ref, _) {
         final glass = ref.watch(glassEnabledProvider);
+        // ECTS-104: the timer pill already separates chrome from content,
+        // so the AppBar skips its scroll darkening while a timer runs.
+        final timerActive = ref.watch(studyTimerProvider) != null;
         final l10n = l10nOf(context);
         final titles = [
           l10n.navDashboard,
@@ -100,6 +103,8 @@ class _HomeShellState extends State<HomeShell> {
         if (!glass) {
           return Scaffold(
             appBar: AppBar(
+              // ECTS-104: no scroll darkening while the timer pill is up.
+              scrolledUnderElevation: timerActive ? 0.0 : null,
               leading: const Padding(
                 padding: EdgeInsets.only(left: 12.0),
                 child: Center(
