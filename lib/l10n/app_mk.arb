@@ -40,6 +40,12 @@
   "coursesRemoveSampleTooltip": "Отстрани примерок-предмет",
   "coursesShownCount": "Прикажани {count}",
   "coursesSortOption": "Подреди: {label}",
+  "creatorEggBody": "Tomi е иден програмер кој ја создаде оваа апликација на 18 години.",
+  "creatorEggGithub": "GitHub",
+  "creatorEggLinkedin": "LinkedIn",
+  "creatorEggOpenFailed": "Врската не можеше да се отвори.",
+  "creatorEggTitle": "Благодарам што ја користиш мојата апликација!",
+  "creatorEggTooltip": "За авторот",
   "dashboardAllDone": "Сè е завршено",
   "dashboardBonusLogged": "Запишани {hours} ч (бонус)",
   "dashboardCourseCount": "{count} предмет(и)",
@@ -508,6 +514,24 @@
         "example": "Name"
       }
     }
+  },
+  "@creatorEggBody": {
+    "description": "Creator easter-egg dialog biography line."
+  },
+  "@creatorEggGithub": {
+    "description": "Creator easter-egg GitHub link button."
+  },
+  "@creatorEggLinkedin": {
+    "description": "Creator easter-egg LinkedIn link button."
+  },
+  "@creatorEggOpenFailed": {
+    "description": "SnackBar when the creator profile link cannot be opened."
+  },
+  "@creatorEggTitle": {
+    "description": "Creator easter-egg graffiti dialog title."
+  },
+  "@creatorEggTooltip": {
+    "description": "Tooltip of the top-right AppBar creator button (20 taps opens the easter egg)."
   },
   "@dashboardAllDone": {
     "description": "Dashboard empty-state title when every course is completed."

@@ -43,6 +43,12 @@
   "coursesRemoveSampleTooltip": "Tynnu'r modiwl enghreifftiol",
   "coursesShownCount": "{count} wedi'u dangos",
   "coursesSortOption": "Trefnu: {label}",
+  "creatorEggBody": "Mae Tomi yn rhaglennydd brwdfrydig a greodd yr ap hon yn 18 oed.",
+  "creatorEggGithub": "GitHub",
+  "creatorEggLinkedin": "LinkedIn",
+  "creatorEggOpenFailed": "Methwyd â agor y ddolen.",
+  "creatorEggTitle": "Diolch am ddefnyddio fy ap!",
+  "creatorEggTooltip": "Am y crëwr",
   "dashboardAllDone": "Popeth wedi'i wneud",
   "dashboardBonusLogged": "{hours} h wedi'u cofnodi (bonws)",
   "dashboardCourseCount": "{count} modiwl(au)",
@@ -570,6 +576,12 @@
       }
     }
   },
+  "@creatorEggBody": {"description": "Creator easter-egg dialog biography line."},
+  "@creatorEggGithub": {"description": "Creator easter-egg GitHub link button."},
+  "@creatorEggLinkedin": {"description": "Creator easter-egg LinkedIn link button."},
+  "@creatorEggOpenFailed": {"description": "SnackBar when the creator profile link cannot be opened."},
+  "@creatorEggTitle": {"description": "Creator easter-egg graffiti dialog title."},
+  "@creatorEggTooltip": {"description": "Tooltip of the top-right AppBar creator button (20 taps opens the easter egg)."},
   "@dashboardAllDone": {
     "description": "Dashboard empty-state title when every course is completed."
   },

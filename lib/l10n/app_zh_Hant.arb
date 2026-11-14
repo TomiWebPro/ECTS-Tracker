@@ -43,6 +43,12 @@
   "coursesRemoveSampleTooltip": "刪除範例課程",
   "coursesShownCount": "已顯示 {count} 門",
   "coursesSortOption": "排序：{label}",
+  "creatorEggBody": "楊子軒是一位充滿熱情的年輕程式設計師，在 18 歲時建立了這款應用程式。",
+  "creatorEggGithub": "GitHub",
+  "creatorEggLinkedin": "LinkedIn",
+  "creatorEggOpenFailed": "無法開啟連結。",
+  "creatorEggTitle": "感謝使用我的應用程式！",
+  "creatorEggTooltip": "關於作者",
   "dashboardAllDone": "全部完成",
   "dashboardBonusLogged": "已記錄 {hours} 小時（額外）",
   "dashboardCourseCount": "{count} 門課程",
@@ -552,6 +558,12 @@
       }
     }
   },
+  "@creatorEggBody": {"description": "Creator easter-egg dialog biography line."},
+  "@creatorEggGithub": {"description": "Creator easter-egg GitHub link button."},
+  "@creatorEggLinkedin": {"description": "Creator easter-egg LinkedIn link button."},
+  "@creatorEggOpenFailed": {"description": "SnackBar when the creator profile link cannot be opened."},
+  "@creatorEggTitle": {"description": "Creator easter-egg graffiti dialog title."},
+  "@creatorEggTooltip": {"description": "Tooltip of the top-right AppBar creator button (20 taps opens the easter egg)."},
   "@dashboardAllDone": {
     "description": "Dashboard empty-state title when every course is completed."
   },

@@ -43,6 +43,12 @@
   "coursesRemoveSampleTooltip": "Mintakurzus eltávolítása",
   "coursesShownCount": "{count} megjelenítve",
   "coursesSortOption": "Rendezés: {label}",
+  "creatorEggBody": "Tomi egy ambiciózus programozó, aki 18 évesen készítette ezt az appot.",
+  "creatorEggGithub": "GitHub",
+  "creatorEggLinkedin": "LinkedIn",
+  "creatorEggOpenFailed": "A hivatkozást nem sikerült megnyitni.",
+  "creatorEggTitle": "Köszönöm, hogy használod az appomat!",
+  "creatorEggTooltip": "A készítőről",
   "dashboardAllDone": "Minden kész",
   "dashboardBonusLogged": "{hours} ó naplózva (bónusz)",
   "dashboardCourseCount": "{count} kurzus",
@@ -551,6 +557,24 @@
         "example": "Name"
       }
     }
+  },
+  "@creatorEggBody": {
+    "description": "Creator easter-egg dialog biography line."
+  },
+  "@creatorEggGithub": {
+    "description": "Creator easter-egg GitHub link button."
+  },
+  "@creatorEggLinkedin": {
+    "description": "Creator easter-egg LinkedIn link button."
+  },
+  "@creatorEggOpenFailed": {
+    "description": "SnackBar when the creator profile link cannot be opened."
+  },
+  "@creatorEggTitle": {
+    "description": "Creator easter-egg graffiti dialog title."
+  },
+  "@creatorEggTooltip": {
+    "description": "Tooltip of the top-right AppBar creator button (20 taps opens the easter egg)."
   },
   "@dashboardAllDone": {
     "description": "Dashboard empty-state title when every course is completed."

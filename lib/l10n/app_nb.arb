@@ -40,6 +40,12 @@
   "coursesRemoveSampleTooltip": "Fjern eksempel-emne",
   "coursesShownCount": "{count} vist",
   "coursesSortOption": "Sortering: {label}",
+  "creatorEggBody": "Tomi er en ambisiøs programmerer som laget denne appen som 18-åring.",
+  "creatorEggGithub": "GitHub",
+  "creatorEggLinkedin": "LinkedIn",
+  "creatorEggOpenFailed": "Kunne ikke åpne lenken.",
+  "creatorEggTitle": "Takk for at du bruker appen min!",
+  "creatorEggTooltip": "Om skaperen",
   "dashboardAllDone": "Alt ferdig",
   "dashboardBonusLogged": "{hours} t logget (bonus)",
   "dashboardCourseCount": "{count} emne(r)",
@@ -509,6 +515,12 @@
       }
     }
   },
+  "@creatorEggBody": {"description": "Creator easter-egg dialog biography line."},
+  "@creatorEggGithub": {"description": "Creator easter-egg GitHub link button."},
+  "@creatorEggLinkedin": {"description": "Creator easter-egg LinkedIn link button."},
+  "@creatorEggOpenFailed": {"description": "SnackBar when the creator profile link cannot be opened."},
+  "@creatorEggTitle": {"description": "Creator easter-egg graffiti dialog title."},
+  "@creatorEggTooltip": {"description": "Tooltip of the top-right AppBar creator button (20 taps opens the easter egg)."},
   "@dashboardAllDone": {
     "description": "Dashboard empty-state title when every course is completed."
   },

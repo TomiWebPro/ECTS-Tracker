@@ -43,6 +43,12 @@
   "coursesRemoveSampleTooltip": "删除示例课程",
   "coursesShownCount": "已显示 {count} 门",
   "coursesSortOption": "排序：{label}",
+  "creatorEggBody": "杨子轩是一位充满热情的年轻程序员，在 18 岁时创建了这款应用。",
+  "creatorEggGithub": "GitHub",
+  "creatorEggLinkedin": "LinkedIn",
+  "creatorEggOpenFailed": "无法打开链接。",
+  "creatorEggTitle": "感谢使用我的应用！",
+  "creatorEggTooltip": "关于作者",
   "dashboardAllDone": "全部完成",
   "dashboardBonusLogged": "已记录 {hours} 小时（额外）",
   "dashboardCourseCount": "{count} 门课程",
@@ -552,6 +558,12 @@
       }
     }
   },
+  "@creatorEggBody": {"description": "Creator easter-egg dialog biography line."},
+  "@creatorEggGithub": {"description": "Creator easter-egg GitHub link button."},
+  "@creatorEggLinkedin": {"description": "Creator easter-egg LinkedIn link button."},
+  "@creatorEggOpenFailed": {"description": "SnackBar when the creator profile link cannot be opened."},
+  "@creatorEggTitle": {"description": "Creator easter-egg graffiti dialog title."},
+  "@creatorEggTooltip": {"description": "Tooltip of the top-right AppBar creator button (20 taps opens the easter egg)."},
   "@dashboardAllDone": {
     "description": "Dashboard empty-state title when every course is completed."
   },

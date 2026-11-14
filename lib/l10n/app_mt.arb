@@ -40,6 +40,12 @@
   "coursesRemoveSampleTooltip": "Neħħi l-kors taʼ kampjun",
   "coursesShownCount": "Murija: {count}",
   "coursesSortOption": "Issortja: {label}",
+  "creatorEggBody": "Tomi huwa programmur promettenti li ħoloq din l-app ta' 18-il sena.",
+  "creatorEggGithub": "GitHub",
+  "creatorEggLinkedin": "LinkedIn",
+  "creatorEggOpenFailed": "Il-ħolqa ma setgħetx tinfetaħ.",
+  "creatorEggTitle": "Grazzi talli tuża l-app tiegħi!",
+  "creatorEggTooltip": "Dwar il-kreatur",
   "dashboardAllDone": "Kollox lest",
   "dashboardBonusLogged": "Irreġistrati {hours} s (bonus)",
   "dashboardCourseCount": "{count} kors(ijiet)",
@@ -508,6 +514,24 @@
         "example": "Name"
       }
     }
+  },
+  "@creatorEggBody": {
+    "description": "Creator easter-egg dialog biography line."
+  },
+  "@creatorEggGithub": {
+    "description": "Creator easter-egg GitHub link button."
+  },
+  "@creatorEggLinkedin": {
+    "description": "Creator easter-egg LinkedIn link button."
+  },
+  "@creatorEggOpenFailed": {
+    "description": "SnackBar when the creator profile link cannot be opened."
+  },
+  "@creatorEggTitle": {
+    "description": "Creator easter-egg graffiti dialog title."
+  },
+  "@creatorEggTooltip": {
+    "description": "Tooltip of the top-right AppBar creator button (20 taps opens the easter egg)."
   },
   "@dashboardAllDone": {
     "description": "Dashboard empty-state title when every course is completed."

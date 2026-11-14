@@ -40,6 +40,12 @@
   "coursesRemoveSampleTooltip": "Remover disciplina de exemplo",
   "coursesShownCount": "{count} exibidas",
   "coursesSortOption": "Ordenar: {label}",
+  "creatorEggBody": "Tomi é um programador ambicioso que criou esta app aos 18 anos.",
+  "creatorEggGithub": "GitHub",
+  "creatorEggLinkedin": "LinkedIn",
+  "creatorEggOpenFailed": "Não foi possível abrir o link.",
+  "creatorEggTitle": "Obrigado por usar a minha app!",
+  "creatorEggTooltip": "Sobre o criador",
   "dashboardAllDone": "Tudo concluído",
   "dashboardBonusLogged": "{hours} h registradas (bônus)",
   "dashboardCourseCount": "{count} disciplina(s)",
@@ -509,6 +515,12 @@
       }
     }
   },
+  "@creatorEggBody": {"description": "Creator easter-egg dialog biography line."},
+  "@creatorEggGithub": {"description": "Creator easter-egg GitHub link button."},
+  "@creatorEggLinkedin": {"description": "Creator easter-egg LinkedIn link button."},
+  "@creatorEggOpenFailed": {"description": "SnackBar when the creator profile link cannot be opened."},
+  "@creatorEggTitle": {"description": "Creator easter-egg graffiti dialog title."},
+  "@creatorEggTooltip": {"description": "Tooltip of the top-right AppBar creator button (20 taps opens the easter egg)."},
   "@dashboardAllDone": {
     "description": "Dashboard empty-state title when every course is completed."
   },

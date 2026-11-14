@@ -40,6 +40,12 @@
   "coursesRemoveSampleTooltip": "საცდელი კურსის მოშორება",
   "coursesShownCount": "ნაჩვენებია {count}",
   "coursesSortOption": "დალაგება: {label}",
+  "creatorEggBody": "Tomi მიზანმიმართული პროგრამისტია, რომელმაც ეს აპი 18 წლის ასაკში შექმნა.",
+  "creatorEggGithub": "GitHub",
+  "creatorEggLinkedin": "LinkedIn",
+  "creatorEggOpenFailed": "ბმულის გახსნა ვერ მოხერხდა.",
+  "creatorEggTitle": "გმადლობთ, რომ იყენებთ ჩემს აპს!",
+  "creatorEggTooltip": "შემქმნელის შესახებ",
   "dashboardAllDone": "ყველაფერი დასრულებულია",
   "dashboardBonusLogged": "{hours} სთ ჩაწერილია (ბონუსი)",
   "dashboardCourseCount": "{count} კურსი",
@@ -508,6 +514,24 @@
         "example": "Name"
       }
     }
+  },
+  "@creatorEggBody": {
+    "description": "Creator easter-egg dialog biography line."
+  },
+  "@creatorEggGithub": {
+    "description": "Creator easter-egg GitHub link button."
+  },
+  "@creatorEggLinkedin": {
+    "description": "Creator easter-egg LinkedIn link button."
+  },
+  "@creatorEggOpenFailed": {
+    "description": "SnackBar when the creator profile link cannot be opened."
+  },
+  "@creatorEggTitle": {
+    "description": "Creator easter-egg graffiti dialog title."
+  },
+  "@creatorEggTooltip": {
+    "description": "Tooltip of the top-right AppBar creator button (20 taps opens the easter egg)."
   },
   "@dashboardAllDone": {
     "description": "Dashboard empty-state title when every course is completed."

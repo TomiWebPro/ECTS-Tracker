@@ -43,6 +43,12 @@
   "coursesRemoveSampleTooltip": "Κατάργηση δείγματος μαθήματος",
   "coursesShownCount": "Εμφανίζονται {count}",
   "coursesSortOption": "Ταξινόμηση: {label}",
+  "creatorEggBody": "Ο Tomi είναι ένας παθιασμένος προγραμματιστής που δημιούργησε αυτή την εφαρμογή στα 18 του.",
+  "creatorEggGithub": "GitHub",
+  "creatorEggLinkedin": "LinkedIn",
+  "creatorEggOpenFailed": "Δεν ήταν δυνατό να ανοίξει ο σύνδεσμος.",
+  "creatorEggTitle": "Ευχαριστούμε που χρησιμοποιείτε την εφαρμογή μου!",
+  "creatorEggTooltip": "Σχετικά με τον δημιουργό",
   "dashboardAllDone": "Όλα έτοιμα",
   "dashboardBonusLogged": "Καταγράφηκαν {hours} ώ (μπόνους)",
   "dashboardCourseCount": "{count} μαθήματα",
@@ -570,6 +576,12 @@
       }
     }
   },
+  "@creatorEggBody": {"description": "Creator easter-egg dialog biography line."},
+  "@creatorEggGithub": {"description": "Creator easter-egg GitHub link button."},
+  "@creatorEggLinkedin": {"description": "Creator easter-egg LinkedIn link button."},
+  "@creatorEggOpenFailed": {"description": "SnackBar when the creator profile link cannot be opened."},
+  "@creatorEggTitle": {"description": "Creator easter-egg graffiti dialog title."},
+  "@creatorEggTooltip": {"description": "Tooltip of the top-right AppBar creator button (20 taps opens the easter egg)."},
   "@dashboardAllDone": {
     "description": "Dashboard empty-state title when every course is completed."
   },

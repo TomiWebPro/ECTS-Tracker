@@ -40,6 +40,12 @@
   "coursesRemoveSampleTooltip": "Fjarlægja sýnidæmi",
   "coursesShownCount": "{count} sýnd",
   "coursesSortOption": "Röðun: {label}",
+  "creatorEggBody": "Tomi er verðandi forritari sem bjó til þetta app 18 ára gamall.",
+  "creatorEggGithub": "GitHub",
+  "creatorEggLinkedin": "LinkedIn",
+  "creatorEggOpenFailed": "Ekki tókst að opna tengilinn.",
+  "creatorEggTitle": "Takk fyrir að nota appið mitt!",
+  "creatorEggTooltip": "Um höfundinn",
   "dashboardAllDone": "Allt tilbúið",
   "dashboardBonusLogged": "{hours} klst skráðar (bónus)",
   "dashboardCourseCount": "{count} áfangi/ar",
@@ -508,6 +514,24 @@
         "example": "Name"
       }
     }
+  },
+  "@creatorEggBody": {
+    "description": "Creator easter-egg dialog biography line."
+  },
+  "@creatorEggGithub": {
+    "description": "Creator easter-egg GitHub link button."
+  },
+  "@creatorEggLinkedin": {
+    "description": "Creator easter-egg LinkedIn link button."
+  },
+  "@creatorEggOpenFailed": {
+    "description": "SnackBar when the creator profile link cannot be opened."
+  },
+  "@creatorEggTitle": {
+    "description": "Creator easter-egg graffiti dialog title."
+  },
+  "@creatorEggTooltip": {
+    "description": "Tooltip of the top-right AppBar creator button (20 taps opens the easter egg)."
   },
   "@dashboardAllDone": {
     "description": "Dashboard empty-state title when every course is completed."

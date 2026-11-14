@@ -40,6 +40,12 @@
   "coursesRemoveSampleTooltip": "サンプル科目を削除",
   "coursesShownCount": "{count}件表示",
   "coursesSortOption": "並べ替え: {label}",
+  "creatorEggBody": "Tomiは18歳でこのアプリを作ったプログラマー志望者です。",
+  "creatorEggGithub": "GitHub",
+  "creatorEggLinkedin": "LinkedIn",
+  "creatorEggOpenFailed": "リンクを開けませんでした。",
+  "creatorEggTitle": "アプリを使ってくれてありがとう！",
+  "creatorEggTooltip": "作者について",
   "dashboardAllDone": "すべて完了",
   "dashboardBonusLogged": "{hours}時間記録（ボーナス）",
   "dashboardCourseCount": "{count}科目",
@@ -508,6 +514,24 @@
         "example": "Name"
       }
     }
+  },
+  "@creatorEggBody": {
+    "description": "Creator easter-egg dialog biography line."
+  },
+  "@creatorEggGithub": {
+    "description": "Creator easter-egg GitHub link button."
+  },
+  "@creatorEggLinkedin": {
+    "description": "Creator easter-egg LinkedIn link button."
+  },
+  "@creatorEggOpenFailed": {
+    "description": "SnackBar when the creator profile link cannot be opened."
+  },
+  "@creatorEggTitle": {
+    "description": "Creator easter-egg graffiti dialog title."
+  },
+  "@creatorEggTooltip": {
+    "description": "Tooltip of the top-right AppBar creator button (20 taps opens the easter egg)."
   },
   "@dashboardAllDone": {
     "description": "Dashboard empty-state title when every course is completed."

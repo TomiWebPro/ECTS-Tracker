@@ -43,6 +43,12 @@
   "coursesRemoveSampleTooltip": "Bain an cúrsa samplach",
   "coursesShownCount": "{count} ar taispeáint",
   "coursesSortOption": "Sórtáil: {label}",
+  "creatorEggBody": "Is ríomhchláraitheoir óg geallmhar é Tomi, a chruthaigh an aip seo agus é 18 mbliana d'aois.",
+  "creatorEggGithub": "GitHub",
+  "creatorEggLinkedin": "LinkedIn",
+  "creatorEggOpenFailed": "Níorbh fhéidir an nasc a oscailt.",
+  "creatorEggTitle": "Go raibh maith agat as m'aip a úsáid!",
+  "creatorEggTooltip": "Maidir leis an gcruthaitheoir",
   "dashboardAllDone": "Gach rud déanta",
   "dashboardBonusLogged": "{hours} u logáilte (bónas)",
   "dashboardCourseCount": "{count} gcúrsa",
@@ -551,6 +557,24 @@
         "example": "Name"
       }
     }
+  },
+  "@creatorEggBody": {
+    "description": "Creator easter-egg dialog biography line."
+  },
+  "@creatorEggGithub": {
+    "description": "Creator easter-egg GitHub link button."
+  },
+  "@creatorEggLinkedin": {
+    "description": "Creator easter-egg LinkedIn link button."
+  },
+  "@creatorEggOpenFailed": {
+    "description": "SnackBar when the creator profile link cannot be opened."
+  },
+  "@creatorEggTitle": {
+    "description": "Creator easter-egg graffiti dialog title."
+  },
+  "@creatorEggTooltip": {
+    "description": "Tooltip of the top-right AppBar creator button (20 taps opens the easter egg)."
   },
   "@dashboardAllDone": {
     "description": "Dashboard empty-state title when every course is completed."

@@ -40,6 +40,12 @@
   "coursesRemoveSampleTooltip": "Pašalinti pavyzdinį kursą",
   "coursesShownCount": "Rodoma: {count}",
   "coursesSortOption": "Rikiuoti: {label}",
+  "creatorEggBody": "Tomi – perspektyvus programuotojas, šią programėlę sukūręs būdamas 18-os.",
+  "creatorEggGithub": "GitHub",
+  "creatorEggLinkedin": "LinkedIn",
+  "creatorEggOpenFailed": "Nepavyko atidaryti nuorodos.",
+  "creatorEggTitle": "Ačiū, kad naudojatės mano programėle!",
+  "creatorEggTooltip": "Apie kūrėją",
   "dashboardAllDone": "Viskas atlikta",
   "dashboardBonusLogged": "Užfiksuota {hours} v. (bonusas)",
   "dashboardCourseCount": "{count} kurs.",
@@ -508,6 +514,24 @@
         "example": "Name"
       }
     }
+  },
+  "@creatorEggBody": {
+    "description": "Creator easter-egg dialog biography line."
+  },
+  "@creatorEggGithub": {
+    "description": "Creator easter-egg GitHub link button."
+  },
+  "@creatorEggLinkedin": {
+    "description": "Creator easter-egg LinkedIn link button."
+  },
+  "@creatorEggOpenFailed": {
+    "description": "SnackBar when the creator profile link cannot be opened."
+  },
+  "@creatorEggTitle": {
+    "description": "Creator easter-egg graffiti dialog title."
+  },
+  "@creatorEggTooltip": {
+    "description": "Tooltip of the top-right AppBar creator button (20 taps opens the easter egg)."
   },
   "@dashboardAllDone": {
     "description": "Dashboard empty-state title when every course is completed."

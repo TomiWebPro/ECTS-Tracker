@@ -43,6 +43,12 @@
   "coursesRemoveSampleTooltip": "Выдаліць прыклад-курс",
   "coursesShownCount": "Паказана {count}",
   "coursesSortOption": "Сартаванне: {label}",
+  "creatorEggBody": "Tomi — мэтанакіраваны праграміст, які стварыў гэты дадатак у 18 гадоў.",
+  "creatorEggGithub": "GitHub",
+  "creatorEggLinkedin": "LinkedIn",
+  "creatorEggOpenFailed": "Не ўдалося адкрыць спасылку.",
+  "creatorEggTitle": "Дзякуй, што карыстаецеся маім дадаткам!",
+  "creatorEggTooltip": "Пра стваральніка",
   "dashboardAllDone": "Усё гатова",
   "dashboardBonusLogged": "Запісана {hours} г (бонус)",
   "dashboardCourseCount": "{count} курс(аў)",
@@ -570,6 +576,12 @@
       }
     }
   },
+  "@creatorEggBody": {"description": "Creator easter-egg dialog biography line."},
+  "@creatorEggGithub": {"description": "Creator easter-egg GitHub link button."},
+  "@creatorEggLinkedin": {"description": "Creator easter-egg LinkedIn link button."},
+  "@creatorEggOpenFailed": {"description": "SnackBar when the creator profile link cannot be opened."},
+  "@creatorEggTitle": {"description": "Creator easter-egg graffiti dialog title."},
+  "@creatorEggTooltip": {"description": "Tooltip of the top-right AppBar creator button (20 taps opens the easter egg)."},
   "@dashboardAllDone": {
     "description": "Dashboard empty-state title when every course is completed."
   },

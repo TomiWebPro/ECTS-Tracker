@@ -43,6 +43,12 @@
   "coursesRemoveSampleTooltip": "Հեռացնել օրինակելի դասընթացը",
   "coursesShownCount": "Ցուցադրվում է {count}",
   "coursesSortOption": "Դասավորել՝ {label}",
+  "creatorEggBody": "Tomi-ն խոստումնալից երիտասարդ ծրագրավորող է, ով ստեղծել է այս հավելվածը 18 տարեկանում։",
+  "creatorEggGithub": "GitHub",
+  "creatorEggLinkedin": "LinkedIn",
+  "creatorEggOpenFailed": "Հղումը չհաջողվեց բացել։",
+  "creatorEggTitle": "Շնորհակալություն իմ հավելվածն օգտագործելու համար՜",
+  "creatorEggTooltip": "Ստեղծողի մասին",
   "dashboardAllDone": "Ամեն ինչ ավարտված է",
   "dashboardBonusLogged": "{hours} ժ գրանցված է (բոնուս)",
   "dashboardCourseCount": "{count} դասընթաց",
@@ -551,6 +557,24 @@
         "example": "Name"
       }
     }
+  },
+  "@creatorEggBody": {
+    "description": "Creator easter-egg dialog biography line."
+  },
+  "@creatorEggGithub": {
+    "description": "Creator easter-egg GitHub link button."
+  },
+  "@creatorEggLinkedin": {
+    "description": "Creator easter-egg LinkedIn link button."
+  },
+  "@creatorEggOpenFailed": {
+    "description": "SnackBar when the creator profile link cannot be opened."
+  },
+  "@creatorEggTitle": {
+    "description": "Creator easter-egg graffiti dialog title."
+  },
+  "@creatorEggTooltip": {
+    "description": "Tooltip of the top-right AppBar creator button (20 taps opens the easter egg)."
   },
   "@dashboardAllDone": {
     "description": "Dashboard empty-state title when every course is completed."

@@ -43,6 +43,12 @@
   "coursesRemoveSampleTooltip": "Kendu lagin-ikasgaia",
   "coursesShownCount": "{count} erakusten",
   "coursesSortOption": "Ordenatu: {label}",
+  "creatorEggBody": "Tomi programatzaile grinatsu bat da, aplikazio hau 18 urterekin sortu zuena.",
+  "creatorEggGithub": "GitHub",
+  "creatorEggLinkedin": "LinkedIn",
+  "creatorEggOpenFailed": "Ezin izan da esteka ireki.",
+  "creatorEggTitle": "Eskerrik asko nire aplikazioa erabiltzeagatik!",
+  "creatorEggTooltip": "Sortzaileari buruz",
   "dashboardAllDone": "Guztia eginda",
   "dashboardBonusLogged": "{hours} h erregistratu (extra)",
   "dashboardCourseCount": "{count} ikasgai",
@@ -551,6 +557,24 @@
         "example": "Name"
       }
     }
+  },
+  "@creatorEggBody": {
+    "description": "Creator easter-egg dialog biography line."
+  },
+  "@creatorEggGithub": {
+    "description": "Creator easter-egg GitHub link button."
+  },
+  "@creatorEggLinkedin": {
+    "description": "Creator easter-egg LinkedIn link button."
+  },
+  "@creatorEggOpenFailed": {
+    "description": "SnackBar when the creator profile link cannot be opened."
+  },
+  "@creatorEggTitle": {
+    "description": "Creator easter-egg graffiti dialog title."
+  },
+  "@creatorEggTooltip": {
+    "description": "Tooltip of the top-right AppBar creator button (20 taps opens the easter egg)."
   },
   "@dashboardAllDone": {
     "description": "Dashboard empty-state title when every course is completed."

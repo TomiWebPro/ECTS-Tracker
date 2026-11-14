@@ -43,6 +43,12 @@
   "coursesRemoveSampleTooltip": "Örnek dersi kaldır",
   "coursesShownCount": "{count} gösteriliyor",
   "coursesSortOption": "Sıralama: {label}",
+  "creatorEggBody": "Tomi, bu uygulamayı 18 yaşında oluşturan tutkulu bir programcıdır.",
+  "creatorEggGithub": "GitHub",
+  "creatorEggLinkedin": "LinkedIn",
+  "creatorEggOpenFailed": "Bağlantı açılamadı.",
+  "creatorEggTitle": "Uygulamamı kullandığın için teşekkürler!",
+  "creatorEggTooltip": "Oluşturan hakkında",
   "dashboardAllDone": "Tümü tamamlandı",
   "dashboardBonusLogged": "{hours} sa kaydedildi (bonus)",
   "dashboardCourseCount": "{count} ders",
@@ -552,6 +558,12 @@
       }
     }
   },
+  "@creatorEggBody": {"description": "Creator easter-egg dialog biography line."},
+  "@creatorEggGithub": {"description": "Creator easter-egg GitHub link button."},
+  "@creatorEggLinkedin": {"description": "Creator easter-egg LinkedIn link button."},
+  "@creatorEggOpenFailed": {"description": "SnackBar when the creator profile link cannot be opened."},
+  "@creatorEggTitle": {"description": "Creator easter-egg graffiti dialog title."},
+  "@creatorEggTooltip": {"description": "Tooltip of the top-right AppBar creator button (20 taps opens the easter egg)."},
   "@dashboardAllDone": {
     "description": "Dashboard empty-state title when every course is completed."
   },

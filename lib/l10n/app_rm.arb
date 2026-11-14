@@ -40,6 +40,12 @@
   "coursesRemoveSampleTooltip": "Allontanar il curs d'exempel",
   "coursesShownCount": "{count} mussads",
   "coursesSortOption": "Zavrar: {label}",
+  "creatorEggBody": "Tomi è in programmadur appassiunà che ha creà questa app cun 18 onns.",
+  "creatorEggGithub": "GitHub",
+  "creatorEggLinkedin": "LinkedIn",
+  "creatorEggOpenFailed": "Betg pussibel d'avrir la colliaziun.",
+  "creatorEggTitle": "Grazia che ti dovras mia app!",
+  "creatorEggTooltip": "Davart il creatur",
   "dashboardAllDone": "Tut fatg",
   "dashboardBonusLogged": "{hours} u protocolladas (bonus)",
   "dashboardCourseCount": "{count} curs(s)",
@@ -509,6 +515,12 @@
       }
     }
   },
+  "@creatorEggBody": {"description": "Creator easter-egg dialog biography line."},
+  "@creatorEggGithub": {"description": "Creator easter-egg GitHub link button."},
+  "@creatorEggLinkedin": {"description": "Creator easter-egg LinkedIn link button."},
+  "@creatorEggOpenFailed": {"description": "SnackBar when the creator profile link cannot be opened."},
+  "@creatorEggTitle": {"description": "Creator easter-egg graffiti dialog title."},
+  "@creatorEggTooltip": {"description": "Tooltip of the top-right AppBar creator button (20 taps opens the easter egg)."},
   "@dashboardAllDone": {
     "description": "Dashboard empty-state title when every course is completed."
   },

@@ -40,6 +40,12 @@
   "coursesRemoveSampleTooltip": "샘플 과목 삭제",
   "coursesShownCount": "{count}개 표시",
   "coursesSortOption": "정렬: {label}",
+  "creatorEggBody": "Tomi는 18세에 이 앱을 만든 프로그래머 지망생입니다.",
+  "creatorEggGithub": "GitHub",
+  "creatorEggLinkedin": "LinkedIn",
+  "creatorEggOpenFailed": "링크를 열 수 없습니다.",
+  "creatorEggTitle": "제 앱을 사용해 주셔서 감사합니다!",
+  "creatorEggTooltip": "만든 사람 정보",
   "dashboardAllDone": "모두 완료",
   "dashboardBonusLogged": "{hours}시간 기록됨(보너스)",
   "dashboardCourseCount": "{count}개 과목",
@@ -508,6 +514,24 @@
         "example": "Name"
       }
     }
+  },
+  "@creatorEggBody": {
+    "description": "Creator easter-egg dialog biography line."
+  },
+  "@creatorEggGithub": {
+    "description": "Creator easter-egg GitHub link button."
+  },
+  "@creatorEggLinkedin": {
+    "description": "Creator easter-egg LinkedIn link button."
+  },
+  "@creatorEggOpenFailed": {
+    "description": "SnackBar when the creator profile link cannot be opened."
+  },
+  "@creatorEggTitle": {
+    "description": "Creator easter-egg graffiti dialog title."
+  },
+  "@creatorEggTooltip": {
+    "description": "Tooltip of the top-right AppBar creator button (20 taps opens the easter egg)."
   },
   "@dashboardAllDone": {
     "description": "Dashboard empty-state title when every course is completed."

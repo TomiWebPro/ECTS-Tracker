@@ -40,6 +40,12 @@
   "coursesRemoveSampleTooltip": "Noņemt parauga kursu",
   "coursesShownCount": "Rādīti: {count}",
   "coursesSortOption": "Kārtot: {label}",
+  "creatorEggBody": "Tomi ir topošais programmētājs, kurš izveidoja šo lietotni 18 gadu vecumā.",
+  "creatorEggGithub": "GitHub",
+  "creatorEggLinkedin": "LinkedIn",
+  "creatorEggOpenFailed": "Neizdevās atvērt saiti.",
+  "creatorEggTitle": "Paldies, ka izmanto manu lietotni!",
+  "creatorEggTooltip": "Par autoru",
   "dashboardAllDone": "Viss paveikts",
   "dashboardBonusLogged": "Reģistrētas {hours} h (bonuss)",
   "dashboardCourseCount": "{count} kurss(i)",
@@ -508,6 +514,24 @@
         "example": "Name"
       }
     }
+  },
+  "@creatorEggBody": {
+    "description": "Creator easter-egg dialog biography line."
+  },
+  "@creatorEggGithub": {
+    "description": "Creator easter-egg GitHub link button."
+  },
+  "@creatorEggLinkedin": {
+    "description": "Creator easter-egg LinkedIn link button."
+  },
+  "@creatorEggOpenFailed": {
+    "description": "SnackBar when the creator profile link cannot be opened."
+  },
+  "@creatorEggTitle": {
+    "description": "Creator easter-egg graffiti dialog title."
+  },
+  "@creatorEggTooltip": {
+    "description": "Tooltip of the top-right AppBar creator button (20 taps opens the easter egg)."
   },
   "@dashboardAllDone": {
     "description": "Dashboard empty-state title when every course is completed."
