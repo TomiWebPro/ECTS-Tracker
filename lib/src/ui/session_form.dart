@@ -257,6 +257,7 @@ class _SessionFormDialogState extends ConsumerState<SessionFormDialog> {
   ) {
     // Hoisted so the null-guard below promotes (fields never promote).
     final errorText = _error;
+    final glassMenu = ref.watch(glassEnabledProvider);
     // An active timer is driven from here: same shared controls as the
     // standalone active sheet, closing the dialog on finish.
     if (timer != null) {
@@ -276,23 +277,40 @@ class _SessionFormDialogState extends ConsumerState<SessionFormDialog> {
             padding: EdgeInsets.only(bottom: 8),
             child: LinearProgressIndicator(),
           ),
-        DropdownButtonFormField<int>(
-          key: const Key('studyTimerCourseDropdown'),
-          initialValue: courseId,
-          decoration:
-              InputDecoration(labelText: l10n.studyTimerCourseLabel),
-          items: [
-            for (final c in courses)
-              DropdownMenuItem<int>(
-                value: c.id,
-                child: Text(c.name),
-              ),
-          ],
-          onChanged: courses.isEmpty
-              ? null
-              : (v) => setState(() => _courseId = v),
-          validator: (v) =>
-              v == null ? l10n.studyTimerNoCourseError : null,
+        GlassInkClear(
+          enabled: glassMenu,
+          child: DropdownButtonFormField<int>(
+            key: const Key('studyTimerCourseDropdown'),
+            initialValue: courseId,
+            isExpanded: glassMenu,
+            decoration: InputDecoration(labelText: l10n.studyTimerCourseLabel),
+            dropdownColor: glassMenu ? glassMenuColor(context) : null,
+            borderRadius: glassMenu
+                ? BorderRadius.circular(AppSizes.glassMenuRadius)
+                : null,
+            focusColor: glassMenu ? Colors.transparent : null,
+            elevation: glassMenu ? AppSizes.glassMenuElevation.toInt() : 8,
+            menuMaxHeight: glassMenu ? AppSizes.glassMenuMaxHeight : null,
+            selectedItemBuilder: glassMenu
+                ? (context) => [for (final c in courses) Text(c.name)]
+                : null,
+            items: [
+              for (final c in courses)
+                DropdownMenuItem<int>(
+                  value: c.id,
+                  child: glassMenu
+                      ? GlassMenuRow(
+                          selected: courseId == c.id,
+                          child: Text(c.name),
+                        )
+                      : Text(c.name),
+                ),
+            ],
+            onChanged: courses.isEmpty
+                ? null
+                : (v) => setState(() => _courseId = v),
+            validator: (v) => v == null ? l10n.studyTimerNoCourseError : null,
+          ),
         ),
         if (courses.isEmpty && !coursesAsync.isLoading)
           Padding(
@@ -300,17 +318,14 @@ class _SessionFormDialogState extends ConsumerState<SessionFormDialog> {
             child: Text(
               l10n.studyTimerNoCoursesHint,
               key: const Key('studyTimerNoCoursesHint'),
-              style: TextStyle(
-                color: Theme.of(context).colorScheme.error,
-              ),
+              style: TextStyle(color: Theme.of(context).colorScheme.error),
             ),
           ),
         const SizedBox(height: 12),
         TextFormField(
           key: const Key('studyTimerNotesField'),
           controller: _notesController,
-          decoration:
-              InputDecoration(labelText: l10n.sessionFormNotesLabel),
+          decoration: InputDecoration(labelText: l10n.sessionFormNotesLabel),
           maxLines: 2,
         ),
         const SizedBox(height: 12),
@@ -330,9 +345,7 @@ class _SessionFormDialogState extends ConsumerState<SessionFormDialog> {
           Text(
             localizeRepoMessage(errorText, l10n),
             key: const Key('studyTimerFormError'),
-            style: TextStyle(
-              color: Theme.of(context).colorScheme.error,
-            ),
+            style: TextStyle(color: Theme.of(context).colorScheme.error),
           ),
         ],
       ],
@@ -396,8 +409,7 @@ class _SessionFormDialogState extends ConsumerState<SessionFormDialog> {
           else
             Form(
               key: _formKey,
-              child: _sessionFormBody(
-                  context, l10n, coursesAsync, courses),
+              child: _sessionFormBody(context, l10n, coursesAsync, courses),
             ),
         ],
       ),
@@ -432,8 +444,12 @@ class _SessionFormDialogState extends ConsumerState<SessionFormDialog> {
     if (!glass) {
       return AlertDialog(title: title, content: content, actions: actions);
     }
-    return glassAlert(context,
-        title: title, content: content, actions: actions);
+    return glassAlert(
+      context,
+      title: title,
+      content: content,
+      actions: actions,
+    );
   }
 
   Widget _sessionFormBody(
@@ -453,135 +469,134 @@ class _SessionFormDialogState extends ConsumerState<SessionFormDialog> {
       mainAxisSize: MainAxisSize.min,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-              if (coursesAsync.isLoading)
-                const Padding(
-                  padding: EdgeInsets.only(bottom: 8),
-                  child: LinearProgressIndicator(),
+        if (coursesAsync.isLoading)
+          const Padding(
+            padding: EdgeInsets.only(bottom: 8),
+            child: LinearProgressIndicator(),
+          ),
+        GlassInkClear(
+          enabled: glassMenu,
+          child: DropdownButtonFormField<int>(
+            key: const Key('sessionCourseDropdown'),
+            initialValue: courseId,
+            // Glass dialogs (ECTS-064) are narrower than AlertDialog:
+            // fill the content width so long course names ellipsize
+            // instead of overflowing it. Off keeps the legacy layout.
+            isExpanded: glassMenu,
+            decoration: InputDecoration(labelText: l10n.sessionFormCourseLabel),
+            // ECTS-074 Apple polish (glass-only): frosted rounded menu,
+            // text-only selection. Legacy keeps defaults. Closed-face
+            // stays plain text via selectedItemBuilder so no menu
+            // padding leaks into the field (ECTS-074d).
+            dropdownColor: glassMenu ? glassMenuColor(context) : null,
+            borderRadius: glassMenu
+                ? BorderRadius.circular(AppSizes.glassMenuRadius)
+                : null,
+            focusColor: glassMenu ? Colors.transparent : null,
+            elevation: glassMenu ? AppSizes.glassMenuElevation.toInt() : 8,
+            menuMaxHeight: glassMenu ? AppSizes.glassMenuMaxHeight : null,
+            selectedItemBuilder: glassMenu
+                ? (context) => [for (final c in courses) Text(c.name)]
+                : null,
+            items: [
+              for (final c in courses)
+                DropdownMenuItem<int>(
+                  value: c.id,
+                  child: glassMenu
+                      ? GlassMenuRow(
+                          selected: courseId == c.id,
+                          child: Text(c.name),
+                        )
+                      : Text(c.name),
                 ),
-              DropdownButtonFormField<int>(
-                key: const Key('sessionCourseDropdown'),
-                initialValue: courseId,
-                // Glass dialogs (ECTS-064) are narrower than AlertDialog:
-                // fill the content width so long course names ellipsize
-                // instead of overflowing it. Off keeps the legacy layout.
-                isExpanded: glassMenu,
-                decoration: InputDecoration(labelText: l10n.sessionFormCourseLabel),
-                // ECTS-074 Apple polish (glass-only): frosted rounded menu,
-                // text-only selection. Legacy keeps defaults. Closed-face
-                // stays plain text via selectedItemBuilder so no menu
-                // padding leaks into the field (ECTS-074d).
-                dropdownColor:
-                    glassMenu ? glassMenuColor(context) : null,
-                borderRadius: glassMenu
-                    ? BorderRadius.circular(AppSizes.glassMenuRadius)
-                    : null,
-                menuMaxHeight:
-                    glassMenu ? AppSizes.glassMenuMaxHeight : null,
-                selectedItemBuilder: glassMenu
-                    ? (context) => [
-                          for (final c in courses) Text(c.name),
-                        ]
-                    : null,
-                items: [
-                  for (final c in courses)
-                    DropdownMenuItem<int>(
-                      value: c.id,
-                      child: glassMenu
-                          ? GlassMenuRow(
-                              selected: courseId == c.id,
-                              child: Text(c.name),
-                            )
-                          : Text(c.name),
-                    ),
-                ],
-                onChanged: courses.isEmpty
-                    ? null
-                    : (v) => setState(() => _courseId = v),
-                validator: (v) =>
-                    v == null ? l10n.validationSessionCourseRequired : null,
-              ),
-              if (courses.isEmpty && !coursesAsync.isLoading)
-                Padding(
-                  padding: const EdgeInsets.only(top: 4),
-                  child: Text(
-                    l10n.sessionFormNoCoursesHint,
-                    key: const Key('sessionNoCoursesHint'),
-                    style: TextStyle(
-                      color: Theme.of(context).colorScheme.error,
-                    ),
-                  ),
-                ),
-              const SizedBox(height: 12),
-              Row(
-                children: [
-                  Expanded(
-                    child: TextFormField(
-                      key: const Key('sessionHoursField'),
-                      controller: _hoursController,
-                      decoration: InputDecoration(
-                        labelText: l10n.sessionFormHoursLabel,
-                      ),
-                      keyboardType: TextInputType.number,
-                      inputFormatters: [FilteringTextInputFormatter.digitsOnly],
-                      onChanged: (_) => setState(() {}),
-                    ),
-                  ),
-                  const SizedBox(width: 12),
-                  Expanded(
-                    child: TextFormField(
-                      key: const Key('sessionMinutesField'),
-                      controller: _minutesController,
-                      decoration: InputDecoration(
-                        labelText: l10n.sessionFormMinutesLabel,
-                      ),
-                      keyboardType: TextInputType.number,
-                      inputFormatters: [FilteringTextInputFormatter.digitsOnly],
-                      onChanged: (_) => setState(() {}),
-                      validator: (_) {
-                        if (_totalMinutes <= 0) {
-                          return l10n.validationSessionDurationRequired;
-                        }
-                        return null;
-                      },
-                    ),
-                  ),
-                ],
-              ),
-              Padding(
-                padding: const EdgeInsets.only(top: 4),
-                child: Text(
-                  l10n.sessionFormTotalHours(
-                    formatDecimal(_totalMinutes / 60.0, 2,
-                        locale: l10n.localeName),
-                  ),
-                  key: const Key('sessionTotalDuration'),
-                  style: Theme.of(context).textTheme.bodySmall,
-                ),
-              ),
-              const SizedBox(height: 12),
-              OutlinedButton.icon(
-                key: const Key('sessionDateButton'),
-                onPressed: _pickDate,
-                icon: const Icon(Icons.calendar_today),
-                label: Text(l10n.sessionFormDateButton(
-                    _dateLabel(_date, l10n.localeName))),
-              ),
-              const SizedBox(height: 8),
-              TextFormField(
-                key: const Key('sessionNotesField'),
-                controller: _notesController,
-                decoration: InputDecoration(labelText: l10n.sessionFormNotesLabel),
-                maxLines: 2,
-              ),
-              if (errorText != null) ...[
-                const SizedBox(height: 8),
-                Text(
-                  localizeRepoMessage(errorText, l10n),
-                  key: const Key('sessionFormError'),
-                  style: TextStyle(color: Theme.of(context).colorScheme.error),
-                ),
-              ],
             ],
+            onChanged: courses.isEmpty
+                ? null
+                : (v) => setState(() => _courseId = v),
+            validator: (v) =>
+                v == null ? l10n.validationSessionCourseRequired : null,
+          ),
+        ),
+        if (courses.isEmpty && !coursesAsync.isLoading)
+          Padding(
+            padding: const EdgeInsets.only(top: 4),
+            child: Text(
+              l10n.sessionFormNoCoursesHint,
+              key: const Key('sessionNoCoursesHint'),
+              style: TextStyle(color: Theme.of(context).colorScheme.error),
+            ),
+          ),
+        const SizedBox(height: 12),
+        Row(
+          children: [
+            Expanded(
+              child: TextFormField(
+                key: const Key('sessionHoursField'),
+                controller: _hoursController,
+                decoration: InputDecoration(
+                  labelText: l10n.sessionFormHoursLabel,
+                ),
+                keyboardType: TextInputType.number,
+                inputFormatters: [FilteringTextInputFormatter.digitsOnly],
+                onChanged: (_) => setState(() {}),
+              ),
+            ),
+            const SizedBox(width: 12),
+            Expanded(
+              child: TextFormField(
+                key: const Key('sessionMinutesField'),
+                controller: _minutesController,
+                decoration: InputDecoration(
+                  labelText: l10n.sessionFormMinutesLabel,
+                ),
+                keyboardType: TextInputType.number,
+                inputFormatters: [FilteringTextInputFormatter.digitsOnly],
+                onChanged: (_) => setState(() {}),
+                validator: (_) {
+                  if (_totalMinutes <= 0) {
+                    return l10n.validationSessionDurationRequired;
+                  }
+                  return null;
+                },
+              ),
+            ),
+          ],
+        ),
+        Padding(
+          padding: const EdgeInsets.only(top: 4),
+          child: Text(
+            l10n.sessionFormTotalHours(
+              formatDecimal(_totalMinutes / 60.0, 2, locale: l10n.localeName),
+            ),
+            key: const Key('sessionTotalDuration'),
+            style: Theme.of(context).textTheme.bodySmall,
+          ),
+        ),
+        const SizedBox(height: 12),
+        OutlinedButton.icon(
+          key: const Key('sessionDateButton'),
+          onPressed: _pickDate,
+          icon: const Icon(Icons.calendar_today),
+          label: Text(
+            l10n.sessionFormDateButton(_dateLabel(_date, l10n.localeName)),
+          ),
+        ),
+        const SizedBox(height: 8),
+        TextFormField(
+          key: const Key('sessionNotesField'),
+          controller: _notesController,
+          decoration: InputDecoration(labelText: l10n.sessionFormNotesLabel),
+          maxLines: 2,
+        ),
+        if (errorText != null) ...[
+          const SizedBox(height: 8),
+          Text(
+            localizeRepoMessage(errorText, l10n),
+            key: const Key('sessionFormError'),
+            style: TextStyle(color: Theme.of(context).colorScheme.error),
+          ),
+        ],
+      ],
     );
   }
 }
