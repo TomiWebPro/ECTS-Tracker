@@ -124,6 +124,7 @@ Conventions: `AGENTS.md` (binding, incl. new-locale policy §6) · `README.md` (
 | ECTS-099 | M11 | Timer fullscreen polish: centered clock, fat bottom buttons, exit-fullscreen icon | done | analyze clean; affected 39/39; 2026-11-14 |
 | ECTS-100 | M11 | Glass-mode timer as floating liquid-glass pill; drop in-flow duplicate + top gap | done | analyze clean; affected 36/36 + new banner lens test 2/2; 2026-11-14 |
 | ECTS-101 | M11 | Fullscreen timer hides the notes field (focus view) | done | analyze clean; session_timer_tab + glass_timer_banner 5/5; 2026-11-14 |
+| ECTS-102 | M11 | Timer banner spacing: glass reserves top space, classic balances top/bottom gaps | done | analyze clean; timer_banner_spacing 4/4 + timer tab/banner 5/5; 2026-11-14 |
 
 Note: ECTS-033/034 were announced in a 2026-11-05 log but never got rows; IDs skipped, do NOT renumber.
 
@@ -142,6 +143,8 @@ trims (different semantics per surface); hold-to-confirm timer test
 (private widget, covered indirectly by settings pumps).
 
 ## Progress log (newest on top)
+
+- 2026-11-14: ECTS-102 done (banner spacing: glass shell reserves measured pill height + chrome gap at page top so scroll-top content clears the overlay; classic pill flush under AppBar with bottom breathing room; new timer_banner_spacing_test 4/4; analyze clean).
 
 - 2026-11-14: ECTS-100 done (glass timer: banner renders frosted secondaryContainer lens w/ chrome shadow, content scrolls under; removed in-flow duplicate so single overlay pill at top inset w/o extra pad; new glass_timer_banner_test 2/2; analyze clean; affected 36/36).
 
