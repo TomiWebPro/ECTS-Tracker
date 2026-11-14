@@ -176,6 +176,25 @@ class AppLocalizationsSl extends AppLocalizations {
   }
 
   @override
+  String get creatorEggBody =>
+      'Tomi je zagnan programer, ki je to aplikacijo ustvaril pri 18 letih.';
+
+  @override
+  String get creatorEggGithub => 'GitHub';
+
+  @override
+  String get creatorEggLinkedin => 'LinkedIn';
+
+  @override
+  String get creatorEggOpenFailed => 'Povezave ni bilo mogoče odpreti.';
+
+  @override
+  String get creatorEggTitle => 'Hvala, da uporabljaš mojo aplikacijo!';
+
+  @override
+  String get creatorEggTooltip => 'O ustvarjalcu';
+
+  @override
   String get dashboardAllDone => 'Vse opravljeno';
 
   @override

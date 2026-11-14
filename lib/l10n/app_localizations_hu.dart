@@ -176,6 +176,25 @@ class AppLocalizationsHu extends AppLocalizations {
   }
 
   @override
+  String get creatorEggBody =>
+      'Tomi egy ambiciózus programozó, aki 18 évesen készítette ezt az appot.';
+
+  @override
+  String get creatorEggGithub => 'GitHub';
+
+  @override
+  String get creatorEggLinkedin => 'LinkedIn';
+
+  @override
+  String get creatorEggOpenFailed => 'A hivatkozást nem sikerült megnyitni.';
+
+  @override
+  String get creatorEggTitle => 'Köszönöm, hogy használod az appomat!';
+
+  @override
+  String get creatorEggTooltip => 'A készítőről';
+
+  @override
   String get dashboardAllDone => 'Minden kész';
 
   @override

@@ -175,6 +175,25 @@ class AppLocalizationsVi extends AppLocalizations {
   }
 
   @override
+  String get creatorEggBody =>
+      'Tomi là một lập trình viên đầy đam mê đã tạo ra ứng dụng này năm 18 tuổi.';
+
+  @override
+  String get creatorEggGithub => 'GitHub';
+
+  @override
+  String get creatorEggLinkedin => 'LinkedIn';
+
+  @override
+  String get creatorEggOpenFailed => 'Không thể mở liên kết.';
+
+  @override
+  String get creatorEggTitle => 'Cảm ơn bạn đã dùng ứng dụng của mình!';
+
+  @override
+  String get creatorEggTooltip => 'Về tác giả';
+
+  @override
   String get dashboardAllDone => 'Hoàn tất';
 
   @override

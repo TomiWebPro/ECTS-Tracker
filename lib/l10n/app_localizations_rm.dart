@@ -174,6 +174,25 @@ class AppLocalizationsRm extends AppLocalizations {
   }
 
   @override
+  String get creatorEggBody =>
+      'Tomi è in programmadur appassiunà che ha creà questa app cun 18 onns.';
+
+  @override
+  String get creatorEggGithub => 'GitHub';
+
+  @override
+  String get creatorEggLinkedin => 'LinkedIn';
+
+  @override
+  String get creatorEggOpenFailed => 'Betg pussibel d\'avrir la colliaziun.';
+
+  @override
+  String get creatorEggTitle => 'Grazia che ti dovras mia app!';
+
+  @override
+  String get creatorEggTooltip => 'Davart il creatur';
+
+  @override
   String get dashboardAllDone => 'Tut fatg';
 
   @override

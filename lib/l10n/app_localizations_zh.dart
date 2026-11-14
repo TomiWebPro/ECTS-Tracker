@@ -173,6 +173,24 @@ class AppLocalizationsZh extends AppLocalizations {
   }
 
   @override
+  String get creatorEggBody => '杨子轩是一位充满热情的年轻程序员，在 18 岁时创建了这款应用。';
+
+  @override
+  String get creatorEggGithub => 'GitHub';
+
+  @override
+  String get creatorEggLinkedin => 'LinkedIn';
+
+  @override
+  String get creatorEggOpenFailed => '无法打开链接。';
+
+  @override
+  String get creatorEggTitle => '感谢使用我的应用！';
+
+  @override
+  String get creatorEggTooltip => '关于作者';
+
+  @override
   String get dashboardAllDone => '全部完成';
 
   @override
@@ -1644,6 +1662,24 @@ class AppLocalizationsZhHans extends AppLocalizationsZh {
   }
 
   @override
+  String get creatorEggBody => '杨子轩是一位充满热情的年轻程序员，在 18 岁时创建了这款应用。';
+
+  @override
+  String get creatorEggGithub => 'GitHub';
+
+  @override
+  String get creatorEggLinkedin => 'LinkedIn';
+
+  @override
+  String get creatorEggOpenFailed => '无法打开链接。';
+
+  @override
+  String get creatorEggTitle => '感谢使用我的应用！';
+
+  @override
+  String get creatorEggTooltip => '关于作者';
+
+  @override
   String get dashboardAllDone => '全部完成';
 
   @override
@@ -3032,6 +3068,24 @@ class AppLocalizationsZhHant extends AppLocalizationsZh {
   String coursesSortOption(String label) {
     return '排序：$label';
   }
+
+  @override
+  String get creatorEggBody => '楊子軒是一位充滿熱情的年輕程式設計師，在 18 歲時建立了這款應用程式。';
+
+  @override
+  String get creatorEggGithub => 'GitHub';
+
+  @override
+  String get creatorEggLinkedin => 'LinkedIn';
+
+  @override
+  String get creatorEggOpenFailed => '無法開啟連結。';
+
+  @override
+  String get creatorEggTitle => '感謝使用我的應用程式！';
+
+  @override
+  String get creatorEggTooltip => '關於作者';
 
   @override
   String get dashboardAllDone => '全部完成';

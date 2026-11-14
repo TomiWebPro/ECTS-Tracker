@@ -176,6 +176,25 @@ class AppLocalizationsNb extends AppLocalizations {
   }
 
   @override
+  String get creatorEggBody =>
+      'Tomi er en ambisiøs programmerer som laget denne appen som 18-åring.';
+
+  @override
+  String get creatorEggGithub => 'GitHub';
+
+  @override
+  String get creatorEggLinkedin => 'LinkedIn';
+
+  @override
+  String get creatorEggOpenFailed => 'Kunne ikke åpne lenken.';
+
+  @override
+  String get creatorEggTitle => 'Takk for at du bruker appen min!';
+
+  @override
+  String get creatorEggTooltip => 'Om skaperen';
+
+  @override
   String get dashboardAllDone => 'Alt ferdig';
 
   @override

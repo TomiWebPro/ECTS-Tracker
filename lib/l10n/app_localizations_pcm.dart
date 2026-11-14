@@ -176,6 +176,25 @@ class AppLocalizationsPcm extends AppLocalizations {
   }
 
   @override
+  String get creatorEggBody =>
+      'Tomi na programmer wey dey grow, e create dis app wen e dey 18 years.';
+
+  @override
+  String get creatorEggGithub => 'GitHub';
+
+  @override
+  String get creatorEggLinkedin => 'LinkedIn';
+
+  @override
+  String get creatorEggOpenFailed => 'E no fit open di link.';
+
+  @override
+  String get creatorEggTitle => 'Tank you for using my app!';
+
+  @override
+  String get creatorEggTooltip => 'About di pesin wey create am';
+
+  @override
   String get dashboardAllDone => 'All done';
 
   @override

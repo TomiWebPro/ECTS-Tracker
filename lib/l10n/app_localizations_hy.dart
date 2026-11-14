@@ -176,6 +176,26 @@ class AppLocalizationsHy extends AppLocalizations {
   }
 
   @override
+  String get creatorEggBody =>
+      'Tomi-ն խոստումնալից երիտասարդ ծրագրավորող է, ով ստեղծել է այս հավելվածը 18 տարեկանում։';
+
+  @override
+  String get creatorEggGithub => 'GitHub';
+
+  @override
+  String get creatorEggLinkedin => 'LinkedIn';
+
+  @override
+  String get creatorEggOpenFailed => 'Հղումը չհաջողվեց բացել։';
+
+  @override
+  String get creatorEggTitle =>
+      'Շնորհակալություն իմ հավելվածն օգտագործելու համար՜';
+
+  @override
+  String get creatorEggTooltip => 'Ստեղծողի մասին';
+
+  @override
   String get dashboardAllDone => 'Ամեն ինչ ավարտված է';
 
   @override

@@ -175,6 +175,25 @@ class AppLocalizationsSk extends AppLocalizations {
   }
 
   @override
+  String get creatorEggBody =>
+      'Tomi je nádejný programátor, ktorý vytvoril túto aplikáciu ako 18-ročný.';
+
+  @override
+  String get creatorEggGithub => 'GitHub';
+
+  @override
+  String get creatorEggLinkedin => 'LinkedIn';
+
+  @override
+  String get creatorEggOpenFailed => 'Odkaz sa nepodarilo otvoriť.';
+
+  @override
+  String get creatorEggTitle => 'Ďakujem, že používaš moju aplikáciu!';
+
+  @override
+  String get creatorEggTooltip => 'O tvorcovi';
+
+  @override
   String get dashboardAllDone => 'Všetko hotové';
 
   @override

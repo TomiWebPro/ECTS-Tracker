@@ -176,6 +176,25 @@ class AppLocalizationsBe extends AppLocalizations {
   }
 
   @override
+  String get creatorEggBody =>
+      'Tomi — мэтанакіраваны праграміст, які стварыў гэты дадатак у 18 гадоў.';
+
+  @override
+  String get creatorEggGithub => 'GitHub';
+
+  @override
+  String get creatorEggLinkedin => 'LinkedIn';
+
+  @override
+  String get creatorEggOpenFailed => 'Не ўдалося адкрыць спасылку.';
+
+  @override
+  String get creatorEggTitle => 'Дзякуй, што карыстаецеся маім дадаткам!';
+
+  @override
+  String get creatorEggTooltip => 'Пра стваральніка';
+
+  @override
   String get dashboardAllDone => 'Усё гатова';
 
   @override

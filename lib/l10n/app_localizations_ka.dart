@@ -176,6 +176,25 @@ class AppLocalizationsKa extends AppLocalizations {
   }
 
   @override
+  String get creatorEggBody =>
+      'Tomi მიზანმიმართული პროგრამისტია, რომელმაც ეს აპი 18 წლის ასაკში შექმნა.';
+
+  @override
+  String get creatorEggGithub => 'GitHub';
+
+  @override
+  String get creatorEggLinkedin => 'LinkedIn';
+
+  @override
+  String get creatorEggOpenFailed => 'ბმულის გახსნა ვერ მოხერხდა.';
+
+  @override
+  String get creatorEggTitle => 'გმადლობთ, რომ იყენებთ ჩემს აპს!';
+
+  @override
+  String get creatorEggTooltip => 'შემქმნელის შესახებ';
+
+  @override
   String get dashboardAllDone => 'ყველაფერი დასრულებულია';
 
   @override

@@ -176,6 +176,25 @@ class AppLocalizationsLt extends AppLocalizations {
   }
 
   @override
+  String get creatorEggBody =>
+      'Tomi – perspektyvus programuotojas, šią programėlę sukūręs būdamas 18-os.';
+
+  @override
+  String get creatorEggGithub => 'GitHub';
+
+  @override
+  String get creatorEggLinkedin => 'LinkedIn';
+
+  @override
+  String get creatorEggOpenFailed => 'Nepavyko atidaryti nuorodos.';
+
+  @override
+  String get creatorEggTitle => 'Ačiū, kad naudojatės mano programėle!';
+
+  @override
+  String get creatorEggTooltip => 'Apie kūrėją';
+
+  @override
   String get dashboardAllDone => 'Viskas atlikta';
 
   @override

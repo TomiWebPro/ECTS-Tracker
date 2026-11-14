@@ -177,6 +177,25 @@ class AppLocalizationsCy extends AppLocalizations {
   }
 
   @override
+  String get creatorEggBody =>
+      'Mae Tomi yn rhaglennydd brwdfrydig a greodd yr ap hon yn 18 oed.';
+
+  @override
+  String get creatorEggGithub => 'GitHub';
+
+  @override
+  String get creatorEggLinkedin => 'LinkedIn';
+
+  @override
+  String get creatorEggOpenFailed => 'Methwyd â agor y ddolen.';
+
+  @override
+  String get creatorEggTitle => 'Diolch am ddefnyddio fy ap!';
+
+  @override
+  String get creatorEggTooltip => 'Am y crëwr';
+
+  @override
   String get dashboardAllDone => 'Popeth wedi\'i wneud';
 
   @override

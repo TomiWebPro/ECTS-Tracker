@@ -176,6 +176,25 @@ class AppLocalizationsTr extends AppLocalizations {
   }
 
   @override
+  String get creatorEggBody =>
+      'Tomi, bu uygulamayı 18 yaşında oluşturan tutkulu bir programcıdır.';
+
+  @override
+  String get creatorEggGithub => 'GitHub';
+
+  @override
+  String get creatorEggLinkedin => 'LinkedIn';
+
+  @override
+  String get creatorEggOpenFailed => 'Bağlantı açılamadı.';
+
+  @override
+  String get creatorEggTitle => 'Uygulamamı kullandığın için teşekkürler!';
+
+  @override
+  String get creatorEggTooltip => 'Oluşturan hakkında';
+
+  @override
   String get dashboardAllDone => 'Tümü tamamlandı';
 
   @override

@@ -173,6 +173,24 @@ class AppLocalizationsKo extends AppLocalizations {
   }
 
   @override
+  String get creatorEggBody => 'Tomi는 18세에 이 앱을 만든 프로그래머 지망생입니다.';
+
+  @override
+  String get creatorEggGithub => 'GitHub';
+
+  @override
+  String get creatorEggLinkedin => 'LinkedIn';
+
+  @override
+  String get creatorEggOpenFailed => '링크를 열 수 없습니다.';
+
+  @override
+  String get creatorEggTitle => '제 앱을 사용해 주셔서 감사합니다!';
+
+  @override
+  String get creatorEggTooltip => '만든 사람 정보';
+
+  @override
   String get dashboardAllDone => '모두 완료';
 
   @override

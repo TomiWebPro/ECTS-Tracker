@@ -175,6 +175,25 @@ class AppLocalizationsMt extends AppLocalizations {
   }
 
   @override
+  String get creatorEggBody =>
+      'Tomi huwa programmur promettenti li ħoloq din l-app ta\' 18-il sena.';
+
+  @override
+  String get creatorEggGithub => 'GitHub';
+
+  @override
+  String get creatorEggLinkedin => 'LinkedIn';
+
+  @override
+  String get creatorEggOpenFailed => 'Il-ħolqa ma setgħetx tinfetaħ.';
+
+  @override
+  String get creatorEggTitle => 'Grazzi talli tuża l-app tiegħi!';
+
+  @override
+  String get creatorEggTooltip => 'Dwar il-kreatur';
+
+  @override
   String get dashboardAllDone => 'Kollox lest';
 
   @override

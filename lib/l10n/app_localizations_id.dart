@@ -177,6 +177,25 @@ class AppLocalizationsId extends AppLocalizations {
   }
 
   @override
+  String get creatorEggBody =>
+      'Tomi adalah programmer muda berbakat yang membuat aplikasi ini pada usia 18 tahun.';
+
+  @override
+  String get creatorEggGithub => 'GitHub';
+
+  @override
+  String get creatorEggLinkedin => 'LinkedIn';
+
+  @override
+  String get creatorEggOpenFailed => 'Tidak dapat membuka tautan.';
+
+  @override
+  String get creatorEggTitle => 'Terima kasih telah menggunakan aplikasiku!';
+
+  @override
+  String get creatorEggTooltip => 'Tentang pembuat';
+
+  @override
   String get dashboardAllDone => 'Semua selesai';
 
   @override

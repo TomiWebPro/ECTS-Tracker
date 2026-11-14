@@ -176,6 +176,25 @@ class AppLocalizationsLb extends AppLocalizations {
   }
 
   @override
+  String get creatorEggBody =>
+      'Den Tomi ass e leidenschaftleche Programméierer, deen dës App mat 18 Joer erstallt huet.';
+
+  @override
+  String get creatorEggGithub => 'GitHub';
+
+  @override
+  String get creatorEggLinkedin => 'LinkedIn';
+
+  @override
+  String get creatorEggOpenFailed => 'De Link konnt net opgemaach ginn.';
+
+  @override
+  String get creatorEggTitle => 'Merci datt Dir meng App benotzt!';
+
+  @override
+  String get creatorEggTooltip => 'Iwwer de Schëpfer';
+
+  @override
   String get dashboardAllDone => 'Alles fäerdeg';
 
   @override

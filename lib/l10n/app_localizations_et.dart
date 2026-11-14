@@ -176,6 +176,25 @@ class AppLocalizationsEt extends AppLocalizations {
   }
 
   @override
+  String get creatorEggBody =>
+      'Tomi on ambitsioonikas programmeerija, kes lõi selle rakenduse 18-aastaselt.';
+
+  @override
+  String get creatorEggGithub => 'GitHub';
+
+  @override
+  String get creatorEggLinkedin => 'LinkedIn';
+
+  @override
+  String get creatorEggOpenFailed => 'Linki ei saanud avada.';
+
+  @override
+  String get creatorEggTitle => 'Täname, et kasutad mu rakendust!';
+
+  @override
+  String get creatorEggTooltip => 'Looja kohta';
+
+  @override
   String get dashboardAllDone => 'Kõik tehtud';
 
   @override

@@ -175,6 +175,25 @@ class AppLocalizationsFo extends AppLocalizations {
   }
 
   @override
+  String get creatorEggBody =>
+      'Tomi er ein eldhugaður forritari, sum gjørdi hesa appen sum 18 ára gamal.';
+
+  @override
+  String get creatorEggGithub => 'GitHub';
+
+  @override
+  String get creatorEggLinkedin => 'LinkedIn';
+
+  @override
+  String get creatorEggOpenFailed => 'Kundi ikki lata leinkjuna upp.';
+
+  @override
+  String get creatorEggTitle => 'Takk fyri at tú brúkar mína app!';
+
+  @override
+  String get creatorEggTooltip => 'Um skaparan';
+
+  @override
   String get dashboardAllDone => 'Alt liðugt';
 
   @override

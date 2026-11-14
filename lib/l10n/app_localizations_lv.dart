@@ -176,6 +176,25 @@ class AppLocalizationsLv extends AppLocalizations {
   }
 
   @override
+  String get creatorEggBody =>
+      'Tomi ir topošais programmētājs, kurš izveidoja šo lietotni 18 gadu vecumā.';
+
+  @override
+  String get creatorEggGithub => 'GitHub';
+
+  @override
+  String get creatorEggLinkedin => 'LinkedIn';
+
+  @override
+  String get creatorEggOpenFailed => 'Neizdevās atvērt saiti.';
+
+  @override
+  String get creatorEggTitle => 'Paldies, ka izmanto manu lietotni!';
+
+  @override
+  String get creatorEggTooltip => 'Par autoru';
+
+  @override
   String get dashboardAllDone => 'Viss paveikts';
 
   @override

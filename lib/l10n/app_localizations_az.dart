@@ -176,6 +176,26 @@ class AppLocalizationsAz extends AppLocalizations {
   }
 
   @override
+  String get creatorEggBody =>
+      'Tomi bu tətbiqi 18 yaşında yaratmış həvəsli proqramçıdır.';
+
+  @override
+  String get creatorEggGithub => 'GitHub';
+
+  @override
+  String get creatorEggLinkedin => 'LinkedIn';
+
+  @override
+  String get creatorEggOpenFailed => 'Keçid açıla bilmədi.';
+
+  @override
+  String get creatorEggTitle =>
+      'Tətbiqimdən istifadə etdiyiniz üçün təşəkkürlər!';
+
+  @override
+  String get creatorEggTooltip => 'Yaradıcı haqqında';
+
+  @override
   String get dashboardAllDone => 'Hamısı hazırdır';
 
   @override

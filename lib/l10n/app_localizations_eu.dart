@@ -177,6 +177,26 @@ class AppLocalizationsEu extends AppLocalizations {
   }
 
   @override
+  String get creatorEggBody =>
+      'Tomi programatzaile grinatsu bat da, aplikazio hau 18 urterekin sortu zuena.';
+
+  @override
+  String get creatorEggGithub => 'GitHub';
+
+  @override
+  String get creatorEggLinkedin => 'LinkedIn';
+
+  @override
+  String get creatorEggOpenFailed => 'Ezin izan da esteka ireki.';
+
+  @override
+  String get creatorEggTitle =>
+      'Eskerrik asko nire aplikazioa erabiltzeagatik!';
+
+  @override
+  String get creatorEggTooltip => 'Sortzaileari buruz';
+
+  @override
   String get dashboardAllDone => 'Guztia eginda';
 
   @override

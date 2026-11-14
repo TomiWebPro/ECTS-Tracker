@@ -458,6 +458,42 @@ abstract class AppLocalizations {
   /// **'Sort: {label}'**
   String coursesSortOption(String label);
 
+  /// Creator easter-egg dialog biography line.
+  ///
+  /// In en, this message translates to:
+  /// **'Tomi is an aspirational programmer who created this app at 18.'**
+  String get creatorEggBody;
+
+  /// Creator easter-egg GitHub link button.
+  ///
+  /// In en, this message translates to:
+  /// **'GitHub'**
+  String get creatorEggGithub;
+
+  /// Creator easter-egg LinkedIn link button.
+  ///
+  /// In en, this message translates to:
+  /// **'LinkedIn'**
+  String get creatorEggLinkedin;
+
+  /// SnackBar when the creator profile link cannot be opened.
+  ///
+  /// In en, this message translates to:
+  /// **'Could not open link.'**
+  String get creatorEggOpenFailed;
+
+  /// Creator easter-egg graffiti dialog title.
+  ///
+  /// In en, this message translates to:
+  /// **'Thanks for using my app!'**
+  String get creatorEggTitle;
+
+  /// Tooltip of the top-right AppBar creator button (20 taps opens the easter egg).
+  ///
+  /// In en, this message translates to:
+  /// **'About the creator'**
+  String get creatorEggTooltip;
+
   /// Dashboard empty-state title when every course is completed.
   ///
   /// In en, this message translates to:

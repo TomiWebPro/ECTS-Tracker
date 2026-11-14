@@ -175,6 +175,25 @@ class AppLocalizationsSh extends AppLocalizations {
   }
 
   @override
+  String get creatorEggBody =>
+      'Tomi je programer u usponu koji je napravio ovu aplikaciju sa 18 godina.';
+
+  @override
+  String get creatorEggGithub => 'GitHub';
+
+  @override
+  String get creatorEggLinkedin => 'LinkedIn';
+
+  @override
+  String get creatorEggOpenFailed => 'Nije moguće otvoriti link.';
+
+  @override
+  String get creatorEggTitle => 'Hvala što koristiš moju aplikaciju!';
+
+  @override
+  String get creatorEggTooltip => 'O autoru';
+
+  @override
   String get dashboardAllDone => 'Sve gotovo';
 
   @override

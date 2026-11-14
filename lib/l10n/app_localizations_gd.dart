@@ -177,6 +177,26 @@ class AppLocalizationsGd extends AppLocalizations {
   }
 
   @override
+  String get creatorEggBody =>
+      'Tha Tomi na phrògramaichear òg gealltanach a chruthaich an aplacaid seo aig 18.';
+
+  @override
+  String get creatorEggGithub => 'GitHub';
+
+  @override
+  String get creatorEggLinkedin => 'LinkedIn';
+
+  @override
+  String get creatorEggOpenFailed => 'Cha b\' urrainn an ceangal fhosgladh.';
+
+  @override
+  String get creatorEggTitle =>
+      'Tapadh leat airson an aplacaid agam a chleachdadh!';
+
+  @override
+  String get creatorEggTooltip => 'Mun chruthaichear';
+
+  @override
   String get dashboardAllDone => 'Uile deiseil';
 
   @override

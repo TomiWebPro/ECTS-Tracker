@@ -176,6 +176,25 @@ class AppLocalizationsGa extends AppLocalizations {
   }
 
   @override
+  String get creatorEggBody =>
+      'Is ríomhchláraitheoir óg geallmhar é Tomi, a chruthaigh an aip seo agus é 18 mbliana d\'aois.';
+
+  @override
+  String get creatorEggGithub => 'GitHub';
+
+  @override
+  String get creatorEggLinkedin => 'LinkedIn';
+
+  @override
+  String get creatorEggOpenFailed => 'Níorbh fhéidir an nasc a oscailt.';
+
+  @override
+  String get creatorEggTitle => 'Go raibh maith agat as m\'aip a úsáid!';
+
+  @override
+  String get creatorEggTooltip => 'Maidir leis an gcruthaitheoir';
+
+  @override
   String get dashboardAllDone => 'Gach rud déanta';
 
   @override

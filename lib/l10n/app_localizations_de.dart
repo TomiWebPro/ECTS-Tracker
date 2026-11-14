@@ -176,6 +176,25 @@ class AppLocalizationsDe extends AppLocalizations {
   }
 
   @override
+  String get creatorEggBody =>
+      'Tomi ist ein leidenschaftlicher Programmierer, der diese App mit 18 erstellt hat.';
+
+  @override
+  String get creatorEggGithub => 'GitHub';
+
+  @override
+  String get creatorEggLinkedin => 'LinkedIn';
+
+  @override
+  String get creatorEggOpenFailed => 'Link konnte nicht geöffnet werden.';
+
+  @override
+  String get creatorEggTitle => 'Danke, dass du meine App nutzt!';
+
+  @override
+  String get creatorEggTooltip => 'Über den Ersteller';
+
+  @override
   String get dashboardAllDone => 'Alles erledigt';
 
   @override

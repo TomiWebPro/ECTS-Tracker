@@ -176,6 +176,25 @@ class AppLocalizationsTe extends AppLocalizations {
   }
 
   @override
+  String get creatorEggBody =>
+      'Tomi 18 ఏళ్ల వయసులో ఈ యాప్‌ను రూపొందించిన ఉత్సాహవంతుడైన యువ ప్రోగ్రామర్.';
+
+  @override
+  String get creatorEggGithub => 'GitHub';
+
+  @override
+  String get creatorEggLinkedin => 'LinkedIn';
+
+  @override
+  String get creatorEggOpenFailed => 'లింక్‌ను తెరవలేకపోయాం.';
+
+  @override
+  String get creatorEggTitle => 'నా యాప్‌ను ఉపయోగిస్తున్నందుకు ధన్యవాదాలు!';
+
+  @override
+  String get creatorEggTooltip => 'సృష్టికర్త గురించి';
+
+  @override
   String get dashboardAllDone => 'అన్నీ పూర్తయ్యాయి';
 
   @override

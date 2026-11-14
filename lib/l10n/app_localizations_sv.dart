@@ -175,6 +175,25 @@ class AppLocalizationsSv extends AppLocalizations {
   }
 
   @override
+  String get creatorEggBody =>
+      'Tomi är en ambitiös programmerare som skapade den här appen vid 18 års ålder.';
+
+  @override
+  String get creatorEggGithub => 'GitHub';
+
+  @override
+  String get creatorEggLinkedin => 'LinkedIn';
+
+  @override
+  String get creatorEggOpenFailed => 'Kunde inte öppna länken.';
+
+  @override
+  String get creatorEggTitle => 'Tack för att du använder min app!';
+
+  @override
+  String get creatorEggTooltip => 'Om skaparen';
+
+  @override
   String get dashboardAllDone => 'Allt klart';
 
   @override

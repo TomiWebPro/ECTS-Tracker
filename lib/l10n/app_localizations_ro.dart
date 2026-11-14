@@ -175,6 +175,25 @@ class AppLocalizationsRo extends AppLocalizations {
   }
 
   @override
+  String get creatorEggBody =>
+      'Tomi este un programator ambițios care a creat această aplicație la 18 ani.';
+
+  @override
+  String get creatorEggGithub => 'GitHub';
+
+  @override
+  String get creatorEggLinkedin => 'LinkedIn';
+
+  @override
+  String get creatorEggOpenFailed => 'Nu s-a putut deschide linkul.';
+
+  @override
+  String get creatorEggTitle => 'Mulțumesc că folosești aplicația mea!';
+
+  @override
+  String get creatorEggTooltip => 'Despre creator';
+
+  @override
   String get dashboardAllDone => 'Totul gata';
 
   @override

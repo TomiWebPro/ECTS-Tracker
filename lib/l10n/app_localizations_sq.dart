@@ -176,6 +176,25 @@ class AppLocalizationsSq extends AppLocalizations {
   }
 
   @override
+  String get creatorEggBody =>
+      'Tomi është një programues ambicioz që e krijoi këtë aplikacion në moshën 18 vjeç.';
+
+  @override
+  String get creatorEggGithub => 'GitHub';
+
+  @override
+  String get creatorEggLinkedin => 'LinkedIn';
+
+  @override
+  String get creatorEggOpenFailed => 'Lidhja nuk mund të hapej.';
+
+  @override
+  String get creatorEggTitle => 'Faleminderit që përdor aplikacionin tim!';
+
+  @override
+  String get creatorEggTooltip => 'Rreth krijuesit';
+
+  @override
   String get dashboardAllDone => 'Gjithçka gati';
 
   @override
