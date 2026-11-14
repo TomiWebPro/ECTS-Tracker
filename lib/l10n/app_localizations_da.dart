@@ -1213,6 +1213,9 @@ class AppLocalizationsDa extends AppLocalizations {
   String get studyTimerFullscreen => 'Fullscreen';
 
   @override
+  String get studyTimerExitFullscreen => 'Exit fullscreen';
+
+  @override
   String get validationCourseEctsPositive => 'ECTS skal være større end nul';
 
   @override

@@ -193,6 +193,15 @@ abstract final class AppSizes {
   static const double studyHourVPad = 4.0;
 
   // ------------------------------------------------------------------
+  // Study timer fullscreen focus view (ECTS-099)
+  // ------------------------------------------------------------------
+  /// Fat action buttons pinned to the bottom of the fullscreen timer.
+  static const double timerFullscreenButtonHeight = 56.0;
+  static const double timerFullscreenGap = 12.0;
+  static const double timerFullscreenTopPad = 12.0;
+  static const double timerFullscreenBottomPad = 24.0;
+
+  // ------------------------------------------------------------------
   // Course color selector (Add/Edit course dialog)
   // ------------------------------------------------------------------
   static const double colorOptionSpacing = 8.0;

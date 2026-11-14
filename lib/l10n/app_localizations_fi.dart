@@ -1213,6 +1213,9 @@ class AppLocalizationsFi extends AppLocalizations {
   String get studyTimerFullscreen => 'Fullscreen';
 
   @override
+  String get studyTimerExitFullscreen => 'Exit fullscreen';
+
+  @override
   String get validationCourseEctsPositive =>
       'ECTS:n on oltava suurempi kuin nolla';
 

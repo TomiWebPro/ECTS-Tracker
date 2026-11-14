@@ -2150,6 +2150,12 @@ abstract class AppLocalizations {
   /// **'Fullscreen'**
   String get studyTimerFullscreen;
 
+  /// Tooltip for the button that leaves the fullscreen timer view (the timer keeps running).
+  ///
+  /// In en, this message translates to:
+  /// **'Exit fullscreen'**
+  String get studyTimerExitFullscreen;
+
   /// Course ECTS validator: non-positive value.
   ///
   /// In en, this message translates to:

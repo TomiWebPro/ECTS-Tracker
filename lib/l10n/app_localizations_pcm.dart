@@ -1207,6 +1207,9 @@ class AppLocalizationsPcm extends AppLocalizations {
   String get studyTimerFullscreen => 'Fullscreen';
 
   @override
+  String get studyTimerExitFullscreen => 'Exit fullscreen';
+
+  @override
   String get validationCourseEctsPositive => 'ECTS must pass zero.';
 
   @override

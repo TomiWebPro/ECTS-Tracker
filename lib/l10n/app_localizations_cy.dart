@@ -1216,6 +1216,9 @@ class AppLocalizationsCy extends AppLocalizations {
   String get studyTimerFullscreen => 'Fullscreen';
 
   @override
+  String get studyTimerExitFullscreen => 'Exit fullscreen';
+
+  @override
   String get validationCourseEctsPositive => 'Rhaid i ECTS fod yn fwy na sero';
 
   @override

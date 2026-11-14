@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:ects_tracker/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -39,6 +40,7 @@ class StudyTimerActiveControls extends ConsumerStatefulWidget {
     this.notesController,
     this.showCourseName = false,
     this.elapsedStyle,
+    this.fullscreenLayout = false,
     this.onFinished,
     this.onDiscarded,
   });
@@ -54,6 +56,10 @@ class StudyTimerActiveControls extends ConsumerStatefulWidget {
   /// Big-clock override for the fullscreen focus view (null keeps the
   /// compact dialog style).
   final TextStyle? elapsedStyle;
+
+  /// Fullscreen focus layout (ECTS-099): clock vertically centered, fat
+  /// actions pinned to the bottom. Same widgets/keys as the sheet.
+  final bool fullscreenLayout;
 
   /// Called after a successful finish-and-log (host pops itself).
   final VoidCallback? onFinished;
@@ -137,6 +143,17 @@ class _StudyTimerActiveControlsState
         course?.name ?? l10n.studyLogUnknownCourse('${timer.courseId}');
     final elapsed = timer.elapsedSec(DateTime.now());
     final minutes = studyTimerLogMinutes(elapsed);
+    if (widget.fullscreenLayout) {
+      return _fullscreenBody(
+        context,
+        l10n,
+        timer,
+        courseName,
+        elapsed,
+        minutes,
+        errorText,
+      );
+    }
     return Column(
       mainAxisSize: MainAxisSize.min,
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -148,68 +165,159 @@ class _StudyTimerActiveControlsState
                 ?.copyWith(fontWeight: FontWeight.w800),
           ),
         if (widget.showCourseName) const SizedBox(height: 4),
-        Center(
-          child: Text(
-            formatTimerHms(elapsed),
-            key: const Key('studyTimerElapsed'),
-            style: widget.elapsedStyle ??
-                Theme.of(context).textTheme.displaySmall?.copyWith(
-              fontWeight: FontWeight.w800,
-              fontFeatures: const [FontFeature.tabularFigures()],
-            ),
-          ),
-        ),
+        Center(child: _clockText(context, elapsed)),
         if (widget.notesController != null) ...[
           const SizedBox(height: 12),
-          TextFormField(
-            key: const Key('studyTimerActiveNotesField'),
-            controller: widget.notesController,
-            decoration: InputDecoration(labelText: l10n.sessionFormNotesLabel),
-            maxLines: 2,
-          ),
+          _notesField(l10n),
         ],
         if (errorText != null) ...[
           const SizedBox(height: 8),
-          Text(
-            localizeRepoMessage(errorText, l10n),
-            key: const Key('studyTimerActiveError'),
-            style: TextStyle(color: Theme.of(context).colorScheme.error),
-          ),
+          _errorLine(context, l10n, errorText),
         ],
         const SizedBox(height: 12),
-        Row(
-          children: [
-            Expanded(
-              child: FilledButton.tonal(
-                key: const Key('pauseResumeTimerButton'),
-                onPressed: _busy ? null : () => _toggle(timer),
-                child: Text(
-                  timer.isRunning
-                      ? l10n.studyTimerPause
-                      : l10n.studyTimerResume,
-                ),
-              ),
-            ),
-            const SizedBox(width: 8),
-            Expanded(
-              child: OutlinedButton(
-                key: const Key('discardTimerButton'),
-                onPressed: _busy ? null : _confirmDiscard,
-                child: Text(l10n.studyTimerDiscard),
-              ),
-            ),
-          ],
-        ),
+        _actionRow(l10n, timer),
         const SizedBox(height: 8),
+        _finishButton(l10n, minutes),
+      ],
+    );
+  }
+
+  /// Fullscreen focus layout: clock vertically centered, fat actions
+  /// pinned to the bottom. Same widgets/keys as the compact sheet.
+  Widget _fullscreenBody(
+    BuildContext context,
+    AppLocalizations l10n,
+    StudyTimerState timer,
+    String courseName,
+    int elapsed,
+    int minutes,
+    String? errorText,
+  ) {
+    return Column(
+      mainAxisSize: MainAxisSize.max,
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: [
+        Expanded(
+          child: Center(
+            child: SingleChildScrollView(
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  if (widget.showCourseName)
+                    Text(
+                      courseName,
+                      textAlign: TextAlign.center,
+                      style: Theme.of(context).textTheme.titleSmall?.copyWith(
+                        fontWeight: FontWeight.w800,
+                      ),
+                    ),
+                  if (widget.showCourseName)
+                    const SizedBox(height: AppSizes.dashboardSmallGap),
+                  Center(child: _clockText(context, elapsed)),
+                  if (widget.notesController != null) ...[
+                    const SizedBox(height: AppSizes.sectionGap),
+                    _notesField(l10n),
+                  ],
+                  if (errorText != null) ...[
+                    const SizedBox(height: AppSizes.sectionInnerGap),
+                    _errorLine(context, l10n, errorText),
+                  ],
+                ],
+              ),
+            ),
+          ),
+        ),
+        const SizedBox(height: AppSizes.timerFullscreenGap),
+        _actionRow(l10n, timer),
+        const SizedBox(height: AppSizes.timerFullscreenGap),
+        _finishButton(l10n, minutes),
+      ],
+    );
+  }
+
+  Widget _clockText(BuildContext context, int elapsed) {
+    return Text(
+      formatTimerHms(elapsed),
+      key: const Key('studyTimerElapsed'),
+      textAlign: TextAlign.center,
+      style: widget.elapsedStyle ??
+          Theme.of(context).textTheme.displaySmall?.copyWith(
+            fontWeight: FontWeight.w800,
+            fontFeatures: const [FontFeature.tabularFigures()],
+          ),
+    );
+  }
+
+  Widget _notesField(AppLocalizations l10n) {
+    return TextFormField(
+      key: const Key('studyTimerActiveNotesField'),
+      controller: widget.notesController,
+      decoration: InputDecoration(labelText: l10n.sessionFormNotesLabel),
+      maxLines: 2,
+    );
+  }
+
+  Widget _errorLine(
+    BuildContext context,
+    AppLocalizations l10n,
+    String message,
+  ) {
+    return Text(
+      localizeRepoMessage(message, l10n),
+      key: const Key('studyTimerActiveError'),
+      style: TextStyle(color: Theme.of(context).colorScheme.error),
+    );
+  }
+
+  /// Wraps [child] in the fat fullscreen button height; the compact
+  /// sheet keeps the default Material button height.
+  Widget _maybeFat(Widget child) {
+    if (!widget.fullscreenLayout) return child;
+    return SizedBox(height: AppSizes.timerFullscreenButtonHeight, child: child);
+  }
+
+  Widget _actionRow(AppLocalizations l10n, StudyTimerState timer) {
+    return Row(
+      children: [
+        Expanded(
+          child: _maybeFat(
+            FilledButton.tonal(
+              key: const Key('pauseResumeTimerButton'),
+              onPressed: _busy ? null : () => _toggle(timer),
+              child: Text(
+                timer.isRunning ? l10n.studyTimerPause : l10n.studyTimerResume,
+              ),
+            ),
+          ),
+        ),
         SizedBox(
-          width: double.infinity,
-          child: FilledButton(
-            key: const Key('finishTimerButton'),
-            onPressed: _busy || minutes <= 0 ? null : _finish,
-            child: Text(l10n.studyTimerFinishLog('$minutes')),
+          width: widget.fullscreenLayout ? AppSizes.timerFullscreenGap : 8,
+        ),
+        Expanded(
+          child: _maybeFat(
+            OutlinedButton(
+              key: const Key('discardTimerButton'),
+              onPressed: _busy ? null : _confirmDiscard,
+              child: Text(l10n.studyTimerDiscard),
+            ),
           ),
         ),
       ],
+    );
+  }
+
+  Widget _finishButton(AppLocalizations l10n, int minutes) {
+    return SizedBox(
+      width: double.infinity,
+      height: widget.fullscreenLayout
+          ? AppSizes.timerFullscreenButtonHeight
+          : null,
+      child: FilledButton(
+        key: const Key('finishTimerButton'),
+        onPressed: _busy || minutes <= 0 ? null : _finish,
+        child: Text(l10n.studyTimerFinishLog('$minutes')),
+      ),
     );
   }
 }
@@ -379,9 +487,9 @@ class _StudyTimerFullscreenPageState
       return Scaffold(
         appBar: AppBar(
           leading: IconButton(
-            tooltip: l10n.commonClose,
+            tooltip: l10n.studyTimerExitFullscreen,
             onPressed: () => Navigator.of(context).pop(),
-            icon: const Icon(Icons.close),
+            icon: const Icon(Icons.fullscreen_exit),
           ),
           title: Text(l10n.studyTimerStartTitle),
         ),
@@ -404,31 +512,34 @@ class _StudyTimerFullscreenPageState
       appBar: AppBar(
         leading: IconButton(
           key: const Key('closeTimerFullscreenButton'),
-          tooltip: l10n.commonClose,
+          tooltip: l10n.studyTimerExitFullscreen,
           onPressed: () => Navigator.of(context).pop(),
-          icon: const Icon(Icons.close),
+          icon: const Icon(Icons.fullscreen_exit),
         ),
         title: Text(l10n.studyTimerActiveTitle(courseName)),
       ),
-      body: Align(
-        alignment: Alignment.topCenter,
-        child: ConstrainedBox(
-          constraints: const BoxConstraints(
-            maxWidth: AppSizes.maxContentWidth,
-          ),
-          child: SingleChildScrollView(
-            padding: const EdgeInsets.fromLTRB(
-              AppSizes.pageHPad,
-              AppSizes.dashboardTopPad,
-              AppSizes.pageHPad,
-              AppSizes.pageBottomPadNoFab,
+      body: SafeArea(
+        child: Align(
+          alignment: Alignment.topCenter,
+          child: ConstrainedBox(
+            constraints: const BoxConstraints(
+              maxWidth: AppSizes.maxContentWidth,
             ),
-            child: StudyTimerActiveControls(
-              key: const Key('studyTimerFullscreenControls'),
-              notesController: _notesController,
-              elapsedStyle: bigClock,
-              onFinished: () => Navigator.of(context).pop(),
-              onDiscarded: () => Navigator.of(context).pop(),
+            child: Padding(
+              padding: const EdgeInsets.fromLTRB(
+                AppSizes.pageHPad,
+                AppSizes.timerFullscreenTopPad,
+                AppSizes.pageHPad,
+                AppSizes.timerFullscreenBottomPad,
+              ),
+              child: StudyTimerActiveControls(
+                key: const Key('studyTimerFullscreenControls'),
+                notesController: _notesController,
+                elapsedStyle: bigClock,
+                fullscreenLayout: true,
+                onFinished: () => Navigator.of(context).pop(),
+                onDiscarded: () => Navigator.of(context).pop(),
+              ),
             ),
           ),
         ),

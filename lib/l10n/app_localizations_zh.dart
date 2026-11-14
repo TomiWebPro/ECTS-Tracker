@@ -1176,6 +1176,9 @@ class AppLocalizationsZh extends AppLocalizations {
   String get studyTimerFullscreen => 'Fullscreen';
 
   @override
+  String get studyTimerExitFullscreen => 'Exit fullscreen';
+
+  @override
   String get validationCourseEctsPositive => 'ECTS 必须大于零';
 
   @override

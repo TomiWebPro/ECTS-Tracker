@@ -1213,6 +1213,9 @@ class AppLocalizationsHy extends AppLocalizations {
   String get studyTimerFullscreen => 'Fullscreen';
 
   @override
+  String get studyTimerExitFullscreen => 'Exit fullscreen';
+
+  @override
   String get validationCourseEctsPositive => 'ECTS-ը պետք է զրոյից մեծ լինի';
 
   @override

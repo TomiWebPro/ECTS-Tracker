@@ -1186,6 +1186,9 @@ class AppLocalizationsKo extends AppLocalizations {
   String get studyTimerFullscreen => 'Fullscreen';
 
   @override
+  String get studyTimerExitFullscreen => 'Exit fullscreen';
+
+  @override
   String get validationCourseEctsPositive => 'ECTS는 0보다 커야 합니다';
 
   @override

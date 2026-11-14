@@ -1213,6 +1213,9 @@ class AppLocalizationsSv extends AppLocalizations {
   String get studyTimerFullscreen => 'Fullscreen';
 
   @override
+  String get studyTimerExitFullscreen => 'Exit fullscreen';
+
+  @override
   String get validationCourseEctsPositive => 'ECTS måste vara större än noll';
 
   @override

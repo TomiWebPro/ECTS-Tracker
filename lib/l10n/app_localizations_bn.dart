@@ -1208,6 +1208,9 @@ class AppLocalizationsBn extends AppLocalizations {
   String get studyTimerFullscreen => 'Fullscreen';
 
   @override
+  String get studyTimerExitFullscreen => 'Exit fullscreen';
+
+  @override
   String get validationCourseEctsPositive => 'ECTS শূন্যের বেশি হতে হবে';
 
   @override

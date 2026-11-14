@@ -325,6 +325,7 @@
   "studyTimerStartTitle": "Start study timer",
   "studyTimerTooShort": "Timer has not run yet.",
   "studyTimerFullscreen": "Fullscreen",
+  "studyTimerExitFullscreen": "Exit fullscreen",
   "validationCourseEctsPositive": "ECTS must be greater than zero",
   "validationCourseEctsRequired": "Enter ECTS credits",
   "validationCourseNameRequired": "Name is required",
@@ -1984,6 +1985,9 @@
   },
   "@studyTimerFullscreen": {
     "description": "Tooltip for the button that opens the active timer in a fullscreen focus view."
+  },
+  "@studyTimerExitFullscreen": {
+    "description": "Tooltip for the button that leaves the fullscreen timer view (the timer keeps running)."
   },
   "@validationCourseEctsPositive": {
     "description": "Course ECTS validator: non-positive value."

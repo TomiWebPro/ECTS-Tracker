@@ -1212,6 +1212,9 @@ class AppLocalizationsKa extends AppLocalizations {
   String get studyTimerFullscreen => 'Fullscreen';
 
   @override
+  String get studyTimerExitFullscreen => 'Exit fullscreen';
+
+  @override
   String get validationCourseEctsPositive => 'ECTS უნდა იყოს ნულზე მეტი';
 
   @override

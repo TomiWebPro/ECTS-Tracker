@@ -1216,6 +1216,9 @@ class AppLocalizationsHu extends AppLocalizations {
   String get studyTimerFullscreen => 'Fullscreen';
 
   @override
+  String get studyTimerExitFullscreen => 'Exit fullscreen';
+
+  @override
   String get validationCourseEctsPositive =>
       'Az ECTS-nek nullánál nagyobbnak kell lennie';
 

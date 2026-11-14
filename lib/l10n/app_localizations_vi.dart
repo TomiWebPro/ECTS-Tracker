@@ -1205,6 +1205,9 @@ class AppLocalizationsVi extends AppLocalizations {
   String get studyTimerFullscreen => 'Fullscreen';
 
   @override
+  String get studyTimerExitFullscreen => 'Exit fullscreen';
+
+  @override
   String get validationCourseEctsPositive => 'ECTS phải lớn hơn 0';
 
   @override
