@@ -138,16 +138,15 @@ class _HomeShellState extends State<HomeShell> {
               leading: Padding(
                 padding: const EdgeInsets.only(left: 12.0),
                 child: Center(
-                  child: Tooltip(
-                    message: l10n.creatorEggTooltip,
-                    child: GestureDetector(
-                      key: const Key('creatorEggLogoTap'),
-                      onTap: _handleEggTap,
-                      behavior: HitTestBehavior.opaque,
-                      child: const AppLogo(
-                        size: AppSizes.logoAppBar,
-                        radius: AppSizes.logoAppBarRadius,
-                      ),
+                  // ECTS-110: no Tooltip here — any hint ruins the easter egg.
+                  // Was: Tooltip(message: l10n.creatorEggTooltip, child: ...).
+                  child: GestureDetector(
+                    key: const Key('creatorEggLogoTap'),
+                    onTap: _handleEggTap,
+                    behavior: HitTestBehavior.opaque,
+                    child: const AppLogo(
+                      size: AppSizes.logoAppBar,
+                      radius: AppSizes.logoAppBarRadius,
                     ),
                   ),
                 ),
@@ -430,16 +429,15 @@ class _HomeShellState extends State<HomeShell> {
       leading: Padding(
         padding: const EdgeInsets.only(left: AppSizes.glassBarLeadingPad),
         child: Center(
-          child: Tooltip(
-            message: l10n.creatorEggTooltip,
-            child: GestureDetector(
-              key: const Key('creatorEggLogoTap'),
-              onTap: _handleEggTap,
-              behavior: HitTestBehavior.opaque,
-              child: const AppLogo(
-                size: AppSizes.logoAppBar,
-                radius: AppSizes.logoAppBarRadius,
-              ),
+          // ECTS-110: no Tooltip here — any hint ruins the easter egg.
+          // Was: Tooltip(message: l10n.creatorEggTooltip, child: ...).
+          child: GestureDetector(
+            key: const Key('creatorEggLogoTap'),
+            onTap: _handleEggTap,
+            behavior: HitTestBehavior.opaque,
+            child: const AppLogo(
+              size: AppSizes.logoAppBar,
+              radius: AppSizes.logoAppBarRadius,
             ),
           ),
         ),
