@@ -286,26 +286,27 @@ class _SessionFormDialogState extends ConsumerState<SessionFormDialog> {
             initialValue: courseId,
             isExpanded: glassMenu,
             decoration: InputDecoration(labelText: l10n.studyTimerCourseLabel),
-            dropdownColor: glassMenu ? glassMenuColor(context) : null,
-            borderRadius: glassMenu
-                ? BorderRadius.circular(AppSizes.glassMenuRadius)
-                : null,
+            // Tonal rounded menu in both modes (ECTS-115): classic used
+            // the default grey menu next to the polished filter chips.
+            dropdownColor: glassMenu
+                ? glassMenuColor(context)
+                : Theme.of(context).colorScheme.surfaceContainerHigh,
+            borderRadius: BorderRadius.circular(glassMenu
+                ? AppSizes.glassMenuRadius
+                : AppSizes.listTileRadius),
             focusColor: glassMenu ? Colors.transparent : null,
             elevation: glassMenu ? AppSizes.glassMenuElevation.toInt() : 8,
-            menuMaxHeight: glassMenu ? AppSizes.glassMenuMaxHeight : null,
-            selectedItemBuilder: glassMenu
-                ? (context) => [for (final c in courses) Text(c.name)]
-                : null,
+            menuMaxHeight: AppSizes.glassMenuMaxHeight,
+            selectedItemBuilder:
+                (context) => [for (final c in courses) Text(c.name)],
             items: [
               for (final c in courses)
                 DropdownMenuItem<int>(
                   value: c.id,
-                  child: glassMenu
-                      ? GlassMenuRow(
-                          selected: courseId == c.id,
-                          child: Text(c.name),
-                        )
-                      : Text(c.name),
+                  child: GlassMenuRow(
+                    selected: courseId == c.id,
+                    child: Text(c.name),
+                  ),
                 ),
             ],
             onChanged: courses.isEmpty
@@ -480,29 +481,29 @@ class _SessionFormDialogState extends ConsumerState<SessionFormDialog> {
             isExpanded: glassMenu,
             decoration: InputDecoration(labelText: l10n.sessionFormCourseLabel),
             // ECTS-074 Apple polish (glass-only): frosted rounded menu,
-            // text-only selection. Legacy keeps defaults. Closed-face
-            // stays plain text via selectedItemBuilder so no menu
-            // padding leaks into the field (ECTS-074d).
-            dropdownColor: glassMenu ? glassMenuColor(context) : null,
-            borderRadius: glassMenu
-                ? BorderRadius.circular(AppSizes.glassMenuRadius)
-                : null,
+            // text-only selection. Classic (ECTS-115) uses the same tonal
+            // rounded menu + tint rows so it matches the filter chips.
+            // Closed-face stays plain text via selectedItemBuilder so no
+            // menu padding leaks into the field (ECTS-074d).
+            dropdownColor: glassMenu
+                ? glassMenuColor(context)
+                : Theme.of(context).colorScheme.surfaceContainerHigh,
+            borderRadius: BorderRadius.circular(glassMenu
+                ? AppSizes.glassMenuRadius
+                : AppSizes.listTileRadius),
             focusColor: glassMenu ? Colors.transparent : null,
             elevation: glassMenu ? AppSizes.glassMenuElevation.toInt() : 8,
-            menuMaxHeight: glassMenu ? AppSizes.glassMenuMaxHeight : null,
-            selectedItemBuilder: glassMenu
-                ? (context) => [for (final c in courses) Text(c.name)]
-                : null,
+            menuMaxHeight: AppSizes.glassMenuMaxHeight,
+            selectedItemBuilder:
+                (context) => [for (final c in courses) Text(c.name)],
             items: [
               for (final c in courses)
                 DropdownMenuItem<int>(
                   value: c.id,
-                  child: glassMenu
-                      ? GlassMenuRow(
-                          selected: courseId == c.id,
-                          child: Text(c.name),
-                        )
-                      : Text(c.name),
+                  child: GlassMenuRow(
+                    selected: courseId == c.id,
+                    child: Text(c.name),
+                  ),
                 ),
             ],
             onChanged: courses.isEmpty

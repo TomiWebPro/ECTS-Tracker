@@ -480,16 +480,18 @@ class FilterDropdownShell extends StatelessWidget {
         ),
       );
     }
+    // Classic solid tonal chip (ECTS-115): surfaceContainerHigh solid +
+    // crisp outline so the closed face reads intentional, matching the
+    // session-field menu surface below. Glass uses the transparent branch.
     return Container(
       padding: const EdgeInsets.symmetric(
         horizontal: AppSizes.filterHPad,
         vertical: AppSizes.filterVPad,
       ),
       decoration: BoxDecoration(
-        color: scheme.surfaceContainerHighest.withValues(alpha: 0.55),
+        color: scheme.surfaceContainerHigh,
         borderRadius: BorderRadius.circular(AppSizes.filterRadius),
-        border:
-            Border.all(color: scheme.outlineVariant.withValues(alpha: 0.6)),
+        border: Border.all(color: scheme.outlineVariant),
       ),
       child: Row(
         mainAxisSize: MainAxisSize.min,

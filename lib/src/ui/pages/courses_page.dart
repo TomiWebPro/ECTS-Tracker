@@ -135,11 +135,15 @@ class _CoursesPageState extends ConsumerState<_CoursesPage> {
     final bottomPad = glass
         ? AppSizes.glassPageBottomInset + AppSizes.pageBottomPad
         : AppSizes.pageBottomPad;
-    // Apple-style menu surface (glass-only): null keeps legacy defaults.
-    final menuColor = glass ? glassMenuColor(context) : null;
-    final menuRadius = glass
-        ? BorderRadius.circular(AppSizes.glassMenuRadius)
-        : null;
+    // Menu surface: frosted Apple overlay in glass, tonal Material in
+    // classic (ECTS-115) — surfaceContainerHigh + listTileRadius so the
+    // open menu reads designed, not default grey. Both modes cap height.
+    final scheme = Theme.of(context).colorScheme;
+    final menuColor =
+        glass ? glassMenuColor(context) : scheme.surfaceContainerHigh;
+    final menuRadius = BorderRadius.circular(
+      glass ? AppSizes.glassMenuRadius : AppSizes.listTileRadius,
+    );
     final menuElevationInt =
         glass ? AppSizes.glassMenuElevation.toInt() : null;
     final menuElevationDouble =
@@ -187,35 +191,31 @@ class _CoursesPageState extends ConsumerState<_CoursesPage> {
                     dropdownColor: menuColor,
                     borderRadius: menuRadius,
                     elevation: menuElevationInt ?? 8,
-                    menuMaxHeight: glass
-                        ? AppSizes.glassMenuMaxHeight
-                        : null,
+                    menuMaxHeight: AppSizes.glassMenuMaxHeight,
                     onChanged: (v) =>
                         setState(() => _sort = v ?? CourseSort.name),
                     // Closed-face stays plain text (ECTS-074d): without
                     // this the button renders the selected item's
                     // GlassMenuRow, leaking menu padding/weight into the
-                    // chip as a second pill.
-                    selectedItemBuilder: glass
-                        ? (context) => [
-                              for (final s in CourseSort.values)
-                                Text(l10n.coursesSortOption(
-                                    courseSortLabelL10n(s, l10n))),
-                            ]
-                        : null,
+                    // chip as a second pill. Both modes now use tint rows.
+                    selectedItemBuilder: (context) => [
+                      for (final s in CourseSort.values)
+                        Text(l10n.coursesSortOption(
+                            courseSortLabelL10n(s, l10n))),
+                    ],
                     items: [
                       for (final s in CourseSort.values)
                         DropdownMenuItem(
                           value: s,
                           key: Key('courseSort_${s.name}'),
-                          child: glass
-                              ? GlassMenuRow(
-                                  selected: _sort == s,
-                                  child: Text(l10n.coursesSortOption(
-                                      courseSortLabelL10n(s, l10n))),
-                                )
-                              : Text(l10n.coursesSortOption(
-                                  courseSortLabelL10n(s, l10n))),
+                          // Tinted selection row in both modes (ECTS-115):
+                          // the classic grey menu read flat next to the
+                          // session-field dropdown.
+                          child: GlassMenuRow(
+                            selected: _sort == s,
+                            child: Text(l10n.coursesSortOption(
+                                courseSortLabelL10n(s, l10n))),
+                          ),
                         ),
                     ],
                     ),
@@ -246,41 +246,33 @@ class _CoursesPageState extends ConsumerState<_CoursesPage> {
                     dropdownColor: menuColor,
                     borderRadius: menuRadius,
                     elevation: menuElevationInt ?? 8,
-                    menuMaxHeight: glass
-                        ? AppSizes.glassMenuMaxHeight
-                        : null,
+                    menuMaxHeight: AppSizes.glassMenuMaxHeight,
                     onChanged: (v) => setState(() => _statusFilter = v),
                     // Closed-face stays plain text (ECTS-074d): see sort
                     // dropdown above — no menu row leaks into the chip.
-                    selectedItemBuilder: glass
-                        ? (context) => [
-                              Text(l10n.coursesFilterAll),
-                              for (final s in CourseStatus.values)
-                                Text(courseStatusLabelL10n(s, l10n)),
-                            ]
-                        : null,
+                    selectedItemBuilder: (context) => [
+                      Text(l10n.coursesFilterAll),
+                      for (final s in CourseStatus.values)
+                        Text(courseStatusLabelL10n(s, l10n)),
+                    ],
                     items: [
                       DropdownMenuItem<CourseStatus?>(
                         value: null,
                         key: const Key('courseFilter_all'),
-                        child: glass
-                            ? GlassMenuRow(
-                                selected: _statusFilter == null,
-                                child: Text(l10n.coursesFilterAll),
-                              )
-                            : Text(l10n.coursesFilterAll),
+                        child: GlassMenuRow(
+                          selected: _statusFilter == null,
+                          child: Text(l10n.coursesFilterAll),
+                        ),
                       ),
                       for (final s in CourseStatus.values)
                         DropdownMenuItem<CourseStatus?>(
                           value: s,
                           key: Key('courseFilter_${s.name}'),
-                          child: glass
-                              ? GlassMenuRow(
-                                  selected: _statusFilter == s,
-                                  child: Text(
-                                      courseStatusLabelL10n(s, l10n)),
-                                )
-                              : Text(courseStatusLabelL10n(s, l10n)),
+                          child: GlassMenuRow(
+                            selected: _statusFilter == s,
+                            child:
+                                Text(courseStatusLabelL10n(s, l10n)),
+                          ),
                         ),
                     ],
                     ),
@@ -566,22 +558,9 @@ class _CoursesPageState extends ConsumerState<_CoursesPage> {
                             itemBuilder: (context) {
                               final menuL10n =
                                   l10nOf(context);
-                              if (!glass) {
-                                return [
-                                  PopupMenuItem(
-                                      value: 'timer',
-                                      child:
-                                          Text(menuL10n.studyTimerStart)),
-                                  PopupMenuItem(
-                                      value: 'edit',
-                                      child: Text(menuL10n.commonEdit)),
-                                  PopupMenuItem(
-                                      value: 'delete',
-                                      child: Text(menuL10n.commonDelete)),
-                                ];
-                              }
-                              // Apple-style glass menu (ECTS-074): rounded
-                              // frosted surface, icon rows, red delete.
+                              // Icon rows in both modes (ECTS-115): the
+                              // classic plain-text menu read bare next to
+                              // the tinted dropdown menus.
                               return [
                                 PopupMenuItem(
                                   value: 'timer',

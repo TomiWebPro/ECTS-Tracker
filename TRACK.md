@@ -138,6 +138,7 @@ Conventions: `AGENTS.md` (binding, incl. new-locale policy §6) · `README.md` (
 | ECTS-111 | M12 | Creator links bulletproof (all platforms: browser else clipboard + copied note) | done | analyze clean; affected 14/14; commit 1bfd7b1; 2026-11-14 |
 | ECTS-112 | M12 | Creator dialog: drop Close button (barrier dismisses) | done | analyze clean; creator_egg 6/6; 2026-11-14 |
 | ECTS-114 | M8 | Glass dashboard CTA darkens on scroll-drag (in-list flex + ink) | done | analyze clean (2 files); glass_chrome+cards 11/11 incl. dashboard tap; commit (this run); 2026-11-17 |
+| ECTS-115 | M6 | Classic dropdown/menu polish (sort/status/course/session match session-field + tint rows) | done | analyze clean (3 files); glass_cards+chrome 11/11 + dialogs 5/5; commit (this run); 2026-11-17 |
 
 Note: ECTS-033/034 were announced in a 2026-11-05 log but never got rows; IDs skipped, do NOT renumber.
 

@@ -97,7 +97,9 @@ class _StudyLogPage extends ConsumerWidget {
             : (glass ? AppSizes.glassPageTopPad : AppSizes.pageTopPad);
         final cardGap =
             glass ? AppSizes.glassCardGap : AppSizes.cardGap;
-        final menuColor = glass ? glassMenuColor(context) : null;
+        final menuColor = glass
+            ? glassMenuColor(context)
+            : Theme.of(context).colorScheme.surfaceContainerHigh;
         final menuShape = glass
             ? glassMenuShape()
             : RoundedRectangleBorder(
@@ -306,16 +308,9 @@ class _StudyLogPage extends ConsumerWidget {
                               itemBuilder: (context) {
                                 final menuL10n =
                                     l10nOf(context);
-                                if (!glass) {
-                                  return [
-                                    PopupMenuItem(
-                                        value: 'edit',
-                                        child: Text(menuL10n.commonEdit)),
-                                    PopupMenuItem(
-                                        value: 'delete',
-                                        child: Text(menuL10n.commonDelete)),
-                                  ];
-                                }
+                                // Icon rows in both modes (ECTS-115): the
+                                // classic plain-text menu read bare next to
+                                // the tinted dropdown menus.
                                 return [
                                   PopupMenuItem(
                                     value: 'edit',
