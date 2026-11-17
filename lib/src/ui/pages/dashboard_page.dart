@@ -140,32 +140,39 @@ class _OverviewPage extends ConsumerWidget {
         SizedBox(height: sectionGap),
         SizedBox(
           width: double.infinity,
-          // Glass gate (ECTS-062): same Key/label/icon/tap, glass body
-          // with a subtle press flex; off keeps the FilledButton.
+          // Glass gate (ECTS-062): same Key/label/icon/tap, glass body;
+          // off keeps the FilledButton.
           // Light frost + dark ink + soft shadow (ECTS-066): airy pill
           // that floats — the saturated primary wash read as a flat
           // solid block. Package white-on-frost default is invisible
           // on light themes, so ink is explicit.
+          // ECTS-114: rigid + ink-cleared. This CTA lives INSIDE the
+          // scrolling ListView, so a scroll gesture starting on it kept
+          // the flex press alive for the whole drag (hold swell +
+          // refractionBoost deepening + stretch/lean) and the internal
+          // InkWell's default grey highlight darkened the sheer 0.35
+          // tint until release. Floating FABs keep their flex (they
+          // never scroll); this one must not answer a drag.
           child: glass
-              ? LiquidGlassButton(
-                  key: const Key('dashboardLogSessionAction'),
-                  onPressed: () => showSessionFormDialog(context),
-                  icon: Icons.timer_outlined,
-                  label: l10n.dashboardLogSessionAction,
-                  foregroundColor: scheme.onPrimaryContainer,
-                  style: LiquidGlassButton.defaultStyle.copyWith(
-                    // Sheer wash like the cards (ECTS-066): glass over the
-                    // solid page, dark ink keeps it legible.
-                    color: scheme.primaryContainer.withValues(alpha: 0.35),
-                    // Shared card shadow (ECTS-066): one depth language.
-                    shadow: glassCardShadow,
-                  ),
-                  touch: const LiquidGlassTouch.flexing(
-                    LiquidGlassFlex.subtle(),
-                  ),
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: AppSizes.fabHPad,
-                    vertical: AppSizes.fabVPad,
+              ? GlassInkClear(
+                  enabled: true,
+                  child: LiquidGlassButton(
+                    key: const Key('dashboardLogSessionAction'),
+                    onPressed: () => showSessionFormDialog(context),
+                    icon: Icons.timer_outlined,
+                    label: l10n.dashboardLogSessionAction,
+                    foregroundColor: scheme.onPrimaryContainer,
+                    style: LiquidGlassButton.defaultStyle.copyWith(
+                      // Sheer wash like the cards (ECTS-066): glass over the
+                      // solid page, dark ink keeps it legible.
+                      color: scheme.primaryContainer.withValues(alpha: 0.35),
+                      // Shared card shadow (ECTS-066): one depth language.
+                      shadow: glassCardShadow,
+                    ),
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: AppSizes.fabHPad,
+                      vertical: AppSizes.fabVPad,
+                    ),
                   ),
                 )
               : FilledButton.icon(
