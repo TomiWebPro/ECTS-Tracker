@@ -9,7 +9,7 @@
      xmlns:bal="http://wixtoolset.org/schemas/v4/wxs/bal">
 
   <Bundle Name="ECTS Tracker"
-          Version="1.0.0"
+          Version="1.0.1"
           Manufacturer="TomiWebPro"
           UpgradeCode="4b7bbe75-f963-415f-b4fb-a4ee50a877f9"
           IconSourceFile="windows\runner\resources\app_icon.ico"
@@ -25,7 +25,7 @@
     <Chain>
       <!-- Silent inside the wrapper by default (no DisplayInternalUI in v5);
            the MSI keeps its own wizard for direct use. -->
-      <MsiPackage SourceFile="dist\ECTSTracker-1.0.0-x64.msi"
+      <MsiPackage SourceFile="dist\ECTSTracker-1.0.1-beta-x64.msi"
                   Compressed="yes"
                   Vital="yes" />
     </Chain>

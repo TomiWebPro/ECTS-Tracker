@@ -139,6 +139,7 @@ Conventions: `AGENTS.md` (binding, incl. new-locale policy §6) · `README.md` (
 | ECTS-112 | M12 | Creator dialog: drop Close button (barrier dismisses) | done | analyze clean; creator_egg 6/6; 2026-11-14 |
 | ECTS-114 | M8 | Glass dashboard CTA darkens on scroll-drag (in-list flex + ink) | done | analyze clean (2 files); glass_chrome+cards 11/11 incl. dashboard tap; commit (this run); 2026-11-17 |
 | ECTS-115 | M6 | Classic dropdown/menu polish (sort/status/course/session match session-field + tint rows) | done | analyze clean (3 files); glass_cards+chrome 11/11 + dialogs 5/5; commit (this run); 2026-11-17 |
+| ECTS-116 | M12 | Beta v1.0.1 rebuild: version bump + APK + MSI + setup.exe | claimed by opencode at 2026-11-17T00:00:00Z | — |
 
 Note: ECTS-033/034 were announced in a 2026-11-05 log but never got rows; IDs skipped, do NOT renumber.
 

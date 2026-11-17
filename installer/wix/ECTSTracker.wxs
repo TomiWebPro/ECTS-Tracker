@@ -7,7 +7,7 @@
 
   <Package Name="ECTS Tracker"
            Language="1033"
-           Version="1.0.0"
+           Version="1.0.1"
            Manufacturer="TomiWebPro"
            UpgradeCode="c32d6774-fc2a-4635-a28a-4d79297e8208"
            Scope="perMachine">
